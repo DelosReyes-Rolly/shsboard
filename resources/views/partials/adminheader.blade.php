@@ -51,34 +51,34 @@
                             <a href="/gradingschoolyear"><i class="fas fa-calendar-alt"></i> <span class="hide-word"> School Year</span></a>
                         </li>
                         <li>
-                            <a href="/gradinggradelevels"><i class="fas fa-home"></i> <span class="hide-word"> Grade Levels</span></a>
+                            <a href="/gradinggradelevels"><i class="fas fa-signal"></i> <span class="hide-word"> Grade Levels</span></a>
                         </li>
                         <li>
-                            <a href="/gradingcourses"><i class="fas fa-home"></i> <span class="hide-word"> Strands</span></a>
+                            <a href="/gradingcourses"><i class="fas fa-sitemap"></i> <span class="hide-word"> Strands</span></a>
                         </li>
                         <li>
-                            <a href="/gradingsections"><i class="fas fa-home"></i> <span class="hide-word"> Sections</span></a>
+                            <a href="/gradingsections"><i class="fas fa-bars"></i> <span class="hide-word"> Sections</span></a>
                         </li>
                         <li>
-                            <a href="/gradingsubjects"><i class="fas fa-home"></i> <span class="hide-word"> Subjects</span></a>
+                            <a href="/gradingsubjects"><i class="fas fa-book"></i> <span class="hide-word"> Subjects</span></a>
                         </li>
                     </ul>
                 </li>
                 <li>
                     <a href="/gradingfaculty">
-                        <i class="fas fa-briefcase"></i>
+                        <i class="fas fa-user-tie"></i>
                         <span class="hide-word"> Faculty </span>
                     </a>
                 </li>
                 <li>
                     <a href="/gradingstudents">
-                        <i class="fas fa-image"></i>
+                        <i class="fas fa-users"></i>
                         <span class="hide-word"> Students </span>
                     </a>
                 </li>
                 <li>
                     <a href="/gradingfacultysubjects">
-                        <i class="fas fa-question"></i>
+                        <i class="fas fa-chalkboard-teacher"></i>
                         <span class="hide-word"> Class Schedule </span>
                     </a>
                 </li>
@@ -97,7 +97,7 @@
                 <div style="padding-left:8px;">EXTERNAL</div>
                 <li>
                     <a href="#landingSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-home"></i>
+                        <i class="fas fa-stream"></i>
                         <span class="hide-word"> Manage Landing Page</span>
                     </a>
                     <ul class="collapse list-unstyled" id="landingSubmenu">
@@ -105,13 +105,13 @@
                             <a href='{{ url("/homepage") }}'><i class="fas fa-home"></i> <span class="hide-word"> Homepage</span></a>
                         </li>
                         <li>
-                            <a href='{{ url("/createAnnoucement") }}'><i class="fas fa-home"></i> <span class="hide-word"> Announcements</span></a>
+                            <a href='{{ url("/createAnnoucement") }}'><i class="fas fa-bullhorn"></i> <span class="hide-word"> Announcements</span></a>
                         </li>
                         <li>
-                            <a href='{{ url("/createEvents") }}'><i class="fas fa-home"></i> <span class="hide-word"> Events</span></a>
+                            <a href='{{ url("/createEvents") }}'><i class="fas fa-calendar-times"></i> <span class="hide-word"> Events</span></a>
                         </li>
                         <li>
-                            <a href='{{ url("/createReminder") }}'><i class="fas fa-home"></i> <span class="hide-word"> Reminders</span></a>
+                            <a href='{{ url("/createReminder") }}'><i class="fas fa-sticky-note"></i> <span class="hide-word"> Reminders</span></a>
                         </li>
                     </ul>
                 </li>
@@ -121,27 +121,27 @@
                 <div style="padding-left:8px;">INTERNAL</div>
                 <li>
                     <a href="#bulletinSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-home"></i>
+                        <i class="fas fa-tv"></i>
                         <span class="hide-word"> Bulletin</span>
                     </a>
                     <ul class="collapse list-unstyled" id="bulletinSubmenu">
                         <li>
-                            <a href='{{ url("/privateannouncement") }}'><i class="fas fa-home"></i> <span class="hide-word"> Announcements</span></a>
+                            <a href='{{ url("/privateannouncement") }}'><i class="fas fa-bullhorn"></i> <span class="hide-word"> Announcements</span></a>
                         </li>
                         <li>
-                            <a href='{{ url("/tableofannouncement") }}'><i class="fas fa-home"></i> <span class="hide-word"> Table of Announcements</span></a>
+                            <a href='{{ url("/tableofannouncement") }}'><i class="fas fa-table"></i> <span class="hide-word"> Table of Announcements</span></a>
                         </li>
                         <li>
-                            <a href='{{ url("/privatereminders") }}'><i class="fas fa-home"></i> <span class="hide-word"> Reminders</span></a>
+                            <a href='{{ url("/privatereminders") }}'><i class="fas fa-sticky-note"></i> <span class="hide-word"> Reminders</span></a>
                         </li>
                         <li>
-                            <a href='{{ url("/tableofreminders") }}'><i class="fas fa-home"></i> <span class="hide-word"> Table of Reminders</span></a>
+                            <a href='{{ url("/tableofreminders") }}'><i class="fas fa-table"></i> <span class="hide-word"> Table of Reminders</span></a>
                         </li>
                     </ul>
                 </li>
                 <li>
                     <a class="a-header" href='{{ url("documentrequest") }}'>
-                        <i class="fas fa-briefcase"></i>
+                        <i class="fas fa-file-alt"></i> 
                         <span class="hide-word"> Document Requests </span>
                     </a>
                 </li>
