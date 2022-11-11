@@ -1,7 +1,6 @@
 @include('partials.adminheader')
 @include('partials.adminSecondHeader')
 <main>
-<br/><br/><br/><br/><br/><br/>
     <!-- new tables -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/rowreorder/1.2.8/css/rowReorder.dataTables.min.css">
@@ -19,7 +18,7 @@
             new $.fn.dataTable.FixedHeader( table );
         } );
     </script>
-    <div class="container left-to-right" style="padding: 10px 40px 10px 40px;">
+    <div class="left-to-right">
         <div class="container-xl px-4 mt-4">
             <hr class="mt-0 mb-4">
             <div class="container-xl px-4 mt-4 left-to-right">
@@ -54,9 +53,10 @@
             @endif
 
             <!-- tables -->
+            <h3 style="font-size: 20px;">Table of Private Reminders</h3>
             <hr class="mt-0 mb-4">
-            <div class="card mb-4 left-to-right">
-                <div class="card-header">Table of Private Reminders</div>
+            <div class="card mb-4 left-to-right border-start-lg border-start-yellow" style="padding: 10px 40px 10px 40px;">
+                <div class="card-header"></div>
                 <div class="card-body p-0">
                     <!-- Events table-->
                     @if($reminders->count() == 0)

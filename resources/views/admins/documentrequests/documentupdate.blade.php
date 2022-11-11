@@ -1,12 +1,11 @@
 @include('partials.adminheader')
 <main>
-<br/><br/><br/><br/>
 <body style="font-family: Arial;"> 
 
 	
-	<section id="about" class="about">
-		<div class="container left-to-right">
-			<div class="body-container">
+	<section>
+		<div class="left-to-right">
+			<div>
 
                 <!-- form -->
                             
@@ -26,32 +25,28 @@
                     @csrf
                     <div class="container-xl px-4 mt-4">
                         <!-- page navigation-->
+                        <h3 style="font-size: 20px;">Update document</h3>
                         <hr class="mt-0 mb-4">
                         <div class="row">
-                            <div class="col-xl-8">
+                            
                                 <!-- Account details card-->
                                 <div class="card mb-4">
                                     <div class="card border-start-lg border-start-yellow">
-                                        <div class="card-header">Create document</div>
+                                        <div class="card-header"></div>
                                         <div class="card-body" style="padding: 10px 40px 10px 40px">
-                                            <div class="mb-3">
-
-                                            </div>
                                             <!-- Form Row -->
                                             <div class="row gx-3 mb-3">
                                                     <div class="mb-3">
                                                             <label class="large" for="name">Add document</label>
                                                             <input class="form-control @error('name') is-invalid @enderror" id="name" type="text" style="font-size: 16px;" placeholder="Document Name" name="name" value="{{$document->name}}">
                                                     </div><br>
-                                                <div class="row gx-3 mb-3">
-                                                    <!-- Save changes button-->
-                                                    <font face = "Bedrock" size = "3"><input type="submit" class="btn btn-primary" value="Submit" style="float: right;"></font>
-                                                </div>
                                             </div>
+                                            <a class="btn btn-info btn-md" href="{{ url()->previous() }}"><i class="fas fa-arrow-left"></i> Back</a>
+                                            <font face = "Verdana" size = "4"><input type="submit" class="btn btn-primary" value="Submit"></font>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </form>

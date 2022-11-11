@@ -1,9 +1,8 @@
 @include('partials.adminheader')
 @include('partials.adminSecondHeader')
 <main>
-<br/><br/><br/><br/><br/><br/>
         <!-- form -->
-    <div class="container left-to-right" style="padding: 10px 40px 10px 40px;">
+    <div class="left-to-right">
     @if ($message = Session::get('message'))
                 <div class="alert alert-success alert-block">
                     <button type="button" class="close" data-dismiss="alert">×</button>
@@ -26,15 +25,16 @@
                 @csrf
                 <div class="container-xl px-4 mt-4 left-to-left">
                     <!-- page navigation-->
+                    <h3 style="font-size: 20px;">Create Private Reminder</h3>
                     <hr class="mt-0 mb-4">
                     <div class="row">
-                        <div class="col-xl-8">
+                        
                             <!-- Account details card-->
                             <div class="card mb-4">
                                 <div class="card border-start-lg border-start-yellow">
-                                    <div class="card-header">Create Private Reminder</div>
+                                    <div class="card-header"></div>
                                     <div class="card-body" style="padding: 10px 40px 10px 40px">
-                                        <div class="row gx-3 mb-3">
+                                       
                                             <!-- Form Group (content)-->
                                             <div class="mb-3">
                                                 <label class="small mb-1" for="editor">Content</label>
@@ -45,12 +45,12 @@
                                                 <input type="date" class="form-control @error('expired_at') is-invalid @enderror" id="inputexpired_at" placeholder="Enter the date" name="expired_at"  value="{{ old('expired_at') }}">
                                             </div><br/>
                                             <!-- Save changes button-->
-                                            <font face = "Bedrock" size = "3"><input type="submit" class="btn btn-primary" value="Submit" style="float: right;"></font>
-                                        </div>
+                                        
+                                        <font face = "Verdana" size = "6"><input type="submit" class="btn btn-primary" value="Submit"></font>
                                     </div>
                                 </div>
                             </div>
-                    </div>
+                    
                 </div>
             </form>
         <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>

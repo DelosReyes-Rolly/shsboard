@@ -1,6 +1,5 @@
 @include('partials.adminheader')
 <main>
-	<br/><br/><br/><br/>
     <!-- new tables -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/rowreorder/1.2.8/css/rowReorder.dataTables.min.css">
@@ -38,7 +37,7 @@
 
 	
 	<section id="about" class="about">
-		<div class="container">
+		<div>
 			<div class="body-container">
 		        <!-- boxes -->
 		        <div class="container-xl px-4 mt-4 left-to-right">
@@ -67,7 +66,7 @@
 	                <!-- page navigation-->
 	                <hr class="mt-0 mb-4">
 	                <div class="row">
-	                    <div class="col-xl-8">
+	                    
 	                        <!-- Account details card-->
 	                        <div class="card mb-4">
 	                            <div class="card border-start-lg border-start-yellow">
@@ -160,7 +159,7 @@
 	                                </div>
 	                            </div>
 	                        </div>
-	                     </div>
+		
 	                 </div>
 	            </div>
 				<!-- tables need join -->
@@ -168,7 +167,7 @@
 				<div class="container-xl px-4 mt-4 left-to-right">
 					<hr class="mt-0 mb-4">
 	                <div class="row">
-	                    <div class="col-xl-8">
+	                    
 	                        <!-- Account details card-->
 	                        <div class="card mb-4 border-start-lg border-start-success">
 								<div class="tabs">
@@ -272,7 +271,7 @@
 									</div>
 				  				</div>
 				  			</div>
-				  		</div>
+				  		
 				  	</div>
 				</div>
 		  		<!-- end of tables -->

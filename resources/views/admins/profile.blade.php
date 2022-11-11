@@ -1,8 +1,7 @@
 @include('partials.adminheader')
 <main>
-<br><br><br><br><br><br>
-	<section id="about" class="about top-to-bottom">
-		<div class="container">
+	<section class="about top-to-bottom">
+		<div>
 		 	<!-- php
 	           	// if(!empty($success)){   
 	           	// 	echo '<div class="alert alert-success">'.$success.'</div>';
@@ -11,7 +10,7 @@
 	       	<form action="/profile/{{Auth::user()->id}}" method="post">
                 @method('PUT')
                 @csrf
-	            <div class="container rounded bg-white mt-5 mb-5">
+	            <div class="rounded bg-white mt-5 mb-5">
 	            	<div style="font-size: 20px;"><b>Profile Information</b></div>
 								<hr style="border:1px solid black;">
 								<div class="row">
@@ -38,7 +37,7 @@
 													</ul>
 												</div>
 											@endif
-									       	<div class="d-flex justify-content-between align-items-center mb-3">
+									       	<div>
 									           	<b><div class="text-center" style="font-size: 28px; color:green;">Profile Settings</div><br><hr style="border:1px solid grey;"></b><br>
 									       	</div>
 									    <div class="row mt-2">
@@ -58,13 +57,10 @@
 									</div>
 								</div>
 					<hr>
-				</div>
-				<hr style="border:1px solid black;">
-				</div>
-				</div>
-				</div>
+					</div>
+					<hr style="border:1px solid black;">
+				</div>				
 			</form>
 		</div>
 	</section>
 </main>     
-<br><br><br><br>
