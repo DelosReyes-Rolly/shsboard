@@ -1,6 +1,5 @@
 @include('partials.studentheader')
 <main>
-<br><br><br><br><br><br><br><br>
         <div class="box-form">
             <div class="left fade-in-text">
                 <div class="overlay">
@@ -45,4 +44,3 @@
             </div>
         </div>
 </main>     
-@include('partials.adminfooter')

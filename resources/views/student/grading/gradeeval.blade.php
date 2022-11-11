@@ -1,6 +1,5 @@
 @include('partials.studentheader')
 <main>
-<br/><br/><br/><br/> <br/><br/><br/><br/>
      <!-- new tables -->
      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/rowreorder/1.2.8/css/rowReorder.dataTables.min.css">
@@ -20,9 +19,9 @@
     </script>
 <div class="content">
         <hr class="mt-0 mb-4">   
-        <div class="container">
-            <h4><b>Grade Evaluations</b></h4>
+        <div>
                 <!-- boxes -->
+                <h3 style="font-size: 20px;">Grade Evaluations</h3>
                 <hr style="border: 1px solid grey;">
                 <div class="container-xl px-4 mt-4 left-to-right">
                     <hr class="mt-0 mb-4">
@@ -31,7 +30,7 @@
                         <!-- Billing card 3-->
                         <div class="card h-100 border-start-lg border-start-success" style="padding-left: 20px; background-color: green; color: white;">
                             <div class="card-body">
-                                <div class="small text-muted requesteddocument" style="color: white">Requested Grade Evaluations</div>
+                                <div class="requesteddocument" style="color: black">Requested Grade Evaluations</div>
                                 @if($gradeevaluationrequests->count() == 0)
                                     <br><br>
                                     <div class="alert alert-danger"><em>No records found.</em></div>
@@ -43,12 +42,13 @@
                     </div>
                 </div>
 
-                
+                <br/><br/>
                 <hr style="border: 1px solid grey;">
                 <!-- tables -->
+                <h3 style="font-size: 20px;">Table of Grade Evaluations</h3>
                 <hr class="mt-0 mb-4">
                 <div class="card mb-4 right-to-left border-start-lg border-start-success" style="padding-left: 20px;">
-                    <div class="card-header">Requested Grade Evaluations</div>
+                    <div class="card-header"></div>
                     <div class="card-body p-0">
                         <!--table-->
                         @if($gradeevaluationrequests->count() == 0)

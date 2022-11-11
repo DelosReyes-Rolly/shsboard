@@ -1,8 +1,7 @@
 @include('partials.facultyheader')
 @include('partials.facultySecondHeader')
 <main>
-<br/><br/><br/><br/><br/><br/>
-<div class="container left-to-right" style="padding: 10px 40px 10px 40px;">
+<div class="left-to-right">
      <!-- new tables -->
      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/rowreorder/1.2.8/css/rowReorder.dataTables.min.css">
@@ -20,9 +19,9 @@
             new $.fn.dataTable.FixedHeader( table );
         } );
     </script>
-        <h1>School Year</h1>
+      <h3 style="font-size: 20px;">School Year</h3>  
       <hr class="mt-0 mb-4">
-        <div class="card mb-4">
+        <div class="card mb-4 border-start-lg border-start-yellow" style="padding: 10px 40px 10px 40px">
             @if($subjectteachers->count() == 0) 
             <!-- find all subject of teachers then count if they have one. -->
 				<br><br>

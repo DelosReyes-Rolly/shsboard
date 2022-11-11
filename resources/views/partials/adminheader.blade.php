@@ -30,14 +30,20 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <div class="title"><img src="img/svnhs-logo.png" style="width: 80px; height: 80px;"><img src="img/shs.png" style="width: 80px; height: 80px;"><div style="font-size: 20px;"> Signal Village National High School </div> <br/> SHS - BOARD</div>
-                <strong> <img src="img/shs.png" style="width: auto; height: auto;"></strong>
+                <div class="title"><img src="{{url('/img/svnhs-logo.png')}}" style="width: 80px; height: 80px;"><img src="{{url('/img/shs.png')}}" style="width: 80px; height: 80px;"><div style="font-size: 20px;"> Signal Village National High School </div> <br/> SHS - BOARD</div>
+                <strong> <img src="{{url('/img/shs.png')}}" style="width: auto; height: auto;"></strong>
             </div>
 
             <ul class="list-unstyled components">
                 <li>
+                    <a href="/">
+                        <i class="fas fa-chalkboard"></i>
+                        <span class="hide-word"> Dashboard </span>
+                    </a>
+                </li>
+                <li>
                     <a href="#academicSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-home"></i>
+                    <i class="fas fa-school"></i>
                         <span class="hide-word"> Academic Syllabus</span>
                     </a>
                     <ul class="collapse list-unstyled" id="academicSubmenu">
@@ -88,6 +94,7 @@
             </ul> -->
 
             <ul class="list-unstyled components">
+                <div style="padding-left:8px;">EXTERNAL</div>
                 <li>
                     <a href="#landingSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-home"></i>
@@ -111,6 +118,7 @@
             </ul>
 
             <ul class="list-unstyled components">
+                <div style="padding-left:8px;">INTERNAL</div>
                 <li>
                     <a href="#bulletinSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-home"></i>

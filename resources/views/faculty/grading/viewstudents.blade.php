@@ -1,7 +1,6 @@
 @include('partials.facultyheader')
 @include('partials.facultySecondHeader')
 <main>
-    <br/><br/><br/><br/><br/><br/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>            
@@ -16,13 +15,11 @@
             </ul>
         </div>
     @endif
-    <div class="container left-to-right" style="padding: 10px 40px 10px 40px;">
+    <div class="left-to-right">
+        <h3 style="font-size: 20px;">Table of Students</h3>  
       <hr class="mt-0 mb-4">
-            <div class="card-header">Table of Students</div>
-            <div class="container">  
-               <br />  
-               <br />  
-               <br />  
+            <div class="card-header"></div>
+            <div>  
                 <div class="table-responsive border-start-lg border-start-success">  
                 @if($data->count() == 0) 
                     <!-- find all subject of teachers then count if they have one. -->

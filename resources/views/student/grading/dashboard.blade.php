@@ -1,6 +1,5 @@
 @include('partials.studentheader')
 <main>
-    <br/><br/><br/><br/> <br/><br/><br/><br/>
     <!-- new tables -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/rowreorder/1.2.8/css/rowReorder.dataTables.min.css">
@@ -39,17 +38,17 @@
             new $.fn.dataTable.FixedHeader( table );
         } );
     </script>
-<div class="container left-to-right">
-        <h4><b>Grades</b></h4>
+    <div class="left-to-right">
         @if (session('alert'))
             <br/><br/>
             <div class="alert alert-success">
                 {{ session('alert') }}
             </div>
         @endif  
-      <hr class="mt-0 mb-4">
+        <h3 style="font-size: 20px;">Subject Grades</h3>
+        <hr class="mt-0 mb-4">
         <div class="card mb-4">
-            <div class="card border-start-lg border-start-yellow">
+            <div class="card border-start-lg border-start-yellow"  style="padding: 10px 40px 10px 40px">
                 <div class="card-header" style="color: green; text-transform: uppercase;">{{Auth::user()->last_name}}, {{Auth::user()->first_name}} {{Auth::user()->middle_name}} - {{(Auth::user()->LRN)}} - </div>
 
                 <!-- check if enrolled in any subjects in any grade -->

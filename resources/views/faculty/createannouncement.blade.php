@@ -1,14 +1,15 @@
 @include('partials.facultyheader')
 <main>
-    <br/><br/><br/><br/>
 @if($announcementCount != NULL)
     {{$pending = $announcementCount->where('approval', '=', '1')->count()}}
     {{$expired = $announcementCount->where('status', '=', '2')->count()}}
     {{$active = $announcementCount->where('status', '=', '1')->count()}}
 @else
-    {{$pending = 0}}
-    {{$expired = 0}}
-    {{$active = 0}}
+    @php
+        $pending = 0;
+        $expired = 0;
+        $active = 0;
+    @endphp
 @endif
  <!-- new tables -->
  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
@@ -27,9 +28,9 @@
             new $.fn.dataTable.FixedHeader( table );
         } );
     </script>
-<section id="about" class="about">
-        <div class="container">
-            <div class="body-container">
+<section>
+        <div>
+            <div >
                 <!-- boxes -->
                 <hr style="border: 1px solid grey;">
                 <div class="container-xl px-4 mt-4 left-to-right">
@@ -39,7 +40,7 @@
                             <!-- Billing card 2-->
                             <div class="card h-100 border-start-lg border-start-secondary" style="background-color: red; color: white;" >
                                 <div class="card-body">
-                                    <div class="small text-muted  requesteddocument" style="color: white;">Expired Announcements</div>
+                                    <div class="requesteddocument" style="color: white;">Expired Announcements</div>
                                     <div class="h3" style="padding-left: 20px; padding-bottom: 10px;"><i class="far fa-calendar-times"></i> {{ $expired }} </div>
                                     <!-- <a class="text-arrow-icon small text-secondary" href="#!">
                                         View expired announcements
@@ -52,7 +53,7 @@
                         <!-- Billing card 3-->
                         <div class="card h-100 border-start-lg border-start-success" style="background-color: green; color: white;">
                             <div class="card-body">
-                                <div class="small text-muted  requesteddocument" style="color: white;">Active Annoucements</div>
+                                <div class="requesteddocument" style="color: white;">Active Annoucements</div>
                                 <div class="h3 d-flex align-items-center" style="padding-left: 20px; padding-bottom: 10px;"><i class="fas fa-bullhorn"></i> {{ $active }} </div>
                                 <!-- <a class="text-arrow-icon small text-success" href="#!">
                                     View Active annoucements
@@ -64,19 +65,20 @@
                 </div>
 
                 <!-- form -->
-
+                
                 <hr style="border: 1px solid grey;">
                 <form method="POST" action="{{ route('announcement.store') }}">
                     @csrf
                     <div class="container-xl px-4 mt-4 right-to-left">
                         <!-- page navigation-->
+                        <h3 style="font-size: 20px;">Create Announcement </h3>
                         <hr class="mt-0 mb-4">
                         <div class="row">
-                            <div class="col-xl-8">
+                            
                                 <!-- Account details card-->
                                 <div class="card mb-4">
                                     <div class="card border-start-lg border-start-yellow">
-                                        <div class="card-header">Create Announcement</div>
+                                        <div class="card-header"></div>
                                         <div class="card-body">
                                             <div class="mb-3">
                                             @if ($message = Session::get('message'))
@@ -194,21 +196,22 @@
                                                     <textarea class="form-control @error('content') is-invalid @enderror" id="editor" type="text" style="font-size: 16px;" placeholder="Enter your purpose" name="content">{{ old('content') }}</textarea>
                                                 </div><br/>
                                                 <!-- Save changes button-->
-                                                <font face = "Bedrock" size = "3"><input type="submit" class="btn btn-primary" value="Submit" style="float: right; margin-right: 80px;"></font>
+                                                <font face = "Verdana" size = "6"><input type="submit" class="btn btn-primary" value="Submit" style=" margin-right: 80px;"></font>
                                                 <br><br><br><br>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+
                         </div>
                     </form>
                     <hr style="border: 1px solid grey;">
                 <!-- tables -->
+                <h3 style="font-size: 20px;">Table of Annoucements</h3>
                 <hr class="mt-0 mb-4">
-                <div class="card mb-4 left-to-right border-start-lg border-start-success">
-                    <div class="card-header">Table of Annoucements</div>
-                    <div class="card-body p-0" style="padding: 20px 20px 20px 20px;">
+                <div class="card mb-4 left-to-right border-start-lg border-start-success" style="padding: 20px 20px 20px 20px;">
+                    <div class="card-header"></div>
+                    <div class="card-body p-0">
                         <!-- Announcements table-->
                         @if($announcementCount == NULL)
 							<div class="alert alert-danger"><em>No records found.</em></div>

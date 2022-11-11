@@ -1,111 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-        <!-- meta data -->
-        <meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-        <!--font-family-->
-		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&amp;subset=devanagari,latin-ext" rel="stylesheet">
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+	<link rel="stylesheet" href="{{ asset('assets/css/style4.css') }}">
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+	<!-- additional? -->
+
         
         <!-- title of site -->
         <title>SVNHS-SHS BOARD</title>
 
-        <!-- For favicon png -->
-		<link rel="shortcut icon" type="image/icon" href='{{ URL::asset("img/shs.png")}}'/>
-
-		<!--animate.css-->
-        <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
-		
-        <!--bootstrap.min.css-->
-        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-		
-		<!-- bootsnav -->
-		<link rel="stylesheet" href="{{ asset('assets/css/bootsnav.css') }}" >	
-        
         <!--style.css-->
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-        
-        <!--responsive.css-->
-        <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
-    </head>
-    <body>
-        <!-- top-area Start -->
-			<header class="top-area">
-				<div class="header-area">
-					<!-- Start Navigation -->
-				    <nav class="navbar navbar-default bootsnav navbar-fixed dark no-background">
+</head>
 
-				        <div class="container">
+<body>
 
-				            <!-- Start Header Navigation -->
-							<div class="navbar-header">
-								<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-									<i class="fa fa-bars"></i>
-								</button>
-								<a class="navbar-brand" href='{{ url("/") }}'><div class="svnhshead">SIGNAL VILLAGE NATIONAL HIGH SCHOOL</div>SHS BOARD</a>
-							</div><!--/.navbar-header-->
-							<!-- End Header Navigation -->
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <div class="title"><img src="{{url('/img/svnhs-logo.png')}}" style="width: 80px; height: 80px;"><img src="{{url('/img/shs.png')}}" style="width: 80px; height: 80px;"><div style="font-size: 20px;"> Signal Village National High School </div> <br/> SHS - BOARD</div>
+                <strong> <img src="{{url('/img/shs.png')}}" style="width: auto; height: auto;"></strong>
+            </div>
 
-				            <!-- Collect the nav links, forms, and other content for toggling -->
-				            <div class="collapse navbar-collapse menu-ui-design left-to-right" id="navbar-menu">
-				                <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-				                <li class=" smooth-menu active"></li>
-									<li class="smooth-menu"><a  class="a-header" href="{{ url('/') }}">Announcement</a></li>
-									<li class="smooth-menu"><a class="a-header" href="{{ url('createannouncement') }}">Activity Stream</a></li>
-									<li class="menu smooth-menu a-header">
-										<button>Grades <span style='font-size:18px;'>&#9661;</span></button>
-										<ul class="submenu" style="z-index: 1000;">
-											<li><a href='{{ url("/facultysubjects") }}'>Subjects</a></li><hr style="margin: 0 0 0 0; border-top: 2px solid #808080">
-											<li><a href='{{ url("/facultygradeeval") }}'>Evaluation Requests</a></li>
-										</ul>
-									</li>
-									<li class="menu smooth-menu">
-										<button>{{Auth::user()->first_name}} <span style='font-size:18px;'>&#9661;</span></button>
-										<ul class="submenu" style="z-index: 1000;">
-											<li><a href="{{ url('/facultyprofile') }}">Profile</a></li><hr style="margin: 0 0 0 0; border-top: 2px solid #808080">
-											<li><a href="/password-faculty/{{Auth::user()->id}}}">Change Password</a></li></li><hr style="margin: 0 0 0 0; border-top: 2px solid #808080">
-											<li><a href="{{ url('/logout') }}">Logout</a></li>
-										</ul>
-									</li>
-				                </ul><!--/.nav -->
-				            </div><!-- /.navbar-collapse -->
-				        </div><!--/.container-->
-				    </nav><!--/nav-->
-				    <!-- End Navigation -->
-				</div><!--/.header-area-->
-		    <div class="clearfix"></div>
-		</header><!-- /.top-area-->
-		<!-- top-area End -->
-		<!-- Include all js compiled plugins (below), or include individual files as needed -->
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="{{ url('/') }}">
+                        <i class="fas fa-chalkboard"></i>
+                        <span class="hide-word"> Announcement</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('createannouncement') }}">
+                        <i class="fas fa-chalkboard"></i>
+                        <span class="hide-word"> Activity Stream</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#academicSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-school"></i>
+                        <span class="hide-word"> Grades</span>
+                    </a>
+                    <ul class="collapse list-unstyled" id="academicSubmenu">
+                        <li>
+                            <a href='{{ url("/facultysubjects") }}'><i class="fas fa-calendar-alt"></i> <span class="hide-word"> Subjects</span></a>
+                        </li>
+                        <li>
+                            <a href='{{ url("/facultygradeeval") }}'><i class="fas fa-home"></i> <span class="hide-word"> Evaluation Requests</span></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- <ul class="list-unstyled CTAs">
+                <li>
+                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
+                </li>
+                <li>
+                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
+                </li>
+            </ul> -->
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link"  href="{{ url('/facultyprofile') }}">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/password-faculty/{{Auth::user()->id}}}">Change Password</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
 
 
-		    <div class="clearfix"></div>
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
-		</header><!-- /.top-area-->
-		<!-- top-area End -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
+</body>
 
-        
-
-        <!-- end of enrollment report -->
-
-
-
-		<!-- Include all js compiled plugins (below), or include individual files as needed -->
-
-		<script src="{{ asset('assets/js/jquery.js') }}"></script>
-		
-		<!--bootstrap.min.js-->
-        <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-	     
-        <!--Custom JS-->
-        <script src="{{ asset('jquery.js') }}"></script>
-	    <script> 
-	    $(function(){
-	      $("#includedContent").load("../admin/print/footer.php"); 
-	    });
-	    </script>
-    </body>
 </html>

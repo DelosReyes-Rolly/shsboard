@@ -203,6 +203,12 @@ a.article:hover {
     color: #fff !important;
 }
 
+.btn-info {
+    color: #fff;
+    background-color: #43852d;
+    border-color: #0f800d;
+}
+
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */

@@ -1,8 +1,7 @@
 @include('partials.adminheader')
 @include('partials.adminSecondHeader')
 <main>
-<br/><br/><br/><br/>
-<div class="content">
+<div>
 
         <!-- form -->
                     
@@ -24,7 +23,7 @@
                 <!-- page navigation-->
                 <hr class="mt-0 mb-4">
                 <div class="row">
-                    <div class="col-xl-8">
+                    
                         <!-- Account details card-->
                         <div class="card mb-4">
                             <div class="card border-start-lg border-start-yellow">
@@ -126,13 +125,14 @@
                                         </div><br/>
                                         <div class="row gx-3 mb-3">
                                             <!-- Save changes button-->
-                                            <font face = "Bedrock" size = "3"><input type="submit" class="btn btn-primary" value="Submit" style="float: right;"></font>
+                                            <a class="btn btn-info btn-md" href="{{ url()->previous() }}"><i class="fas fa-arrow-left"></i> Back</a> &emsp;
+                                            <font face = "Verdana" size = "6"><input type="submit" class="btn btn-primary" value="Submit"></font>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                   
                 </div>
             </div>
         </form>

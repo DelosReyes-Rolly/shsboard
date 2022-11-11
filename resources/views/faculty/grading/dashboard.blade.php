@@ -1,6 +1,5 @@
 @include('partials.facultyheader')
 <main>
-<br/><br/><br/><br/>
     <div class="container" style="padding: 10px 40px 10px 40px;">
         <div class="container-xl px-4 mt-4">
             <hr class="mt-0 mb-4">
@@ -23,4 +22,3 @@
         </div>
     </div>
 </main>
-<br><br><br><br>

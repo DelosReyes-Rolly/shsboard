@@ -1,19 +1,20 @@
 @include('partials.studentheader')
 <main>
-<section id="about" class="about">
-        <div class="container">
-        	<div class="body-container left-to-right">
+<section>
+        <div>
+        	<div class="left-to-right">
+                <h3 style="font-size: 20px;">Requested Document</h3>
                 <hr style="border: 1px solid grey;">
                 
                     <div class="container-xl px-4 mt-4">
                         <!-- page navigation-->
                         <hr class="mt-0 mb-4">
                         <div class="row">
-                            <div class="col-xl-8">
+                            
                                 <!-- Account details card-->
                                 <div class="card mb-4">
                                     <div class="card border-start-lg border-start-yellow">
-                                        <div class="card-header">Requested Document</div>
+                                        <div class="card-header"></div>
                                         <div class="card-body">
                                             <div class="mb-3">
                                                     
@@ -59,17 +60,16 @@
                                                  <!-- Save changes button-->
                                                     <br><center> Note:<br>The documents will be processed <b>within five (5) working days</b> upon requesting.
                                                     The documents can be claimed in the <b>Registrars Office.</b></center><br><br>
-                                                    <div class="pull-right">
-                                                        <a class="btn btn-info btn-sm" href="{{ url()->previous() }}"><i class="fas fa-arrow-left"></i> Back</a>
-                                                        <a class="btn btn-warning btn-sm" href="/showrequest/{{$docreq->id}}"><i class="fas fa-edit"></i> Update</a>
-                                                        <a class="btn btn-danger btn-sm" href="{{route('student.deleterequest', $docreq->id)}}"><i class="far fa-trash-alt"></i> Delete</a>
-                                                    </div>
-                                                <br><br><br><br>
+                                            </div>
+                                            <div class="pull-right">
+                                                <a class="btn btn-info btn-md" href="{{ url()->previous() }}"><i class="fas fa-arrow-left"></i> Back</a>
+                                                <a class="btn btn-warning btn-md" href="/showrequest/{{$docreq->id}}"><i class="fas fa-edit"></i> Update</a>
+                                                <a class="btn btn-danger btn-md" href="{{route('student.deleterequest', $docreq->id)}}"><i class="far fa-trash-alt"></i> Delete</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                           
                         </div>
                     <hr style="border: 1px solid grey;">
                 

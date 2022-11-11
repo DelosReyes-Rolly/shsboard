@@ -1,7 +1,6 @@
 
 @include('partials.facultyheader')
 <main>
-<br><br><br><br><br><br><br><br><br><br>
 	<!-- php
 	    // if(!empty($success)){   
 	    // 	echo '<div class="alert alert-success">'.$success.'</div>';
@@ -11,7 +10,7 @@
 	<form action="/facultyprofile/{{Auth::user()->id}}/{{$address->id}}" method="post">
         @method('PUT')
          @csrf
-	    <div class="container rounded bg-white mt-5 mb-5 top-to-bottom">
+	    <div class="rounded bg-white mt-5 mb-5 top-to-bottom">
 			<div style="font-size: 20px;"><b>Profile Information</b></div>
 			<hr style="border:1px solid black;">
 			<hr>
@@ -49,7 +48,7 @@
 								</ul>
 							</div>
 						@endif
-						<div class="d-flex justify-content-between align-items-center mb-3">
+						<div class=" mb-3">
 							<b><div class="text-center" style="font-size: 28px; color:green;">Profile Settings</div><br><hr style="border:1px solid grey;"></b><br>
 						</div>
 						<div class="row mt-2">
@@ -88,8 +87,9 @@
 				</div><br/>	
 				<hr>
 			</div>
-			<hr style="border:1px solid black;"><hr>
 			<div class="mt-5 text-center"><input type="submit" class="btn btn-primary profile-button" value="Submit"></div>
+			<hr style="border:1px solid black;"><hr>
+			
 		</div>
 	</form>
 </main>     
