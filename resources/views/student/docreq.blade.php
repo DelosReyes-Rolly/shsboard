@@ -19,13 +19,14 @@
                     @csrf
                     <div class="container-xl px-4 mt-4">
                         <!-- page navigation-->
+                        <h3 style="font-size: 20px;">Reuqest Documents</h3>
                         <hr class="mt-0 mb-4">
                         <div class="row">
                             
                                 <!-- Account details card-->
                                 <div class="card mb-4">
                                     <div class="card border-start-lg border-start-yellow">
-                                        <div class="card-header">Request Documents</div>
+                                        <div class="card-header"></div>
                                         <div class="card-body">
                                             <div class="mb-3">
                                                     
@@ -79,7 +80,8 @@
                                                  <!-- Save changes button-->
                                                     <br><center> Note:<br>The documents will be processed <b>within five (5) working days</b> upon requesting.
                                                     The documents can be claimed in the <b>Registrars Office.</b></center><br><br>
-                                                <font face = "Bedrock" size = "3"><input type="submit" class="btn btn-primary" value="Submit" style="float: right; margin-right: 80px;"></font>
+                                                <a class="btn btn-info btn-md" href="{{ url()->previous() }}"><i class="fas fa-arrow-left"></i> Back</a>
+                                                <font face = "Verdana" size = "6"><input type="submit" class="btn btn-primary" value="Submit" style="float: right; margin-right: 80px;"></font>
                                                 <br><br><br><br>
                                             </div>
                                         </div>

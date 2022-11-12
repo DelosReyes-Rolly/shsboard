@@ -548,6 +548,24 @@ class AdminsController extends Controller
         return view('admins.documentrequests.documentdelete', ['document' => $data]);
      }
 
+     public function viewrequest($id){
+        $data = DocumentRequests::findOrFail($id);
+        return view('admins.documentrequests.docreqviewadmin', ['docreq' => $data]);
+    }
+
+    public function showrequest($id){
+        $data = DocumentRequests::findOrFail($id);
+        return view('admins.documentrequests.docreqadmin', ['docreq' => $data]);
+    }
+
+    public function updatedocreq(Request $request, DocumentRequests $docreq){
+        $validated = $request->validate([
+            'status' => ['required'],
+        ]);
+       $docreq->update($validated);
+       return redirect('/documentrequest')->with('message', 'The request has been updated.');
+   }
+
      public function downloadpdfdoc(Request $request) {
         $request->validate([
             'dateFrom' => 'required',

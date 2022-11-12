@@ -19,6 +19,7 @@
         
         <!-- title of site -->
         <title>SVNHS-SHS BOARD</title>
+        <link rel="shortcut icon" type="image/icon" href='{{ URL::asset("img/shs.png")}}'/>
 
         <!--style.css-->
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">

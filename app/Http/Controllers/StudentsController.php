@@ -228,6 +228,7 @@ class StudentsController extends Controller
         $docreq->purpose = $request->get('purpose');
         $docreq->student_id =  Auth::user()->id;
         $docreq->gradelevel_id =  Auth::user()->gradelevel_id;
+        $docreq->status = 1;
         if($request->hasFile('file')){
             $file = $request->file('file');
             $extension = $file->getClientOriginalExtension();

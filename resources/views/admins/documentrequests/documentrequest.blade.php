@@ -36,9 +36,9 @@
 <body style="font-family: Arial;"> 
 
 	
-	<section id="about" class="about">
+	<section>
 		<div>
-			<div class="body-container">
+			<div>
 		        <!-- boxes -->
 		        <div class="container-xl px-4 mt-4 left-to-right">
 	                <!-- page navigation-->
@@ -48,11 +48,11 @@
 	                        <!-- Account details card-->
 	                        <div class="card mb-4">
 	                            <div class="card border-start-lg border-start-yellow" style="color: white; background-color: #B9B32E;">
-	                                <div class="card-header">Document Requests</div>
+	                                <div class="card-header">Requested Documents</div>
 	                                <div class="card-body">
 										<br>
 	                                    <div style="padding: 0px 40px 10px 40px">
-						                     <div style="font-size: 20px;" ><i class="fas fa-file-signature"></i> {{ $requests->count() }} </div>
+						                     <div style="font-size: 20px;" ><i class="fas fa-file-alt"></i>  {{ $requests->count() }} </div>
 	                                    </div>
 	                                </div>
 	                            </div>
@@ -60,17 +60,34 @@
 	                     </div>
 	                </div>
 	            </div>
-
+				@if ($message = Session::get('message'))
+					<div class="alert alert-success alert-block">
+						<button type="button" class="close" data-dismiss="alert">×</button>
+						<strong>{{ $message }}</strong>
+					</div>
+				@endif
+														
+				@if (count($errors) > 0)
+					<div class="alert alert-danger">
+						<strong>Whoops!</strong> There were some problems with your input.
+						<ul>
+							@foreach ($errors->all() as $error)
+								<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+					</div>
+				@endif
 		        <!-- create new documents and print -->
 	            <div class="container-xl px-4 mt-4 right-to-left">
 	                <!-- page navigation-->
+					<h3 style="font-size: 20px;">Document for Request</h3>
 	                <hr class="mt-0 mb-4">
 	                <div class="row">
 	                    
 	                        <!-- Account details card-->
 	                        <div class="card mb-4">
 	                            <div class="card border-start-lg border-start-yellow">
-	                                <div class="card-header">Document for Request</div>
+	                                <div class="card-header"></div>
 	                                <div class="card-body">
 										<br>
 	                                    <div style="padding: 10px 40px 10px 40px">
@@ -85,23 +102,6 @@
 												<input type="submit" name="submit" class="btn btn-primary" value="Print"/></input>
 											</form>
 											<br><br>
-											@if ($message = Session::get('message'))
-												<div class="alert alert-success alert-block">
-													<button type="button" class="close" data-dismiss="alert">×</button>
-													<strong>{{ $message }}</strong>
-												</div>
-											@endif
-														
-											@if (count($errors) > 0)
-												<div class="alert alert-danger">
-													<strong>Whoops!</strong> There were some problems with your input.
-													<ul>
-														@foreach ($errors->all() as $error)
-															<li>{{ $error }}</li>
-														@endforeach
-													</ul>
-												</div>
-											@endif
 
 	                                    	<form method="POST" action="{{ route('document.store') }}">
 												@csrf
@@ -189,9 +189,10 @@
 												                    <th class="border-gray-200" scope="col">Document</th>
 												                    <th class="border-gray-200" scope="col">Student Name</th>
 												                    <th class="border-gray-200" scope="col">Course</th>
-												                    <th class="border-gray-200" scope="col">Purpose</th>
 												                    <th class="border-gray-200" scope="col">Date Requested</th>
 												                    <th class="border-gray-200" scope="col">Proof</th>
+																	<th class="border-gray-200" scope="col">Status</th>
+																	<th class="border-gray-200" scope="col">Action</th>
 												                </tr>
 												           	</thead>
 												           	<tbody>
@@ -199,19 +200,51 @@
 												                    $i=1;
 												                ?>
 																	@foreach ($requests as $request)
-												                    	<tr>
-																			<?php $requested_at = date('F d, Y', strtotime($request -> created_at)); ?>
-																			<td class="text-center"><?php echo $i++; ?></td>
-																			<td>{{$request -> document -> name}}</td>
-																			<td>{{$request -> student -> last_name}}, {{$request -> student -> first_name}} {{$request -> student -> middle_name}}</td>
-												                            <td>{{$request -> student -> course -> courseName}}</td>
-																			<td>{{$request -> purpose}}</td>
-																			<td>{{$requested_at}}</td>
-												                            <td>
-																			{{$request -> file}}
-																				<a href="/download/{{$request -> file}}" class="btn btn-primary">Download</a> 
-												                            </td>
-												                        </tr>
+																		@if($request->gradelevel_id == 1)
+																			<tr>
+																				<?php $requested_at = date('F d, Y', strtotime($request -> created_at)); ?>
+																				<td class="text-center"><?php echo $i++; ?></td>
+																				<td>{{$request -> document -> name}}</td>
+																				<td>{{$request -> student -> last_name}}, {{$request -> student -> first_name}} {{$request -> student -> middle_name}}</td>
+																				<td>{{$request -> student -> course -> courseName}}</td>
+																				<td>{{$requested_at}}</td>
+																				<td>
+																				{{$request -> file}}
+																					<a href="/download/{{$request -> file}}" class="btn btn-primary">Download</a> 
+																				</td>
+																				<td>
+																					<?php 
+																						switch ($request -> status) {
+																							case '1':
+																								echo '<span class="badge bg-secondary" style="color: white;">Pending</span>';
+																								break;
+																							case '2':
+																								echo '<span class="badge bg-success" style="color: white;">On Process</span>';
+																								break;
+																							case '3':
+																								echo '<span class="badge bg-success" style="color: white;">For Collection</span>';
+																								break;
+																							case '4':
+																								echo '<span class="badge bg-success" style="color: white;">Completed</span>';
+																								break;
+																							case '5':
+																								echo '<span class="badge bg-danger" style="color: white;">Denied</span>';
+																								break;
+																							case '6':
+																								echo '<span class="badge bg-secondary" style="color: white;">For follow-up</span>';
+																								break;
+																							default:
+																								echo '<span class="badge bg-secondary" style="color: white;">Undetermine</span>';
+																								break;
+																						}
+																					?>
+																				</td>
+																				<td>
+																					<a class="btn btn-success btn-sm" href="/viewdocument/{{$document->id}}"><i class="fas fa-eye"></i> View</a>
+																					<a class="btn btn-warning btn-sm" href="/showdocument/{{$document->id}}"><i class="fas fa-edit"></i> Update</a>	
+																				</td> 
+																			</tr>
+																		@endif
 																	@endforeach 
 												           	</tbody>
 												        </table>
@@ -226,7 +259,7 @@
 											<div class="card-header">Requested Documents</div>
 											<div class="card-body p-0">
 												<!-- Announcements table-->
-												@if($requests->count() == 1)
+												@if($requests->count() == 0)
 													<br><br>
 													<div class="alert alert-danger"><em>No records found.</em></div>
 												@else
@@ -238,9 +271,10 @@
 												                    <th class="border-gray-200" scope="col">Document</th>
 												                    <th class="border-gray-200" scope="col">Student Name</th>
 												                    <th class="border-gray-200" scope="col">Course</th>
-												                    <th class="border-gray-200" scope="col">Purpose</th>
 												                    <th class="border-gray-200" scope="col">Date Requested</th>
 												                    <th class="border-gray-200" scope="col">Proof</th>
+																	<th class="border-gray-200" scope="col">Status</th>
+																	<th class="border-gray-200" scope="col">Action</th>
 												                </tr>
 												           	</thead>
 												           	<tbody>
@@ -248,19 +282,51 @@
 												                    $i=1;
 												                ?>
 																	@foreach ($requests as $request)
-												                    	<tr>
-																			<?php $requested_at = date('F d, Y', strtotime($request -> created_at)); ?>
-																			<td class="text-center"><?php echo $i++; ?></td>
-																			<td>{{$request -> document -> name}}</td>
-																			<td>{{$request -> student -> last_name}}, {{$request -> student -> first_name}} {{$request -> student -> middle_name}}</td>
-												                            <td>{{$request -> student -> course -> courseName}}</td>
-																			<td>{{$request -> purpose}}</td>
-																			<td>{{$requested_at}}</td>
-												                            <td>
-																			{{$request -> file}}
-																				<a href="/download/{{$request -> file}}" class="btn btn-primary">Download</a> 
-												                            </td>
-												                        </tr>
+																		@if($request->gradelevel_id == 2)
+																			<tr>
+																				<?php $requested_at = date('F d, Y', strtotime($request -> created_at)); ?>
+																				<td class="text-center"><?php echo $i++; ?></td>
+																				<td>{{$request -> document -> name}}</td>
+																				<td>{{$request -> student -> last_name}}, {{$request -> student -> first_name}} {{$request -> student -> middle_name}}</td>
+																				<td>{{$request -> student -> course -> courseName}}</td>
+																				<td>{{$requested_at}}</td>
+																				<td>
+																				{{$request -> file}}
+																					<a href="/download/{{$request -> file}}" class="btn btn-primary">Download</a> 
+																				</td>
+																				<td>
+																					<?php 
+																						switch ($request -> status) {
+																							case '1':
+																								echo '<span class="badge bg-secondary" style="color: white;">Pending</span>';
+																								break;
+																							case '2':
+																								echo '<span class="badge bg-success" style="color: white;">On Process</span>';
+																								break;
+																							case '3':
+																								echo '<span class="badge bg-success" style="color: white;">For Collection</span>';
+																								break;
+																							case '4':
+																								echo '<span class="badge bg-success" style="color: white;">Completed</span>';
+																								break;
+																							case '5':
+																								echo '<span class="badge bg-danger" style="color: white;">Denied</span>';
+																								break;
+																							case '6':
+																								echo '<span class="badge bg-secondary" style="color: white;">For follow-up</span>';
+																								break;
+																							default:
+																								echo '<span class="badge bg-secondary" style="color: white;">Undetermine</span>';
+																								break;
+																						}
+																					?>
+																				</td>
+																				<td>
+																					<a class="btn btn-success btn-sm" href="/viewrequestadmin/{{$request->id}}"><i class="fas fa-eye"></i> View</a>
+																					<a class="btn btn-warning btn-sm" href="/showrequestadmin/{{$request->id}}"><i class="fas fa-edit"></i> Update</a>
+																				</td> 
+																			</tr>
+																		@endif
 																	@endforeach 
 												           	</tbody>	
 														</table>
@@ -276,7 +342,7 @@
 				</div>
 		  		<!-- end of tables -->
 		 	</div>
-		</div>
+
 	</section>
 </main>
 <br><br><br><br>

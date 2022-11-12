@@ -186,6 +186,7 @@
 												<th class="border-gray-200" scope="col">Purpose</th>
 												<th class="border-gray-200" scope="col">Date Requested</th>
 												<th class="border-gray-200" scope="col">Proof Sent</th>
+                                                <th class="border-gray-200" scope="col">Status</th>
 												<th class="border-gray-200" scope="col">Action</th>
 											</tr>
 										</thead>
@@ -202,6 +203,33 @@
                                                     <td>{{$requested_at}}</td>
                                                     <td>
                                                         <a href="/download/{{$request -> file}}" class="btn btn-primary">Download</a> 
+                                                    </td>
+                                                    <td>
+                                                        <?php 
+                                                            switch ($request -> status) {
+                                                                case '1':
+                                                                    echo '<span class="badge bg-secondary" style="color: white;">Pending</span>';
+                                                                    break;
+                                                                case '2':
+                                                                    echo '<span class="badge bg-success" style="color: white;">On Process</span>';
+                                                                    break;
+                                                                case '3':
+                                                                    echo '<span class="badge bg-success" style="color: white;">For Collection</span>';
+                                                                    break;
+                                                                case '4':
+                                                                    echo '<span class="badge bg-success" style="color: white;">Completed</span>';
+                                                                    break;
+                                                                case '5':
+                                                                    echo '<span class="badge bg-danger" style="color: white;">Denied</span>';
+                                                                    break;
+                                                                case '6':
+                                                                    echo '<span class="badge bg-secondary" style="color: white;">For follow-up</span>';
+                                                                    break;
+                                                                default:
+                                                                    echo '<span class="badge bg-secondary" style="color: white;">Undetermine</span>';
+                                                                    break;
+                                                            }
+                                                        ?>
                                                     </td>
                                                     <td>
                                                         <a class="btn btn-success btn-sm" href="/viewrequest/{{$request->id}}"><i class="fas fa-eye"></i> View</a>

@@ -614,6 +614,8 @@ Route::group(['middleware' => 'auth:admins'], function () {
             Route::get('/documentrequest', 'documentRequest');
             Route::get('/viewdocument/{id}', 'viewdocument');
             Route::get('/showdocument/{id}', 'showdocument');
+            Route::get('/viewrequestadmin/{id}', 'viewrequest');
+            Route::get('/showrequestadmin/{id}', 'showrequest');
             Route::get('/deletedocument/{id}',  'deletedocument')->name('admin.deletedocument');
 
             /*
@@ -638,7 +640,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
             */
             Route::put('/updatedocument/{document}', 'updatedocument');
             Route::put('/deletedocument/{document}', 'deletegradedocument');
-
+            Route::put('/updaterequestdocadmin/{docreq}', 'updatedocreq');
     });
 });
 
