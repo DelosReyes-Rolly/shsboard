@@ -2,7 +2,7 @@
 @include('partials.adminThirdHeader')
 <main>
     <div class="left-to-right" style="padding: 10px 40px 10px 40px;">
-    <h3 style="font-size: 20px;">Table of Grade Level </h3>
+    <h3 style="font-size: 28px; font-weight: 800;">Table of Grade Level </h3>
       <hr class="mt-0 mb-4">
         <div class="card mb-4 border-start-lg border-start-success">
             <div class="card-header">

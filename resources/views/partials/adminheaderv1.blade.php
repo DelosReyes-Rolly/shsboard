@@ -28,7 +28,10 @@
         
         <!--responsive.css-->
         <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
-
+		
+		<!--sweetalert-->
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.8/dist/sweetalert2.all.min.js"></script>
+		
 		<!-- transition -->
 		<script>
 			function reveal() {

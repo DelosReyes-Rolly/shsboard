@@ -24,7 +24,7 @@
                 <strong>{{ $message }}</strong>
             </div></br></br>
         @endif
-        <h3 style="font-size: 20px;">Table of Strands </h3>
+        <h3 style="font-size: 28px; font-weight: 800;">Table of Strands </h3>
         <hr class="mt-0 mb-4">
         <div class="card mb-4 left-to-right border-start-lg border-start-success" style="padding: 10px 40px 10px 40px;">
             <div class="card-header">
@@ -57,9 +57,9 @@
                                             <td>{{$course -> code}}</td>
                                             <td>{{$course -> image}}</td>
                                             <td>
-                                                <a class="btn btn-success btn-sm" href="/viewcourse/{{$course->id}}"><i class="fas fa-eye"></i> View</a>
-                                                <a class="btn btn-warning btn-sm" href="/showcourse/{{$course->id}}"><i class="fas fa-edit"></i> Update</a> 
-                                                <a class="btn btn-danger btn-sm" href="{{route('admin.deletecourse', $course->id)}}"><i class="far fa-trash-alt"></i> Delete</a>
+                                                <a class="btn btn-success btn-md" href="/viewcourse/{{$course->id}}"><i class="fas fa-eye"></i> View</a>
+                                                <a class="btn btn-warning btn-md" href="/showcourse/{{$course->id}}"><i class="fas fa-edit"></i> Update</a> 
+                                                <a class="btn btn-danger btn-md" href="{{route('admin.deletecourse', $course->id)}}"><i class="far fa-trash-alt"></i> Delete</a>
                                             </td> 
                                         </tr>
                                     @endforeach 

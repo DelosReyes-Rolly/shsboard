@@ -8,7 +8,7 @@
         
             <div class="container-xl px-4 mt-4">
                 <!-- page navigation-->
-                <h3 style="font-size: 20px;">View Section</h3>
+                <h3 style="font-size: 28px; font-weight: 800;">View Section</h3>
                 <hr class="mt-0 mb-4">
                 <div class="row">
                     
@@ -24,8 +24,8 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group (title)-->
                                         <div class="col-md-10">
-                                            <label><b>Section:</b></label>
-                                            {{$section->section}}
+                                            <label style="font-size: 20px;"><b>Section:</b></label>
+                                            <span style="font-size: 20px;">{{$section->section}}</span>
                                         </div>
                                         <div class="pull-right">
                                             <br/><br/>

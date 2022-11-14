@@ -21,7 +21,7 @@
             @csrf
             <div class="container-xl px-4 mt-4">
                 <!-- page navigation-->
-                <h3 style="font-size: 20px;">Update School Year </h3>   
+                <h3 style="font-size: 28px; font-weight: 800;">Update School Year </h3>   
                 <hr class="mt-0 mb-4">
                 <div class="row">
                     <div class="col-xl-8">
@@ -35,13 +35,13 @@
                                     </div>
                                     <!-- Form Group (title)-->
                                     <div class="col-md-10">
-                                        <label>School Year</label>
+                                        <label style="font-size: 26px;"><b>School Year</b></label>
                                         <input type="text" name="schoolyear" class="form-control @error('schoolyear') is-invalid @enderror" value="{{$schoolyear->schoolyear}}"style="font-size: 14px;">
                                     </div>
                                     <hr>
                                     <a class="btn btn-info btn-md" href="{{ url()->previous() }}"><i class="fas fa-arrow-left"></i> Back</a>
                                     <div class="pull-right">
-                                        <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary" value="Submit"></font>
+                                        <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary btn-md" value="Submit"></font>
                                     </div>
                                 </div>
                             </div>

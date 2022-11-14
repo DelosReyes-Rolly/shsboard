@@ -6,7 +6,7 @@
        
             <div class="container-xl px-4 mt-4">
                 <!-- page navigation-->
-                <h3 style="font-size: 20px;">View Subject</h3>
+                <h3 style="font-size: 28px; font-weight: 800;">View Subject</h3>
                 <hr class="mt-0 mb-4">
                 <div class="row">
                     
@@ -19,24 +19,24 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group (title)-->
                                         <div class="col-md-10">
-                                            <label><b>Subject Code: </b></label>
-                                            {{$subject->subjectcode}}
+                                            <label style="font-size: 20px;"><b>Subject Code: </b></label>
+                                            <span style="font-size: 20px;">{{$subject->subjectcode}}</span>
                                         </div>
                                     </div>
                                     <!-- Form Row -->
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
-                                            <label><b>Subject Name: </b></label>
-                                            {{$subject->subjectname}}
+                                            <label style="font-size: 20px;"><b>Subject Name: </b></label>
+                                            <span style="font-size: 20px;">{{$subject->subjectname}}</span>
                                         </div>
                                     </div>
                                     <!-- Form Row -->
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
-                                            <label><b>Description: </b></label>
-                                            {{$subject->description}}
+                                            <label style="font-size: 20px;"><b>Description: </b></label>
+                                            <span style="font-size: 20px;">{{$subject->description}}</span>
                                         </div><br/><br/>
                                         <div class="pull-right">
                                             <a class="btn btn-info btn-md" href="{{ url()->previous() }}"><i class="fas fa-arrow-left"></i> Back</a>

@@ -16,6 +16,8 @@
             </div>
         @endif
 
+        
+
         <form method="POST" action="/updatelanding/{{$landing->id}}" enctype="multipart/form-data">
             @method('PUT')
             @csrf

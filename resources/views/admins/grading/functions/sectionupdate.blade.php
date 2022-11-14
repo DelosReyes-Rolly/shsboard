@@ -21,7 +21,7 @@
             @csrf
             <div class="container-xl px-4 mt-4">
                 <!-- page navigation-->
-                <h3 style="font-size: 20px;">Update Section</h3>
+                <h3 style="font-size: 28px; font-weight: 800;">Update Section</h3>
                 <hr class="mt-0 mb-4">
                 <div class="row">
                     
@@ -38,7 +38,7 @@
                                         
                                         <!-- Form Group (title)-->
                                         <div class="col-md-10">
-                                            <label>Section</label>
+                                            <label style="font-size: 28px;">Section</label>
                                             <input type="text" name="section" class="form-control @error('section') is-invalid @enderror" value="{{$section->section}}" style="font-size: 14px;">
                                         </div>
                                     </div>

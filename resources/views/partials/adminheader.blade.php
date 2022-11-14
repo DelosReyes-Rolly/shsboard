@@ -39,48 +39,48 @@
                 <li title="Dashboard">
                     <a href="/">
                         <i class="fas fa-chalkboard"></i>
-                        <span class="hide-word title-word"> Dashboard </span>
+                        <span class="hide-word title-word"> <b>Dashboard</b> </span>
                     </a>
                 </li>
                 <li>
                     <a href="#academicSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" title="Academic Syllabus">
                     <i class="fas fa-school"></i>
-                        <span class="hide-word title-word"> Academic Syllabus</span>
+                        <span class="hide-word title-word"> <b>Academic Syllabus</b></span>
                     </a>
                     <ul class="collapse list-unstyled" id="academicSubmenu">
                         <li title="School year">
-                            <a href="/gradingschoolyear"><i class="fas fa-calendar-alt"></i> <span class="hide-word"> School Year</span></a>
+                            <a href="/gradingschoolyear"><i class="fas fa-calendar-alt"></i> <span class="hide-word"> <b>School Year</b></span></a>
                         </li>
                         <li title="Grade Levels">
-                            <a href="/gradinggradelevels"><i class="fas fa-signal"></i> <span class="hide-word"> Grade Levels</span></a>
+                            <a href="/gradinggradelevels"><i class="fas fa-signal"></i> <span class="hide-word"> <b>Grade Levels</b></span></a>
                         </li>
                         <li title="Strands">
-                            <a href="/gradingcourses"><i class="fas fa-sitemap"></i> <span class="hide-word"> Strands</span></a>
+                            <a href="/gradingcourses"><i class="fas fa-sitemap"></i> <span class="hide-word"> <b>Strands</b></span></a>
                         </li>
                         <li title="Sections">
-                            <a href="/gradingsections"><i class="fas fa-bars"></i> <span class="hide-word"> Sections</span></a>
+                            <a href="/gradingsections"><i class="fas fa-bars"></i> <span class="hide-word"> <b>Sections</b></span></a>
                         </li>
                         <li title="Subjects">
-                            <a href="/gradingsubjects"><i class="fas fa-book"></i> <span class="hide-word"> Subjects</span></a>
+                            <a href="/gradingsubjects"><i class="fas fa-book"></i> <span class="hide-word"> <b>Subjects</b></span></a>
                         </li>
                     </ul>
                 </li>
                 <li>
                     <a href="/gradingfaculty" title="Faculty">
                         <i class="fas fa-user-tie"></i>
-                        <span class="hide-word title-word"> Faculty </span>
+                        <span class="hide-word title-word"> <b>Faculty</b> </span>
                     </a>
                 </li>
                 <li>
                     <a href="/gradingstudents" title="Students">
                         <i class="fas fa-users"></i>
-                        <span class="hide-word title-word"> Students </span>
+                        <span class="hide-word title-word"> <b>Students</b> </span>
                     </a>
                 </li>
                 <li>
                     <a href="/gradingfacultysubjects" title="Class Schedule">
                         <i class="fas fa-chalkboard-teacher"></i>
-                        <span class="hide-word title-word"> Class Schedule </span>
+                        <span class="hide-word title-word"> <b>Class Schedule</b> </span>
                     </a>
                 </li>
             </ul>
@@ -99,20 +99,20 @@
                 <li>
                     <a href="#landingSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" title="Manage Landing Page">
                         <i class="fas fa-stream"></i>
-                        <span class="hide-word title-word"> Manage Landing Page</span>
+                        <span class="hide-word title-word"> <b>Manage Landing Page</b></span>
                     </a>
                     <ul class="collapse list-unstyled" id="landingSubmenu">
                         <li title="Homepage">
-                            <a href='{{ url("/homepage") }}'><i class="fas fa-home"></i> <span class="hide-word"> Homepage</span></a>
+                            <a href='{{ url("/homepage") }}'><i class="fas fa-home"></i> <span class="hide-word"> <b>Homepage</b></span></a>
                         </li>
                         <li title="Public Announcements">
-                            <a href='{{ url("/createAnnoucement") }}'><i class="fas fa-bullhorn"></i> <span class="hide-word"> Announcements</span></a>
+                            <a href='{{ url("/createAnnoucement") }}'><i class="fas fa-bullhorn"></i> <span class="hide-word"> <b>Announcements</b></span></a>
                         </li>
                         <li title="Public Events">
-                            <a href='{{ url("/createEvents") }}'><i class="fas fa-calendar-times"></i> <span class="hide-word"> Events</span></a>
+                            <a href='{{ url("/createEvents") }}'><i class="fas fa-calendar-times"></i> <span class="hide-word"> <b>Events</b></span></a>
                         </li>
                         <li title="Public Reminders">
-                            <a href='{{ url("/createReminder") }}'><i class="fas fa-sticky-note"></i> <span class="hide-word"> Reminders</span></a>
+                            <a href='{{ url("/createReminder") }}'><i class="fas fa-sticky-note"></i> <span class="hide-word"> <b>Reminders</b></span></a>
                         </li>
                     </ul>
                 </li>
@@ -123,27 +123,27 @@
                 <li>
                     <a href="#bulletinSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" title=" Bulletin">
                         <i class="fas fa-tv"></i>
-                        <span class="hide-word title-word"> Bulletin</span>
+                        <span class="hide-word title-word"> <b>Bulletin</b></span>
                     </a>
                     <ul class="collapse list-unstyled" id="bulletinSubmenu">
                         <li title="Private Announcements">
-                            <a href='{{ url("/privateannouncement") }}'><i class="fas fa-bullhorn"></i> <span class="hide-word"> Announcements</span></a>
+                            <a href='{{ url("/privateannouncement") }}'><i class="fas fa-bullhorn"></i> <span class="hide-word"> <b>Announcements</b></span></a>
                         </li>
                         <li title="Private Table of Announcement">
-                            <a href='{{ url("/tableofannouncement") }}'><i class="fas fa-table"></i> <span class="hide-word"> Table of Announcements</span></a>
+                            <a href='{{ url("/tableofannouncement") }}'><i class="fas fa-table"></i> <span class="hide-word"> <b>Table of Announcements</b></span></a>
                         </li>
                         <li title="Private Reminder">
-                            <a href='{{ url("/privatereminders") }}'><i class="fas fa-sticky-note"></i> <span class="hide-word"> Reminders</span></a>
+                            <a href='{{ url("/privatereminders") }}'><i class="fas fa-sticky-note"></i> <span class="hide-word"> <b>Reminders</b></span></a>
                         </li>
                         <li title="Private Table of Reminders">
-                            <a href='{{ url("/tableofreminders") }}'><i class="fas fa-table"></i> <span class="hide-word"> Table of Reminders</span></a>
+                            <a href='{{ url("/tableofreminders") }}'><i class="fas fa-table"></i> <span class="hide-word"> <b>Table of Reminders</b></span></a>
                         </li>
                     </ul>
                 </li>
                 <li>
                     <a class="a-header" href='{{ url("documentrequest") }}' title="Document Requests">
                         <i class="fas fa-file-alt"></i> 
-                        <span class="hide-word title-word"> Document Requests </span>
+                        <span class="hide-word title-word"> <b>Document Requests</b> </span>
                     </a>
                 </li>
             </ul>
@@ -165,13 +165,13 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href='{{ url("profile") }}'>Profile</a>
+                                <a class="nav-link header-letter" href='{{ url("profile") }}'>Profile</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/password-admin/{{Auth::user()->id}}}">Change Password</a>
+                                <a class="nav-link header-letter" href="/password-admin/{{Auth::user()->id}}}">Change Password</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                                <a class="nav-link header-letter" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>

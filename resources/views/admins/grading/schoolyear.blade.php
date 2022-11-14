@@ -21,7 +21,7 @@
         } );
     </script>
 <div class="left-to-right">
-    <h3 style="font-size: 20px;">Table of School year </h3>   
+    <h3 style="font-size: 28px; font-weight: 800;">Table of School year </h3>   
     @if ($message = Session::get('message'))
             <div class="alert alert-success alert-block">
                 <button type="button" class="close" data-dismiss="alert">×</button>
@@ -32,7 +32,7 @@
         <div class="card mb-4 left-to-right border-start-lg border-start-success">
             <div class="card-header">
                 <div class="pull-right">
-                    <a href="{{route('schoolyear.add')}}" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Record</a>
+                    <a href="{{route('schoolyear.add')}}" class="btn btn-primary btn-md"><i class="fas fa-user-plus"></i> Add Record</a>
                 </div>
             </div>
             <div class="card-body p-0">
@@ -59,9 +59,9 @@
                                             <td class="text-center"><?php echo $i++; ?></td>
                                             <td>{{$schoolyear -> schoolyear}}</td>
                                             <td>
-                                                <a class="btn btn-success btn-sm" href="/viewschoolyear/{{$schoolyear->id}}"><i class="fas fa-eye"></i> View</a>
-                                                <a class="btn btn-warning btn-sm" href="/showschoolyear/{{$schoolyear->id}}"><i class="fas fa-edit"></i> Update</a>
-                                                <a class="btn btn-danger btn-sm" href="{{route('admin.deleteschoolyear', $schoolyear->id)}}"><i class="far fa-trash-alt"></i> Delete</a>
+                                                <a class="btn btn-success btn-md" href="/viewschoolyear/{{$schoolyear->id}}"><i class="fas fa-eye"></i> View</a>
+                                                <a class="btn btn-warning btn-md" href="/showschoolyear/{{$schoolyear->id}}"><i class="fas fa-edit"></i> Update</a>
+                                                <a class="btn btn-danger btn-md" href="{{route('admin.deleteschoolyear', $schoolyear->id)}}"><i class="far fa-trash-alt"></i> Delete</a>
                                             </td> 
                                         </tr>
                                     @endforeach

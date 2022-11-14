@@ -38,19 +38,19 @@
                 <li>
                     <a href="{{ url('/') }}">
                         <i class="fas fa-chalkboard"></i>
-                        <span class="hide-word"> Announcement</span>
+                        <span class="hide-word title-word"> Announcement</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ url('createannouncement') }}">
                         <i class="fas fa-chalkboard"></i>
-                        <span class="hide-word"> Activity Stream</span>
+                        <span class="hide-word title-word"> Activity Stream</span>
                     </a>
                 </li>
                 <li>
                     <a href="#academicSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <i class="fas fa-school"></i>
-                        <span class="hide-word"> Grades</span>
+                        <span class="hide-word title-word"> Grades</span>
                     </a>
                     <ul class="collapse list-unstyled" id="academicSubmenu">
                         <li>

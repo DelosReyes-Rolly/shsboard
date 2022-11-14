@@ -21,7 +21,7 @@
             @csrf
             <div class="container-xl px-4 mt-4 left-to-right">
                 <!-- page navigation-->
-                <h3 style="font-size: 20px;">Update Strand</h3>
+                <h3 style="font-size: 28px; font-weight: 800;">Update Strand</h3>
                 <hr class="mt-0 mb-4">
                 <div class="row">
                     
@@ -37,7 +37,7 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group (title)-->
                                         <div class="col-md-10">
-                                            <label>Strand Name</label>
+                                            <label style="font-size: 20px;">Strand Name</label>
                                             <input type="text" name="courseName"  class="form-control @error('courseName') is-invalid @enderror" value="{{$course->courseName}}" style="font-size: 14px;" >
                                         </div>
                                     </div><br/>
@@ -45,7 +45,7 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
-                                            <label>Abbreviation</label>
+                                            <label style="font-size: 20px;">Abbreviation</label>
                                             <input type="text" name="abbreviation"  class="form-control @error('abbreviation') is-invalid @enderror" value="{{$course->abbreviation}}" style="font-size: 14px;">
                                         </div>
                                     </div><br/>
@@ -53,7 +53,7 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
-                                            <label>Strand Description</label>
+                                            <label style="font-size: 20px;">Strand Description</label>
                                             <textarea name="description" type=text id="editor"  class="form-control @error('description') is-invalid @enderror">{!!$course->description!!}</textarea style="font-size: 14px;">
                                         </div>
                                     </div><br/>
@@ -61,14 +61,14 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
-                                            <label>Code</label>
+                                            <label style="font-size: 20px;">Code</label>
                                             <input type="text" name="code"  class="form-control @error('code') is-invalid @enderror" value="{{$course->code}}"style="font-size: 14px;">
                                         </div>
                                     </div><br/>
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
-                                            <label>Video Link (Copy embed link on youtube and paste it here) </label>
+                                            <label style="font-size: 20px;">Video Link (Copy embed link on youtube and paste it here) </label>
                                             <input type="text" name="link"  class="form-control @error('link') is-invalid @enderror" value="{{$course->link}}" style="font-size: 14px;">
                                         </div>
                                     </div><br/>

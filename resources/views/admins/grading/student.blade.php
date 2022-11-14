@@ -24,7 +24,7 @@
             <!-- page navigation-->
             <hr class="mt-0 mb-4">
             <div class="row left-to-right">
-                    <div class="card mb-4">
+                    <div class="mb-4">
                         <div class="card border-start-lg border-start-yellow">
                             <div class="card-header">Print Students Report</div>
                                 <div class="card-body">
@@ -92,9 +92,9 @@
                                             <td>{{$student -> phone_number}}</td>
                                             <td>{{$student -> email}}</td>
                                             <td>
-                                                <a class="btn btn-success btn-sm" href="/viewstudent/{{$student->id}}"><i class="fas fa-eye"></i> View</a>
-                                                <a class="btn btn-warning btn-sm" href="/showstudent/{{$student->id}}"><i class="fas fa-edit"></i> Update</a>
-                                                <a class="btn btn-danger btn-sm" href="{{route('admin.deletestudent', $student->id)}}"><i class="far fa-trash-alt"></i> Delete</a>
+                                                <a class="btn btn-success btn-md" href="/viewstudent/{{$student->id}}"><i class="fas fa-eye"></i> View</a>
+                                                <a class="btn btn-warning btn-md" href="/showstudent/{{$student->id}}"><i class="fas fa-edit"></i> Update</a>
+                                                <a class="btn btn-danger btn-md" href="{{route('admin.deletestudent', $student->id)}}"><i class="far fa-trash-alt"></i> Delete</a>
                                             </td> 
                                             </td> 
                                         </tr>
