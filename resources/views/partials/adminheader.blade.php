@@ -95,7 +95,7 @@
             </ul> -->
 
             <ul class="list-unstyled components">
-                <div style="padding-left:8px;">EXTERNAL</div>
+                <div style="padding-left:8px;">External</div>
                 <li>
                     <a href="#landingSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-stream"></i>
@@ -119,7 +119,7 @@
             </ul>
 
             <ul class="list-unstyled components">
-                <div style="padding-left:8px;">INTERNAL</div>
+                <div style="padding-left:8px;">Internal</div>
                 <li>
                     <a href="#bulletinSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-tv"></i>
