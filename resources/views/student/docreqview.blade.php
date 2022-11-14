@@ -3,7 +3,7 @@
 <section>
         <div>
         	<div class="left-to-right">
-                <h3 style="font-size: 20px;">Requested Document</h3>
+                <h3 style="font-size: 20px;">Requested Documents</h3>
                 <hr style="border: 1px solid grey;">
                 
                     <div class="container-xl px-4 mt-4">

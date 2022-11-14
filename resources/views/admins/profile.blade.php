@@ -1,6 +1,6 @@
 @include('partials.adminheader')
 <main>
-	<section class="about top-to-bottom">
+	<section class="top-to-bottom">
 		<div>
 		 	<!-- php
 	           	// if(!empty($success)){   
