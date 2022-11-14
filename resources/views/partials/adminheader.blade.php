@@ -39,13 +39,13 @@
                 <li>
                     <a href="/">
                         <i class="fas fa-chalkboard"></i>
-                        <span class="hide-word"> Dashboard </span>
+                        <span class="hide-word title-word"> Dashboard </span>
                     </a>
                 </li>
                 <li>
                     <a href="#academicSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <i class="fas fa-school"></i>
-                        <span class="hide-word"> Academic Syllabus</span>
+                        <span class="hide-word title-word"> Academic Syllabus</span>
                     </a>
                     <ul class="collapse list-unstyled" id="academicSubmenu">
                         <li>
@@ -68,19 +68,19 @@
                 <li>
                     <a href="/gradingfaculty">
                         <i class="fas fa-user-tie"></i>
-                        <span class="hide-word"> Faculty </span>
+                        <span class="hide-word title-word"> Faculty </span>
                     </a>
                 </li>
                 <li>
                     <a href="/gradingstudents">
                         <i class="fas fa-users"></i>
-                        <span class="hide-word"> Students </span>
+                        <span class="hide-word title-word"> Students </span>
                     </a>
                 </li>
                 <li>
                     <a href="/gradingfacultysubjects">
                         <i class="fas fa-chalkboard-teacher"></i>
-                        <span class="hide-word"> Class Schedule </span>
+                        <span class="hide-word title-word"> Class Schedule </span>
                     </a>
                 </li>
             </ul>
@@ -99,7 +99,7 @@
                 <li>
                     <a href="#landingSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-stream"></i>
-                        <span class="hide-word"> Manage Landing Page</span>
+                        <span class="hide-word title-word"> Manage Landing Page</span>
                     </a>
                     <ul class="collapse list-unstyled" id="landingSubmenu">
                         <li>
@@ -123,7 +123,7 @@
                 <li>
                     <a href="#bulletinSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-tv"></i>
-                        <span class="hide-word"> Bulletin</span>
+                        <span class="hide-word title-word"> Bulletin</span>
                     </a>
                     <ul class="collapse list-unstyled" id="bulletinSubmenu">
                         <li>
@@ -143,7 +143,7 @@
                 <li>
                     <a class="a-header" href='{{ url("documentrequest") }}'>
                         <i class="fas fa-file-alt"></i> 
-                        <span class="hide-word"> Document Requests </span>
+                        <span class="hide-word title-word"> Document Requests </span>
                     </a>
                 </li>
             </ul>
