@@ -27,8 +27,8 @@
                         <!-- Billing card 2-->
                         <div class="card h-100 border-start-lg border-start-secondary" style="background-color: red; color: white;" >
                             <div class="card-body">
-                                <div class="card-header">Expired Events</div>
-                                <div class="h3" style="padding: 0px 40px 10px 40px"><i class="far fa-calendar-times"></i> {{ $events->where('status', '=', 2)->count() }}</div>
+                                <div class="card-header" style="font-size: 20px; font-weight: 800;">Expired Events</div>
+                                <div class="h3" style="padding: 40px 40px 10px 40px"><i class="far fa-calendar-times"></i> {{ $events->where('status', '=', 2)->count() }}</div>
                             </div>
                         </div>
                     </div>
@@ -36,8 +36,8 @@
                     <!-- Billing card 3-->
                     <div class="card h-100 border-start-lg border-start-success" style="background-color: green; color: white;">
                         <div class="card-body">
-                            <div class="card-header">Active Events</div>
-                            <div class="h3 d-flex align-items-center" style="padding: 0px 40px 10px 40px"><i class="fas fa-bullhorn"></i> {{ $events->where('status', '=', 1)->count() }}</div>
+                            <div class="card-header" style="font-size: 20px; font-weight: 800;">Active Events</div>
+                            <div class="h3 d-flex align-items-center" style="padding: 40px 40px 10px 40px"><i class="fas fa-bullhorn"></i> {{ $events->where('status', '=', 1)->count() }}</div>
                         </div>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                 @csrf
                 <div class="container-xl px-4 mt-4 right-to-left">
                     <!-- page navigation-->
-                    <h3 style="font-size: 20px;">Create Event </h3>
+                    <h3 style="font-size: 28px; font-weight: 800;">Create Event </h3>
                     <hr class="mt-0 mb-4">
                     <div class="row">
                         
@@ -83,12 +83,12 @@
                                         <div class="row gx-3 mb-3">
                                             <!-- Form Group (title)-->
                                             <div class="col-md-6">
-                                                <label class="small mb-1" for="inputwhat">What</label>
+                                                <label class="small mb-1" for="inputwhat" style="font-size: 20px;">What</label>
                                                 <input class="form-control @error('what') is-invalid @enderror" id="inputwhat" type="text" placeholder="Enter the title" name="what"  value="{{ old('what') }}">
                                             </div>
                                             <!-- Form Group date-->
                                             <div class="col-md-6">
-                                                <label class="small mb-1" for="inputwho">Who</label>
+                                                <label class="small mb-1" for="inputwho" style="font-size: 20px;">Who</label>
                                                 <input class="form-control @error('who') is-invalid @enderror" id="inputwho" type="text" placeholder="Enter the receipients" name="who"  value="{{ old('who') }}">
                                             </div>
                                         </div><br/>
@@ -96,34 +96,34 @@
                                         <div class="row gx-3 mb-3">
                                             <!-- Form Group whr-->
                                                 <div class="col-md-2">
-                                                    <label class="small mb-1" for="inputwhn">When</label>
+                                                    <label class="small mb-1" for="inputwhn" style="font-size: 20px;">When</label>
                                                     <input type="date" class="form-control @error('whn') is-invalid @enderror" id="inputwhn" placeholder="Enter the date" name="whn"  value="{{ old('whn') }}">
                                                 </div>
                                                 <!-- Form Group (content)-->
                                                 <div class="col-md-2">
                                                     <div class="form-group">
-                                                        <label for="appt">Select a time:</label><br>
+                                                        <label for="appt" style="font-size: 20px;">Select a time:</label><br>
                                                         <input type="time" id="whn_time" name="whn_time" value="{{ old('whn_time') }}">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <label class="small mb-1" for="inputexpired_at">Expired at</label>
+                                                    <label class="small mb-1" for="inputexpired_at" style="font-size: 20px;">Expired at</label>
                                                     <input type="date" class="form-control @error('expired_at') is-invalid @enderror" id="inputexpired_at" placeholder="Enter the date" name="expired_at"  value="{{ old('expired_at') }}">
                                                 </div>
                                                 <!-- Form Group (location)-->
                                                 <div class="col-md-6">
-                                                    <label class="small mb-1" for="inputwhr">Where</label>
+                                                    <label class="small mb-1" for="inputwhr" style="font-size: 20px;">Where</label>
                                                     <input class="form-control @error('whr') is-invalid @enderror" id="inputwhr" type="text" placeholder="Enter the location" name="whr"  value="{{ old('whr') }}">
                                                 </div>
                                             </div><br/>
                                             <!-- Form Group (content)-->
                                             <div class="mb-3">
-                                                <label class="small mb-1" for="editor">Content</label>
+                                                <label class="small mb-1" for="editor" style="font-size: 20px;">Content</label>
                                                 <textarea class="form-control @error('content') is-invalid @enderror" id="editor" type="text" placeholder="Enter the information" name="content" rows="10" cols="80">{{ old('content') }}</textarea>
                                             </div><br/>
                                             <!-- Form Group (img)-->
                                             <div class="col-md-6">
-                                                <label class="large mb-1">Image (Only png and jpg files are allowed)</label>
+                                                <label class="large mb-1" style="font-size: 20px;">Image (Only png and jpg files are allowed)</label>
                                                 <div class ="form-group row">
                                                     <div class="col-md-8"></div>
                                                     <input type="file" name = "image" class="form-control">
@@ -148,7 +148,7 @@
             @endif
             <br/>
             <!-- tables -->
-            <h3 style="font-size: 20px;">Table of Events</h3>
+            <h3 style="font-size: 28px; font-weight: 800;">Table of Events</h3>
             <hr class="mt-0 mb-4">
             <div class="card mb-4 left-to-right border-start-lg border-start-yellow" style="padding: 10px 40px 10px 40px">
                 <div class="card-header"></div>
@@ -191,21 +191,21 @@
                                                     <?php 
                                                         switch ($event -> status) {
                                                             case '1':
-                                                                echo '<span class="badge bg-success">Active</span>';
+                                                                echo '<span class="badge bg-success" style="color:#fff">Active</span>';
                                                                 break;
                                                             case '2':
-                                                                echo '<span class="badge bg-danger">Expired</span>';
+                                                                echo '<span class="badge bg-danger" style="color:#fff">Expired</span>';
                                                                 break;
                                                             default:
-                                                                echo '<span class="badge bg-secondary">Undetermined</span>';
+                                                                echo '<span class="badge bg-secondary" style="color:#fff">Undetermined</span>';
                                                                 break;
                                                         }
                                                     ?>
                                                 </td>
                                                 <td>
-                                                    <a class="btn btn-success btn-sm" href="/viewevent/{{$event->id}}"><i class="fas fa-eye"></i> View</a>
-                                                    <a class="btn btn-warning btn-sm" href="/showevent/{{$event->id}}"><i class="fas fa-edit"></i> Update</a>
-                                                    <a class="btn btn-danger btn-sm" href="/deleteadminannouncement/{{$event->id}}"><i class="far fa-trash-alt"></i> Delete</a>  
+                                                    <a class="btn btn-success btn-md" href="/viewevent/{{$event->id}}"><i class="fas fa-eye"></i> View</a>
+                                                    <a class="btn btn-warning btn-md" href="/showevent/{{$event->id}}"><i class="fas fa-edit"></i> Update</a>
+                                                    <a class="btn btn-danger btn-md" href="/deleteadminannouncement/{{$event->id}}"><i class="far fa-trash-alt"></i> Delete</a>  
                                                 </td> 
                                             </tr>
                                         @endforeach 

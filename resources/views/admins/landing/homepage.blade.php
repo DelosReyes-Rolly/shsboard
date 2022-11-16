@@ -20,7 +20,7 @@
     </script>
 <div>
     <div class="container-xl px-4 mt-4">
-        <h3 style="font-size: 20px;">Create Content on Homepage </h3>
+        <h3 style="font-size: 28px; font-weight: 800;">Create Content on Homepage </h3>
         <hr class="mt-0 mb-4">
         <!-- form -->
             <form method="POST" action="{{ route('homepage.store') }}" enctype="multipart/form-data">
@@ -55,7 +55,7 @@
                                         <div class="row gx-3 mb-3">
                                             <!-- Form Group (title)-->
                                             <div class="col-md-6">
-                                                <label class="large mb-1" for="inputtitle">Title</label>
+                                                <label class="large mb-1" for="inputtitle" style="font-size: 20px;">Title</label>
                                                 <input class="form-control @error('title') is-invalid @enderror" id="inputtitle" type="text" placeholder="Enter the title" name="title"  value="{{ old('title') }}">
                                             </div>
                                         </div><br/>
@@ -63,13 +63,13 @@
                                       
                                             <!-- Form Group (content)-->
                                             <div class="mb-3" style="padding-left: 18px;">
-                                                <label class="large mb-1" for="editor">Content</label>
+                                                <label class="large mb-1" for="editor" style="font-size: 20px;">Content</label>
                                                 <textarea class="form-control @error('document_id') is-invalid @enderror" id="editor" type="text" placeholder="Enter the information" name="content" rows="10" cols="80">{{ old('content') }}</textarea>
                                             </div><br/>
                                             <div class="row gx-3 mb-3" style="padding-left: 22px;">
                                                 <!-- Form Group (img)-->
                                                 <div class="col-md-6">
-                                                    <label class="large mb-1" for="inputcontent">Image (Only png and jpg files are allowed)</label>
+                                                    <label class="large mb-1" for="inputcontent" style="font-size: 20px;">Image (Only png and jpg files are allowed)</label>
                                                     <div class ="form-group row">
                                                         <div class="col-md-8"></div>
                                                         <input type="file" name = "image" class="form-control">
@@ -95,7 +95,7 @@
                     <strong>{{ $message }}</strong>
                 </div>
             @endif
-            <h3 style="font-size: 20px;">Table of contents at Home Page</h3>
+            <h3 style="font-size: 28px; font-weight: 800;">Table of contents at Home Page</h3>
             <hr class="mt-0 mb-4">
             <div class="card mb-4 right-to-left border-start-lg border-start-yellow" style="padding: 10px 40px 10px 40px">
                 <div class="card-header"></div>
@@ -126,9 +126,9 @@
                                                 <td>{{$landing -> title}}</td>
                                                 <td>{{$landing -> image}}</td>
                                                 <td>
-                                                    <a class="btn btn-success btn-sm" href="/viewlanding/{{$landing->id}}"><i class="fas fa-eye"></i> View</a>
-                                                    <a class="btn btn-warning btn-sm" href="/showlanding/{{$landing->id}}"><i class="fas fa-edit"></i> Update</a>
-                                                    <a class="btn btn-danger btn-sm" href="/delete/{{$landing->id}}"><i class="far fa-trash-alt"></i> Delete</a>
+                                                    <a class="btn btn-success btn-md" href="/viewlanding/{{$landing->id}}"><i class="fas fa-eye"></i> View</a>
+                                                    <a class="btn btn-warning btn-md" href="/showlanding/{{$landing->id}}"><i class="fas fa-edit"></i> Update</a>
+                                                    <a class="btn btn-danger btn-md" href="/delete/{{$landing->id}}"><i class="far fa-trash-alt"></i> Delete</a>
                                                 </td> 
                                             </tr>
                                         @endforeach 

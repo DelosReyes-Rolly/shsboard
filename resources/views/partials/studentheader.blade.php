@@ -19,6 +19,7 @@
         
         <!-- title of site -->
         <title>SVNHS-SHS BOARD</title>
+        <link rel="shortcut icon" type="image/icon" href='{{ URL::asset("img/shs.png")}}'/>
 
         <!--style.css-->
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -35,36 +36,36 @@
             </div>
 
             <ul class="list-unstyled components">
-                <li>
+                <li title="Announcement">
                     <a href="{{ url('/') }}">
                         <i class="fas fa-chalkboard"></i>
-                        <span class="hide-word title-word"> Announcement</span>
+                        <span class="hide-word title-word"><b> Announcement</b></span>
                     </a>
                 </li>
-                <li>
+                <li title="Activity Stream">
                     <a href="{{ url('/activitystream') }}">
                         <i class="fas fa-chalkboard"></i>
-                        <span class="hide-word title-word"> Activity Stream</span>
+                        <span class="hide-word title-word"><b> Activity Stream</b></span>
                     </a>
                 </li>
                 <li>
-                    <a href="#academicSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <a href="#academicSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" title="Grades">
                     <i class="fas fa-school"></i>
-                        <span class="hide-word title-word"> Grades</span>
+                        <span class="hide-word title-word"><b> Grades</b></span>
                     </a>
                     <ul class="collapse list-unstyled" id="academicSubmenu">
-                        <li>
-                            <a href='{{ url("/studentgrade") }}'><i class="fas fa-calendar-alt"></i> <span class="hide-word"> Subjects</span></a>
+                        <li title="Subjects">
+                            <a href='{{ url("/studentgrade") }}'><i class="fas fa-calendar-alt"></i> <span class="hide-word"><b> Subjects</b></span></a>
                         </li>
-                        <li>
-                            <a href='{{ url("/gradeeval") }}'><i class="fas fa-home"></i> <span class="hide-word"> Evaluation Requests</span></a>
+                        <li title="Evaluation Requests">
+                            <a href='{{ url("/gradeeval") }}'><i class="fas fa-home"></i> <span class="hide-word"><b> Evaluation Requests</b></span></a>
                         </li>
                     </ul>
                 </li>
-                <li>
+                <li title="Document Requests">
                     <a href="{{ url('/studentrequest') }}">
                         <i class="fas fa-briefcase"></i>
-                        <span class="hide-word title-word"> Document Requests </span>
+                        <span class="hide-word title-word"><b> Document Requests </b></span>
                     </a>
                 </li>
             </ul>
@@ -94,14 +95,14 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link"  href="{{ url('/studentprofile') }}">Profile</a>
+                            <li class="nav-item" title="Profile">
+                                <a class="nav-link header-letter"  href="{{ url('/studentprofile') }}">Profile</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/password-student/{{Auth::user()->id}}">Change Password</a>
+                            <li class="nav-item" title="Change Password">
+                                <a class="nav-link header-letter" href="/password-student/{{Auth::user()->id}}">Change Password</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                            <li class="nav-item" title="Logout">
+                                <a class="nav-link header-letter" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>

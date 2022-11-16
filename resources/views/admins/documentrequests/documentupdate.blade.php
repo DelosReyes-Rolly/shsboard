@@ -25,7 +25,7 @@
                     @csrf
                     <div class="container-xl px-4 mt-4">
                         <!-- page navigation-->
-                        <h3 style="font-size: 20px;">Update document</h3>
+                        <h3 style="font-size: 28px; font-weight: 800;">Update document</h3>
                         <hr class="mt-0 mb-4">
                         <div class="row">
                             
@@ -36,10 +36,9 @@
                                         <div class="card-body" style="padding: 10px 40px 10px 40px">
                                             <!-- Form Row -->
                                             <div class="row gx-3 mb-3">
-                                                    <div class="mb-3">
-                                                            <label class="large" for="name">Add document</label>
-                                                            <input class="form-control @error('name') is-invalid @enderror" id="name" type="text" style="font-size: 16px;" placeholder="Document Name" name="name" value="{{$document->name}}">
-                                                    </div><br>
+                                                <label class="large" for="name" style="font-size: 20px;">Add document</label>
+                                                <br>
+                                                <input class="form-control @error('name') is-invalid @enderror" id="name" type="text" style="font-size: 16px;" placeholder="Document Name" name="name" value="{{$document->name}}">
                                             </div>
                                             <a class="btn btn-info btn-md" href="{{ url()->previous() }}"><i class="fas fa-arrow-left"></i> Back</a>
                                             <font face = "Verdana" size = "4"><input type="submit" class="btn btn-primary" value="Submit"></font>

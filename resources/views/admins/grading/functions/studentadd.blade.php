@@ -18,7 +18,7 @@
             @csrf
             <div class="container-xl px-4 mt-4">
                 <!-- page navigation-->
-                <h3 style="font-size: 20px;">Create Student</h3>
+                <h3 style="font-size: 28px; font-weight: 800;">Create Student</h3>
                 <hr class="mt-0 mb-4">
                 <div class="row">
                     
@@ -34,12 +34,12 @@
                                     <div class="row gx-3 mb-3">
                                         
                                         <div class="col-md-10">
-                                            <label>* LRN</label>
+                                            <label style="font-size: 20px;">* LRN</label>
                                             <input type="text" name="LRN" class="form-control @error('LRN') is-invalid @enderror" value="{{ old('LRN') }}" style="font-size: 14px;">
                                         </div><br/><br/>
                                         <!-- Form Group (title)-->
                                         <div class="col-md-10">
-                                            <label>* Last Name</label>
+                                            <label style="font-size: 20px;">* Last Name</label>
                                             <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}" style="font-size: 14px;">
                                         </div><br/><br/>
                                     </div>
@@ -47,7 +47,7 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
-                                            <label>* First Name</label>
+                                            <label style="font-size: 20px;">* First Name</label>
                                             <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}" style="font-size: 14px;">
                                         </div><br/><br/>
                                     </div>
@@ -55,7 +55,7 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
-                                            <label>* Middle Name</label>
+                                            <label style="font-size: 20px;">* Middle Name</label>
                                             <input type="text" name="middle_name" class="form-control @error('middle_name') is-invalid @enderror" value="{{ old('middle_name') }}" style="font-size: 14px;">
                                         </div><br/><br/>
                                     </div>
@@ -71,7 +71,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="gradelevel_id" class="col-form-label text-md-end">* {{ __('Grade Level') }}</label><br>
+                                        <label for="gradelevel_id" class="col-form-label text-md-end" style="font-size: 20px;">* {{ __('Grade Level') }}</label><br>
                                         <select name="gradelevel_id" id="gradelevel_id">
                                             <option value="" {{old('gradelevel_id') == "" ?'selected' : ''}} disabled> Please Select Grade Level </option>
                                             @foreach($level_data as $gradelevel_id)
@@ -81,7 +81,7 @@
                                     </div>
                                                 
                                     <div class="form-group">
-                                        <label for="section_id" class="col-form-label text-md-end">* {{ __('Section') }}</label>
+                                        <label for="section_id" class="col-form-label text-md-end" style="font-size: 20px;">* {{ __('Section') }}</label>
                                         <select name="section_id" id="section_id">
                                         <option value="" {{old('section_id') == "" ?'selected' : ''}} disabled> Please Select section </option>
                                             @foreach($section_data as $section_id)
@@ -91,7 +91,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="course_id" class="col-form-label text-md-end">* {{ __('Strand') }}</label>
+                                        <label for="course_id" class="col-form-label text-md-end" style="font-size: 20px;">* {{ __('Strand') }}</label>
                                         <select name="course_id" id="course_id">
                                         <option value="" {{old('course_id') == "" ?'selected' : ''}} disabled> Please Select Strand </option>
                                             @foreach($courses_data as $course_id)
@@ -103,7 +103,7 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
-                                            <label>* Email Address</label>
+                                            <label style="font-size: 20px;">* Email Address</label>
                                             <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" style="font-size: 14px;"> 
                                         </div><br/><br/>    
                                     </div>

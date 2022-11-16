@@ -23,7 +23,7 @@
             @csrf
             <div class="container-xl px-4 mt-4">
                 <!-- page navigation-->
-                <h3 style="font-size: 20px;">Update on Home</h3>
+                <h3 style="font-size: 28px; font-weight: 800;">Update on Home</h3>
                 <hr class="mt-0 mb-4">
                 <div class="row">
                     
@@ -39,7 +39,7 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group (title)-->
                                         <div class="col-md-6">
-                                            <label class="large mb-1" for="inputtitle">Title</label>
+                                            <label class="large mb-1" for="inputtitle" style="font-size: 20px;">Title</label>
                                             <input class="form-control @error('title') is-invalid @enderror" id="inputtitle" type="text" placeholder="Enter the title" name="title"  value="{{$landing->title}}">
                                         </div>
                                     </div><br/>
@@ -47,7 +47,7 @@
                                     <div style="padding-left: 20px;">
                                         <!-- Form Group (content)-->
                                         <div class="mb-3">
-                                            <label class="large mb-1" for="editor">Content</label>
+                                            <label class="large mb-1" for="editor" style="font-size: 20px;">Content</label>
                                             <textarea class="form-control @error('content') is-invalid @enderror" id="editor" type="text" placeholder="Enter the information" name="content" rows="10" cols="80">{{$landing->content}}</textarea>
                                          </div><br/>
                                         <!-- Save changes button-->

@@ -164,13 +164,13 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
-                            <li class="nav-item">
+                            <li class="nav-item" title="Profile">
                                 <a class="nav-link header-letter" href='{{ url("profile") }}'>Profile</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" title="Change Password">
                                 <a class="nav-link header-letter" href="/password-admin/{{Auth::user()->id}}}">Change Password</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" title="Logout">
                                 <a class="nav-link header-letter" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf

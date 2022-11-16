@@ -8,7 +8,7 @@
        
             <div class="container-xl px-4 mt-4 left-to-right">
                 <!-- page navigation-->
-                <h3 style="font-size: 20px;">View Reminder </h3>
+                <h3 style="font-size: 28px; font-weight: 800;">View Reminder </h3>
                 <hr class="mt-0 mb-4">
                 <div class="row">
                     <div class="col-xl-8">
@@ -21,17 +21,17 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group (content)-->
                                         <div class="col-md-3">
-                                            <label class="slarge mb-1" for="inputwhn"><b>Date Posted: </b></label>
-                                            {{$requested_at  =   date('F d, Y', strtotime($reminder->created_at))}}
+                                            <label class="slarge mb-1" for="inputwhn" style="font-size: 26px;"><b>Date Posted: </b></label>
+                                                <span style="font-size: 26px;">{{$requested_at  =   date('F d, Y', strtotime($reminder->created_at))}}</span>
                                         </div>
                                         <div class="col-md-3">
-                                            <label class="slarge mb-1" for="inputwhn"><b>Expiry Date: </b></label>
-                                                {{$requested_at  =   date('F d, Y', strtotime($reminder->whn))}}
+                                            <label class="slarge mb-1" for="inputwhn" style="font-size: 26px;"><b>Expiry Date: </b></label>
+                                                <span style="font-size: 26px;">{{$requested_at  =   date('F d, Y', strtotime($reminder->whn))}}</span>
                                             </div>
                                         </div><br/>
                                         <div class="mb-3">
                                             <label class="large mb-1" for="editor"><b>Content: </b></label>
-                                            {!!$reminder->content!!}
+                                                <span style="font-size: 26px;">{!!$reminder->content!!}</span>
                                         </div><br/>
                                         <!-- Form Group privacy-->
                                         <div class="row gx-3 mb-3">

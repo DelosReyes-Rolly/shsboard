@@ -29,8 +29,8 @@
                         <!-- Billing card 3-->
                         <div class="card h-100 border-start-lg border-start-success" style="background-color: green; color: white;"  >
                             <div class="card-body">
-                                <div class="requesteddocument" style="color: white;" >Requested Documents</div>
-                                <div class="h3 d-flex align-items-center" style="padding-left: 20px; padding-bottom: 10px;"><i class="far fa-clipboard"></i> {{ $requests->count() }} </div>
+                                <div class="requesteddocument" style="color: white;" style="font-size: 20px; font-weight: 800;" >Requested Documents</div>
+                                <div class="h3 d-flex align-items-center" style="padding:40px;"><i class="far fa-clipboard"></i> {{ $requests->count() }} </div>
                                 <!-- <a class="text-arrow-icon small text-success" href="#!">
                                     View Active requests
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -66,7 +66,7 @@
                     @csrf
                     <div class="container-xl px-4 mt-4 right-to-left">
                         <!-- page navigation-->
-                        <h3 style="font-size: 20px;">Request Documents</h3>
+                        <h3 style="font-size: 28px; font-weight: 800;">Request Documents</h3>
                         <hr class="mt-0 mb-4">
                         <div class="row">
                             
@@ -82,34 +82,34 @@
                                             <div class="row gx-3 mb-3">
                                                 <!-- Form Group (title)-->
                                                 <div class="col-md-4">
-                                                    <div class="col-md-12"><label class="labels">Last Name</label><input type="text" class="form-control"  style="font-size: 16px;" placeholder=" {{Auth::user()->last_name}} " value="" readonly></div> <br>
+                                                    <div class="col-md-12"><label class="labels" style="font-size: 20px;">Last Name</label><input type="text" class="form-control"  style="font-size: 16px;" placeholder=" {{Auth::user()->last_name}} " value="" readonly></div> <br>
                                                 </div>
                                                 <!-- Form Group date-->
                                                 <div class="col-md-4">
-                                                    <div class="col-md-12"><label class="labels">First Name</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->first_name}} " value="" readonly></div> <br>
+                                                    <div class="col-md-12"><label class="labels" style="font-size: 20px;">First Name</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->first_name}} " value="" readonly></div> <br>
                                                 </div>
                                                 <!-- Form Group (title)-->
                                                 <div class="col-md-4">
-                                                    <div class="col-md-12"><label class="labels">Middle Name</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->last_name}} " value="" readonly></div> <br>
+                                                    <div class="col-md-12"><label class="labels" style="font-size: 20px;">Middle Name</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->last_name}} " value="" readonly></div> <br>
                                                 </div>
                                             </div>
                                             <!-- Form Row        -->
                                             <div class="row gx-3 mb-3">
                                             	 <!-- Form Group (location)-->
                                                 <div class="col-md-6">
-                                                    <div class="col-md-12"><label class="labels">Course</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{$course->courseName}} - {{$course->abbreviation}}" value="" readonly></div> <br>
+                                                    <div class="col-md-12"><label class="labels" style="font-size: 20px;">Course</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{$course->courseName}} - {{$course->abbreviation}}" value="" readonly></div> <br>
                                                 </div>
                                                 <!-- Form Group document needed-->
                                                 <div class="col-md-6">
                                                     @if($gradelevel == null)
-                                                	    <div class="col-md-12"><label class="labels">Grade Level</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" 12 " value="" readonly></div> <br>
+                                                	    <div class="col-md-12"><label class="labels" style="font-size: 20px;">Grade Level</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" 12 " value="" readonly></div> <br>
                                                     @else
-                                                        <div class="col-md-12"><label class="labels">Grade Level</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{$gradelevel->gradelevel}} " value="" readonly></div> <br>
+                                                        <div class="col-md-12"><label class="labels" style="font-size: 20px;">Grade Level</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{$gradelevel->gradelevel}} " value="" readonly></div> <br>
                                                     @endif
                                                 </div>
                                                 <!-- Form Group (content)-->
                                                 <div class="mb-3 requestdocument">
-                                                	<label class="large mb-1" for="document_id" class="form-control @error('document_id') is-invalid @enderror"><br>Document Needed</label>
+                                                	<label class="large mb-1" for="document_id" class="form-control @error('document_id') is-invalid @enderror" style="font-size: 20px;"><br>Document Needed</label>
                                                         <div class="col-md-12" hidden><input class="form-control @error('document_id') is-invalid @enderror" id="inputdocument_id" type="text" placeholder="Enter document needed" name="document_id"  value="{{ old('document_id') }}"></div>
             											<select id="document_id" name="document_id" class="form-control" value="{{ old('document_id') }}" style="font-size: 16px;" >
             												<option value="" disabled selected hidden>Select Document</option>
@@ -124,13 +124,13 @@
                                                 <br>
                                                 <!-- Form Group (content)-->
                                                 <div class="mb-3 requestdocument">
-                                                    <label class="large mb-1" for="inputpurpose">Purpose</label>
+                                                    <label class="large mb-1" for="inputpurpose" style="font-size: 20px;">Purpose</label>
                                                     <textarea class="form-control @error('purpose') is-invalid @enderror" id="editor" type="text" style="font-size: 16px;" placeholder="Enter your purpose" name="purpose"  value="{{ old('purpose') }}"></textarea>
                                                 </div>
                                                 <br>
                                                 <!-- Form Group (content)-->
                                                 <div class="mb-3 requestdocument">
-                                                    <label class="large mb-1" for="inputcontent">Proof (Only DOCS, DOCX, and PDF files are allowed to upload.)</label>
+                                                    <label class="large mb-1" for="inputcontent" style="font-size: 20px;">Proof (Only DOCS, DOCX, and PDF files are allowed to upload.)</label>
             										<div class ="form-group row">
             											<div class="col-md-8"></div>
             											<input type="file" name = "file" class="form-control" style="font-size: 12px;" >
@@ -167,7 +167,7 @@
                         </ul>
                     </div>
                 @endif
-                <h3 style="font-size: 20px;">Requested Documents</h3>
+                <h3 style="font-size: 28px; font-weight: 800;">Requested Documents</h3>
                 <hr class="mt-0 mb-4">
                 <div class="card mb-4 left-to-right border-start-lg border-start-yellow"  style="padding: 10px 40px 10px 40px">
                     <div class="card-header"></div>
@@ -232,9 +232,9 @@
                                                         ?>
                                                     </td>
                                                     <td>
-                                                        <a class="btn btn-success btn-sm" href="/viewrequest/{{$request->id}}"><i class="fas fa-eye"></i> View</a>
-                                                        <a class="btn btn-warning btn-sm" href="/showrequest/{{$request->id}}"><i class="fas fa-edit"></i> Update</a>
-                                                        <a class="btn btn-danger btn-sm" href="{{route('student.deleterequest', $request->id)}}"><i class="far fa-trash-alt"></i> Delete</a>
+                                                        <a class="btn btn-success btn-md" href="/viewrequest/{{$request->id}}"><i class="fas fa-eye"></i> View</a>
+                                                        <a class="btn btn-warning btn-md" href="/showrequest/{{$request->id}}"><i class="fas fa-edit"></i> Update</a>
+                                                        <a class="btn btn-danger btn-md" href="{{route('student.deleterequest', $request->id)}}"><i class="fas fa-trash-alt"></i> Delete</a>
                                                     </td>
                                                 </tr>
                                             @endforeach 

@@ -38,7 +38,7 @@
                                         
                                         <!-- Form Group (title)-->
                                         <div class="col-md-10">
-                                            <label>Subject Code</label>
+                                            <label style="font-size: 20px;">Subject Code</label>
                                             <input type="text" name="subjectcode" class="form-control @error('subjectcode') is-invalid @enderror" value="{{$subject->subjectcode}}" style="font-size: 14px;">
                                         </div>
                                     </div>
@@ -46,7 +46,7 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
-                                            <label>Subject Name</label>
+                                            <label style="font-size: 20px;">Subject Name</label>
                                             <input type="text" name="subjectname" class="form-control @error('subjectname') is-invalid @enderror" value="{{$subject->subjectname}}" style="font-size: 14px;">
                                         </div>
                                     </div>
@@ -54,7 +54,7 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
-                                            <label>Description</label>
+                                            <label style="font-size: 20px;">Description</label>
                                             <textarea type="text" name="description" id="editor" class="form-control @error('description') is-invalid @enderror" style="font-size: 14px;">{{$subject->description}}</textarea>
                                         </div>
                                     </div>

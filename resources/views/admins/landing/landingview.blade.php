@@ -5,7 +5,7 @@
         <div class="left-to-right">
             <div class="container-xl px-4 mt-4">
                 <!-- page navigation-->
-                <h3 style="font-size: 20px;">View on Home</h3>
+                <h3 style="font-size: 28px; font-weight: 800;">View on Home</h3>
                 <hr class="mt-0 mb-4">
                 
                     
@@ -19,7 +19,7 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group (title)-->
                                         <div class="col-md-6">
-                                            <label class="large mb-1" for="inputtitle"><b>Title:</b></label><br/>
+                                            <label class="large mb-1" for="inputtitle" style="font-size: 26px;"><b>Title:</b></label><br/>
                                             <h2 style="font-size: 30px;"><b>{{$landing->title}}</b></h2>
                                         </div>
                                     </div><br/>
@@ -33,7 +33,7 @@
                                         </div>
                                         <!-- Form Group (content)-->
                                         <div class="col-md-6">
-                                            <label class="large mb-1"><b>Content:</b></label>
+                                            <label class="large mb-1" style="font-size: 26px;"><b>Content:</b></label>
                                             {!!$landing->content!!}
                                             <!-- Save changes button-->
                                             <div class="pull-right">

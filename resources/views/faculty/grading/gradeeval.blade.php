@@ -19,7 +19,7 @@
         } );
     </script>
     <div class="left-to-right">
-        <h3 style="font-size: 20px;">Grade Evaluation</h3> 
+        <h3 style="font-size: 28px; font-weight: 800;">Grade Evaluation</h3> 
         <hr class="mt-0 mb-4">
                 <!-- boxes -->
                 <hr style="border: 1px solid grey;">
@@ -35,7 +35,7 @@
                                     <br><br>
                                     <div class="alert alert-danger"><em>No records found.</em></div>
                                 @else
-                                    <div class="h3 d-flex align-items-center" style="padding-left: 20px; padding-bottom: 10px;"> {{ $gradeevaluationrequests->count() }} </div>
+                                    <div class="h3 d-flex align-items-center" style="padding:40px;"> {{ $gradeevaluationrequests->count() }} </div>
                                 @endif
                                 <!-- <a class="text-arrow-icon small text-success" href="#!">
                                     View Active requests
@@ -49,7 +49,7 @@
                 
                 <hr style="border: 1px solid grey;">
                 <!-- tables -->
-                <h3 style="font-size: 20px;">Requested Grade Evaluations</h3> 
+                <h3 style="font-size: 28px; font-weight: 800;">Requested Grade Evaluations</h3> 
                 <hr class="mt-0 mb-4">
                 @if ($message = Session::get('message'))
                     <div class="alert alert-success alert-block">
@@ -108,7 +108,7 @@
                                                             <form method="POST" action="/uploadeval/{{$gradeevaluationrequest->id}}" enctype="multipart/form-data">
                                                                 @csrf
                                                                 <input type="file" name = "file" class="form-control" style="font-size: 12px;" >
-                                                                <font face = "Bedrock" size = "3"><input type="submit" class="btn btn-primary" value="Submit"></font>
+                                                                <font face = "Verdana" size = "6"><input type="submit" class="btn btn-primary" value="Submit"></font>
                                                             </form>
                                                         <?php else: ?>
                                                             {{$gradeevaluationrequest -> file}}<br>

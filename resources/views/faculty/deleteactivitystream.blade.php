@@ -3,7 +3,7 @@
 @include('partials.adminSecondHeader')
     
         <div>
-            <h3 style="font-size: 20px;">Delete</h3>  
+            <h3 style="font-size: 20px; font-weight: 800;">Delete</h3>  
             <hr class="mt-0 mb-4">
             <div class="card mb-4 left-to-right">
                 <div class="card border-start-lg border-start-yellow">
@@ -29,7 +29,7 @@
                                 <div class="alert alert-danger">
                                     <input type="hidden" name="deleted" value="1">
                                     <input type="hidden" name="deleted_at" value={{now();}}>
-                                    <p style="color: red">Are you sure you want to delete this activity ?</p>
+                                    <p style="color: red; font-size:20px;">Are you sure you want to delete this activity ?</p>
                                     <input type="Submit" value="Yes" class="btn btn-danger">
                                     <a href='{{ url()->previous() }}' class="btn btn-secondary">No</a>
                                 </div>

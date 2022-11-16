@@ -26,7 +26,7 @@
             <div class="row left-to-right">
                     <div class="mb-4">
                         <div class="card border-start-lg border-start-yellow">
-                            <div class="card-header">Print Students Report</div>
+                            <div class="card-header" style="font-size: 20px;">Print Students Report</div>
                                 <div class="card-body">
                                     <form action="{{route('admin.downloadpdfstu')}}" method="POST">
                                         @csrf
@@ -48,7 +48,7 @@
                 <strong>{{ $message }}</strong>
             </div></br></br>
         @endif
-        <h3 style="font-size: 20px;">Table of Students </h3>
+        <h3 style="font-size: 28px; font-weight: 800;">Table of Students </h3>
         <hr class="mt-0 mb-4">
         <div class="card mb-4 right-to-left border-start-lg border-start-success" style="padding: 10px 40px 10px 40px;">
             <div class="card-header">

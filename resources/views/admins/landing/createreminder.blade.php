@@ -27,8 +27,8 @@
                         <!-- Billing card 2-->
                         <div class="card h-100 border-start-lg border-start-secondary" style="background-color: red; color: white;" >
                             <div class="card-body">
-                                <div class="card-header">Expired Reminders</div>
-                                <div class="h3" style="padding: 0px 40px 10px 40px"><i class="far fa-calendar-times"></i> {{ $reminders->where('status', '=', 2)->count() }}</div>
+                                <div class="card-header" style="font-size: 20px; font-weight: 800;">Expired Reminders</div>
+                                <div class="h3" style="padding: 40px 40px 10px 40px"><i class="far fa-calendar-times"></i> {{ $reminders->where('status', '=', 2)->count() }}</div>
                             </div>
                         </div>
                     </div>
@@ -36,8 +36,8 @@
                     <!-- Billing card 3-->
                     <div class="card h-100 border-start-lg border-start-success" style="background-color: green; color: white;">
                         <div class="card-body">
-                            <div class="card-header">Active Reminders</div>
-                            <div class="h3 d-flex align-items-center" style="padding: 0px 40px 10px 40px"><i class="fas fa-bullhorn"></i> {{ $reminders->where('status', '=', 1)->count() }}</div>
+                            <div class="card-header" style="font-size: 20px; font-weight: 800;">Active Reminders</div>
+                            <div class="h3 d-flex align-items-center" style="padding: 40px 40px 10px 40px"><i class="fas fa-bullhorn"></i> {{ $reminders->where('status', '=', 1)->count() }}</div>
                         </div>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                 @csrf
                 <div class="container-xl px-4 mt-4 right-to-left">
                     <!-- page navigation-->
-                    <h3 style="font-size: 20px;">Create Reminder </h3>
+                    <h3 style="font-size: 28px; font-weight: 800;">Create Reminder </h3>
                     <hr class="mt-0 mb-4">
                     <div class="row">
                         
@@ -79,11 +79,11 @@
                                         <div class="">
                                             <!-- Form Group (content)-->
                                             <div class="mb-3">
-                                                <label class="small mb-1" for="editor">Content</label>
+                                                <label class="small mb-1" for="editor" style="font-size: 20px;">Content</label>
                                                 <textarea class="form-control @error('content') is-invalid @enderror" id="editor" type="text" placeholder="Enter the information" name="content"  rows="10" cols="80">{{ old('content') }}</textarea>
                                             </div><br/>
                                             <div class="mb-3">
-                                                <label class="small mb-1" for="inputexpired_at">Expiry Date</label>
+                                                <label class="small mb-1" for="inputexpired_at" style="font-size: 20px;">Expiry Date</label>
                                                 <input type="date" class="form-control @error('expired_at') is-invalid @enderror" id="inputexpired_at" placeholder="Enter the date" name="expired_at"  value="{{ old('expired_at') }}">
                                             </div><br/>
                                             <!-- Save changes button-->
@@ -104,7 +104,7 @@
             @endif
 
             <!-- tables -->
-            <h3 style="font-size: 20px;">Table of Reminders </h3>
+            <h3 style="font-size: 28px; font-weight: 800;">Table of Reminders </h3>
             <hr class="mt-0 mb-4">
             <div class="card mb-4 left-to-right border-start-lg border-start-yellow">
                 <div class="card-header"></div>
@@ -141,21 +141,21 @@
                                                     <?php 
                                                         switch ($reminder -> status) {
                                                             case '1':
-                                                                echo '<span class="badge bg-success">Active</span>';
+                                                                echo '<span class="badge bg-success" style="color:#fff">Active</span>';
                                                                 break;
                                                             case '2':
-                                                                echo '<span class="badge bg-danger">Expired</span>';
+                                                                echo '<span class="badge bg-danger" style="color:#fff">Expired</span>';
                                                                 break;
                                                             default:
-                                                                echo '<span class="badge bg-secondary">Undetermined</span>';
+                                                                echo '<span class="badge bg-secondary" style="color:#fff">Undetermined</span>';
                                                                 break;
                                                         }
                                                     ?>
                                                 </td>
                                                 <td>
-                                                    <a class="btn btn-success btn-sm" href="/viewreminder/{{$reminder->id}}"><i class="fas fa-eye"></i> View</a>
-                                                    <a class="btn btn-warning btn-sm" href="/showreminder/{{$reminder->id}}"><i class="fas fa-edit"></i> Update</a>
-                                                    <a class="btn btn-danger btn-sm" href="/deleteadminannouncement/{{$reminder->id}}"><i class="far fa-trash-alt"></i> Delete</a>  
+                                                    <a class="btn btn-success btn-md" href="/viewreminder/{{$reminder->id}}"><i class="fas fa-eye"></i> View</a>
+                                                    <a class="btn btn-warning btn-md" href="/showreminder/{{$reminder->id}}"><i class="fas fa-edit"></i> Update</a>
+                                                    <a class="btn btn-danger btn-md" href="/deleteadminannouncement/{{$reminder->id}}"><i class="far fa-trash-alt"></i> Delete</a>  
                                                 </td> 
                                             </tr>
                                         @endforeach 

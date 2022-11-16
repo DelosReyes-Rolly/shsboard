@@ -21,7 +21,7 @@
             @csrf
             <div class="container-xl px-4 mt-4 left-to-right">
                 <!-- page navigation-->
-                <h3 style="font-size: 20px;">Update Teacher</h3>
+                <h3 style="font-size: 28px; font-weight: 800;">Update Teacher</h3>
                 <hr class="mt-0 mb-4">
                 <div class="row">
                     
@@ -37,7 +37,7 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group (title)-->
                                         <div class="col-md-10">
-                                            <label>Last Name</label>
+                                            <label style="font-size: 20px;">Last Name</label>
                                             <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{$faculty->last_name}}" style="font-size: 14px;">
                                         </div>
                                     </div><br/>
@@ -45,7 +45,7 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
-                                            <label>First Name</label>
+                                            <label style="font-size: 20px;">First Name</label>
                                             <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{$faculty->first_name}}" style="font-size: 14px;">
                                         </div>
                                     </div><br/>
@@ -53,7 +53,7 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
-                                            <label>Middle Name</label>
+                                            <label style="font-size: 20px;">Middle Name</label>
                                             <input type="text" name="middle_name" class="form-control @error('middle_name') is-invalid @enderror" value="{{$faculty->middle_name}}" style="font-size: 14px;">
                                         </div>
                                     </div><br/>
@@ -61,7 +61,7 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
-                                            <label>Email Address</label>
+                                            <label style="font-size: 20px;">Email Address</label>
                                             <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" value="{{$faculty->email}}" style="font-size: 14px;"> 
                                         </div>
                                     </div><br/>

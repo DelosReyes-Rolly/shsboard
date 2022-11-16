@@ -8,7 +8,7 @@
 			<div>
                     <div class="container-xl px-4 mt-4">
                         <!-- page navigation-->
-                        <h3 style="font-size: 20px;">View document</h3>
+                        <h3 style="font-size: 28px; font-weight: 800;">View document</h3>
                         <hr class="mt-0 mb-4">
                         <div class="row">
                             
@@ -23,16 +23,16 @@
                                             <!-- Form Row -->
                                             
                                                     <div class="mb-3">
-                                                            <label class="large" for="name"><b>Document Name: </b></label>
-                                                            {{$document->name}}
+                                                            <label class="large" for="name" style="font-size: 26px;"><b>Document Name: </b></label>
+                                                                <span style="font-size: 26px;">{{$document->name}}</span>
                                                     </div><br>
                                                     <div class="mb-3">
-                                                            <label class="large" for="name"><b>Created at: </b></label>
-                                                            {{$requested_at  =   date('F d, Y', strtotime($document->created_at))}}
+                                                            <label class="large" for="name" style="font-size: 26px;"><b>Created at: </b></label>
+                                                                <span style="font-size: 26px;">{{$requested_at  =   date('F d, Y', strtotime($document->created_at))}}</span>
                                                     </div><br>
                                                     <div class="mb-3">
-                                                            <label class="large" for="name"><b>Updated at: </b></label>
-                                                            {{$requested_at  =   date('F d, Y', strtotime($document->updated_at))}}
+                                                            <label class="large" for="name" style="font-size: 26px;"><b>Updated at: </b></label>
+                                                                <span style="font-size: 26px;">{{$requested_at  =   date('F d, Y', strtotime($document->updated_at))}}</span>
                                                     </div><br>
                                                 
                                                     <!-- Save changes button-->

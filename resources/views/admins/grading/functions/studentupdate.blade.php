@@ -21,14 +21,14 @@
             @csrf
             <div class="container-xl px-4 mt-4">
                 <!-- page navigation-->
-                <h3 style="font-size: 20px;">Update Student</h3>
+                <h3 style="font-size: 28px; font-weight: 800;">Update Student</h3>
                 <hr class="mt-0 mb-4">
                 <div class="row">
                     
                         <!-- Account details card-->
                         <div class="card mb-4">
                             <div class="card border-start-lg border-start-yellow">
-                                <div class="card-header">Create student</div>
+                                <div class="card-header"></div>
                                 <div class="card-body" style="padding: 10px 40px 10px 40px">
                                     <div class="mb-3">
 
@@ -36,12 +36,12 @@
                                     <!-- Form Row-->
                                     <div class="row gx-3 mb-3">
                                         <div class="col-md-10">
-                                            <label>LRN</label>
+                                            <label style="font-size: 20px;">LRN</label>
                                             <input type="text" name="LRN" class="form-control @error('LRN') is-invalid @enderror" value="{{$student->LRN}}" style="font-size: 14px;">
                                         </div><br/><br/>
                                         <!-- Form Group (title)-->
                                         <div class="col-md-10">
-                                            <label>Last Name</label>
+                                            <label style="font-size: 20px;">Last Name</label>
                                             <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{$student->last_name}}" style="font-size: 14px;">
                                         </div><br/><br/>
                                     </div>
@@ -49,7 +49,7 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
-                                            <label>First Name</label>
+                                            <label style="font-size: 20px;">First Name</label>
                                             <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{$student->first_name}}" style="font-size: 14px;">
                                         </div><br/><br/>
                                     </div>
@@ -57,7 +57,7 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
-                                            <label>Middle Name</label>
+                                            <label style="font-size: 20px;">Middle Name</label>
                                             <input type="text" name="middle_name" class="form-control @error('middle_name') is-invalid @enderror" value="{{$student->middle_name}}" style="font-size: 14px;">
                                         </div><br/><br/>
                                     </div>
@@ -65,7 +65,7 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
-                                            <label>Email Address</label>
+                                            <label style="font-size: 20px;">Email Address</label>
                                             <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" value="{{$student->email}}" style="font-size: 14px;"> 
                                         </div><br/><br/>
                                     </div>

@@ -3,7 +3,7 @@
 <section>
         <div>
         	<div class="left-to-right">
-                <h3 style="font-size: 20px;">Requested Documents</h3>
+                <h3 style="font-size: 28px; font-weight: 800;">Requested Documents</h3>
                 <hr style="border: 1px solid grey;">
                 
                     <div class="container-xl px-4 mt-4">
@@ -23,40 +23,40 @@
                                             <div class="row gx-3 mb-3">
                                                 <!-- Form Group (title)-->
                                                 <div class="col-md-4">
-                                                    <div class="col-md-12"><label class="labels">Last Name</label><input type="text" class="form-control"  style="font-size: 16px;" placeholder=" {{Auth::user()->last_name}} " value="" readonly></div> <br>
+                                                    <div class="col-md-12"><label class="labels" style="font-size: 26px;">Last Name</label><input type="text" class="form-control"  style="font-size: 16px;" placeholder=" {{Auth::user()->last_name}} " value="" readonly></div> <br>
                                                 </div>
                                                 <!-- Form Group date-->
                                                 <div class="col-md-4">
-                                                    <div class="col-md-12"><label class="labels">First Name</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->first_name}} " value="" readonly></div> <br>
+                                                    <div class="col-md-12"><label class="labels" style="font-size: 26px;">First Name</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->first_name}} " value="" readonly></div> <br>
                                                 </div>
                                                 <!-- Form Group (title)-->
                                                 <div class="col-md-4">
-                                                    <div class="col-md-12"><label class="labels">Middle Name</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->last_name}} " value="" readonly></div> <br>
+                                                    <div class="col-md-12"><label class="labels" style="font-size: 26px;">Middle Name</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->last_name}} " value="" readonly></div> <br>
                                                 </div>
                                             </div>
                                             <!-- Form Row        -->
                                             <div class="row gx-3 mb-3">
                                             	 <!-- Form Group (location)-->
                                                 <div class="col-md-6">
-                                                    <div class="col-md-12"><label class="labels">Course</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->course_id}} " value="" readonly></div> <br>
+                                                    <div class="col-md-12"><label class="labels" style="font-size: 26px;">Course</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->course_id}} " value="" readonly></div> <br>
                                                 </div>
                                                 <!-- Form Group document needed-->
                                                 <div class="col-md-6">
-                                                	<div class="col-md-12"><label class="labels">Grade Level</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->gradelevel_id}} " value="" readonly></div> <br>
+                                                	<div class="col-md-12"><label class="labels" style="font-size: 26px;">Grade Level</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->gradelevel_id}} " value="" readonly></div> <br>
                                                 </div>
                                                 <!-- Form Group (content)-->
                                                 <div class="mb-3 requestdocument">
-                                                	<label class="large mb-1"><br><b>Document Needed: </b></label>
-                                                        {{$docreq -> document -> name}}
+                                                	<label class="large mb-1" style="font-size: 26px;"><br><b>Document Needed: </b></label>
+                                                        <span style="font-size: 26px;">{{$docreq -> document -> name}}</span>
             										</div>
                                                 </div>
                                                 <!-- Form Group (content)-->
                                                 <div class="mb-3 requestdocument">
-                                                    <label class="large mb-1" for="inputpurpose"><b>Purpose: </b></label>
-                                                    {{$docreq->purpose}}
+                                                    <label class="large mb-1" for="inputpurpose" style="font-size: 26px;"><b>Purpose: </b></label>
+                                                        <span style="font-size: 26px;">{{$docreq->purpose}}</span>
                                                 </div>
                                                 <div class="mb-3 requestdocument">
-                                                    <label class="large mb-1" for="inputpurpose"><b>Status: </b></label>
+                                                    <label class="large mb-1" for="inputpurpose" style="font-size: 26px;"><b>Status: </b></label>
                                                     <?php 
                                                         switch ($docreq->status) {
                                                             case '1':

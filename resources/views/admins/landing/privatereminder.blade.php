@@ -25,7 +25,7 @@
                 @csrf
                 <div class="container-xl px-4 mt-4 left-to-left">
                     <!-- page navigation-->
-                    <h3 style="font-size: 20px;">Create Private Reminder</h3>
+                    <h3 style="font-size: 28px; font-weight: 800;">Create Private Reminder</h3>
                     <hr class="mt-0 mb-4">
                     <div class="row">
                         
@@ -37,11 +37,11 @@
                                        
                                             <!-- Form Group (content)-->
                                             <div class="mb-3">
-                                                <label class="small mb-1" for="editor">Content</label>
+                                                <label class="small mb-1" for="editor" style="font-size: 20px;">Content</label>
                                                 <textarea class="form-control @error('content') is-invalid @enderror" id="editor" type="text" placeholder="Enter the information" name="content"  rows="10" cols="80">{{ old('content') }}</textarea>
                                             </div><br/>
                                             <div class="mb-3">
-                                                <label class="small mb-1" for="inputexpired_at">Expiry Date</label>
+                                                <label class="small mb-1" for="inputexpired_at" style="font-size: 20px;">Expiry Date</label>
                                                 <input type="date" class="form-control @error('expired_at') is-invalid @enderror" id="inputexpired_at" placeholder="Enter the date" name="expired_at"  value="{{ old('expired_at') }}">
                                             </div><br/>
                                             <!-- Save changes button-->

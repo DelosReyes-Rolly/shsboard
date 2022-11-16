@@ -21,7 +21,7 @@
         <hr class="mt-0 mb-4">   
         <div>
                 <!-- boxes -->
-                <h3 style="font-size: 20px;">Grade Evaluations</h3>
+                <h3 style="font-size: 28px; font-weight: 800;">Grade Evaluations</h3>
                 <hr style="border: 1px solid grey;">
                 <div class="container-xl px-4 mt-4 left-to-right">
                     <hr class="mt-0 mb-4">
@@ -45,7 +45,7 @@
                 <br/><br/>
                 <hr style="border: 1px solid grey;">
                 <!-- tables -->
-                <h3 style="font-size: 20px;">Table of Grade Evaluations</h3>
+                <h3 style="font-size: 28px; font-weight: 800;">Table of Grade Evaluations</h3>
                 <hr class="mt-0 mb-4">
                 <div class="card mb-4 right-to-left border-start-lg border-start-success" style="padding-left: 20px;">
                     <div class="card-header"></div>
@@ -93,8 +93,8 @@
                                                     </td>
                                                     
                                                     <td>
-                                                        <a class="btn btn-success btn-sm" href="/vieweval/{{$gradeevaluationrequest->id}}"><i class="fas fa-eye"></i> View</a>
-                                                        <a class="btn btn-danger btn-sm" href="{{route('student.deletegradeeval', $gradeevaluationrequest->id)}}"><i class="far fa-trash-alt"></i> Delete</a>
+                                                        <a class="btn btn-success btn-md" href="/vieweval/{{$gradeevaluationrequest->id}}"><i class="fas fa-eye"></i> View</a>
+                                                        <a class="btn btn-danger btn-md" href="{{route('student.deletegradeeval', $gradeevaluationrequest->id)}}"><i class="far fa-trash-alt"></i> Delete</a>
                                                     </td>
                                                 </tr>
                                             @endforeach

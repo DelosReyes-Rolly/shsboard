@@ -45,11 +45,11 @@
                 {{ session('alert') }}
             </div>
         @endif  
-        <h3 style="font-size: 20px;">Subject Grades</h3>
+        <h3 style="font-size: 28px; font-weight: 800;">Subject Grades</h3>
         <hr class="mt-0 mb-4">
         <div class="mb-4">
             <div class="card border-start-lg border-start-yellow">
-                <div class="card-header" style="color: green; text-transform: uppercase;">{{Auth::user()->last_name}}, {{Auth::user()->first_name}} {{Auth::user()->middle_name}} - {{(Auth::user()->LRN)}} - </div>
+                <div class="card-header" style="color: green; text-transform: uppercase; font-size: 20px;">{{Auth::user()->last_name}}, {{Auth::user()->first_name}} {{Auth::user()->middle_name}} - {{(Auth::user()->LRN)}} - </div>
 
                 <!-- check if enrolled in any subjects in any grade -->
                 @if($allsubjects->count() == 0)
@@ -69,7 +69,7 @@
                                     <div class="table-responsive table-billing-history">
                                         <div class="mb-4">
                                             <div class="card">
-                                                <div class="card-header titled">
+                                                <div class="card-header titled" style="font-size: 18px;">
                                                     Grade 12 - Second Semester
                                                     <div class="pull-right">
                                                         <!-- print -->
@@ -179,7 +179,7 @@
                                     <div class="table-responsive table-billing-history">
                                         <div class="mb-4">
                                             <div class="card">
-                                                <div class="card-header titled">
+                                                <div class="card-header titled" style="font-size: 18px;">
                                                     Grade 12 - First Semester
                                                     <div class="pull-right">
                                                         <!-- print -->
@@ -298,7 +298,7 @@
                                     <div class="table-responsive table-billing-history">
                                         <div class="mb-4">
                                             <div class="card">
-                                                <div class="card-header titled">
+                                                <div class="card-header titled" style="font-size: 18px;">
                                                     Grade 11 - Second Semester
                                                     <div class="pull-right">
                                                         <!-- print grades -->
@@ -410,7 +410,7 @@
                                     <div class="table-responsive table-billing-history">
                                         <div class="mb-4">
                                             <div class="card">
-                                                <div class="card-header titled">
+                                                <div class="card-header titled" style="font-size: 18px;">
                                                     Grade 11 - First Semester
                                                 </div>
                                                 <br>
@@ -527,7 +527,7 @@
         <div class="    mb-4">
             <div class="card border-start-lg border-start-yellow">
                 <div class="card-header" style="text-align: center;"> 
-                    <small>Should you have any concerns regarding your grades, please feel free to email <a href = "mailto: sdotapat.svnhs@deped.gov.ph">here. </a></small>
+                    Should you have any concerns regarding your grades, please feel free to email <a href = "mailto: sdotapat.svnhs@deped.gov.ph">here. </a>
                 </div>
             </div>
         </div>

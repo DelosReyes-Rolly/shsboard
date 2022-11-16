@@ -20,7 +20,7 @@
             @csrf
             <div class="container-xl px-4 mt-4">
                 <!-- page navigation-->
-                <h3 style="font-size: 20px;">Update Schedule</h3>
+                <h3 style="font-size: 28px; font-weight: 800;">Update Schedule</h3>
                 <hr class="mt-0 mb-4">
                 <div class="row">
                     
@@ -37,7 +37,7 @@
                                         
                                         <!-- Form Group (title)-->
                                         <div class="col-md-10">
-                                            <div class="col-md-12"><label for="faculty_id">Teacher</label>
+                                            <div class="col-md-12"><label for="faculty_id" style="font-size: 20px;">Teacher</label>
                                                 <select id="faculty_id" name="faculty_id" class="form-control" style="font-size: 14px;">
                                                     <option value="" disabled selected hidden>Choose Teacher</option>
                                                     @foreach ($faculties as $faculty)
@@ -52,7 +52,7 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
-                                            <div class="col-md-12"><label for="subject_id">Subject</label>
+                                            <div class="col-md-12"><label for="subject_id" style="font-size: 20px;">Subject</label>
                                                 <select id="subject_id" name="subject_id" class="form-control" value="{{ old('subject_id') }}" style="font-size: 14px;">
                                                     <option value="" disabled selected hidden>Choose Subject</option>
                                                     @foreach ($subjects as $subject)
@@ -67,15 +67,15 @@
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
                                             <div class="form-group">
-                                                <label for="appt">Select a time:</label><br>
+                                                <label for="appt" style="font-size: 20px;">Select a time:</label><br>
                                                 From: <input type="time" id="time_start" name="time_start" value={{$subjectteacher->time_start}}>
                                                 To: <input type="time" id="time_end" name="time_end" value={{$subjectteacher->time_end}}>
                                             </div>
                                         </div>
                                     </div><br/>
                                     <hr>
-                                    <font face = "Bedrock" size = "3"><input type="submit" class="btn btn-primary" value="Submit"></font>
-                                    <a href="/gradingfacultysubjects" class="btn btn-secondary ml-2"><font face = "Bedrock" size = "3">Cancel</font></a>
+                                    <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary" value="Submit"></font>
+                                    <a href="/gradingfacultysubjects" class="btn btn-secondary ml-2"><font face = "Verdana" size = "2">Cancel</font></a>
                                 </div>
                             </div>
                         </div>

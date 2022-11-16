@@ -48,10 +48,10 @@
 	                        <!-- Account details card-->
 	                        <div class="card mb-4">
 	                            <div class="card border-start-lg border-start-yellow" style="color: white; background-color: #B9B32E;">
-	                                <div class="card-header">Requested Documents</div>
+	                                <div class="card-header" style="font-size: 20px; font-weight: 800;">Requested Documents</div>
 	                                <div class="card-body">
 										<br>
-	                                    <div style="padding: 0px 40px 10px 40px">
+	                                    <div style="padding: 40px 40px 10px 40px">
 						                     <div style="font-size: 20px;" ><i class="fas fa-file-alt"></i>  {{ $requests->count() }} </div>
 	                                    </div>
 	                                </div>
@@ -80,7 +80,7 @@
 		        <!-- create new documents and print -->
 	            <div class="container-xl px-4 mt-4 right-to-left">
 	                <!-- page navigation-->
-					<h3 style="font-size: 20px;">Document for Request</h3>
+					<h3 style="font-size: 28px; font-weight: 800;">Document for Request</h3>
 	                <hr class="mt-0 mb-4">
 	                <div class="row">
 	                    
@@ -92,7 +92,7 @@
 										<br>
 	                                    <div style="padding: 10px 40px 10px 40px">
 	                                        <!-- print document -->
-	                                        <div class="card-header">Print Document Request Report</div><br>
+	                                        <div class="card-header" style="font-size: 20px;">Print Document Request Report</div><br>
 	                                        <form action="{{route('admin.downloadpdfdoc')}}" method="POST">
 												@csrf
 												<b>From:</b>
@@ -106,14 +106,14 @@
 	                                    	<form method="POST" action="{{ route('document.store') }}">
 												@csrf
 		                                        <div class="mb-3">
-		                                            <label class="large" for="name">Add document</label>
+		                                            <label class="large" for="name" style="font-size: 20px;">Add document</label>
 		                                            <input class="form-control @error('name') is-invalid @enderror" id="name" type="text" style="font-size: 16px;" placeholder="Document Name" name="name" value="{{ old('name') }}">
 		                                        </div><br>
 		                                        <!-- Save changes button-->
 		                                        <input type="submit" class="btn btn-primary" value="Submit">
 	                                        </form><br>
 	                                        <!-- Table of Documents  -->
-	                                        <div class="card-header">
+	                                        <div class="card-header" style="font-size: 20px;">
 	                                        	Table of Available Documents
 	                                    	</div><br>
 
@@ -144,9 +144,9 @@
                                                                         <td class="text-center">{{$document -> id}}</td>
                                                                         <td>{{$document -> name}}</td>
                                                                         <td>
-																			<a class="btn btn-success btn-sm" href="/viewdocument/{{$document->id}}"><i class="fas fa-eye"></i> View</a>
-																			<a class="btn btn-warning btn-sm" href="/showdocument/{{$document->id}}"><i class="fas fa-edit"></i> Update</a>
-																			<a class="btn btn-danger btn-sm" href="{{route('admin.deletedocument', $document->id)}}"><i class="far fa-trash-alt"></i> Delete</a>
+																			<a class="btn btn-success btn-md" href="/viewdocument/{{$document->id}}"><i class="fas fa-eye"></i> View</a>
+																			<a class="btn btn-warning btn-md" href="/showdocument/{{$document->id}}"><i class="fas fa-edit"></i> Update</a>
+																			<a class="btn btn-danger btn-md" href="{{route('admin.deletedocument', $document->id)}}"><i class="fas fa-trash-alt"></i> Delete</a>
                                                                         </td> 
                                                                     </tr>
                                                             @endforeach 
@@ -206,7 +206,7 @@
 																				<td class="text-center"><?php echo $i++; ?></td>
 																				<td>{{$request -> document -> name}}</td>
 																				<td>{{$request -> student -> last_name}}, {{$request -> student -> first_name}} {{$request -> student -> middle_name}}</td>
-																				<td>{{$request -> student -> course -> courseName}}</td>
+																				<td>{{$request -> student -> course -> abbreviation}}</td>
 																				<td>{{$requested_at}}</td>
 																				<td>
 																				{{$request -> file}}
@@ -240,8 +240,8 @@
 																					?>
 																				</td>
 																				<td>
-																					<a class="btn btn-success btn-sm" href="/viewdocument/{{$document->id}}"><i class="fas fa-eye"></i> View</a>
-																					<a class="btn btn-warning btn-sm" href="/showdocument/{{$document->id}}"><i class="fas fa-edit"></i> Update</a>	
+																					<a class="btn btn-success btn-md" href="/viewdocument/{{$document->id}}"><i class="fas fa-eye"></i> View</a>
+																					<a class="btn btn-warning btn-md" href="/showdocument/{{$document->id}}"><i class="fas fa-edit"></i> Update</a>	
 																				</td> 
 																			</tr>
 																		@endif
@@ -288,7 +288,7 @@
 																				<td class="text-center"><?php echo $i++; ?></td>
 																				<td>{{$request -> document -> name}}</td>
 																				<td>{{$request -> student -> last_name}}, {{$request -> student -> first_name}} {{$request -> student -> middle_name}}</td>
-																				<td>{{$request -> student -> course -> courseName}}</td>
+																				<td>{{$request -> student -> course -> abbreviation}}</td>
 																				<td>{{$requested_at}}</td>
 																				<td>
 																				{{$request -> file}}
@@ -322,8 +322,8 @@
 																					?>
 																				</td>
 																				<td>
-																					<a class="btn btn-success btn-sm" href="/viewrequestadmin/{{$request->id}}"><i class="fas fa-eye"></i> View</a>
-																					<a class="btn btn-warning btn-sm" href="/showrequestadmin/{{$request->id}}"><i class="fas fa-edit"></i> Update</a>
+																					<a class="btn btn-success btn-md" href="/viewrequestadmin/{{$request->id}}"><i class="fas fa-eye"></i> View</a>
+																					<a class="btn btn-warning btn-md" href="/showrequestadmin/{{$request->id}}"><i class="fas fa-edit"></i> Update</a>
 																				</td> 
 																			</tr>
 																		@endif
