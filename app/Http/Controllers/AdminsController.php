@@ -688,7 +688,7 @@ class AdminsController extends Controller
     public function storesection(Request $request){
         // Validate the inputs
         $request->validate([
-            'section' => ['required'],
+            'section' => 'required|unique:sections',
         ]);
         $section = new sections();
         $section->section = $request->get('section');
@@ -709,7 +709,7 @@ class AdminsController extends Controller
 
     public function updatesection(Request $request, Sections $section){
         $validated = $request->validate([
-            'section' => ['required'],
+            'section' => 'required',
         ]);
        $section->update($validated);
        return redirect('/gradingsections')->with('success', 'Section has been updated successfully!');
@@ -1045,7 +1045,7 @@ class AdminsController extends Controller
             'schoolyear' => ['required'],
         ]);
         $schoolyear->update($validated);
-        return redirect('/gradingschoolyear')->with('toast_success', 'Schoolyear has been updated successfully!');
+        return redirect('/gradingschoolyear')->with('success', 'Schoolyear has been updated successfully!');
     }
 
 
@@ -1207,8 +1207,51 @@ class AdminsController extends Controller
     // ============================================================ GRADE LEVEL ===================================================
 
     public function gradelevels(){
-        $gradelevels = GradeLevels::all();
+        $gradelevels = GradeLevels::where('deleted', '=', null)->orderBy('id', 'ASC')->get();
         return view('admins.grading.gradelevels', compact('gradelevels'));
+    }
+
+    public function addgradelevel(){
+        return view('admins.grading.functions.gradeleveladd');
+    }
+
+    public function storegradelevel(Request $request){
+        // Validate the inputs
+        $request->validate([
+            'gradelevel' => 'required|numeric|unique:grade_levels',
+        ]);
+        $gradelevel = new GradeLevels();
+        $gradelevel->gradelevel = $request->get('gradelevel');
+        $gradelevel->save();
+        return redirect('/gradinggradelevels')->with('success', 'Gradelevel has been added successfully!');
+    }    
+
+
+    public function showgradelevel($id){
+        $data = GradeLevels::findOrFail($id);
+        return view('admins.grading.functions.gradelevelupdate', ['gradelevel' => $data]);
+    }
+
+    public function updategradelevel(Request $request, GradeLevels $gradelevel){
+        $validated = $request->validate([
+            'gradelevel' => 'required',
+        ]);
+       $gradelevel->update($validated);
+       return redirect('/gradinggradelevels')->with('success', 'Gradelevel has been updated successfully!');
+   }
+
+   public function deletegradegradelevel(Request $request, GradeLevels $gradelevel){
+        $validated = $request->validate([
+            'deleted' => ['required'],
+            'deleted_at' => ['required'],
+        ]);
+        $gradelevel->update($validated);
+        return redirect('/gradinggradelevels')->with('success', 'Gradelevel has been deleted successfully!');
+    }
+
+    public function deletegradelevel($id){
+        $data = GradeLevels::findOrFail($id);
+        return view('admins.grading.functions.gradeleveldelete', ['gradelevel' => $data]);
     }
 
     // ============================================================================= RESET PASSWORD ====================================================================

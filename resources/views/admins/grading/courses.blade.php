@@ -45,7 +45,6 @@
                                     <th class="border-gray-200" scope="col">Strand Name</th>
                                     <th class="border-gray-200" scope="col">Abbreviation</th>
                                     <th class="border-gray-200" scope="col">Code</th>
-                                    <th class="border-gray-200" scope="col">Image</th>
                                     <th class="border-gray-200" scope="col">Action</th>
                                 </tr>
                             </thead>    
@@ -55,7 +54,6 @@
                                             <td>{{$course -> courseName}}</td>
                                             <td>{{$course -> abbreviation}}</td>
                                             <td>{{$course -> code}}</td>
-                                            <td>{{$course -> image}}</td>
                                             <td>
                                                 <a class="btn btn-success btn-md" href="/viewcourse/{{$course->id}}"><i class="fas fa-eye"></i> View</a>
                                                 <a class="btn btn-warning btn-md" href="/showcourse/{{$course->id}}"><i class="fas fa-edit"></i> Update</a> 

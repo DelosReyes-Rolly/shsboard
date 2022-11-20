@@ -45,7 +45,7 @@
                 <li>
                     <a href="#academicSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" title="Academic Syllabus">
                     <i class="fas fa-school"></i>
-                        <span class="hide-word title-word"> <b>Academic Syllabus</b></span>
+                        <span class="hide-word title-word"> <b>Academic</b></span>
                     </a>
                     <ul class="collapse list-unstyled" id="academicSubmenu">
                         <li title="School year">

@@ -537,6 +537,10 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 Route::get('/showsubjectteacher/{id}','showsubjectteacher');
                 Route::get('/deletesubjectteacher/{id}', 'deletesubjectteacher')->name('admin.deletesubjectteacher');
 
+                Route::get('/gradeleveladd', 'addgradelevel')->name('gradelevel.add');
+                Route::get('/showgradelevel/{id}','showgradelevel');
+                Route::get('/deletegradelevel/{id}', 'deletegradelevel')->name('admin.deletegradelevel');
+
             /*
             |-----------------------------------------------------------------------------------
             | ADMINS Routes - Grades - POST
@@ -561,6 +565,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 Route::post('/add/subject', 'storesubject')->name('subject.store');
                 Route::post('/add/schoolyear', 'storeschoolyear')->name('schoolyear.store');
                 Route::post('/subjectteacheradd', 'subjectteacherstore')->name('subjectteacher.store');
+                Route::post('/add/gradelevel', 'storegradelevel')->name('gradelevel.store');
                 
 
             /*
@@ -593,6 +598,8 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 Route::put('/deleteschoolyear/{schoolyear}', 'deletegradeschoolyear');
                 Route::put('/updatesubjectteacher/{subjectteacher}', 'updatesubjectteacher');
                 Route::put('/deletesubjectteacher/{subjectteacher}', 'deletegradesubjectteacher');
+                Route::put('/updategradelevel/{gradelevel}', 'updategradelevel');
+                Route::put('/deletegradelevel/{gradelevel}', 'deletegradegradelevel');
 
         
         /*

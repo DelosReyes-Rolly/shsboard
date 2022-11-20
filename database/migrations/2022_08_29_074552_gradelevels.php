@@ -17,6 +17,8 @@ class Gradelevels extends Migration
             $table->id();
             $table->string('gradelevel');
             $table->timestamps();
+            $table->tinyInteger('deleted')->nullable();
+            $table->date('deleted_at')->nullable();
         });
     }
 
