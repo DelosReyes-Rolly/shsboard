@@ -29,14 +29,14 @@
                             <div class="card border-start-lg border-start-yellow" >
                                 <div class="card-header"><font face = "Bedrock" size = "6"><b>New Strand</b></font></div>
                                 <div class="card-body" style="padding: 10px 40px 10px 40px">
-                                    <div class="mb-3">
-
+                                    <div class="mb-3" style="color: red">
+                                        * required field
                                     </div>
                                     <!-- Form Row-->
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group (title)-->
                                         <div class="col-md-10">
-                                            <label style="font-size: 20px;">Strand Name</label>
+                                            <label style="font-size: 20px;"><span style="color: red">*</span> Strand Name</label>
                                             <input type="text" name="courseName"  class="form-control @error('courseName') is-invalid @enderror" value="{{ old('courseName') }}" style="font-size: 14px;" >
                                         </div>
                                     </div><br/>
@@ -44,7 +44,7 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
-                                            <label style="font-size: 20px;">Abbreviation</label>
+                                            <label style="font-size: 20px;"><span style="color: red">*</span> Abbreviation</label>
                                             <input type="text" name="abbreviation"  class="form-control @error('abbreviation') is-invalid @enderror" value="{{ old('abbreviation') }}" style="font-size: 14px;">
                                         </div>
                                     </div><br/>
@@ -52,7 +52,7 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
-                                            <label style="font-size: 20px;">Strand Description</label>
+                                            <label style="font-size: 20px;"><span style="color: red">*</span> Strand Description</label>
                                             <textarea name="description" id="editor" type=text class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea style="font-size: 14px;">
                                         </div>
                                     </div><br/>
@@ -60,7 +60,7 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
-                                            <label style="font-size: 20px;">Code</label>
+                                            <label style="font-size: 20px;"><span style="color: red">*</span> Code</label>
                                             <input type="text" name="code"  class="form-control @error('code') is-invalid @enderror" value="{{ old('code') }}"style="font-size: 14px;">
                                         </div>
                                     </div><br/>
@@ -74,7 +74,7 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
-                                            <label class="large mb-1" for="inputcontent" style="font-size: 20px;">Image (Only png and jpg files are allowed)</label>
+                                            <label class="large mb-1" for="inputcontent" style="font-size: 20px;">* Image (Only png and jpg files are allowed)</label>
                                             <div class ="form-group row">
                                                 <div class="col-md-8"></div>
                                                 <input type="file" name = "image" class="form-control">

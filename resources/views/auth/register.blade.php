@@ -20,6 +20,9 @@
                         @csrf
                         <center><h1 style="font-family: arial black;">STUDENT MODULE</h1></center>
                         <br>
+                        <div class="mb-3" style="color: red">
+                            * required field
+                        </div>
                         @if (count($errors) > 0)
                             <div class="alert alert-danger">
                                 <strong>Whoops!</strong> There were some problems with your input.
@@ -31,7 +34,7 @@
                             </div>
                         @endif
                         <div class="form-group">
-                            <label for="LRN" class="col-form-label text-md-end">{{ __('LRN') }}</label>
+                            <label for="LRN" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('LRN') }}</label>
                             <input id="LRN" type="text" class="form-control @error('LRN') is-invalid @enderror" name="LRN" value="{{ old('LRN') }}" required autocomplete="LRN" autofocus>
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -41,7 +44,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="LRN" class="col-form-label text-md-end">{{ __('First Name') }}</label>
+                            <label for="LRN" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('First Name') }}</label>
                             <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" autofocus>
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -61,7 +64,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="last_name" class="col-form-label text-md-end">{{ __('Last name') }}</label>
+                            <label for="last_name" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Last name') }}</label>
                             <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" autofocus>
                             @error('last_name')
                                 <span class="invalid-feedback" role="alert">
@@ -71,7 +74,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="username" class="col-form-label text-md-end">{{ __('Username') }}</label>
+                            <label for="username" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Username') }}</label>
                             <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
                             @error('username')
                                 <span class="invalid-feedback" role="alert">
@@ -81,7 +84,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for ="gender">Gender</label><br>
+                            <label for ="gender"><span style="color: red">*</span> Gender</label><br>
                             <select name="gender">
                                 <option value="" {{old('gender') == "" ?
                                 'selected' : ''}} disabled>  Please Select Gender </option>
@@ -102,7 +105,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="gradelevel_id" class="col-form-label text-md-end">{{ __('Grade Level') }}</label><br>
+                            <label for="gradelevel_id" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Grade Level') }}</label><br>
                             <select name="gradelevel_id" id="gradelevel_id">
                                 <option value="" {{old('gradelevel_id') == "" ?'selected' : ''}} disabled> Please Select Grade Level </option>
                                 @foreach($level_data as $gradelevel_id)
@@ -117,7 +120,7 @@
                         </div>
                             
                         <div class="form-group">
-                            <label for="section_id" class="col-form-label text-md-end">{{ __('Section') }}</label>
+                            <label for="section_id" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Section') }}</label>
                             <select name="section_id" id="section_id">
                             <option value="" {{old('section_id') == "" ?'selected' : ''}} disabled> Please Select section </option>
                                 @foreach($section_data as $section_id)
@@ -132,7 +135,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="course_id" class="col-form-label text-md-end">{{ __('Strand Code') }}</label><br>
+                            <label for="course_id" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Strand Code') }}</label><br>
                             <input id="course_id" type="text" class="form-control @error('course_id') is-invalid @enderror" name="course_id" value="{{ old('course_id') }}" required autocomplete="course_id" autofocus>
                             @error('course_id')
                                 <span class="invalid-feedback" role="alert">
@@ -142,7 +145,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="email" class="col-form-label text-md-end">{{ __('Email Address') }}</label>
+                            <label for="email" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Email Address') }}</label>
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -152,7 +155,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="password" class="col-form-label text-md-end">{{ __('Password') }}</label>
+                            <label for="password" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Password') }}</label>
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -162,7 +165,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="password-confirm" class="col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+                            <label for="password-confirm" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Confirm Password') }}</label>
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                         </div>
                         <center><font face = "Bedrock" size = "3" >

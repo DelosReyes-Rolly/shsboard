@@ -30,14 +30,14 @@
                             <div class="card border-start-lg border-start-yellow">
                                 <div class="card-header"></div>
                                 <div class="card-body" style="padding: 10px 40px 10px 40px">
-                                    <div class="mb-3">
-
+                                    <div class="mb-3" style="color: red">
+                                        * required field
                                     </div>
                                     <!-- Form Row-->
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group (title)-->
                                         <div class="col-md-6">
-                                            <label class="large mb-1" for="inputwhat" style="font-size: 20px;">What</label>
+                                            <label class="large mb-1" for="inputwhat" style="font-size: 20px;"><span style="color: red">*</span> What</label>
                                             <input class="form-control @error('what') is-invalid @enderror" id="inputwhat" type="text" placeholder="Enter the title" name="what"  value="{{$announcement->what}}">
                                         </div>
                                     </div><br/>
@@ -45,19 +45,19 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-3">
-                                            <label class="slarge mb-1" for="inputwhn" style="font-size: 20px;">When</label>
+                                            <label class="slarge mb-1" for="inputwhn" style="font-size: 20px;"><span style="color: red">*</span> When</label>
                                                 <input type="date" class="form-control @error('whn') is-invalid @enderror" id="inputwhn" placeholder="Enter the date" name="whn"  value="{{$announcement->whn}}">
                                         </div>
                                         <!-- Form Group (content)-->
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label for="appt" style="font-size: 20px;">Select a time:</label><br>
+                                                <label for="appt" style="font-size: 20px;"><span style="color: red">*</span> Select a time:</label><br>
                                                 <input type="time" id="whn_time" name="whn_time" value="{{$announcement->whn_time}}">
                                             </div>
                                         </div>
                                         <!-- Form Group whr-->
                                         <div class="col-md-3">
-                                            <label class="slarge mb-1" for="inputexpired_at" style="font-size: 20px;">Expired at</label>
+                                            <label class="slarge mb-1" for="inputexpired_at" style="font-size: 20px;"><span style="color: red">*</span> Expired at</label>
                                                 <input type="date" class="form-control @error('expired_at') is-invalid @enderror" id="inputexpired_at" placeholder="Enter the date" name="expired_at"  value="{{$announcement->expired_at}}">
                                         </div>
                                     </div><br/>
@@ -66,7 +66,7 @@
                                         <div class="row gx-3 mb-3">
                                             <!-- Form Group whr-->
                                             <div class="col-md-10">
-                                                <div class="col-md-12"><label for="gradelevel_id" style="font-size: 20px;">Grade Level</label>
+                                                <div class="col-md-12"><label for="gradelevel_id" style="font-size: 20px;"><span style="color: red">*</span> Grade Level</label>
                                                     <select id="gradelevel_id" name="gradelevel_id" class="form-control" value="{{ old('gradelevel_id') }}" style="font-size: 14px;">
                                                         <option value="" disabled selected hidden>Choose Gradelevel</option>
                                                         @foreach ($gradelevels as $gradelevel)
@@ -80,7 +80,7 @@
                                         <div class="row gx-3 mb-3">
                                             <!-- Form Group whr-->
                                             <div class="col-md-10">
-                                                <div class="col-md-12"><label for="course_id" style="font-size: 20px;">Course</label>
+                                                <div class="col-md-12"><label for="course_id" style="font-size: 20px;"><span style="color: red">*</span> Course</label>
                                                     <select id="course_id" name="course_id" class="form-control" value="{{ old('course_id') }}" style="font-size: 14px;">
                                                         <option value="" disabled selected hidden>Choose Course</option>
                                                         @foreach ($courses as $course)
@@ -94,7 +94,7 @@
                                         <div class="row gx-3 mb-3">
                                             <!-- Form Group whr-->
                                             <div class="col-md-10">
-                                                <div class="col-md-12"><label for="section_id" style="font-size: 20px;">Section</label>
+                                                <div class="col-md-12"><label for="section_id" style="font-size: 20px;"><span style="color: red">*</span> Section</label>
                                                     <select id="section_id" name="section_id" class="form-control" value="{{ old('section_id') }}" style="font-size: 14px;">
                                                         <option value="" disabled selected hidden>Choose Section</option>
                                                         @foreach ($sections as $section)
@@ -108,7 +108,7 @@
                                         <div class="row gx-3 mb-3">
                                             <!-- Form Group whr-->
                                             <div class="col-md-10">
-                                                <div class="col-md-12"><label for="subject_id" style="font-size: 20px;">Subject</label>
+                                                <div class="col-md-12"><label for="subject_id" style="font-size: 20px;"><span style="color: red">*</span> Subject</label>
                                                     <select id="subject_id" name="subject_id" class="form-control" value="{{ old('subject_id') }}" style="font-size: 14px;">
                                                         <option value="" disabled selected hidden>Choose Subject</option>
                                                         @foreach ($subjects as $subject)
@@ -121,7 +121,7 @@
                                     </div>
                                         <!-- Form Group (content)-->
                                         <div class="mb-3">
-                                            <label class="large mb-1" for="editor" style="font-size: 20px;">Content</label>
+                                            <label class="large mb-1" for="editor" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
                                             <textarea class="form-control @error('content') is-invalid @enderror" id="editor" type="text" placeholder="Enter the information" name="content"  rows="10" cols="80">{{$announcement->content}}</textarea>
                                         </div><br/>
                                         <div class="row gx-3 mb-3">

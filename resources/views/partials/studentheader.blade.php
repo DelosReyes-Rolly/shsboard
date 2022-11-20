@@ -29,7 +29,7 @@
 
     <div class="wrapper">
         <!-- Sidebar  -->
-        <nav id="sidebar">
+        <nav id="sidebar" class="sticky-top h-100 vh-100" style="padding-bottom: 248px;">
             <div class="sidebar-header">
                 <div class="title"><img src="{{url('/img/svnhs-logo.png')}}" style="width: 80px; height: 80px;"><img src="{{url('/img/shs.png')}}" style="width: 80px; height: 80px;"><div style="font-size: 20px;"> Signal Village National High School </div> <br/> SHS - BOARD</div>
                 <strong> <img src="{{url('/img/shs.png')}}" style="width: auto; height: auto;"></strong>

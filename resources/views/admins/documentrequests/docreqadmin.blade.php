@@ -34,16 +34,19 @@
                                             <!-- Form Row-->
                                             <div class="row gx-3 mb-3">
                                                 <!-- Form Group (title)-->
-                                                <div class="col-md-4">
-                                                    <div class="col-md-12"><label class="labels" style="font-size: 20px;">Last Name</label><input type="text" class="form-control"  style="font-size: 16px;" placeholder=" {{$docreq->student->last_name}} " value="" readonly></div> <br>
+                                                <div class="col-md-2">
+                                                    <div class="col-md-12"><label class="labels" style="font-size: 26px;">Last Name</label><input type="text" class="form-control"  style="font-size: 16px;" placeholder=" {{$docreq->student->last_name}} " value="" readonly></div> <br>
                                                 </div>
                                                 <!-- Form Group date-->
-                                                <div class="col-md-4">
-                                                    <div class="col-md-12"><label class="labels" style="font-size: 20px;">First Name</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{$docreq->student->first_name}} " value="" readonly></div> <br>
+                                                <div class="col-md-2">
+                                                    <div class="col-md-12"><label class="labels" style="font-size: 26px;">First Name</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{$docreq->student->first_name}} " value="" readonly></div> <br>
                                                 </div>
                                                 <!-- Form Group (title)-->
-                                                <div class="col-md-4">
-                                                    <div class="col-md-12"><label class="labels" style="font-size: 20px;">Middle Name</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{$docreq->student->middle_name}} " value="" readonly></div> <br>
+                                                <div class="col-md-2">
+                                                    <div class="col-md-12"><label class="labels" style="font-size: 26px;">Middle Name</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{$docreq->student->middle_name}} " value="" readonly></div> <br>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="col-md-12"><label class="labels" style="font-size: 26px;">Suffix</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{$docreq->student->suffix}} " value="" readonly></div> <br>
                                                 </div>
                                             </div>
                                             <!-- Form Row        -->

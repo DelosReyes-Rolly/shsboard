@@ -47,7 +47,7 @@
                                     <tr>
                                         <td class="hidden">{{$student -> id}}</td>
                                         <td>{{$count++;}}</td>
-                                        <td>{{$student -> student -> last_name}}, {{$student -> student -> first_name}} {{$student -> student -> middle_name}}</td>
+                                        <td>{{$student -> student -> last_name}}, {{$student -> student -> first_name}} {{$student -> student -> middle_name}} {{$student -> student -> suffix}}</td>
                                         <td>{{$student -> midterm}}</td>
                                         <td>{{$student -> finals}}</td>
                                         <td>

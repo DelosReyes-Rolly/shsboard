@@ -14,7 +14,7 @@ use Illuminate\Notifications\Notifiable;
         protected $guard = 'faculties';
 
         protected $fillable = [
-            'first_name', 'middle_name', 'last_name', 'email', 'password', 'gender', 'username', 'updated_at', 'deleted', 'deleted_at'
+            'first_name', 'middle_name', 'last_name', 'suffix', 'email', 'password', 'gender', 'username', 'updated_at', 'deleted', 'deleted_at'
         ];
 
         protected $hidden = [

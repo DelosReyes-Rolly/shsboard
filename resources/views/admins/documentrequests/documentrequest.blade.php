@@ -205,7 +205,7 @@
 																				<?php $requested_at = date('F d, Y', strtotime($request -> created_at)); ?>
 																				<td class="text-center"><?php echo $i++; ?></td>
 																				<td>{{$request -> document -> name}}</td>
-																				<td>{{$request -> student -> last_name}}, {{$request -> student -> first_name}} {{$request -> student -> middle_name}}</td>
+																				<td>{{$request -> student -> last_name}}, {{$request -> student -> first_name}} {{$request -> student -> middle_name}} {{$request -> student -> suffix}}</td>
 																				<td>{{$request -> student -> course -> abbreviation}}</td>
 																				<td>{{$requested_at}}</td>
 																				<td>

@@ -21,6 +21,7 @@ class StudentsFactory extends Factory
             'first_name' => $this->faker->firstname(),
             'middle_name' => $this->faker->lastname(),
             'last_name' => $this->faker->lastname(),
+            'suffix' => $this->faker->suffix(),
             'gradelevel_id' => $this->faker->numberBetween($min = 1, $max = 2),
             'username' => $this->faker->username(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password

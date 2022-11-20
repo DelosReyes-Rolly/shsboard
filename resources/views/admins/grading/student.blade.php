@@ -85,7 +85,7 @@
                                         <tr>
                                             <td class="text-center"><?php echo $i++; ?></td>
                                             <td>{{$student -> LRN}}</td>
-                                            <td>{{$student -> last_name}}, {{$student -> first_name}} {{$student -> last_name}}</td>
+                                            <td>{{$student -> last_name}}, {{$student -> first_name}} {{$student -> last_name}} {{$student -> suffix}}</td>
                                             <td>{{$student -> address -> street}} {{$student -> address -> village}}, {{$student -> address -> city}} {{$student -> address -> zip_code}}</td>
                                             <td>{{$student -> gender}}</td>
                                             <td>{{$student -> username}}</td>

@@ -107,7 +107,7 @@ class AdminsController extends Controller
     public function profileupdate(Request $request, Admins $admin){
         $validated = $request->validate([
             "first_name" => ['required'],
-            "middle_name" => ['required'],
+            "middle_name" => 'nullable',
             "last_name" => ['required'],
         ]);
 
@@ -171,7 +171,7 @@ class AdminsController extends Controller
             'content' => ['required'],
         ]);
        $landing->update($validated);
-       return redirect('/homepage')->with('landing', 'Landing content has been updated.');
+       return redirect('/homepage')->with('success', 'Landing content has been updated.');
    }
 
      public function deletelanding(Request $request, Landings $landing){
@@ -180,7 +180,7 @@ class AdminsController extends Controller
             'deleted_at' => ['required'],
         ]);
         $landing->update($validated);
-        return redirect('/homepage')->with('landing', 'Landing content has been deleted.');
+        return redirect('/homepage')->with('success', 'Landing content has been deleted.');
      }
 
      public function delete($id){
@@ -313,7 +313,7 @@ class AdminsController extends Controller
         ]);
        $announcement->update($validated);
        Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<',  now())->update(['status' => '2']);
-       return redirect('/createAnnoucement')->with('approval', 'Announcement has been updated.');;
+       return redirect('/createAnnoucement')->with('success', 'Announcement has been updated.');;
    }
 
      public function deleteannouncement(Request $request, Announcements $announcement){
@@ -412,7 +412,7 @@ class AdminsController extends Controller
         ]);
        $event->update($validated);
        Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<',  now())->update(['status' => '2']);
-       return redirect('/createEvents')->with('event', 'Event has been updated.');
+       return redirect('/createEvents')->with('success', 'Event has been updated.');
    }
 
     // ================================================================= REMINDERS ===================================================
@@ -486,7 +486,7 @@ class AdminsController extends Controller
             'content' => ['required'],
         ]);
        $reminder->update($validated);
-       return redirect('/admins')->with('reminder', 'Reminder has been updated.');
+       return redirect('/admins')->with('success', 'Reminder has been updated.');
    }
 
     
@@ -529,7 +529,7 @@ class AdminsController extends Controller
             'name' => ['required'],
         ]);
        $document->update($validated);
-       return redirect('/documentrequest')->with('document', 'Document has been updated.');
+       return redirect('/documentrequest')->with('success', 'Document has been updated.');
    }
 
 
@@ -539,7 +539,7 @@ class AdminsController extends Controller
             'deleted_at' => ['required'],
         ]);
         $document->update($validated);
-        return redirect('/documentrequest')->with('document', 'Document has been deleted successfully!');
+        return redirect('/documentrequest')->with('success', 'Document has been deleted successfully!');
      }
 
      public function deletedocument($id){
@@ -745,8 +745,9 @@ class AdminsController extends Controller
         // Validate the inputs
         $validated = $request->validate([
             'first_name' => ['required'],
-            'middle_name' => ['required'],
+            'middle_name' => 'nullable',
             'last_name' => ['required'],
+            'suffix' => 'nullable',
             'email' => ['required', 'email', Rule::unique('faculties', 'email')],
         ]);
         // hashing
@@ -787,8 +788,9 @@ class AdminsController extends Controller
         $ownid=$faculty->id;
         $validated = $request->validate([
             'first_name' => ['required'],
-            'middle_name' => ['required'],
+            'middle_name' => 'nullable',
             'last_name' => ['required'],
+            'suffix' => 'nullable',
             "email" => 'required|email:rfc,dns|email|unique:faculties,email,' . $ownid,
         ]);
     $faculty->update($validated);
@@ -831,8 +833,9 @@ class AdminsController extends Controller
         $validated = $request->validate([
             'LRN' => ['required'],
             'first_name' => ['required'],
-            'middle_name' => ['required'],
+            'middle_name' => 'nullable',
             'last_name' => ['required'],
+            'suffix' => 'nullable',
             'section_id' => ['required'],
             'gender' => ['required'],
             'section_id' => ['required'],
@@ -900,8 +903,9 @@ class AdminsController extends Controller
         $validated = $request->validate([
             'LRN' => ['required'],
             'first_name' => ['required'],
-            'middle_name' => ['required'],
+            'middle_name' => 'nullable',
             'last_name' => ['required'],
+            'suffix' => 'nullable',
             "email" => 'required|email:rfc,dns|email|unique:students,email,' . $ownid,
         ]);
         $student->update($validated);

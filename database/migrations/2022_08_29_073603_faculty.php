@@ -17,8 +17,9 @@ class Faculty extends Migration
             $table->id();
             $table->integer('address_id');
             $table->string('first_name');
-            $table->string('middle_name');
+            $table->string('middle_name')->nullable();
             $table->string('last_name');
+            $table->string('suffix')->nullable();
             $table->string('email')->unique();
             $table->string('gender');
             $table->string('username');

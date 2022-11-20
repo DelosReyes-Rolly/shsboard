@@ -28,29 +28,32 @@
                                     <div class="card border-start-lg border-start-yellow">
                                         <div class="card-header"></div>
                                         <div class="card-body">
-                                            <div class="mb-3">
-                                                    
+                                            <div class="mb-3" style="color: red">
+                                                * required field
                                             </div>
                                             <!-- Form Row-->
                                             <div class="row gx-3 mb-3">
                                                 <!-- Form Group (title)-->
-                                                <div class="col-md-4">
+                                                <div class="col-md-3">
                                                     <div class="col-md-12"><label class="labels" style="font-size: 20px;">Last Name</label><input type="text" class="form-control"  style="font-size: 16px;" placeholder=" {{Auth::user()->last_name}} " value="" readonly></div> <br>
                                                 </div>
                                                 <!-- Form Group date-->
-                                                <div class="col-md-4">
+                                                <div class="col-md-3">
                                                     <div class="col-md-12"><label class="labels" style="font-size: 20px;">First Name</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->first_name}} " value="" readonly></div> <br>
                                                 </div>
                                                 <!-- Form Group (title)-->
-                                                <div class="col-md-4">
-                                                    <div class="col-md-12"><label class="labels" style="font-size: 20px;">Middle Name</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->last_name}} " value="" readonly></div> <br>
+                                                <div class="col-md-3">
+                                                    <div class="col-md-12"><label class="labels" style="font-size: 20px;">Middle Name</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->middle_name}} " value="" readonly></div> <br>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="col-md-12"><label class="labels" style="font-size: 20px;">Suffix</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->suffix}} " value="" readonly></div> <br>
                                                 </div>
                                             </div>
                                             <!-- Form Row        -->
                                             <div class="row gx-3 mb-3">
                                             	 <!-- Form Group (location)-->
                                                 <div class="col-md-6">
-                                                    <div class="col-md-12"><label class="labels" style="font-size: 20px;">Course</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->course_id}} " value="" readonly></div> <br>
+                                                <div class="col-md-12"><label class="labels" style="font-size: 20px;">Course</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{$course->courseName}} - {{$course->abbreviation}}" value="" readonly></div> <br>
                                                 </div>
                                                 <!-- Form Group document needed-->
                                                 <div class="col-md-6">
@@ -58,7 +61,7 @@
                                                 </div>
                                                 <!-- Form Group (content)-->
                                                 <div class="mb-3 requestdocument">
-                                                	<label class="large mb-1" for="document_id" class="form-control @error('document_id') is-invalid @enderror" style="font-size: 20px;"><br>Document Needed</label>
+                                                	<label class="large mb-1" for="document_id" class="form-control @error('document_id') is-invalid @enderror" style="font-size: 20px;"><br><span style="color: red">*</span> Document Needed</label>
                                                         <div class="col-md-12" hidden><input class="form-control @error('document_id') is-invalid @enderror" id="inputdocument_id" type="text" placeholder="Enter document needed" name="document_id"  value="{{$docreq->document_id}}"></div>
             											<select id="document_id" name="document_id" class="form-control" value="{{$docreq->document_id}}"style="font-size: 16px;" >
             												<option value="" disabled selected hidden>Select Document</option>
@@ -73,7 +76,7 @@
                                                 <br>
                                                 <!-- Form Group (content)-->
                                                 <div class="mb-3 requestdocument">
-                                                    <label class="large mb-1" for="inputpurpose" style="font-size: 20px;">Purpose</label>
+                                                    <label class="large mb-1" for="inputpurpose" style="font-size: 20px;"><span style="color: red">*</span> Purpose</label>
                                                     <textarea class="form-control @error('purpose') is-invalid @enderror" id="editor" type="text" style="font-size: 16px;" placeholder="Enter your purpose" name="purpose">{{$docreq->purpose}}</textarea>
                                                 </div>
                                                 <br>

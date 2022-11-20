@@ -72,7 +72,7 @@
                     @csrf
                     <div class="container-xl px-4 mt-4 right-to-left">
                         <!-- page navigation-->
-                        <h3 style="font-size: 28px; font-weight: 800;">Create Announcement </h3>
+                        <h3 style="font-size: 28px; font-weight: 800;">Create Activity </h3>
                         <hr class="mt-0 mb-4">
                         <div class="row">
                             
@@ -81,7 +81,9 @@
                                     <div class="card border-start-lg border-start-yellow">
                                         <div class="card-header"></div>
                                         <div class="card-body">
-                                            <div class="mb-3"></div>
+                                            <div class="mb-3" style="color: red">
+                                                * required field
+                                            </div>
                                             @if ($message = Session::get('message'))
                                                 <div class="alert alert-success alert-block">
                                                     <button type="button" class="close" data-dismiss="alert">×</button>
@@ -105,7 +107,7 @@
                                                 <!-- Form Group (title)-->
                                                 <br>
                                                 <div class="col-md-6">
-                                                    <label class="large mb-1" for="inputwhat" style="font-size: 20px;">What</label>
+                                                    <label class="large mb-1" for="inputwhat" style="font-size: 20px;"><span style="color: red">*</span> What</label>
                                                     <input class="form-control @error('what') is-invalid @enderror" id="inputwhat" type="text" style="font-size: 16px;" placeholder="Enter the title" name="what"  value="{{ old('what') }}">
                                                 </div>
                                             </div>
@@ -114,21 +116,21 @@
                                                 <!-- Form Group whr-->
                                                 <div class="col-md-3">
                                                     <br>
-                                                    <label class="large mb-1" for="inputwhn" style="font-size: 20px;">When</label>
+                                                    <label class="large mb-1" for="inputwhn" style="font-size: 20px;"><span style="color: red">*</span> When</label>
                                                     <input type="date" class="form-control @error('whn') is-invalid @enderror" id="inputwhn" style="font-size: 16px;" placeholder="Enter the date" name="whn"  value="{{ old('whn') }}">
                                                 </div>
                                                 <!-- Form Group (content)-->
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <br>
-                                                        <label for="appt" style="font-size: 20px;">Select a time:</label><br>
+                                                        <label for="appt" style="font-size: 20px;"><span style="color: red">*</span> Select a time:</label><br>
                                                         <input type="time" id="whn_time" name="whn_time" value="{{ old('whn_time') }}">
                                                     </div>
                                                 </div>
                                                 <!-- Form Group whr-->
                                                 <div class="col-md-3">
                                                     <br>
-                                                    <label class="large mb-1" for="inputexpired_at" style="font-size: 20px;">Expired at</label>
+                                                    <label class="large mb-1" for="inputexpired_at" style="font-size: 20px;"><span style="color: red">*</span> Expired at</label>
                                                     <input type="date" class="form-control @error('expired_at') is-invalid @enderror" id="inputexpired_at" style="font-size: 16px;" placeholder="Enter the date" name="expired_at"  value="{{ old('expired_at') }}">
                                                 </div>
                                             </div>
@@ -137,7 +139,7 @@
                                                 <div class="row gx-3 mb-3">
                                                     <!-- Form Group whr-->
                                                     <div class="col-md-10">
-                                                        <div class="col-md-12"><label for="gradelevel_id" style="font-size: 20px;">Grade Level</label>
+                                                        <div class="col-md-12"><label for="gradelevel_id" style="font-size: 20px;"><span style="color: red">*</span> Grade Level</label>
                                                             <select id="gradelevel_id" name="gradelevel_id" class="form-control" value="{{ old('gradelevel_id') }}" style="font-size: 14px;">
                                                                 <option value="" disabled selected hidden>Choose Gradelevel</option>
                                                                 @foreach ($gradelevels as $gradelevel)
@@ -151,7 +153,7 @@
                                                 <div class="row gx-3 mb-3">
                                                     <!-- Form Group whr-->
                                                     <div class="col-md-10">
-                                                        <div class="col-md-12"><label for="course_id" style="font-size: 20px;">Strand</label>
+                                                        <div class="col-md-12"><label for="course_id" style="font-size: 20px;"><span style="color: red">*</span> Strand</label>
                                                             <select id="course_id" name="course_id" class="form-control" value="{{ old('course_id') }}" style="font-size: 14px;">
                                                                 <option value="" disabled selected hidden>Choose Strand</option>
                                                                 @foreach ($courses as $course)
@@ -165,7 +167,7 @@
                                                 <div class="row gx-3 mb-3">
                                                     <!-- Form Group whr-->
                                                     <div class="col-md-10">
-                                                        <div class="col-md-12"><label for="section_id" style="font-size: 20px;">Section</label>
+                                                        <div class="col-md-12"><label for="section_id" style="font-size: 20px;"><span style="color: red">*</span> Section</label>
                                                             <select id="section_id" name="section_id" class="form-control" value="{{ old('section_id') }}" style="font-size: 14px;">
                                                                 <option value="" disabled selected hidden>Choose Section</option>
                                                                 @foreach ($sections as $section)
@@ -179,7 +181,7 @@
                                                 <div class="row gx-3 mb-3">
                                                     <!-- Form Group whr-->
                                                     <div class="col-md-10">
-                                                        <div class="col-md-12"><label for="subject_id" style="font-size: 20px;">Subject</label>
+                                                        <div class="col-md-12"><label for="subject_id" style="font-size: 20px;"><span style="color: red">*</span> Subject</label>
                                                             <select id="subject_id" name="subject_id" class="form-control" value="{{ old('subject_id') }}" style="font-size: 14px;">
                                                                 <option value="" disabled selected hidden>Choose Subject</option>
                                                                 @foreach ($subjects as $subject)
@@ -193,7 +195,7 @@
                                                 <!-- Form Group (content)-->
                                                 <div class="mb-3 requestdocument">
                                                     <br>
-                                                    <label class="large mb-1" for="inputcontent" style="font-size: 20px;">Content</label>
+                                                    <label class="large mb-1" for="inputcontent" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
                                                     <textarea class="form-control @error('content') is-invalid @enderror" id="editor" type="text" style="font-size: 16px;" placeholder="Enter your purpose" name="content">{{ old('content') }}</textarea>
                                                     <font face = "Verdana" size = "6"><input type="submit" class="btn btn-primary" value="Submit" style=" margin-right: 80px;"></font>
                                                 </div><br/>
@@ -208,7 +210,7 @@
                     </form>
                     <hr style="border: 1px solid grey;">
                 <!-- tables -->
-                <h3 style="font-size: 28px; font-weight: 800;">Table of Annoucements</h3>
+                <h3 style="font-size: 28px; font-weight: 800;">Table of Activity</h3>
                 <hr class="mt-0 mb-4">
                 <div class="card mb-4 left-to-right border-start-lg border-start-success" style="padding: 20px 20px 20px 20px;">
                     <div class="card-header"></div>

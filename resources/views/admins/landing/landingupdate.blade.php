@@ -32,14 +32,14 @@
                             <div class="card border-start-lg border-start-yellow">
                                 <div class="card-header"></div>
                                 <div class="card-body" style="padding: 10px 40px 10px 40px">
-                                    <div class="mb-3">
-
+                                    <div class="mb-3" style="color: red">
+                                        * required field
                                     </div>
                                     <!-- Form Row-->
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group (title)-->
                                         <div class="col-md-6">
-                                            <label class="large mb-1" for="inputtitle" style="font-size: 20px;">Title</label>
+                                            <label class="large mb-1" for="inputtitle" style="font-size: 20px;"><span style="color: red">*</span> Title</label>
                                             <input class="form-control @error('title') is-invalid @enderror" id="inputtitle" type="text" placeholder="Enter the title" name="title"  value="{{$landing->title}}">
                                         </div>
                                     </div><br/>
@@ -47,7 +47,7 @@
                                     <div style="padding-left: 20px;">
                                         <!-- Form Group (content)-->
                                         <div class="mb-3">
-                                            <label class="large mb-1" for="editor" style="font-size: 20px;">Content</label>
+                                            <label class="large mb-1" for="editor" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
                                             <textarea class="form-control @error('content') is-invalid @enderror" id="editor" type="text" placeholder="Enter the information" name="content" rows="10" cols="80">{{$landing->content}}</textarea>
                                          </div><br/>
                                         <!-- Save changes button-->

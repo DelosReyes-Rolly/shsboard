@@ -62,7 +62,7 @@
                                     @foreach ($subjectteachers as $subjectteacher)  
                                         <tr id="{{$subjectteacher -> id}}">
                                             <td class="text-center"><?php echo $i++; ?></td>
-                                            <td>{{$subjectteacher -> faculty -> last_name}}, {{$subjectteacher -> faculty -> first_name}} {{$subjectteacher -> faculty -> middle_name}}</td>
+                                            <td>{{$subjectteacher -> faculty -> last_name}}, {{$subjectteacher -> faculty -> first_name}} {{$subjectteacher -> faculty -> middle_name}} {{$subjectteacher -> faculty -> suffix}}</td>
                                             <td>{{$subjectteacher -> gradelevel -> gradelevel}}</td>
                                             <td>{{$subjectteacher -> semester -> sem}}</td>
                                             <td>{{$subjectteacher -> course -> courseName}}</td>

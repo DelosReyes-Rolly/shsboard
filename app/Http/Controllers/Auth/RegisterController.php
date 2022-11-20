@@ -61,7 +61,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'first_name' =>'required|string',
-            'middle_name' =>'required|string',
+            'middle_name' =>'nullable',
             'last_name' =>'required|string',
             'username' =>'required|string|unique:admins',
             'email' => 'required|string|email|max:255|unique:admins',
@@ -149,7 +149,7 @@ class RegisterController extends Controller
             $validated = $request->validate([
                 'LRN' => ['required', 'min:12'],
                 'first_name' => ['required'],
-                'middle_name' => ['required'],
+                'middle_name' => 'nullable',
                 'last_name' => ['required'],
                 'username' => ['required'],
                 'gender' => ['required'],

@@ -37,7 +37,7 @@
                                                     </div><br>
                                                     <div class="col-md-6">
                                                             <label class="large" for="name" style="font-size: 26px;"><b>Teacher:</b> </label>
-                                                                <span style="font-size: 26px;">{{$gradeevaluationrequest -> faculty -> last_name}}, {{$gradeevaluationrequest -> faculty -> first_name}} {{$gradeevaluationrequest -> faculty -> middle_name}}</span>
+                                                                <span style="font-size: 26px;">{{$gradeevaluationrequest -> faculty -> last_name}}, {{$gradeevaluationrequest -> faculty -> first_name}} {{$gradeevaluationrequest -> faculty -> middle_name}} {{$gradeevaluationrequest -> faculty -> suffix}}</span>
                                                     </div><br>
                                                     <div class="col-md-6">
                                                             <label class="large" for="name" style="font-size: 26px;"><b>Date Requested:</b> </label>

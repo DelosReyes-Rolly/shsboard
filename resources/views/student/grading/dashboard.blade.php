@@ -49,7 +49,7 @@
         <hr class="mt-0 mb-4">
         <div class="mb-4">
             <div class="card border-start-lg border-start-yellow">
-                <div class="card-header" style="color: green; text-transform: uppercase; font-size: 20px;">{{Auth::user()->last_name}}, {{Auth::user()->first_name}} {{Auth::user()->middle_name}} - {{(Auth::user()->LRN)}} - </div>
+                <div class="card-header" style="color: green; text-transform: uppercase; font-size: 20px;">{{Auth::user()->last_name}}, {{Auth::user()->first_name}} {{Auth::user()->middle_name}}  {{Auth::user()->suffix}} - {{(Auth::user()->LRN)}} - </div>
 
                 <!-- check if enrolled in any subjects in any grade -->
                 @if($allsubjects->count() == 0)
@@ -123,7 +123,7 @@
                                                                 <tr>
                                                                     <td>{{$grade12second -> subject -> subjectcode}}</td>
                                                                     <td>{{$grade12second -> subject -> subjectname}}</td>
-                                                                    <td>{{$grade12second -> faculty -> last_name}}, {{$grade12second -> faculty -> second_name}} {{$grade12second -> faculty -> middle_name}}</td>
+                                                                    <td>{{$grade12second -> faculty -> last_name}}, {{$grade12second -> faculty -> second_name}} {{$grade12second -> faculty -> middle_name}} {{$grade12second -> faculty -> suffix}}</td>
                                                                     <td>{{$time_start= date('h:i A', strtotime($grade12second->time_start))}} - {{$time_end= date('h:i A', strtotime($grade12second->time_end))}}</td>
                                                                     <td><center>{{$grade12second -> midterm}}</center></td>
                                                                     <td><center>{{$grade12second -> finals}}</center></td>
@@ -233,7 +233,7 @@
                                                                     <tr>
                                                                         <td>{{$grade12first -> subject -> subjectcode}}</td>
                                                                         <td>{{$grade12first -> subject -> subjectname}}</td>
-                                                                        <td>{{$grade12first -> faculty -> last_name}}, {{$grade12first -> faculty -> first_name}} {{$grade12first -> faculty -> middle_name}}</td>
+                                                                        <td>{{$grade12first -> faculty -> last_name}}, {{$grade12first -> faculty -> first_name}} {{$grade12first -> faculty -> middle_name}} {{$grade12first -> faculty -> suffix}}</td>
                                                                         <td>{{$time_start= date('h:i A', strtotime($grade12first->time_start))}} - {{$time_end= date('h:i A', strtotime($grade12first->time_end))}}</td>
                                                                         <td><center>{{$grade12first -> midterm}}</center></td>
                                                                         <td><center>{{$grade12first -> finals}}</center></td>
@@ -354,7 +354,7 @@
                                                                 <tr>
                                                                     <td>{{$grade11second -> subject -> subjectcode}}</td>
                                                                     <td>{{$grade11second -> subject -> subjectname}}</td>
-                                                                    <td>{{$grade11second -> faculty -> last_name}}, {{$grade11second -> faculty -> second_name}} {{$grade11second -> faculty -> middle_name}}</td>
+                                                                    <td>{{$grade11second -> faculty -> last_name}}, {{$grade11second -> faculty -> second_name}} {{$grade11second -> faculty -> middle_name}} {{$grade11second -> faculty -> suffix}}</td>
                                                                     <td>{{$time_start= date('h:i A', strtotime($grade11second->time_start))}} - {{$time_end= date('h:i A', strtotime($grade11second->time_end))}}</td>
                                                                     <td>{{$grade11second -> midterm}}</td>
                                                                     <td>{{$grade11second -> finals}}</td>
@@ -462,7 +462,7 @@
                                                                     <tr>
                                                                         <td>{{$grade11first -> subject -> subjectcode}}</td>
                                                                         <td>{{$grade11first -> subject -> subjectname}}</td>
-                                                                        <td>{{$grade11first -> faculty -> last_name}}, {{$grade11first -> faculty -> first_name}} {{$grade11first -> faculty -> middle_name}}</td>
+                                                                        <td>{{$grade11first -> faculty -> last_name}}, {{$grade11first -> faculty -> first_name}} {{$grade11first -> faculty -> middle_name}} {{$grade11first -> faculty -> suffix}}</td>
                                                                         <td>{{$time_start= date('h:i A', strtotime($grade11first->time_start))}} - {{$time_end= date('h:i A', strtotime($grade11first->time_end))}}</td>
                                                                         <td>{{$grade11first -> midterm}}</td>
                                                                         <td>{{$grade11first -> finals}}</td>

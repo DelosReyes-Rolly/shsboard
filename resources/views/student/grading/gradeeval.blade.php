@@ -81,7 +81,7 @@
                                                     <td>{{$gradeevaluationrequest -> gradelevel -> gradelevel}}</td>
                                                     <td>{{$gradeevaluationrequest -> semester -> sem}}</td>
                                                     <td>{{$gradeevaluationrequest -> subject -> subjectname}}</td>
-                                                    <td>{{$gradeevaluationrequest -> faculty -> last_name}}, {{$gradeevaluationrequest -> faculty -> first_name}} {{$gradeevaluationrequest -> faculty -> middle_name}}</td>
+                                                    <td>{{$gradeevaluationrequest -> faculty -> last_name}}, {{$gradeevaluationrequest -> faculty -> first_name}} {{$gradeevaluationrequest -> faculty -> middle_name}} {{$gradeevaluationrequest -> faculty -> suffix}}</td>
                                                     <td>{{$requested_at}}</td>
                                                     <td>
                                                         <?php if($gradeevaluationrequest -> file == NULL):?>

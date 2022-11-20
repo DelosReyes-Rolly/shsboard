@@ -30,19 +30,19 @@
                             <div class="card border-start-lg border-start-yellow">
                                 <div class="card-header"></div>
                                 <div class="card-body" style="padding: 10px 40px 10px 40px">
-                                    <div class="mb-3">
-
+                                    <div class="mb-3" style="color: red">
+                                        * required field
                                     </div>
                                     <!-- Form Row-->
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group (title)-->
                                         <div class="col-md-6">
-                                            <label class="large mb-1" for="inputwhat" style="font-size: 20px;">What</label>
+                                            <label class="large mb-1" for="inputwhat" style="font-size: 20px;"><span style="color: red">*</span> What</label>
                                             <input class="form-control @error('what') is-invalid @enderror" id="inputwhat" type="text" placeholder="Enter the title" name="what"  value="{{$event->what}}">
                                         </div>
                                         <!-- Form Group date-->
                                         <div class="col-md-6">
-                                            <label class="large mb-1" for="inputwho" style="font-size: 20px;">Who</label>
+                                            <label class="large mb-1" for="inputwho" style="font-size: 20px;"><span style="color: red">*</span> Who</label>
                                             <input class="form-control @error('who') is-invalid @enderror" id="inputwho" type="text" placeholder="Enter the receipients" name="who"  value="{{$event->who}}">
                                         </div>
                                     </div><br/>
@@ -50,29 +50,29 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                             <div class="col-md-2">
-                                                <label class="slarge mb-1" for="inputwhn" style="font-size: 20px;">When</label>
+                                                <label class="slarge mb-1" for="inputwhn" style="font-size: 20px;"><span style="color: red">*</span> When</label>
                                                 <input type="date" class="form-control @error('whn') is-invalid @enderror" id="inputwhn" placeholder="Enter the date" name="whn"  value="{{$event->whn}}">
                                             </div>
                                             <!-- Form Group (content)-->
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <label for="appt" style="font-size: 20px;">Select a time:</label><br>
+                                                    <label for="appt" style="font-size: 20px;"><span style="color: red">*</span> Select a time:</label><br>
                                                     <input type="time" id="whn_time" name="whn_time" value="{{$event->whn_time}}">
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
-                                                <label class="slarge mb-1" for="inputexpired_at" style="font-size: 20px;">When</label>
+                                                <label class="slarge mb-1" for="inputexpired_at" style="font-size: 20px;"><span style="color: red">*</span> When</label>
                                                 <input type="date" class="form-control @error('expired_at') is-invalid @enderror" id="inputexpired_at" placeholder="Enter the date" name="expired_at"  value="{{$event->expired_at}}">
                                             </div>
                                             <!-- Form Group (location)-->
                                             <div class="col-md-6">
-                                                <label class="large mb-1" for="inputwhr" style="font-size: 20px;">Where</label>
+                                                <label class="large mb-1" for="inputwhr" style="font-size: 20px;"><span style="color: red">*</span> Where</label>
                                                 <input class="form-control @error('whr') is-invalid @enderror" id="inputwhr" type="text" placeholder="Enter the location" name="whr"  value="{{$event->whr}}">
                                             </div>
                                         </div><br/>
                                         <!-- Form Group (content)-->
                                         <div class="mb-3">
-                                            <label class="large mb-1" for="editor" style="font-size: 20px;">Content</label>
+                                            <label class="large mb-1" for="editor" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
                                             <textarea class="form-control @error('content') is-invalid @enderror" id="editor" type="text" placeholder="Enter the information" name="content"  rows="10" cols="80">{{$event->content}}</textarea>
                                         </div><br/>
                                         <div class="row gx-3 mb-3">

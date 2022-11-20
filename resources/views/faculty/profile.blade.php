@@ -52,9 +52,10 @@
 							<b><div class="text-center" style="font-size: 28px; color:green;">Profile Settings</div><br><hr style="border:1px solid grey;"></b><br>
 						</div>
 						<div class="row mt-2">
-							<div class="col-md-4" style="font-size: 18px;"><label>First Name</label><input  style="font-size: 16px;" class="form-control @error('first_name') is-invalid @enderror" type="text"  name="first_name" class="form-control" placeholder="{{Auth::user()->first_name}}" value={{Auth::user()->first_name}}></div>
-							<div class="col-md-4" style="font-size: 18px;"><label>Middle Name</label><input style="font-size: 16px;" class="form-control @error('middle_name') is-invalid @enderror" type="text" name="middle_name" class="form-control" placeholder="{{Auth::user()->middle_name}}" value={{Auth::user()->middle_name}}></div>
-							<div class="col-md-4" style="font-size: 18px;"><label>Last Name</label><input style="font-size: 16px;" class="form-control @error('last_name') is-invalid @enderror" type="text" name="last_name" class="form-control" placeholder="{{Auth::user()->last_name}}" value={{Auth::user()->last_name}}></div>
+							<div class="col-md-3" style="font-size: 18px;"><label>First Name</label><input  style="font-size: 16px;" class="form-control @error('first_name') is-invalid @enderror" type="text"  name="first_name" class="form-control" placeholder="{{Auth::user()->first_name}}" value={{Auth::user()->first_name}}></div>
+							<div class="col-md-3" style="font-size: 18px;"><label>Middle Name</label><input style="font-size: 16px;" class="form-control @error('middle_name') is-invalid @enderror" type="text" name="middle_name" class="form-control" placeholder="{{Auth::user()->middle_name}}" value={{Auth::user()->middle_name}}></div>
+							<div class="col-md-3" style="font-size: 18px;"><label>Last Name</label><input style="font-size: 16px;" class="form-control @error('last_name') is-invalid @enderror" type="text" name="last_name" class="form-control" placeholder="{{Auth::user()->last_name}}" value={{Auth::user()->last_name}}></div>
+							<div class="col-md-3" style="font-size: 18px;"><label>Suffix</label><input style="font-size: 16px;" type="text" class="form-control @error('suffix') is-invalid @enderror" name="suffix" placeholder="{{Auth::user()->suffix}}" value={{Auth::user()->suffix}}></div>
 						</div><br/>
 						<div class="row mt-3">
 							<div class="col-md-12" style="font-size: 18px;"><label>Email</label>
@@ -76,15 +77,14 @@
 					</div>
 				</div>	
 				<div class="col-md-4" style="font-size: 18px;">
-					<div class="p-3 py-5"><br><br><br><br>
-						<div class="d-flex justify-content-between align-items-center experience"><span>Address</span></div>
-						<br><br>
-						<div class="col-lg-6"><label>Street</label><input style="font-size: 16px;" type="text" class="form-control @error('street') is-invalid @enderror" name="street" placeholder="{{$address->street}}" alue={{$address->street}}></div>
-						<div class="col-lg-6"><label>Village</label><input style="font-size: 16px;" type="text" class="form-control @error('village') is-invalid @enderror" name="village" placeholder="{{$address->village}}" value={{$address->village}}></div>
-						<div class="col-lg-6"><label>City</label><input style="font-size: 16px;" type="text" class="form-control @error('city') is-invalid @enderror" name="city" placeholder="{{$address->city}}" value={{$address->city}}></div>
-						<div class="col-lg-6"><label>Zip code</label><input style="font-size: 16px;" type="text" class="form-control @error('zip_code') is-invalid @enderror" name="zip_code" placeholder="{{$address->zip_code}}" value={{$address->zip_code}}></div>
+					<div class="p-3 py-5">
+						<div class="d-flex justify-content-between align-items-center experience"><span>Additional Info</span></div><br>
+						<div class="col-md-12"><label>Street</label><input style="font-size: 16px;" type="text" class="form-control @error('street') is-invalid @enderror" name="street" placeholder="{{$address->street}}" alue={{$address->street}}></div>
+						<div class="col-md-12"><label>Village</label><input style="font-size: 16px;" type="text" class="form-control @error('village') is-invalid @enderror" name="village" placeholder="{{$address->village}}" value={{$address->village}}></div>
+						<div class="col-md-12"><label>City</label><input style="font-size: 16px;" type="text" class="form-control @error('city') is-invalid @enderror" name="city" placeholder="{{$address->city}}" value={{$address->city}}></div>
+						<div class="col-md-12"><label>Zip code</label><input style="font-size: 16px;" type="text" class="form-control @error('zip_code') is-invalid @enderror" name="zip_code" placeholder="{{$address->zip_code}}" value={{$address->zip_code}}></div>
 					</div>
-				</div><br/>	
+				</div>
 				<hr>
 			</div>
 			<div class="mt-5 text-center"><input type="submit" class="btn btn-primary profile-button" value="Submit"></div>

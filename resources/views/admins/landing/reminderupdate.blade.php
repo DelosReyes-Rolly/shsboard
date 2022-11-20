@@ -30,19 +30,19 @@
                             <div class="card border-start-lg border-start-yellow">
                                 <div class="card-header"></div>
                                 <div class="card-body" style="padding: 10px 40px 10px 40px">
-                                    <div class="mb-3">
-
+                                    <div class="mb-3" style="color: red">
+                                        * required field
                                     </div>
                                     <!-- Form Row -->
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group (content)-->
                                         <div class="col-md-3">
-                                            <label class="slarge mb-1" for="inputwhn" style="font-size: 20px;">When</label>
+                                            <label class="slarge mb-1" for="inputwhn" style="font-size: 20px;"><span style="color: red">*</span> When</label>
                                                 <input type="date" class="form-control @error('whn') is-invalid @enderror" id="inputwhn" placeholder="Enter the date" name="whn"  value="{{$reminder->whn}}">
                                             </div>
                                         </div><br/>
                                         <div class="mb-3">
-                                            <label class="large mb-1" for="editor" style="font-size: 20px;">Content</label>
+                                            <label class="large mb-1" for="editor" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
                                             <textarea class="form-control @error('content') is-invalid @enderror" id="editor" type="text" placeholder="Enter the information" name="content" rows="10" cols="80">{{$reminder->content}}</textarea>
                                         </div><br/>
                                         <!-- Form Group privacy-->

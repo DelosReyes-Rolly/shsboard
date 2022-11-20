@@ -104,8 +104,9 @@ class FacultyController extends Controller
         $ownid=Auth::user()->id;
         $validated = $request->validate([
             "first_name" => ['required'],
-            "middle_name" => ['required'],
+            "middle_name" => 'nullable',
             "last_name" => ['required'],
+            "suffix" => 'nullable',
             "email" => 'required|email:rfc,dns|email|unique:faculties,email,' . $ownid,
             "gender" => 'nullable',
             "username" => 'nullable|max:255|unique:faculties,username,' . $ownid,

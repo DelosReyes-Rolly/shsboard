@@ -34,12 +34,12 @@
                                     <div class="row gx-3 mb-3">
                                         
                                         <div class="col-md-10">
-                                            <label style="font-size: 20px;">* LRN</label>
+                                            <label style="font-size: 20px;"><span style="color: red">*</span>  LRN</label>
                                             <input type="text" name="LRN" class="form-control @error('LRN') is-invalid @enderror" value="{{ old('LRN') }}" style="font-size: 14px;">
                                         </div><br/><br/>
                                         <!-- Form Group (title)-->
                                         <div class="col-md-10">
-                                            <label style="font-size: 20px;">* Last Name</label>
+                                            <label style="font-size: 20px;"><span style="color: red">*</span>  Last Name</label>
                                             <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}" style="font-size: 14px;">
                                         </div><br/><br/>
                                     </div>
@@ -47,7 +47,7 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
-                                            <label style="font-size: 20px;">* First Name</label>
+                                            <label style="font-size: 20px;"><span style="color: red">*</span>  First Name</label>
                                             <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}" style="font-size: 14px;">
                                         </div><br/><br/>
                                     </div>
@@ -55,12 +55,19 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
-                                            <label style="font-size: 20px;">* Middle Name</label>
+                                            <label style="font-size: 20px;"> Middle Name</label>
                                             <input type="text" name="middle_name" class="form-control @error('middle_name') is-invalid @enderror" value="{{ old('middle_name') }}" style="font-size: 14px;">
                                         </div><br/><br/>
                                     </div>
+                                    <div class="row gx-3 mb-3">
+                                        <!-- Form Group whr-->
+                                        <div class="col-md-10">
+                                            <label style="font-size: 20px;">Suffix</label>
+                                            <input type="text" name="suffix" class="form-control @error('suffix') is-invalid @enderror" value="{{ old('suffix') }}" style="font-size: 14px;">
+                                        </div>
+                                    </div><br/><br/>
                                     <div class="form-group">
-                                        <label for ="gender">* Gender</label><br>
+                                        <label for ="gender"><span style="color: red">*</span>  Gender</label><br>
                                         <select name="gender">
                                             <option value="" hidden>  Please Select Gender </option>
                                             <option value="Male">Male </option>
@@ -71,7 +78,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="gradelevel_id" class="col-form-label text-md-end" style="font-size: 20px;">* {{ __('Grade Level') }}</label><br>
+                                        <label for="gradelevel_id" class="col-form-label text-md-end" style="font-size: 20px;"><span style="color: red">*</span>  {{ __('Grade Level') }}</label><br>
                                         <select name="gradelevel_id" id="gradelevel_id">
                                             <option value="" {{old('gradelevel_id') == "" ?'selected' : ''}} disabled> Please Select Grade Level </option>
                                             @foreach($level_data as $gradelevel_id)
@@ -81,7 +88,7 @@
                                     </div>
                                                 
                                     <div class="form-group">
-                                        <label for="section_id" class="col-form-label text-md-end" style="font-size: 20px;">* {{ __('Section') }}</label>
+                                        <label for="section_id" class="col-form-label text-md-end" style="font-size: 20px;"><span style="color: red">*</span>  {{ __('Section') }}</label>
                                         <select name="section_id" id="section_id">
                                         <option value="" {{old('section_id') == "" ?'selected' : ''}} disabled> Please Select section </option>
                                             @foreach($section_data as $section_id)
@@ -91,7 +98,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="course_id" class="col-form-label text-md-end" style="font-size: 20px;">* {{ __('Strand') }}</label>
+                                        <label for="course_id" class="col-form-label text-md-end" style="font-size: 20px;"><span style="color: red">*</span>  {{ __('Strand') }}</label>
                                         <select name="course_id" id="course_id">
                                         <option value="" {{old('course_id') == "" ?'selected' : ''}} disabled> Please Select Strand </option>
                                             @foreach($courses_data as $course_id)
@@ -103,7 +110,7 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
-                                            <label style="font-size: 20px;">* Email Address</label>
+                                            <label style="font-size: 20px;"><span style="color: red">*</span>  Email Address</label>
                                             <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" style="font-size: 14px;"> 
                                         </div><br/><br/>    
                                     </div>

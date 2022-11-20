@@ -29,15 +29,15 @@
                             <div class="card border-start-lg border-start-yellow">
                                 <div class="card-header"><font face = "Bedrock" size = "6"><b><i class="fas fa-pencil-alt"></i> Create Subject Information</b></font></div>
                                 <div class="card-body" style="padding: 10px 40px 10px 40px">
-                                    <div class="mb-3">
-
+                                    <div class="mb-3" style="color: red">
+                                        * required field
                                     </div>
                                     <!-- Form Row-->
                                     <div class="row gx-3 mb-3">
                                         
                                         <!-- Form Group (title)-->
                                         <div class="col-md-10">
-                                            <label>Subject Code</label>
+                                            <label><span style="color: red">*</span> Subject Code</label>
                                             <input type="text" name="subjectcode" class="form-control @error('subjectcode') is-invalid @enderror" value="{{ old('subjectcode') }}" style="font-size: 14px;">
                                         </div>
                                     </div>
@@ -45,7 +45,7 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
-                                            <label>Subject Name</label>
+                                            <label><span style="color: red">*</span> Subject Name</label>
                                             <input type="text" name="subjectname" class="form-control @error('subjectname') is-invalid @enderror" value="{{ old('subjectname') }}" style="font-size: 14px;">
                                         </div>
                                     </div>
@@ -53,7 +53,7 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
-                                            <label>Description</label>
+                                            <label><span style="color: red">*</span> Description</label>
                                             <textarea type="text" name="description" id="editor" class="form-control @error('description') is-invalid @enderror" style="font-size: 14px;">{{ old('description') }}</textarea>
                                         </div>
                                     </div>

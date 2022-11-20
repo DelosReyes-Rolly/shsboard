@@ -59,7 +59,7 @@
                                     @foreach ($faculties as $faculty)
                                         <tr>
                                             <td class="text-center"><?php echo $i++; ?></td>
-                                            <td>{{$faculty -> last_name}} , {{$faculty -> first_name}} {{$faculty -> middle_name}}</td>
+                                            <td>{{$faculty -> last_name}} , {{$faculty -> first_name}} {{$faculty -> middle_name}} {{$faculty -> suffix}}</td>
                                             <td>{{$faculty -> gender}}</td>
                                             <td>{{$faculty -> username}}</td>
                                             <td>{{$faculty -> phone_number}}</td>

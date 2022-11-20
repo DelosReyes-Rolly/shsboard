@@ -29,7 +29,7 @@
 
     <div class="wrapper">
         <!-- Sidebar  -->
-        <nav id="sidebar">
+        <nav id="sidebar" class="sticky-top h-100 vh-100" style="padding-bottom: 248px;">
             <div class="sidebar-header">
                 <div class="title"><img src="{{url('/img/svnhs-logo.png')}}" style="width: 80px; height: 80px;"><img src="{{url('/img/shs.png')}}" style="width: 80px; height: 80px;"><div style="font-size: 20px;"> Signal Village National High School </div> <br/> SHS - BOARD</div>
                 <strong> <img src="{{url('/img/shs.png')}}" style="width: auto; height: auto;"></strong>
@@ -45,7 +45,7 @@
                 <li>
                     <a href="#academicSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" title="Academic Syllabus">
                     <i class="fas fa-school"></i>
-                        <span class="hide-word title-word"> <b>Academic</b></span>
+                        <span class="hide-word title-word"> <b>Management Access</b></span>
                     </a>
                     <ul class="collapse list-unstyled" id="academicSubmenu">
                         <li title="School year">

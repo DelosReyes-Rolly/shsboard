@@ -52,10 +52,13 @@
                                     <div class="card-header"></div>
                                     <div class="card-body" style="padding: 10px 40px 10px 40px">
                                         <!-- Form Row-->
+                                        <div class="mb-3" style="color: red">
+                                            * required field
+                                        </div>
                                         <div class="row gx-3 mb-3">
                                             <!-- Form Group (title)-->
                                             <div class="col-md-6">
-                                                <label class="large mb-1" for="inputtitle" style="font-size: 20px;">Title</label>
+                                                <label class="large mb-1" for="inputtitle" style="font-size: 20px;"><span style="color: red">*</span> Title</label>
                                                 <input class="form-control @error('title') is-invalid @enderror" id="inputtitle" type="text" placeholder="Enter the title" name="title"  value="{{ old('title') }}">
                                             </div>
                                         </div><br/>
@@ -63,7 +66,7 @@
                                       
                                             <!-- Form Group (content)-->
                                             <div class="mb-3" style="padding-left: 18px;">
-                                                <label class="large mb-1" for="editor" style="font-size: 20px;">Content</label>
+                                                <label class="large mb-1" for="editor" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
                                                 <textarea class="form-control @error('document_id') is-invalid @enderror" id="editor" type="text" placeholder="Enter the information" name="content" rows="10" cols="80">{{ old('content') }}</textarea>
                                             </div><br/>
                                             <div class="row gx-3 mb-3" style="padding-left: 22px;">

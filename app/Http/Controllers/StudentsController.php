@@ -125,8 +125,9 @@ class StudentsController extends Controller
         $ownid=Auth::user()->id;
         $validated = $request->validate([
             "first_name" => ['required'],
-            "middle_name" => ['required'],
+            "middle_name" => 'nullable|max:255',
             "last_name" => ['required'],
+            "suffix" => 'nullable|max:255',
             "username" => 'nullable|max:255|unique:students,username,' . $ownid,
             "phone_number" => 'nullable|numeric|min:10',
             "email" => 'required|email:rfc,dns|email|unique:students,email,' . $ownid,
@@ -254,13 +255,17 @@ class StudentsController extends Controller
 
      public function viewrequest($id){
         $data = DocumentRequests::findOrFail($id);
-        return view('student.docreqview', ['docreq' => $data]);
+        $gradelevel = GradeLevels::where('id', '=', Auth::user()->gradelevel_id)->first();
+        $course = Courses::where('id', '=', Auth::user()->course_id)->first();
+        return view('student.docreqview', ['docreq' => $data, 'gradelevel' => $gradelevel, 'course' => $course]);
     }
 
 
      public function showrequest($id){
         $data = DocumentRequests::findOrFail($id);
-        return view('student.docreq', ['docreq' => $data]);
+        $gradelevel = GradeLevels::where('id', '=', Auth::user()->gradelevel_id)->first();
+        $course = Courses::where('id', '=', Auth::user()->course_id)->first();
+        return view('student.docreq', ['docreq' => $data, 'gradelevel' => $gradelevel, 'course' => $course]);
     }
 
     public function updatedocreq(Request $request, DocumentRequests $docreq){

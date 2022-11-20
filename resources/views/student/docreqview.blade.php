@@ -22,27 +22,34 @@
                                             <!-- Form Row-->
                                             <div class="row gx-3 mb-3">
                                                 <!-- Form Group (title)-->
-                                                <div class="col-md-4">
+                                                <div class="col-md-3">
                                                     <div class="col-md-12"><label class="labels" style="font-size: 26px;">Last Name</label><input type="text" class="form-control"  style="font-size: 16px;" placeholder=" {{Auth::user()->last_name}} " value="" readonly></div> <br>
                                                 </div>
                                                 <!-- Form Group date-->
-                                                <div class="col-md-4">
+                                                <div class="col-md-3">
                                                     <div class="col-md-12"><label class="labels" style="font-size: 26px;">First Name</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->first_name}} " value="" readonly></div> <br>
                                                 </div>
                                                 <!-- Form Group (title)-->
-                                                <div class="col-md-4">
-                                                    <div class="col-md-12"><label class="labels" style="font-size: 26px;">Middle Name</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->last_name}} " value="" readonly></div> <br>
+                                                <div class="col-md-3">
+                                                    <div class="col-md-12"><label class="labels" style="font-size: 26px;">Middle Name</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->middle_name}} " value="" readonly></div> <br>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="col-md-12"><label class="labels" style="font-size: 26px;">Suffix</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->suffix}} " value="" readonly></div> <br>
                                                 </div>
                                             </div>
                                             <!-- Form Row        -->
                                             <div class="row gx-3 mb-3">
                                             	 <!-- Form Group (location)-->
                                                 <div class="col-md-6">
-                                                    <div class="col-md-12"><label class="labels" style="font-size: 26px;">Course</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->course_id}} " value="" readonly></div> <br>
+                                                <div class="col-md-12"><label class="labels" style="font-size: 20px;">Course</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{$course->courseName}} - {{$course->abbreviation}}" value="" readonly></div> <br>
                                                 </div>
                                                 <!-- Form Group document needed-->
                                                 <div class="col-md-6">
-                                                	<div class="col-md-12"><label class="labels" style="font-size: 26px;">Grade Level</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->gradelevel_id}} " value="" readonly></div> <br>
+                                                    @if($gradelevel == null)
+                                                	    <div class="col-md-12"><label class="labels" style="font-size: 20px;">Grade Level</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" 12 " value="" readonly></div> <br>
+                                                    @else
+                                                        <div class="col-md-12"><label class="labels" style="font-size: 20px;">Grade Level</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{$gradelevel->gradelevel}} " value="" readonly></div> <br>
+                                                    @endif
                                                 </div>
                                                 <!-- Form Group (content)-->
                                                 <div class="mb-3 requestdocument">

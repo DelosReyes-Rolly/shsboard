@@ -20,8 +20,9 @@ class Students extends Migration
             $table->integer('section_id');
             $table->string('LRN');
             $table->string('first_name');
-            $table->string('middle_name');
+            $table->string('middle_name')->nullable();
             $table->string('last_name');
+            $table->string('suffix')->nullable();
             $table->integer('gradelevel_id');
             $table->string('username')->nullable();
             $table->string('password');
