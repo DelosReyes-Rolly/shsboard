@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<!-- <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
@@ -58,4 +58,51 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT). -->
+
+
+<p align="center"><a href="https://google.com" target="_blank">SystemaTECH</a></p><br/>
+
+<p align="center"><a href="https://google.com" target="_blank">SVNHS-SHS BOARD</a></p><br/>
+
+## Group Members
+
+Jennifer Pajaron
+Allen Kobe Agustin
+Hydelyn Joy Vinoya
+Rolly A. Delos Reyes
+
+
+## About SVNHS-SHS BOARD
+
+SVNHS-SHS BOARD is ...
+
+## How to run in local
+
+1. Click 'code' button above then download zip.
+2. Extract the file.
+3. Locate the file directory.
+4. Type 'php artisan migrate:fresh --seed' ('' not included) - this is for the importation of database in the local host.
+5. Type 'php artisan serve' ('' not included) - this is for the server to run.
+6. Run xampp - apache and sql.
+7. Open your browser and go to http://127.0.0.1:8000/
+8. The end.
+
+
+## Credentials
+
+<b>Admin</b>
+- Email: rollydelosreyes729@gmail.com
+- Password: password
+
+<b>Faculty</b>
+- Email: sample1@gmail.com
+- Password: password
+
+<b>Students</b>
+- Go to http://localhost/phpmyadmin/ and get the email and password of sample students.
+
+
+## If xampp has an error
+
+- Go to services and stop mysql80.
