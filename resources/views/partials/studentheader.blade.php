@@ -55,7 +55,7 @@
                     </a>
                     <ul class="collapse list-unstyled" id="academicSubmenu">
                         <li title="Subjects">
-                            <a href='{{ url("/studentgrade") }}'><i class="fas fa-calendar-alt"></i> <span class="hide-word"><b> Subjects</b></span></a>
+                            <a href='{{ url("/studentgrade") }}'><i class="fas fa-calendar-alt"></i> <span class="hide-word"><b>Subjects</b></span></a>
                         </li>
                         <li title="Evaluation Requests">
                             <a href='{{ url("/gradeeval") }}'><i class="fas fa-home"></i> <span class="hide-word"><b> Evaluation Requests</b></span></a>
