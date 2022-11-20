@@ -101,7 +101,7 @@
                                                     <td>{{$gradeevaluationrequest -> gradelevel -> gradelevel}}</td>
                                                     <td>{{$gradeevaluationrequest -> semester -> sem}}</td>
                                                     <td>{{$gradeevaluationrequest -> subject -> subjectname}}</td>
-                                                    <td>{{$gradeevaluationrequest -> student -> last_name}}, {{$gradeevaluationrequest -> student -> first_name}} {{$gradeevaluationrequest -> student -> middle_name}}</td>
+                                                    <td>{{$gradeevaluationrequest -> student -> last_name}}, {{$gradeevaluationrequest -> student -> first_name}} {{$gradeevaluationrequest -> student -> middle_name}} {{$gradeevaluationrequest -> student -> suffix}}</td>
                                                     <td>{{$date  =   date('F d, Y', strtotime($gradeevaluationrequest->created_at))}}</td>
                                                     <td>
                                                         <?php if($gradeevaluationrequest -> file == NULL):?>
