@@ -105,7 +105,7 @@
                     </div>
                 </div>
             </nav>
-
+            @include('sweetalert::alert')
             <!-- Go back from top -->
             <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-chevron-up"></i></button>
             <script>

@@ -148,5 +148,6 @@
 			</video>
 		</div><br/><br/><br/><br/>
 	</section>
+	@include('sweetalert::alert')
 </main>
 @include('partials.landingfooter')

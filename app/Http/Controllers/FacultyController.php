@@ -52,7 +52,7 @@ class FacultyController extends Controller
 
         Faculties::where('email', '=', $request->email)->update(['password' => $temp]);
         Mail::to($request->email)->send(new RegisterMail($pass));
-        return redirect()->back()->with('message', 'Email has been sent!');
+        return redirect()->back()->with('success', 'Email has been sent!');
     }
 
     // ============================================================ ANNOUNCEMENTS ===================================================================================
@@ -122,7 +122,7 @@ class FacultyController extends Controller
         $validated['updated_at'] = now();
         $address->update($validated);
     
-        return back()->with('message', 'Profile has been edited Successfully');
+        return back()->with('success', 'Profile has been edited Successfully');
     }
 
 
@@ -176,7 +176,7 @@ class FacultyController extends Controller
             $announcement->faculty_id =  Auth::user()->id;
             $announcement->save();
             ActivityStreams::where('deleted', '=', NULL)->where('expired_at', '<',  now())->update(['status' => '2']);
-            return redirect('/createannouncement')->with('message', 'New activity was added successfully!');
+            return redirect('/createannouncement')->with('success', 'New activity was added successfully!');
         }
 
 
@@ -214,7 +214,7 @@ class FacultyController extends Controller
             ]);
            $announcement->update($validated);
            ActivityStreams::where('deleted', '=', NULL)->where('expired_at', '<',  now())->update(['status' => '2']);
-           return redirect('/createannouncement')->with('message', 'Activity has been updated.');;
+           return redirect('/createannouncement')->with('success', 'Activity has been updated.');;
        }
 
          public function deleteactivitystream(Request $request, ActivityStreams $activitystream){
@@ -223,7 +223,7 @@ class FacultyController extends Controller
                 'deleted_at' => ['required'],
             ]);
             $activitystream->update($validated);
-            return redirect('/createannouncement')->with('message', 'Activity has been deleted successfully!');
+            return redirect('/createannouncement')->with('success', 'Activity has been deleted successfully!');
          }
     
          public function deleteannouncement($id){
@@ -299,7 +299,7 @@ class FacultyController extends Controller
             $gradeeval = GradeEvaluationRequests::where('id', '=', $upload->id)->first();
             $gradeeval->file = $filename;
             $gradeeval->update();
-            return redirect('/facultygradeeval')->with('message', 'Request has been updated successfully!');
+            return redirect('/facultygradeeval')->with('success', 'Request has been updated successfully!');
         } 
     }
 

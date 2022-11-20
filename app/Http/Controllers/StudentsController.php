@@ -48,7 +48,7 @@ class StudentsController extends Controller
 
         Students::where('email', '=', $request->email)->update(['password' => $temp]);
         Mail::to($request->email)->send(new RegisterMail($pass));
-        return redirect()->back()->with('message', 'Email has been sent!');
+        return redirect()->back()->with('success', 'Email has been sent!');
     }
 
     // ============================================================ ANNOUNCEMENTS ===================================================================================
@@ -144,7 +144,7 @@ class StudentsController extends Controller
         $validated['updated_at'] = now();
         $address->update($validated);
 
-        return back()->with('message', 'Profile has been edited Successfully');
+        return back()->with('success', 'Profile has been edited Successfully');
     }
 
 
@@ -198,7 +198,7 @@ class StudentsController extends Controller
             'deleted_at' => ['required'],
         ]);
         $gradeeval->update($validated);
-        return redirect('/gradeeval')->with('message', 'Strand has been deleted successfully!');
+        return redirect('/gradeeval')->with('success', 'Strand has been deleted successfully!');
      }
 
      public function deletegradeeval($id){
@@ -237,7 +237,7 @@ class StudentsController extends Controller
             $docreq->file = $filename;
         }   
         $docreq->save();
-        return redirect()->back()->with('messages', 'New document request was added Successfully');
+        return redirect()->back()->with('successs', 'New document request was added Successfully');
     }
 
     public function deletegraderequest($id){
@@ -245,7 +245,7 @@ class StudentsController extends Controller
         $leave->deleted = 1;
         $leave->deleted_at = now();
         $leave->save();
-        return redirect('/studentrequest')->with('message', 'Your request has been deleted.');
+        return redirect('/studentrequest')->with('success', 'Your request has been deleted.');
      }
      public function deleterequest($id){
         $data = DocumentRequests::findOrFail($id);
@@ -269,7 +269,7 @@ class StudentsController extends Controller
             'purpose' => ['required'],
         ]);
        $docreq->update($validated);
-       return redirect('/studentrequest')->with('message', 'Your request has been updated.');
+       return redirect('/studentrequest')->with('success', 'Your request has been updated.');
    }
 
    public function downloadrequest($file_name) {

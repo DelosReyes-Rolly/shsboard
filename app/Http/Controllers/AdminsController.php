@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Mail\RegisterMail;
 use App\Models\Addresses;
 use App\Models\Admins;
@@ -57,7 +56,7 @@ class AdminsController extends Controller
 
         Admins::where('email', '=', $request->email)->update(['password' => $temp]);
         Mail::to($request->email)->send(new RegisterMail($pass));
-        return redirect()->back()->with('message', 'Email has been sent!');
+        return redirect()->back()->with('success', 'Email has been sent!');
     }
 
     // ============================================================ ANNOUNCEMENTS ===================================================================================
@@ -113,7 +112,7 @@ class AdminsController extends Controller
         ]);
 
         $admin->update($validated);
-        return back()->with('message', 'Profile has been updated sucessfully!');
+        return back()->with('success', 'Profile has been updated sucessfully!');
     }
 
     
@@ -153,7 +152,7 @@ class AdminsController extends Controller
             $landing->image = $filename;
         }
         $landing->save();
-        return redirect('/homepage')->with('message', 'New content was added Successfully');
+        return redirect('/homepage')->with('success', 'New content was added Successfully');
     }
     
     public function viewlanding($id){
@@ -240,7 +239,7 @@ class AdminsController extends Controller
         }
         $announcement->save();
         Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<',  now())->update(['status' => '2']);
-        return redirect()->back()->with('message', 'New announcement was added Successfully');
+        return redirect()->back()->with('success', 'New announcement was added Successfully');
     }
 
     public function storeprivateannouncement(Request $request){
@@ -275,7 +274,7 @@ class AdminsController extends Controller
         }
         $announcement->save();
         Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<',  now())->update(['status' => '2']);
-        return redirect()->back()->with('message', 'New announcement was added Successfully');
+        return redirect()->back()->with('success', 'New announcement was added Successfully');
     }
 
     public function approve($id){
@@ -323,7 +322,7 @@ class AdminsController extends Controller
             'deleted_at' => ['required'],
         ]);
         $announcement->update($validated);
-        return redirect('/homepage')->with('message', 'Content has been deleted.');
+        return redirect('/homepage')->with('success', 'Content has been deleted.');
      }
 
      public function deleteadminannouncement($id){
@@ -387,7 +386,7 @@ class AdminsController extends Controller
         }
         $announcement->save();
         Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<',  now())->update(['status' => '2']);
-        return redirect('/createEvents')->with('message', 'New event was added Successfully');
+        return redirect('/createEvents')->with('success', 'New event was added Successfully');
     }
 
     public function viewevent($id){
@@ -450,7 +449,7 @@ class AdminsController extends Controller
         $announcement->status = 1;
         $announcement->save();
         Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<',  now())->update(['status' => '2']);
-        return redirect('/createReminder')->with('message', 'New reminder was added Successfully');
+        return redirect('/createReminder')->with('success', 'New reminder was added Successfully');
     }
 
     public function storeprivatereminder(Request $request){
@@ -467,7 +466,7 @@ class AdminsController extends Controller
         $announcement->status = 1;
         $announcement->save();
         Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<',  now())->update(['status' => '2']);
-        return redirect('/privatereminders')->with('message', 'New reminder was added Successfully');
+        return redirect('/privatereminders')->with('success', 'New reminder was added Successfully');
     }
 
     public function viewreminder($id){
@@ -510,7 +509,7 @@ class AdminsController extends Controller
         $document = new Documents();
         $document->name = $request->get('name');
         $document->save();
-        return redirect('/documentrequest')->with('message', 'New document was added Successfully');
+        return redirect('/documentrequest')->with('success', 'New document was added Successfully');
     }
 
 
@@ -563,7 +562,7 @@ class AdminsController extends Controller
             'status' => ['required'],
         ]);
        $docreq->update($validated);
-       return redirect('/documentrequest')->with('message', 'The request has been updated.');
+       return redirect('/documentrequest')->with('success', 'The request has been updated.');
    }
 
      public function downloadpdfdoc(Request $request) {
@@ -634,7 +633,7 @@ class AdminsController extends Controller
             $course->image = $filename;
         }
         $course->save();
-        return redirect('/gradingcourses')->with('message', 'New strand has been added successfully!');
+        return redirect('/gradingcourses')->with('success', 'New strand has been added successfully!');
     }    
 
     
@@ -658,7 +657,7 @@ class AdminsController extends Controller
             'link' => 'url|nullable',
         ]);
        $course->update($validated);
-       return redirect('/gradingcourses')->with('message', 'Strand has been updated successfully!');
+       return redirect('/gradingcourses')->with('success', 'Strand has been updated successfully!');
    }
 
      public function deletegradecourse(Request $request, Courses $course){
@@ -667,7 +666,7 @@ class AdminsController extends Controller
             'deleted_at' => ['required'],
         ]);
         $course->update($validated);
-        return redirect('/gradingcourses')->with('message', 'Strand has been deleted successfully!');
+        return redirect('/gradingcourses')->with('success', 'Strand has been deleted successfully!');
      }
 
      public function deletecourse($id){
@@ -694,7 +693,7 @@ class AdminsController extends Controller
         $section = new sections();
         $section->section = $request->get('section');
         $section->save();
-        return redirect('/gradingsections')->with('message', 'Section has been added successfully!');
+        return redirect('/gradingsections')->with('success', 'Section has been added successfully!');
     }    
 
     public function viewsection($id){
@@ -713,7 +712,7 @@ class AdminsController extends Controller
             'section' => ['required'],
         ]);
        $section->update($validated);
-       return redirect('/gradingsections')->with('message', 'Section has been updated successfully!');
+       return redirect('/gradingsections')->with('success', 'Section has been updated successfully!');
    }
 
    public function deletegradesection(Request $request, Sections $section){
@@ -722,7 +721,7 @@ class AdminsController extends Controller
             'deleted_at' => ['required'],
         ]);
         $section->update($validated);
-        return redirect('/gradingsections')->with('message', 'Section has been deleted successfully!');
+        return redirect('/gradingsections')->with('success', 'Section has been deleted successfully!');
     }
 
     public function deletesection($id){
@@ -769,7 +768,7 @@ class AdminsController extends Controller
 
         $user->faculty()->create($validated);
         Mail::to($validated['email'])->send(new RegisterMail($pass));
-        return redirect('/gradingfaculty')->with('message', 'Teacher has been added successfully!');
+        return redirect('/gradingfaculty')->with('success', 'Teacher has been added successfully!');
     }
 
 
@@ -793,7 +792,7 @@ class AdminsController extends Controller
             "email" => 'required|email:rfc,dns|email|unique:faculties,email,' . $ownid,
         ]);
     $faculty->update($validated);
-    return redirect('/gradingfaculty')->with('message', 'Information of teacher has been updated successfully!');
+    return redirect('/gradingfaculty')->with('success', 'Information of teacher has been updated successfully!');
     }
 
      public function deletegradefaculty(Request $request, Faculties $faculty){
@@ -804,7 +803,7 @@ class AdminsController extends Controller
         $validated['email']="";
         $validated['password']="";
         $faculty->update($validated);
-        return redirect('/gradingfaculty')->with('message', 'Record of teacher has been deleted successfully!');
+        return redirect('/gradingfaculty')->with('success', 'Record of teacher has been deleted successfully!');
     }
 
     public function deletefaculty($id){
@@ -881,7 +880,7 @@ class AdminsController extends Controller
             }
         
         Mail::to($validated['email'])->send(new RegisterMail($pass));
-        return redirect('/gradingstudents')->with('message', 'Student has been added successfully!');
+        return redirect('/gradingstudents')->with('success', 'Student has been added successfully!');
     }  
 
 
@@ -906,7 +905,7 @@ class AdminsController extends Controller
             "email" => 'required|email:rfc,dns|email|unique:students,email,' . $ownid,
         ]);
         $student->update($validated);
-        return redirect('/gradingstudents')->with('message', 'Student has been updated successfully!');
+        return redirect('/gradingstudents')->with('success', 'Student has been updated successfully!');
     }
 
      public function deletegradestudent(Request $request, Students $student){
@@ -917,7 +916,7 @@ class AdminsController extends Controller
         $validated['email']="";
         $validated['password']="";
         $student->update($validated);
-        return redirect('/gradingstudents')->with('message', 'Record of student has been deleted successfully!');
+        return redirect('/gradingstudents')->with('success', 'Record of student has been deleted successfully!');
     }
 
     public function deletestudent($id){
@@ -964,7 +963,7 @@ class AdminsController extends Controller
         $subject->subjectname = $request->get('subjectname');
         $subject->description = $request->get('description');
         $subject->save();
-        return redirect('/gradingsubjects')->with('message', 'Subject has been added successfully!');
+        return redirect('/gradingsubjects')->with('success', 'Subject has been added successfully!');
     }  
 
     public function viewsubject($id){
@@ -985,7 +984,7 @@ class AdminsController extends Controller
             'description' => ['required'],
         ]);
         $subject->update($validated);
-        return redirect('/gradingsubjects')->with('message', 'Subject has been updated successfully!');
+        return redirect('/gradingsubjects')->with('success', 'Subject has been updated successfully!');
     }
 
 
@@ -995,7 +994,7 @@ class AdminsController extends Controller
             'deleted_at' => ['required'],
         ]);
         $subject->update($validated);
-        return redirect('/gradingsubjects')->with('message', 'Subject has been deleted successfully!');
+        return redirect('/gradingsubjects')->with('success', 'Subject has been deleted successfully!');
      }
 
      public function deletesubject($id){
@@ -1038,7 +1037,7 @@ class AdminsController extends Controller
         Students::where('deleted', '=', null)->increment('gradelevel_id', 1, ['updated_at' => now()]);
         Students::query()->where('gradelevel_id', '<', 1)->orWhere('gradelevel_id', '>', 2)->update(['gradelevel_id' => 4]);
 
-        return redirect('/gradingschoolyear')->with('message', 'Schoolyear has been added successfully!');
+        return redirect('/gradingschoolyear')->with('success', 'Schoolyear has been added successfully!');
     } 
 
     public function updateschoolyear(Request $request, SchoolYear $schoolyear){
@@ -1046,7 +1045,7 @@ class AdminsController extends Controller
             'schoolyear' => ['required'],
         ]);
         $schoolyear->update($validated);
-        return redirect('/gradingschoolyear')->with('message', 'Schoolyear has been updated successfully!');
+        return redirect('/gradingschoolyear')->with('toast_success', 'Schoolyear has been updated successfully!');
     }
 
 
@@ -1056,7 +1055,7 @@ class AdminsController extends Controller
             'deleted_at' => ['required'],
         ]);
         $schoolyear->update($validated);
-        return redirect('/gradingschoolyear')->with('message', 'Schoolyear has been deleted successfully!');
+        return redirect('/gradingschoolyear')->with('success', 'Schoolyear has been deleted successfully!');
      }
 
      public function deleteschoolyear($id){
@@ -1132,7 +1131,7 @@ class AdminsController extends Controller
             }
         }  
 
-        return redirect('/gradingfacultysubjects')->with('message', 'New subject of teacher was added successfully!');
+        return redirect('/gradingfacultysubjects')->with('success', 'New subject of teacher was added successfully!');
     } 
 
     public function viewsubjectteacher($id){
@@ -1180,7 +1179,7 @@ class AdminsController extends Controller
             $studentgrade->save();
         }
 
-        return redirect('/gradingfacultysubjects')->with('message', 'Subject of teacher has been updated successfully!');
+        return redirect('/gradingfacultysubjects')->with('success', 'Subject of teacher has been updated successfully!');
     }
 
      public function deletegradesubjectteacher(Request $request, SubjectTeachers $subjectteacher){
@@ -1197,7 +1196,7 @@ class AdminsController extends Controller
             $studentgrade->save();
         }
 
-        return redirect('/gradingfacultysubjects')->with('message', 'Subject of teacher has been deleted successfully!');
+        return redirect('/gradingfacultysubjects')->with('success', 'Subject of teacher has been deleted successfully!');
      }
 
      public function deletesubjectteacher($id){

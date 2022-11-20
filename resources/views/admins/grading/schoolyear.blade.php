@@ -22,7 +22,7 @@
     </script>
 <div class="left-to-right">
     <h3 style="font-size: 28px; font-weight: 800;">Table of School year </h3>   
-    @if ($message = Session::get('message'))
+        @if ($message = Session::get('message'))
             <div class="alert alert-success alert-block">
                 <button type="button" class="close" data-dismiss="alert">×</button>
                 <strong>{{ $message }}</strong>
@@ -71,6 +71,7 @@
                 @endif
             </div>
         </div>  
+
     </div>
 
     <script type="text/javascript">
