@@ -67,10 +67,10 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Group Members
 
-Jennifer Pajaron
-Allen Kobe Agustin
-Hydelyn Joy Vinoya
-Rolly A. Delos Reyes
+Jennifer Pajaron<br/>
+Allen Kobe Agustin<br/>
+Hydelyn Joy Vinoya<br/>
+Rolly A. Delos Reyes<br/>
 
 
 ## About SVNHS-SHS BOARD
