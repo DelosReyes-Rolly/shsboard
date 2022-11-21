@@ -62,21 +62,24 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 
 <p align="center"><a href="https://google.com" target="_blank">SystemaTECH</a></p><br/>
-![svnhs-logo](https://user-images.githubusercontent.com/92512675/203043132-3af9f93f-ad44-42c6-bd8c-9f099e14b26f.png)
+
+![shs](https://user-images.githubusercontent.com/92512675/203045432-9c14c670-cb78-4de8-bc00-19da99141536.png)
 
 <p align="center"><a href="https://google.com" target="_blank">SVNHS-SHS BOARD</a></p><br/>
 
+
+
 ## Group Members
 
-Jennifer Pajaron<br/>
+Jennifer D. Pajaron<br/>
 Allen Kobe Agustin<br/>
-Hydelyn Joy Vinoya<br/>
+Hydelyn Joy C. Vinoya<br/>
 Rolly A. Delos Reyes<br/>
-
+<br/><br/>
 
 ## About SVNHS-SHS BOARD
-
 SVNHS-SHS BOARD is ...
+<br/><br/>
 
 ## How to run in local
 
@@ -88,7 +91,7 @@ SVNHS-SHS BOARD is ...
 6. Run xampp - apache and sql.
 7. Open your browser and go to http://127.0.0.1:8000/
 8. The end.
-
+<br/><br/>
 
 ## Credentials
 
