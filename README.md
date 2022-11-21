@@ -62,7 +62,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 
 <p align="center"><a href="https://google.com" target="_blank">SystemaTECH</a></p><br/>
-
+<center>![svnhs-logo](https://user-images.githubusercontent.com/92512675/203042732-f85b1b2c-ea8d-4c61-aee7-7fda6b94e2b5.png) ![shs](https://user-images.githubusercontent.com/92512675/203042770-f85e258b-7182-4f92-99c0-cf176b84903d.png)</center>
 <p align="center"><a href="https://google.com" target="_blank">SVNHS-SHS BOARD</a></p><br/>
 
 ## Group Members
