@@ -29,9 +29,9 @@
 
     <div class="wrapper">
         <!-- Sidebar  -->
-        <nav id="sidebar" class="sticky-top h-100 vh-100" style="padding-bottom: 248px;">
+        <nav id="sidebar" class="sticky-top h-100 vh-100" style="padding-bottom: 248px; box-shadow: 0 4px 16px rgba(0,0,0,1);">
             <div class="sidebar-header">
-                <div class="title"><img src="{{url('/img/svnhs-logo.png')}}" style="width: 80px; height: 80px;"><img src="{{url('/img/shs.png')}}" style="width: 80px; height: 80px;"><div style="font-size: 20px;"> Signal Village National High School </div> <br/> SHS - BOARD</div>
+                <div class="title" style="text-shadow: 0 4px 16px rgba(0,0,0,1);"><img src="{{url('/img/svnhs-logo.png')}}" style="width: 80px; height: 80px;"><img src="{{url('/img/shs.png')}}" style="width: 80px; height: 80px;"><div style="font-size: 20px;"> Signal Village National High School </div> <br/> SHS - BOARD</div>
                 <strong> <img src="{{url('/img/shs.png')}}" style="width: auto; height: auto;"></strong>
             </div>
 
@@ -43,9 +43,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#academicSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" title="Academic Syllabus">
+                    <a href="#academicSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" title="School Management Access">
                     <i class="fas fa-school"></i>
-                        <span class="hide-word title-word"> <b>Management Access</b></span>
+                        <span class="hide-word title-word"> <b>Access Management</b></span>
                     </a>
                     <ul class="collapse list-unstyled" id="academicSubmenu">
                         <li title="School year">
@@ -158,6 +158,7 @@
                     <button type="button" id="sidebarCollapse" class="btn btn-info">
                         <i class="fas fa-align-left"></i>
                     </button>
+                    <div style="padding-left:10px;"><h3>Welcome {{Auth::user()->first_name}}!</h3></div>
                     <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
                     </button>

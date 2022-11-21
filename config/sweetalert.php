@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'timer' => env('SWEET_ALERT_TIMER', 5000),
+    'timer' => env('SWEET_ALERT_TIMER', 6000),
 
     /*
     |--------------------------------------------------------------------------
@@ -69,7 +69,7 @@ return [
     | for particular modal just use the width() helper method.
     */
 
-    'width' => env('SWEET_ALERT_WIDTH', '32rem'),
+    'width' => env('SWEET_ALERT_WIDTH', '40rem'),
 
     /*
     |--------------------------------------------------------------------------

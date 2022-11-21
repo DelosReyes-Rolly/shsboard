@@ -29,9 +29,9 @@
 
     <div class="wrapper">
         <!-- Sidebar  -->
-        <nav id="sidebar" class="sticky-top h-100 vh-100" style="padding-bottom: 248px;">
+        <nav id="sidebar" class="sticky-top h-100 vh-100" style="padding-bottom: 600px; box-shadow: 0 4px 16px rgba(0,0,0,1);">
             <div class="sidebar-header">
-                <div class="title"><img src="{{url('/img/svnhs-logo.png')}}" style="width: 80px; height: 80px;"><img src="{{url('/img/shs.png')}}" style="width: 80px; height: 80px;"><div style="font-size: 20px;"> Signal Village National High School </div> <br/> SHS - BOARD</div>
+                <div class="title" style="text-shadow: 0 4px 16px rgba(0,0,0,1);"><img src="{{url('/img/svnhs-logo.png')}}" style="width: 80px; height: 80px;"><img src="{{url('/img/shs.png')}}" style="width: 80px; height: 80px;"><div style="font-size: 20px;"> Signal Village National High School </div> <br/> SHS - BOARD</div>
                 <strong> <img src="{{url('/img/shs.png')}}" style="width: auto; height: auto;"></strong>
             </div>
 
@@ -83,6 +83,7 @@
                     <button type="button" id="sidebarCollapse" class="btn btn-info">
                         <i class="fas fa-align-left"></i>
                     </button>
+                    <div style="padding-left:10px;"><h3>Welcome {{Auth::user()->last_name}}, {{Auth::user()->first_name}} {{Auth::user()->middle_name}}!</h3></div>
                     <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
                     </button>
