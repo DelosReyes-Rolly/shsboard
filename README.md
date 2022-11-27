@@ -78,7 +78,7 @@ Rolly A. Delos Reyes<br/>
 <br/><br/>
 
 ## About SVNHS-SHS BOARD
-SVNHS-SHS BOARD is ...
+SVNHS-SHS BOARD is a school management information system for Signal Village National High School -Senior High. Students, professors, and the administration are all integrated. In a learning environment, SVNHS-SHS BOARD offers the ability to manage various student-related data requirements, register students for classes, grading system, process document requests, and generate reports.
 <br/><br/>
 
 ## How to run in local
