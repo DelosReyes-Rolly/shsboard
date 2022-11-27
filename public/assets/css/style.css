@@ -1870,6 +1870,19 @@ button[type=submit]{       /*login button*/
     opacity: 1;
   }
 
+  .overlay-courses-top {
+    height: 240px;
+    width: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0px;
+    right: 0;
+    transition: .6s ease;
+    background-color: rgb(0,0,0,0.4);
+  }
+
+
   .text-courses {
     color: white;
     font-size: 20px;
@@ -1881,6 +1894,7 @@ button[type=submit]{       /*login button*/
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     text-align: center;
+    opacity: unset;
   }
 
 

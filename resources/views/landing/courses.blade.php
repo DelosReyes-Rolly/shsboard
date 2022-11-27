@@ -29,6 +29,9 @@
 												@else
 													<img src="{{ asset('img/'.$strand->image) }}" class="course-image"/>
 												@endif
+												<div class="overlay-courses-top">
+													<div class="text-courses">{{$strand->courseName}} ({{$strand->abbreviation}})</div>
+												</div>
 												<div class="overlay-courses">
 													<div class="text-courses">{{$strand->courseName}} ({{$strand->abbreviation}})</div>
 												</div>
@@ -40,6 +43,9 @@
 												@else
 													<img src="{{ asset('img/'.$strand->image) }}" class="course-image"/>
 												@endif
+												<div class="overlay-courses-top">
+													<div class="text-courses">{{$strand->courseName}} ({{$strand->abbreviation}})</div>
+												</div>
 												<div class="overlay-courses">
 													<div class="text-courses">{{$strand->courseName}} ({{$strand->abbreviation}})</div>
 												</div>
@@ -51,6 +57,9 @@
 												@else
 													<img src="{{ asset('img/'.$strand->image) }}" class="course-image"/>
 												@endif
+												<div class="overlay-courses-top">
+													<div class="text-courses">{{$strand->courseName}} ({{$strand->abbreviation}})</div>
+												</div>
 												<div class="overlay-courses">
 													<div class="text-courses">{{$strand->courseName}} ({{$strand->abbreviation}})</div>
 												</div>
@@ -62,6 +71,9 @@
 												@else
 													<img src="{{ asset('img/'.$strand->image) }}" class="course-image"/>
 												@endif
+												<div class="overlay-courses-top">
+													<div class="text-courses">{{$strand->courseName}} ({{$strand->abbreviation}})</div>
+												</div>
 												<div class="overlay-courses">
 													<div class="text-courses">{{$strand->courseName}} ({{$strand->abbreviation}})</div>
 												</div>
@@ -73,6 +85,9 @@
 												@else
 													<img src="{{ asset('img/'.$strand->image) }}" class="course-image"/>
 												@endif
+												<div class="overlay-courses-top">
+													<div class="text-courses">{{$strand->courseName}} ({{$strand->abbreviation}})</div>
+												</div>
 												<div class="overlay-courses">
 													<div class="text-courses">{{$strand->courseName}} ({{$strand->abbreviation}})</div>
 												</div>
@@ -84,6 +99,9 @@
 												@else
 													<img src="{{ asset('img/'.$strand->image) }}" class="course-image"/>
 												@endif
+												<div class="overlay-courses-top">
+													<div class="text-courses">{{$strand->courseName}} ({{$strand->abbreviation}})</div>
+												</div>
 												<div class="overlay-courses">
 													<div class="text-courses">{{$strand->courseName}} ({{$strand->abbreviation}})</div>
 												</div>
@@ -103,6 +121,9 @@
 												@else
 													<img src="{{ asset('img/'.$strand->image) }}" class="course-image"/>
 												@endif
+												<div class="overlay-courses-top">
+													<div class="text-courses">{{$strand->courseName}} ({{$strand->abbreviation}})</div>
+												</div>
 												<div class="overlay-courses">
 													<div class="text-courses">{{$strand->courseName}} ({{$strand->abbreviation}})</div>
 												</div>
@@ -116,6 +137,9 @@
 												@else
 													<img src="{{ asset('img/'.$strand->image) }}" class="course-image"/>
 												@endif
+												<div class="overlay-courses-top">
+													<div class="text-courses">{{$strand->courseName}} ({{$strand->abbreviation}})</div>
+												</div>
 												<div class="overlay-courses">
 													<div class="text-courses">{{$strand->courseName}} ({{$strand->abbreviation}})</div>
 												</div>
@@ -130,6 +154,9 @@
 												@else
 													<img src="{{ asset('img/'.$strand->image) }}" class="course-image"/>
 												@endif
+												<div class="overlay-courses-top">
+													<div class="text-courses">{{$strand->courseName}} ({{$strand->abbreviation}})</div>
+												</div>
 												<div class="overlay-courses">
 													<div class="text-courses">{{$strand->courseName}} ({{$strand->abbreviation}})</div>
 												</div>
