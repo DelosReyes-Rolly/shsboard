@@ -22,8 +22,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-use PDO;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 
@@ -156,12 +154,12 @@ class AdminsController extends Controller
     }
     
     public function viewlanding($id){
-        $data = Landings::findOrFail($id);
+        $data = Landings::where('deleted', '=', null)->findOrFail($id);
         return view('admins.landing.landingview', ['landing' => $data]);
     }
 
     public function showlanding($id){
-        $data = Landings::findOrFail($id);
+        $data = Landings::where('deleted', '=', null)->findOrFail($id);
         return view('admins.landing.landingupdate', ['landing' => $data]);
     }
 
@@ -184,7 +182,7 @@ class AdminsController extends Controller
      }
 
      public function delete($id){
-        $data = Landings::findOrFail($id);
+        $data = Landings::where('deleted', '=', null)->findOrFail($id);
         return view('admins.landing.deletelanding', ['landing' => $data]);
      }
 
@@ -278,26 +276,26 @@ class AdminsController extends Controller
     }
 
     public function approve($id){
-        $leave = Announcements::findOrFail($id);
+        $leave = Announcements::where('deleted', '=', null)->findOrFail($id);
         $leave->approval = 2; 
         $leave->save();
         return redirect()->back()->with('approval', 'Announcement has been approved.');
      }
      
      public function decline($id){
-        $leave = Announcements::findOrFail($id);
+        $leave = Announcements::where('deleted', '=', null)->findOrFail($id);
         $leave->approval = 3;
         $leave->save();
         return redirect()->back()->with('approval', 'Announcement has been rejected.');
      }
 
     public function viewannouncement($id){
-        $data = Announcements::findOrFail($id);
+        $data = Announcements::where('deleted', '=', null)->findOrFail($id);
         return view('admins.landing.announcementview', ['announcement' => $data]);
     }
 
      public function showannouncement($id){
-        $data = Announcements::findOrFail($id);
+        $data = Announcements::where('deleted', '=', null)->findOrFail($id);
         return view('admins.landing.announcementupdate', ['announcement' => $data]);
     }
 
@@ -326,7 +324,7 @@ class AdminsController extends Controller
      }
 
      public function deleteadminannouncement($id){
-        $data = Announcements::findOrFail($id);
+        $data = Announcements::where('deleted', '=', null)->findOrFail($id);
         return view('admins.landing.delete', ['announcement' => $data]);
      }
 
@@ -390,13 +388,13 @@ class AdminsController extends Controller
     }
 
     public function viewevent($id){
-        $data = Announcements::findOrFail($id);
+        $data = Announcements::where('deleted', '=', null)->findOrFail($id);
         return view('admins.landing.eventview', ['event' => $data]);
     }
 
 
     public function showevent($id){
-        $data = Announcements::findOrFail($id);
+        $data = Announcements::where('deleted', '=', null)->findOrFail($id);
         return view('admins.landing.eventupdate', ['event' => $data]);
     }
 
@@ -470,13 +468,13 @@ class AdminsController extends Controller
     }
 
     public function viewreminder($id){
-        $data = Announcements::findOrFail($id);
+        $data = Announcements::where('deleted', '=', null)->findOrFail($id);
         return view('admins.landing.reminderview', ['reminder' => $data]);
     }
 
 
     public function showreminder($id){
-        $data = Announcements::findOrFail($id);
+        $data = Announcements::where('deleted', '=', null)->findOrFail($id);
         return view('admins.landing.reminderupdate', ['reminder' => $data]);
     }
 
@@ -514,13 +512,13 @@ class AdminsController extends Controller
 
 
     public function viewdocument($id){
-        $data = Documents::findOrFail($id);
+        $data = Documents::where('deleted', '=', null)->findOrFail($id);
         return view('admins.documentrequests.documentview', ['document' => $data]);
     }
 
 
     public function showdocument($id){
-        $data = Documents::findOrFail($id);
+        $data = Documents::where('deleted', '=', null)->findOrFail($id);
         return view('admins.documentrequests.documentupdate', ['document' => $data]);
     }
 
@@ -543,17 +541,17 @@ class AdminsController extends Controller
      }
 
      public function deletedocument($id){
-        $data = Documents::findOrFail($id);
+        $data = Documents::where('deleted', '=', null)->findOrFail($id);
         return view('admins.documentrequests.documentdelete', ['document' => $data]);
      }
 
      public function viewrequest($id){
-        $data = DocumentRequests::findOrFail($id);
+        $data = DocumentRequests::where('deleted', '=', null)->findOrFail($id);
         return view('admins.documentrequests.docreqviewadmin', ['docreq' => $data]);
     }
 
     public function showrequest($id){
-        $data = DocumentRequests::findOrFail($id);
+        $data = DocumentRequests::where('deleted', '=', null)->findOrFail($id);
         return view('admins.documentrequests.docreqadmin', ['docreq' => $data]);
     }
 
@@ -638,13 +636,13 @@ class AdminsController extends Controller
 
     
     public function viewcourse($id){
-        $data = Courses::findOrFail($id);
+        $data = Courses::where('deleted', '=', null)->findOrFail($id);
         return view('admins.grading.functions.courseview', ['course' => $data]);
     }
 
 
     public function showcourse($id){
-        $data = Courses::findOrFail($id);
+        $data = Courses::where('deleted', '=', null)->findOrFail($id);
         return view('admins.grading.functions.courseupdate', ['course' => $data]);
     }
 
@@ -670,7 +668,7 @@ class AdminsController extends Controller
      }
 
      public function deletecourse($id){
-        $data = Courses::findOrFail($id);
+        $data = Courses::where('deleted', '=', null)->findOrFail($id);
         return view('admins.grading.functions.coursedelete', ['course' => $data]);
      }
 
@@ -697,13 +695,13 @@ class AdminsController extends Controller
     }    
 
     public function viewsection($id){
-        $data = Sections::findOrFail($id);
+        $data = Sections::where('deleted', '=', null)->findOrFail($id);
         return view('admins.grading.functions.sectionview', ['section' => $data]);
     }
 
 
     public function showsection($id){
-        $data = Sections::findOrFail($id);
+        $data = Sections::where('deleted', '=', null)->findOrFail($id);
         return view('admins.grading.functions.sectionupdate', ['section' => $data]);
     }
 
@@ -725,7 +723,7 @@ class AdminsController extends Controller
     }
 
     public function deletesection($id){
-        $data = sections::findOrFail($id);
+        $data = sections::where('deleted', '=', null)->findOrFail($id);
         return view('admins.grading.functions.sectiondelete', ['section' => $data]);
     }
 
@@ -774,13 +772,13 @@ class AdminsController extends Controller
 
 
     public function viewfaculty($id){
-        $data = Faculties::findOrFail($id);
+        $data = Faculties::where('deleted', '=', null)->findOrFail($id);
         return view('admins.grading.functions.facultyview', ['faculty' => $data]);
     }
 
 
     public function showfaculty($id){
-        $data = Faculties::findOrFail($id);
+        $data = Faculties::where('deleted', '=', null)->findOrFail($id);
         return view('admins.grading.functions.facultyupdate', ['faculty' => $data]);
     }
 
@@ -809,7 +807,7 @@ class AdminsController extends Controller
     }
 
     public function deletefaculty($id){
-        $data = Faculties::findOrFail($id);
+        $data = Faculties::where('deleted', '=', null)->findOrFail($id);
         return view('admins.grading.functions.facultydelete', ['faculty' => $data]);
     }
 
@@ -888,13 +886,13 @@ class AdminsController extends Controller
 
 
     public function viewstudent($id){
-        $data = Students::findOrFail($id);
+        $data = Students::where('deleted', '=', null)->findOrFail($id);
         return view('admins.grading.functions.studentview', ['student' => $data]);
     }
 
 
     public function showstudent($id){
-        $data = Students::findOrFail($id);
+        $data = Students::where('deleted', '=', null)->findOrFail($id);
         return view('admins.grading.functions.studentupdate', ['student' => $data]);
     }
 
@@ -924,7 +922,7 @@ class AdminsController extends Controller
     }
 
     public function deletestudent($id){
-        $data = Students::findOrFail($id);
+        $data = Students::where('deleted', '=', null)->findOrFail($id);
         return view('admins.grading.functions.studentdelete', ['student' => $data]);
     }
 
@@ -971,13 +969,13 @@ class AdminsController extends Controller
     }  
 
     public function viewsubject($id){
-        $data = Subjects::findOrFail($id);
+        $data = Subjects::where('deleted', '=', null)->findOrFail($id);
         return view('admins.grading.functions.subjectview', ['subject' => $data]);
     }
 
 
     public function showsubject($id){
-        $data = Subjects::findOrFail($id);
+        $data = Subjects::where('deleted', '=', null)->findOrFail($id);
         return view('admins.grading.functions.subjectupdate', ['subject' => $data]);
     }
 
@@ -1002,7 +1000,7 @@ class AdminsController extends Controller
      }
 
      public function deletesubject($id){
-        $data = Subjects::findOrFail($id);
+        $data = Subjects::where('deleted', '=', null)->findOrFail($id);
         return view('admins.grading.functions.subjectdelete', ['subject' => $data]);
      }
 
@@ -1015,13 +1013,13 @@ class AdminsController extends Controller
     }
 
     public function viewschoolyear($id){
-        $data = SchoolYear::findOrFail($id);
+        $data = SchoolYear::where('deleted', '=', null)->findOrFail($id);
         return view('admins.grading.functions.schoolyearview', ['schoolyear' => $data]);
     }
 
 
     public function showschoolyear($id){
-        $data = SchoolYear::findOrFail($id);
+        $data = SchoolYear::where('deleted', '=', null)->findOrFail($id);
         return view('admins.grading.functions.schoolyearupdate', ['schoolyear' => $data]);
     }
 
@@ -1063,7 +1061,7 @@ class AdminsController extends Controller
      }
 
      public function deleteschoolyear($id){
-        $data = SchoolYear::findOrFail($id);
+        $data = SchoolYear::where('deleted', '=', null)->findOrFail($id);
         return view('admins.grading.functions.schoolyeardelete', ['schoolyear' => $data]);
      }
 
@@ -1139,7 +1137,7 @@ class AdminsController extends Controller
     } 
 
     public function viewsubjectteacher($id){
-        $data = SubjectTeachers::findOrFail($id);
+        $data = SubjectTeachers::where('deleted', '=', null)->findOrFail($id);
         $faculties = Faculties::where('deleted', '=', null)->get();
         $gradelevels = GradeLevels::all();
         $semesters = Semesters::all();
@@ -1151,7 +1149,7 @@ class AdminsController extends Controller
 
 
     public function showsubjectteacher($id){
-        $data = SubjectTeachers::findOrFail($id);
+        $data = SubjectTeachers::where('deleted', '=', null)->findOrFail($id);
         $faculties = Faculties::where('deleted', '=', null)->get();
         $gradelevels = GradeLevels::all();
         $semesters = Semesters::all();
@@ -1204,7 +1202,7 @@ class AdminsController extends Controller
      }
 
      public function deletesubjectteacher($id){
-        $data = SubjectTeachers::findOrFail($id);
+        $data = SubjectTeachers::where('deleted', '=', null)->findOrFail($id);
         return view('admins.grading.functions.subjectteacherdelete', ['subjectteacher' => $data]);
      }
 
@@ -1232,7 +1230,7 @@ class AdminsController extends Controller
 
 
     public function showgradelevel($id){
-        $data = GradeLevels::findOrFail($id);
+        $data = GradeLevels::where('deleted', '=', null)->findOrFail($id);
         return view('admins.grading.functions.gradelevelupdate', ['gradelevel' => $data]);
     }
 
@@ -1254,7 +1252,7 @@ class AdminsController extends Controller
     }
 
     public function deletegradelevel($id){
-        $data = GradeLevels::findOrFail($id);
+        $data = GradeLevels::where('deleted', '=', null)->findOrFail($id);
         return view('admins.grading.functions.gradeleveldelete', ['gradelevel' => $data]);
     }
 

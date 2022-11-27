@@ -51,8 +51,8 @@
 	                                <div class="card-header" style="font-size: 20px; font-weight: 800;">Requested Documents</div>
 	                                <div class="card-body">
 										<br>
-	                                    <div style="padding: 40px 40px 10px 40px">
-						                     <div style="font-size: 20px;" ><i class="fas fa-file-alt"></i>  {{ $requests->count() }} </div>
+	                                    <div style="padding: 0px 40px 10px 40px">
+						                     <div style="font-size: 40px;" ><i class="fas fa-file-alt"></i>  {{ $requests->count() }} </div>
 	                                    </div>
 	                                </div>
 	                            </div>

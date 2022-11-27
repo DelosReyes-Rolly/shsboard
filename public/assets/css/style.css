@@ -24,8 +24,6 @@ a,a:hover,a:active,a:focus {
 	display:inline-block;
 	text-decoration:none;
 	color: #036322;
-	font-size:16px;
-	padding:0;
 }
 h1,h2,h3,h4,h5,h6 { 
 	margin: 0;
@@ -766,8 +764,9 @@ nav.navbar.bootsnav .navbar-toggle i{color: #f3dc60;}
 	  text-transform: capitalize;
 	}
 	.copyright-area{
-	  background: #202020;
-	  padding: 25px 0;
+	  background: #f0f9f3;
+	  padding: 25px;
+    box-shadow: 10px 2px 16px rgba(0,0,0,0.2);
 	}
 	.copyright-text p {
 	  margin: 0;
@@ -1939,6 +1938,7 @@ button[type=submit]{       /*login button*/
   cursor: pointer;
   padding: 15px;
   border-radius: 4px;
+  animation: fadeInRight 0.8s ease-in-out;
 }
 
 #myBtn:hover {

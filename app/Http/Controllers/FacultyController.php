@@ -16,7 +16,6 @@ use App\Models\Semesters;
 use App\Models\StudentGrade;
 use App\Models\Subjects;
 use App\Models\SubjectTeachers;
-use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -182,7 +181,7 @@ class FacultyController extends Controller
 
 
         public function viewannouncement($id){
-            $data = ActivityStreams::findOrFail($id);
+            $data = ActivityStreams::where('deleted', '=', null)->findOrFail($id);
             $gradelevels = GradeLevels::all();
             $semesters = Semesters::all();
             $courses = Courses::where('deleted', '=', null)->get();
@@ -192,7 +191,7 @@ class FacultyController extends Controller
         }
 
         public function showannouncement($id){
-            $data = ActivityStreams::findOrFail($id);
+            $data = ActivityStreams::where('deleted', '=', null)->findOrFail($id);
             $gradelevels = GradeLevels::all();
             $semesters = Semesters::all();
             $courses = Courses::where('deleted', '=', null)->get();
@@ -228,7 +227,7 @@ class FacultyController extends Controller
          }
     
          public function deleteannouncement($id){
-            $data = ActivityStreams::findOrFail($id);
+            $data = ActivityStreams::where('deleted', '=', null)->findOrFail($id);
             return view('faculty.deleteactivitystream', ['activitystream' => $data]);
          }
 

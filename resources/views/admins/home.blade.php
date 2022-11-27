@@ -69,4 +69,6 @@
 			</div>
 		</section>
 </main>
-<br><br><br><br>
+<br><br><br><br><br><br>
+<!-- </div>
+@include('partials.adminfooter') -->

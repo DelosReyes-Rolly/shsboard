@@ -169,7 +169,7 @@ class StudentsController extends Controller
     }
 
     public function vieweval($id){
-        $data = GradeEvaluationRequests::findOrFail($id);
+        $data = GradeEvaluationRequests::where('deleted', '=', null)->findOrFail($id);
         return view('student.grading.vieweval', ['gradeevaluationrequest' => $data]);
     }
 
@@ -203,7 +203,7 @@ class StudentsController extends Controller
      }
 
      public function deletegradeeval($id){
-        $data = GradeEvaluationRequests::findOrFail($id);
+        $data = GradeEvaluationRequests::where('deleted', '=', null)->findOrFail($id);
         return view('student.grading.deletegradeeval', ['gradeeval' => $data]);
      }
 
@@ -242,19 +242,19 @@ class StudentsController extends Controller
     }
 
     public function deletegraderequest($id){
-        $leave = DocumentRequests::findOrFail($id);
+        $leave = DocumentRequests::where('deleted', '=', null)->findOrFail($id);
         $leave->deleted = 1;
         $leave->deleted_at = now();
         $leave->save();
         return redirect('/studentrequest')->with('success', 'Your request has been deleted.');
      }
      public function deleterequest($id){
-        $data = DocumentRequests::findOrFail($id);
+        $data = DocumentRequests::where('deleted', '=', null)->findOrFail($id);
         return view('student.requestdelete', ['request' => $data]);
      }
 
      public function viewrequest($id){
-        $data = DocumentRequests::findOrFail($id);
+        $data = DocumentRequests::where('deleted', '=', null)->findOrFail($id);
         $gradelevel = GradeLevels::where('id', '=', Auth::user()->gradelevel_id)->first();
         $course = Courses::where('id', '=', Auth::user()->course_id)->first();
         return view('student.docreqview', ['docreq' => $data, 'gradelevel' => $gradelevel, 'course' => $course]);
@@ -262,7 +262,7 @@ class StudentsController extends Controller
 
 
      public function showrequest($id){
-        $data = DocumentRequests::findOrFail($id);
+        $data = DocumentRequests::where('deleted', '=', null)->findOrFail($id);
         $gradelevel = GradeLevels::where('id', '=', Auth::user()->gradelevel_id)->first();
         $course = Courses::where('id', '=', Auth::user()->course_id)->first();
         return view('student.docreq', ['docreq' => $data, 'gradelevel' => $gradelevel, 'course' => $course]);

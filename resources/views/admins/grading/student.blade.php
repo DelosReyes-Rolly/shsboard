@@ -116,4 +116,5 @@
     </script>
 
 </main>
-<br><br><br><br>
+<!-- <br><br><br><br>
+@include('partials.adminfooter') -->

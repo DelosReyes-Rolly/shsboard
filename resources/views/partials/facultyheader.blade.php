@@ -83,7 +83,7 @@
                     <button type="button" id="sidebarCollapse" class="btn btn-info">
                         <i class="fas fa-align-left"></i>
                     </button>
-                    <div style="padding-left:10px;"><h3>Welcome {{Auth::user()->last_name}}, {{Auth::user()->first_name}} {{Auth::user()->middle_name}}!</h3></div>
+                    <div style="padding-left:10px; color: #fff; font-weight:bold; font-style: Verdana;">Welcome {{Auth::user()->last_name}}, {{Auth::user()->first_name}} {{Auth::user()->middle_name}}!</div>
                     <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
                     </button>
@@ -91,13 +91,13 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item" title="Profile">
-                                <a class="nav-link header-letter"  href="{{ url('/facultyprofile') }}">Profile</a>
+                                <a class="nav-link header-letter"  href="{{ url('/facultyprofile') }}" style="color:#fff; border-top: none;">Profile</a>
                             </li>
                             <li class="nav-item" title="Change Password">
-                                <a class="nav-link header-letter" href="/password-faculty/{{Auth::user()->id}}}">Change Password</a>
+                                <a class="nav-link header-letter" href="/password-faculty/{{Auth::user()->id}}}" style="color:#fff; border-top: none;">Change Password</a>
                             </li>
                             <li class="nav-item" title="Logout  ">
-                                <a class="nav-link header-letter" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                                <a class="nav-link header-letter" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="color:#fff; border-top: none;">{{ __('Logout') }}</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
