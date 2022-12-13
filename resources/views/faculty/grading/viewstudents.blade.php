@@ -2,9 +2,9 @@
 @include('partials.facultySecondHeader')
 <main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>            
     <script src="https://markcell.github.io/jquery-tabledit/assets/js/tabledit.min.js"></script>
+    <!-- <link rel="stylesheet"  type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> -->
     @if (count($errors) > 0)
         <div class="alert alert-danger">
             <strong>Whoops!</strong> There were some problems with your input.
@@ -45,7 +45,7 @@
                             @endphp
                             @foreach ($data as $student)        
                                     <tr>
-                                        <td class="hidden">{{$student -> id}}</td>
+                                        <td class="d-none">{{$student -> id}}</td>
                                         <td>{{$count++;}}</td>
                                         <td>{{$student -> student -> last_name}}, {{$student -> student -> first_name}} {{$student -> student -> middle_name}} {{$student -> student -> suffix}}</td>
                                         <td>{{$student -> midterm}}</td>
@@ -54,13 +54,13 @@
                                             @php
                                                 switch ($student -> finals && $student -> midterm) {
                                                     case ($student -> finals === '0' || $student -> midterm === '0'):
-                                                        echo '<span class="badge bg-danger">Grades are not complete</span>';
+                                                        echo '<span class="badge bg-danger" style="color: white;">Grades are not complete</span>';
                                                         break;
                                                     case ($student -> finals !== '0' && $student -> midterm !== '0'):
                                                         echo $ave = ($student -> midterm + $student -> finals) / 2;;
                                                         break;
                                                     default:
-                                                        echo '<span class="badge bg-danger">Unidentified</span>';
+                                                        echo '<span class="badge bg-danger" style="color: white;">Unidentified</span>';
                                                     break;
                                                 }
                                             @endphp
@@ -69,13 +69,13 @@
                                             @php 
                                                 switch ($ave && $student -> finals && $student -> midterm) {
                                                     case ($ave <= '74' && $student -> finals !== '0' && $student -> midterm !== '0'):
-                                                        echo '<span class="badge bg-danger">Failed</span>';
+                                                        echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
                                                         break;
                                                     case ($ave <='100' && $student -> finals !== '0' && $student -> midterm !== '0'):
-                                                        echo '<span class="badge bg-success">Passed</span>';
+                                                        echo '<span class="badge bg-success" style="color: white;">Passed</span>';
                                                         break;
                                                     default:
-                                                        echo '<span class="badge bg-danger">No remarks</span>';
+                                                        echo '<span class="badge bg-danger" style="color: white;">No remarks</span>';
                                                     break;
                                                 }
                                             @endphp

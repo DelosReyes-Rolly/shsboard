@@ -83,7 +83,7 @@
         <!-- Page Content  -->
         <div id="content">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container-fluid">
 
                     <button type="button" id="sidebarCollapse" class="btn btn-info">
@@ -112,25 +112,26 @@
                     </div>
                 </div>
             </nav>
-            @include('sweetalert::alert')
-            <!-- Go back from top -->
-            <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
-            <script>
-                let mybutton = document.getElementById("myBtn");
-                window.onscroll = function() {scrollFunction()};
+            <div style="padding: 20px;">
+                @include('sweetalert::alert')
+                <!-- Go back from top -->
+                <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+                <script>
+                    let mybutton = document.getElementById("myBtn");
+                    window.onscroll = function() {scrollFunction()};
 
-                function scrollFunction() {
-                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                    mybutton.style.display = "block";
-                } else {
-                    mybutton.style.display = "none";
-                }
-                }
-                function topFunction() {
-                document.body.scrollTop = 0;
-                document.documentElement.scrollTop = 0;
-                }
-            </script>
+                    function scrollFunction() {
+                    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                        mybutton.style.display = "block";
+                    } else {
+                        mybutton.style.display = "none";
+                    }
+                    }
+                    function topFunction() {
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                    }
+                </script>
 
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
