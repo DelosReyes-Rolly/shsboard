@@ -1,5 +1,5 @@
 @include('partials.landingheader')
-<main>
+<main class="h-100">
 <section id="about" class="about">
 			<div class="container"><br/><br/><br/><br/>
 				<div id="main-content" class="blog-page">

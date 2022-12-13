@@ -8,7 +8,7 @@
 <body>
     <br><br>
     <!-- Go back from top -->
-    <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-chevron-up"></i></button>
+    <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
             <script>
                 let mybutton = document.getElementById("myBtn");
                 window.onscroll = function() {scrollFunction()};

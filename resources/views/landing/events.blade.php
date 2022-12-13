@@ -1,5 +1,5 @@
 @include('partials.landingheader')
-<main><br/><br/>
+<main class="h-100"><br/><br/>
     <!-- event start -->
 		<section id="about" class="about">
             @if($events == NULL)

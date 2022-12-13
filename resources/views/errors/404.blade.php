@@ -430,7 +430,7 @@
         
         <div class="astronaut__head">
             <canvas id="visor" width="60px" height="60px"></canvas>
-            <a href="https://rollyadelosreyes.netlify.app/" class="astronaut__head-visor-flare1" style="background: transparent; border: none !important; font-size:0; cursor: default;"></a>
+            <a href="" class="astronaut__head-visor-flare1" style="background: transparent; border: none !important; font-size:0; cursor: default;"></a>
             <div class="astronaut__head-visor-flare2"></div>
         </div>
         </div>

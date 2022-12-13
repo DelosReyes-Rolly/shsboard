@@ -68,6 +68,8 @@ span {
     background: #068306;
     color: #fff;
     transition: all 0.3s;
+    min-height: 100vh;
+    max-height:min-content;
 }
 
 #sidebar.active {
