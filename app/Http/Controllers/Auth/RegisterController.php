@@ -82,9 +82,9 @@ class RegisterController extends Controller
      */
     public function showStudentsRegisterForm()
     {
-        $level_data =DB::table('grade_levels')->select('id', 'gradelevel')->get();
-        $section_data= DB::table('sections')->select('id', 'section')->get();
-        $courses_data= DB::table('courses')->select('id', 'code')->get();
+        $level_data =DB::table('grade_levels')->select('id', 'gradelevel')->where('deleted', '=', NULL)->get();
+        $section_data= DB::table('sections')->select('id', 'section')->where('deleted', '=', NULL)->get();
+        $courses_data= DB::table('courses')->select('id', 'code')->where('deleted', '=', NULL)->get();
         return view('auth.register',compact('level_data','section_data', 'courses_data'), ['url' => 'students']);
         
     }
