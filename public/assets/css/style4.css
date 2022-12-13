@@ -31,10 +31,19 @@ a:focus {
     box-shadow: 10px 2px 16px rgba(0,0,0,1);
 }
 
+.nav ul li a:hover {
+    color: #7386D5;
+    background: #fff;
+}
+
 .navbar-btn {
     box-shadow: none;
     outline: none !important;
     border: none;
+}
+
+.btn-grey{
+    font-size: 2rem;
 }
 
 .line {
@@ -52,6 +61,11 @@ span {
 .ml-auto, .mx-auto {
     margin-right: 0!important;
 }
+
+.navbar-a:hover {
+    color: #ffffff;
+    background-color: unset !important;
+  }
 
 /* ---------------------------------------------------
     SIDEBAR STYLE
@@ -219,6 +233,7 @@ a.article:hover {
     color: #fff;
     background-color: #43852d;
     border-color: #0f800d;
+    font-size: 1rem;
 }
 
 /* ---------------------------------------------------
