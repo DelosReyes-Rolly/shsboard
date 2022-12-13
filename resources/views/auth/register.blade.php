@@ -84,18 +84,14 @@
                         </div>
 
                         <div class="form-group">
-                            <label for ="gender"><span style="color: red">*</span> Gender</label><br>
+                            <label for ="gender"><span style="color: red">*</span> Sex</label><br>
                             <select name="gender">
                                 <option value="" {{old('gender') == "" ?
-                                'selected' : ''}} disabled>  Please Select Gender </option>
+                                'selected' : ''}} disabled>  Please Select Sex </option>
                                 <option value="Male" {{old('gender') == "Male" ?
                                 'selected' : ''}}>Male </option>
                                 <option value="Female" {{old('gender') == "Female" ?
                                 'selected' : ''}}>Female</option>
-                                <option value="Other" {{old('gender') == "Other" ?
-                                'selected' : ''}}>Other</option>
-                                <option value="Prefer not to say" {{old('gender') == "Prefer not to say" ?
-                                'selected' : ''}}>Prefer not to say</option>
                             </select>
                         @error('gender')
                             <p>
@@ -136,7 +132,7 @@
 
                         <div class="form-group">
                             <label for="course_id" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Strand Code') }}</label><br>
-                            <input id="course_id" type="text" class="form-control @error('course_id') is-invalid @enderror" name="course_id" value="{{ old('course_id') }}" required autocomplete="course_id" autofocus>
+                            <input id="course_id" type="password" class="form-control @error('course_id') is-invalid @enderror" name="course_id" value="{{ old('course_id') }}" required autocomplete="course_id" autofocus>
                             @error('course_id')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

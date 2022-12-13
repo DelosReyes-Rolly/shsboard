@@ -59,13 +59,11 @@
 							<div class="col-md-12" style="font-size: 18px;"><label>Username</label><input style="font-size: 16px;" type="text" class="form-control @error('username') is-invalid @enderror" name="username" placeholder="{{Auth::user()->username}}" value="{{Auth::user()->username}}"></div><br/><br/>
 							<div class="col-md-12" style="font-size: 18px;"><label>Mobile Number</label><input style="font-size: 16px;" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" placeholder="{{Auth::user()->phone_number}}" value="{{Auth::user()->phone_number}}"></div><br/><br/>
 							<div class="col-md-12" style="font-size: 18px;"><label>Email</label><input style="font-size: 16px;" type="text" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="{{Auth::user()->email}}" value="{{Auth::user()->email}}"></div><br/>
-							<div class="col-md-12" style="font-size: 18px;"><label for="gender">Gender</label>
+							<div class="col-md-12" style="font-size: 18px;"><label for="gender">Sex</label>
 								<select id="gender" name="gender"  class="form-control @error('gender') is-invalid @enderror" value="{{Auth::user()->gender}}">
-									<option value="" hidden>  Please Select Gender </option>
+									<option value="" hidden>  Please Select Sex </option>
 									<option value="Male" {{Auth::user()->gender == "Male" ?'selected' : ''}}>Male</option>
 									<option value="Female" {{Auth::user()->gender == "Female" ?'selected' : ''}}>Female</option>
-									<option value="Prefer Not To Say" {{Auth::user()->gender == "Prefer Not To Say" ?'selected' : ''}}>Prefer not to say</option>
-									<option value="Others" {{Auth::user()->gender == "Others" ?'selected' : ''}}>Others</option>
 								</select>
 							</div><br/>
 						</div>
