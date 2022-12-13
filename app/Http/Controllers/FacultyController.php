@@ -7,7 +7,6 @@ use App\Models\ActivityStreams;
 use App\Models\Addresses;
 use App\Models\Announcements;
 use App\Models\Courses;
-use App\Models\DocumentRequests;
 use App\Models\Faculties;
 use App\Models\GradeEvaluationRequests;
 use App\Models\GradeLevels;
@@ -247,9 +246,15 @@ class FacultyController extends Controller
     }
 
     public function view_students($subject_id, $gradelevel_id, $semester_id, $schoolyear_id){
-        $data = StudentGrade::where('subject_id', '=', $subject_id)->where('gradelevel_id', '=', $gradelevel_id)->where('semester_id', '=', $semester_id)->where('faculty_id', '=', Auth::user()->id)
-                ->where('schoolyear_id', '=', $schoolyear_id)->where('deleted', '=', NULL)->orderBy('id', 'ASC')->get();
-        return view('faculty.grading.viewstudents', compact('data'));
+        $male = StudentGrade::where('subject_id', '=', $subject_id)->where('gradelevel_id', '=', $gradelevel_id)->where('semester_id', '=', $semester_id)->where('faculty_id', '=', Auth::user()->id)
+                ->where('schoolyear_id', '=', $schoolyear_id)->where('deleted', '=', NULL)->whereHas('student', function($q) {
+                    $q->where('gender', 'Male');
+                })->orderBy('id', 'ASC')->get();
+        $female = StudentGrade::where('subject_id', '=', $subject_id)->where('gradelevel_id', '=', $gradelevel_id)->where('semester_id', '=', $semester_id)->where('faculty_id', '=', Auth::user()->id)
+                ->where('schoolyear_id', '=', $schoolyear_id)->where('deleted', '=', NULL)->whereHas('student', function($q) {
+                    $q->where('gender', 'female');
+                })->orderBy('id', 'ASC')->get();
+        return view('faculty.grading.viewstudents', compact('male', 'female'));
 
     }
 
