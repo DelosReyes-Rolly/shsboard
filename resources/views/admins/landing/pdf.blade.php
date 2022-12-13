@@ -87,21 +87,16 @@
                 </tr>
               </thead>
                 <tbody>
-                  {{ $i=0; }}
                   @foreach ($users as $user)
-                    {{$i++; }}
                       {{$timestart = date('h:i a', strtotime($user -> whn_time));}}
-                      {{$datestart = date('F d, Y', strtotime($user -> whn));}}
-                      {{$posted = date('F d, Y', strtotime($user -> created_at));}}
-                      {{$dateexpired = date('F d, Y', strtotime($user -> expired_at));}}
+                      {{$datestart = date('m-d-Y', strtotime($user -> whn));}}
+                      {{$posted = date('m-d-Y', strtotime($user -> created_at));}}
+                      {{$dateexpired = date('m-d-Y', strtotime($user -> expired_at));}}
                       <tr style="text-align:center;">
                         <td>{{$user -> what}}</td>
                         <td>{{$datestart}} - {{$timestart}}</td>
                         <td>{{$posted}}</td>
                         <td>{{$dateexpired}}</td>
-                        @if( $i % 10 == 0 )
-                          <div class="page-break"></div>
-                        @endif
                       </tr>
                     @endforeach
                 </tbody>

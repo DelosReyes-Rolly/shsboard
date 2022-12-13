@@ -39,7 +39,7 @@
 
 
 <head>
-  <title>Announcements Report</title>
+  <title>Document Requests Report</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
@@ -80,23 +80,18 @@
             <table class="table table-bordered print">
               <thead>
                 <tr>
-                  <th>STUDENT ID</th>
+                  <th>STUDENT NAME</th>
                   <th>DOCUMENT TYPE</th>
                   <th>REQUEST DATE</th>
                 </tr>
               </thead>
                 <tbody>
-                  {{ $i=0; }}
                   @foreach ($users as $user)
-                    {{$i++; }}
-                      {{$requestdate = date('F d, Y', strtotime($user -> created_at))}}
+                      {{$requestdate = date('m-d-Y', strtotime($user -> created_at))}}
                       <tr style="text-align:center;">
-                        <td>{{$user -> student -> last_name}}, {{$user -> student -> first_name}} {{$user -> student -> middle_name}}</td>
-                        <td>{{$user -> documents -> name}}</td>
+                        <td>{{$user -> student -> last_name}}, {{$user -> student -> first_name}} {{$user -> student -> middle_name}} {{$user -> student -> suffix}}</td>
+                        <td>{{$user -> document -> name}}</td>
                         <td>{{$requestdate}}</td>
-                        @if( $i % 10 == 0 )
-                          <div class="page-break"></div>
-                        @endif
                       </tr>
                     @endforeach
                 </tbody>

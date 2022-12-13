@@ -334,8 +334,8 @@ class AdminsController extends Controller
                 'dateTo' => 'required',
             ]);
             $users =  Announcements::where('deleted', '=', null)->where('is_event', '=', NULL)
-                        ->where('whn', '>=',  $request->get('dateFrom'))
-                        ->where('whn', '<=',  $request->get('dateTo'))
+                        ->where('created_at', '>=',  $request->get('dateFrom'))
+                        ->where('created_at', '<=',  $request->get('dateTo'))
                         ->where('approval', '=', 2)->get();
             $from = $request->get('dateFrom');
             $to = $request->get('dateTo');
@@ -569,8 +569,8 @@ class AdminsController extends Controller
             'dateTo' => 'required',
         ]);
         $users =  DocumentRequests::where('deleted', '=', null)
-                    ->where('created_at', '>=',  $request->get('dateFrom'))
-                    ->where('created_at', '<=',  $request->get('dateTo'))->get();
+                ->where('created_at', '>=',  $request->get('dateFrom'))
+                ->where('created_at', '<=',  $request->get('dateTo'))->get();
         $from = $request->get('dateFrom');
         $to = $request->get('dateTo');
         $pdf = app('dompdf.wrapper');
@@ -589,8 +589,8 @@ class AdminsController extends Controller
         $studentCount = Students::where('deleted', '=', null)->get();
         $subjectCount = Subjects::where('deleted', '=', null)->get();
         $yearCount = SchoolYear::where('deleted', '=', null)->get();
-        $levelCount = GradeLevels::all();
-        $sectionCount = Sections::all();
+        $levelCount = GradeLevels::where('deleted', '=', null)->get();
+        $sectionCount = Sections::where('deleted', '=', null)->get();
         $classCount = SubjectTeachers::where('deleted', '=', null)->get();
         return view('admins.grading.dashboard',compact('courseCount', 'facultyCount', 'studentCount', 'subjectCount', 'yearCount', 'levelCount', 'sectionCount', 'classCount'));
 
@@ -819,9 +819,9 @@ class AdminsController extends Controller
     }
 
     public function addstudent(){
-        $level_data =DB::table('grade_levels')->select('id', 'gradelevel')->get();
-        $section_data= DB::table('sections')->select('id', 'section')->get();
-        $courses_data= DB::table('courses')->select('id', 'courseName')->get();
+        $level_data =DB::table('grade_levels')->where('deleted', '=', null)->select('id', 'gradelevel')->get();
+        $section_data= DB::table('sections')->where('deleted', '=', null)->select('id', 'section')->get();
+        $courses_data= DB::table('courses')->where('deleted', '=', null)->select('id', 'courseName')->get();
         return view('admins.grading.functions.studentadd',compact('level_data','section_data', 'courses_data'), ['url' => 'students']);
     }
 

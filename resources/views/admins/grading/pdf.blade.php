@@ -39,7 +39,7 @@
 
 
 <head>
-  <title>Announcements Report</title>
+  <title>Student Admission Report</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
@@ -80,27 +80,22 @@
             <table class="table table-bordered print">
               <thead>
                 <tr>
-                  <th>LEARNER REFERENCE NUMBER</th>
-                  <th>NAME</th>
-                  <th>GRADE LEVEL</th>
+                  <th>LRN</th>
+                  <th>FULL NAME</th>
+                  <th>GRADE</th>
                   <th>STRAND</th>
                   <th>ADMISSION DATE</th>
                 </tr>
               </thead>
                 <tbody>
-                  {{ $i=0; }}
                   @foreach ($users as $user)
-                    {{$i++; }}
-                      {{$dateaddmitted = date('F d, Y', strtotime($user -> created_at))}}
+                      {{$dateaddmitted = date('m-d-Y', strtotime($user -> created_at))}}
                       <tr style="text-align:center;">
                         <td>{{$user -> LRN}}</td>
-                        <td>{{$user -> last_name}}, {{$user -> first_name}} {{$user -> middle_name}}</td>
+                        <td>{{$user -> last_name}}, {{$user -> first_name}} {{$user -> middle_name}} {{$user -> suffix}}</td>
                         <td>{{$user -> gradelevel -> gradelevel}}</td>
                         <td>{{$user -> course -> abbreviation}}</td>
                         <td>{{$dateaddmitted}}</td>
-                        @if( $i % 10 == 0 )
-                          <div class="page-break"></div>
-                        @endif
                       </tr>
                     @endforeach
                 </tbody>

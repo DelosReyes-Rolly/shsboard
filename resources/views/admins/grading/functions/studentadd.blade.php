@@ -67,13 +67,11 @@
                                         </div>
                                     </div><br/><br/>
                                     <div class="form-group">
-                                        <label for ="gender"><span style="color: red">*</span>  Gender</label><br>
+                                        <label for ="gender"><span style="color: red">*</span>  Sex</label><br>
                                         <select name="gender">
-                                            <option value="" hidden>  Please Select Gender </option>
+                                            <option value="" hidden>  Please Select Sex </option>
                                             <option value="Male">Male </option>
                                             <option value="Female">Female</option>
-                                            <option value="Other">Other</option>
-                                            <option value="Prefer not to say">Prefer not to say</option>
                                         </select>
                                     </div>
 

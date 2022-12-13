@@ -190,7 +190,7 @@ class StudentsController extends Controller
         $gradeevalrequest->subject_id = $subject_id;
         $gradeevalrequest->save();
         $gradeevaluationrequests = GradeEvaluationRequests::where('deleted', '=', null)->where('student_id', '=', Auth::user()->id)->get();
-        return redirect()->back()->with('alert', 'Requested successfully! Please refer to Evaluation Requests page.');
+        return redirect()->back()->with('success', 'Requested successfully! Please refer to Evaluation Requests page.');
     }
 
     public function deletegradegradeeval(Request $request, GradeEvaluationRequests $gradeeval){
@@ -199,7 +199,7 @@ class StudentsController extends Controller
             'deleted_at' => ['required'],
         ]);
         $gradeeval->update($validated);
-        return redirect('/gradeeval')->with('success', 'Strand has been deleted successfully!');
+        return redirect('/gradeeval')->with('success', 'Grade Evaluation has been deleted successfully!');
      }
 
      public function deletegradeeval($id){
@@ -238,7 +238,7 @@ class StudentsController extends Controller
             $docreq->file = $filename;
         }   
         $docreq->save();
-        return redirect()->back()->with('successs', 'New document request was added Successfully');
+        return redirect()->back()->with('success', 'New document request was added Successfully');
     }
 
     public function deletegraderequest($id){
