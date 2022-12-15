@@ -19,7 +19,7 @@ class AdminsFactory extends Factory
             'middle_name' => 'Admin',
             'last_name' => 'Admin',
             'username' => 'Admin',
-            'email' => 'rollydelosreyes729@gmail.com',
+            'email' => 'svnhs.shs.board@gmail.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             // 'remember_token' => Str::random(10),
             // 'email_verified_at' => now(),
