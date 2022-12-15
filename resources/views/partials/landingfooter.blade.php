@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 </head>
 <body>
-    <br><br>
     <!-- Go back from top -->
     <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
             <script>
