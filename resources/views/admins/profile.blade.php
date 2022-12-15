@@ -11,8 +11,11 @@
                 @method('PUT')
                 @csrf
 	            <div class="rounded bg-white mt-5 mb-5">
-	            	<div style="font-size: 20px;"><b>Profile Information</b></div>
-								<hr style="border:1px solid black;">
+	            	<div style="font-size: 20px; background-color:rgb(229, 238, 229) ;">
+						<b>Profile Information</b>
+						<hr style="border:1px solid black;">
+					</div>
+						<div style="box-shadow: 0 4px 16px rgba(0,0,0,1);">		
 								<div class="row">
 									<div class="col-md-3 border-right">
 									    <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="{{ URL::asset('img/shs.png')}}"><br>
@@ -56,6 +59,7 @@
 									    <div class="col-md-12" style="font-size: 18px;"><label class="labels">Username</label><input style="font-size: 16px;" type="text" class="form-control" placeholder="{{Auth::user()->username}}" readonly></div>
 									</div>
 								</div>
+						</div>
 					<hr>
 					</div>
 					<hr style="border:1px solid black;">

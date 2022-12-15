@@ -9,8 +9,11 @@
         @method('PUT')
          @csrf
 	    <div class="rounded bg-white mt-5 mb-5 top-to-bottom">
-			<div style="font-size: 20px;"><b>Profile Information</b></div>
+		<div style="font-size: 20px; background-color:rgb(229, 238, 229) ;">
+			<b>Profile Information</b>
 			<hr style="border:1px solid black;">
+		</div>
+		<div style="box-shadow: 0 4px 16px rgba(0,0,0,1);">
 			<hr>
 			<div class="row">
 				<div class="col-md-3 border-right">
@@ -87,7 +90,8 @@
 				</div>
 				<hr>
 			</div>
-			<hr style="border:1px solid black;">
+		</div>
+		<hr style="border:1px solid black;">
 		</div>
 	</form>
 </main>     
