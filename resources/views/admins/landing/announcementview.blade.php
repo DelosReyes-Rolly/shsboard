@@ -21,39 +21,42 @@
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group (title)-->
                                         <div class="col-md-6">
-                                            <label class="large mb-1" for="inputwhat" style="font-size: 26px;"><b>What: </b></label>
-                                                <span style="font-size: 26px;">{{$announcement->what}}</span>
+                                            <label class="large mb-1" for="inputwhat" style="font-size: 26px;"><b>Subject: </b></label>
+                                            <span style="font-size: 26px;">{{$announcement->what}}</span>
                                         </div>
-                                        <!-- Form Group date-->
-                                        <div class="col-md-6">
-                                            <label class="large mb-1" for="inputwho" style="font-size: 26px;"><b>Who: </b></label>
-                                                <span style="font-size: 26px;">{{$announcement->who}}</span>
+                                        <div class="col-md-3">
+                                            <label class="slarge mb-1" for="inputwhn" style="font-size: 26px;"><b>When: </b></label>
+                                            <span style="font-size: 26px;">{{$requested_at  =   date('F d, Y', strtotime($announcement->whn))}}</span>
                                         </div>
-                                    </div><br/>
+                                        <!-- Form Group (content)-->
+                                        <div class="col-md-3">
+                                            <label for="appt" style="font-size: 26px;"><b>Time: </b></label>
+                                            <span style="font-size: 26px;">{{$time_start =  date('h:i A', strtotime($announcement->whn_time))}}</span>
+                                        </div>
+                                    </div>
                                     <!-- Form Row -->
-                                    <div class="row gx-3 mb-3">
+                                        <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
-                                            <div class="col-md-3">
-                                                <label class="slarge mb-1" for="inputwhn" style="font-size: 26px;"><b>When: </b></label>
-                                                    <span style="font-size: 26px;">{{$requested_at  =   date('F d, Y', strtotime($announcement->whn))}}</span>
+                                            <div class="col-md-4">
+                                                <label class="large mb-1" for="inputwho" style="font-size: 26px;"><b>Sender: </b></label>
+                                                <span style="font-size: 26px;">{{$announcement->sender}}</span>
                                             </div>
-                                            <!-- Form Group (content)-->
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="appt" style="font-size: 26px;"><b>Time: </b></label>
-                                                        <span style="font-size: 26px;">{{$time_start =  date('h:i A', strtotime($announcement->whn_time))}}</span>
-                                                </div>
+                                            <div class="col-md-4">
+                                                <label class="large mb-1" for="inputwho" style="font-size: 26px;"><b>Recipient: </b></label>
+                                                <span style="font-size: 26px;">{{$announcement->who}}</span>
                                             </div>
-                                            <div class="col-md-3">
-                                                <label class="slarge mb-1" for="inputwhn" style="font-size: 26px;"><b>Expiry: </b></label>
-                                                    <span style="font-size: 26px;">{{$requested_at  =   date('F d, Y', strtotime($announcement->expired_at))}}</span>
+                                            <div class="col-md-4">
+                                                <label class="large mb-1" for="inputwhr" style="font-size: 26px;"><b>Location: </b></label>
+                                                <span style="font-size: 26px;">{{$announcement->whr}}</span>
                                             </div>
                                             <!-- Form Group (location)-->
-                                            <div class="col-md-6">
-                                                <label class="large mb-1" for="inputwhr" style="font-size: 26px;"><b>Where: </b></label>
-                                                    <span style="font-size: 26px;">{{$announcement->whr}}</span>
+                                        </div>
+                                        <div class="row gx-3 mb-3">
+                                            <div class="col-md-3">
+                                                <label class="slarge mb-1" for="inputwhn" style="font-size: 26px;"><b>Expiry: </b></label>
+                                                <span style="font-size: 26px;">{{$requested_at  =   date('F d, Y', strtotime($announcement->expired_at))}}</span>
                                             </div>
-                                        </div><br/>
+                                        </div><br/><br/>
                                         <!-- Form Group (content)-->
                                         @if($announcement->image != NULL)
                                             <div class="mb-3">

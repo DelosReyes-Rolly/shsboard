@@ -175,6 +175,7 @@ class FacultyController extends Controller
             $announcement->faculty_id =  Auth::user()->id;
             $announcement->save();
             ActivityStreams::where('deleted', '=', NULL)->where('expired_at', '<',  now())->update(['status' => '2']);
+            ActivityStreams::where('deleted', '=', NULL)->where('expired_at', '>',  now())->update(['status' => '1']);
             return redirect('/createannouncement')->with('success', 'New activity was added successfully!');
         }
 
@@ -213,6 +214,7 @@ class FacultyController extends Controller
             ]);
            $announcement->update($validated);
            ActivityStreams::where('deleted', '=', NULL)->where('expired_at', '<',  now())->update(['status' => '2']);
+           ActivityStreams::where('deleted', '=', NULL)->where('expired_at', '>',  now())->update(['status' => '1']);
            return redirect('/createannouncement')->with('success', 'Activity has been updated.');;
        }
 

@@ -77,7 +77,7 @@ html,body{
 }
 @media (min-width: 1024px){}
 nav.navbar.bootsnav.no-background {
-    background-color: #000;
+    background-color: #032e12;
     border: none;
     box-shadow: 0 4px 16px rgba(0,0,0,1);
 }

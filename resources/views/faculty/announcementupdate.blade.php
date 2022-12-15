@@ -1,20 +1,7 @@
-@include('partials.adminheader')
-@include('partials.adminSecondHeader')
+@include('partials.facultyheader')
+@include('partials.facultySecondHeader')
 <main>
 <div>
-
-        <!-- form -->
-                    
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <strong>Whoops!</strong> There were some problems with your input.
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
 
         <form method="POST" action="/updatefacultyannouncement/{{$announcement->id}}" enctype="multipart/form-data">
             @method('PUT')
@@ -28,7 +15,18 @@
                         <!-- Account details card-->
                         <div class="card mb-4">
                             <div class="card border-start-lg border-start-yellow">
-                                <div class="card-header"></div>
+                                <div class="card-header">
+                                    @if (count($errors) > 0)
+                                        <div class="alert alert-danger">
+                                            <strong>Whoops!</strong> There were some problems with your input.
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+                                </div>
                                 <div class="card-body" style="padding: 10px 40px 10px 40px">
                                     <div class="mb-3" style="color: red">
                                         * required field
@@ -38,87 +36,67 @@
                                         <!-- Form Group (title)-->
                                         <div class="col-md-6">
                                             <label class="large mb-1" for="inputwhat" style="font-size: 20px;"><span style="color: red">*</span> What</label>
-                                            <input class="form-control @error('what') is-invalid @enderror" id="inputwhat" type="text" placeholder="Enter the title" name="what"  value="{{$announcement->what}}">
+                                            <input class="form-control @error('what') is-invalid @enderror" id="inputwhat" type="text" placeholder="Enter the title" name="what"  value="{{$announcement->what}}" style="font-size: 20px; padding: 200px;">
                                         </div>
-                                    </div><br/>
-                                    <!-- Form Row -->
-                                    <div class="row gx-3 mb-3">
-                                        <!-- Form Group whr-->
                                         <div class="col-md-3">
                                             <label class="slarge mb-1" for="inputwhn" style="font-size: 20px;"><span style="color: red">*</span> When</label>
-                                                <input type="date" class="form-control @error('whn') is-invalid @enderror" id="inputwhn" placeholder="Enter the date" name="whn"  value="{{$announcement->whn}}">
+                                            <input type="date" class="form-control @error('whn') is-invalid @enderror" id="inputwhn" placeholder="Enter the date" name="whn"  value="{{$announcement->whn}}" style="font-size: 20px; padding: 20px;">
                                         </div>
                                         <!-- Form Group (content)-->
                                         <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="appt" style="font-size: 20px;"><span style="color: red">*</span> Select a time:</label><br>
-                                                <input type="time" id="whn_time" name="whn_time" value="{{$announcement->whn_time}}">
-                                            </div>
+                                            <label for="appt" style="font-size: 20px;"><span style="color: red">*</span> Time:</label><br>
+                                            <input type="time" id="whn_time" name="whn_time" value="{{$announcement->whn_time}}">
                                         </div>
+                                    </div><br/>
+                                    <!-- Form Row -->
+                                    <div class="row">
+                                        <!-- Form Row -->
+                                        <!-- Form Group whr-->
+                                        <div class="col-md-2">
+                                            <label for="gradelevel_id" style="font-size: 20px;"><span style="color: red">*</span> Grade Level</label>
+                                            <select id="gradelevel_id" name="gradelevel_id" value="{{ old('gradelevel_id') }}" style="font-size: 16px; padding: 12px;">
+                                                <option value="" disabled selected hidden>Choose Gradelevel</option>
+                                                @foreach ($gradelevels as $gradelevel)
+                                                    <option value="{{ $gradelevel->id }}" {{($announcement->gradelevel->id==$gradelevel->id)? 'selected':'' }}>{{ $gradelevel->gradelevel }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div><br/>
+                                        <div class="col-md-4">
+                                            <label for="course_id" style="font-size: 20px;"><span style="color: red">*</span> Course</label>
+                                            <select id="course_id" name="course_id" value="{{ old('course_id') }}" style="font-size: 16px; padding: 12px;">
+                                                <option value="" disabled selected hidden>Choose Course</option>
+                                                @foreach ($courses as $course)
+                                                    <option value="{{ $course->id }}"{{($announcement->course->id==$course->id)? 'selected':'' }}>{{ $course->courseName}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div><br/>
+                                        <div class="col-md-2">
+                                            <label for="section_id" style="font-size: 20px;"><span style="color: red">*</span> Section</label>
+                                            <select id="section_id" name="section_id" value="{{ old('section_id') }}" style="font-size: 16px; padding: 12px;">
+                                                <option value="" disabled selected hidden>Choose Section</option>
+                                                @foreach ($sections as $section)
+                                                    <option value="{{ $section->id }}"{{($announcement->section->id==$section->id)? 'selected':'' }}>{{ $section->section}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div><br/>
+                                        <div class="col-md-3">
+                                            <label for="subject_id" style="font-size: 20px;"><span style="color: red">*</span> Subject</label>
+                                                <select id="subject_id" name="subject_id" value="{{ old('subject_id') }}" style="font-size: 16px; padding: 12px;">
+                                                    <option value="" disabled selected hidden>Choose Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}"{{($announcement->subject->id==$subject->id)? 'selected':'' }}>{{ $subject->subjectname}}</option>
+                                                    @endforeach
+                                                </select>
+                                         </div>
+                                        <!-- Form Row -->
+                                    </div><br/>
+                                    <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
                                         <div class="col-md-3">
                                             <label class="slarge mb-1" for="inputexpired_at" style="font-size: 20px;"><span style="color: red">*</span> Expired at</label>
-                                                <input type="date" class="form-control @error('expired_at') is-invalid @enderror" id="inputexpired_at" placeholder="Enter the date" name="expired_at"  value="{{$announcement->expired_at}}">
+                                            <input type="date" class="form-control @error('expired_at') is-invalid @enderror" id="inputexpired_at" placeholder="Enter the date" name="expired_at"  value="{{$announcement->expired_at}}" style="font-size: 20px; padding: 20px;">
                                         </div>
                                     </div><br/>
-                                    <div class="row gx-3 mb-3">
-                                        <!-- Form Row -->
-                                        <div class="row gx-3 mb-3">
-                                            <!-- Form Group whr-->
-                                            <div class="col-md-10">
-                                                <div class="col-md-12"><label for="gradelevel_id" style="font-size: 20px;"><span style="color: red">*</span> Grade Level</label>
-                                                    <select id="gradelevel_id" name="gradelevel_id" class="form-control" value="{{ old('gradelevel_id') }}" style="font-size: 14px;">
-                                                        <option value="" disabled selected hidden>Choose Gradelevel</option>
-                                                        @foreach ($gradelevels as $gradelevel)
-                                                            <option value="{{ $gradelevel->id }}" {{($announcement->gradelevel->id==$gradelevel->id)? 'selected':'' }}>{{ $gradelevel->gradelevel }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div><br/>
-                                        <!-- Form Row -->
-                                        <div class="row gx-3 mb-3">
-                                            <!-- Form Group whr-->
-                                            <div class="col-md-10">
-                                                <div class="col-md-12"><label for="course_id" style="font-size: 20px;"><span style="color: red">*</span> Course</label>
-                                                    <select id="course_id" name="course_id" class="form-control" value="{{ old('course_id') }}" style="font-size: 14px;">
-                                                        <option value="" disabled selected hidden>Choose Course</option>
-                                                        @foreach ($courses as $course)
-                                                            <option value="{{ $course->id }}"{{($announcement->course->id==$course->id)? 'selected':'' }}>{{ $course->courseName}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div><br/>
-                                        <!-- Form Row -->
-                                        <div class="row gx-3 mb-3">
-                                            <!-- Form Group whr-->
-                                            <div class="col-md-10">
-                                                <div class="col-md-12"><label for="section_id" style="font-size: 20px;"><span style="color: red">*</span> Section</label>
-                                                    <select id="section_id" name="section_id" class="form-control" value="{{ old('section_id') }}" style="font-size: 14px;">
-                                                        <option value="" disabled selected hidden>Choose Section</option>
-                                                        @foreach ($sections as $section)
-                                                            <option value="{{ $section->id }}"{{($announcement->section->id==$section->id)? 'selected':'' }}>{{ $section->section}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div><br/>
-                                        <!-- Form Row -->
-                                        <div class="row gx-3 mb-3">
-                                            <!-- Form Group whr-->
-                                            <div class="col-md-10">
-                                                <div class="col-md-12"><label for="subject_id" style="font-size: 20px;"><span style="color: red">*</span> Subject</label>
-                                                    <select id="subject_id" name="subject_id" class="form-control" value="{{ old('subject_id') }}" style="font-size: 14px;">
-                                                        <option value="" disabled selected hidden>Choose Subject</option>
-                                                        @foreach ($subjects as $subject)
-                                                            <option value="{{ $subject->id }}"{{($announcement->subject->id==$subject->id)? 'selected':'' }}>{{ $subject->subjectname}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div><br/>
-                                    </div>
                                         <!-- Form Group (content)-->
                                         <div class="mb-3">
                                             <label class="large mb-1" for="editor" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
@@ -126,8 +104,8 @@
                                         </div><br/>
                                         <div class="row gx-3 mb-3">
                                             <!-- Save changes button-->
-                                            <a class="btn btn-info btn-md" href="{{ url()->previous() }}"><i class="fas fa-arrow-left"></i> Back</a> &emsp;
-                                            <font face = "Verdana" size = "4"><input type="submit" class="btn btn-primary" value="Submit"></font>
+                                            <a class="btn btn-info btn-md" href="{{ url()->previous() }}" style="font-size: 16px;"><i class="fas fa-arrow-left"></i> Back</a> &emsp;
+                                            <font face = "Verdana" size = "4"><input type="submit" class="btn btn-primary" value="Submit" style="font-size: 16px;"></font>
                                         </div>
                                     </div>
                                 </div>

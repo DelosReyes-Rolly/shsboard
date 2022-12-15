@@ -20,17 +20,17 @@
                                     <!-- Form Row -->
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group (content)-->
-                                        <div class="col-md-3">
+                                        <div class="col-md-6">
                                             <label class="slarge mb-1" for="inputwhn" style="font-size: 26px;"><b>Date Posted: </b></label>
                                                 <span style="font-size: 26px;">{{$requested_at  =   date('F d, Y', strtotime($reminder->created_at))}}</span>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-6">
                                             <label class="slarge mb-1" for="inputwhn" style="font-size: 26px;"><b>Expiry Date: </b></label>
-                                                <span style="font-size: 26px;">{{$requested_at  =   date('F d, Y', strtotime($reminder->whn))}}</span>
+                                                <span style="font-size: 26px;">{{$requested_at  =   date('F d, Y', strtotime($reminder->expired_at))}}</span>
                                             </div>
                                         </div><br/>
                                         <div class="mb-3">
-                                            <label class="large mb-1" for="editor"><b>Content: </b></label>
+                                            <label class="large mb-1" for="editor" style="font-size: 26px;"><b>Content: </b></label>
                                                 <span style="font-size: 26px;">{!!$reminder->content!!}</span>
                                         </div><br/>
                                         <!-- Form Group privacy-->

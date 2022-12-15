@@ -62,7 +62,7 @@ class AdminsController extends Controller
     public function home(){
 
         Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<', Carbon::now())->update(['status' => '2']);
-
+        
         $announcement = DB::table('announcements')
             ->where('deleted', '=', NULL)
             ->where('status', '=', 1)
@@ -208,23 +208,25 @@ class AdminsController extends Controller
     public function storeannouncement(Request $request){
         // Validate the inputs
         $request->validate([
-            'what' => 'required',
-            'who' => 'required',
-            'whn' => 'required',
-            'whn_time' => 'required',
-            'whr' => 'required',
+            'subject' => 'required',
+            'date' => 'required',
+            'time' => 'required',
+            'sender' => 'required',
+            'recipient' => 'required',
+            'location' => 'required',
             'content' => 'required',
-            'expired_at' => 'required',
+            'post_expiration' => 'required',
             'image' => 'mimes:png,jpg,jpeg|max:2048',
         ]);
         $announcement = new Announcements();
-        $announcement->what = $request->get('what');
-        $announcement->who = $request->get('who');
-        $announcement->whn = $request->get('whn');
-        $announcement->whn_time = $request->get('whn_time');
-        $announcement->whr = $request->get('whr');
+        $announcement->what = $request->get('subject');
+        $announcement->who = $request->get('recipient');
+        $announcement->whn = $request->get('date');
+        $announcement->whn_time = $request->get('time');
+        $announcement->whr = $request->get('location');
+        $announcement->sender = $request->get('sender');
         $announcement->content = $request->get('content');
-        $announcement->expired_at = $request->get('expired_at');
+        $announcement->expired_at = $request->get('post_expiration');
         $announcement->privacy = 1;
         $announcement->approval = 2;
         $announcement->status = 1;
@@ -243,23 +245,25 @@ class AdminsController extends Controller
     public function storeprivateannouncement(Request $request){
         // Validate the inputs
         $request->validate([
-            'what' => 'required',
-            'who' => 'required',
-            'whn' => 'required',
-            'whn_time' => 'required',
-            'whr' => 'required',
+            'subject' => 'required',
+            'date' => 'required',
+            'time' => 'required',
+            'sender' => 'required',
+            'recipient' => 'required',
+            'location' => 'required',
             'content' => 'required',
-            'expired_at' => 'required',
+            'post_expiration' => 'required',
             'image' => 'mimes:png,jpg,jpeg|max:2048',
         ]);
         $announcement = new Announcements();
-        $announcement->what = $request->get('what');
-        $announcement->who = $request->get('who');
-        $announcement->whn = $request->get('whn');
-        $announcement->whn_time = $request->get('whn_time');
-        $announcement->whr = $request->get('whr');
+        $announcement->what = $request->get('subject');
+        $announcement->who = $request->get('recipient');
+        $announcement->whn = $request->get('date');
+        $announcement->whn_time = $request->get('time');
+        $announcement->whr = $request->get('location');
+        $announcement->sender = $request->get('sender');
         $announcement->content = $request->get('content');
-        $announcement->expired_at = $request->get('expired_at');    
+        $announcement->expired_at = $request->get('post_expiration');  
         $announcement->privacy = 2;
         $announcement->approval = 2;
         $announcement->status = 1;
@@ -272,7 +276,7 @@ class AdminsController extends Controller
         }
         $announcement->save();
         Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<',  now())->update(['status' => '2']);
-        return redirect()->back()->with('success', 'New announcement was added Successfully');
+        return redirect()->back()->with('success', 'New private announcement was added Successfully');
     }
 
     public function approve($id){
@@ -306,11 +310,13 @@ class AdminsController extends Controller
             'whn' => ['required'],
             'whn_time' => ['required'],
             'whr' => ['required'],
+            'sender' => ['required'],
             'content' => ['required'],
             'expired_at' => ['required'],
         ]);
        $announcement->update($validated);
-       Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<',  now())->update(['status' => '2']);
+       Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<=',  now())->update(['status' => '2']);
+       Announcements::where('deleted', '=', NULL)->where('status', '=', 2)->where('expired_at', '>',  now())->update(['status' => '1']);
        return redirect('/createAnnoucement')->with('success', 'Announcement has been updated.');;
    }
 
@@ -356,23 +362,25 @@ class AdminsController extends Controller
     public function storeevent(Request $request){
         // Validate the inputs
         $request->validate([
-            'what' => 'required',
-            'who' => 'required',
-            'whn' => 'required',
-            'whn_time' => 'required',
-            'whr' => 'required',
+            'subject' => 'required',
+            'date' => 'required',
+            'time' => 'required',
+            'sender' => 'required',
+            'recipient' => 'required',
+            'location' => 'required',
             'content' => 'required',
-            'expired_at' => 'required',
+            'post_expiration' => 'required',
             'image' => 'mimes:png,jpg,jpeg|max:2048',
         ]);
         $announcement = new Announcements();
-        $announcement->what = $request->get('what');
-        $announcement->who = $request->get('who');
-        $announcement->whn = $request->get('whn');
-        $announcement->whn_time = $request->get('whn_time');
-        $announcement->whr = $request->get('whr');
+        $announcement->what = $request->get('subject');
+        $announcement->who = $request->get('recipient');
+        $announcement->whn = $request->get('date');
+        $announcement->whn_time = $request->get('time');
+        $announcement->whr = $request->get('location');
+        $announcement->sender = $request->get('sender');
         $announcement->content = $request->get('content');
-        $announcement->expired_at = $request->get('expired_at');
+        $announcement->expired_at = $request->get('post_expiration');
         $announcement->is_event = 1;
         $announcement->status = 1;
         if($request->hasFile('image')){
@@ -405,11 +413,13 @@ class AdminsController extends Controller
             'whn' => ['required'],
             'whn_time' => ['required'],
             'whr' => ['required'],
+            'sender' => ['required'],
             'content' => ['required'],
             'expired_at' => ['required'],
         ]);
        $event->update($validated);
        Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<',  now())->update(['status' => '2']);
+       Announcements::where('deleted', '=', NULL)->where('status', '=', 2)->where('expired_at', '>',  now())->update(['status' => '1']);
        return redirect('/createEvents')->with('success', 'Event has been updated.');
    }
 
@@ -464,7 +474,7 @@ class AdminsController extends Controller
         $announcement->status = 1;
         $announcement->save();
         Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<',  now())->update(['status' => '2']);
-        return redirect('/privatereminders')->with('success', 'New reminder was added Successfully');
+        return redirect('/privatereminders')->with('success', 'New private reminder was added successfully');
     }
 
     public function viewreminder($id){
@@ -484,7 +494,9 @@ class AdminsController extends Controller
             'content' => ['required'],
         ]);
        $reminder->update($validated);
-       return redirect('/admins')->with('success', 'Reminder has been updated.');
+       Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<=',  now())->update(['status' => '2']);
+       Announcements::where('deleted', '=', NULL)->where('status', '=', 2)->where('expired_at', '>',  now())->update(['status' => '1']);
+       return redirect('/createReminder')->with('success', 'Reminder has been updated.');
    }
 
     

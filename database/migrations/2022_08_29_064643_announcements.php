@@ -22,6 +22,7 @@ class Announcements extends Migration
             $table->date('whn');
             $table->time('whn_time')->nullable();
             $table->string('whr')->nullable();
+            $table->string('sender')->nullable();
             $table->text('content');
             $table->integer('approval')->comment('1 - pending, 2 - approved, 3 - rejected')->nullable();
             $table->integer('status')->comment('1 - active, 2 - expired');

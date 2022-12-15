@@ -1,5 +1,5 @@
-@include('partials.adminheader')
-@include('partials.adminSecondHeader')
+@include('partials.facultyheader')
+@include('partials.facultySecondHeader')
 <main>
 <div>     
             <div class="container-xl px-4 mt-4">
@@ -66,8 +66,8 @@
                                         <!-- Form Row -->
                                         <div class="row gx-3 mb-3">
                                             <!-- Form Group whr-->
-                                            <div class="col-md-10">
-                                                <div class="col-md-12"><label for="section_id" style="font-size: 26px;"><b>Section: </b></label>
+                                            <div class="col-md-12">
+                                                <div class="col-md-12"><label for="section_id" style="font-size: 26px;"><b>Section: </b></label><br>
                                                     <span style="font-size: 26px;">{{$announcement -> section -> section}}</span>
                                                 </div>
                                             </div>
@@ -90,9 +90,9 @@
                                         <div class="row gx-3 mb-3">
                                             <!-- Save changes button-->
                                             <div class="pull-right">
-                                                <a class="btn btn-info btn-md" href="{{ url()->previous() }}"><i class="fas fa-arrow-left"></i> Back</a>
-                                                <a class="btn btn-warning btn-md" href="/showfacultyannouncement/{{$announcement->id}}"><i class="fas fa-edit"></i> Update</a>
-                                                <a class="btn btn-danger btn-md" href="{{route('faculty.deleteannouncement', $announcement->id)}}"><i class="far fa-trash-alt"></i> Delete</a>
+                                                <a class="btn btn-info btn-md" href="{{ url()->previous() }}" style="font-size: 16px;"><i class="fas fa-arrow-left"></i> Back</a>
+                                                <a class="btn btn-warning btn-md" href="/showfacultyannouncement/{{$announcement->id}}" style="font-size: 16px;"><i class="fas fa-edit"></i> Update</a>
+                                                <a class="btn btn-danger btn-md" href="{{route('faculty.deleteannouncement', $announcement->id)}}" style="font-size: 16px;"><i class="far fa-trash-alt"></i> Delete</a>
                                             </div>
                                         </div>
                                     </div>

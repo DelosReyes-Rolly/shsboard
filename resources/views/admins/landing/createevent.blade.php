@@ -25,7 +25,7 @@
                 <div class="row">
                     <div class="col-lg-4 mb-4">
                         <!-- Billing card 2-->
-                        <div class="card h-100 border-start-lg border-start-secondary" style="background-color: red; color: white;" >
+                        <div class="card h-100 border-start-lg border-start-secondary" style="background-color: red; color: white; box-shadow: 0 4px 16px rgba(0,0,0,0.6);" >
                             <div class="card-body">
                                 <div class="card-header" style="font-size: 20px; font-weight: 800;">Expired Events</div>
                                 <div class="h3" style="padding: 40px 40px 10px 40px"><i class="far fa-calendar-times"></i> {{ $events->where('status', '=', 2)->count() }}</div>
@@ -34,7 +34,7 @@
                     </div>
                 <div class="col-lg-4 mb-4">
                     <!-- Billing card 3-->
-                    <div class="card h-100 border-start-lg border-start-success" style="background-color: green; color: white;">
+                    <div class="card h-100 border-start-lg border-start-success" style="background-color: green; color: white; box-shadow: 0 4px 16px rgba(0,0,0,0.6);">
                         <div class="card-body">
                             <div class="card-header" style="font-size: 20px; font-weight: 800;">Active Events</div>
                             <div class="h3 d-flex align-items-center" style="padding: 40px 40px 10px 40px"><i class="fas fa-bullhorn"></i> {{ $events->where('status', '=', 1)->count() }}</div>
@@ -42,26 +42,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- form -->
-
-            @if ($message = Session::get('message'))
-                <div class="alert alert-success alert-block">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong>{{ $message }}</strong>
-                </div>
-            @endif
-                        
-            @if (count($errors) > 0)
-                <div class="alert alert-danger">
-                    <strong>Whoops!</strong> There were some problems with your input.
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
 
             <form method="POST" action="{{ route('event.store') }}" enctype="multipart/form-data">
                 @csrf
@@ -72,69 +52,95 @@
                     <div class="row">
                         
                             <!-- Account details card-->
-                            <div class="card mb-4">
-                                <div class="card border-start-lg border-start-yellow">
-                                    <div class="card-header"></div>
-                                    <div class="card-body" style="padding: 10px 40px 100px 40px">
-                                        <div class="mb-3" style="color: red">
-                                            * required field
+                        <div class="card mb-4">
+                            <div class="border-start-lg border-start-yellow">
+                                <div class="card-header">
+                                    <!-- form -->
+                                    @if ($message = Session::get('message'))
+                                        <div class="alert alert-success alert-block">
+                                            <button type="button" class="close" data-dismiss="alert">×</button>
+                                            <strong>{{ $message }}</strong>
                                         </div>
-                                        <!-- Form Row-->
-                                        <div class="row gx-3 mb-3">
-                                            <!-- Form Group (title)-->
-                                            <div class="col-md-6">
-                                                <label class="small mb-1" for="inputwhat" style="font-size: 20px;"><span style="color: red">*</span>What</label>
-                                                <input class="form-control @error('what') is-invalid @enderror" id="inputwhat" type="text" placeholder="Enter the title" name="what"  value="{{ old('what') }}">
+                                    @endif
+                                    
+                                    @if (count($errors) > 0)
+                                        <div class="alert alert-danger">
+                                            <strong>Whoops!</strong> There were some problems with your input.
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="card-body" style="padding: 10px 40px 10px 40px">
+                                    <div class="mb-3" style="color: red">
+                                        * required field
+                                    </div>
+                                    <!-- Form Row-->
+                                    <div class="row gx-3 mb-3">
+                                        <!-- Form Group (title)-->
+                                        <div class="col-md-6">
+                                            <label class="large mb-1" for="inputsubject" style="font-size: 20px;"><span style="color: red">*</span> Subject</label>
+                                            <input class="form-control @error('subject') is-invalid @enderror" id="inputsubject" type="text" placeholder="Enter the title" name="subject"  value="{{ old('subject') }}">
+                                        </div>
+                                        <!-- Form Group date-->
+                                        <div class="col-md-3">
+                                            <label class="slarge mb-1" for="inputdate" style="font-size: 20px;"><span style="color: red">*</span> Date</label>
+                                            <input type="date" class="form-control @error('date') is-invalid @enderror" id="inputdate" placeholder="Enter the date" name="date"  value="{{ old('date') }}">
+                                        </div>
+                                        <!-- Form Group (content)-->
+                                        <div class="col-md-3">
+                                             <div class="form-group">
+                                                <label for="appt" style="font-size: 20px;"><span style="color: red">*</span> Time</label><br>
+                                                <input type="time" id="time" name="time" value="{{ old('time') }}">
                                             </div>
-                                            <!-- Form Group date-->
+                                         </div>
+                                    </div>
+                                    <!-- Form Row -->
+                                    <div class="row gx-3 mb-3">
+                                            <!-- Form Group whr-->
+                                            <div class="col-md-3">
+                                                <label class="large mb-1" for="inputsender" style="font-size: 20px;"><span style="color: red">*</span> From</label>
+                                                <input class="form-control @error('sender') is-invalid @enderror" id="inputsender" type="text" placeholder="Enter the sender" name="sender"  value="{{ old('sender') }}">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="large mb-1" for="inputrecipient" style="font-size: 20px;"><span style="color: red">*</span> To</label>
+                                                <input class="form-control @error('recipient') is-invalid @enderror" id="inputrecipient" type="text" placeholder="Enter the recipients" name="recipient"  value="{{ old('recipient') }}">
+                                            </div>
+                                            <!-- Form Group whr-->
+                                            <!-- Form Group (location)-->
                                             <div class="col-md-6">
-                                                <label class="small mb-1" for="inputwho" style="font-size: 20px;"><span style="color: red">*</span>Who</label>
-                                                <input class="form-control @error('who') is-invalid @enderror" id="inputwho" type="text" placeholder="Enter the receipients" name="who"  value="{{ old('who') }}">
+                                                <label class="large mb-1" for="inputlocation" style="font-size: 20px;"><span style="color: red">*</span> Location</label>
+                                                <input class="form-control @error('location') is-invalid @enderror" id="inputlocation" type="text" placeholder="Enter the location" name="location"  value="{{ old('location') }}">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <br><label class="slarge mb-1" for="inputpost_expiration" style="font-size: 20px;"><span style="color: red">*</span> Post Expiration</label>
+                                                <input type="date" class="form-control @error('post_expiration') is-invalid @enderror" id="inputpost_expiration" placeholder="Enter the date" name="post_expiration"  value="{{ old('post_expiration') }}">
                                             </div>
                                         </div><br/>
-                                        <!-- Form Row        -->
+                                        <!-- Form Group (content)-->
+                                        <div class="mb-3">
+                                            <label class="large mb-1" for="editor" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
+                                            <textarea class="form-control @error('content') is-invalid @enderror" id="editor" type="text" placeholder="Enter the information" name="content"  rows="10" cols="80">{{ old('content') }}</textarea>
+                                        </div><br/>
                                         <div class="row gx-3 mb-3">
-                                            <!-- Form Group whr-->
-                                                <div class="col-md-2">
-                                                    <label class="small mb-1" for="inputwhn" style="font-size: 20px;"><span style="color: red">*</span>When</label>
-                                                    <input type="date" class="form-control @error('whn') is-invalid @enderror" id="inputwhn" placeholder="Enter the date" name="whn"  value="{{ old('whn') }}">
-                                                </div>
-                                                <!-- Form Group (content)-->
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <label for="appt" style="font-size: 20px;"><span style="color: red">*</span>Select a time:</label><br>
-                                                        <input type="time" id="whn_time" name="whn_time" value="{{ old('whn_time') }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <label class="small mb-1" for="inputexpired_at" style="font-size: 20px;"><span style="color: red">*</span>Expired at</label>
-                                                    <input type="date" class="form-control @error('expired_at') is-invalid @enderror" id="inputexpired_at" placeholder="Enter the date" name="expired_at"  value="{{ old('expired_at') }}">
-                                                </div>
-                                                <!-- Form Group (location)-->
-                                                <div class="col-md-6">
-                                                    <label class="small mb-1" for="inputwhr" style="font-size: 20px;"><span style="color: red">*</span>Where</label>
-                                                    <input class="form-control @error('whr') is-invalid @enderror" id="inputwhr" type="text" placeholder="Enter the location" name="whr"  value="{{ old('whr') }}">
-                                                </div>
-                                            </div><br/>
-                                            <!-- Form Group (content)-->
-                                            <div class="mb-3">
-                                                <label class="small mb-1" for="editor" style="font-size: 20px;"><span style="color: red">*</span>Content</label>
-                                                <textarea class="form-control @error('content') is-invalid @enderror" id="editor" type="text" placeholder="Enter the information" name="content" rows="10" cols="80">{{ old('content') }}</textarea>
-                                            </div><br/>
                                             <!-- Form Group (img)-->
                                             <div class="col-md-6">
-                                                <label class="large mb-1" style="font-size: 20px;">Image (Only png and jpg files are allowed)</label>
+                                                <label class="large mb-1" for="inputcontent" style="font-size: 20px;">Image (Only png and jpg files are allowed)</label>
                                                 <div class ="form-group row">
                                                     <div class="col-md-8"></div>
                                                     <input type="file" name = "image" class="form-control">
                                                 </div> 
                                             </div>
                                             <!-- Save changes button-->
-                                            <font face = "Verdana" size = "6"><input type="submit" class="btn btn-primary" value="Submit" style="float: right;"></font>
                                         </div>
+                                        <font face = "Verdana" size = "6"><input type="submit" class="btn btn-primary" value="Submit"></font>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         
                     </div>
                 </div>

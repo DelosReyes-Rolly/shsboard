@@ -1,5 +1,5 @@
 @include('partials.landingheader')
-<main class="h-100"><br/><br/>
+<main><br/><br/>
     <!-- event start -->
 		<section id="about" class="about">
             @if($events == NULL)
@@ -57,7 +57,9 @@
 							                    <div class="col-md-3">
 							                        <br><hr>
 													<b>WHEN: <li>On {{$date  =   date('F d, Y', strtotime($event->whn))}}</a></li><br></b>
-													<b>WHERE: {{$event -> whr}}</b>
+													<b>WHERE: <li>{{$event -> whr}}</li></b><br>
+													<b>FROM: </b>{{$event -> sender}}<br><br>
+                                                    <b>TO: </b>{{$event -> who}}<br>
 													<br><br><br>
 							                    </div>
 							                </div>
