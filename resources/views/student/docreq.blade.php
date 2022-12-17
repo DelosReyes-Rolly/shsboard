@@ -83,7 +83,7 @@
                                                  <!-- Save changes button-->
                                                     <br><center> Note:<br>The documents will be processed <b>within five (5) working days</b> upon requesting.
                                                     The documents can be claimed in the <b>Registrars Office.</b></center><br><br>
-                                                <a class="btn btn-info btn-md" href="{{ url()->previous() }}"><i class="fas fa-arrow-left"></i> Back</a>
+                                                <a class="btn btn-info btn-md" href="javascript:history.back()"><i class="fas fa-arrow-left"></i> Back</a>
                                                 <font face = "Verdana" size = "6"><input type="submit" class="btn btn-primary" value="Submit" style="float: right; margin-right: 80px;"></font>
                                                 <br><br><br><br>
                                             </div>

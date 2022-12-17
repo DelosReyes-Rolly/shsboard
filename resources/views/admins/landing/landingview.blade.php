@@ -37,7 +37,7 @@
                                             {!!$landing->content!!}
                                             <!-- Save changes button-->
                                             <div class="pull-right">
-                                                <a class="btn btn-info btn-md" href="{{ url()->previous() }}"><i class="fas fa-arrow-left"></i> Back</a>
+                                                <a class="btn btn-info btn-md" href="javascript:history.back()"><i class="fas fa-arrow-left"></i> Back</a>
                                                 <a class="btn btn-warning btn-md" href="/showlanding/{{$landing->id}}"><i class="fas fa-edit"></i> Update</a>
                                                 <a class="btn btn-danger btn-md" href="/delete/{{$landing->id}}"><i class="far fa-trash-alt"></i> Delete</a>
                                             </div>

@@ -86,7 +86,7 @@
                                                 <br>
                                                  <!-- Save changes button-->
                                                     <div class="pull-right">
-                                                        <a class="btn btn-info btn-md" href="{{ url()->previous() }}"><i class="fas fa-arrow-left"></i> Back</a>
+                                                        <a class="btn btn-info btn-md" href="javascript:history.back()"><i class="fas fa-arrow-left"></i> Back</a>
                                                         <a class="btn btn-warning btn-md" href="/showrequestadmin/{{$docreq->id}}"><i class="fas fa-edit"></i> Update</a>
                                                     </div>
                                             </div>

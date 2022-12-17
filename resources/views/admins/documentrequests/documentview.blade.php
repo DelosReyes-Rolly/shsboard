@@ -14,7 +14,7 @@
                             
                                 <!-- Account details card-->
                                 <div class="card mb-4">
-                                    <div class="card border-start-lg border-start-yellow">
+                                    <div class="border-start-lg border-start-yellow">
                                         <div class="card-header"></div>
                                         <div class="card-body" style="padding: 10px 40px 10px 40px">
                                             <div class="mb-3">
@@ -37,7 +37,7 @@
                                                 
                                                     <!-- Save changes button-->
                                                     <div class="pull-right">
-                                                        <a class="btn btn-info btn-md" href="{{ url()->previous() }}"><i class="fas fa-arrow-left"></i> Back</a>
+                                                        <a class="btn btn-info btn-md" href="javascript:history.back()"><i class="fas fa-arrow-left"></i> Back</a>
                                                         <a class="btn btn-warning btn-md" href="/showdocument/{{$document->id}}"><i class="fas fa-edit"></i> Update</a>
 														<a class="btn btn-danger btn-md" href="{{route('admin.deletedocument', $document->id)}}"><i class="far fa-trash-alt"></i> Delete</a>
                                                     </div>

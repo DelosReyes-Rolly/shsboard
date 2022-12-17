@@ -47,7 +47,7 @@
                                                 <div class="row gx-3 mb-3">
                                                     <!-- Save changes button-->
                                                     <div class="pull-right">
-                                                        <a class="btn btn-info btn-md" href="{{ url()->previous() }}"><i class="fas fa-arrow-left"></i> Back</a>
+                                                        <a class="btn btn-info btn-md" href="javascript:history.back()"><i class="fas fa-arrow-left"></i> Back</a>
                                                         <a class="btn btn-danger btn-md" href="{{route('student.deletegradeeval', $gradeevaluationrequest->id)}}"><i class="fas fa-trash-alt"></i> Delete</a>
                                                     </div>
                                                 </div>

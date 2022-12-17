@@ -20,7 +20,7 @@
                                         {{$schoolyear->schoolyear}}</h1>
                                     </div>
                                     <div class="pull-right">
-                                        <a class="btn btn-info btn-md" href="{{ url()->previous() }}"><i class="fas fa-arrow-left"></i> Back</a>
+                                        <a class="btn btn-info btn-md" href="javascript:history.back()"><i class="fas fa-arrow-left"></i> Back</a>
                                         <a class="btn btn-warning btn-md" href="/showschoolyear/{{$schoolyear->id}}"><i class="fas fa-edit"></i> Update</a>
                                         <a class="btn btn-danger btn-md" href="{{route('admin.deleteschoolyear', $schoolyear->id)}}"><i class="far fa-trash-alt"></i> Delete</a>
                                     </div>

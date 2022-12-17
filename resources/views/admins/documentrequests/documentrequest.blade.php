@@ -47,7 +47,7 @@
 	                    <div class="col-lg-4 mb-4">	
 	                        <!-- Account details card-->
 	                        <div class="card mb-4">
-	                            <div class="card border-start-lg border-start-yellow" style="color: white; background-color: #B9B32E;">
+	                            <div class="border-start-lg border-start-yellow" style="color: white; background-color: #B9B32E; box-shadow: 0 4px 16px rgba(0,0,0,0.6);">
 	                                <div class="card-header" style="font-size: 20px; font-weight: 800;">Requested Documents</div>
 	                                <div class="card-body">
 										<br>
@@ -86,7 +86,7 @@
 	                    
 	                        <!-- Account details card-->
 	                        <div class="card mb-4">
-	                            <div class="card border-start-lg border-start-yellow">
+	                            <div class="border-start-lg border-start-yellow">
 	                                <div class="card-header"></div>
 	                                <div class="card-body">
 										<br>

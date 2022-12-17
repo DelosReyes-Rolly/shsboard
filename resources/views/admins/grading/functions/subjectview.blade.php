@@ -39,7 +39,7 @@
                                             <span style="font-size: 20px;">{{$subject->description}}</span>
                                         </div><br/><br/>
                                         <div class="pull-right">
-                                            <a class="btn btn-info btn-md" href="{{ url()->previous() }}"><i class="fas fa-arrow-left"></i> Back</a>
+                                            <a class="btn btn-info btn-md" href="javascript:history.back()"><i class="fas fa-arrow-left"></i> Back</a>
                                             <a class="btn btn-warning btn-md" href="/showsubject/{{$subject->id}}"><i class="fas fa-edit"></i> Update</a>
                                             <a class="btn btn-danger btn-md" href="{{route('admin.deletesubject', $subject->id)}}"><i class="far fa-trash-alt"></i> Delete</a>
                                         </div>

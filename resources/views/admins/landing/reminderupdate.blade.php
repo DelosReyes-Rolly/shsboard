@@ -47,7 +47,7 @@
                                         <!-- Form Group privacy-->
                                         <div class="row gx-3 mb-3">
                                             <!-- Save changes button-->
-                                            <a class="btn btn-info btn-md" href="{{ url()->previous() }}"><i class="fas fa-arrow-left"></i> Back</a> &emsp;
+                                            <a class="btn btn-info btn-md" href="javascript:history.back()"><i class="fas fa-arrow-left"></i> Back</a> &emsp;
                                             <font face = "Verdana" size = "6"><input type="submit" class="btn btn-primary" value="Submit" style="float: right;"></font>
                                         </div>
                                     </div>
