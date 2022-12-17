@@ -232,7 +232,7 @@
             }
         });
 
-        $('#editable1').Tabledit({
+        $('#editable2').Tabledit({
             url:'{{ route("tabledit.action") }}',
             dateType:"json",
             columns:{
@@ -250,7 +250,7 @@
         });
 
         
-        $('#editable2').Tabledit({
+        $('#editable1').Tabledit({
             url:'{{ route("tabledit.action") }}',
             dateType:"json",
             columns:{

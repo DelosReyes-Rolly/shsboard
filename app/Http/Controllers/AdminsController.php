@@ -1044,7 +1044,7 @@ class AdminsController extends Controller
     public function storeschoolyear(Request $request){
         // Validate the inputs
         $request->validate([
-            'schoolyear' => ['required'],
+            'schoolyear' => 'required|numeric|unique:school_years',
         ]);
         $schoolyear = new SchoolYear();
         $schoolyear->schoolyear = $request->get('schoolyear');
@@ -1058,7 +1058,7 @@ class AdminsController extends Controller
 
     public function updateschoolyear(Request $request, SchoolYear $schoolyear){
         $validated = $request->validate([
-            'schoolyear' => ['required'],
+            'schoolyear' => 'required',
         ]);
         $schoolyear->update($validated);
         return redirect('/gradingschoolyear')->with('success', 'Schoolyear has been updated successfully!');

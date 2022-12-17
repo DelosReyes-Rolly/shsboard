@@ -266,18 +266,16 @@ class FacultyController extends Controller
     	{
     		if($request->action == 'edit')
     		{
-                if(is_int($request->midterm)){
-                    if ($request->midterm < 101 && $request->midterm > 74) {
-                        $data = array(
-                            'midterm'	=>	$request->midterm,
-                        );
-                        DB::table('student_grades')
-                        ->where('id', $request->id)
-                        ->update($data);
-                    }
+                if ($request->midterm < 101 && $request->midterm > 64) {
+                    $data = array(
+                        'midterm'	=>	$request->midterm,
+                    );
+                    DB::table('student_grades')
+                    ->where('id', $request->id)
+                    ->update($data);
                 }
 
-                if ($request->finals < 101 && $request->finals > 74) {
+                if ($request->finals < 101 && $request->finals > 64) {
                     $data = array(
                         'finals'	=>	$request->finals,
                     );
@@ -285,6 +283,8 @@ class FacultyController extends Controller
     				->where('id', $request->id)
     				->update($data);
                 }
+
+                
     		}
     		if($request->action == 'delete')
     		{
