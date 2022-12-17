@@ -140,11 +140,10 @@ class FacultyController extends Controller
                 $announcementCount = ActivityStreams::where('deleted', '=', null)->where('faculty_id', '=', $facid)->get();
             }
 
-            $gradelevels = GradeLevels::all();
-            $courses = Courses::where('deleted', '=', null)->get();
-            $sections =Sections::where('deleted', '=', null)->get();
-            $subjects = Subjects::where('deleted', '=', null)->get();
-
+            $gradelevels = SubjectTeachers::where('deleted', '=', null)->where('faculty_id', '=', $facid)->groupBy('gradelevel_id')->get();
+            $courses = SubjectTeachers::where('deleted', '=', null)->where('faculty_id', '=', $facid)->groupBy('course_id')->get();
+            $sections = SubjectTeachers::where('deleted', '=', null)->where('faculty_id', '=', $facid)->groupBy('section_id')->get();
+            $subjects =  SubjectTeachers::where('deleted', '=', null)->where('faculty_id', '=', $facid)->groupBy('subject_id')->get();
             return view('faculty.createannouncement', compact('announcementCount', 'gradelevels', 'courses', 'sections', 'subjects'));
         }
         
@@ -182,11 +181,11 @@ class FacultyController extends Controller
 
         public function viewannouncement($id){
             $data = ActivityStreams::where('deleted', '=', null)->findOrFail($id);
-            $gradelevels = GradeLevels::all();
-            $semesters = Semesters::all();
-            $courses = Courses::where('deleted', '=', null)->get();
-            $sections =Sections::where('deleted', '=', null)->get();
-            $subjects = Subjects::where('deleted', '=', null)->get();
+            $semesters = SubjectTeachers::where('deleted', '=', null)->where('faculty_id', '=', Auth::user()->id)->groupBy('semester_id')->get();
+            $gradelevels = SubjectTeachers::where('deleted', '=', null)->where('faculty_id', '=', Auth::user()->id)->groupBy('gradelevel_id')->get();
+            $courses = SubjectTeachers::where('deleted', '=', null)->where('faculty_id', '=', Auth::user()->id)->groupBy('course_id')->get();
+            $sections = SubjectTeachers::where('deleted', '=', null)->where('faculty_id', '=', Auth::user()->id)->groupBy('section_id')->get();
+            $subjects =  SubjectTeachers::where('deleted', '=', null)->where('faculty_id', '=', Auth::user()->id)->groupBy('subject_id')->get();
             return view('faculty.announcementview', compact('gradelevels', 'semesters', 'courses', 'sections', 'subjects'), ['announcement' => $data]);
         }
 
@@ -267,13 +266,25 @@ class FacultyController extends Controller
     	{
     		if($request->action == 'edit')
     		{
-    			$data = array(
-    				'midterm'	=>	$request->midterm,
-    				'finals'	=>	$request->finals,
-    			);
-    			DB::table('student_grades')
+                if(is_int($request->midterm)){
+                    if ($request->midterm < 101 && $request->midterm > 74) {
+                        $data = array(
+                            'midterm'	=>	$request->midterm,
+                        );
+                        DB::table('student_grades')
+                        ->where('id', $request->id)
+                        ->update($data);
+                    }
+                }
+
+                if ($request->finals < 101 && $request->finals > 74) {
+                    $data = array(
+                        'finals'	=>	$request->finals,
+                    );
+                    DB::table('student_grades')
     				->where('id', $request->id)
     				->update($data);
+                }
     		}
     		if($request->action == 'delete')
     		{

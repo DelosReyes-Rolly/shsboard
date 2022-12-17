@@ -108,68 +108,69 @@
                                                 <br>
                                                 <div class="col-md-6">
                                                     <label class="large mb-1" for="inputwhat" style="font-size: 20px;"><span style="color: red">*</span> Title</label>
-                                                    <input class="form-control @error('what') is-invalid @enderror" id="inputwhat" type="text" style="font-size: 16px;" placeholder="Enter the title" name="what"  value="{{ old('what') }}">
+                                                    <input class="form-control @error('what') is-invalid @enderror" id="inputwhat" type="text" style="font-size: 16px;" placeholder="Enter the title" name="what"  value="{{ old('what') }}"><br/><br/>
                                                 </div>
                                                 <!-- Form Group whr-->
                                                 <div class="col-md-3">
                                                     <label class="large mb-1" for="inputwhn" style="font-size: 20px;"><span style="color: red">*</span> Date</label>
-                                                    <input type="date" class="form-control @error('whn') is-invalid @enderror" id="inputwhn" style="font-size: 16px;" placeholder="Enter the date" name="whn"  value="{{ old('whn') }}">
+                                                    <input type="date" class="form-control @error('whn') is-invalid @enderror" id="inputwhn" style="font-size: 16px;" placeholder="Enter the date" name="whn"  value="{{ old('whn') }}"><br/><br/>
                                                 </div>
                                                 <!-- Form Group (content)-->
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="appt" style="font-size: 20px;"><span style="color: red">*</span> Time</label><br>
-                                                        <input type="time" id="whn_time" name="whn_time" value="{{ old('whn_time') }}">
+                                                        <input type="time" id="whn_time" name="whn_time" value="{{ old('whn_time') }}"><br/><br/>
                                                     </div>
                                                 </div>
                                             </div>
                                             <!-- Form Row -->
-                                            <div class="row gx-3 mb-3 requestdocument">
+                                            <div class="row requestdocument">
                                                 <!-- Form Group whr-->
-                                                <div class="col-md-3">
+                                                <div class="col-lg-6 col-md-12 form-group">
                                                     <label for="subject_id" style="font-size: 20px;"><span style="color: red">*</span> Subject</label><br/>
-                                                    <select id="subject_id" name="subject_id" value="{{ old('subject_id') }}" style="font-size: 16px; padding: 12px;">
+                                                    <select id="subject_id" name="subject_id" value="{{ old('subject_id') }}" style="font-size: 16px; padding: 12px; display: block; width: 100%;">
                                                         <option value="" disabled selected hidden>Choose Subject</option>
                                                         @foreach ($subjects as $subject)
-                                                            <option value="{{ $subject->id }}">{{ $subject->subjectname}}</option>
+                                                            <option value="{{ $subject->id }}">{{ $subject->subject->subjectname}}</option>
                                                         @endforeach
-                                                    </select>
+                                                    </select><br/><br/>
                                                 </div>
-                                                <div class="col-md-2">
-                                                    <label for="gradelevel_id" style="font-size: 20px;"><span style="color: red">*</span> Grade Level</label>
-                                                    <select id="gradelevel_id" name="gradelevel_id" value="{{ old('gradelevel_id') }}" style="font-size: 16px; padding: 12px;">
-                                                        <option value="" disabled selected hidden>Choose Gradelevel</option>
-                                                         @foreach ($gradelevels as $gradelevel)
-                                                             <option value="{{ $gradelevel->id }}">{{ $gradelevel->gradelevel }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label for="course_id" style="font-size: 20px;"><span style="color: red">*</span> Strand</label>
-                                                    <select id="course_id" name="course_id" value="{{ old('course_id') }}" style="font-size: 16px; padding: 12px;">
+                                                
+                                                <div class="col-lg-6 col-md-12 form-group">
+                                                    <label for="course_id" style="font-size: 20px;"><span style="color: red">*</span> Strand</label><br/>
+                                                    <select id="course_id" name="course_id" value="{{ old('course_id') }}" style="font-size: 16px; padding: 12px; display: block; width: 100%;">
                                                         <option value="" disabled selected hidden>Choose Strand</option>
                                                         @foreach ($courses as $course)
-                                                            <option value="{{ $course->id }}">{{ $course->courseName}}</option>
+                                                            <option value="{{ $course->id }}">{{ $course->course->courseName}}</option>
                                                         @endforeach
-                                                    </select>      
+                                                    </select><br/><br/>
                                                 </div>
-                                                <div class="col-md-2">
-                                                    <label for="section_id" style="font-size: 20px;"><span style="color: red">*</span> Section</label>
-                                                    <select id="section_id" name="section_id" value="{{ old('section_id') }}" style="font-size: 16px; padding: 12px;">
-                                                        <option value="" disabled selected hidden>Choose Section</option>
-                                                        @foreach ($sections as $section)
-                                                            <option value="{{ $section->id }}">{{ $section->section}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
+                                                
                                             </div>
                                             <div class="row gx-3 mb-3 requestdocument">
                                                 <!-- Form Row -->
-                                                <div class="col-md-3">
-                                                    <label class="large mb-1" for="inputexpired_at" style="font-size: 20px;"><span style="color: red">*</span> Post Expiration</label>
-                                                    <input type="date" class="form-control @error('expired_at') is-invalid @enderror" id="inputexpired_at" style="font-size: 16px;" placeholder="Enter the date" name="expired_at"  value="{{ old('expired_at') }}">
+                                                <div class="col-lg-4 col-md-12 form-group">
+                                                    <label for="section_id" style="font-size: 20px;"><span style="color: red">*</span> Section</label><br/>
+                                                    <select id="section_id" name="section_id" value="{{ old('section_id') }}" style="font-size: 16px; padding: 12px; display: block; width: 100%;">
+                                                        <option value="" disabled selected hidden>Choose Section</option>
+                                                        @foreach ($sections as $section)
+                                                            <option value="{{ $section->id }}">{{ $section->section->section}}</option>
+                                                        @endforeach
+                                                    </select><br/><br/>
                                                 </div>
-                                                <br/>
+                                                <div class="col-lg-4 col-md-12 form-group">
+                                                    <label for="gradelevel_id" style="font-size: 20px;"><span style="color: red">*</span> Grade Level</label><br/>
+                                                    <select id="gradelevel_id" name="gradelevel_id" value="{{ old('gradelevel_id') }}" style="font-size: 16px; padding: 12px; display: block; width: 100%;">
+                                                        <option value="" disabled selected hidden>Choose Gradelevel</option>
+                                                         @foreach ($gradelevels as $gradelevel)
+                                                             <option value="{{ $gradelevel->id }}">{{ $gradelevel->gradelevel->gradelevel }}</option>
+                                                        @endforeach
+                                                    </select><br/><br/>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <label class="large mb-1" for="inputexpired_at" style="font-size: 20px;"><span style="color: red">*</span> Post Expiration</label>
+                                                    <input type="date" class="form-control @error('expired_at') is-invalid @enderror" id="inputexpired_at" style="font-size: 16px;" placeholder="Enter the date" name="expired_at"  value="{{ old('expired_at') }}"><br/><br/>
+                                                </div><br/><br/>
                                             </div>
                                                 <!-- Form Group (content)-->
                                                 <div class="mb-3 requestdocument">

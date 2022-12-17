@@ -17,203 +17,209 @@
         </div>
     @endif
     <div class="left-to-right">
-        <h3 style="font-size: 20px;">Table of Students</h3>  
-      <hr class="mt-0 mb-4">
-            <div class="card-header" style="font-size: 20px;"><b>Male</b></div>
-            <div>  
-                <div class="table-responsive border-start-lg border-start-success" style="background-color: #ffffff; box-shadow: 0 4px 16px rgba(0,0,0,0.6);">  
-                @if($male->count() == 0) 
-                    <!-- find all subject of teachers then count if they have one. -->
-                    <div class="alert alert-danger"><em>No male records found.</em></div>
-			    @else
-                    @csrf
-                    <table id="editable1" class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th style="font-size: 20px;">#</th>
-                                <th style="font-size: 20px;">Student name</th>
-                                <th style="font-size: 20px;">
-                                    @php
-                                        switch ($sem) {
-                                            case ($sem == 1):
-                                                echo '1st Grading';
-                                                break;
-                                            case ($sem == 2):
-                                                echo '3rd Grading';
-                                                break;
-                                            default:
-                                                echo 'Undefined';
-                                            break;
-                                        }
-                                    @endphp
-                                </th>
-                                <th style="font-size: 20px;">
-                                    @php
-                                        switch ($sem) {
-                                            case ($sem == 1):
-                                                echo '2nd Grading';
-                                                break;
-                                            case ($sem == 2):
-                                                echo '4th Grading';
-                                                break;
-                                            default:
-                                                echo 'Undefined';
-                                            break;
-                                        }
-                                    @endphp
-                                </th>
-                                <th style="font-size: 20px;">Average</th>
-                                <th style="font-size: 20px;">Remarks</th>
-                            </tr>
-                        </thead>
-                        <tbody>   
-                            @php
-                                $count=1; 
-                                $ave=0;
-                            @endphp
-                            @foreach ($male as $student)        
-                                    <tr>
-                                        <td class="d-none">{{$student -> id}}</td>
-                                        <td style="font-size: 20px;">{{$count++;}}</td>
-                                        <td style="font-size: 20px;">{{$student -> student -> last_name}}, {{$student -> student -> first_name}} {{$student -> student -> middle_name}} {{$student -> student -> suffix}}</td>
-                                        <td style="font-size: 20px;">{{$student -> midterm}}</td>
-                                        <td style="font-size: 20px;">{{$student -> finals}}</td>
-                                        <td style="font-size: 20px;">
-                                            @php
-                                                switch ($student -> finals && $student -> midterm) {
-                                                    case ($student -> finals === '0' || $student -> midterm === '0'):
-                                                        echo '<span class="badge bg-danger" style="color: white;">Grades are not complete</span>';
-                                                        break;
-                                                    case ($student -> finals !== '0' && $student -> midterm !== '0'):
-                                                        echo $ave = ($student -> midterm + $student -> finals) / 2;;
-                                                        break;
-                                                    default:
-                                                        echo '<span class="badge bg-danger" style="color: white;">Unidentified</span>';
+        <h3 style="font-size: 28px; font-weight: 800;">Table of Students </h3>
+      <hr class="mt-0 mb-4"><br/>
+            <div style="background-color: #ffffff; box-shadow: 0 4px 16px rgba(0,0,0,0.6);">
+                <div class="card-header bg-primary" style="font-size: 20px;"><b>Male</b></div>
+                <div>  
+                    <div class="table-responsive border-start-lg border-start-success" style=" box-shadow: 0 4px 16px rgba(0,0,0,0.6);">  
+                    @if($male->count() == 0) 
+                        <!-- find all subject of teachers then count if they have one. -->
+                        <div class="alert alert-danger"><em>No male records found.</em></div>
+                    @else
+                        @csrf
+                        <table id="editable1" class="table table-bordered table-striped table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th style="font-size: 20px;">#</th>
+                                    <th style="font-size: 20px;">Student name</th>
+                                    <th style="font-size: 20px;">
+                                        @php
+                                            switch ($sem) {
+                                                case ($sem == 1):
+                                                    echo '1st Grading';
                                                     break;
-                                                }
-                                            @endphp
-                                        </td>
-                                        <td style="font-size: 20px;">
-                                            @php 
-                                                switch ($ave && $student -> finals && $student -> midterm) {
-                                                    case ($student -> finals === '0' || $student -> midterm === '0'):
-                                                        echo '<span class="badge bg-danger" style="color: white;">No remarks</span>';
-                                                        break;
-                                                    case ($ave <='100' && $student -> finals !== '0' && $student -> midterm !== '0'):
-                                                        echo '<span class="badge bg-success" style="color: white;">Passed</span>';
-                                                        break;
-                                                    default:
-                                                        echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
+                                                case ($sem == 2):
+                                                    echo '3rd Grading';
                                                     break;
-                                                }
-                                            @endphp
-                                                    
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                @endif
-                </div>  
-            </div> 
-            <br/><br/>
-            <div class="card-header" style="font-size: 20px;"><b>Female</b></div>
-            <div>  
-                <div class="table-responsive border-start-lg border-start-success" style="background-color: #ffffff; box-shadow: 0 4px 16px rgba(0,0,0,0.6);">  
-                @if($female->count() == 0) 
-                    <!-- find all subject of teachers then count if they have one. -->
-                    <div class="alert alert-danger"><em>No female records found.</em></div>
-			    @else
-                    @csrf
-                    <table id="editable2" class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th style="font-size: 20px;">#</th>
-                                <th style="font-size: 20px;">Student name</th>
-                                <th style="font-size: 20px;">
-                                    @php
-                                        switch ($sem) {
-                                            case ($sem == 1):
-                                                echo '1st Grading';
+                                                default:
+                                                    echo 'Undefined';
                                                 break;
-                                            case ($sem == 2):
-                                                echo '3rd Grading';
-                                                break;
-                                            default:
-                                                echo 'Undefined';
-                                            break;
-                                        }
-                                    @endphp
-                                </th>
-                                <th style="font-size: 20px;">
-                                    @php
-                                        switch ($sem) {
-                                            case ($sem == 1):
-                                                echo '2nd Grading';
-                                                break;
-                                            case ($sem == 2):
-                                                echo '4th Grading';
-                                                break;
-                                            default:
-                                                echo 'Undefined';
-                                            break;
-                                        }
-                                    @endphp
-                                </th>
-                                <th style="font-size: 20px;">Average</th>
-                                <th style="font-size: 20px;">Remarks</th>
-                            </tr>
-                        </thead>
-                        <tbody>   
-                            @php
-                                $count=1; 
-                                $ave=0;
-                            @endphp
-                            @foreach ($female as $student)        
-                                    <tr>
-                                        <td class="d-none">{{$student -> id}}</td>
-                                        <td style="font-size: 20px;">{{$count++;}}</td>
-                                        <td style="font-size: 20px;">{{$student -> student -> last_name}}, {{$student -> student -> first_name}} {{$student -> student -> middle_name}} {{$student -> student -> suffix}}</td>
-                                        <td style="font-size: 20px;">{{$student -> midterm}}</td>
-                                        <td style="font-size: 20px;">{{$student -> finals}}</td>
-                                        <td style="font-size: 20px;">
-                                            @php
-                                                switch ($student -> finals && $student -> midterm) {
-                                                    case ($student -> finals === '0' || $student -> midterm === '0'):
-                                                        echo '<span class="badge bg-danger" style="color: white;">Grades are not complete</span>';
-                                                        break;
-                                                    case ($student -> finals !== '0' && $student -> midterm !== '0'):
-                                                        echo $ave = ($student -> midterm + $student -> finals) / 2;;
-                                                        break;
-                                                    default:
-                                                        echo '<span class="badge bg-danger" style="color: white;">Unidentified</span>';
+                                            }
+                                        @endphp
+                                    </th>
+                                    <th style="font-size: 20px;">
+                                        @php
+                                            switch ($sem) {
+                                                case ($sem == 1):
+                                                    echo '2nd Grading';
                                                     break;
-                                                }
-                                            @endphp
-                                        </td>
-                                        <td style="font-size: 20px;">
-                                            @php 
-                                                switch ($ave && $student -> finals && $student -> midterm) {
-                                                    case ($student -> finals === '0' || $student -> midterm === '0'):
-                                                        echo '<span class="badge bg-danger" style="color: white;">No remarks</span>';
-                                                        break;
-                                                    case ($ave <='100' && $student -> finals !== '0' && $student -> midterm !== '0'):
-                                                        echo '<span class="badge bg-success" style="color: white;">Passed</span>';
-                                                        break;
-                                                    default:
-                                                        echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
+                                                case ($sem == 2):
+                                                    echo '4th Grading';
                                                     break;
-                                                }
-                                            @endphp
-                                                    
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                                default:
+                                                    echo 'Undefined';
+                                                break;
+                                            }
+                                        @endphp
+                                    </th>
+                                    <th style="font-size: 20px;">Average</th>
+                                    <th style="font-size: 20px;">Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody>   
+                                @php
+                                    $count=1; 
+                                    $ave=0;
+                                @endphp
+                                @foreach ($male as $student)        
+                                        <tr>
+                                            <td class="d-none">{{$student -> id}}</td>
+                                            <td style="font-size: 20px;">{{$count++;}}</td>
+                                            <td style="font-size: 20px;">{{$student -> student -> last_name}}, {{$student -> student -> first_name}} {{$student -> student -> middle_name}} {{$student -> student -> suffix}}</td>
+                                            <td style="font-size: 20px;">{{$student -> midterm}}</td>
+                                            <td style="font-size: 20px;">{{$student -> finals}}</td>
+                                            <td style="font-size: 20px;">
+                                                @php
+                                                    switch ($student -> finals && $student -> midterm) {
+                                                        case ($student -> finals === '0' || $student -> midterm === '0'):
+                                                            echo '<span class="badge bg-danger" style="color: white;">Grades are not complete</span>';
+                                                            break;
+                                                        case ($student -> finals !== '0' && $student -> midterm !== '0'):
+                                                            echo $ave = ($student -> midterm + $student -> finals) / 2;
+                                                            break;
+                                                        default:
+                                                            echo '<span class="badge bg-danger" style="color: white;">Unidentified</span>';
+                                                        break;
+                                                    }
+                                                @endphp
+                                            </td>
+                                            <td style="font-size: 20px;">
+                                                @php 
+                                                    $ave = ($student -> midterm + $student -> finals) / 2;
+                                                    switch ($ave && $student -> finals && $student -> midterm) {
+                                                        case ($student -> finals === '0' || $student -> midterm === '0'):
+                                                            echo '<span class="badge bg-danger" style="color: white;">No remarks</span>';
+                                                            break;
+                                                        case ($ave <='100' && $ave >'74' && $student -> finals !== '0' && $student -> midterm !== '0'):
+                                                            echo '<span class="badge bg-success" style="color: white;">Passed</span>';
+                                                            break;
+                                                        default:
+                                                            echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
+                                                        break;
+                                                    }
+                                                @endphp
+                                                        
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                     @endif
+                    </div>  
+                </div> 
+            </div>
+            <br/><br/>
+            <div style="background-color: #ffffff; box-shadow: 0 4px 16px rgba(0,0,0,0.6);">
+                <div class="card-header bg-primary" style="font-size: 20px;"><b>Female</b></div>
+                <div>  
+                    <div class="table-responsive border-start-lg border-start-success" style="background-color: #ffffff; box-shadow: 0 4px 16px rgba(0,0,0,0.6);">  
+                    @if($female->count() == 0) 
+                        <!-- find all subject of teachers then count if they have one. -->
+                        <div class="alert alert-danger"><em>No female records found.</em></div>
+                    @else
+                        @csrf
+                        <table id="editable2" class="table table-bordered table-striped table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th style="font-size: 20px;">#</th>
+                                    <th style="font-size: 20px;">Student name</th>
+                                    <th style="font-size: 20px;">
+                                        @php
+                                            switch ($sem) {
+                                                case ($sem == 1):
+                                                    echo '1st Grading';
+                                                    break;
+                                                case ($sem == 2):
+                                                    echo '3rd Grading';
+                                                    break;
+                                                default:
+                                                    echo 'Undefined';
+                                                break;
+                                            }
+                                        @endphp
+                                    </th>
+                                    <th style="font-size: 20px;">
+                                        @php
+                                            switch ($sem) {
+                                                case ($sem == 1):
+                                                    echo '2nd Grading';
+                                                    break;
+                                                case ($sem == 2):
+                                                    echo '4th Grading';
+                                                    break;
+                                                default:
+                                                    echo 'Undefined';
+                                                break;
+                                            }
+                                        @endphp
+                                    </th>
+                                    <th style="font-size: 20px;">Average</th>
+                                    <th style="font-size: 20px;">Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody>   
+                                @php
+                                    $count=1; 
+                                    $ave=0;
+                                @endphp
+                                @foreach ($female as $student)        
+                                        <tr>
+                                            <td class="d-none">{{$student -> id}}</td>
+                                            <td style="font-size: 20px;">{{$count++;}}</td>
+                                            <td style="font-size: 20px;">{{$student -> student -> last_name}}, {{$student -> student -> first_name}} {{$student -> student -> middle_name}} {{$student -> student -> suffix}}</td>
+                                            <td style="font-size: 20px;">{{$student -> midterm}}</td>
+                                            <td style="font-size: 20px;">{{$student -> finals}}</td>
+                                            <td style="font-size: 20px;">
+                                                @php
+                                                    $ave = ($student -> midterm + $student -> finals) / 2;
+                                                    switch ($student -> finals && $student -> midterm) {
+                                                        case ($student -> finals === '0' || $student -> midterm === '0'):
+                                                            echo '<span class="badge bg-danger" style="color: white;">Grades are not complete</span>';
+                                                            break;
+                                                        case ($student -> finals !== '0' && $student -> midterm !== '0'):
+                                                            echo $ave = ($student -> midterm + $student -> finals) / 2;;
+                                                            break;
+                                                        default:
+                                                            echo '<span class="badge bg-danger" style="color: white;">Unidentified</span>';
+                                                        break;
+                                                    }
+                                                @endphp
+                                            </td>
+                                            <td style="font-size: 20px;">
+                                                @php 
+                                                    switch ($ave && $student -> finals && $student -> midterm) {
+                                                        case ($student -> finals === '0' || $student -> midterm === '0'):
+                                                            echo '<span class="badge bg-danger" style="color: white;">No remarks</span>';
+                                                            break;
+                                                        case ($ave <='100' && $ave >'74' && $student -> finals !== '0' && $student -> midterm !== '0'):
+                                                            echo '<span class="badge bg-success" style="color: white;">Passed</span>';
+                                                            break;
+                                                        default:
+                                                            echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
+                                                        break;
+                                                    }
+                                                @endphp
+                                                        
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        @endif
+                    </div>  
                 </div>  
-            </div>     
+            </div>   
     </div> 
 
     
