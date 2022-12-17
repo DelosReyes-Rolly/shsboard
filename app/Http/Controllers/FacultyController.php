@@ -251,12 +251,13 @@ class FacultyController extends Controller
         $male = StudentGrade::where('subject_id', '=', $subject_id)->where('gradelevel_id', '=', $gradelevel_id)->where('semester_id', '=', $semester_id)->where('faculty_id', '=', Auth::user()->id)
                 ->where('schoolyear_id', '=', $schoolyear_id)->where('deleted', '=', NULL)->whereHas('student', function($q) {
                     $q->where('gender', 'Male');
-                })->orderBy('id', 'ASC')->get();
+                })->orderByRaw('(SELECT last_name FROM students WHERE students.id = student_grades.student_id)')->get();
         $female = StudentGrade::where('subject_id', '=', $subject_id)->where('gradelevel_id', '=', $gradelevel_id)->where('semester_id', '=', $semester_id)->where('faculty_id', '=', Auth::user()->id)
                 ->where('schoolyear_id', '=', $schoolyear_id)->where('deleted', '=', NULL)->whereHas('student', function($q) {
                     $q->where('gender', 'female');
-                })->orderBy('id', 'ASC')->get();
-        return view('faculty.grading.viewstudents', compact('male', 'female'));
+                })->orderByRaw('(SELECT last_name FROM students WHERE students.id = student_grades.student_id)')->get();
+        $sem = $semester_id;
+        return view('faculty.grading.viewstudents', compact('male', 'female', 'sem'));
 
     }
 

@@ -34,7 +34,7 @@
 				</div>
 				<div class="col-md-5 border-right">
 					<div class="p-3 py-5">
-						@if ($message = Session::get('message'))
+						@if ($message = Session::get('success'))
 							<div class="alert alert-success alert-block">
 								<button type="button" class="close" data-dismiss="alert">×</button>
 								<strong>{{ $message }}</strong>
@@ -64,8 +64,8 @@
 							<div class="col-md-12" style="font-size: 18px;"><label>Email</label>
 								<input style="font-size: 16px;" class="form-control @error('email') is-invalid @enderror" type="text" name="email" class="form-control" placeholder="{{Auth::user()->email}}" value="{{Auth::user()->email}}">
 							</div><br/><br/>
-							<div class="col-md-12" style="font-size: 18px;"><label for="gender">Sex</label>
-								<select id="gender" name="gender"  class="form-control @error('gender') is-invalid @enderror" value="{{Auth::user()->gender}}" style="font-size: 12px;">
+							<div class="col-md-12" style="font-size: 18px;"><label for="gender">Sex</label><br/>
+								<select id="gender" name="gender"  class="@error('gender') is-invalid @enderror" value="{{Auth::user()->gender}}" style="font-size: 16px; padding: 16px;">
 									<option value="" hidden>  Please Select Sex </option>
 									<option value="Male" {{Auth::user()->gender == "Male" ?'selected' : ''}}>Male</option>
 									<option value="Female" {{Auth::user()->gender == "Female" ?'selected' : ''}}>Female</option>

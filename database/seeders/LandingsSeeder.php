@@ -16,18 +16,18 @@ class LandingsSeeder extends Seeder
     {
         Landings::create([
             'title' => 'About',
-            'content' => '<p><strong>Signal Village National High School (SVNHS) is a public secondary school located in Signal Village, Taguig City. Established in 1976, the school was once called the Fort Bonifacio High School Signal Annex. By 1995, it was converted into an independent school through Republic Act 8039.</strong></p>
+            'content' => '<p style="font-size:18px;"><strong>Signal Village National High School (SVNHS) is a public secondary school located in Signal Village, Taguig City. Established in 1976, the school was once called the Fort Bonifacio High School Signal Annex. By 1995, it was converted into an independent school through Republic Act 8039.</strong></p>
 
             <p>&nbsp;</p>
             
-            <p>At present, SVNHS is a certified K-12-ready institution, offering Junior High as well as Senior High School (SHS) programs recognized by the Department of Education (DepEd). Students who intend to pursue their SHS education in this institution may school from strands under the Academic and Technical-Vocational-Livelihood (TVL) tracks.<br />
+            <p style="font-size:18px;">At present, SVNHS is a certified K-12-ready institution, offering Junior High as well as Senior High School (SHS) programs recognized by the Department of Education (DepEd). Students who intend to pursue their SHS education in this institution may school from strands under the Academic and Technical-Vocational-Livelihood (TVL) tracks.<br />
             &nbsp;</p>
             ',
             'image' => 'svnhs-about.jpg',
         ]);
         Landings::create([
             'title' => 'Principal Message',
-            'content' => '<p>&quot;We are all very excited about the 2021-22 school year, where classrooms once again will be full with activities and ideas that challenge and inspire our students. Our amazing teachers work hard to create an exceptional learning environment for our students. As a result, our school has been recognized at the state and national levels as being an example of not just excellent teaching, learning, but also high levels of student achievement and growth, and exemplary arts education programs. This year, we continue our journey as a Leader in Me School. &quot;</p>
+            'content' => '<p style="font-size:18px;">&quot;We are all very excited about the 2021-22 school year, where classrooms once again will be full with activities and ideas that challenge and inspire our students. Our amazing teachers work hard to create an exceptional learning environment for our students. As a result, our school has been recognized at the state and national levels as being an example of not just excellent teaching, learning, but also high levels of student achievement and growth, and exemplary arts education programs. This year, we continue our journey as a Leader in Me School. &quot;</p>
             ',
             'image' => 'principal.jpg',
         ]);

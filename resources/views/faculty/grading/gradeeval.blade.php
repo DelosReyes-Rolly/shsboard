@@ -28,9 +28,9 @@
                     <div class="row">
                     <div class="col-lg-4 mb-4">
                         <!-- Billing card 3-->
-                        <div class="card h-100 border-start-lg border-start-success" style="background-color: green; color: white;">
+                        <div class="card h-100 border-start-lg border-start-success" style="background-color: #008000; color: white; box-shadow: 0 4px 16px rgba(0,0,0,1);">
                             <div class="card-body">
-                                <div class="requesteddocument" style="color: white;">Requested Grade Evaluations</div>
+                                <div class="requesteddocument" style="color: white; font-size: 20px; font-weight: 800;">Requested Grade Evaluations</div>
                                 @if($gradeevaluationrequests->count() == 0)
                                     <br><br>
                                     <div class="alert alert-danger"><em>No records found.</em></div>
@@ -45,6 +45,7 @@
                         </div>
                     </div>
                 </div>
+                
 
                 
                 <hr style="border: 1px solid grey;">
