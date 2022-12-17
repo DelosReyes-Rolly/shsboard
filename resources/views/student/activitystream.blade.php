@@ -5,15 +5,15 @@
 	<div class="announcement_text">Activity Stream</div>
 </div>
 <section id="about" class="about">
-			<div class="container">
+			<div>
 				<div id="main-content" class="blog-page">
 				    <div class="container">
 				        <div class="row clearfix">
-				            <div class="col-lg-8 col-md-12 left-box">
+				            <div class="col-lg-12 col-md-12 left-box">
 			               			<br><br>
                                     @if($announcement == NULL)
                                         <br><br>
-                                        <div class="alert alert-danger fade-in-text"><em>No activity for now.</em></div>
+                                        <div class="alert alert-danger fade-in-text"><center><em>No activity for now.</em></center></div>
                                     @else 
                                         @foreach ($announcement as $announcements)
                                             <div class="card single_post left-to-right">

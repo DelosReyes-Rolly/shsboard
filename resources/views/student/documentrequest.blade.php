@@ -25,41 +25,17 @@
                 <div class="container-xl px-4 mt-4 left-to-right">
                     <hr class="mt-0 mb-4">
                     <div class="row">
-                    <div class="col-lg-4 mb-4">
-                        <!-- Billing card 3-->
-                        <div class="card h-100 border-start-lg border-start-success" style="background-color: green; color: white;"  >
-                            <div class="card-body">
-                                <div class="requesteddocument" style="color: white;" style="font-size: 20px; font-weight: 800;" >Requested Documents</div>
-                                <div class="h3 d-flex align-items-center" style="padding:40px;"><i class="far fa-clipboard"></i> {{ $requests->count() }} </div>
-                                <!-- <a class="text-arrow-icon small text-success" href="#!">
-                                    View Active requests
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                                </a> -->
+                        <div class="col-lg-4 mb-4">
+                            <!-- Billing card 3-->
+                            <div class="card border-start-lg border-start-success" style="background-color: #008000; color: white; box-shadow: 0 4px 16px rgba(0,0,0,1);">
+                                <div class="card-body">
+                                    <div class="requesteddocument" style="color: white; font-size: 20px; font-weight: 800;">Requested Documents</div>
+                                    <div class="h3 d-flex align-items-center" style="padding:40px;"><i class="far fa-clipboard"></i> {{ $requests->count() }} </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- form -->
-
-                @if ($messages = Session::get('messages'))
-                    <div class="alert alert-success alert-block">
-                        <button type="button" class="close" data-dismiss="alert">×</button>
-                        <strong>{{ $messages }}</strong>
-                    </div>
-                @endif
-                            
-                @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <strong>Whoops!</strong> There were some problems with your input.
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-
 
                 <hr style="border: 1px solid grey;">
                 <form method="POST" action="{{ route('student.request') }}" enctype="multipart/form-data">
@@ -72,8 +48,26 @@
                             
                                 <!-- Account details card-->
                                 <div class="card mb-4">
-                                    <div class="card border-start-lg border-start-yellow">
-                                        <div class="card-header"></div>
+                                    <div class="border-start-lg border-start-yellow">
+                                        <div class="card-header">
+                                            @if ($messages = Session::get('messages'))
+                                                <div class="alert alert-success alert-block">
+                                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                                    <strong>{{ $messages }}</strong>
+                                                </div>
+                                            @endif
+                                                        
+                                            @if (count($errors) > 0)
+                                                <div class="alert alert-danger">
+                                                    <strong>Whoops!</strong> There were some problems with your input.
+                                                    <ul>
+                                                        @foreach ($errors->all() as $error)
+                                                            <li>{{ $error }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                            @endif
+                                        </div>
                                         <div class="card-body">
                                             <div class="mb-3" style="color: red">
                                                 * required field
@@ -112,9 +106,9 @@
                                                 </div>
                                                 <!-- Form Group (content)-->
                                                 <div class="mb-3 requestdocument">
-                                                	<label class="large mb-1" for="document_id" class="form-control @error('document_id') is-invalid @enderror" style="font-size: 20px;"><br><span style="color: red">*</span> Document Needed</label>
-                                                        <div class="col-md-12" hidden><input class="form-control @error('document_id') is-invalid @enderror" id="inputdocument_id" type="text" placeholder="Enter document needed" name="document_id"  value="{{ old('document_id') }}"></div>
-            											<select id="document_id" name="document_id" class="form-control" value="{{ old('document_id') }}" style="font-size: 16px;" >
+                                                	<label class="large mb-1" for="document_type" class="form-control @error('document_type') is-invalid @enderror" style="font-size: 20px;"><br><span style="color: red">*</span> Document Needed</label>
+                                                        <div class="col-md-12" hidden><input class="form-control @error('document_type') is-invalid @enderror" id="inputdocument_type" type="text" placeholder="Enter document needed" name="document_type"  value="{{ old('document_type') }}"></div>
+            											<select id="document_type" name="document_type" class="form-control" value="{{ old('document_type') }}" style="font-size: 16px;" >
             												<option value="" disabled selected hidden>Select Document</option>
             											  	<option value="1">Grade Certificate</option>
             											  	<option value="2">Certification of Enrolment For 4P's</option>
@@ -153,23 +147,6 @@
                     </form>
                     <hr style="border: 1px solid grey;">
                 <!-- tables -->
-                @if ($message = Session::get('message'))
-                    <div class="alert alert-success alert-block">
-                        <button type="button" class="close" data-dismiss="alert">×</button>
-                        <strong>{{ $message }}</strong>
-                    </div>
-                @endif
-                            
-                @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <strong>Whoops!</strong> There were some problems with your input.
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
                 <h3 style="font-size: 28px; font-weight: 800;">Requested Documents</h3>
                 <hr class="mt-0 mb-4">
                 <div class="card mb-4 left-to-right border-start-lg border-start-yellow"  style="padding: 10px 40px 10px 40px">

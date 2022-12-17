@@ -53,8 +53,7 @@
 
                 <!-- check if enrolled in any subjects in any grade -->
                 @if($allsubjects->count() == 0)
-                    <br><br>
-                   <div class="alert alert-danger"><em>Sorry. You're not currently enrolled in any subjects. Please contact the administrator.</em></div>
+                   <div class="alert alert-danger"><center><em>Sorry. You're not currently enrolled in any subjects. Please contact the administrator.</em></center></div>
                 @else 
                     <!-- Print overall Grades -->
                     

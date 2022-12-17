@@ -22,11 +22,12 @@
 <div class="left-to-right">
         <div class="container-xl px-4 mt-4">
             <!-- page navigation-->
+            <h3 style="font-size: 28px;"><b>Print Student Report</b> </h3>
             <hr class="mt-0 mb-4">
             <div class="row left-to-right">
                     <div class="mb-4">
                         <div class="card border-start-lg border-start-yellow">
-                            <div class="card-header" style="font-size: 20px;">Print Students Report</div>
+                            <div class="card-header"></div>
                                 <div class="card-body">
                                     <form action="{{route('admin.downloadpdfstu')}}" method="POST">
                                         @csrf
@@ -85,7 +86,7 @@
                                         <tr>
                                             <td class="text-center"><?php echo $i++; ?></td>
                                             <td>{{$student -> LRN}}</td>
-                                            <td>{{$student -> last_name}}, {{$student -> first_name}} {{$student -> last_name}} {{$student -> suffix}}</td>
+                                            <td>{{$student -> last_name}}, {{$student -> first_name}} {{$student -> middle_name}} {{$student -> suffix}}</td>
                                             <td>{{$student -> address -> street}} {{$student -> address -> village}}, {{$student -> address -> city}} {{$student -> address -> zip_code}}</td>
                                             <td>{{$student -> gender}}</td>
                                             <td>{{$student -> username}}</td>

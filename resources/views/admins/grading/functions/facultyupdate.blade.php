@@ -61,7 +61,7 @@
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
                                             <label style="font-size: 20px;">Suffix</label>
-                                            <input type="text" name="suffix" class="form-control @error('suffix') is-invalid @enderror" value="{{ old('suffix') }}" style="font-size: 14px;">
+                                            <input type="text" name="suffix" class="form-control @error('suffix') is-invalid @enderror" value="{{$faculty->suffix}}" style="font-size: 14px;">
                                         </div>
                                     </div>
                                     <!-- Form Row -->

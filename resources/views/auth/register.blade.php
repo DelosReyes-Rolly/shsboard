@@ -55,7 +55,7 @@
 
                         <div class="form-group">
                             <label for="middle_name" class="col-form-label text-md-end">{{ __('Middle name') }}</label>
-                            <input id="middle_name" type="text" class="form-control @error('middle_name') is-invalid @enderror" name="middle_name" value="{{ old('middle_name') }}" required autocomplete="middle_name" autofocus>
+                            <input id="middle_name" type="text" class="form-control @error('middle_name') is-invalid @enderror" name="middle_name" value="{{ old('middle_name') }}" autocomplete="middle_name" autofocus>
                             @error('middle_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -72,6 +72,16 @@
                                 </span>
                             @enderror
                         </div>
+
+                        <div class="form-group">
+                            <label for="suffix" class="col-form-label text-md-end"> {{ __('Suffix') }}</label>
+                            <input id="suffix" type="text" class="form-control @error('suffix') is-invalid @enderror" name="suffix" value="{{ old('suffix') }}" autocomplete="suffix" autofocus>
+                            @error('suffix')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>                
 
                         <div class="form-group">
                             <label for="username" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Username') }}</label>

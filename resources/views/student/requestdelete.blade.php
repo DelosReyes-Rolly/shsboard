@@ -1,6 +1,6 @@
 
-@include('partials.adminheader')
-@include('partials.adminSecondHeader')
+@include('partials.studentheader')
+@include('partials.studentSecondHeader')
     
         <div>
             <h3 style="font-size: 28px; font-weight: 800;">Delete Section</h3>  

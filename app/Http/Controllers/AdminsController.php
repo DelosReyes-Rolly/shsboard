@@ -784,8 +784,10 @@ class AdminsController extends Controller
 
 
     public function viewfaculty($id){
-        $data = Faculties::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.facultyview', ['faculty' => $data]);
+        $subjectteachers = SubjectTeachers::where('faculty_id', '=', $id)->groupBy('schoolyear_id')->where('deleted', '=', null)->orderBy('id', 'DESC')->get();
+        $subjects = SubjectTeachers::where('faculty_id', '=', $id)->where('deleted', '=', null)->get();
+        $faculty = Faculties::where('deleted', '=', null)->findOrFail($id);
+        return view('admins.grading.functions.facultyview', compact('subjectteachers', 'subjects', 'faculty'));
     }
 
 
