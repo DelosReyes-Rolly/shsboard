@@ -149,10 +149,10 @@ class RegisterController extends Controller
 
             $validated = $request->validate([
                 'LRN' => ['required', 'min:12'],
-                'first_name' => ['required'],
-                'middle_name' => 'nullable',
-                'last_name' => ['required'],
-                'suffix' => 'nullable',
+                'first_name' => 'required|regex:/^[\pL\s]+$/u|min:255',
+                'middle_name' => 'nullable|regex:/^[\pL\s]+$/u|min:255',
+                'last_name' => 'required|regex:/^[\pL\s]+$/u|min:255',
+                'suffix' => 'nullable|regex:/^[\pL\s]+$/u|min:255',
                 'username' => ['required'],
                 'gender' => ['required'],
                 'section_id' => ['required'],
@@ -195,12 +195,13 @@ class RegisterController extends Controller
                 // ]);
 
             
-            return redirect('/login/students');
+            return redirect('/login/students')->with('message', 'Registered successfully!');;
         }
         else{
-            return redirect()->back()->with([
-                'error' => 'Sorry! Strand Code is Invalid!!',
-            ])->withInput();
+            // return redirect()->back()->with([
+            //     'message' => 'Sorry! Strand Code is Invalid!',
+            // ])->withInput();
+            return redirect()->back()->with('message', 'Sorry! Strand Code is Invalid! Please check ')->withInput();
         }
     }
 }
