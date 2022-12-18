@@ -53,8 +53,8 @@ class LoginController extends Controller
     public function adminsLogin(Request $request)
     {
         $this->validate($request, [
-            'email'   => 'required|email',
-            'password' => 'required|min:6'
+            'email'   => 'required|email|max:255',
+            'password' => 'required|min:6|max:255'
         ]);
 
         if (FacadesAuth::guard('admins')->attempt(['email' => $request->email, 'password' => $request->password])) {
@@ -72,8 +72,8 @@ class LoginController extends Controller
     public function studentsLogin(Request $request)
     {
         $this->validate($request, [
-            'email'   => 'required|email',
-            'password' => 'required|min:6'
+            'email'   => 'required|email|max:255|max:255',
+            'password' => 'required|min:6|max:255'
         ]);
 
         if (FacadesAuth::guard('students')->attempt(['email' => $request->email, 'password' => $request->password])) {
@@ -91,8 +91,8 @@ class LoginController extends Controller
     public function facultiesLogin(Request $request)
     {
         $this->validate($request, [
-            'email'   => 'required|email',
-            'password' => 'required|min:6'
+            'email'   => 'required|email|max:255',
+            'password' => 'required|min:6|max:255'
         ]);
 
         if (FacadesAuth::guard('faculties')->attempt(['email' => $request->email, 'password' => $request->password])) {

@@ -153,7 +153,7 @@ class RegisterController extends Controller
                 'middle_name' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
                 'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
                 'suffix' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
-                'username' => ['required'],
+                'username' => 'required|max:255',
                 'gender' => ['required'],
                 'section_id' => ['required'],
                 'gradelevel_id' => ['required'],
