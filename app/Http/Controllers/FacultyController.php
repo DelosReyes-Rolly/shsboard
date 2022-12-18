@@ -33,7 +33,7 @@ class FacultyController extends Controller
     public function reset(Request $request){
 
         $request->validate([
-            "email" => 'required',
+            "email" => 'required|max:255',
         ]);
         if (Faculties::where('email', '=', $request->get("email"))->count() > 0) {
             $chars = "abcdefghijkmnopqrstuvwxyz023456789";
@@ -156,14 +156,14 @@ class FacultyController extends Controller
         public function storeannouncement(Request $request){
             // Validate the inputs
             $request->validate([
-                'what' => 'required',
+                'what' => 'required|max:255',
                 'whn' => 'required',
                 'whn_time' => 'required',
                 'gradelevel_id' => 'required',
                 'course_id' => 'required',
                 'section_id' => 'required',
                 'subject_id' => 'required',
-                'content' => 'required',
+                'content' => 'required|max:255',
                 'expired_at' => 'required',
             ]);
             $announcement = new ActivityStreams();
@@ -207,14 +207,14 @@ class FacultyController extends Controller
     
          public function updateannouncement(Request $request, ActivityStreams $announcement){
             $validated = $request->validate([
-                'what' => ['required'],
+                'what' => 'required|max:255',
                 'whn' => ['required'],
                 'whn_time' => ['required'],
                 'gradelevel_id' => ['required'],
                 'course_id' => ['required'],
                 'section_id' => ['required'],
                 'subject_id' => ['required'],
-                'content' => ['required'],
+                'content' => 'required|max:255',
                 'expired_at' => ['required'],
             ]);
            $announcement->update($validated);

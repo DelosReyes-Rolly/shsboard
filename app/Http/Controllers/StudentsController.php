@@ -31,7 +31,7 @@ class StudentsController extends Controller
     public function reset(Request $request){
 
         $request->validate([
-            "email" => 'required',
+            "email" => 'required|max:255',
         ]);
         if (Students::where('email', '=', $request->get("email"))->count() > 0) {
             $chars = "abcdefghijkmnopqrstuvwxyz023456789";
@@ -225,7 +225,7 @@ class StudentsController extends Controller
     public function documentrequestsend(Request $request){
         $request->validate([
             'document_type' => 'required',
-            'purpose' => 'required',
+            'purpose' => 'required|max:255',
             'file' => 'mimes:doc,docx,docs,pdf|max:2048',
         ]);
         $docreq = new DocumentRequests();
@@ -276,7 +276,7 @@ class StudentsController extends Controller
     public function updatedocreq(Request $request, DocumentRequests $docreq){
         $validated = $request->validate([
             'document_id' => ['required'],
-            'purpose' => ['required'],
+            'purpose' => 'required|max:255',
         ]);
        $docreq->update($validated);
        return redirect('/studentrequest')->with('success', 'Your request has been updated.');
