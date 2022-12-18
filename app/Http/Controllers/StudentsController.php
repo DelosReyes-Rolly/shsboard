@@ -31,10 +31,10 @@ class StudentsController extends Controller
     public function reset(Request $request){
 
         $request->validate([
-            "email" => ['required'],
+            "email" => 'required',
         ]);
-
-        $chars = "abcdefghijkmnopqrstuvwxyz023456789";
+        if (Students::where('email', '=', $request->get("email"))->count() > 0) {
+            $chars = "abcdefghijkmnopqrstuvwxyz023456789";
                         srand((double)microtime()*1000000);
                         $i = 0;
                         $pass = '' ;
@@ -44,11 +44,15 @@ class StudentsController extends Controller
                             $pass = $pass . $tmp;
                             $i++;
                         }
-        $temp = bcrypt($pass);
+            $temp = bcrypt($pass);
 
-        Students::where('email', '=', $request->email)->update(['password' => $temp]);
-        Mail::to($request->email)->send(new RegisterMail($pass));
-        return redirect()->back()->with('success', 'Email has been sent!');
+            Students::where('email', '=', $request->email)->update(['password' => $temp]);
+            Mail::to($request->email)->send(new RegisterMail($pass));
+            return redirect('/login/students')->with('success', 'Email has been sent!');
+        }
+        else{
+            return redirect()->back()->with('message', 'Email is not found!');
+        }
     }
 
     // ============================================================ ANNOUNCEMENTS ===================================================================================

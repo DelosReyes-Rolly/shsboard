@@ -14,21 +14,17 @@
             </div>
             <div class="right">
                 @if ($message = Session::get('message'))
-                    <div class="alert alert-success alert-block">
+                    <div class="alert alert-danger alert-block">
                         <button type="button" class="close" data-dismiss="alert">×</button>
                         <strong>{{ $message }}</strong>
-                    </div></br></br>
+                    </div>
                 @endif
                 <form method="POST" action="/resetpassfaculty/">
                     @csrf
                     <div class="form-group">
                         <label for="email" class="col-form-label text-md-end">{{ __('Email Address') }}</label>
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="username@email.com" autofocus>
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                            
                     </div>
                     <div class="row mb-0">
                         <div class="col-md-6 offset-md-4">

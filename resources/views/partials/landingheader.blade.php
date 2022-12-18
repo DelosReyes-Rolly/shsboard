@@ -89,7 +89,7 @@
 
 		</header><!-- /.top-area-->
 		<!-- top-area End -->
-
+		@include('sweetalert::alert')
         
 
         <!-- end of enrollment report -->

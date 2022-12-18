@@ -19,16 +19,16 @@
                         <strong>{{ $message }}</strong>
                     </div></br></br>
                 @endif
+                @error('messaage')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
                 <form method="POST" action="/resetpassstudent/">
                     @csrf
                     <div class="form-group">
                         <label for="email" class="col-form-label text-md-end">{{ __('Email Address') }}</label>
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="username@email.com" autofocus>
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
                     </div>
                     <div class="row mb-0">
                         <div class="col-md-6 offset-md-4">
