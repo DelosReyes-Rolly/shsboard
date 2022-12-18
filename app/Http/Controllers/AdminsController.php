@@ -1315,8 +1315,8 @@ class AdminsController extends Controller
 
     public function adminreset(Request $request){
         $validated = $request->validate([
-            'new_password' => 'min:6|required_with:confirm_password|same:confirm_password',
-            'confirm_password' => 'min:6'
+            'new_password' => 'min:6|required_with:confirm_password|same:confirm_password|max:255',
+            'confirm_password' => 'min:6|max:255'
         ]);
         $user = Admins::where('id', Auth::user()->id)->first();
         // dd($user);

@@ -336,8 +336,8 @@ class FacultyController extends Controller
 
     public function facultyreset(Request $request){
         $validated = $request->validate([
-            'new_password' => 'min:6|required_with:confirm_password|same:confirm_password',
-            'confirm_password' => 'min:6'
+            'new_password' => 'min:6|required_with:confirm_password|same:confirm_password|max:255',
+            'confirm_password' => 'min:6|max:255'
         ]);
         $user = Faculties::where('id', Auth::user()->id)->first();
         // dd($user);

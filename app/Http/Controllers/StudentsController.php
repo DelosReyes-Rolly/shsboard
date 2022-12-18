@@ -293,8 +293,8 @@ class StudentsController extends Controller
 
 public function studentreset(Request $request){
     $validated = $request->validate([
-        'new_password' => 'min:6|required_with:confirm_password|same:confirm_password',
-        'confirm_password' => 'min:6'
+        'new_password' => 'min:6|required_with:confirm_password|same:confirm_password|max:255',
+        'confirm_password' => 'min:6|max:255'
     ]);
     $user = Students::where('id', Auth::user()->id)->first();
     // dd($user);
