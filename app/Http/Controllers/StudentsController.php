@@ -141,10 +141,10 @@ class StudentsController extends Controller
         $student->update($validated);
 
         $validated = $request->validate([
-            "street" => 'nullable|regex:/^[a-z A-Z0-9]+$/u',
-            "village" => 'nullable|regex:/^[a-z A-Z0-9]+$/u',
-            "city" => 'nullable|alpha',
-            "zip_code" => 'nullable|digits:4', 
+            "street" => 'nullable|regex:/^[a-z A-Z0-9]+$/u|max:255',
+            "village" => 'nullable|regex:/^[a-z A-Z0-9]+$/u|max:255',
+            "city" => 'nullable|alpha|max:255',
+            "zip_code" => 'nullable|digits:|max:11', 
         ]);
         $validated['updated_at'] = now();
         $address->update($validated);
