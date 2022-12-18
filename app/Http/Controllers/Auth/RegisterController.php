@@ -148,11 +148,11 @@ class RegisterController extends Controller
             ]);
 
             $validated = $request->validate([
-                'LRN' => ['required', 'min:12'],
-                'first_name' => 'required|regex:/^[\pL\s]+$/u|min:255',
-                'middle_name' => 'nullable|regex:/^[\pL\s]+$/u|min:255',
-                'last_name' => 'required|regex:/^[\pL\s]+$/u|min:255',
-                'suffix' => 'nullable|regex:/^[\pL\s]+$/u|min:255',
+                'LRN' => 'required|min:12|max:12|unique:students,LRN',
+                'first_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
+                'middle_name' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
+                'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
+                'suffix' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
                 'username' => ['required'],
                 'gender' => ['required'],
                 'section_id' => ['required'],
@@ -160,42 +160,51 @@ class RegisterController extends Controller
                 'email' => ['required', 'email', Rule::unique('students', 'email')],
                 'password' => 'required|confirmed|min:6'
             ]);
-            $validated['course_id'] = "$strandCode";
-            // hashing
-            $validated['password'] = bcrypt($validated['password']);
-                
-        //     dd($validated);
-            $course_id = $validated['course_id'];
-            $user->student()->create($validated);
-            $schoolyear = DB::table('school_years')->latest('id')->first();
-            $students = DB::table('students')->latest('id')->first();
-            $subjects = DB::table('subject_teachers')->where('deleted', '=', NULL)->where('course_id', '=', $course_id)->where('section_id', '=', $request->section_id)
-                    ->where('gradelevel_id', '=', $request->gradelevel_id)->where('schoolyear_id', '=', $schoolyear->id)->get();
-                   
-            if($subjects->count() != 0){ 
-                foreach($subjects as $subject){
-                    $studentgrade = new StudentGrade;
-                    $studentgrade->student_id =  $students->id;
-                    $studentgrade->gradelevel_id = $subject->gradelevel_id;
-                    $studentgrade->semester_id = $subject->semester_id;
-                    $studentgrade->subject_id = $subject->subject_id;
-                    $studentgrade->faculty_id = $subject->faculty_id;
-                    $studentgrade->subjectteacher_id = $subject->id;
-                    $studentgrade->schoolyear_id = $schoolyear->id;
-                    $studentgrade->save();
+
+            if (Students::where('first_name', '=', $request->get("first_name"))->count() < 0 && Students::where('middle_name', '=', $request->get("middle_name"))->count() < 0
+                && Students::where('last_name', '=', $request->get("last_name"))->count() < 0 && Students::where('suffix', '=', $request->get("suffix"))->count() < 0) {
+
+                $validated['course_id'] = "$strandCode";
+                // hashing
+                $validated['password'] = bcrypt($validated['password']);
+                    
+            //     dd($validated);
+                $course_id = $validated['course_id'];
+                $user->student()->create($validated);
+                $schoolyear = DB::table('school_years')->latest('id')->first();
+                $students = DB::table('students')->latest('id')->first();
+                $subjects = DB::table('subject_teachers')->where('deleted', '=', NULL)->where('course_id', '=', $course_id)->where('section_id', '=', $request->section_id)
+                        ->where('gradelevel_id', '=', $request->gradelevel_id)->where('schoolyear_id', '=', $schoolyear->id)->get();
+                    
+                if($subjects->count() != 0){ 
+                    foreach($subjects as $subject){
+                        $studentgrade = new StudentGrade;
+                        $studentgrade->student_id =  $students->id;
+                        $studentgrade->gradelevel_id = $subject->gradelevel_id;
+                        $studentgrade->semester_id = $subject->semester_id;
+                        $studentgrade->subject_id = $subject->subject_id;
+                        $studentgrade->faculty_id = $subject->faculty_id;
+                        $studentgrade->subjectteacher_id = $subject->id;
+                        $studentgrade->schoolyear_id = $schoolyear->id;
+                        $studentgrade->save();
+                    }
                 }
+
+                    // $user->addresses()->create([
+                    //     'city' => 'Taguig City'
+                    // ]);
+                    // Addresses::create([
+                    //     'user_id' => $user->id,
+                    //     'city'=> 'Taguig City'
+                    // ]);
+
+                
+                return redirect('/login/students')->with('success', 'Registered successfully!');;
             }
 
-                // $user->addresses()->create([
-                //     'city' => 'Taguig City'
-                // ]);
-                // Addresses::create([
-                //     'user_id' => $user->id,
-                //     'city'=> 'Taguig City'
-                // ]);
-
-            
-            return redirect('/login/students')->with('message', 'Registered successfully!');;
+            else{
+                return redirect()->back()->with('message', 'You have duplicate name!')->withInput();
+            }
         }
         else{
             // return redirect()->back()->with([

@@ -776,32 +776,39 @@ class AdminsController extends Controller
         
         // Validate the inputs
         $validated = $request->validate([
-            'first_name' => ['required'],
-            'middle_name' => 'nullable',
-            'last_name' => ['required'],
-            'suffix' => 'nullable',
+            'first_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
+            'middle_name' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
+            'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
+            'suffix' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
             'email' => ['required', 'email', Rule::unique('faculties', 'email')],
         ]);
-        // hashing
-        $chars = "abcdefghijkmnopqrstuvwxyz023456789";
-                        srand((double)microtime()*1000000);
-                        $i = 0;
-                        $pass = '' ;
-                        while ($i <= 7) {
-                            $num = rand() % 33;
-                            $tmp = substr($chars, $num, 1);
-                            $pass = $pass . $tmp;
-                            $i++;
-                        }
-        $validated['password'] = bcrypt($pass);
 
-        $user = Addresses::create([
-            'city'=> 'Taguig City',
-        ]);
+        if (Faculties::where('first_name', '=', $request->get("first_name"))->count() < 0 && Faculties::where('middle_name', '=', $request->get("middle_name"))->count() < 0
+            && Faculties::where('last_name', '=', $request->get("last_name"))->count() < 0 && Faculties::where('suffix', '=', $request->get("suffix"))->count() < 0) {
+            // hashing
+            $chars = "abcdefghijkmnopqrstuvwxyz023456789";
+                            srand((double)microtime()*1000000);
+                            $i = 0;
+                            $pass = '' ;
+                            while ($i <= 7) {
+                                $num = rand() % 33;
+                                $tmp = substr($chars, $num, 1);
+                                $pass = $pass . $tmp;
+                                $i++;
+                            }
+            $validated['password'] = bcrypt($pass);
 
-        $user->faculty()->create($validated);
-        Mail::to($validated['email'])->send(new RegisterMail($pass));
-        return redirect('/gradingfaculty')->with('success', 'Teacher has been added successfully!');
+            $user = Addresses::create([
+                'city'=> 'Taguig City',
+            ]);
+
+            $user->faculty()->create($validated);
+            Mail::to($validated['email'])->send(new RegisterMail($pass));
+            return redirect('/gradingfaculty')->with('success', 'Teacher has been added successfully!');
+        }
+        else{
+            return redirect()->back()->with('message', 'Teacher have a duplicate name!')->withInput();
+        }
     }
 
 
@@ -821,14 +828,14 @@ class AdminsController extends Controller
     public function updatefaculty(Request $request, Faculties $faculty){
         $ownid=$faculty->id;
         $validated = $request->validate([
-            'first_name' => ['required'],
-            'middle_name' => 'nullable',
-            'last_name' => ['required'],
-            'suffix' => 'nullable',
+            'first_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
+            'middle_name' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
+            'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
+            'suffix' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
             "email" => 'required|email:rfc,dns|email|unique:faculties,email,' . $ownid,
         ]);
-    $faculty->update($validated);
-    return redirect('/gradingfaculty')->with('success', 'Information of teacher has been updated successfully!');
+        $faculty->update($validated);
+        return redirect('/gradingfaculty')->with('success', 'Information of teacher has been updated successfully!');
     }
 
      public function deletegradefaculty(Request $request, Faculties $faculty){
@@ -865,11 +872,11 @@ class AdminsController extends Controller
         // Validate the inputs
 
         $validated = $request->validate([
-            'LRN' => ['required'],
-            'first_name' => ['required'],
-            'middle_name' => 'nullable',
-            'last_name' => ['required'],
-            'suffix' => 'nullable',
+            'LRN' => 'required|min:12|max:12|unique:students,LRN',
+            'first_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
+            'middle_name' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
+            'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
+            'suffix' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
             'section_id' => ['required'],
             'gender' => ['required'],
             'section_id' => ['required'],
@@ -877,47 +884,54 @@ class AdminsController extends Controller
             'email' => ['required', 'email', Rule::unique('students', 'email')],
             'course_id' => ['required'],
         ]);
-        // hashing
-        $chars = "abcdefghijkmnopqrstuvwxyz023456789";
-                        srand((double)microtime()*1000000);
-                        $i = 0;
-                        $pass = '' ;
-                        while ($i <= 7) {
-                            $num = rand() % 33;
-                            $tmp = substr($chars, $num, 1);
-                            $pass = $pass . $tmp;
-                            $i++;
-                        }
-        $validated['password'] = bcrypt($pass);
 
-        $user = Addresses::create([
-            'city'=> 'Taguig City',
-        ]);
+        if (Students::where('first_name', '=', $request->get("first_name"))->count() < 0 && Students::where('middle_name', '=', $request->get("middle_name"))->count() < 0
+                && Students::where('last_name', '=', $request->get("last_name"))->count() < 0 && Students::where('suffix', '=', $request->get("suffix"))->count() < 0) {
+            // hashing
+            $chars = "abcdefghijkmnopqrstuvwxyz023456789";
+                            srand((double)microtime()*1000000);
+                            $i = 0;
+                            $pass = '' ;
+                            while ($i <= 7) {
+                                $num = rand() % 33;
+                                $tmp = substr($chars, $num, 1);
+                                $pass = $pass . $tmp;
+                                $i++;
+                            }
+            $validated['password'] = bcrypt($pass);
 
-        $user->student()->create($validated);
+            $user = Addresses::create([
+                'city'=> 'Taguig City',
+            ]);
 
-            $course_id = $validated['course_id'];
-            $schoolyear = DB::table('school_years')->latest('id')->first();
-            $students = DB::table('students')->latest('id')->first();
-            $subjects = DB::table('subject_teachers')->where('deleted', '=', NULL)->where('course_id', '=', $course_id)->where('section_id', '=', $request->section_id)
-                    ->where('gradelevel_id', '=', $request->gradelevel_id)->where('schoolyear_id', '=', $schoolyear->id)->get();
-                   
-            if($subjects->count() != 0){ 
-                foreach($subjects as $subject){
-                    $studentgrade = new StudentGrade;
-                    $studentgrade->student_id =  $students->id;
-                    $studentgrade->gradelevel_id = $subject->gradelevel_id;
-                    $studentgrade->semester_id = $subject->semester_id;
-                    $studentgrade->subject_id = $subject->subject_id;
-                    $studentgrade->faculty_id = $subject->faculty_id;
-                    $studentgrade->subjectteacher_id = $subject->id;
-                    $studentgrade->schoolyear_id = $schoolyear->id;
-                    $studentgrade->save();
+            $user->student()->create($validated);
+
+                $course_id = $validated['course_id'];
+                $schoolyear = DB::table('school_years')->latest('id')->first();
+                $students = DB::table('students')->latest('id')->first();
+                $subjects = DB::table('subject_teachers')->where('deleted', '=', NULL)->where('course_id', '=', $course_id)->where('section_id', '=', $request->section_id)
+                        ->where('gradelevel_id', '=', $request->gradelevel_id)->where('schoolyear_id', '=', $schoolyear->id)->get();
+                    
+                if($subjects->count() != 0){ 
+                    foreach($subjects as $subject){
+                        $studentgrade = new StudentGrade;
+                        $studentgrade->student_id =  $students->id;
+                        $studentgrade->gradelevel_id = $subject->gradelevel_id;
+                        $studentgrade->semester_id = $subject->semester_id;
+                        $studentgrade->subject_id = $subject->subject_id;
+                        $studentgrade->faculty_id = $subject->faculty_id;
+                        $studentgrade->subjectteacher_id = $subject->id;
+                        $studentgrade->schoolyear_id = $schoolyear->id;
+                        $studentgrade->save();
+                    }
                 }
-            }
-        
-        Mail::to($validated['email'])->send(new RegisterMail($pass));
-        return redirect('/gradingstudents')->with('success', 'Student has been added successfully!');
+            
+            Mail::to($validated['email'])->send(new RegisterMail($pass));
+            return redirect('/gradingstudents')->with('success', 'Student has been added successfully!');
+        }
+        else{
+            return redirect()->back()->with('message', 'Student have a duplicate name!')->withInput();
+        }
     }  
 
 
@@ -935,11 +949,11 @@ class AdminsController extends Controller
     public function updatestudent(Request $request, Students $student){
         $ownid=$student->id;
         $validated = $request->validate([
-            'LRN' => ['required'],
-            'first_name' => ['required'],
-            'middle_name' => 'nullable',
-            'last_name' => ['required'],
-            'suffix' => 'nullable',
+            'LRN' => 'required|min:12|max:12|unique:students,LRN',
+            'first_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
+            'middle_name' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
+            'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
+            'suffix' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
             "email" => 'required|email:rfc,dns|email|unique:students,email,' . $ownid,
         ]);
         $student->update($validated);
