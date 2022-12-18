@@ -23,6 +23,24 @@
                         @endisset
                             @csrf
                             <div class="form-group">
+                                @if ($message = Session::get('message'))
+                                    <div class="alert alert-danger alert-block">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                @endif
+                                                    
+                                @if (count($errors) > 0)
+                                    <div class="alert alert-danger">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <strong>Whoops!</strong> There were some problems with your input.
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                                 <label>Email Address</label>
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror animate pop" name="email" value="{{ old('email') }}" required autocomplete="email"  placeholder="username@email.com" autofocus>
                                 @error('email')

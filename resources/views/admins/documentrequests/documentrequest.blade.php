@@ -167,17 +167,21 @@
 				<div class="container-xl px-4 mt-4 left-to-right">
 					<hr class="mt-0 mb-4">
 	                <div class="row">
-	                    
+					
 	                        <!-- Account details card-->
-	                        <div class="card mb-4 border-start-lg border-start-success">
+	                        <div class="card border-start-lg border-start-success">
 								<div class="tabs">
 								    <input type="radio" name="tabs" id="tabone" checked="checked">
 								    <label for="tabone">Grade 11</label>
-								    <div class="tab">
-								      	<div class="card-header">Requested Documents</div>
+								    <div class="tab" style="height: auto;">
+										<div style="margin: 20px;">
+											<a class="btn btn-success" style="font-size:20px; font-weight:bold; color:white;" href='{{ url("/tableofcompleted11") }}'><i class="fas fa-tasks"></i> Completed</a>&ensp;
+											<a class="btn btn-danger" style="font-size:20px; font-weight:bold; color:white;" href='{{ url("/tableofrejected11") }}'><i class="fas fa-times-circle"></i> Denied</a>&ensp;
+										</div>
+								      	<div class="card-header"><b>Requested Documents</b></div>
 										    <div class="card-body p-0">
 											    <!-- Announcements table-->
-											    @if($requests->count() == 0)
+											    @if($requests11->count() == 0)
 													<br><br>
 													<div class="alert alert-danger"><em>No records found.</em></div>
 												@else 
@@ -188,7 +192,7 @@
 												                    <th class="border-gray-200" scope="col">#</th>
 												                    <th class="border-gray-200" scope="col">Document</th>
 												                    <th class="border-gray-200" scope="col">Student Name</th>
-												                    <th class="border-gray-200" scope="col">Course</th>
+												                    <th class="border-gray-200" scope="col">Strand</th>
 												                    <th class="border-gray-200" scope="col">Date Requested</th>
 												                    <th class="border-gray-200" scope="col">Proof</th>
 																	<th class="border-gray-200" scope="col">Status</th>
@@ -222,16 +226,10 @@
 																								echo '<span class="badge bg-success" style="color: white;">On Process</span>';
 																								break;
 																							case '3':
-																								echo '<span class="badge bg-success" style="color: white;">For Collection</span>';
-																								break;
-																							case '4':
 																								echo '<span class="badge bg-success" style="color: white;">Completed</span>';
 																								break;
-																							case '5':
+																							case '4':
 																								echo '<span class="badge bg-danger" style="color: white;">Denied</span>';
-																								break;
-																							case '6':
-																								echo '<span class="badge bg-secondary" style="color: white;">For follow-up</span>';
 																								break;
 																							default:
 																								echo '<span class="badge bg-secondary" style="color: white;">Undetermine</span>';
@@ -240,8 +238,8 @@
 																					?>
 																				</td>
 																				<td>
-																					<a class="btn btn-success btn-md" href="/viewdocument/{{$document->id}}"><i class="fas fa-eye"></i> View</a>
-																					<a class="btn btn-warning btn-md" href="/showdocument/{{$document->id}}"><i class="fas fa-edit"></i> Update</a>	
+																					<a class="btn btn-success btn-md" href="/viewrequestadmin/{{$request->id}}"><i class="fas fa-eye"></i> View</a>
+																					<a class="btn btn-warning btn-md" href="/showrequestadmin/{{$request->id}}"><i class="fas fa-edit"></i> Update</a>
 																				</td> 
 																			</tr>
 																		@endif
@@ -255,11 +253,15 @@
 
 								    	<input type="radio" name="tabs" id="tabtwo">
 								    	<label for="tabtwo">Grade 12</label>
-										<div class="tab">
-											<div class="card-header">Requested Documents</div>
+										<div class="tab" style="height: auto;">
+											<div style="margin: 20px;">
+												<a class="btn btn-success" style="font-size:20px; font-weight:bold; color:white;" href='{{ url("/tableofcompleted12") }}'><i class="fas fa-tasks"></i> Completed</a>&ensp;
+												<a class="btn btn-danger" style="font-size:20px; font-weight:bold; color:white;" href='{{ url("/tableofrejected12") }}'><i class="fas fa-times-circle"></i> Denied</a>&ensp;
+											</div>
+											<div class="card-header"><b>Requested Documents</b></div>
 											<div class="card-body p-0">
 												<!-- Announcements table-->
-												@if($requests->count() == 0)
+												@if($requests12->count() == 0)
 													<br><br>
 													<div class="alert alert-danger"><em>No records found.</em></div>
 												@else
@@ -270,7 +272,7 @@
 												                    <th class="border-gray-200" scope="col">#</th>
 												                    <th class="border-gray-200" scope="col">Document</th>
 												                    <th class="border-gray-200" scope="col">Student Name</th>
-												                    <th class="border-gray-200" scope="col">Course</th>
+												                    <th class="border-gray-200" scope="col">Strand</th>
 												                    <th class="border-gray-200" scope="col">Date Requested</th>
 												                    <th class="border-gray-200" scope="col">Proof</th>
 																	<th class="border-gray-200" scope="col">Status</th>
@@ -304,16 +306,10 @@
 																								echo '<span class="badge bg-success" style="color: white;">On Process</span>';
 																								break;
 																							case '3':
-																								echo '<span class="badge bg-success" style="color: white;">For Collection</span>';
-																								break;
-																							case '4':
 																								echo '<span class="badge bg-success" style="color: white;">Completed</span>';
 																								break;
-																							case '5':
+																							case '4':
 																								echo '<span class="badge bg-danger" style="color: white;">Denied</span>';
-																								break;
-																							case '6':
-																								echo '<span class="badge bg-secondary" style="color: white;">For follow-up</span>';
 																								break;
 																							default:
 																								echo '<span class="badge bg-secondary" style="color: white;">Undetermine</span>';

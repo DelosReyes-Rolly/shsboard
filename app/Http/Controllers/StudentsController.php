@@ -261,11 +261,12 @@ class StudentsController extends Controller
     }
 
 
-     public function showrequest($id){
+    public function showrequest($id){
+        $lists = Documents::where('deleted', '=', null)->get();
         $data = DocumentRequests::where('deleted', '=', null)->findOrFail($id);
         $gradelevel = GradeLevels::where('id', '=', Auth::user()->gradelevel_id)->first();
         $course = Courses::where('id', '=', Auth::user()->course_id)->first();
-        return view('student.docreq', ['docreq' => $data, 'gradelevel' => $gradelevel, 'course' => $course]);
+        return view('student.docreq', ['docreq' => $data, 'gradelevel' => $gradelevel, 'course' => $course, 'lists' => $lists]);
     }
 
     public function updatedocreq(Request $request, DocumentRequests $docreq){

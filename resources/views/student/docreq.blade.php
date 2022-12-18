@@ -63,14 +63,12 @@
                                                 <div class="mb-3 requestdocument">
                                                 	<label class="large mb-1" for="document_id" class="form-control @error('document_id') is-invalid @enderror" style="font-size: 20px;"><br><span style="color: red">*</span> Document Needed</label>
                                                         <div class="col-md-12" hidden><input class="form-control @error('document_id') is-invalid @enderror" id="inputdocument_id" type="text" placeholder="Enter document needed" name="document_id"  value="{{$docreq->document_id}}"></div>
-            											<select id="document_id" name="document_id" class="form-control" value="{{$docreq->document_id}}"style="font-size: 16px;" >
-            												<option value="" disabled selected hidden>Select Document</option>
-            											  	<option value="1" {{$docreq->document_id == "1" ?'selected' : ''}}>Grade Certificate</option>
-            											  	<option value="2" {{$docreq->document_id == "2" ?'selected' : ''}}>Certification of Enrolment For 4P's</option>
-            											  	<option value="3" {{$docreq->document_id == "3" ?'selected' : ''}}>Certificate of Good Moral</option>
-            											  	<option value="4" {{$docreq->document_id == "4" ?'selected' : ''}}>Form 137</option>
-            											  	<option value="5" {{$docreq->document_id == "5" ?'selected' : ''}}>Transfer-out Form</option>
-            											</select>
+            											<select id="document_id" name="document_id" class="form-control" value="{{ old('document_id') }}" style="font-size: 16px;" >
+                                                            <option value="" disabled selected hidden>Choose Document</option>
+                                                            @foreach ($lists as $list)
+                                                                <option value="{{ $list->id }}"{{($docreq->document->id==$list->id)? 'selected':'' }}>{{ $list->name}}</option>
+                                                            @endforeach
+                                                        </select>
             										</div>
                                                 </div>
                                                 <br>

@@ -66,16 +66,10 @@
                                                                 echo '<span class="badge bg-success" style="color: white;">On Process</span>';
                                                                 break;
                                                             case '3':
-                                                                echo '<span class="badge bg-success" style="color: white;">For Collection</span>';
-                                                                break;
-                                                            case '4':
                                                                 echo '<span class="badge bg-success" style="color: white;">Completed</span>';
                                                                 break;
-                                                            case '5':
+                                                            case '4':
                                                                 echo '<span class="badge bg-danger" style="color: white;">Denied</span>';
-                                                                break;
-                                                            case '6':
-                                                                echo '<span class="badge bg-secondary" style="color: white;">For follow-up</span>';
                                                                 break;
                                                             default:
                                                                 echo '<span class="badge bg-secondary" style="color: white;">Undetermine</span>';

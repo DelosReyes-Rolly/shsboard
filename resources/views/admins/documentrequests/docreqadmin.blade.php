@@ -69,13 +69,11 @@
                                                 	<label class="large mb-1" for="document_id" class="form-control @error('status') is-invalid @enderror" style="font-size: 20px;"><br><b>Status</b></label>
                                                     <div class="col-md-12" hidden><input class="form-control @error('status') is-invalid @enderror" id="inputstatus" type="text" placeholder="Enter status" name="status"  value="{{$docreq->status}}"></div>
             										<select id="status" name="status" class="form-control" value="{{$docreq->status}}"style="font-size: 16px;" >
-            											<option value="" disabled selected hidden>Change Status</option>
+            											<option value="" disabled selected>Change Status</option>
             										  	<option value="1" {{$docreq->status == "1" ?'selected' : ''}}>Pending</option>
             										  	<option value="2" {{$docreq->status == "2" ?'selected' : ''}}>On Process</option>
-            										 	<option value="3" {{$docreq->status == "3" ?'selected' : ''}}>For Collection</option>
-            										  	<option value="4" {{$docreq->status == "4" ?'selected' : ''}}>Completed</option>
-            										  	<option value="5" {{$docreq->status == "5" ?'selected' : ''}}>Denied</option>
-                                                        <option value="6" {{$docreq->status == "6" ?'selected' : ''}}>For follow-up</option>
+            										  	<option value="3" {{$docreq->status == "3" ?'selected' : ''}}>Completed</option>
+            										  	<option value="4" {{$docreq->status == "4" ?'selected' : ''}}>Denied</option>
             										</select>
                                                 </div>
                                                 <br>

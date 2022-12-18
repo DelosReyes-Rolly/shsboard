@@ -22,7 +22,8 @@
     <h3 style="font-size: 28px; font-weight: 800;">Table of Grade Level </h3>
       <hr class="mt-0 mb-4">
         <div class="card mb-4 border-start-lg border-start-success">
-            <div class="card-header">
+            <div class="card-header" style="font-size: 20px; font-weight:bold;">
+                Example: 12
                 <div class="pull-right">
                     <a href="{{route('gradelevel.add')}}" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Record</a>
                 </div>
@@ -33,7 +34,7 @@
 					<div class="alert alert-danger"><em>No records found.</em></div>
 				@else 
                     <br>
-                    <div class="table-responsive table-billing-history">
+                    <div class="table-responsive table-billing-history" style="padding: 20px;">
                         <table id="example" class="display nowrap" style="width:100%">
                             <thead>
                                 <tr>

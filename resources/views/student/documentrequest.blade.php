@@ -106,16 +106,14 @@
                                                 </div>
                                                 <!-- Form Group (content)-->
                                                 <div class="mb-3 requestdocument">
-                                                	<label class="large mb-1" for="document_type" class="form-control @error('document_type') is-invalid @enderror" style="font-size: 20px;"><br><span style="color: red">*</span> Document Needed</label>
+                                                	<label class="large mb-12" for="document_type" class="form-control @error('document_type') is-invalid @enderror" style="font-size: 20px;"><br><span style="color: red">*</span> Document Needed</label>
                                                         <div class="col-md-12" hidden><input class="form-control @error('document_type') is-invalid @enderror" id="inputdocument_type" type="text" placeholder="Enter document needed" name="document_type"  value="{{ old('document_type') }}"></div>
-            											<select id="document_type" name="document_type" class="form-control" value="{{ old('document_type') }}" style="font-size: 16px;" >
-            												<option value="" disabled selected hidden>Select Document</option>
-            											  	<option value="1">Grade Certificate</option>
-            											  	<option value="2">Certification of Enrolment For 4P's</option>
-            											  	<option value="3">Certificate of Good Moral</option>
-            											  	<option value="4">Form 137</option>
-            											  	<option value="5">Transfer-out Form</option>
-            											</select>
+                                                        <select id="document_type" name="document_type" class="form-control" value="{{ old('document_type') }}" style="font-size: 16px;" >
+                                                            <option value="" disabled selected hidden>Choose Document</option>
+                                                            @foreach ($lists as $list)
+                                                                <option value="{{ $list->id }}">{{ $list->name}}</option>
+                                                            @endforeach
+                                                        </select>
             										</div>
                                                 </div>
                                                 <br>
@@ -194,16 +192,10 @@
                                                                     echo '<span class="badge bg-success" style="color: white;">On Process</span>';
                                                                     break;
                                                                 case '3':
-                                                                    echo '<span class="badge bg-success" style="color: white;">For Collection</span>';
-                                                                    break;
-                                                                case '4':
                                                                     echo '<span class="badge bg-success" style="color: white;">Completed</span>';
                                                                     break;
-                                                                case '5':
+                                                                case '4':
                                                                     echo '<span class="badge bg-danger" style="color: white;">Denied</span>';
-                                                                    break;
-                                                                case '6':
-                                                                    echo '<span class="badge bg-secondary" style="color: white;">For follow-up</span>';
                                                                     break;
                                                                 default:
                                                                     echo '<span class="badge bg-secondary" style="color: white;">Undetermine</span>';

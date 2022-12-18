@@ -61,7 +61,7 @@ class LoginController extends Controller
 
             return redirect()->intended('/admins');
         }
-        return back()->withInput($request->only('email'));
+        return back()->with('message', 'Wrong credentials!')->withInput($request->only('email'));
     }
 
      public function showStudentsLoginForm()

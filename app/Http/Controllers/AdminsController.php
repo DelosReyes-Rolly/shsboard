@@ -506,9 +506,11 @@ class AdminsController extends Controller
     // ============================================================ DOCUMENT REQUEST ===================================================================================   
 
     public function documentRequest(){
-        $requests = DocumentRequests::where('deleted', '=', null)->get();
+        $requests = DocumentRequests::where('deleted', '=', null)->where('status', '!=', 4)->where('status', '!=', 3)->get();
+        $requests11 = DocumentRequests::where('deleted', '=', null)->where('gradelevel_id', '=', 1)->where('status', '!=', 4)->where('status', '!=', 3)->get();
+        $requests12 = DocumentRequests::where('deleted', '=', null)->where('gradelevel_id', '=', 2)->where('status', '!=', 4)->where('status', '!=', 3)->get();
         $documents = Documents::where('deleted', '=', null)->get();
-        return view('admins.documentrequests.documentrequest', compact('requests', 'documents'));
+        return view('admins.documentrequests.documentrequest', compact('requests', 'documents', 'requests11', 'requests12'));
     }
 
     public function storedocument(Request $request){
@@ -526,6 +528,26 @@ class AdminsController extends Controller
     public function viewdocument($id){
         $data = Documents::where('deleted', '=', null)->findOrFail($id);
         return view('admins.documentrequests.documentview', ['document' => $data]);
+    }
+    
+    public function tableofCompleted11(){
+        $requests = DocumentRequests::where('deleted', '=', null)->where('gradelevel_id', '=', 1)->where('status', '=', 3)->get();
+        return view('admins.documentrequests.documentrequestCompleted11', compact('requests'));
+    }
+
+    public function tableofRejected11(){
+        $requests = DocumentRequests::where('deleted', '=', null)->where('gradelevel_id', '=', 1)->where('status', '=', 4)->get();
+        return view('admins.documentrequests.documentrequestRejected11', compact('requests'));
+    }
+
+    public function tableofCompleted12(){
+        $requests = DocumentRequests::where('deleted', '=', null)->where('gradelevel_id', '=', 2)->where('status', '=', 3)->get();
+        return view('admins.documentrequests.documentrequestCompleted12', compact('requests'));
+    }
+
+    public function tableofRejected12(){
+        $requests = DocumentRequests::where('deleted', '=', null)->where('gradelevel_id', '=', 2)->where('status', '=', 4)->get();
+        return view('admins.documentrequests.documentrequestRejected12', compact('requests'));
     }
 
 

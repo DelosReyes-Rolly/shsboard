@@ -625,6 +625,12 @@ Route::group(['middleware' => 'auth:admins'], function () {
             Route::get('/showrequestadmin/{id}', 'showrequest');
             Route::get('/deletedocument/{id}',  'deletedocument')->name('admin.deletedocument');
 
+            Route::get('/tableofcompleted11', 'tableofCompleted11');
+            Route::get('/tableofrejected11', 'tableofRejected11');
+
+            Route::get('/tableofcompleted12', 'tableofCompleted12');
+            Route::get('/tableofrejected12', 'tableofRejected12');
+
             /*
             |-----------------------------------------------------------------------------------
             | ADMINS Routes - Document Request - POST
