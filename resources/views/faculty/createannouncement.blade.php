@@ -131,7 +131,7 @@
                                                     <select id="subject_id" name="subject_id" value="{{ old('subject_id') }}" style="font-size: 16px; padding: 12px; display: block; width: 100%;">
                                                         <option value="" disabled selected hidden>Choose Subject</option>
                                                         @foreach ($subjects as $subject)
-                                                            <option value="{{ $subject->id }}">{{ $subject->subject->subjectname}}</option>
+                                                            <option value="{{ $subject->subject->id }}">{{ $subject->subject->subjectname}}</option>
                                                         @endforeach
                                                     </select><br/><br/>
                                                 </div>
@@ -141,7 +141,7 @@
                                                     <select id="course_id" name="course_id" value="{{ old('course_id') }}" style="font-size: 16px; padding: 12px; display: block; width: 100%;">
                                                         <option value="" disabled selected hidden>Choose Strand</option>
                                                         @foreach ($courses as $course)
-                                                            <option value="{{ $course->id }}">{{ $course->course->courseName}}</option>
+                                                            <option value="{{ $course->course->id }}">{{ $course->course->courseName}}</option>
                                                         @endforeach
                                                     </select><br/><br/>
                                                 </div>
@@ -154,7 +154,7 @@
                                                     <select id="section_id" name="section_id" value="{{ old('section_id') }}" style="font-size: 16px; padding: 12px; display: block; width: 100%;">
                                                         <option value="" disabled selected hidden>Choose Section</option>
                                                         @foreach ($sections as $section)
-                                                            <option value="{{ $section->id }}">{{ $section->section->section}}</option>
+                                                            <option value="{{ $section->section->id }}">{{ $section->section->section}}</option>
                                                         @endforeach
                                                     </select><br/><br/>
                                                 </div>
@@ -163,7 +163,7 @@
                                                     <select id="gradelevel_id" name="gradelevel_id" value="{{ old('gradelevel_id') }}" style="font-size: 16px; padding: 12px; display: block; width: 100%;">
                                                         <option value="" disabled selected hidden>Choose Gradelevel</option>
                                                          @foreach ($gradelevels as $gradelevel)
-                                                             <option value="{{ $gradelevel->id }}">{{ $gradelevel->gradelevel->gradelevel }}</option>
+                                                             <option value="{{ $gradelevel->gradelevel->id }}">{{ $gradelevel->gradelevel->gradelevel }}</option>
                                                         @endforeach
                                                     </select><br/><br/>
                                                 </div>
@@ -201,7 +201,7 @@
 						@else 
                             <br>
                             <div class="table-responsive table-billing-history">
-                                <table id="example" class="display nowrap" style="width:100%">
+                                <table id="example" class="display nowrap table-bordered" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th class="border-gray-200" scope="col">#</th>

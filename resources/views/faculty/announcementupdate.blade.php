@@ -57,7 +57,7 @@
                                             <select id="gradelevel_id" name="gradelevel_id" value="{{ old('gradelevel_id') }}" style="font-size: 16px; padding: 12px; display: block; width: 100%;">
                                                 <option value="" disabled selected hidden>Choose Gradelevel</option>
                                                 @foreach ($gradelevels as $gradelevel)
-                                                    <option value="{{ $gradelevel->id }}" {{($announcement->gradelevel->id==$gradelevel->id)? 'selected':'' }}>{{ $gradelevel->gradelevel }}</option>
+                                                    <option value="{{ $gradelevel->gradelevel->id }}" {{($gradelevel->gradelevel->id==$gradelevel->id)? 'selected':'' }}>{{ $gradelevel->gradelevel->gradelevel }}</option>
                                                 @endforeach
                                             </select>
                                         </div><br/>
@@ -66,7 +66,7 @@
                                             <select id="course_id" name="course_id" value="{{ old('course_id') }}" style="font-size: 16px; padding: 12px; display: block; width: 100%;">
                                                 <option value="" disabled selected hidden>Choose Course</option>
                                                 @foreach ($courses as $course)
-                                                    <option value="{{ $course->id }}"{{($announcement->course->id==$course->id)? 'selected':'' }}>{{ $course->courseName}}</option>
+                                                    <option value="{{ $course->course->id }}"{{($course->course->id==$course->id)? 'selected':'' }}>{{ $course->course->courseName}}</option>
                                                 @endforeach
                                             </select>
                                         </div><br/>
@@ -75,7 +75,7 @@
                                             <select id="section_id" name="section_id" value="{{ old('section_id') }}" style="font-size: 16px; padding: 12px; display: block; width: 100%;">
                                                 <option value="" disabled selected hidden>Choose Section</option>
                                                 @foreach ($sections as $section)
-                                                    <option value="{{ $section->id }}"{{($announcement->section->id==$section->id)? 'selected':'' }}>{{ $section->section}}</option>
+                                                    <option value="{{ $section->section->id }}"{{($section->section->id==$section->id)? 'selected':'' }}>{{ $section->section->section}}</option>
                                                 @endforeach
                                             </select>
                                         </div><br/>
@@ -84,7 +84,7 @@
                                                 <select id="subject_id" name="subject_id" value="{{ old('subject_id') }}" style="font-size: 16px; padding: 12px; display: block; width: 100%;">
                                                     <option value="" disabled selected hidden>Choose Subject</option>
                                                     @foreach ($subjects as $subject)
-                                                        <option value="{{ $subject->id }}"{{($announcement->subject->id==$subject->id)? 'selected':'' }}>{{ $subject->subjectname}}</option>
+                                                        <option value="{{ $subject->subject->id }}"{{($subject->subject->id==$subject->id)? 'selected':'' }}>{{ $subject->subject->subjectname}}</option>
                                                     @endforeach
                                                 </select>
                                          </div>
