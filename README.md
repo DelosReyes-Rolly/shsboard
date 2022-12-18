@@ -96,7 +96,7 @@ SVNHS-SHS BOARD is a school management information system for Signal Village Nat
 ## Credentials
 
 <b>Admin</b>
-- Email: rollydelosreyes729@gmail.com
+- Email: svnhs.shs.board@gmail.com
 - Password: password
 
 <b>Faculty</b>
