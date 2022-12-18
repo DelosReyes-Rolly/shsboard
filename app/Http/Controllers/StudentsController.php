@@ -128,14 +128,14 @@ class StudentsController extends Controller
     public function profileupdate(Request $request, Students $student, Addresses $address){
         $ownid=Auth::user()->id;
         $validated = $request->validate([
-            "first_name" => ['required'],
-            "middle_name" => 'nullable|max:255',
-            "last_name" => ['required'],
-            "suffix" => 'nullable|max:255',
+            'first_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
+            'middle_name' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
+            'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
+            'suffix' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
             "username" => 'nullable|max:255|unique:students,username,' . $ownid,
             "phone_number" => 'nullable|numeric|min:10',
             "email" => 'required|email:rfc,dns|email|unique:students,email,' . $ownid,
-            "gender" => ['required'],
+            "gender" => 'nullable',
         ]);
         $validated['updated_at'] = now();
         $student->update($validated);

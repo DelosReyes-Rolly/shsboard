@@ -107,10 +107,10 @@ class FacultyController extends Controller
     public function profileupdate(Request $request, Faculties $faculty, Addresses $address){
         $ownid=Auth::user()->id;
         $validated = $request->validate([
-            "first_name" => ['required'],
-            "middle_name" => 'nullable',
-            "last_name" => ['required'],
-            "suffix" => 'nullable',
+            'first_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
+            'middle_name' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
+            'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
+            'suffix' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
             "email" => 'required|email:rfc,dns|email|unique:faculties,email,' . $ownid,
             "gender" => 'nullable',
             "username" => 'nullable|max:255|unique:faculties,username,' . $ownid,
