@@ -34,7 +34,7 @@
 	                        <!-- Account details card-->
 	                        <div class="card mb-4">
 	                            <div class="border-start-lg border-start-success" style="color: white; background-color: red; box-shadow: 0 4px 16px rgba(0,0,0,0.6);">
-	                                <div class="card-header" style="font-size: 20px; font-weight: 800;">Rejected Document Request</div>
+	                                <div class="card-header" style="font-size: 20px; font-weight: 800;">Denied Document Request</div>
 	                                <div class="card-body">
 										<br>
 	                                    <div style="padding: 0px 40px 10px 40px">
