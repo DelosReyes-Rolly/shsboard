@@ -161,8 +161,8 @@ class RegisterController extends Controller
                 'password' => 'required|confirmed|min:6'
             ]);
 
-            if (Students::where('first_name', '=', $request->get("first_name"))->count() < 0 && Students::where('middle_name', '=', $request->get("middle_name"))->count() < 0
-                && Students::where('last_name', '=', $request->get("last_name"))->count() < 0 && Students::where('suffix', '=', $request->get("suffix"))->count() < 0) {
+            if (Students::where('first_name', '=', $request->get("first_name"))->count() <= 0 && Students::where('middle_name', '=', $request->get("middle_name"))->count() <= 0
+                && Students::where('last_name', '=', $request->get("last_name"))->count() <= 0 && Students::where('suffix', '=', $request->get("suffix"))->count() <= 0) {
 
                 $validated['course_id'] = "$strandCode";
                 // hashing
