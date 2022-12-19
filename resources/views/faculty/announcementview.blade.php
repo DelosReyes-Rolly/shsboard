@@ -92,7 +92,7 @@
                                             <div class="pull-right">
                                                 <a class="btn btn-info btn-md" href="{{ url()->previous() }}" style="font-size: 16px;"><i class="fas fa-arrow-left"></i> Back</a>
                                                 <a class="btn btn-warning btn-md" href="/showfacultyannouncement/{{$announcement->id}}" style="font-size: 16px;"><i class="fas fa-edit"></i> Update</a>
-                                                <a class="btn btn-danger btn-md" href="{{route('faculty.deleteannouncement', $announcement->id)}}" style="font-size: 16px;"><i class="far fa-trash-alt"></i> Delete</a>
+                                                <a class="btn btn-danger btn-md" href="{{route('faculty.deleteannouncement', $announcement->id)}}" style="font-size: 16px;"><i class="fas fa-trash-alt"></i> Delete</a>
                                             </div>
                                         </div>
                                     </div>

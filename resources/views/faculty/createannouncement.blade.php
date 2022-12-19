@@ -13,13 +13,24 @@
     }
 @endphp
  <!-- new tables -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
+
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/rowreorder/1.2.8/css/rowReorder.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <!-- <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script> -->
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script> -->
+
+	<link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/datatables-jquery-1.12.1.css') }}">
+	<link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/datatables-rowreorder-1.2.8.css') }}">
+	<link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/datatables-responsive-2.3.0.css') }}">
+	<script src="{{ asset('assets/js/jquery-3.5.1.js') }}"></script>
+	<script src="{{ asset('assets/js/datatables-rowreorder-1.2.8.js') }}"></script>
+	<script src="{{ asset('assets/js/datatables-responsive-2.3.0.js') }}"></script>
+
+    
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable( {
@@ -248,7 +259,7 @@
                                                 <td>
                                                     <a class="btn btn-success btn-md" href="/viewfacultyannouncement/{{$announcement->id}}" style="font-size: 16px;"><i class="fas fa-eye"></i> View</a>
                                                     <a class="btn btn-warning btn-md" href="/showfacultyannouncement/{{$announcement->id}}" style="font-size: 16px;"><i class="fas fa-edit"></i> Update</a>
-                                                    <a class="btn btn-danger btn-md" href="{{route('faculty.deleteannouncement', $announcement->id)}}" style="font-size: 16px;"><i class="far fa-trash-alt"></i> Delete</a>
+                                                    <a class="btn btn-danger btn-md" href="{{route('faculty.deleteannouncement', $announcement->id)}}" style="font-size: 16px;"><i class="fas fa-trash-alt"></i> Delete</a>
                                                 </td> 
                                             </tr>
                                         @endforeach 

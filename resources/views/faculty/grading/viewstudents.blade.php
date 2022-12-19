@@ -1,10 +1,13 @@
 @include('partials.facultyheader')
 @include('partials.facultySecondHeader')
 <main>
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="{{ asset('assets/js/jquery-2.2.0.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap-3.3.6.js') }}"></script>
+    <script src="{{ asset('assets/js/tableedit.js') }}"></script>
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>            
-    <script src="https://markcell.github.io/jquery-tabledit/assets/js/tabledit.min.js"></script>
+    <script src="https://markcell.github.io/jquery-tabledit/assets/js/tabledit.min.js"></script> -->
     
     @if (count($errors) > 0)
         <div class="alert alert-danger">
