@@ -62,11 +62,20 @@
                             <div class="card-body">
                                 <form action="{{route('admin.downloadpdf')}}" method="POST">
                                     @csrf
-                                    <b>From:</b>
-                                    <input type="date" name="dateFrom" value="<?php echo date('Y-m-d'); ?>" />
-                                    <b>To:</b>
-                                    <input type="date" name="dateTo" value="<?php echo date('Y-m-d'); ?>" />
-                                    <input type="submit" name="submit" class="btn btn-primary" value="Print"/></input>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <b>From:</b>
+                                            <input type="date" name="dateFrom" class="form-control" value="<?php echo date('Y-m-d'); ?>" /><br/>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <b>To:</b>
+                                            <input type="date" name="dateTo" class="form-control" value="<?php echo date('Y-m-d'); ?>" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <br/>
+                                            <input type="submit" name="submit" class="btn btn-primary" value="Print"/></input>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -126,7 +135,7 @@
                                         <div class="col-md-3">
                                              <div class="form-group">
                                                 <label for="appt" style="font-size: 20px;"><span style="color: red">*</span> Time</label><br>
-                                                <input type="time" id="time" name="time" value="{{ old('time') }}">
+                                                <input type="time"  class="form-control" id="time" name="time" value="{{ old('time') }}">
                                             </div>
                                          </div>
                                     </div>

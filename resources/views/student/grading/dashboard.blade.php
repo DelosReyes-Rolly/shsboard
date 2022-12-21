@@ -91,21 +91,21 @@
                                                             $initial = 0;
                                                             $ave = 0;
                                                         @endphp
-                                                        @foreach($grade12secondtsem  as $ave)
-                                                            @if($ave->midterm != 0 && $ave->finals !=0)
+                                                        @foreach($grade12secondsem  as $ave)
+                                                            @if($ave->midterm != 'NULL' || $ave->finals !='NULL')
                                                                 @php $initials = ($ave->midterm + $ave->finals) / 2; @endphp
                                                                 @php $initial = $initials+$initial; @endphp
                                                             @endif
                                                         @endforeach
                                                         @if ($initial > 0)
-                                                            @php $ave = $initial / $grade12secondtsem ->count(); @endphp
+                                                            @php $ave = $initial / $grade12secondsem ->count(); @endphp
                                                         @else
                                                             @php $ave = 0; @endphp
                                                         @endif
                                                         @if($ave>=75)
-                                                            <b>General Weighted Average for the Semester: <span class="badge bg-success"  style="color: white;"> {{ $ave }} </span></b>
+                                                            <b>General Weighted Average for the Semester: <span class="badge bg-success"  style="color: white;font-size: 16px;"> {{ $ave }} </span></b>
                                                         @else
-                                                            <b>General Weighted Average for the Semester: <span class="badge bg-danger" style="color: white;"> {{ $ave }}</span></b>
+                                                            <b>General Weighted Average for the Semester: <span class="badge bg-danger" style="color: white;font-size: 16px;"> {{ $ave }}</span></b>
                                                         @endif
                                                     @else
                                                         <b>General Weighted Average for the Semester: <span class="badge bg-danger" style="color: white;">Grades are not complete</span></b>
@@ -138,10 +138,24 @@
                                                                         @php
                                                                             $ave = ($grade12second->midterm + $grade12second->finals) / 2;
                                                                             switch ($grade12second -> finals && $grade12second -> midterm) {
-                                                                                case ($grade12second -> finals ==='0' || $grade12second -> midterm === '0'):
-                                                                                    echo '<span class="badge bg-danger" style="color: white;">Grades are not complete</span>';
-                                                                                    break;
-                                                                                case ($grade12second -> finals !== '0' && $grade12second -> midterm !== '0'):
+                                                                                case ($grade12second -> finals ==='NULL' || $grade12second -> midterm === 'NULL'):
+                                                                                    if($grade12second -> finals === 0 && $grade12second -> midterm !== 0){
+                                                                                        echo $ave = ($grade12second -> midterm + $grade12second -> finals) / 2;;
+                                                                                        break;
+                                                                                    }
+                                                                                    elseif($grade12second -> finals !== 0 && $grade12second -> midterm === 0){
+                                                                                        echo $ave = ($grade12second -> midterm + $grade12second -> finals) / 2;;
+                                                                                        break;
+                                                                                    }
+                                                                                    elseif($grade12second -> finals === 0 && $grade12second -> midterm === 0){
+                                                                                        echo $ave = ($grade12second -> midterm + $grade12second -> finals) / 2;;
+                                                                                        break;
+                                                                                    }
+                                                                                    else{
+                                                                                        echo '<span class="badge bg-danger" style="color: white;">Grades are not complete</span>';
+                                                                                        break;
+                                                                                    }
+                                                                                case ($grade12second -> finals !== 'NULL' && $grade12second -> midterm !== 'NULL'):
                                                                                     echo $ave;
                                                                                     break;
                                                                                 default:
@@ -153,10 +167,27 @@
                                                                     <td>
                                                                         @php 
                                                                             switch ($ave && $grade12second -> finals && $grade12second -> midterm) {
-                                                                                case ($ave <= '74' && $grade12second -> finals !== '0' && $grade12second -> midterm !== '0'):
+                                                                                case ($grade12second -> finals === 'NULL' || $grade12second -> midterm === 'NULL'):
+                                                                                    if($grade12second -> finals === 0 && $grade12second -> midterm !== 0){
+                                                                                        echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
+                                                                                        break;
+                                                                                    }
+                                                                                    elseif($grade12second -> finals !== 0 && $grade12second -> midterm === 0){
+                                                                                        echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
+                                                                                        break;
+                                                                                    }
+                                                                                    elseif($grade12second -> finals === 0 && $grade12second -> midterm === 0){
+                                                                                        echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
+                                                                                        break;
+                                                                                    }
+                                                                                    else{
+                                                                                        echo '<span class="badge bg-danger" style="color: white;">No remarks</span>';
+                                                                                        break;
+                                                                                    }
+                                                                                case ($ave <= '74' && $grade12second -> finals !== 'NULL' && $grade12second -> midterm !== 'NULL'):
                                                                                     echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
                                                                                     break;
-                                                                                case ($ave <= '100' && $grade12second -> finals !== '0' && $grade12second -> midterm !== '0'):
+                                                                                case ($ave <= '100' && $grade12second -> finals !== 'NULL' && $grade12second -> midterm !== 'NULL'):
                                                                                     echo '<span class="badge bg-success" style="color: white;">Passed</span>';
                                                                                     break;
                                                                                 default:
@@ -202,7 +233,7 @@
                                                             $ave = 0;
                                                         @endphp
                                                         @foreach($grade12firstsem  as $ave)
-                                                            @if($ave->midterm != 0 && $ave->finals !=0)
+                                                            @if($ave->midterm != 'NULL' || $ave->finals !='NULL')
                                                                 @php $initials = ($ave->midterm + $ave->finals) / 2; @endphp
                                                                 @php $initial = $initials+$initial; @endphp
                                                             @endif
@@ -213,9 +244,9 @@
                                                             @php $ave = 0; @endphp
                                                         @endif
                                                         @if($ave>=75)
-                                                            <b>General Weighted Average for the Semester: <span class="badge bg-success" style="color: white;"> {{ $ave }} </span></b>
+                                                            <b>General Weighted Average for the Semester: <span class="badge bg-success"   style="color: white;font-size: 16px;"> {{ $ave }} </span></b>
                                                         @else
-                                                            <b>General Weighted Average for the Semester: <span class="badge bg-danger" style="color: white;"> {{ $ave }}</span></b>
+                                                            <b>General Weighted Average for the Semester: <span class="badge bg-danger"   style="color: white;font-size: 16px;"> {{ $ave }}</span></b>
                                                         @endif
                                                     @else
                                                         <b>General Weighted Average for the Semester: <span class="badge bg-danger" style="color: white;">Grades are not complete</span></b>
@@ -248,10 +279,24 @@
                                                                             @php
                                                                                 $ave = ($grade12first->midterm + $grade12first->finals) / 2;
                                                                                 switch ($grade12first -> finals && $grade12first -> midterm) {
-                                                                                    case ($grade12first -> finals ==='0' || $grade12first -> midterm === '0'):
-                                                                                        echo '<span class="badge bg-danger" style="color: white;">Grades are not complete</span>';
-                                                                                        break;
-                                                                                    case ($grade12first -> finals !== '0' && $grade12first -> midterm !== '0'):
+                                                                                    case ($grade12first -> finals ==='NULL' || $grade12first -> midterm === 'NULL'):
+                                                                                        if($grade12first -> finals === 0 && $grade12first -> midterm !== 0){
+                                                                                            echo $ave = ($grade12first -> midterm + $grade12first -> finals) / 2;;
+                                                                                            break;
+                                                                                        }
+                                                                                        elseif($grade12first -> finals !== 0 && $grade12first -> midterm === 0){
+                                                                                            echo $ave = ($grade12first -> midterm + $grade12first -> finals) / 2;;
+                                                                                            break;
+                                                                                        }
+                                                                                        elseif($grade12first -> finals === 0 && $grade12first -> midterm === 0){
+                                                                                            echo $ave = ($grade12first -> midterm + $grade12first -> finals) / 2;;
+                                                                                            break;
+                                                                                        }
+                                                                                        else{
+                                                                                            echo '<span class="badge bg-danger" style="color: white;">Grades are not complete</span>';
+                                                                                            break;
+                                                                                        }
+                                                                                    case ($grade12first -> finals !== 'NULL' && $grade12first -> midterm !== 'NULL'):
                                                                                         echo $ave;
                                                                                         break;
                                                                                     default:
@@ -263,10 +308,27 @@
                                                                         <td>
                                                                             @php 
                                                                                 switch ($ave && $grade12first -> finals && $grade12first -> midterm) {
-                                                                                    case ($ave <= '74' && $grade12first -> finals !== '0' && $grade12first -> midterm !== '0'):
+                                                                                    case ($grade12first -> finals === 'NULL' || $grade12first -> midterm === 'NULL'):
+                                                                                        if($grade12first -> finals === 0 && $grade12first -> midterm !== 0){
+                                                                                            echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
+                                                                                            break;
+                                                                                        }
+                                                                                        elseif($grade12first -> finals !== 0 && $grade12first -> midterm === 0){
+                                                                                            echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
+                                                                                            break;
+                                                                                        }
+                                                                                        elseif($grade12first -> finals === 0 && $grade12first -> midterm === 0){
+                                                                                            echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
+                                                                                            break;
+                                                                                        }
+                                                                                        else{
+                                                                                            echo '<span class="badge bg-danger" style="color: white;">No remarks</span>';
+                                                                                            break;
+                                                                                        }
+                                                                                    case ($ave <= '74' && $grade12first -> finals !== 'NULL' && $grade12first -> midterm !== 'NULL'):
                                                                                         echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
                                                                                         break;
-                                                                                    case ($ave <= '100' && $grade12first -> finals !== '0' && $grade12first -> midterm !== '0'):
+                                                                                    case ($ave <= '100' && $grade12first -> finals !== 'NULL' && $grade12first -> midterm !== 'NULL'):
                                                                                         echo '<span class="badge bg-success" style="color: white;">Passed</span>';
                                                                                         break;
                                                                                     default:
@@ -321,21 +383,21 @@
                                                             $initial = 0;
                                                             $ave = 0;
                                                         @endphp
-                                                        @foreach($grade11secondtsem  as $ave)
-                                                            @if($ave->midterm != 0 && $ave->finals !=0)
+                                                        @foreach($grade11secondsem  as $ave)
+                                                            @if($ave->midterm != 'NULL' || $ave->finals !='NULL')
                                                                 @php $initials = ($ave->midterm + $ave->finals) / 2; @endphp
                                                                 @php $initial = $initials+$initial; @endphp
                                                             @endif
                                                         @endforeach
                                                         @if ($initial > 0)
-                                                            @php $ave = $initial / $grade11secondtsem ->count(); @endphp
+                                                            @php $ave = $initial / $grade11secondsem ->count(); @endphp
                                                         @else
                                                             @php $ave = 0; @endphp
                                                         @endif
                                                         @if($ave>=75)
-                                                            <b>General Weighted Average for the Semester: <span class="badge bg-success"> {{ $ave }} </span></b>
+                                                            <b>General Weighted Average for the Semester: <span class="badge bg-success"  style="color: white;font-size: 16px;"> {{ $ave }} </span></b>
                                                         @else
-                                                            <b>General Weighted Average for the Semester: <span class="badge bg-danger"> {{ $ave }}</span></b>
+                                                            <b>General Weighted Average for the Semester: <span class="badge bg-danger"  style="color: white;font-size: 16px;"> {{ $ave }}</span></b>
                                                         @endif
                                                     @else
                                                         <b>General Weighted Average for the Semester: <span class="badge bg-danger">Grades are not complete</span></b>
@@ -369,10 +431,24 @@
                                                                         @php
                                                                             $ave = ($grade11second->midterm + $grade11second->finals) / 2;
                                                                             switch ($grade11second -> finals && $grade11second -> midterm) {
-                                                                                case ($grade11second -> finals ==='0' || $grade11second -> midterm === '0'):
-                                                                                    echo '<span class="badge bg-danger">Grades are not complete</span>';
-                                                                                    break;
-                                                                                case ($grade11second -> finals !== '0' && $grade11second -> midterm !== '0'):
+                                                                                case ($grade11second -> finals ==='NULL' || $grade11second -> midterm === 'NULL'):
+                                                                                    if($grade11second -> finals === 0 && $grade11second -> midterm !== 0){
+                                                                                        echo $ave = ($grade11second -> midterm + $grade11second -> finals) / 2;;
+                                                                                        break;
+                                                                                    }
+                                                                                    elseif($grade11second -> finals !== 0 && $grade11second -> midterm === 0){
+                                                                                        echo $ave = ($grade11second -> midterm + $grade11second -> finals) / 2;;
+                                                                                        break;
+                                                                                    }
+                                                                                    elseif($grade11second -> finals === 0 && $grade11second -> midterm === 0){
+                                                                                        echo $ave = ($grade11second -> midterm + $grade11second -> finals) / 2;;
+                                                                                        break;
+                                                                                    }
+                                                                                    else{
+                                                                                        echo '<span class="badge bg-danger" style="color: white;">Grades are not complete</span>';
+                                                                                        break;
+                                                                                    }
+                                                                                case ($grade11second -> finals !== 'NULL' && $grade11second -> midterm !== 'NULL'):
                                                                                     echo $ave;
                                                                                     break;
                                                                                 default:
@@ -384,10 +460,27 @@
                                                                     <td>
                                                                         @php 
                                                                             switch ($ave && $grade11second -> finals && $grade11second -> midterm) {
-                                                                                case ($ave <= '74' && $grade11second -> finals !== '0' && $grade11second -> midterm !== '0'):
+                                                                                case ($grade11second -> finals === 'NULL' || $grade11second -> midterm === 'NULL'):
+                                                                                    if($grade11second -> finals === 0 && $grade11second -> midterm !== 0){
+                                                                                        echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
+                                                                                        break;
+                                                                                    }
+                                                                                    elseif($grade11second -> finals !== 0 && $grade11second -> midterm === 0){
+                                                                                        echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
+                                                                                        break;
+                                                                                    }
+                                                                                    elseif($grade11second -> finals === 0 && $grade11second -> midterm === 0){
+                                                                                        echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
+                                                                                        break;
+                                                                                    }
+                                                                                    else{
+                                                                                        echo '<span class="badge bg-danger" style="color: white;">No remarks</span>';
+                                                                                        break;
+                                                                                    }
+                                                                                case ($ave <= '74' && $grade11second -> finals !== 'NULL' && $grade11second -> midterm !== 'NULL'):
                                                                                     echo '<span class="badge bg-danger">Failed</span>';
                                                                                     break;
-                                                                                case ($ave <= '100' && $grade11second -> finals !== '0' && $grade11second -> midterm !== '0'):
+                                                                                case ($ave <= '100' && $grade11second -> finals !== 'NULL' && $grade11second -> midterm !== 'NULL'):
                                                                                     echo '<span class="badge bg-success">Passed</span>';
                                                                                     break;
                                                                                 default:
@@ -430,7 +523,7 @@
                                                             $ave = 0;
                                                         @endphp
                                                         @foreach($grade11firstsem as $ave)
-                                                            @if($ave->midterm != 0 && $ave->finals !=0)
+                                                            @if($ave->midterm != 'NULL' || $ave->finals !='NULL')
                                                                 @php $initials = ($ave->midterm + $ave->finals) / 2; @endphp
                                                                 @php $initial = $initials+$initial; @endphp
                                                             @endif
@@ -441,9 +534,9 @@
                                                             @php $ave = 0; @endphp
                                                         @endif
                                                         @if($ave>=75)
-                                                            <b>General Weighted Average for the Semester: <span class="badge bg-success"> {{ $ave }} </span></b>
+                                                            <b>General Weighted Average for the Semester: <span class="badge bg-success"  style="color: white;font-size: 16px;"> {{ $ave }} </span></b>
                                                         @else
-                                                            <b>General Weighted Average for the Semester: <span class="badge bg-danger"> {{ $ave }}</span></b>
+                                                            <b>General Weighted Average for the Semester: <span class="badge bg-danger"  style="color: white;font-size: 16px;"> {{ $ave }}</span></b>
                                                         @endif
                                                     @else
                                                         <b>General Weighted Average for the Semester: <span class="badge bg-danger">Grades are not complete</span></b>
@@ -477,10 +570,24 @@
                                                                             @php
                                                                                 $ave = ($grade11first->midterm + $grade11first->finals) / 2;
                                                                                 switch ($grade11first -> finals && $grade11first -> midterm) {
-                                                                                    case ($grade11first -> finals ==='0' || $grade11first -> midterm === '0'):
-                                                                                        echo '<span class="badge bg-danger">Grades are not complete</span>';
-                                                                                        break;
-                                                                                    case ($grade11first -> finals !== '0' && $grade11first -> midterm !== '0'):
+                                                                                    case ($grade11first -> finals ==='NULL' || $grade11first -> midterm === 'NULL'):
+                                                                                        if($grade11first -> finals === 0 && $grade11first -> midterm !== 0){
+                                                                                            echo $ave = ($grade11first -> midterm + $grade11first -> finals) / 2;;
+                                                                                            break;
+                                                                                        }
+                                                                                        elseif($grade11first -> finals !== 0 && $grade11first -> midterm === 0){
+                                                                                            echo $ave = ($grade11first -> midterm + $grade11first -> finals) / 2;;
+                                                                                            break;
+                                                                                        }
+                                                                                        elseif($grade11first -> finals === 0 && $grade11first -> midterm === 0){
+                                                                                            echo $ave = ($grade11first -> midterm + $grade11first -> finals) / 2;;
+                                                                                            break;
+                                                                                        }
+                                                                                        else{
+                                                                                            echo '<span class="badge bg-danger" style="color: white;">Grades are not complete</span>';
+                                                                                            break;
+                                                                                        }
+                                                                                    case ($grade11first -> finals !== 'NULL' && $grade11first -> midterm !== 'NULL'):
                                                                                         echo $ave;
                                                                                         break;
                                                                                     default:
@@ -492,10 +599,27 @@
                                                                         <td>
                                                                             @php 
                                                                                 switch ($ave && $grade11first -> finals && $grade11first -> midterm) {
-                                                                                    case ($ave <= '74' && $grade11first -> finals !== '0' && $grade11first -> midterm !== '0'):
+                                                                                    case ($grade11first -> finals === 'NULL' || $grade11first -> midterm === 'NULL'):
+                                                                                        if($grade11first -> finals === 0 && $grade11first -> midterm !== 0){
+                                                                                            echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
+                                                                                            break;
+                                                                                        }
+                                                                                        elseif($grade11first -> finals !== 0 && $grade11first -> midterm === 0){
+                                                                                            echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
+                                                                                            break;
+                                                                                        }
+                                                                                        elseif($grade11first -> finals === 0 && $grade11first -> midterm === 0){
+                                                                                            echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
+                                                                                            break;
+                                                                                        }
+                                                                                        else{
+                                                                                            echo '<span class="badge bg-danger" style="color: white;">No remarks</span>';
+                                                                                            break;
+                                                                                        }
+                                                                                    case ($ave <= '74' && $grade11first -> finals !== 'NULL' && $grade11first -> midterm !== 'NULL'):
                                                                                         echo '<span class="badge bg-danger">Failed</span>';
                                                                                         break;
-                                                                                    case ($ave <= '100' && $grade11first -> finals !== '0' && $grade11first -> midterm !== '0'):
+                                                                                    case ($ave <= '100' && $grade11first -> finals !== 'NULL' && $grade11first -> midterm !== 'NULL'):
                                                                                         echo '<span class="badge bg-success">Passed</span>';
                                                                                         break;
                                                                                     default:

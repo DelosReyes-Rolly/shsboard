@@ -1,7 +1,7 @@
 @include('partials.adminheader')
 @include('partials.adminSecondHeader')
 <main>
-    <!-- new tables -->
+<!-- new tables -->
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/rowreorder/1.2.8/css/rowReorder.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css">
@@ -36,7 +36,7 @@
                         <div class="card h-100 border-start-lg border-start-secondary" style="background-color: red; color: white; box-shadow: 0 4px 16px rgba(0,0,0,0.6);" >
                             <div class="card-body">
                                 <div class="card-header" style="font-size: 20px; font-weight: 800;">Expired Events</div>
-                                <div class="h3" style="padding: 40px 40px 10px 40px"><i class="far fa-calendar-times"></i> {{ $events->where('status', '=', 2)->count() }}</div>
+                                <div class="h3" style="padding: 40px 40px 10px 40px"><i class="fas fa-calendar-times"></i> {{ $events->where('status', '=', 2)->count() }}</div>
                             </div>
                         </div>
                     </div>

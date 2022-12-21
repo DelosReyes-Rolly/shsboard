@@ -38,7 +38,7 @@
                             <div class="card border-start-lg border-start-success" style="background-color: #008000; color: white; box-shadow: 0 4px 16px rgba(0,0,0,1);">
                                 <div class="card-body">
                                     <div class="requesteddocument" style="color: white; font-size: 20px; font-weight: 800;">Requested Documents</div>
-                                    <div class="h3 d-flex align-items-center" style="padding:40px;"><i class="far fa-clipboard"></i> {{ $requests->count() }} </div>
+                                    <div class="h3 d-flex align-items-center" style="padding:40px;"><i class="fas fa-clipboard"></i> {{ $requests->count() }} </div>
                                 </div>
                             </div>
                         </div>

@@ -74,5 +74,5 @@
 		</section>
 	<!-- event end -->
 </main>
-
+<br/><br/><br/><br/><br/><br/><br/><br/>
 @include('partials.landingfooter')

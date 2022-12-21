@@ -43,7 +43,7 @@
                                     <br><br>
                                     <div class="alert alert-danger"><em>No records found.</em></div>
                                 @else 
-                                    <div class="h3 d-flex align-items-center" style="padding-left: 20px; padding-bottom: 10px;"><i class="far fa-clipboard"></i>  {{ $gradeevaluationrequests->count() }}</div>
+                                    <div class="h3 d-flex align-items-center" style="padding-left: 20px; padding-bottom: 10px;"><i class="fas fa-clipboard"></i>  {{ $gradeevaluationrequests->count() }}</div>
                                 @endif
                             </div>
                         </div>

@@ -40,9 +40,9 @@
 
 <head>
   <title>Student Admission Report</title>
-  <link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/bootstrap-4.0.0-min.css') }}">
-  <!-- <link rel="stylesheet" href="https://maxcdn.boo tstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
-  <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
+  <!-- <link rel="stylesheet" href="{{ asset('.\assets\css\bootstrap.min.css') }}"/> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="{{ asset('.\assets\js\jquery-3.3.1.min.js') }}"></script>
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 </head>
 <body>
@@ -79,29 +79,34 @@
             </div>
             <br/><br/>
             <b>Date Created: {{date("F  d, Y");}}</b><br/><br/>
-            <table class="table table-bordered print">
-              <thead>
-                <tr>
-                  <th>LRN</th>
-                  <th>FULL NAME</th>
-                  <th>GRADE</th>
-                  <th>STRAND</th>
-                  <th>ADMISSION DATE</th>
-                </tr>
-              </thead>
-                <tbody>
-                  @foreach ($users as $user)
-                      {{$dateaddmitted = date('m-d-Y', strtotime($user -> created_at))}}
-                      <tr style="text-align:center;">
-                        <td>{{$user -> LRN}}</td>
-                        <td>{{$user -> last_name}}, {{$user -> first_name}} {{$user -> middle_name}} {{$user -> suffix}}</td>
-                        <td>{{$user -> gradelevel -> gradelevel}}</td>
-                        <td>{{$user -> course -> abbreviation}}</td>
-                        <td>{{$dateaddmitted}}</td>
-                      </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            @if($users->count() == 0)
+              <br><br>
+              <div class="alert alert-danger"><em>No records found.</em></div>
+            @else 
+              <table class="table table-bordered print">
+                <thead>
+                  <tr>
+                    <th>LRN</th>
+                    <th>FULL NAME</th>
+                    <th>GRADE</th>
+                    <th>STRAND</th>
+                    <th>ADMISSION DATE</th>
+                  </tr>
+                </thead>
+                  <tbody>
+                    @foreach ($users as $user)
+                        {{$dateaddmitted = date('m-d-Y', strtotime($user -> created_at))}}
+                        <tr style="text-align:center;">
+                          <td>{{$user -> LRN}}</td>
+                          <td>{{$user -> last_name}}, {{$user -> first_name}} {{$user -> middle_name}} {{$user -> suffix}}</td>
+                          <td>{{$user -> gradelevel -> gradelevel}}</td>
+                          <td>{{$user -> course -> abbreviation}}</td>
+                          <td>{{$dateaddmitted}}</td>
+                        </tr>
+                      @endforeach
+                  </tbody>
+              </table>
+            @endif
           
         </div>
 

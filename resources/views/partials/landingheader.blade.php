@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-		<link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/fontawesome-5.6.3.css') }}">
+	
 		<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"> -->
         <!-- meta data -->
         <meta charset="utf-8">
@@ -30,7 +30,7 @@
         
         <!--responsive.css-->
         <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
-
+		<link rel="stylesheet" href="{{ asset('assets/css/fontawesome-5.6.3.css') }}"/>
 		<!-- transition -->
 		<script>
 			function reveal() {

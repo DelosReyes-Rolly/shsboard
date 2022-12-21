@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/fontawesome-5.6.3.css') }}">
+<script src="{{ asset('assets/js/fontawesome-solid-5.0.13.js') }}"></script>
+<script src="{{ asset('assets/js/fontawesome-5.0.13.js') }}"></script>
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.6.3/css/all.css" integrity="sha512-OYICNnYNhX7ixX/LTrUu7Ao9FfMOfIh0AU7iQIt4zzdjZhm6sF5VLMkJ3VNvyzhxpWOd9VwnYFgZykPbmVslBw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"> -->
 <!--style.css-->
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -49,7 +51,7 @@
                     </div>
                     <div class="col-xl-4 col-md-4 mb-30">
                         <div class="single-cta">
-                            <i class="far fa-envelope-open"></i>
+                            <i class="fas fa-envelope-open"></i>
                             <div class="cta-text">
                                 <h4>Mail us</h4>
                                 <a href = "mailto: sdotapat.svnhs@deped.gov.ph"><span>sdotapat.svnhs@deped.gov.ph</span></a>
@@ -67,7 +69,7 @@
                    
                             <div class="footer-social-icon">
                                 <span>Follow us</span>
-                                <a class="a-footer" href="https://www.facebook.com/soarhighseniorhigh/"><i class="fab fa-facebook-f facebook-bg"></i></a>
+                                <a class="a-footer" href="https://www.facebook.com/soarhighseniorhigh/"><i class="fab facebook-bg" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-weight: bold;">F</i></a>
                             </div>
                             <br><br>
                         </div>
@@ -82,9 +84,9 @@
 	                                <li class="li-footer"><a class="a-footer" href='{{ url("/") }}'>Home</a></li>
 	                                <li class="li-footer"><a class="a-footer" href='{{ url("generalannouncements") }}'>Announcements</a></li>
 	                                <li class="li-footer"><a class="a-footer" href='{{ url("events") }}'>Events</a></li>
-	                                <li class="li-footer"><a class="a-footer" href='{{ url("faculties") }}'>Faculty</a></li>
+	                                <li class="li-footer"><a class="a-footer" href='{{ url("/faculty") }}'>Faculty</a></li>
 	                                <li class="li-footer"><a class="a-footer" href='{{ url("/login/students") }}'>Student Login</a></li>
-	                                <li class="li-footer"><a class="a-footer" href='{{ url("/login/faculty") }}'>Faculty Login</a></li>
+	                                <li class="li-footer"><a class="a-footer" href='{{ url("/faculties") }}'>Faculty Login</a></li>
 	                            </ul>
                             </div>
                         </div>

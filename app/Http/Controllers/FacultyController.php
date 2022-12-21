@@ -274,7 +274,7 @@ class FacultyController extends Controller
     	{
     		if($request->action == 'edit')
     		{
-                if ($request->midterm < 101 && $request->midterm > 64) {
+                if ($request->midterm < 101 && $request->midterm > -1) {
                     $data = array(
                         'midterm'	=>	$request->midterm,
                     );
@@ -283,7 +283,7 @@ class FacultyController extends Controller
                     ->update($data);
                 }
 
-                if ($request->finals < 101 && $request->finals > 64) {
+                if ($request->finals < 101 && $request->finals > -1) {
                     $data = array(
                         'finals'	=>	$request->finals,
                     );
