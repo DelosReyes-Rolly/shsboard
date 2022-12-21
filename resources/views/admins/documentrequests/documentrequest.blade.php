@@ -100,15 +100,26 @@
 										<br>
 	                                    <div style="padding: 10px 40px 10px 40px">
 	                                        <!-- print document -->
-	                                        <div class="card-header" style="font-size: 20px;">Print Document Request Report</div><br>
-	                                        <form action="{{route('admin.downloadpdfdoc')}}" method="POST">
-												@csrf
-												<b>From:</b>
-												<input type="date" name="dateFrom" value="<?php echo date('Y-m-d'); ?>" />
-												<b>To:</b>
-												<input type="date" name="dateTo" value="<?php echo date('Y-m-d'); ?>" />
-												<input type="submit" name="submit" class="btn btn-primary" value="Print"/></input>
-											</form>
+											<div style="box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
+												<div class="card-header" style="font-size: 20px;">Print Document Request Report</div><br>
+												<form action="{{route('admin.downloadpdfdoc')}}" method="POST">
+													@csrf
+													<div class="row" style="padding: 40px;">
+														<div class="col-md-2">
+															<b>From:</b>
+															<input type="date" name="dateFrom" class="form-control" value="<?php echo date('Y-m-d'); ?>" /><br/>
+														</div>
+														<div class="col-md-2">
+															<b>To:</b>
+															<input type="date" name="dateTo" class="form-control" value="<?php echo date('Y-m-d'); ?>" />
+														</div>
+														<div class="col-md-3">
+															<br/>
+															<input type="submit" name="submit" class="btn btn-primary" value="Print"/></input>
+														</div>
+													</div>
+												</form>
+											</div>
 											<br><br>
 
 	                                    	<form method="POST" action="{{ route('document.store') }}">

@@ -164,7 +164,7 @@ class FacultyController extends Controller
                 'course_id' => 'required',
                 'section_id' => 'required',
                 'subject_id' => 'required',
-                'content' => 'required|max:255',
+                'content' => 'required',
                 'expired_at' => 'required',
             ]);
             $announcement = new ActivityStreams();
@@ -216,7 +216,7 @@ class FacultyController extends Controller
                 'course_id' => ['required'],
                 'section_id' => ['required'],
                 'subject_id' => ['required'],
-                'content' => 'required|max:255',
+                'content' => 'required',
                 'expired_at' => ['required'],
             ]);
            $announcement->update($validated);

@@ -93,7 +93,7 @@
                 </thead>
                   <tbody>
                     @foreach ($users as $user)
-                        {{$requestdate = date('m-d-Y', strtotime($user -> created_at))}}
+                        {{$requestdate = date('F d, Y', strtotime($user -> created_at))}}
                         <tr style="text-align:center;">
                           <td>{{$user -> student -> last_name}}, {{$user -> student -> first_name}} {{$user -> student -> middle_name}} {{$user -> student -> suffix}}</td>
                           <td>{{$user -> document -> name}}</td>

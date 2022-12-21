@@ -136,7 +136,7 @@ class AdminsController extends Controller
         // Validate the inputs
         $request->validate([
             'title' => 'required|max:255',
-            'content' => 'required|max:255',
+            'content' => 'required',
             'image' => 'mimes:png,jpg,jpeg|max:2048',
         ]);
         $landing = new Landings;
@@ -214,7 +214,7 @@ class AdminsController extends Controller
             'sender' => 'required|max:255',
             'recipient' => 'required|max:255',
             'location' => 'required|max:255',
-            'content' => 'required|max:255',
+            'content' => 'required',
             'post_expiration' => 'required',
             'image' => 'mimes:png,jpg,jpeg|max:2048',
         ]);
@@ -251,7 +251,7 @@ class AdminsController extends Controller
             'sender' => 'required|max:255',
             'recipient' => 'required|max:255',
             'location' => 'required|max:255',
-            'content' => 'required|max:255',
+            'content' => 'required',
             'post_expiration' => 'required',
             'image' => 'mimes:png,jpg,jpeg|max:2048',
         ]);
@@ -311,7 +311,7 @@ class AdminsController extends Controller
             'whn_time' => ['required'],
             'whr' => 'required|max:255',
             'sender' => 'required|max:255',
-            'content' => 'required|max:255',
+            'content' => 'required',
             'expired_at' => ['required'],
         ]);
        $announcement->update($validated);
@@ -368,7 +368,7 @@ class AdminsController extends Controller
             'sender' => 'required|max:255',
             'recipient' => 'required|max:255',
             'location' => 'required|max:255',
-            'content' => 'required|max:255',
+            'content' => 'required',
             'post_expiration' => 'required',
             'image' => 'mimes:png,jpg,jpeg|max:2048',
         ]);
@@ -414,7 +414,7 @@ class AdminsController extends Controller
             'whn_time' => ['required'],
             'whr' => 'required|max:255',
             'sender' => 'required|max:255',
-            'content' => 'required|max:255',
+            'content' => 'required',
             'expired_at' => ['required'],
         ]);
        $event->update($validated);
@@ -446,7 +446,7 @@ class AdminsController extends Controller
     public function storereminder(Request $request){
         // Validate the inputs
         $request->validate([
-            'content' => 'required|max:255',
+            'content' => 'required',
             'expired_at' => 'required',
         ]);
         $announcement = new Announcements();
@@ -463,7 +463,7 @@ class AdminsController extends Controller
     public function storeprivatereminder(Request $request){
         // Validate the inputs
         $request->validate([
-            'content' => 'required|max:255',
+            'content' => 'required',
             'expired_at' => 'required',
         ]);
         $announcement = new Announcements();
@@ -491,7 +491,7 @@ class AdminsController extends Controller
     public function updatereminder(Request $request, Announcements $reminder){
         $validated = $request->validate([
             'expired_at' => ['required'],
-            'content' => 'required|max:255',
+            'content' => 'required',
         ]);
        $reminder->update($validated);
        Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<=',  now())->update(['status' => '2']);
@@ -646,7 +646,7 @@ class AdminsController extends Controller
         $request->validate([
             'courseName' => 'required|max:255',
             'abbreviation' => 'required|max:255',
-            'description' => 'required|max:255',
+            'description' => 'required',
             'code' => 'required|max:255',
             'image' => 'mimes:png,jpg,jpeg|max:2048',
             'link' => 'url|nullable',
@@ -684,7 +684,7 @@ class AdminsController extends Controller
         $validated = $request->validate([
             'courseName' => 'required|max:255',
             'abbreviation' => 'required|max:255',
-            'description' => 'required|max:255',
+            'description' => 'required',
             'code' => 'required|max:255',
             'link' => 'url|nullable',
         ]);
@@ -1008,7 +1008,7 @@ class AdminsController extends Controller
         $request->validate([
             'subjectcode' => 'required|max:255',
             'subjectname' => 'required|max:255',
-            'description' => 'required|max:255',
+            'description' => 'required',
         ]);
         $subject = new Subjects();
         $subject->subjectcode = $request->get('subjectcode');
@@ -1033,7 +1033,7 @@ class AdminsController extends Controller
         $validated = $request->validate([
             'subjectcode' => 'required|max:255',
             'subjectname' => 'required|max:255',
-            'description' => 'required|max:255',
+            'description' => 'required',
         ]);
         $subject->update($validated);
         return redirect('/gradingsubjects')->with('success', 'Subject has been updated successfully!');
@@ -1080,7 +1080,7 @@ class AdminsController extends Controller
     public function storeschoolyear(Request $request){
         // Validate the inputs
         $request->validate([
-            'schoolyear' => 'required|numeric|unique:school_years|max:11',
+            'schoolyear' => 'required|numeric|unique:school_years',
         ]);
         $schoolyear = new SchoolYear();
         $schoolyear->schoolyear = $request->get('schoolyear');
@@ -1270,7 +1270,7 @@ class AdminsController extends Controller
     public function storegradelevel(Request $request){
         // Validate the inputs
         $request->validate([
-            'gradelevel' => 'required|numeric|unique:|max:11',
+            'gradelevel' => 'required|numeric|unique:grade_levels',
         ]);
         $gradelevel = new GradeLevels();
         $gradelevel->gradelevel = $request->get('gradelevel');
@@ -1286,7 +1286,7 @@ class AdminsController extends Controller
 
     public function updategradelevel(Request $request, GradeLevels $gradelevel){
         $validated = $request->validate([
-            'gradelevel' => 'required|max:11',
+            'gradelevel' => 'required',
         ]);
        $gradelevel->update($validated);
        return redirect('/gradinggradelevels')->with('success', 'Gradelevel has been updated successfully!');

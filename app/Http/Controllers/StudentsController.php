@@ -133,7 +133,7 @@ class StudentsController extends Controller
             'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
             'suffix' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
             "username" => 'nullable|max:255|unique:students,username,' . $ownid,
-            "phone_number" => 'nullable|numeric|min:10',
+            "phone_number" => 'nullable|numeric',
             "email" => 'required|email:rfc,dns|email|unique:students,email,' . $ownid,
             "gender" => 'nullable',
         ]);
@@ -276,7 +276,7 @@ class StudentsController extends Controller
     public function updatedocreq(Request $request, DocumentRequests $docreq){
         $validated = $request->validate([
             'document_id' => ['required'],
-            'purpose' => 'required|max:255',
+            'purpose' => 'required',
         ]);
        $docreq->update($validated);
        return redirect('/studentrequest')->with('success', 'Your request has been updated.');
