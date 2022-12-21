@@ -274,11 +274,6 @@ class FacultyController extends Controller
     	{
     		if($request->action == 'edit')
     		{
-                $request->validate([
-                    'midterm' => 'numeric',
-                    'finals' => 'numeric',
-                ]);
-
                 if (is_numeric($request->midterm)){
                     if ($request->midterm < 101 && $request->midterm > -1) {
                         $data = array(
@@ -290,9 +285,6 @@ class FacultyController extends Controller
                     }
 
                 }
-                else{
-                    return response()->with('error', 'Grades must be numeric!');
-                }
                 
                 if (is_numeric($request->finals)){
                     if ($request->finals < 101 && $request->finals > -1) {
@@ -303,9 +295,6 @@ class FacultyController extends Controller
                         ->where('id', $request->id)
                         ->update($data);
                     }
-                }
-                else{
-                    return response()->with('error', 'Grades must be numeric!');
                 }
 
                 
