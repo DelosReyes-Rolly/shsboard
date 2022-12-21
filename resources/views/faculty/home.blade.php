@@ -18,7 +18,7 @@
                                                 <div class="body">
                                                     <div class="img-post">
                                                         @if($announcements->image != NULL)
-                                                            <center><img class="d-block img-fluid" src="{{ asset('uploads/announcement/'.$announcements->image) }}" style="height:auto; width: auto;"/></center>
+                                                            <center><img class="d-block img-fluid" src="{{ asset('uploads/announcement/'.$announcements->image) }}"  style="height:400px; width: 400px;"/></center>
                                                         @endif
                                                     </div>
                                                     <h3><b>{!!$announcements -> what!!}</b></h3>

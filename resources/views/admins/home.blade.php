@@ -16,12 +16,12 @@
                                         @foreach ($announcement as $announcements)
                                             <div class="card single_post">
                                                 <div class="body">
-                                                    <div class="img-post">
+                                                    <div class="img-post"  style="height:auto; width: auto;"> 
                                                         @if($announcements->image != NULL)
-                                                            <center><img class="d-block img-fluid" src="{{ asset('uploads/announcement/'.$announcements->image) }}" style="height:auto; width: auto;"/></center>
+                                                            <center><img class="d-block img-fluid" src="{{ asset('uploads/announcement/'.$announcements->image) }}" style="height:400px; width: 400px;"/></center>
                                                         @endif
                                                     </div>
-                                                    <h3><b>{!!$announcements -> what!!}</b></h3>
+                                                    <h3><b>{!!$announcements -> what!!}</b></h3><br/><br/>
                                                     <p>{!!$announcements -> content!!}</p>
                                                     <div class="footer">
                                                         <ul class="stats">
