@@ -783,8 +783,8 @@ class AdminsController extends Controller
             'email' => ['required', 'email', Rule::unique('faculties', 'email')],
         ]);
 
-        if (Faculties::where('first_name', '=', $request->get("first_name"))->count() <= 0 && Faculties::where('middle_name', '=', $request->get("middle_name"))->count() <= 0
-            && Faculties::where('last_name', '=', $request->get("last_name"))->count() <= 0 && Faculties::where('suffix', '=', $request->get("suffix"))->count() <= 0) {
+        if (Faculties::where('first_name', '=', $request->get("first_name"))->count() <= 0 || Faculties::where('middle_name', '=', $request->get("middle_name"))->count() <= 0
+        || Faculties::where('last_name', '=', $request->get("last_name"))->count() <= 0 || Faculties::where('suffix', '=', $request->get("suffix"))->count() <= 0) {
             // hashing
             $chars = "abcdefghijkmnopqrstuvwxyz023456789";
                             srand((double)microtime()*1000000);
@@ -885,8 +885,8 @@ class AdminsController extends Controller
             'course_id' => ['required'],
         ]);
 
-        if (Students::where('first_name', '=', $request->get("first_name"))->count() <= 0 && Students::where('middle_name', '=', $request->get("middle_name"))->count() <= 0
-                && Students::where('last_name', '=', $request->get("last_name"))->count() <= 0 && Students::where('suffix', '=', $request->get("suffix"))->count() <= 0) {
+        if (Students::where('first_name', '=', $request->get("first_name"))->count() <= 0 || Students::where('middle_name', '=', $request->get("middle_name"))->count() <= 0
+        || Students::where('last_name', '=', $request->get("last_name"))->count() <= 0 || Students::where('suffix', '=', $request->get("suffix"))->count() <= 0) {
             // hashing
             $chars = "abcdefghijkmnopqrstuvwxyz023456789";
                             srand((double)microtime()*1000000);

@@ -31,7 +31,11 @@
                         <div class="alert alert-danger"><em>No male records found.</em></div>
                     @else
                         @csrf
-                        <table id="editable1" class="table table-bordered table-striped table-hover">
+                        @if($female->count() == 0) 
+                            <table id="editable2" class="table table-bordered table-striped table-hover">
+                        @else
+                            <table id="editable1" class="table table-bordered table-striped table-hover">
+                        @endif
                             <thead class="thead-dark">
                                 <tr>
                                     <th style="font-size: 20px;">#</th>

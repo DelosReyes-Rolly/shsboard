@@ -33,17 +33,26 @@
             <h3 style="font-size: 28px;"><b>Print Student Report</b> </h3>
             <hr class="mt-0 mb-4">
             <div class="row left-to-right">
-                    <div class="mb-4">
-                        <div class="card border-start-lg border-start-yellow">
-                            <div class="card-header"></div>
-                                <div class="card-body">
+                    <div class="card mb-4">
+                    <div class="border-start-lg border-start-yellow">
+                        <div class="card-header"></div>
+                            <div class="card-body">
                                     <form action="{{route('admin.downloadpdfstu')}}" method="POST">
                                         @csrf
-                                        <b>From:</b>
-                                        <input type="date" name="dateFrom" value="<?php echo date('Y-m-d'); ?>" />
-                                        <b>To:</b>
-                                        <input type="date" name="dateTo" value="<?php echo date('Y-m-d'); ?>" />
-                                        <input type="submit" name="submit" class="btn btn-primary" value="Print"/></input>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <b>From:</b>
+                                                <input type="date" name="dateFrom" class="form-control" value="<?php echo date('Y-m-d'); ?>" /><br/>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <b>To:</b>
+                                                <input type="date" name="dateTo" class="form-control" value="<?php echo date('Y-m-d'); ?>" />
+                                            </div>
+                                            <div class="col-md-4">
+                                                <br/>
+                                                <input type="submit" name="submit" class="btn btn-primary" value="Print"/></input>
+                                            </div>
+                                        </div>
                                     </form>
                                 </div>
                             </div>

@@ -274,22 +274,38 @@ class FacultyController extends Controller
     	{
     		if($request->action == 'edit')
     		{
-                if ($request->midterm < 101 && $request->midterm > -1) {
-                    $data = array(
-                        'midterm'	=>	$request->midterm,
-                    );
-                    DB::table('student_grades')
-                    ->where('id', $request->id)
-                    ->update($data);
-                }
+                $request->validate([
+                    'midterm' => 'numeric',
+                    'finals' => 'numeric',
+                ]);
 
-                if ($request->finals < 101 && $request->finals > -1) {
-                    $data = array(
-                        'finals'	=>	$request->finals,
-                    );
-                    DB::table('student_grades')
-    				->where('id', $request->id)
-    				->update($data);
+                if (is_numeric($request->midterm)){
+                    if ($request->midterm < 101 && $request->midterm > -1) {
+                        $data = array(
+                            'midterm'	=>	$request->midterm,
+                        );
+                        DB::table('student_grades')
+                        ->where('id', $request->id)
+                        ->update($data);
+                    }
+
+                }
+                else{
+                    return response()->with('error', 'Grades must be numeric!');
+                }
+                
+                if (is_numeric($request->finals)){
+                    if ($request->finals < 101 && $request->finals > -1) {
+                        $data = array(
+                            'finals'	=>	$request->finals,
+                        );
+                        DB::table('student_grades')
+                        ->where('id', $request->id)
+                        ->update($data);
+                    }
+                }
+                else{
+                    return response()->with('error', 'Grades must be numeric!');
                 }
 
                 

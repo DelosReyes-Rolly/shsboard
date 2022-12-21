@@ -80,7 +80,7 @@ class LoginController extends Controller
 
             return redirect()->intended('/students');
         }
-        return back()->withInput($request->only('email'));
+        return back()->with('message', 'Wrong credentials!')->withInput($request->only('email'));
     }
 
     public function showFacultiesLoginForm()
@@ -99,6 +99,6 @@ class LoginController extends Controller
 
             return redirect()->intended('/faculties');
         }
-        return back()->withInput($request->only('email'));
+        return back()->with('message', 'Wrong credentials!')->withInput($request->only('email'));
     }
 }
