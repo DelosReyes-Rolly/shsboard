@@ -41,7 +41,12 @@
                                         </div>
                                         <div class="col-md-10">
                                             <label style="font-size: 26px;"><b>Grade Level: </b></label>
-                                            <span style="font-size: 26px;">{{$student->gradelevel->gradelevel}}</span>
+                                                @if($student->gradelevel == 1 || $student->gradelevel == 2)
+                                                    <span style="font-size: 26px;">{{$student->gradelevel->gradelevel}}</span>
+                                                @else
+                                                    <span style="font-size: 26px;">Alumni</span>
+                                                @endif
+                                           
                                         </div>
                                         <!-- Form Group (title)-->
                                         <div class="col-md-10">

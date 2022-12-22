@@ -127,7 +127,7 @@ class FacultyController extends Controller
         $validated['updated_at'] = now();
         $address->update($validated);
     
-        return back()->with('success', 'Profile has been edited Successfully');
+        return back()->with('success', 'Profile has been edited successfully');
     }
 
 

@@ -149,7 +149,7 @@ class StudentsController extends Controller
         $validated['updated_at'] = now();
         $address->update($validated);
 
-        return back()->with('success', 'Profile has been edited Successfully');
+        return back()->with('success', 'Profile has been edited successfully');
     }
 
 
@@ -242,7 +242,7 @@ class StudentsController extends Controller
             $docreq->file = $filename;
         }   
         $docreq->save();
-        return redirect()->back()->with('success', 'New document request was added Successfully');
+        return redirect()->back()->with('success', 'New document request was added successfully');
     }
 
     public function deletegraderequest($id){

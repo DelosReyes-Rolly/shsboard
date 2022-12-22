@@ -150,7 +150,7 @@ class AdminsController extends Controller
             $landing->image = $filename;
         }
         $landing->save();
-        return redirect('/homepage')->with('success', 'New content was added Successfully');
+        return redirect('/homepage')->with('success', 'New content was added successfully');
     }
     
     public function viewlanding($id){
@@ -239,7 +239,7 @@ class AdminsController extends Controller
         }
         $announcement->save();
         Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<',  now())->update(['status' => '2']);
-        return redirect()->back()->with('success', 'New announcement was added Successfully');
+        return redirect()->back()->with('success', 'New announcement was added successfully');
     }
 
     public function storeprivateannouncement(Request $request){
@@ -276,7 +276,7 @@ class AdminsController extends Controller
         }
         $announcement->save();
         Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<',  now())->update(['status' => '2']);
-        return redirect()->back()->with('success', 'New private announcement was added Successfully');
+        return redirect()->back()->with('success', 'New private announcement was added successfully');
     }
 
     public function approve($id){
@@ -392,7 +392,7 @@ class AdminsController extends Controller
         }
         $announcement->save();
         Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<',  now())->update(['status' => '2']);
-        return redirect('/createEvents')->with('success', 'New event was added Successfully');
+        return redirect('/createEvents')->with('success', 'New event was added successfully');
     }
 
     public function viewevent($id){
@@ -457,7 +457,7 @@ class AdminsController extends Controller
         $announcement->status = 1;
         $announcement->save();
         Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<',  now())->update(['status' => '2']);
-        return redirect('/createReminder')->with('success', 'New reminder was added Successfully');
+        return redirect('/createReminder')->with('success', 'New reminder was added successfully');
     }
 
     public function storeprivatereminder(Request $request){
@@ -522,7 +522,7 @@ class AdminsController extends Controller
         $document = new Documents();
         $document->name = $request->get('name');
         $document->save();
-        return redirect('/documentrequest')->with('success', 'New document was added Successfully');
+        return redirect('/documentrequest')->with('success', 'New document was added successfully');
     }
 
 
