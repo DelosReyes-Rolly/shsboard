@@ -509,8 +509,9 @@ class AdminsController extends Controller
         $requests = DocumentRequests::where('deleted', '=', null)->where('status', '!=', 4)->where('status', '!=', 3)->get();
         $requests11 = DocumentRequests::where('deleted', '=', null)->where('gradelevel_id', '=', 1)->where('status', '!=', 4)->where('status', '!=', 3)->get();
         $requests12 = DocumentRequests::where('deleted', '=', null)->where('gradelevel_id', '=', 2)->where('status', '!=', 4)->where('status', '!=', 3)->get();
+        $alumni = DocumentRequests::where('deleted', '=', null)->where('gradelevel_id', '=', 4)->where('status', '!=', 4)->where('status', '!=', 3)->get();
         $documents = Documents::where('deleted', '=', null)->get();
-        return view('admins.documentrequests.documentrequest', compact('requests', 'documents', 'requests11', 'requests12'));
+        return view('admins.documentrequests.documentrequest', compact('requests', 'documents', 'requests11', 'requests12', 'alumni'));
     }
 
     public function storedocument(Request $request){
@@ -548,6 +549,16 @@ class AdminsController extends Controller
     public function tableofRejected12(){
         $requests = DocumentRequests::where('deleted', '=', null)->where('gradelevel_id', '=', 2)->where('status', '=', 4)->get();
         return view('admins.documentrequests.documentrequestRejected12', compact('requests'));
+    }
+
+    public function tableofCompletedAlumni(){
+        $requests = DocumentRequests::where('deleted', '=', null)->where('gradelevel_id', '=', 4)->where('status', '=', 3)->get();
+        return view('admins.documentrequests.documentrequestCompletedAlumni', compact('requests'));
+    }
+
+    public function tableofRejectedAlumni(){
+        $requests = DocumentRequests::where('deleted', '=', null)->where('gradelevel_id', '=', 4)->where('status', '=', 4)->get();
+        return view('admins.documentrequests.documentrequestRejectedAlumni', compact('requests'));
     }
 
 

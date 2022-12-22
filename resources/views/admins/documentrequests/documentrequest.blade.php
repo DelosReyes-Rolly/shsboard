@@ -38,6 +38,13 @@
          
             new $.fn.dataTable.FixedHeader( table );
         } );
+		$(document).ready(function() {
+            var table = $('#example4').DataTable( {
+                responsive: true
+            } );
+         
+            new $.fn.dataTable.FixedHeader( table );
+        } );
     </script>
 </head>
 
@@ -349,6 +356,86 @@
 												@endif  		
 											</div>				
 								    	</div>
+									
+									<input type="radio" name="tabs" id="tabthree" checked="checked">
+								    <label for="tabthree">Alumni</label>
+								    <div class="tab" style="height: auto;">
+										<div style="margin: 20px;">
+											<a class="btn btn-success" style="font-size:20px; font-weight:bold; color:white;" href='{{ url("/tableofcompletedAlumni") }}'><i class="fas fa-tasks"></i> Completed</a>&ensp;
+											<a class="btn btn-danger" style="font-size:20px; font-weight:bold; color:white;" href='{{ url("/tableofrejectedAlumni") }}'><i class="fas fa-times-circle"></i> Denied</a>&ensp;
+										</div>
+								      	<div class="card-header"><b>Requested Documents</b></div>
+										    <div class="card-body p-0">
+											    <!-- Announcements table-->
+											    @if($alumni->count() == 0)
+													<br><br>
+													<div class="alert alert-danger"><em>No records found.</em></div>
+												@else 
+											        <div class="table-responsive table-billing-history">
+												        <table id="example4" class="display nowrap" style="width:100%">
+												            <thead>
+												                <tr>
+												                    <th class="border-gray-200" scope="col">#</th>
+												                    <th class="border-gray-200" scope="col">Document</th>
+												                    <th class="border-gray-200" scope="col">Student Name</th>
+												                    <th class="border-gray-200" scope="col">Strand</th>
+												                    <th class="border-gray-200" scope="col">Date Requested</th>
+												                    <th class="border-gray-200" scope="col">Proof</th>
+																	<th class="border-gray-200" scope="col">Status</th>
+																	<th class="border-gray-200" scope="col">Action</th>
+												                </tr>
+												           	</thead>
+												           	<tbody>
+												                <?php 
+												                    $i=1;
+												                ?>
+																	@foreach ($requests as $request)
+																		@if($request->gradelevel_id == 4)
+																			<tr>
+																				<?php $requested_at = date('F d, Y', strtotime($request -> created_at)); ?>
+																				<td class="text-center"><?php echo $i++; ?></td>
+																				<td>{{$request -> document -> name}}</td>
+																				<td>{{$request -> student -> last_name}}, {{$request -> student -> first_name}} {{$request -> student -> middle_name}} {{$request -> student -> suffix}}</td>
+																				<td>{{$request -> student -> course -> abbreviation}}</td>
+																				<td>{{$requested_at}}</td>
+																				<td>
+																				{{$request -> file}}
+																					<a href="/download/{{$request -> file}}" class="btn btn-primary">Download</a> 
+																				</td>
+																				<td>
+																					<?php 
+																						switch ($request -> status) {
+																							case '1':
+																								echo '<span class="badge bg-secondary" style="color: white;">Pending</span>';
+																								break;
+																							case '2':
+																								echo '<span class="badge bg-success" style="color: white;">On Process</span>';
+																								break;
+																							case '3':
+																								echo '<span class="badge bg-success" style="color: white;">Completed</span>';
+																								break;
+																							case '4':
+																								echo '<span class="badge bg-danger" style="color: white;">Denied</span>';
+																								break;
+																							default:
+																								echo '<span class="badge bg-secondary" style="color: white;">Undetermine</span>';
+																								break;
+																						}
+																					?>
+																				</td>
+																				<td>
+																					<a class="btn btn-success btn-md" href="/viewrequestadmin/{{$request->id}}"><i class="fas fa-eye"></i> View</a>
+																					<a class="btn btn-warning btn-md" href="/showrequestadmin/{{$request->id}}"><i class="fas fa-edit"></i> Update</a>
+																				</td> 
+																			</tr>
+																		@endif
+																	@endforeach 
+												           	</tbody>
+												        </table>
+											        </div>
+												@endif   
+										    </div>
+										</div>
 									</div>
 				  				</div>
 				  			</div>

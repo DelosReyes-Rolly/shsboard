@@ -57,7 +57,11 @@
                                                 </div>
                                                 <!-- Form Group document needed-->
                                                 <div class="col-md-6">
-                                                	<div class="col-md-12"><label class="labels" style="font-size: 20px;">Grade Level</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->gradelevel_id}} " value="" readonly></div> <br>
+                                                    @if($gradelevel == 1 || $gradelevel == 2)
+                                                        <div class="col-md-12"><label class="labels" style="font-size: 26px;">Grade Level</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{$gradelevel->gradelevel}} " value="" readonly></div> <br>
+                                                    @else
+                                                        <div class="col-md-12"><label class="labels" style="font-size: 26px;">Grade Level</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" Alumni" value="" readonly></div> <br>
+                                                    @endif
                                                 </div>
                                                 <!-- Form Group (content)-->
                                                 <div class="mb-3 requestdocument">

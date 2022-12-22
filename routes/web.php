@@ -631,6 +631,9 @@ Route::group(['middleware' => 'auth:admins'], function () {
             Route::get('/tableofcompleted12', 'tableofCompleted12');
             Route::get('/tableofrejected12', 'tableofRejected12');
 
+            Route::get('/tableofcompletedAlumni', 'tableofCompletedAlumni');
+            Route::get('/tableofrejectedAlumni', 'tableofRejectedAlumni');
+
             /*
             |-----------------------------------------------------------------------------------
             | ADMINS Routes - Document Request - POST

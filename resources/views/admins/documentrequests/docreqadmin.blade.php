@@ -52,9 +52,15 @@
                                             <!-- Form Row        -->
                                             <div class="row gx-3 mb-3">
                                                 <!-- Form Group document needed-->
-                                                <div class="col-md-6">
-                                                	<div class="col-md-12"><label class="labels" style="font-size: 20px;">Grade Level</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{$docreq->gradelevel->gradelevel}} " value="" readonly></div> <br>
-                                                </div>
+                                                @if($docreq->gradelevel == 1 || $docreq->gradelevel == 2)
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-12"><label class="labels" style="font-size: 26px;">Grade Level</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{$docreq->gradelevel->gradelevel}} " value="" readonly></div> <br>
+                                                    </div>
+                                                @else
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-12"><label class="labels" style="font-size: 26px;">Grade Level</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" Alumni" value="" readonly></div> <br>
+                                                    </div>
+                                                @endif
                                                 <!-- Form Group (content)-->
                                             </div>
                                                 <div class="mb-3 requestdocument">
