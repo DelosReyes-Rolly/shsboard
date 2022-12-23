@@ -64,7 +64,10 @@
                    <div class="alert alert-danger"><center><em>Sorry. You're not currently enrolled in any subjects. Please contact the administrator.</em></center></div>
                 @else 
                     <!-- Print overall Grades -->
-                    
+                    <div style="margin: 20px;">
+                        <a class="btn btn-primary btn-md" href="/printreportcard" style="float: right;"><i class="fas fa-file-alt"></i>  Print Report Card</a>
+                    </div>
+
                     <!-- Check if Enrolled in any grade 12 subjects -->
                     @if($grade12->count() != 0)
                         <div class="card-header">
@@ -400,7 +403,7 @@
                                                             <b>General Weighted Average for the Semester: <span class="badge bg-danger"  style="color: white;font-size: 16px;"> {{ $ave }}</span></b>
                                                         @endif
                                                     @else
-                                                        <b>General Weighted Average for the Semester: <span class="badge bg-danger">Grades are not complete</span></b>
+                                                        <b>General Weighted Average for the Semester: <span class="badge bg-danger" style="color: white;">Grades are not complete</span></b>
                                                     @endif
 
                                                     <br>
@@ -539,7 +542,7 @@
                                                             <b>General Weighted Average for the Semester: <span class="badge bg-danger"  style="color: white;font-size: 16px;"> {{ $ave }}</span></b>
                                                         @endif
                                                     @else
-                                                        <b>General Weighted Average for the Semester: <span class="badge bg-danger">Grades are not complete</span></b>
+                                                        <b>General Weighted Average for the Semester: <span class="badge bg-danger" style="color: white;">Grades are not complete</span></b>
                                                     @endif
 
                                                     <br>
@@ -634,7 +637,7 @@
                                                                                 'course_id'=> Auth::user()->course_id, 'section_id'=> Auth::user()->section_id,
                                                                                 'semester_id'=> $grade11first -> semester_id, 'faculty_id'=> $grade11first -> faculty_id,
                                                                                 'subject_id'=> $grade11first -> subject_id])}}"><button class="requestGradeEvalButton">Click here</button></a>
-                                                                        </td></i
+                                                                        </td></i>
                                                                     </tr>
                                                         @endforeach
                                                     </tbody>

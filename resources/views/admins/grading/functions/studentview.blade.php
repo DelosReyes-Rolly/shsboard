@@ -41,7 +41,7 @@
                                         </div>
                                         <div class="col-md-10">
                                             <label style="font-size: 26px;"><b>Grade Level: </b></label>
-                                                @if($student->gradelevel == 1 || $student->gradelevel == 2)
+                                                @if($student->gradelevel->gradelevel == 11 || $student->gradelevel->gradelevel == 12)
                                                     <span style="font-size: 26px;">{{$student->gradelevel->gradelevel}}</span>
                                                 @else
                                                     <span style="font-size: 26px;">Alumni</span>

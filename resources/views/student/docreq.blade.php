@@ -31,38 +31,8 @@
                                             <div class="mb-3" style="color: red">
                                                 * required field
                                             </div>
-                                            <!-- Form Row-->
-                                            <div class="row gx-3 mb-3">
-                                                <!-- Form Group (title)-->
-                                                <div class="col-md-3">
-                                                    <div class="col-md-12"><label class="labels" style="font-size: 20px;">Last Name</label><input type="text" class="form-control"  style="font-size: 16px;" placeholder=" {{Auth::user()->last_name}} " value="" readonly></div> <br>
-                                                </div>
-                                                <!-- Form Group date-->
-                                                <div class="col-md-3">
-                                                    <div class="col-md-12"><label class="labels" style="font-size: 20px;">First Name</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->first_name}} " value="" readonly></div> <br>
-                                                </div>
-                                                <!-- Form Group (title)-->
-                                                <div class="col-md-3">
-                                                    <div class="col-md-12"><label class="labels" style="font-size: 20px;">Middle Name</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->middle_name}} " value="" readonly></div> <br>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="col-md-12"><label class="labels" style="font-size: 20px;">Suffix</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->suffix}} " value="" readonly></div> <br>
-                                                </div>
-                                            </div>
                                             <!-- Form Row        -->
                                             <div class="row gx-3 mb-3">
-                                            	 <!-- Form Group (location)-->
-                                                <div class="col-md-6">
-                                                <div class="col-md-12"><label class="labels" style="font-size: 20px;">Course</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{$course->courseName}} - {{$course->abbreviation}}" value="" readonly></div> <br>
-                                                </div>
-                                                <!-- Form Group document needed-->
-                                                <div class="col-md-6">
-                                                    @if($gradelevel == 1 || $gradelevel == 2)
-                                                        <div class="col-md-12"><label class="labels" style="font-size: 26px;">Grade Level</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{$gradelevel->gradelevel}} " value="" readonly></div> <br>
-                                                    @else
-                                                        <div class="col-md-12"><label class="labels" style="font-size: 26px;">Grade Level</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" Alumni" value="" readonly></div> <br>
-                                                    @endif
-                                                </div>
                                                 <!-- Form Group (content)-->
                                                 <div class="mb-3 requestdocument">
                                                 	<label class="large mb-1" for="document_id" class="form-control @error('document_id') is-invalid @enderror" style="font-size: 20px;"><br><span style="color: red">*</span> Document Needed</label>

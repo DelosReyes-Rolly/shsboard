@@ -1,6 +1,5 @@
 
 @include('partials.landingheader')
-<br/><br/><br/><br/>
 <div class="loginchoice">     
 	<div class="col-md-12 text-center">
         <div class="box-form">

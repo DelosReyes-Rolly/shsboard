@@ -1,6 +1,6 @@
 @include('partials.landingheader')
 <!-- student login start -->
-<br><br><br><br><br><br><br><br>
+    <br><br><br><br>
         <div class="box-form">
             <div class="left">
                 <div class="overlay">

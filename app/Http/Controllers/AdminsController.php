@@ -1335,4 +1335,19 @@ class AdminsController extends Controller
         $user->save();
         return redirect()->back()->with('alert', 'Password has been updated successfully.');
     }   
+
+    public function viewfile($file_name) {
+        $file_path = public_path('uploads/DocumentRequestFile/'.$file_name);
+        if (file_exists($file_path)) {
+            return response()->file($file_path);
+        }
+        
+    }
+
+    public function viewfileDocument($id) {
+        $requests = DocumentRequests::where('deleted', '=', null)->findOrFail($id);
+        $file = $requests->file;
+        $extension = \File::extension($file);
+        return view('admins.documentrequests.documentrequestPreview', compact('requests', 'extension'));
+    }
 }

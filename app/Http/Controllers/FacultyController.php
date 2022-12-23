@@ -301,13 +301,13 @@ class FacultyController extends Controller
     		}
     		if($request->action == 'delete')
     		{
-                $delete = array(
-                    'deleted' => 1,
-                    'deleted_at' => now(),
+                $clear = array(
+                    'midterm' => null,
+                    'finals' => null,
                 );
     			DB::table('student_grades')
     				->where('id', $request->id)
-    				->update($delete);
+    				->update($clear);
     		}
     		return response()->json($request);
     	}

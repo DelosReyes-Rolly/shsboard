@@ -34,34 +34,19 @@
                                             <!-- Form Row-->
                                             <div class="row gx-3 mb-3">
                                                 <!-- Form Group (title)-->
-                                                <div class="col-md-2">
-                                                    <div class="col-md-12"><label class="labels" style="font-size: 26px;">Last Name</label><input type="text" class="form-control"  style="font-size: 16px;" placeholder=" {{$docreq->student->last_name}} " value="" readonly></div> <br>
+                                                <div class="col-md-9">
+                                                    <label class="labels" style="font-size: 26px;">Full Name</label><input type="text" class="form-control"  style="font-size: 20px;" placeholder=" {{$docreq->student->last_name}}, {{$docreq->student->first_name}} {{$docreq->student->middle_name}} {{$docreq->student->suffix}}" value="" readonly> <br>
                                                 </div>
-                                                <!-- Form Group date-->
-                                                <div class="col-md-2">
-                                                    <div class="col-md-12"><label class="labels" style="font-size: 26px;">First Name</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{$docreq->student->first_name}} " value="" readonly></div> <br>
-                                                </div>
-                                                <!-- Form Group (title)-->
-                                                <div class="col-md-2">
-                                                    <div class="col-md-12"><label class="labels" style="font-size: 26px;">Middle Name</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{$docreq->student->middle_name}} " value="" readonly></div> <br>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <div class="col-md-12"><label class="labels" style="font-size: 26px;">Suffix</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{$docreq->student->suffix}} " value="" readonly></div> <br>
-                                                </div>
-                                            </div>
-                                            <!-- Form Row        -->
-                                            <div class="row gx-3 mb-3">
                                                 <!-- Form Group document needed-->
                                                 @if($docreq->gradelevel->gradelevel == 11 || $docreq->gradelevel->gradelevel == 12)
-                                                    <div class="col-md-6">
-                                                        <div class="col-md-12"><label class="labels" style="font-size: 26px;">Grade Level</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{$docreq->gradelevel->gradelevel}} " value="" readonly></div> <br>
+                                                    <div class="col-md-3">
+                                                        <label class="labels" style="font-size: 26px;">Grade Level</label><input type="text" class="form-control" style="font-size: 20px;" placeholder=" {{$docreq->gradelevel->gradelevel}} " value="" readonly> <br>
                                                     </div>
                                                 @else
-                                                    <div class="col-md-6">
-                                                        <div class="col-md-12"><label class="labels" style="font-size: 26px;">Grade Level</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" Alumni" value="" readonly></div> <br>
+                                                    <div class="col-md-3">
+                                                        <label class="labels" style="font-size: 26px;">Grade Level</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" Alumni" value="" readonly> <br>
                                                     </div>
                                                 @endif
-                                                <!-- Form Group (content)-->
                                             </div>
                                                 <div class="mb-3 requestdocument">
                                                 	<label class="large mb-1" style="font-size: 20px;"><br><b>Document Needed: </b></label>
@@ -86,7 +71,7 @@
                                                 <br>
                                                  <!-- Save changes button-->
                                                 <a class="btn btn-info btn-md" href="javascript:history.back()"><i class="fas fa-arrow-left"></i> Back</a>
-                                                <font face = "Verdana" size = "6"><input type="submit" class="btn btn-primary" value="Submit" style="float: right; margin-right: 80px;"></font>
+                                                <font face = "Verdana" size = "4"><input type="submit" class="btn btn-primary" value="Submit"></font>
                                                 <br><br><br><br>
                                             </div>
                                         </div>

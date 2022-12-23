@@ -30,22 +30,6 @@
         	<div>
                 <!-- boxes -->
                 <hr style="border: 1px solid grey;">
-                <div class="container-xl px-4 mt-4 left-to-right">
-                    <hr class="mt-0 mb-4">
-                    <div class="row">
-                        <div class="col-lg-4 mb-4">
-                            <!-- Billing card 3-->
-                            <div class="card border-start-lg border-start-success" style="background-color: #008000; color: white; box-shadow: 0 4px 16px rgba(0,0,0,1);">
-                                <div class="card-body">
-                                    <div class="requesteddocument" style="color: white; font-size: 20px; font-weight: 800;">Requested Documents</div>
-                                    <div class="h3 d-flex align-items-center" style="padding:40px;"><i class="fas fa-clipboard"></i> &nbsp; {{ $requests->count() }} </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <hr style="border: 1px solid grey;">
                 <form method="POST" action="{{ route('student.request') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="container-xl px-4 mt-4 right-to-left">
@@ -82,39 +66,9 @@
                                             </div>
                                             <!-- Form Row-->
                                             <div class="row gx-3 mb-3">
-                                                <!-- Form Group (title)-->
-                                                <div class="col-md-3">
-                                                    <div class="col-md-12"><label class="labels" style="font-size: 20px;">Last Name</label><input type="text" class="form-control"  style="font-size: 16px;" placeholder=" {{Auth::user()->last_name}} " value="" readonly></div> <br>
-                                                </div>
-                                                <!-- Form Group date-->
-                                                <div class="col-md-3">
-                                                    <div class="col-md-12"><label class="labels" style="font-size: 20px;">First Name</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->first_name}} " value="" readonly></div> <br>
-                                                </div>
-                                                <!-- Form Group (title)-->
-                                                <div class="col-md-3">
-                                                    <div class="col-md-12"><label class="labels" style="font-size: 20px;">Middle Name</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->middle_name}} " value="" readonly></div> <br>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="col-md-12"><label class="labels" style="font-size: 20px;">Suffix</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{Auth::user()->suffix}} " value="" readonly></div> <br>
-                                                </div>
-                                            </div>
-                                            <!-- Form Row        -->
-                                            <div class="row gx-3 mb-3">
-                                            	 <!-- Form Group (location)-->
-                                                <div class="col-md-6">
-                                                    <div class="col-md-12"><label class="labels" style="font-size: 20px;">Course</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{$course->courseName}} - {{$course->abbreviation}}" value="" readonly></div> <br>
-                                                </div>
-                                                <!-- Form Group document needed-->
-                                                <div class="col-md-6">
-                                                    @if($gradelevel == null)
-                                                	    <div class="col-md-12"><label class="labels" style="font-size: 20px;">Grade Level</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" 12 " value="" readonly></div> <br>
-                                                    @else
-                                                        <div class="col-md-12"><label class="labels" style="font-size: 20px;">Grade Level</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" {{$gradelevel->gradelevel}} " value="" readonly></div> <br>
-                                                    @endif
-                                                </div>
                                                 <!-- Form Group (content)-->
                                                 <div class="mb-3 requestdocument">
-                                                	<label class="large mb-12" for="document_type" class="form-control @error('document_type') is-invalid @enderror" style="font-size: 20px;"><br><span style="color: red">*</span> Document Needed</label>
+                                                	<label class="large col-md-12" for="document_type" class="form-control @error('document_type') is-invalid @enderror" style="font-size: 20px;"><br><span style="color: red">*</span> Document Needed</label>
                                                         <div class="col-md-12" hidden><input class="form-control @error('document_type') is-invalid @enderror" id="inputdocument_type" type="text" placeholder="Enter document needed" name="document_type"  value="{{ old('document_type') }}"></div>
                                                         <select id="document_type" name="document_type" class="form-control" value="{{ old('document_type') }}" style="font-size: 16px;" >
                                                             <option value="" disabled selected hidden>Choose Document</option>
@@ -128,21 +82,22 @@
                                                 <!-- Form Group (content)-->
                                                 <div class="mb-3 requestdocument">
                                                     <label class="large mb-1" for="inputpurpose" style="font-size: 20px;"><span style="color: red">*</span> Purpose</label>
-                                                    <textarea class="form-control @error('purpose') is-invalid @enderror" id="editor" type="text" style="font-size: 16px;" placeholder="Enter your purpose" name="purpose"  value="{{ old('purpose') }}"></textarea>
+                                                    <div class ="form-group row">
+                                                        <textarea class="form-control @error('purpose') is-invalid @enderror" id="editor" type="text" style="font-size: 16px;" placeholder="Enter your purpose" name="purpose"  value="{{ old('purpose') }}"></textarea>
+                                                    </div>
                                                 </div>
                                                 <br>
                                                 <!-- Form Group (content)-->
                                                 <div class="mb-3 requestdocument">
                                                     <label class="large mb-1" for="inputcontent" style="font-size: 20px;">Proof (Only DOCS, DOCX, and PDF files are allowed to upload.)</label>
             										<div class ="form-group row">
-            											<div class="col-md-8"></div>
             											<input type="file" name = "file" class="form-control" style="font-size: 12px;" >
             										</div>                                 
             									</div> 
                                                  <!-- Save changes button-->
                                                     <br><center> Note:<br>The documents will be processed <b>within five (5) working days</b> upon requesting.
                                                     The documents can be claimed in the <b>Registrars Office.</b></center><br><br>
-                                                    <font face = "Verdana" size = "4"><input type="submit" class="btn btn-primary" value="Submit"margin-right: 80px;"></font>
+                                                    <font face = "Verdana" size = "8"><input type="submit" class="btn btn-primary" value="Submit"margin-right: 80px;"></font>
                                                 <br><br><br><br>
                                             </div>
                                         </div>
@@ -212,8 +167,7 @@
                                                         ?>
                                                     </td>
                                                     <td>
-                                                        <a class="btn btn-success btn-md" href="/viewrequest/{{$request->id}}"><i class="fas fa-eye"></i> View</a>
-                                                        <a class="btn btn-warning btn-md" href="/showrequest/{{$request->id}}"><i class="fas fa-edit"></i> Update</a>
+                                                        <a class="btn btn-success btn-md" href="/viewfileDocuments/{{$request->id}}"><i class="fas fa-eye"></i> View</a>
                                                         <a class="btn btn-danger btn-md" href="{{route('student.deleterequest', $request->id)}}"><i class="fas fa-trash-alt"></i> Delete</a>
                                                     </td>
                                                 </tr>

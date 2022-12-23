@@ -308,7 +308,7 @@
             {
             if(data.action == 'delete')
             {
-                $('#'+data.id).remove();
+                $('#'+data.id).show();
             }
             }
         });
@@ -321,12 +321,12 @@
             identifier:[0, 'id'],
             editable:[[3, 'midterm'], [4, 'finals']]
             },
-            restoreButton:false,
+            restoreButton:true,
             onSuccess:function(data, textStatus, jqXHR)
             {
             if(data.action == 'delete')
             {
-                $('#'+data.id).remove();
+                $('#'+data.id).show();
             }
             }
         });

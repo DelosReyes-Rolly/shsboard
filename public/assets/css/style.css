@@ -647,7 +647,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #f3dc60;}
     background:url(../../img/svnhs.jpg)no-repeat;
     background-size:cover;
     background-position: center;
-    height:1200px;
+    height:1000px;
 }
 .loginchoice:before{
     position:absolute;
@@ -1957,4 +1957,15 @@ button[type=submit]{       /*login button*/
 
 #myBtn:hover {
   background-color: #555;
+}
+
+@media (min-width: 768px) {
+  .logins{
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .loginOthers{
+    height:1300px;
+  }
 }

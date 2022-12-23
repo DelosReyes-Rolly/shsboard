@@ -155,7 +155,8 @@ Route::group(['middleware' => 'auth:students'], function () {
         | Here is where students routes that are included in their homepage are defined.
         |
         */
-
+        Route::get('/views/{file}', [StudentsController::class, 'viewfiles']);
+        Route::get('/viewfileDocuments/{id}', [StudentsController::class, 'viewfileDocuments']);
 
             /*
             |-----------------------------------------------------------------------------------
@@ -223,6 +224,7 @@ Route::group(['middleware' => 'auth:students'], function () {
             Route::get('/grade-eval/{student_id}/{gradelevel_id}/{course_id}/{section_id}/{semester_id}/{faculty_id}/{subject_id}',  'gradeevalreq')->name('grade-eval');
             Route::get('/deletegradeeval/{id}',  'deletegradeeval')->name('student.deletegradeeval');
             Route::put('/deletegradeeval/{gradeeval}',  'deletegradegradeeval');
+            Route::get('/printreportcard', 'printreportcard');
     });
 });
 
@@ -250,7 +252,8 @@ Route::group(['middleware' => 'auth:admins'], function () {
         | Here is where admins routes that are included in their homepage are defined.
         |
         */
-
+        Route::get('/view/{file}', [AdminsController::class, 'viewfile']);
+        Route::get('/viewfileDocument/{id}', [AdminsController::class, 'viewfileDocument']);
 
             /*
             |-----------------------------------------------------------------------------------
@@ -824,7 +827,7 @@ Route::group(['middleware' => 'auth:faculties'], function () {
     |
     */
     Route::get('/download/{file}', [StudentsController::class, 'downloadrequest']);
-
+    
     /*
     |-----------------------------------------------------------------------------------
     | Route for Blocking Routes
