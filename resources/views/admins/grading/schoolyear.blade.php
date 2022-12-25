@@ -51,7 +51,7 @@
 				@else 
                     <br>
                     <div class="table-responsive table-billing-history" style="padding: 20px;">
-                        <table id="example" class="display nowrap" style="width:100%">
+                        <table id="example" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
                             <thead>
                                 <tr>
                                     <th class="border-gray-200" scope="col">#</th>

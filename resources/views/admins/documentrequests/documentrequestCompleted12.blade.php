@@ -76,13 +76,14 @@
 													<div class="alert alert-danger"><em>No records found.</em></div>
 												@else 
 											        <div class="table-responsive table-billing-history">
-												        <table id="example1" class="display nowrap" style="width:100%">
+												        <table id="example1" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
 												            <thead>
 												                <tr>
-												                    <th class="border-gray-200" scope="col">#</th>
+																	<th class="border-gray-200" scope="col">#</th>
 												                    <th class="border-gray-200" scope="col">Document</th>
 												                    <th class="border-gray-200" scope="col">Student Name</th>
 												                    <th class="border-gray-200" scope="col">Strand</th>
+																	<th class="border-gray-200" scope="col">Purpose</th>
 												                    <th class="border-gray-200" scope="col">Date Requested</th>
 												                    <th class="border-gray-200" scope="col">Proof</th>
 																	<th class="border-gray-200" scope="col">Status</th>
@@ -101,9 +102,13 @@
 																				<td>{{$request -> document -> name}}</td>
 																				<td>{{$request -> student -> last_name}}, {{$request -> student -> first_name}} {{$request -> student -> middle_name}} {{$request -> student -> suffix}}</td>
 																				<td>{{$request -> student -> course -> abbreviation}}</td>
+																				@if($request -> purpose_id != 0)
+																					<td>{{$request -> purpose -> purpose}}</td>
+																				@else
+																					<td>{{$request -> other_purposes}}</td>
+																				@endif
 																				<td>{{$requested_at}}</td>
 																				<td>
-																				{{$request -> file}}
 																					<a href="/download/{{$request -> file}}" class="btn btn-primary">Download</a> 
 																				</td>
 																				<td>

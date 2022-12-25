@@ -45,6 +45,13 @@
          
             new $.fn.dataTable.FixedHeader( table );
         } );
+		$(document).ready(function() {
+            var table = $('#example5').DataTable( {
+                responsive: true
+            } );
+         
+            new $.fn.dataTable.FixedHeader( table );
+        } );
     </script>
 </head>
 
@@ -75,23 +82,7 @@
 	                     </div>
 	                </div>
 	            </div>
-				@if ($message = Session::get('message'))
-					<div class="alert alert-success alert-block">
-						<button type="button" class="close" data-dismiss="alert">×</button>
-						<strong>{{ $message }}</strong>
-					</div>
-				@endif
-														
-				@if (count($errors) > 0)
-					<div class="alert alert-danger">
-						<strong>Whoops!</strong> There were some problems with your input.
-						<ul>
-							@foreach ($errors->all() as $error)
-								<li>{{ $error }}</li>
-							@endforeach
-						</ul>
-					</div>
-				@endif
+				
 		        <!-- create new documents and print -->
 	            <div class="container-xl px-4 mt-4 right-to-left">
 	                <!-- page navigation-->
@@ -106,6 +97,17 @@
 	                                <div class="card-body">
 										<br>
 	                                    <div style="padding: 10px 40px 10px 40px">
+											@if (count($errors) > 0)
+												<div class="alert alert-danger">
+													<button type="button" class="close" data-dismiss="alert">×</button>
+													<strong>Whoops!</strong> There were some problems with your input.
+													<ul>
+														@foreach ($errors->all() as $error)
+															<li>{{ $error }}</li>
+														@endforeach
+													</ul>
+												</div>
+											@endif
 	                                        <!-- print document -->
 											<div style="box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
 												<div class="card-header" style="font-size: 20px;">Print Document Request Report</div><br>
@@ -128,20 +130,40 @@
 												</form>
 											</div>
 											<br><br>
-
-	                                    	<form method="POST" action="{{ route('document.store') }}">
-												@csrf
-		                                        <div class="mb-3">
-		                                            <label class="large" for="name" style="font-size: 20px;">Add document</label>
-		                                            <input class="form-control @error('name') is-invalid @enderror" id="name" type="text" style="font-size: 16px;" placeholder="Document Name" name="name" value="{{ old('name') }}">
-		                                        </div><br>
-		                                        <!-- Save changes button-->
-		                                        <input type="submit" class="btn btn-primary" value="Submit">
-	                                        </form><br>
+											<div style="box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
+												<div class="card-header" style="font-size: 20px;">Add Document</div><br>
+													@if ($message = Session::get('message'))
+														<div class="alert alert-success alert-block">
+															<button type="button" class="close" data-dismiss="alert">×</button>
+															<strong>{{ $message }}</strong>
+														</div>
+													@endif
+	
+													<form method="POST" action="{{ route('document.store') }}">
+														@csrf
+														<div class="row" style="padding: 20px;">
+															<div class="col-lg-4 col-md-4 col-sm-10">
+																<label class="large" for="name" style="font-size: 20px;">Document Name</label>
+																<input class="form-control @error('name') is-invalid @enderror" id="name" type="text" style="font-size: 16px;" placeholder="Document Name" name="name" value="{{ old('name') }}">
+															</div>
+															<div class="col-lg-4 col-md-4 col-sm-10">
+																<label class="large" for="proof_needed" style="font-size: 20px;">Proof Needed</label>
+																<input class="form-control @error('proof_needed') is-invalid @enderror" id="proof_needed" type="text" style="font-size: 16px;" placeholder="Proof Needed" name="proof_needed" value="{{ old('proof_needed') }}">
+															</div>
+															<div class="col-lg-4 col-md-4 col-sm-10"><br/>
+																<input type="submit" class="btn btn-primary" value="Submit">
+															</div>
+														</div><br>
+														<!-- Save changes button-->
+														
+													</form><br>
+									
+											</div>
+											<br><br>
 	                                        <!-- Table of Documents  -->
 	                                        <div class="card-header" style="font-size: 20px;">
 	                                        	Table of Available Documents
-	                                    	</div><br>
+	                                    	</div>
 
 											@if ($message = Session::get('document'))
 												<div class="alert alert-success alert-block">
@@ -155,11 +177,12 @@
                                             @else 
                                                 <br>
                                                 <div class="table-responsive table-billing-history">
-                                                    <table id="example1" class="display nowrap" style="width:100%">
+                                                    <table id="example1" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
                                                         <thead>
                                                              <tr>
                                                                 <th class="border-gray-200" scope="col">#</th>
                                                                 <th class="border-gray-200" scope="col">Document Name</th>
+																<th class="border-gray-200" scope="col">Proof Needed</th>
                                                                 <th class="border-gray-200" scope="col">Action</th>
                                                             </tr>
                                                         </thead>
@@ -169,6 +192,7 @@
                                                                     <tr>
                                                                         <td class="text-center">{{$document -> id}}</td>
                                                                         <td>{{$document -> name}}</td>
+																		<td>{{$document -> proof_needed}}</td>
                                                                         <td>
 																			<a class="btn btn-success btn-md" href="/viewdocument/{{$document->id}}"><i class="fas fa-eye"></i> View</a>
 																			<a class="btn btn-warning btn-md" href="/showdocument/{{$document->id}}"><i class="fas fa-edit"></i> Update</a>
@@ -181,6 +205,75 @@
                                                 </div>    
                                             @endif 
 											<br><br>
+
+											<div style="box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
+												<div class="card-header" style="font-size: 20px;">Add Purpose</div><br>
+													@if ($message = Session::get('message'))
+														<div class="alert alert-success alert-block">
+															<button type="button" class="close" data-dismiss="alert">×</button>
+															<strong>{{ $message }}</strong>
+														</div>
+													@endif
+													<form method="POST" action="{{ route('purpose.store') }}">
+														@csrf
+														<div class="row" style="padding: 20px;">
+															<div class="col-lg-4 col-md-4 col-sm-10">
+																<label class="large" for="purpose" style="font-size: 20px;">Purpose</label>
+																<input class="form-control @error('purpose') is-invalid @enderror" id="purpose" type="text" style="font-size: 16px;" placeholder="New purpose" name="purpose" value="{{ old('purpose') }}">
+															</div>
+															<div class="col-lg-4 col-md-4 col-sm-10"><br/>
+																<input type="submit" class="btn btn-primary" value="Submit">
+															</div>
+														</div><br>
+														<!-- Save changes button-->
+														
+													</form><br>
+												
+											</div>
+
+											<br><br>
+											<!-- Table of Purposes -->
+	                                        <div class="card-header" style="font-size: 20px;">
+	                                        	Table of Purposes
+	                                    	</div>
+
+											@if ($message = Session::get('document'))
+												<div class="alert alert-success alert-block">
+													<button type="button" class="close" data-dismiss="alert">×</button>
+													<strong>{{ $message }}</strong>
+												</div>
+											@endif
+                                            @if($documentpurposes == NULL)
+                                                <br><br>
+                                                <div class="alert alert-danger"><em>No records found.</em></div>
+                                            @else 
+                                                <br>
+                                                <div class="table-responsive table-billing-history">
+                                                    <table id="example5" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
+                                                        <thead>
+                                                             <tr>
+                                                                <th class="border-gray-200" scope="col">#</th>
+                                                                <th class="border-gray-200" scope="col">Purposes</th>
+                                                                <th class="border-gray-200" scope="col">Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach ($documentpurposes as $documentpurpose)
+                                                                <?php $i=1;?>
+                                                                    <tr>
+                                                                        <td class="text-center">{{$documentpurpose -> id}}</td>
+                                                                        <td>{{$documentpurpose -> purpose}}</td>
+                                                                        <td>
+																			<a class="btn btn-success btn-md" href="/viewpurpose/{{$documentpurpose->id}}"><i class="fas fa-eye"></i> View</a>
+																			<a class="btn btn-warning btn-md" href="/showpurpose/{{$documentpurpose->id}}"><i class="fas fa-edit"></i> Update</a>
+																			<a class="btn btn-danger btn-md" href="{{route('admin.deletepurpose', $documentpurpose->id)}}"><i class="fas fa-trash-alt"></i> Delete</a>
+                                                                        </td> 
+                                                                    </tr>
+                                                            @endforeach 
+                                                        </tbody>
+                                                    </table>
+                                                </div>    
+                                            @endif 
 	                                    </div>
 	                                </div>
 	                            </div>
@@ -212,13 +305,14 @@
 													<div class="alert alert-danger"><em>No records found.</em></div>
 												@else 
 											        <div class="table-responsive table-billing-history">
-												        <table id="example2" class="display nowrap" style="width:100%">
+												        <table id="example2" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
 												            <thead>
 												                <tr>
-												                    <th class="border-gray-200" scope="col">#</th>
+																	<th class="border-gray-200" scope="col">#</th>
 												                    <th class="border-gray-200" scope="col">Document</th>
 												                    <th class="border-gray-200" scope="col">Student Name</th>
 												                    <th class="border-gray-200" scope="col">Strand</th>
+																	<th class="border-gray-200" scope="col">Purpose</th>
 												                    <th class="border-gray-200" scope="col">Date Requested</th>
 												                    <th class="border-gray-200" scope="col">Proof</th>
 																	<th class="border-gray-200" scope="col">Status</th>
@@ -237,9 +331,13 @@
 																				<td>{{$request -> document -> name}}</td>
 																				<td>{{$request -> student -> last_name}}, {{$request -> student -> first_name}} {{$request -> student -> middle_name}} {{$request -> student -> suffix}}</td>
 																				<td>{{$request -> student -> course -> abbreviation}}</td>
+																				@if($request -> purpose_id != 0)
+																					<td>{{$request -> purpose -> purpose}}</td>
+																				@else
+																					<td>{{$request -> other_purposes}}</td>
+																				@endif
 																				<td>{{$requested_at}}</td>
 																				<td>
-																				{{$request -> file}}
 																					<a href="/download/{{$request -> file}}" class="btn btn-primary">Download</a> 
 																				</td>
 																				<td>
@@ -292,13 +390,14 @@
 													<div class="alert alert-danger"><em>No records found.</em></div>
 												@else
 													<div class="table-responsive table-billing-history">
-														<table id="example3" class="display nowrap" style="width:100%">
+														<table id="example3" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
 														<thead>
 												                <tr>
 												                    <th class="border-gray-200" scope="col">#</th>
 												                    <th class="border-gray-200" scope="col">Document</th>
 												                    <th class="border-gray-200" scope="col">Student Name</th>
 												                    <th class="border-gray-200" scope="col">Strand</th>
+																	<th class="border-gray-200" scope="col">Purpose</th>
 												                    <th class="border-gray-200" scope="col">Date Requested</th>
 												                    <th class="border-gray-200" scope="col">Proof</th>
 																	<th class="border-gray-200" scope="col">Status</th>
@@ -317,9 +416,13 @@
 																				<td>{{$request -> document -> name}}</td>
 																				<td>{{$request -> student -> last_name}}, {{$request -> student -> first_name}} {{$request -> student -> middle_name}}</td>
 																				<td>{{$request -> student -> course -> abbreviation}}</td>
+																				@if($request -> purpose_id != 0)
+																					<td>{{$request -> purpose -> purpose}}</td>
+																				@else
+																					<td>{{$request -> other_purposes}}</td>
+																				@endif
 																				<td>{{$requested_at}}</td>
 																				<td>
-																				{{$request -> file}}
 																					<a href="/download/{{$request -> file}}" class="btn btn-primary">Download</a> 
 																				</td>
 																				<td>
@@ -372,13 +475,14 @@
 													<div class="alert alert-danger"><em>No records found.</em></div>
 												@else 
 											        <div class="table-responsive table-billing-history">
-												        <table id="example4" class="display nowrap" style="width:100%">
+												        <table id="example4" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
 												            <thead>
 												                <tr>
-												                    <th class="border-gray-200" scope="col">#</th>
+																	<th class="border-gray-200" scope="col">#</th>
 												                    <th class="border-gray-200" scope="col">Document</th>
 												                    <th class="border-gray-200" scope="col">Student Name</th>
 												                    <th class="border-gray-200" scope="col">Strand</th>
+																	<th class="border-gray-200" scope="col">Purpose</th>
 												                    <th class="border-gray-200" scope="col">Date Requested</th>
 												                    <th class="border-gray-200" scope="col">Proof</th>
 																	<th class="border-gray-200" scope="col">Status</th>
@@ -397,9 +501,13 @@
 																				<td>{{$request -> document -> name}}</td>
 																				<td>{{$request -> student -> last_name}}, {{$request -> student -> first_name}} {{$request -> student -> middle_name}} {{$request -> student -> suffix}}</td>
 																				<td>{{$request -> student -> course -> abbreviation}}</td>
+																				@if($request -> purpose_id != 0)
+																					<td>{{$request -> purpose -> purpose}}</td>
+																				@else
+																					<td>{{$request -> other_purposes}}</td>
+																				@endif
 																				<td>{{$requested_at}}</td>
 																				<td>
-																				{{$request -> file}}
 																					<a href="/download/{{$request -> file}}" class="btn btn-primary">Download</a> 
 																				</td>
 																				<td>

@@ -64,9 +64,11 @@
                    <div class="alert alert-danger"><center><em>Sorry. You're not currently enrolled in any subjects. Please contact the administrator.</em></center></div>
                 @else 
                     <!-- Print overall Grades -->
-                    <div style="margin: 20px;">
-                        <a class="btn btn-primary btn-md" href="/printreportcard" style="float: right;"><i class="fas fa-file-alt"></i>  Print Report Card</a>
-                    </div>
+                    @if($cardprint->cardgiving == 1)
+                        <div style="margin: 20px;">
+                            <a class="btn btn-primary btn-md" href="/printreportcard" style="float: right;"><i class="fas fa-file-alt"></i>  Print Report Card</a>
+                        </div>
+                    @endif
 
                     <!-- Check if Enrolled in any grade 12 subjects -->
                     @if($grade12->count() != 0)
@@ -86,7 +88,7 @@
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <table id="sample4" class="display nowrap" style="width:100%">
+                                                <table id="sample4" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
 
                                                     @if($grade12secondsemungraded->count() == 0)
                                                         @php
@@ -227,7 +229,7 @@
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <table id="sample3" class="display nowrap" style="width:100%">
+                                                <table id="sample3" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
 
                                                     @if($grade12firstsemungraded->count() == 0)
                                                         @php
@@ -377,7 +379,7 @@
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <table id="sample2" class="display nowrap" style="width:100%">
+                                                <table id="sample2" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
                                                     <!-- /*check if there is an ungraded subject*/ -->
 
                                                     @if($grade11secondsemungraded->count() == 0)
@@ -517,7 +519,7 @@
                                                     Grade 11 - First Semester
                                                 </div>
                                                 <br>
-                                                <table id="sample1" class="display nowrap" style="width:100%">
+                                                <table id="sample1" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
                                                     
                                                     @if($grade11firstsemungraded->count() == 0)
                                                         @php

@@ -74,6 +74,10 @@
                     <a href="{{route('student.add')}}" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Student Manually</a>
                 </div>
             </div>
+            <div style="margin: 20px;">
+				<a class="btn btn-success" style="font-size:20px; font-weight:bold; color:white;" href='{{ url("/gradingalumni") }}'><i class="fas fa-user-graduate"></i> Alumni</a>&ensp;
+				<a class="btn btn-danger" style="font-size:20px; font-weight:bold; color:white;" href='{{ url("/gradingdropped") }}'><i class="fas fa-user-slash"></i> Dropped</a>&ensp;
+			</div>
             <div class="card-body p-0" style="padding: 20px 20px 20px 20px;">
                 @if($students->count() == 0)
 					<br><br>
@@ -81,7 +85,7 @@
 				@else 
                     <br>
                     <div class="table-responsive table-billing-history">
-                        <table id="example" class="display nowrap" style="width:100%">
+                        <table id="example" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
                             <thead>
                                 <tr>
                                     <th class="border-gray-200" scope="col">#</th>
@@ -113,6 +117,7 @@
                                                 <a class="btn btn-success btn-md" href="/viewstudent/{{$student->id}}"><i class="fas fa-eye"></i> View</a>
                                                 <a class="btn btn-warning btn-md" href="/showstudent/{{$student->id}}"><i class="fas fa-edit"></i> Update</a>
                                                 <a class="btn btn-danger btn-md" href="{{route('admin.deletestudent', $student->id)}}"><i class="fas fa-trash-alt"></i> Delete</a>
+                                                <a class="btn btn-danger btn-md" href="{{route('admin.dropstudent', $student->id)}}"><i class="fas fa-user-slash"></i> Drop</a>
                                             </td> 
                                             </td> 
                                         </tr>

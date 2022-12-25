@@ -29,6 +29,7 @@ class Students extends Migration
             $table->string('email');
             $table->string('phone_number')->nullable();
             $table->string('gender');
+            $table->integer('status')->default('1')->comment('1 - active, 2 - alumni, 3 - dropped');
             $table->timestamps();
             $table->tinyInteger('deleted')->nullable();
             $table->date('deleted_at')->nullable();

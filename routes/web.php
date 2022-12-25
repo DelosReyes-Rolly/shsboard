@@ -492,10 +492,13 @@ Route::group(['middleware' => 'auth:admins'], function () {
             Route::get('/gradingsections', 'section'); 
             Route::get('/gradingfaculty', 'faculty');
             Route::get('/gradingstudents', 'student'); 
+            Route::get('/gradingalumni', 'alumni'); 
+            Route::get('/gradingdropped', 'dropped'); 
             Route::get('/gradingsubjects', 'subjects');
             Route::get('/gradingschoolyear', 'schoolyear');
             Route::get('/gradingfacultysubjects', 'facultysubjects'); 
             Route::get('/gradinggradelevels', 'gradelevels');
+            Route::get('/advisory', 'advisory'); 
 
                 /*
                 |-----------------------------------------------------------------------------------
@@ -524,6 +527,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 Route::get('/viewstudent/{id}','viewstudent');
                 Route::get('/showstudent/{id}','showstudent');
                 Route::get('/deletestudent/{id}', 'deletestudent')->name('admin.deletestudent');
+                Route::get('/dropstudent/{id}', 'dropstudent')->name('admin.dropstudent');
 
                 Route::get('/subjectadd', 'addsubject')->name('subject.add');
                 Route::get('/viewsubject/{id}','viewsubject');
@@ -543,6 +547,11 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 Route::get('/gradeleveladd', 'addgradelevel')->name('gradelevel.add');
                 Route::get('/showgradelevel/{id}','showgradelevel');
                 Route::get('/deletegradelevel/{id}', 'deletegradelevel')->name('admin.deletegradelevel');
+
+                Route::get('/advisoryadd', 'advisoryadd')->name('advisory.add');
+                Route::get('/viewadvisory/{id}','viewadvisory');
+                Route::get('/showadvisory/{id}','showadvisory');
+                Route::get('/deleteadvisory/{id}', 'deleteadvisory')->name('admin.deleteadvisory');
 
             /*
             |-----------------------------------------------------------------------------------
@@ -569,6 +578,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 Route::post('/add/schoolyear', 'storeschoolyear')->name('schoolyear.store');
                 Route::post('/subjectteacheradd', 'subjectteacherstore')->name('subjectteacher.store');
                 Route::post('/add/gradelevel', 'storegradelevel')->name('gradelevel.store');
+                Route::post('/advisoryadd', 'advisorystore')->name('advisory.store');
                 
 
             /*
@@ -595,6 +605,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 Route::put('/deletefaculty/{faculty}', 'deletegradefaculty');
                 Route::put('/updatestudent/{student}', 'updatestudent');
                 Route::put('/deletestudent/{student}', 'deletegradestudent');
+                Route::put('/dropstudent/{student}', 'dropgradestudent');
                 Route::put('/updatesubject/{subject}', 'updatesubject');
                 Route::put('/deletesubject/{subject}', 'deletegradesubject');
                 Route::put('/updateschoolyear/{schoolyear}', 'updateschoolyear');
@@ -603,6 +614,8 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 Route::put('/deletesubjectteacher/{subjectteacher}', 'deletegradesubjectteacher');
                 Route::put('/updategradelevel/{gradelevel}', 'updategradelevel');
                 Route::put('/deletegradelevel/{gradelevel}', 'deletegradegradelevel');
+                Route::put('/updateadvisory/{advisory}', 'updateadvisory');
+                Route::put('/deleteadvisory/{advisory}', 'deletegradeadvisory');
 
         
         /*
@@ -637,6 +650,10 @@ Route::group(['middleware' => 'auth:admins'], function () {
             Route::get('/tableofcompletedAlumni', 'tableofCompletedAlumni');
             Route::get('/tableofrejectedAlumni', 'tableofRejectedAlumni');
 
+            Route::get('/viewpurpose/{id}', 'viewpurpose');
+            Route::get('/showpurpose/{id}', 'showpurpose');
+            Route::get('/deletepurpose/{id}',  'deletepurpose')->name('admin.deletepurpose');
+
             /*
             |-----------------------------------------------------------------------------------
             | ADMINS Routes - Document Request - POST
@@ -646,6 +663,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
             |
             */
             Route::post('/add/document', 'storedocument')->name('document.store');
+            Route::post('/add/purpose', 'storepurpose')->name('purpose.store');
             Route::post('/downloadPDFdoc', 'downloadpdfdoc')->name('admin.downloadpdfdoc');
 
 
@@ -660,6 +678,9 @@ Route::group(['middleware' => 'auth:admins'], function () {
             Route::put('/updatedocument/{document}', 'updatedocument');
             Route::put('/deletedocument/{document}', 'deletegradedocument');
             Route::put('/updaterequestdocadmin/{docreq}', 'updatedocreq');
+
+            Route::put('/updatepurpose/{purpose}', 'updatepurpose');
+            Route::put('/deletepurpose/{purpose}', 'deletegradepurpose');
     });
 });
 
@@ -699,6 +720,12 @@ Route::group(['middleware' => 'auth:faculties'], function () {
             Route::get('/facultyprofile', 'profile');
             Route::get('/createannouncement', 'createannouncement');
             Route::get('/password-faculty/{id}', 'facultyresetshow');
+            Route::get('/advisoryfaculty', 'advisoryfaculty');
+
+            Route::get('/card_giving/{id}',  'card_giving')->name('faculty.card_giving');
+            Route::put('/cards/{advisory}', 'cards');
+            Route::get('/unrelease/{id}',  'unrelease')->name('faculty.unrelease');
+            Route::put('/unrelease/{advisory}', 'unreleasecard');
 
 
             /*

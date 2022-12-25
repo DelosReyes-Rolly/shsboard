@@ -25,4 +25,8 @@ class DocumentRequests extends Model
     public function gradelevel(){
         return $this->belongsTo(Gradelevels::class);
     }
+
+    public function purpose(){
+        return $this->belongsTo(DocumentPurposes::class);
+    }
 }

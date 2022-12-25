@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 use App\Mail\RegisterMail;
 use App\Models\Addresses;
 use App\Models\Admins;
+use App\Models\Advisories;
+use App\Models\Advisory;
 use App\Models\Announcements;
 use App\Models\Courses;
+use App\Models\DocumentPurposes;
 use App\Models\DocumentRequests;
 use App\Models\Documents;
 use App\Models\Faculties;
@@ -509,18 +512,23 @@ class AdminsController extends Controller
         $requests = DocumentRequests::where('deleted', '=', null)->where('status', '!=', 4)->where('status', '!=', 3)->get();
         $requests11 = DocumentRequests::where('deleted', '=', null)->where('gradelevel_id', '=', 1)->where('status', '!=', 4)->where('status', '!=', 3)->get();
         $requests12 = DocumentRequests::where('deleted', '=', null)->where('gradelevel_id', '=', 2)->where('status', '!=', 4)->where('status', '!=', 3)->get();
-        $alumni = DocumentRequests::where('deleted', '=', null)->where('gradelevel_id', '=', 4)->where('status', '!=', 4)->where('status', '!=', 3)->get();
+        $alumni = DocumentRequests::where('deleted', '=', null)->where('status', '!=', 4)->where('status', '!=', 3)->whereHas('student', function($q) {
+            $q->where('status', 2);
+        })->get();
         $documents = Documents::where('deleted', '=', null)->get();
-        return view('admins.documentrequests.documentrequest', compact('requests', 'documents', 'requests11', 'requests12', 'alumni'));
+        $documentpurposes = DocumentPurposes::where('deleted', '=', null)->get();
+        return view('admins.documentrequests.documentrequest', compact('requests', 'documents', 'requests11', 'requests12', 'alumni', 'documentpurposes'));
     }
 
     public function storedocument(Request $request){
         // Validate the inputs
         $request->validate([
             'name' => 'required|max:255',
+            'proof_needed' => 'required|max:255',
         ]);
         $document = new Documents();
         $document->name = $request->get('name');
+        $document->proof_needed = $request->get('proof_needed');
         $document->save();
         return redirect('/documentrequest')->with('success', 'New document was added successfully');
     }
@@ -552,12 +560,16 @@ class AdminsController extends Controller
     }
 
     public function tableofCompletedAlumni(){
-        $requests = DocumentRequests::where('deleted', '=', null)->where('gradelevel_id', '=', 4)->where('status', '=', 3)->get();
+        $requests = DocumentRequests::where('deleted', '=', null)->where('status', '=', 3)->whereHas('student', function($q) {
+            $q->where('status', 2);
+        })->get();
         return view('admins.documentrequests.documentrequestCompletedAlumni', compact('requests'));
     }
 
     public function tableofRejectedAlumni(){
-        $requests = DocumentRequests::where('deleted', '=', null)->where('gradelevel_id', '=', 4)->where('status', '=', 4)->get();
+        $requests = DocumentRequests::where('deleted', '=', null)->where('status', '=', 4)->whereHas('student', function($q) {
+            $q->where('status', 2);
+        })->get();
         return view('admins.documentrequests.documentrequestRejectedAlumni', compact('requests'));
     }
 
@@ -570,6 +582,7 @@ class AdminsController extends Controller
     public function updatedocument(Request $request, Documents $document){
         $validated = $request->validate([
             'name' => 'required|max:255',
+            'proof_needed' => 'required|max:255',
         ]);
        $document->update($validated);
        return redirect('/documentrequest')->with('success', 'Document has been updated.');
@@ -623,6 +636,50 @@ class AdminsController extends Controller
         $pdf->loadView('admins.documentrequests.pdf', compact('users', 'from', 'to'));
         return $pdf->download('documentRequest.pdf');
       }
+
+      public function storepurpose(Request $request){
+        // Validate the inputs
+        $request->validate([
+            'purpose' => 'required|max:255',
+        ]);
+        $document = new DocumentPurposes();
+        $document->purpose = $request->get('purpose');
+        $document->save();
+        return redirect('/documentrequest')->with('success', 'New purpose was added successfully');
+    }
+
+      public function viewpurpose($id){
+        $data = DocumentPurposes::where('deleted', '=', null)->findOrFail($id);
+        return view('admins.documentrequests.viewpurpose', ['purpose' => $data]);
+    }
+
+    public function showpurpose($id){
+        $data = DocumentPurposes::where('deleted', '=', null)->findOrFail($id);
+        return view('admins.documentrequests.showpurpose', ['purpose' => $data]);
+    }
+
+    public function updatepurpose(Request $request, DocumentPurposes $purpose){
+        $validated = $request->validate([
+            'purpose' => 'required|max:255',
+        ]);
+       $purpose->update($validated);
+       return redirect('/documentrequest')->with('success', 'Purpose has been updated.');
+   }
+
+
+     public function deletegradepurpose(Request $request, DocumentPurposes $purpose){
+        $validated = $request->validate([
+            'deleted' => ['required'],
+            'deleted_at' => ['required'],
+        ]);
+        $purpose->update($validated);
+        return redirect('/documentrequest')->with('success', 'Purpose has been deleted successfully!');
+     }
+
+     public function deletepurpose($id){
+        $data = DocumentPurposes::where('deleted', '=', null)->findOrFail($id);
+        return view('admins.documentrequests.purposedelete', ['purpose' => $data]);
+     }
 
      
 
@@ -868,8 +925,18 @@ class AdminsController extends Controller
      // ============================================================ STUDENT ===================================================
 
     public function student(){
-        $students = Students::where('deleted', '=', null)->get();
+        $students = Students::where('deleted', '=', null)->where('status', '=', 1)->get();
         return view('admins.grading.student', compact('students'));
+    }
+
+    public function alumni(){
+        $students = Students::where('deleted', '=', null)->where('status', '=', 2)->get();
+        return view('admins.grading.alumni', compact('students'));
+    }
+
+    public function dropped(){
+        $students = Students::where('deleted', '=', null)->where('status', '=', 3)->get();
+        return view('admins.grading.dropped', compact('students'));
     }
 
     public function addstudent(){
@@ -987,6 +1054,19 @@ class AdminsController extends Controller
         return view('admins.grading.functions.studentdelete', ['student' => $data]);
     }
 
+    public function dropgradestudent(Request $request, Students $student){
+        $validated = $request->validate([
+            'status' => ['required'],
+        ]);
+        $student->update($validated);
+        return redirect('/gradingstudents')->with('success', 'Student has been dropped successfully!');
+    }
+
+    public function dropstudent($id){
+        $data = Students::where('deleted', '=', null)->where('status', '!=', 3)->findOrFail($id);
+        return view('admins.grading.functions.studentdrop', ['student' => $data]);
+    }
+
      public function downloadpdfstu(Request $request) {
         $request->validate([
             'dateFrom' => 'required',
@@ -1097,8 +1177,8 @@ class AdminsController extends Controller
         $schoolyear->schoolyear = $request->get('schoolyear');
         $schoolyear->save();
 
-        Students::where('deleted', '=', null)->increment('gradelevel_id', 1, ['updated_at' => now()]);
-        Students::query()->where('gradelevel_id', '<', 1)->orWhere('gradelevel_id', '>', 2)->update(['gradelevel_id' => 4]);
+        Students::where('deleted', '=', null)->where('status', '=', 1)->increment('gradelevel_id', 1, ['updated_at' => now()]);
+        Students::query()->where('gradelevel_id', '<', 1)->orWhere('gradelevel_id', '>', 2)->update(['status' => 2]);
 
         return redirect('/gradingschoolyear')->with('success', 'Schoolyear has been added successfully!');
     } 
@@ -1179,7 +1259,7 @@ class AdminsController extends Controller
         $teacherId = $subjectteacher->faculty_id;
         $schoolyearId = $subjectteacher->schoolyear_id;
         $students = Students::where('deleted', '=', NULL)->where('course_id', '=', $courseId)->where('section_id', '=', $sectionId)
-                    ->where('gradelevel_id', '=', $gradeLevelId)->get();
+                    ->where('gradelevel_id', '=', $gradeLevelId)->where('status', '=', 1)->get();
         if($students->count() != 0){ 
             foreach($students as $student){
                 $studentgrade = new StudentGrade;
@@ -1316,6 +1396,129 @@ class AdminsController extends Controller
         $data = GradeLevels::where('deleted', '=', null)->findOrFail($id);
         return view('admins.grading.functions.gradeleveldelete', ['gradelevel' => $data]);
     }
+
+    // ============================================================ ADVISORY ===================================================
+
+    public function advisory(){
+        $advisory = Advisories::where('deleted', '=', null)->orderBy('id', 'ASC')->get();
+        return view('admins.grading.advisory', compact('advisory'));
+    }
+
+    public function advisoryadd(){
+        $faculties = Faculties::where('deleted', '=', null)->get();
+        $gradelevels = GradeLevels::all();
+        $semesters = Semesters::all();
+        $courses = Courses::where('deleted', '=', null)->get();
+        $sections =Sections::where('deleted', '=', null)->get();
+        return view('admins.grading.functions.advisoryadd', compact('faculties', 'gradelevels', 'semesters', 'courses', 'sections'));
+    }
+
+    public function advisorystore(Request $request){
+        $request->validate([
+            'faculty_id' => ['required'],
+            'gradelevel_id' => ['required'],
+            'course_id' => ['required'],
+            'section_id' => ['required'],
+        ]);
+        $schoolyear = DB::table('school_years')->latest('id')->first();
+        $advisory = new Advisories();
+        $advisory->schoolyear_id = $schoolyear->id;
+        $advisory->faculty_id = $request->get('faculty_id');
+        $advisory->gradelevel_id = $request->get('gradelevel_id');
+        $advisory->course_id = $request->get('course_id');
+        $advisory->section_id = $request->get('section_id');
+        $advisory->save();
+
+        // creating student grade
+
+        // $subjectTeacherId = $subjectteacher->id;
+        // $courseId = $subjectteacher->course_id;
+        // $gradeLevelId = $subjectteacher->gradelevel_id;
+        // $sectionId = $subjectteacher->section_id;
+        // $semesterId = $subjectteacher->semester_id;
+        // $subjectId = $subjectteacher->subject_id;
+        // $teacherId = $subjectteacher->faculty_id;
+        // $schoolyearId = $subjectteacher->schoolyear_id;
+        // $students = Students::where('deleted', '=', NULL)->where('course_id', '=', $courseId)->where('section_id', '=', $sectionId)
+        //             ->where('gradelevel_id', '=', $gradeLevelId)->where('status', '=', 1)->get();
+        // if($students->count() != 0){ 
+        //     foreach($students as $student){
+        //         $studentgrade = new StudentGrade;
+        //         $studentgrade->student_id = $student->id;
+        //         $studentgrade->gradelevel_id = $gradeLevelId;
+        //         $studentgrade->semester_id = $semesterId;
+        //         $studentgrade->subject_id = $subjectId;
+        //         $studentgrade->faculty_id = $teacherId;
+        //         $studentgrade->subjectteacher_id = $subjectTeacherId;
+        //         $studentgrade->schoolyear_id = $schoolyearId;
+        //         $studentgrade->save();
+        //     }
+        // }  
+
+        return redirect('/advisory')->with('success', 'New advisory class of teacher was added successfully!');
+    } 
+
+    public function viewadvisory($id){
+        $data = Advisories::where('deleted', '=', null)->findOrFail($id);
+        $faculties = Faculties::where('deleted', '=', null)->get();
+        $gradelevels = GradeLevels::all();
+        $courses = Courses::where('deleted', '=', null)->get();
+        $sections =Sections::where('deleted', '=', null)->get();
+        return view('admins.grading.functions.advisoryview', compact('faculties', 'gradelevels', 'courses', 'sections'), ['advisory' => $data]);
+    }
+
+
+    public function showadvisory($id){
+        $data = Advisories::where('deleted', '=', null)->findOrFail($id);
+        $faculties = Faculties::where('deleted', '=', null)->get();
+        $gradelevels = GradeLevels::all();
+        $courses = Courses::where('deleted', '=', null)->get();
+        $sections =Sections::where('deleted', '=', null)->get();
+        return view('admins.grading.functions.advisoryupdate', compact('faculties', 'gradelevels', 'courses', 'sections'), ['advisory' => $data]);
+    }
+
+    public function updateadvisory(Request $request, Advisories $advisory){
+        $validated = $request->validate([
+            'faculty_id' => ['required'],
+            'gradelevel_id' => ['required'],
+            'course_id' => ['required'],
+            'section_id' => ['required'],
+        ]);
+        $advisory->update($validated);
+
+        // $studentgrades = StudentGrade::where('subjectteacher_id', '=', $subjectteacher->id)->get();
+        // foreach($studentgrades as $studentgrade){
+        //     // $studentgrade->gradelevel_id = $request->gradelevel_id;
+        //     // $studentgrade->semester_id = $request->semester_id;
+        //     $studentgrade->subject_id = $request->subject_id;
+        //     $studentgrade->faculty_id = $request->faculty_id;
+        //     $studentgrade->save();
+        // }
+
+        return redirect('/advisory')->with('success', 'Advisory class of teacher has been updated successfully!');
+    }
+
+     public function deletegradeadvisory(Request $request, Advisories $advisory){
+        $validated = $request->validate([
+            'deleted' => ['required'],
+            'deleted_at' => ['required'],
+        ]);
+        $advisory->update($validated);
+
+        // $studentgrades = StudentGrade::where('subjectteacher_id', '=', $subjectteacher->id)->get();
+        // foreach($studentgrades as $studentgrade){
+        //     $studentgrade->deleted = 1;
+        //     $studentgrade->deleted_at = now();
+        //     $studentgrade->save();
+        // }
+
+        return redirect('/advisory')->with('success', 'Advisory class of teacher has been deleted successfully!');
+     }
+
+     public function deleteadvisory($id){
+        $data = Advisories::where('deleted', '=', null)->findOrFail($id);
+        return view('admins.grading.functions.advisorydelete', ['advisory' => $data]);
+     }
 
     // ============================================================================= RESET PASSWORD ====================================================================
 

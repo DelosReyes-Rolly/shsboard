@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\RegisterMail;
 use App\Models\ActivityStreams;
 use App\Models\Addresses;
+use App\Models\Advisories;
 use App\Models\Announcements;
 use App\Models\Courses;
 use App\Models\Faculties;
@@ -257,7 +258,7 @@ class FacultyController extends Controller
     public function view_students($subject_id, $gradelevel_id, $semester_id, $schoolyear_id){
         $male = StudentGrade::where('subject_id', '=', $subject_id)->where('gradelevel_id', '=', $gradelevel_id)->where('semester_id', '=', $semester_id)->where('faculty_id', '=', Auth::user()->id)
                 ->where('schoolyear_id', '=', $schoolyear_id)->where('deleted', '=', NULL)->whereHas('student', function($q) {
-                    $q->where('gender', 'Male');
+                    $q->where('gender', 'Male')->orWhere('gender', '');
                 })->orderByRaw('(SELECT last_name FROM students WHERE students.id = student_grades.student_id)')->get();
         $female = StudentGrade::where('subject_id', '=', $subject_id)->where('gradelevel_id', '=', $gradelevel_id)->where('semester_id', '=', $semester_id)->where('faculty_id', '=', Auth::user()->id)
                 ->where('schoolyear_id', '=', $schoolyear_id)->where('deleted', '=', NULL)->whereHas('student', function($q) {
@@ -334,6 +335,39 @@ class FacultyController extends Controller
             return redirect('/facultygradeeval')->with('success', 'Request has been updated successfully!');
         } 
     }
+
+    // ============================================================ ADVISORY ===================================================================================
+
+    public function advisoryfaculty(){
+        $advisory = Advisories::where('deleted', '=', null)->where('faculty_id', '=', Auth::user()->id)->orderBy('id', 'ASC')->get();
+        return view('faculty.advisory', compact('advisory'));
+    }
+
+    public function cards(Request $request, Advisories $advisory){
+        $validated = $request->validate([
+            'cardgiving' => ['required'],
+        ]);
+        $advisory->update($validated);
+        return redirect('/advisoryfaculty')->with('success', 'Card has been released successfully!');
+     }
+
+     public function unreleasecard(Request $request, Advisories $advisory){
+        $validated = $request->validate([
+            'cardgiving' => ['required'],
+        ]);
+        $advisory->update($validated);
+        return redirect('/advisoryfaculty')->with('success', 'Card has been unreleased successfully!');
+     }
+
+     public function unrelease($id){
+        $data = Advisories::where('deleted', '=', null)->findOrFail($id);
+        return view('faculty.unrelease', ['card' => $data]);
+     }
+
+     public function card_giving($id){
+        $data = Advisories::where('deleted', '=', null)->findOrFail($id);
+        return view('faculty.card_giving', ['card' => $data]);
+     }
 
     // ============================================================ RESET PASSWORD ===================================================================================  
 

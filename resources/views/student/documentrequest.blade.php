@@ -16,6 +16,7 @@
 	<script src="{{ asset('assets/js/datatables-jquery-1.12.1.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-rowreorder-1.2.8.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-responsive-2.3.0.js') }}"></script>
+    <script src="{{ asset('assets/js/common.js') }}"></script>
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable( {
@@ -73,23 +74,33 @@
                                                         <select id="document_type" name="document_type" class="form-control" value="{{ old('document_type') }}" style="font-size: 16px;" >
                                                             <option value="" disabled selected hidden>Choose Document</option>
                                                             @foreach ($lists as $list)
-                                                                <option value="{{ $list->id }}">{{ $list->name}}</option>
+                                                                <option value="{{ $list->id }}" data-proof="{{ $list->proof_needed}}">{{ $list->name}}</option>
                                                             @endforeach
                                                         </select>
             										</div>
                                                 </div>
                                                 <br>
                                                 <!-- Form Group (content)-->
-                                                <div class="mb-3 requestdocument">
+                                                <div class="requestdocument">
                                                     <label class="large mb-1" for="inputpurpose" style="font-size: 20px;"><span style="color: red">*</span> Purpose</label>
-                                                    <div class ="form-group row">
-                                                        <textarea class="form-control @error('purpose') is-invalid @enderror" id="editor" type="text" style="font-size: 16px;" placeholder="Enter your purpose" name="purpose"  value="{{ old('purpose') }}"></textarea>
+                                                    <div class="form-group">
+                                                        @foreach ($purposes as $purpose)
+                                                            <div class="form-check purposes col-lg-4 col-md-8 col-sm-6">
+                                                                &emsp; <input type="radio" class="form-check-input" name="purpose_id" id="{{$purpose->id}}" value="{{$purpose->id}}">
+                                                                <label for="{{$purpose->id}}" class="form-check-label">{{$purpose->purpose}}</label>
+                                                            </div>
+                                                        @endforeach
+                                                        <div class="form-check others">
+                                                            &emsp; <input type="radio" class="form-check-input" name="purpose_id" id="others" value="0">
+                                                            <label for="others" class="form-check-label">Others</label>
+                                                        </div>
+                                                        <textarea class="form-control @error('purpose') is-invalid @enderror purposeText" id="editor" type="text" style="font-size: 16px; display: none;" placeholder="Enter your purpose" name="purpose"  value="{{ old('purpose') }}"></textarea>
                                                     </div>
                                                 </div>
                                                 <br>
                                                 <!-- Form Group (content)-->
                                                 <div class="mb-3 requestdocument">
-                                                    <label class="large mb-1" for="inputcontent" style="font-size: 20px;">Proof (Only DOCS, DOCX, and PDF files are allowed to upload.)</label>
+                                                     <div style="font-size: 20px;"><span style="color: red">*</span> Proof needed: <input id="proof" name="proof_needed" style="border: none;" value="" disabled>(Only DOCS, DOCX, and PDF files are allowed.)</div>
             										<div class ="form-group row">
             											<input type="file" name = "file" class="form-control" style="font-size: 12px;" >
             										</div>                                 
@@ -119,7 +130,7 @@
 						@else 
 								<br>
 								<div class="table-responsive table-billing-history">
-									<table id="example" class="display nowrap" style="width:100%">
+									<table id="example" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
 										<thead>
 											<tr>
 												<th class="border-gray-200" scope="col">#</th>
@@ -140,7 +151,11 @@
                                                     <?php $requested_at = date('F d, Y', strtotime($request -> created_at)); ?>
                                                     <td class="text-center"><?php echo $i++; ?></td>
                                                     <td>{{$request -> document -> name}}</td>
-                                                    <td>{{$request -> purpose}}</td>
+                                                    @if($request -> purpose_id != 0)
+                                                        <td>{{$request -> purpose -> purpose}}</td>
+                                                    @else
+                                                        <td>{{$request -> other_purposes}}</td>
+                                                    @endif
                                                     <td>{{$requested_at}}</td>
                                                     <td>
                                                         <a href="/download/{{$request -> file}}" class="btn btn-primary">Download</a> 

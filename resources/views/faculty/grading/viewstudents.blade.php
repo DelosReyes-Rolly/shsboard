@@ -25,7 +25,7 @@
             <div style="background-color: #ffffff; box-shadow: 0 4px 16px rgba(0,0,0,0.6);">
                 <div class="card-header bg-primary" style="font-size: 20px;"><b>Male</b></div>
                 <div>  
-                    <div class="table-responsive border-start-lg border-start-success" style=" box-shadow: 0 4px 16px rgba(0,0,0,0.6);">  
+                    <div class="table-responsive border-start-lg border-start-primary" style=" box-shadow: 0 4px 16px rgba(0,0,0,0.6);">  
                     @if($male->count() == 0) 
                         <!-- find all subject of teachers then count if they have one. -->
                         <div class="alert alert-danger"><em>No male records found.</em></div>
@@ -158,13 +158,13 @@
             <div style="background-color: #ffffff; box-shadow: 0 4px 16px rgba(0,0,0,0.6);">
                 <div class="card-header bg-primary" style="font-size: 20px;"><b>Female</b></div>
                 <div>  
-                    <div class="table-responsive border-start-lg border-start-success" style="background-color: #ffffff; box-shadow: 0 4px 16px rgba(0,0,0,0.6);">  
+                    <div class="table-responsive border-start-lg border-start-primary" style="background-color: #ffffff; box-shadow: 0 4px 16px rgba(0,0,0,0.6);">  
                     @if($female->count() == 0) 
                         <!-- find all subject of teachers then count if they have one. -->
                         <div class="alert alert-danger"><em>No female records found.</em></div>
                     @else
                         @csrf
-                        <table id="editable2" class="table table-bordered table-striped table-hover">
+                        <table id="editable2" class="display nowrap table-bordered table-striped table-hover">
                             <thead class="thead-dark">
                                 <tr>
                                     <th style="font-size: 20px;">#</th>

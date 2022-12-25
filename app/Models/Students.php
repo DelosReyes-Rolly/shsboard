@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
         protected $guard = 'students';
 
         protected $fillable = [
-            'address_id', 'course_id', 'section_id', 'LRN', 'first_name', 'middle_name', 'last_name', 'suffix', 'gradelevel_id', 'username', 'email', 'password', 'phone_number', 'gender', 'deleted', 'deleted_at'
+            'address_id', 'course_id', 'section_id', 'LRN', 'first_name', 'middle_name', 'last_name', 'suffix', 'gradelevel_id', 'username', 'email', 'password', 'phone_number', 'gender', 'deleted', 'deleted_at', 'status'
         ];
 
         protected $hidden = [

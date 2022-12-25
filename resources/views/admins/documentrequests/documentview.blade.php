@@ -27,6 +27,10 @@
                                                                 <span style="font-size: 26px;">{{$document->name}}</span>
                                                     </div><br>
                                                     <div class="mb-3">
+                                                            <label class="large" for="name" style="font-size: 26px;"><b>Proof Needed: </b></label>
+                                                                <span style="font-size: 26px;">{{$document->proof_needed}}</span>
+                                                    </div><br>
+                                                    <div class="mb-3">
                                                             <label class="large" for="name" style="font-size: 26px;"><b>Created at: </b></label>
                                                                 <span style="font-size: 26px;">{{$requested_at  =   date('F d, Y', strtotime($document->created_at))}}</span>
                                                     </div><br>

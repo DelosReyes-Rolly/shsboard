@@ -91,6 +91,12 @@
                         </li>
                     </ul>
                 </li>
+                <li title="Advisory">
+                    <a href="{{ url('/advisoryfaculty') }}">
+                        <i class="fas fa-user-tag"></i>
+                        <span class="hide-word title-word"><b> Advisory</b></span>
+                    </a>
+                </li>
             </ul>
         </nav>
 

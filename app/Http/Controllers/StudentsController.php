@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Mail\RegisterMail;
 use App\Models\ActivityStreams;
+use App\Models\Advisories;
+use App\Models\DocumentPurposes;
 use Illuminate\Support\Facades\Mail;
 
 
@@ -156,6 +158,7 @@ class StudentsController extends Controller
     // ============================================================ GRADES ===================================================================================  
 
     public function grades(){
+        $cardprint = Advisories::where('gradelevel_id', '=', Auth::user()->gradelevel_id)->where('course_id', '=', Auth::user()->course_id)->where('section_id', '=', Auth::user()->section_id)->where('deleted', '=', NULL)->first();
         $allsubjects = StudentGrade::where('student_id', '=', Auth::user()->id)->where('deleted', '=', NULL)->get();
         $grade11 = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 1)->where('deleted', '=', NULL)->get();
         $grade11firstsem = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 1)->where('semester_id', '=', 1)->where('deleted', '=', NULL)->get();
@@ -168,7 +171,7 @@ class StudentsController extends Controller
         $grade12secondsem = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 2)->where('semester_id', '=', 2)->where('deleted', '=', NULL)->get();
         $grade12secondsemungraded = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 2)->where('semester_id', '=', 2)->where(function($q){$q->where('midterm', NULL)->orWhere('finals', NULL);})->where('deleted', '=', NULL)->get();
         return view('student.grading.dashboard', compact('allsubjects', 'grade11', 'grade11firstsem', 'grade11firstsemungraded', 'grade11secondsem', 'grade11secondsemungraded', 
-                        'grade12', 'grade12firstsem', 'grade12firstsemungraded', 'grade12secondsem', 'grade12secondsemungraded'));
+                        'grade12', 'grade12firstsem', 'grade12firstsemungraded', 'grade12secondsem', 'grade12secondsemungraded', 'cardprint'));
 
     }
 
@@ -237,21 +240,35 @@ class StudentsController extends Controller
     public function documentRequest(){
         $stuid = Auth::user()->id;
         $lists = Documents::where('deleted', '=', null)->get();
+        $purposes = DocumentPurposes::where('deleted', '=', null)->get();
         $requests = DocumentRequests::where('deleted', '=', null)->where('student_id', '=', $stuid)->get();
         $gradelevel = GradeLevels::where('id', '=', Auth::user()->gradelevel_id)->first();
         $course = Courses::where('id', '=', Auth::user()->course_id)->first();
-        return view('student.documentrequest', compact('requests', 'lists', 'gradelevel', 'course'));
+        return view('student.documentrequest', compact('requests', 'lists', 'gradelevel', 'course', 'purposes'));
     }
+    
 
     public function documentrequestsend(Request $request){
         $request->validate([
             'document_type' => 'required',
-            'purpose' => 'required|max:255',
-            'file' => 'mimes:doc,docx,docs,pdf|max:2048',
+            'purpose_id' => 'required|max:11',
+            'purpose' => '',
+            'file' => 'required|mimes:doc,docx,docs,pdf|max:2048',
         ]);
+        if($request->get('purpose_id') == 0){
+            $request->validate([
+                'purpose' => 'required',
+            ]);
+        }
         $docreq = new DocumentRequests();
         $docreq->document_id = $request->get('document_type');
-        $docreq->purpose = $request->get('purpose');
+        if($request->get('purpose_id') != 0){
+            $docreq->purpose_id = $request->get('purpose_id');
+        }
+        else{
+            $docreq->purpose_id = 0;
+            $docreq->other_purposes = $request->get('purpose');
+        }
         $docreq->student_id =  Auth::user()->id;
         $docreq->gradelevel_id =  Auth::user()->gradelevel_id;
         $docreq->status = 1;
