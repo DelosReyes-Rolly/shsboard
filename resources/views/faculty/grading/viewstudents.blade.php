@@ -25,6 +25,7 @@
             <div style="background-color: #ffffff; box-shadow: 0 4px 16px rgba(0,0,0,0.6);">
                 <div class="card-header bg-primary" style="font-size: 20px;"><b>Male</b></div>
                 <div>  
+                
                     <div class="table-responsive border-start-lg border-start-primary" style=" box-shadow: 0 4px 16px rgba(0,0,0,0.6);">  
                     @if($male->count() == 0) 
                         <!-- find all subject of teachers then count if they have one. -->
@@ -103,11 +104,16 @@
                                                                 break;
                                                             }
                                                             else{
-                                                                echo '<span class="badge bg-danger" style="color: white;">Grades are not complete</span>';
+                                                                <!-- @endphp<div id="notComplete">@php -->
+                                                                    echo '<span class="badge bg-danger" style="color: white;">Grades are not complete</span>';
+                                                                <!-- @endphp</div>@php -->
                                                                 break;
                                                             }
                                                         case ($student -> finals !== 'NULL' && $student -> midterm !== 'NULL'):
-                                                            echo $ave = ($student -> midterm + $student -> finals) / 2;
+                                                            echo '<h3 style="font-size: 20px;" id="ave"></h3 >';
+                                                            @endphp<div id="php">@php
+                                                                echo $ave = ($student -> midterm + $student -> finals) / 2;
+                                                            @endphp</div>@php
                                                             break;
                                                         default:
                                                             echo '<span class="badge bg-danger" style="color: white;">Unidentified</span>';
@@ -236,7 +242,10 @@
                                                                 break;
                                                             }
                                                         case ($student -> finals !== 'NULL' && $student -> midterm !== 'NULL'):
-                                                            echo $ave = ($student -> midterm + $student -> finals) / 2;
+                                                            echo '<h3 style="font-size: 20px;" id="ave"></h3 >';
+                                                            @endphp<div id="php">@php
+                                                                echo $ave = ($student -> midterm + $student -> finals) / 2;
+                                                            @endphp</div>@php
                                                             break;
                                                         default:
                                                             echo '<span class="badge bg-danger" style="color: white;">Unidentified</span>';
@@ -295,7 +304,7 @@
             'X-CSRF-Token' : $("input[name=_token]").val()
             }
         });
-
+        
         $('#editable2').Tabledit({
             url:'{{ route("tabledit.action") }}',
             dateType:"json",
@@ -303,14 +312,23 @@
             identifier:[0, 'id'],
             editable:[[3, 'midterm'], [4, 'finals']]
             },
-            restoreButton:false,
+            restoreButton:true,
             onSuccess:function(data, textStatus, jqXHR)
             {
             if(data.action == 'delete')
             {
                 $('#'+data.id).show();
             }
-            }
+
+            var midterm = data.midterm /2;
+            var finals = data.finals/2;
+            var ave =(midterm + finals);
+            // document.getElementById('notComplete').style.display = 'none';
+            document.getElementById("ave").innerHTML = ave; 
+            document.getElementById('php').style.display = 'none';
+           
+
+            }        
         });
 
         
@@ -328,12 +346,19 @@
             {
                 $('#'+data.id).show();
             }
+
+            
+            var midterm = data.midterm /2;
+            var finals = data.finals/2;
+            var ave =(midterm + finals);
+            
+            document.getElementById("ave").innerHTML = ave; 
+            document.getElementById('php').style.display = 'none';
+            document.getElementById('grades').style.display = 'none';
             }
         });
 
         });  
-        
-        
     </script>
   
     <script type="text/javascript">

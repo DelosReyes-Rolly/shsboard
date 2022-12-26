@@ -297,7 +297,6 @@ class FacultyController extends Controller
                         ->update($data);
                     }
                 }
-
                 
     		}
     		if($request->action == 'delete')

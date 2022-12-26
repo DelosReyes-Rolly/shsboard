@@ -98,7 +98,7 @@ if ("undefined" == typeof jQuery) throw new Error("Tabledit requires jQuery libr
                                     t.each(jQuery.parseJSON(d.columns.editable[e][2]), function(t, e) {
                                         a += n === e ? '<option value="' + t + '" selected>' + e + "</option>" : '<option value="' + t + '">' + e + "</option>"
                                     }), a += "</select>"
-                                } else var a = '<input class="tabledit-input ' + d.inputClass + '" type="text" name="' + d.columns.editable[e][1] + '" value="' + t(this).text() + '" style="display: none;" disabled>';
+                                } else var a = '<input class="tabledit-input ' + d.inputClass + '" type="number" name="' + d.columns.editable[e][1] + '" value="' + t(this).text() + '" style="display: none;" disabled>';
                                 t(this).html(i + a), t(this).addClass("tabledit-view-mode")
                             })
                         }
