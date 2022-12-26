@@ -26,6 +26,12 @@
                             <div class="mb-3" style="color: red">
                                 * required field
                             </div>
+                            @if ($message = Session::get('message'))
+                                <div class="alert alert-danger alert-block">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <strong>{{ $message }}</strong>
+                                </div></br></br>
+                            @endif
                             <!-- Form Row-->
                             <div class="row gx-3 mb-3">
                                 

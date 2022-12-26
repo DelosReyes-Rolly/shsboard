@@ -1513,6 +1513,7 @@ button[type=submit]{       /*login button*/
     flex-wrap: wrap;
     height: auto;
     width: auto;
+    background-color: rgb(222, 233, 222);;
 }
  
 .tabs label {
@@ -1542,7 +1543,7 @@ button[type=submit]{       /*login button*/
 }
  
 .tabs input[type="radio"]:checked + label {
-      background: #fff;
+      background: #ffffff;
 }
  
 .tabs input[type="radio"]:checked + label + .tab {

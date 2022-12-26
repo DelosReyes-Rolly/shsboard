@@ -1179,6 +1179,7 @@ class AdminsController extends Controller
 
         Students::where('deleted', '=', null)->where('status', '=', 1)->increment('gradelevel_id', 1, ['updated_at' => now()]);
         Students::query()->where('gradelevel_id', '<', 1)->orWhere('gradelevel_id', '>', 2)->update(['status' => 2]);
+        Advisories::query()->update(['active' => 1]);
 
         return redirect('/gradingschoolyear')->with('success', 'Schoolyear has been added successfully!');
     } 
@@ -1400,8 +1401,9 @@ class AdminsController extends Controller
     // ============================================================ ADVISORY ===================================================
 
     public function advisory(){
-        $advisory = Advisories::where('deleted', '=', null)->orderBy('id', 'ASC')->get();
-        return view('admins.grading.advisory', compact('advisory'));
+        $advisories = Advisories::where('deleted', '=', null)->orderBy('id', 'ASC')->get();
+        $schoolYear = Advisories::groupBy('schoolyear_id')->where('deleted', '=', null)->orderBy('id', 'DESC')->get();
+        return view('admins.grading.advisory', compact('advisories', 'schoolYear'));
     }
 
     public function advisoryadd(){
@@ -1420,42 +1422,22 @@ class AdminsController extends Controller
             'course_id' => ['required'],
             'section_id' => ['required'],
         ]);
-        $schoolyear = DB::table('school_years')->latest('id')->first();
-        $advisory = new Advisories();
-        $advisory->schoolyear_id = $schoolyear->id;
-        $advisory->faculty_id = $request->get('faculty_id');
-        $advisory->gradelevel_id = $request->get('gradelevel_id');
-        $advisory->course_id = $request->get('course_id');
-        $advisory->section_id = $request->get('section_id');
-        $advisory->save();
-
-        // creating student grade
-
-        // $subjectTeacherId = $subjectteacher->id;
-        // $courseId = $subjectteacher->course_id;
-        // $gradeLevelId = $subjectteacher->gradelevel_id;
-        // $sectionId = $subjectteacher->section_id;
-        // $semesterId = $subjectteacher->semester_id;
-        // $subjectId = $subjectteacher->subject_id;
-        // $teacherId = $subjectteacher->faculty_id;
-        // $schoolyearId = $subjectteacher->schoolyear_id;
-        // $students = Students::where('deleted', '=', NULL)->where('course_id', '=', $courseId)->where('section_id', '=', $sectionId)
-        //             ->where('gradelevel_id', '=', $gradeLevelId)->where('status', '=', 1)->get();
-        // if($students->count() != 0){ 
-        //     foreach($students as $student){
-        //         $studentgrade = new StudentGrade;
-        //         $studentgrade->student_id = $student->id;
-        //         $studentgrade->gradelevel_id = $gradeLevelId;
-        //         $studentgrade->semester_id = $semesterId;
-        //         $studentgrade->subject_id = $subjectId;
-        //         $studentgrade->faculty_id = $teacherId;
-        //         $studentgrade->subjectteacher_id = $subjectTeacherId;
-        //         $studentgrade->schoolyear_id = $schoolyearId;
-        //         $studentgrade->save();
-        //     }
-        // }  
-
-        return redirect('/advisory')->with('success', 'New advisory class of teacher was added successfully!');
+        if (Advisories::where('gradelevel_id', '=', $request->get("gradelevel_id"))->where('active', '=', null)->count() <= 0 || Advisories::where('course_id', '=', $request->get("course_id"))->where('active', '=', null)->count() <= 0
+        || Advisories::where('section_id', '=', $request->get("section_id"))->where('active', '=', null)->count() <= 0) {
+            $schoolyear = DB::table('school_years')->latest('id')->first();
+            $advisory = new Advisories();
+            $advisory->schoolyear_id = $schoolyear->id;
+            $advisory->faculty_id = $request->get('faculty_id');
+            $advisory->gradelevel_id = $request->get('gradelevel_id');
+            $advisory->course_id = $request->get('course_id');
+            $advisory->section_id = $request->get('section_id');
+            $advisory->save();
+            return redirect('/advisory')->with('success', 'New advisory class of teacher was added successfully!');
+        }
+        else{
+            return redirect()->back()->with('message', 'There is already an advisory teacher that is assigned to this class.')->withInput();
+        }
+        
     } 
 
     public function viewadvisory($id){
@@ -1471,18 +1453,12 @@ class AdminsController extends Controller
     public function showadvisory($id){
         $data = Advisories::where('deleted', '=', null)->findOrFail($id);
         $faculties = Faculties::where('deleted', '=', null)->get();
-        $gradelevels = GradeLevels::all();
-        $courses = Courses::where('deleted', '=', null)->get();
-        $sections =Sections::where('deleted', '=', null)->get();
-        return view('admins.grading.functions.advisoryupdate', compact('faculties', 'gradelevels', 'courses', 'sections'), ['advisory' => $data]);
+        return view('admins.grading.functions.advisoryupdate', compact('faculties'), ['advisory' => $data]);
     }
 
     public function updateadvisory(Request $request, Advisories $advisory){
         $validated = $request->validate([
             'faculty_id' => ['required'],
-            'gradelevel_id' => ['required'],
-            'course_id' => ['required'],
-            'section_id' => ['required'],
         ]);
         $advisory->update($validated);
 

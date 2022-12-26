@@ -339,8 +339,9 @@ class FacultyController extends Controller
     // ============================================================ ADVISORY ===================================================================================
 
     public function advisoryfaculty(){
-        $advisory = Advisories::where('deleted', '=', null)->where('faculty_id', '=', Auth::user()->id)->orderBy('id', 'ASC')->get();
-        return view('faculty.advisory', compact('advisory'));
+        $advisories = Advisories::where('deleted', '=', null)->where('faculty_id', '=', Auth::user()->id)->orderBy('id', 'ASC')->get();
+        $schoolYear = Advisories::groupBy('schoolyear_id')->where('deleted', '=', null)->orderBy('id', 'DESC')->get();
+        return view('faculty.advisory', compact('advisories','schoolYear'));
     }
 
     public function cards(Request $request, Advisories $advisory){
@@ -360,12 +361,12 @@ class FacultyController extends Controller
      }
 
      public function unrelease($id){
-        $data = Advisories::where('deleted', '=', null)->findOrFail($id);
+        $data = Advisories::where('deleted', '=', null)->where('active', '=', null)->findOrFail($id);
         return view('faculty.unrelease', ['card' => $data]);
      }
 
      public function card_giving($id){
-        $data = Advisories::where('deleted', '=', null)->findOrFail($id);
+        $data = Advisories::where('deleted', '=', null)->where('active', '=', null)->findOrFail($id);
         return view('faculty.card_giving', ['card' => $data]);
      }
 

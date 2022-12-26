@@ -158,7 +158,7 @@ class StudentsController extends Controller
     // ============================================================ GRADES ===================================================================================  
 
     public function grades(){
-        $cardprint = Advisories::where('gradelevel_id', '=', Auth::user()->gradelevel_id)->where('course_id', '=', Auth::user()->course_id)->where('section_id', '=', Auth::user()->section_id)->where('deleted', '=', NULL)->first();
+        $cardprint = Advisories::where('gradelevel_id', '=', Auth::user()->gradelevel_id)->where('course_id', '=', Auth::user()->course_id)->where('section_id', '=', Auth::user()->section_id)->where('deleted', '=', NULL)->where('active', '=', null)->first();
         $allsubjects = StudentGrade::where('student_id', '=', Auth::user()->id)->where('deleted', '=', NULL)->get();
         $grade11 = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 1)->where('deleted', '=', NULL)->get();
         $grade11firstsem = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 1)->where('semester_id', '=', 1)->where('deleted', '=', NULL)->get();

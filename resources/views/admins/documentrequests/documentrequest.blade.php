@@ -460,7 +460,7 @@
 											</div>				
 								    	</div>
 									
-									<input type="radio" name="tabs" id="tabthree" checked="checked">
+									<input type="radio" name="tabs" id="tabthree">
 								    <label for="tabthree">Alumni</label>
 								    <div class="tab" style="height: auto;">
 										<div style="margin: 20px;">

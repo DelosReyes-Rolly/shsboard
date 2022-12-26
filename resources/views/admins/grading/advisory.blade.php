@@ -43,44 +43,56 @@
                 </div>
             </div>
             <div class="card-body p-0" style="padding: 20px 20px 20px 20px;">
-                @if($advisory->count() == 0)
+                @if($advisories->count() == 0)
 					<br><br>
 					<div class="alert alert-danger"><em>No records found.</em></div>
 				@else 
-                    <br>
-                    <div class="table-responsive table-billing-history">
-                        <table id="example" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th class="border-gray-200" scope="col">#</th>
-                                    <th class="border-gray-200" scope="col">Teacher Name</th>
-                                    <th class="border-gray-200" scope="col">Grade Level</th>
-                                    <th class="border-gray-200" scope="col">Strand</th>
-                                    <th class="border-gray-200" scope="col">Section</th>
-                                    <th class="border-gray-200" scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php 
-                                    $i=1;
-                                ?>
-                                    @foreach ($advisory as $adviser)  
-                                        <tr id="{{$adviser -> id}}">
-                                            <td class="text-center"><?php echo $i++; ?></td>
-                                            <td>{{$adviser -> faculty -> last_name}}, {{$adviser -> faculty -> first_name}} {{$adviser -> faculty -> middle_name}} {{$adviser -> faculty -> suffix}}</td>
-                                            <td>{{$adviser -> gradelevel -> gradelevel}}</td>
-                                            <td>{{$adviser -> course -> courseName}}</td>
-                                            <td>{{$adviser -> section -> section}}</td>
-                                            <td>
-                                                <a class="btn btn-success btn-md" href="/viewadvisory/{{$adviser->id}}"><i class="fas fa-eye"></i> View</a>
-                                                <a class="btn btn-warning btn-md" href="/showadvisory/{{$adviser->id}}"><i class="fas fa-edit"></i> Update</a>
-                                                <a class="btn btn-danger btn-md" href="{{route('admin.deleteadvisory', $adviser->id)}}"><i class="fas fa-trash-alt"></i> Delete</a>
-                                            </td> 
-                                        </tr>
-                                    @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                    @foreach ($schoolYear as $sy)
+                        <button class="accordion"><b>{{$sy->schoolyear->schoolyear}}</b></button>
+                        <div class="panel">
+                            <div style="padding-bottom: 400px;">
+                                <div class="card-header">Table of Advisories</div>
+                                <div class="card-body p-0">
+                                    <!-- table-->
+                                        <br>
+                                        <div class="table-responsive table-billing-history">
+                                            <table id="example" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="border-gray-200" scope="col">#</th>
+                                                        <th class="border-gray-200" scope="col">Teacher Name</th>
+                                                        <th class="border-gray-200" scope="col">Grade Level</th>
+                                                        <th class="border-gray-200" scope="col">Strand</th>
+                                                        <th class="border-gray-200" scope="col">Section</th>
+                                                        <th class="border-gray-200" scope="col">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                @php $count = 1; @endphp
+                                                @foreach($advisories as $adviser)
+                                                    @if($adviser->schoolyear->schoolyear == $sy->schoolyear->schoolyear)
+                                                            <tr id="{{$adviser -> id}}">
+                                                                <td>{{$count++}}</td>
+                                                                <td>{{$adviser -> faculty -> last_name}}, {{$adviser -> faculty -> first_name}} {{$adviser -> faculty -> middle_name}} {{$adviser -> faculty -> suffix}}</td>
+                                                                <td>{{$adviser -> gradelevel -> gradelevel}}</td>
+                                                                <td>{{$adviser -> course -> courseName}}</td>
+                                                                <td>{{$adviser -> section -> section}}</td>
+                                                                <td>
+                                                                    <a class="btn btn-success btn-md" href="/viewadvisory/{{$adviser->id}}"><i class="fas fa-eye"></i> View</a>
+                                                                    <a class="btn btn-warning btn-md" href="/showadvisory/{{$adviser->id}}"><i class="fas fa-edit"></i> Update</a>
+                                                                    <a class="btn btn-danger btn-md" href="{{route('admin.deleteadvisory', $adviser->id)}}"><i class="fas fa-trash-alt"></i> Delete</a>
+                                                                </td> 
+                                                            </tr>
+                                                    @endif
+                                                @endforeach
+                                                </tbody>
+                                            </table>    
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    @endforeach
                 @endif
             </div>
         </div>  
@@ -92,6 +104,24 @@
         $('.mobile_nav_items').toggleClass('active');
       });
     });
+    </script>
+
+    <!-- accordion -->
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+          acc[i].addEventListener("click", function() {
+            this.classList.toggle("actives");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+              panel.style.maxHeight = null;
+            } else {
+              panel.style.maxHeight = panel.scrollHeight + "px";
+            } 
+          });
+        }
     </script>
 </main>
 <br><br><br><br>

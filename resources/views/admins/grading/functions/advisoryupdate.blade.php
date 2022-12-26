@@ -32,62 +32,20 @@
                                     <div class="mb-3" style="color: red">
                                         * required field
                                     </div>
+                                    <div style="font-size: 26px; font-family:'Times New Roman', Times, serif; padding: 20px;">
+                                        <b>CLASS:</b> {{$advisory->gradelevel->gradelevel}} {{$advisory->course->courseName}} - {{$advisory->section->section}} ({{$advisory->course->abbreviation}} - {{$advisory->section->section}})
+                                    </div>
                                     <!-- Form Row-->
                                     <div class="row gx-3 mb-3">
                                         
                                         <!-- Form Group (title)-->
                                         <div class="col-md-10">
                                             <div class="col-md-12"><label for="faculty_id" style="font-size: 20px;"><span style="color: red">*</span> Teacher</label>
-                                                <select id="faculty_id" name="faculty_id" class="form-control" style="font-size: 14px;">
+                                                <select id="faculty_id" name="faculty_id" class="form-control" style="font-size: 14px;">    
                                                     <option value="" disabled selected hidden>Choose Teacher</option>
                                                     @foreach ($faculties as $faculty)
                                                         <option value="{{ $faculty->id }}" {{($advisory->faculty->id==$faculty->id)? 'selected':'' }}>{{ $faculty->last_name }}, {{ $faculty->first_name }} {{ $faculty->middle_name }} {{$advisory -> faculty -> suffix}}</option>
                                                     @endforeach 
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div><br/>
-                                    
-                                    <!-- Form Row -->
-                                    <div class="row gx-3 mb-3">
-                                        <!-- Form Group whr-->
-                                        <div class="col-md-10">
-                                            <div class="col-md-12"><label for="gradelevel_id" style="font-size: 20px;"><span style="color: red">*</span> Subjects</label>
-                                                <select id="gradelevel_id" name="gradelevel_id" class="form-control" value="{{ old('gradelevel_id') }}" style="font-size: 14px;">
-                                                    <option value="" disabled selected hidden>Choose Grade Level</option>
-                                                    @foreach ($gradelevels as $gradelevel)
-                                                        <option value="{{ $gradelevel->id }}"{{($advisory->gradelevel->id==$gradelevel->id)? 'selected':'' }}>{{ $gradelevel->gradelevel}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div><br/>
-
-                                    <!-- Form Row -->
-                                    <div class="row gx-3 mb-3">
-                                        <!-- Form Group whr-->
-                                        <div class="col-md-10">
-                                            <div class="col-md-12"><label for="course_id" style="font-size: 20px;"><span style="color: red">*</span> Strand</label>
-                                                <select id="course_id" name="course_id" class="form-control" value="{{ old('course_id') }}" style="font-size: 14px;">
-                                                    <option value="" disabled selected hidden>Choose Strand</option>
-                                                    @foreach ($courses as $course)
-                                                        <option value="{{ $course->id }}"{{($advisory->course->id==$course->id)? 'selected':'' }}>{{ $course->courseName}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div><br/>
-
-                                    <!-- Form Row -->
-                                    <div class="row gx-3 mb-3">
-                                        <!-- Form Group whr-->
-                                        <div class="col-md-10">
-                                            <div class="col-md-12"><label for="section_id" style="font-size: 20px;"><span style="color: red">*</span> Sections</label>
-                                                <select id="section_id" name="section_id" class="form-control" value="{{ old('section_id') }}" style="font-size: 14px;">
-                                                    <option value="" disabled selected hidden>Choose Section</option>
-                                                    @foreach ($sections as $section)
-                                                        <option value="{{ $section->id }}"{{($advisory->section->id==$section->id)? 'selected':'' }}>{{ $section->section}}</option>
-                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
