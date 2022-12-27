@@ -72,7 +72,7 @@
                                         @endphp
                                     </th>
                                     <th style="font-size: 20px;">Average</th>
-                                    <th style="font-size: 20px;">Remarks</th>
+                                    <!-- <th style="font-size: 20px;">Remarks</th> -->
                                 </tr>
                             </thead>
                             <tbody>   
@@ -91,27 +91,14 @@
                                                 @php
                                                     switch ($student -> finals && $student -> midterm) {
                                                         case ($student -> finals === 'NULL' || $student -> midterm === 'NULL'):
-                                                            if($student -> finals === 0 && $student -> midterm !== 0){
-                                                                echo $ave = ($student -> midterm + $student -> finals) / 2;;
-                                                                break;
-                                                            }
-                                                            elseif($student -> finals !== 0 && $student -> midterm === 0){
-                                                                echo $ave = ($student -> midterm + $student -> finals) / 2;;
-                                                                break;
-                                                            }
-                                                            elseif($student -> finals === 0 && $student -> midterm === 0){
-                                                                echo $ave = ($student -> midterm + $student -> finals) / 2;;
-                                                                break;
-                                                            }
-                                                            else{
-                                                                <!-- @endphp<div id="notComplete">@php -->
-                                                                    echo '<span class="badge bg-danger" style="color: white;">Grades are not complete</span>';
-                                                                <!-- @endphp</div>@php -->
-                                                                break;
-                                                            }
+                                                            echo '<h3 style="font-size: 20px;" id="ave"></h3 >';
+                                                            @endphp<div id="notComplete">@php
+                                                                echo '<span class="badge bg-danger" style="color: white;">Grades are not complete</span>';
+                                                            @endphp</div>@php
+                                                            break;
                                                         case ($student -> finals !== 'NULL' && $student -> midterm !== 'NULL'):
                                                             echo '<h3 style="font-size: 20px;" id="ave"></h3 >';
-                                                            @endphp<div id="php">@php
+                                                            @endphp<div id="notComplete">@php
                                                                 echo $ave = ($student -> midterm + $student -> finals) / 2;
                                                             @endphp</div>@php
                                                             break;
@@ -121,27 +108,15 @@
                                                     }
                                                 @endphp
                                             </td>
-                                            <td style="font-size: 20px;">
+                                            <!-- <td style="font-size: 20px;">
                                                 @php 
                                                     $ave = ($student -> midterm + $student -> finals) / 2;
                                                     switch ($ave && $student -> finals && $student -> midterm) {
                                                         case ($student -> finals === 'NULL' || $student -> midterm === 'NULL'):
-                                                            if($student -> finals === 0 && $student -> midterm !== 0){
-                                                                echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
-                                                                break;
-                                                            }
-                                                            elseif($student -> finals !== 0 && $student -> midterm === 0){
-                                                                echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
-                                                                break;
-                                                            }
-                                                            elseif($student -> finals === 0 && $student -> midterm === 0){
-                                                                echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
-                                                                break;
-                                                            }
-                                                            else{
+                                                            @endphp<div id="notComplete">@php
                                                                 echo '<span class="badge bg-danger" style="color: white;">No remarks</span>';
-                                                                break;
-                                                            }
+                                                            @endphp</div>@php
+                                                            break;
                                                         case ($ave <='100' && $ave >'74' && $student -> finals !== 'NULL' && $student -> midterm !== 'NULL'):
                                                             echo '<span class="badge bg-success" style="color: white;">Passed</span>';
                                                             break;
@@ -151,7 +126,7 @@
                                                     }
                                                 @endphp
                                                         
-                                            </td>
+                                            </td> -->
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -206,7 +181,7 @@
                                         @endphp
                                     </th>
                                     <th style="font-size: 20px;">Average</th>
-                                    <th style="font-size: 20px;">Remarks</th>
+                                    <!-- <th style="font-size: 20px;">Remarks</th> -->
                                 </tr>
                             </thead>
                             <tbody>   
@@ -225,25 +200,14 @@
                                                 @php
                                                     switch ($student -> finals && $student -> midterm) {
                                                         case ($student -> finals === 'NULL' || $student -> midterm === 'NULL'):
-                                                            if($student -> finals === 0 && $student -> midterm !== 0){
-                                                                echo $ave = ($student -> midterm + $student -> finals) / 2;;
-                                                                break;
-                                                            }
-                                                            elseif($student -> finals !== 0 && $student -> midterm === 0){
-                                                                echo $ave = ($student -> midterm + $student -> finals) / 2;;
-                                                                break;
-                                                            }
-                                                            elseif($student -> finals === 0 && $student -> midterm === 0){
-                                                                echo $ave = ($student -> midterm + $student -> finals) / 2;;
-                                                                break;
-                                                            }
-                                                            else{
+                                                            echo '<h3 style="font-size: 20px;" id="ave"></h3 >';
+                                                            @endphp<div id="notComplete">@php
                                                                 echo '<span class="badge bg-danger" style="color: white;">Grades are not complete</span>';
-                                                                break;
-                                                            }
+                                                            @endphp</div>@php
+                                                            break;
                                                         case ($student -> finals !== 'NULL' && $student -> midterm !== 'NULL'):
                                                             echo '<h3 style="font-size: 20px;" id="ave"></h3 >';
-                                                            @endphp<div id="php">@php
+                                                            @endphp<div id="notComplete">@php
                                                                 echo $ave = ($student -> midterm + $student -> finals) / 2;
                                                             @endphp</div>@php
                                                             break;
@@ -253,7 +217,7 @@
                                                     }
                                                 @endphp
                                             </td>
-                                            <td style="font-size: 20px;">
+                                            <!-- <td style="font-size: 20px;">
                                                 @php 
                                                     $ave = ($student -> midterm + $student -> finals) / 2;
                                                     switch ($ave && $student -> finals && $student -> midterm) {
@@ -284,7 +248,7 @@
                                                 @endphp
                                                         
                                                         
-                                            </td>
+                                            </td> -->
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -312,7 +276,7 @@
             identifier:[0, 'id'],
             editable:[[3, 'midterm'], [4, 'finals']]
             },
-            restoreButton:true,
+            restoreButton:false,
             onSuccess:function(data, textStatus, jqXHR)
             {
             if(data.action == 'delete')
@@ -323,10 +287,13 @@
             var midterm = data.midterm /2;
             var finals = data.finals/2;
             var ave =(midterm + finals);
-            // document.getElementById('notComplete').style.display = 'none';
-            document.getElementById("ave").innerHTML = ave; 
-            document.getElementById('php').style.display = 'none';
-           
+            if(Number.isNaN(ave)=== true){
+                document.getElementById('notComplete').style.display = 'block';
+            }
+            else if(midterm != 0 && finals != 0){
+                document.getElementById("ave").innerHTML = ave; 
+                document.getElementById('notComplete').style.display = 'none';
+            }
 
             }        
         });
@@ -351,10 +318,13 @@
             var midterm = data.midterm /2;
             var finals = data.finals/2;
             var ave =(midterm + finals);
-            
-            document.getElementById("ave").innerHTML = ave; 
-            document.getElementById('php').style.display = 'none';
-            document.getElementById('grades').style.display = 'none';
+            if(Number.isNaN(ave)=== true){
+                document.getElementById('notComplete').style.display = 'block';
+            }
+            else if(midterm != 0 && finals != 0){
+                document.getElementById("ave").innerHTML = ave; 
+                document.getElementById('notComplete').style.display = 'none';
+            }
             }
         });
 
