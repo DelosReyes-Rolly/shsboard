@@ -91,14 +91,14 @@
                                                 @php
                                                     switch ($student -> finals && $student -> midterm) {
                                                         case ($student -> finals === 'NULL' || $student -> midterm === 'NULL'):
-                                                            echo '<h3 style="font-size: 20px;" id="ave"></h3 >';
-                                                            @endphp<div id="notComplete">@php
+                                                            echo '<h3 style="font-size: 20px;" id="ave2"></h3 >';
+                                                            @endphp<div id="notComplete2">@php
                                                                 echo '<span class="badge bg-danger" style="color: white;">Grades are not complete</span>';
                                                             @endphp</div>@php
                                                             break;
                                                         case ($student -> finals !== 'NULL' && $student -> midterm !== 'NULL'):
-                                                            echo '<h3 style="font-size: 20px;" id="ave"></h3 >';
-                                                            @endphp<div id="notComplete">@php
+                                                            echo '<h3 style="font-size: 20px;" id="ave2"></h3 >';
+                                                            @endphp<div id="notComplete2">@php
                                                                 echo $ave = ($student -> midterm + $student -> finals) / 2;
                                                             @endphp</div>@php
                                                             break;
@@ -145,7 +145,7 @@
                         <div class="alert alert-danger"><em>No female records found.</em></div>
                     @else
                         @csrf
-                        <table id="editable2" class="display nowrap table-bordered table-striped table-hover">
+                        <table id="editable2" class="table table-bordered table-striped table-hover">
                             <thead class="thead-dark">
                                 <tr>
                                     <th style="font-size: 20px;">#</th>
@@ -319,11 +319,11 @@
             var finals = data.finals/2;
             var ave =(midterm + finals);
             if(Number.isNaN(ave)=== true){
-                document.getElementById('notComplete').style.display = 'block';
+                document.getElementById('notComplete2').style.display = 'block';
             }
             else if(midterm != 0 && finals != 0){
-                document.getElementById("ave").innerHTML = ave; 
-                document.getElementById('notComplete').style.display = 'none';
+                document.getElementById("ave2").innerHTML = ave; 
+                document.getElementById('notComplete2').style.display = 'none';
             }
             }
         });
