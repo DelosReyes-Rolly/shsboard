@@ -91,13 +91,13 @@
                                                 @php
                                                     switch ($student -> finals && $student -> midterm) {
                                                         case ($student -> finals === 'NULL' || $student -> midterm === 'NULL'):
-                                                            echo '<h3 style="font-size: 20px;" id="ave2"></h3 >';
+                                                            echo '<h3 style="font-size: 20px;" class="ave2"></h3 >';
                                                             @endphp<div id="notComplete2">@php
                                                                 echo '<span class="badge bg-danger" style="color: white;">Grades are not complete</span>';
                                                             @endphp</div>@php
                                                             break;
                                                         case ($student -> finals !== 'NULL' && $student -> midterm !== 'NULL'):
-                                                            echo '<h3 style="font-size: 20px;" id="ave2"></h3 >';
+                                                            echo '<h3 style="font-size: 20px;" class="ave2"></h3 >';
                                                             @endphp<div id="notComplete2">@php
                                                                 echo $ave = ($student -> midterm + $student -> finals) / 2;
                                                             @endphp</div>@php
@@ -200,13 +200,13 @@
                                                 @php
                                                     switch ($student -> finals && $student -> midterm) {
                                                         case ($student -> finals === 'NULL' || $student -> midterm === 'NULL'):
-                                                            echo '<h3 style="font-size: 20px;" id="ave"></h3 >';
+                                                            echo '<h3 style="font-size: 20px;" class="ave"></h3 >';
                                                             @endphp<div id="notComplete">@php
                                                                 echo '<span class="badge bg-danger" style="color: white;">Grades are not complete</span>';
                                                             @endphp</div>@php
                                                             break;
                                                         case ($student -> finals !== 'NULL' && $student -> midterm !== 'NULL'):
-                                                            echo '<h3 style="font-size: 20px;" id="ave"></h3 >';
+                                                            echo '<h3 style="font-size: 20px;" class="ave"></h3 >';
                                                             @endphp<div id="notComplete">@php
                                                                 echo $ave = ($student -> midterm + $student -> finals) / 2;
                                                             @endphp</div>@php
@@ -291,7 +291,11 @@
                 document.getElementById('notComplete').style.display = 'block';
             }
             else if(midterm != 0 && finals != 0){
-                document.getElementById("ave").innerHTML = ave; 
+                var elements = document.getElementsByClassName("ave");
+                for (var i = 0; i < elements.length; i++) {
+                    elements[i].innerHTML = ave;
+                }
+   
                 document.getElementById('notComplete').style.display = 'none';
             }
 
@@ -322,20 +326,21 @@
                 document.getElementById('notComplete2').style.display = 'block';
             }
             else if(midterm != 0 && finals != 0){
-                document.getElementById("ave2").innerHTML = ave; 
+                var elements = document.getElementsByClassName("ave2");
+                for (n = 0; n < elements.length; ++n) {
+                    elements[n].innerHTML = ave;
+                }
                 document.getElementById('notComplete2').style.display = 'none';
             }
             }
         });
 
+        $('.nav_btn').click(function(){
+            $('.mobile_nav_items').toggleClass('active');
+        });
+
+
         });  
     </script>
   
-    <script type="text/javascript">
-    $(document).ready(function(){
-      $('.nav_btn').click(function(){
-        $('.mobile_nav_items').toggleClass('active');
-      });
-    });
-    </script>
 </main>
