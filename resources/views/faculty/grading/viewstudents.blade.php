@@ -306,7 +306,7 @@
             identifier:[0, 'id'],
             editable:[[3, 'midterm'], [4, 'finals']]
             },
-            restoreButton:true,
+            restoreButton:false,
             onSuccess:function(data, textStatus, jqXHR)
             {
             if(data.action == 'delete')
