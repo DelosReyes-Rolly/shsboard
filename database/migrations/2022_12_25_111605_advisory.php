@@ -21,6 +21,7 @@ class Advisory extends Migration
             $table->integer('section_id');
             $table->integer('schoolyear_id');
             $table->integer('cardgiving')->nullable();
+            $table->tinyInteger('grade_release')->nullable();
             $table->integer('active')->nullable();
             $table->timestamps();
             $table->tinyInteger('deleted')->nullable();

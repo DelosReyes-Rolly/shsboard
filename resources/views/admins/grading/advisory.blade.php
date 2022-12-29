@@ -51,6 +51,24 @@
                         <button class="accordion"><b>{{$sy->schoolyear->schoolyear}}</b></button>
                         <div class="panel">
                             <div style="padding-bottom: 400px;">
+                            <br/>
+                                @if($graderelease->grade_release == null)
+                                    <div>
+                                        <a class="btn btn-primary btn-lg" href="{{route('firstquarter',['schoolyear_id'=>$graderelease->schoolyear_id])}}" style="float: right; font-size: 18px;"><i class="fas fa-file-alt"></i> Release 1st quarter grades</a>
+                                    </div>
+                                @elseif($graderelease->grade_release == 1)
+                                    <div>
+                                        <a class="btn btn-primary btn-lg" href="{{route('secondquarter',['schoolyear_id'=>$graderelease->schoolyear_id])}}" style="float: right; font-size: 18px;"><i class="fas fa-file-alt"></i> Release 2nd quarter grades</a>
+                                    </div>
+                                @elseif($graderelease->grade_release == 2)
+                                    <div>
+                                        <a class="btn btn-primary btn-lg" href="{{route('thirdquarter',['schoolyear_id'=>$graderelease->schoolyear_id])}}" style="float: right; font-size: 18px;"><i class="fas fa-file-alt"></i> Release 3rd quarter grades</a>
+                                    </div>
+                                @elseif($graderelease->grade_release == 3)
+                                    <div>
+                                        <a class="btn btn-primary btn-lg" href="{{route('fourthquarter',['schoolyear_id'=>$graderelease->schoolyear_id])}}" style="float: right; font-size: 18px;"><i class="fas fa-file-alt"></i> Release 4th quarter grades</a>
+                                    </div>
+                                @endif
                                 <div class="card-header">Table of Advisories</div>
                                 <div class="card-body p-0">
                                     <!-- table-->

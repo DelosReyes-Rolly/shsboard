@@ -124,6 +124,7 @@ class StudentsController extends Controller
     public function profile(){
         $student = Students::where('id', '=', Auth::user()->id)->first();
         $address = Addresses::where('id', '=', Auth::user()->address_id)->first();
+        dd($address);
         return view('student.profile', compact('student', 'address'));
     }
 
@@ -156,22 +157,26 @@ class StudentsController extends Controller
 
 
     // ============================================================ GRADES ===================================================================================  
-
     public function grades(){
         $cardprint = Advisories::where('gradelevel_id', '=', Auth::user()->gradelevel_id)->where('course_id', '=', Auth::user()->course_id)->where('section_id', '=', Auth::user()->section_id)->where('deleted', '=', NULL)->where('active', '=', null)->first();
         $allsubjects = StudentGrade::where('student_id', '=', Auth::user()->id)->where('deleted', '=', NULL)->get();
         $grade11 = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 1)->where('deleted', '=', NULL)->get();
         $grade11firstsem = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 1)->where('semester_id', '=', 1)->where('deleted', '=', NULL)->get();
         $grade11firstsemungraded = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 1)->where('semester_id', '=', 1)->where(function($q){$q->where('midterm', NULL)->orWhere('finals', NULL);})->where('deleted', '=', NULL)->get();
+        $grade11firstsemreleased = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 1)->where('semester_id', '=', 1)->where('deleted', '=', NULL)->where('isReleased', '=', NULL)->get();
         $grade11secondsem = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 1)->where('semester_id', '=', 2)->where('deleted', '=', NULL)->get();
         $grade11secondsemungraded = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 1)->where('semester_id', '=', 2)->where(function($q){$q->where('midterm', NULL)->orWhere('finals', NULL);})->where('deleted', '=', NULL)->get();
+        $grade11secondsemunreleased = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 1)->where('semester_id', '=', 2)->where('deleted', '=', NULL)->where('isReleased', '=', NULL)->get();
         $grade12 = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 2)->where('deleted', '=', NULL)->get();
         $grade12firstsem = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 2)->where('semester_id', '=', 1)->where('deleted', '=', NULL)->get();
         $grade12firstsemungraded = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 2)->where('semester_id', '=', 1)->where(function($q){$q->where('midterm', NULL)->orWhere('finals', NULL);})->where('deleted', '=', NULL)->get();
+        $grade12firstsemunreleased = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 2)->where('semester_id', '=', 1)->where('deleted', '=', NULL)->where('isReleased', '=', NULL)->get();
         $grade12secondsem = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 2)->where('semester_id', '=', 2)->where('deleted', '=', NULL)->get();
         $grade12secondsemungraded = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 2)->where('semester_id', '=', 2)->where(function($q){$q->where('midterm', NULL)->orWhere('finals', NULL);})->where('deleted', '=', NULL)->get();
+        $grade12secondsemunreleased = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 2)->where('semester_id', '=', 2)->where('deleted', '=', NULL)->where('isReleased', '=', NULL)->get();
         return view('student.grading.dashboard', compact('allsubjects', 'grade11', 'grade11firstsem', 'grade11firstsemungraded', 'grade11secondsem', 'grade11secondsemungraded', 
-                        'grade12', 'grade12firstsem', 'grade12firstsemungraded', 'grade12secondsem', 'grade12secondsemungraded', 'cardprint'));
+                        'grade12', 'grade12firstsem', 'grade12firstsemungraded', 'grade12secondsem', 'grade12secondsemungraded', 'cardprint', 'grade11firstsemreleased', 'grade11secondsemunreleased',
+                        'grade12firstsemunreleased', 'grade12secondsemunreleased'));
 
     }
 
@@ -340,7 +345,6 @@ public function viewfiles($file_name) {
 public function viewfileDocuments($id) {
     $requests = DocumentRequests::where('deleted', '=', null)->findOrFail($id);
     $file = $requests->file;
-    $extension = \File::extension($file);
-    return view('student.documentrequestPreview', compact('requests', 'extension'));
+    return view('student.documentrequestPreview', compact('requests'));
 }
 }

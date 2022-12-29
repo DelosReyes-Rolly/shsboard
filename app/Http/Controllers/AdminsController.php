@@ -1403,7 +1403,9 @@ class AdminsController extends Controller
     public function advisory(){
         $advisories = Advisories::where('deleted', '=', null)->orderBy('id', 'ASC')->get();
         $schoolYear = Advisories::groupBy('schoolyear_id')->where('deleted', '=', null)->orderBy('id', 'DESC')->get();
-        return view('admins.grading.advisory', compact('advisories', 'schoolYear'));
+        $year = DB::table('school_years')->latest('id')->first();
+        $graderelease = Advisories::where('deleted', '=', null)->where('schoolyear_id', '=', $year->id)->orderBy('id', 'DESC')->first();
+        return view('admins.grading.advisory', compact('advisories', 'schoolYear', 'graderelease'));
     }
 
     public function advisoryadd(){
@@ -1496,6 +1498,43 @@ class AdminsController extends Controller
         return view('admins.grading.functions.advisorydelete', ['advisory' => $data]);
      }
 
+     public function firstquarter($schoolyear_id){
+        $advisers = Advisories::where('deleted', '=', null)->where('active', '=', null)->where('schoolyear_id', '=', $schoolyear_id)->get();
+        foreach($advisers as $adviser){
+            $adviser->grade_release = 1;
+            $adviser->update();
+        }
+        return redirect()->back()->with('success', '1st quarter grades can be released.');
+     }
+
+     public function secondquarter($schoolyear_id){
+        $advisers = Advisories::where('deleted', '=', null)->where('active', '=', null)->where('schoolyear_id', '=', $schoolyear_id)->get();
+        foreach($advisers as $adviser){
+            $adviser->grade_release = 2;
+            $adviser->update();
+        }
+        return redirect()->back()->with('success', '2nd quarter grades can be released.');
+     }
+
+
+     public function thirdquarter($schoolyear_id){
+        $advisers = Advisories::where('deleted', '=', null)->where('active', '=', null)->where('schoolyear_id', '=', $schoolyear_id)->get();
+        foreach($advisers as $adviser){
+            $adviser->grade_release = 3;
+            $adviser->update();
+        }
+        return redirect()->back()->with('success', '3rd quarter grades can be released.');
+     }
+
+     public function fourthquarter($schoolyear_id){
+        $advisers = Advisories::where('deleted', '=', null)->where('active', '=', null)->where('schoolyear_id', '=', $schoolyear_id)->get();
+        foreach($advisers as $adviser){
+            $adviser->grade_release = 4;
+            $adviser->update();
+        }
+        return redirect()->back()->with('success', '4th quarter grades can be released.');
+     }
+
     // ============================================================================= RESET PASSWORD ====================================================================
 
 
@@ -1526,7 +1565,6 @@ class AdminsController extends Controller
     public function viewfileDocument($id) {
         $requests = DocumentRequests::where('deleted', '=', null)->findOrFail($id);
         $file = $requests->file;
-        $extension = \File::extension($file);
-        return view('admins.documentrequests.documentrequestPreview', compact('requests', 'extension'));
+        return view('admins.documentrequests.documentrequestPreview', compact('requests'));
     }
 }

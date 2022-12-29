@@ -14,6 +14,7 @@ use App\Models\GradeLevels;
 use App\Models\Sections;
 use App\Models\Semesters;
 use App\Models\StudentGrade;
+use App\Models\Students;
 use App\Models\Subjects;
 use App\Models\SubjectTeachers;
 use Illuminate\Http\Request;
@@ -368,6 +369,62 @@ class FacultyController extends Controller
         $data = Advisories::where('deleted', '=', null)->where('active', '=', null)->findOrFail($id);
         return view('faculty.card_giving', ['card' => $data]);
      }
+
+     public function viewStudents($gradelevel_id, $course_id, $section_id){
+        $males = Students::where('gradelevel_id', '=', $gradelevel_id)->where('course_id', '=', $course_id)->where('section_id', '=', $section_id)->where('gender', '=', 'Male')->get();
+        $females = Students::where('gradelevel_id', '=', $gradelevel_id)->where('course_id', '=', $course_id)->where('section_id', '=', $section_id)->where('gender', '=', 'Female')->get();;
+        $gradelevel_id = $gradelevel_id;
+        $course_id = $course_id;
+        $section_id = $section_id;
+        $releasegrades = Advisories::where('deleted', '=', null)->where('active', '=', null)->where('faculty_id', '=', Auth::user()->id)->orderBy('id', 'DESC')->first();
+        return view('faculty.viewStudents', compact('males', 'females', 'gradelevel_id', 'course_id', 'section_id', 'releasegrades'));
+     }
+     public function viewstudentgrades($id){
+        $student = Students::where('id', '=', $id)->first();
+        $allsubjects = StudentGrade::where('student_id', '=', $id)->where('deleted', '=', NULL)->get();
+        $grade11 = StudentGrade::where('student_id', '=', $id)->where('gradelevel_id', '=', 1)->where('deleted', '=', NULL)->get();
+        $grade11firstsem = StudentGrade::where('student_id', '=', $id)->where('gradelevel_id', '=', 1)->where('semester_id', '=', 1)->where('deleted', '=', NULL)->get();
+        $grade11firstsemungraded = StudentGrade::where('student_id', '=', $id)->where('gradelevel_id', '=', 1)->where('semester_id', '=', 1)->where(function($q){$q->where('midterm', NULL)->orWhere('finals', NULL);})->where('deleted', '=', NULL)->get();
+        $grade11secondsem = StudentGrade::where('student_id', '=', $id)->where('gradelevel_id', '=', 1)->where('semester_id', '=', 2)->where('deleted', '=', NULL)->get();
+        $grade11secondsemungraded = StudentGrade::where('student_id', '=', $id)->where('gradelevel_id', '=', 1)->where('semester_id', '=', 2)->where(function($q){$q->where('midterm', NULL)->orWhere('finals', NULL);})->where('deleted', '=', NULL)->get();
+        $grade12 = StudentGrade::where('student_id', '=', $id)->where('gradelevel_id', '=', 2)->where('deleted', '=', NULL)->get();
+        $grade12firstsem = StudentGrade::where('student_id', '=', $id)->where('gradelevel_id', '=', 2)->where('semester_id', '=', 1)->where('deleted', '=', NULL)->get();
+        $grade12firstsemungraded = StudentGrade::where('student_id', '=', $id)->where('gradelevel_id', '=', 2)->where('semester_id', '=', 1)->where(function($q){$q->where('midterm', NULL)->orWhere('finals', NULL);})->where('deleted', '=', NULL)->get();
+        $grade12secondsem = StudentGrade::where('student_id', '=', $id)->where('gradelevel_id', '=', 2)->where('semester_id', '=', 2)->where('deleted', '=', NULL)->get();
+        $grade12secondsemungraded = StudentGrade::where('student_id', '=', $id)->where('gradelevel_id', '=', 2)->where('semester_id', '=', 2)->where(function($q){$q->where('midterm', NULL)->orWhere('finals', NULL);})->where('deleted', '=', NULL)->get();
+        return view('faculty.viewstudentgrades', compact('allsubjects', 'grade11', 'grade11firstsem', 'grade11firstsemungraded', 'grade11secondsem', 'grade11secondsemungraded', 
+                        'grade12', 'grade12firstsem', 'grade12firstsemungraded', 'grade12secondsem', 'grade12secondsemungraded', 'student'));
+
+    }
+
+    public function releasemidterm($gradelevel_id, $course_id, $section_id){
+        $schoolyear = DB::table('school_years')->latest('id')->first();
+        $students = Students::where('course_id', '=', $course_id)->where('section_id', '=', $section_id)->get();
+        foreach($students as $student){
+            $grades = StudentGrade::where('gradelevel_id', '=', $gradelevel_id)->where('student_id', '=', $student->id)->where('semester_id', '=', 1)->where('schoolyear_id', '=', $schoolyear->id)->get();
+            foreach($grades as $grade){
+                $grade->isReleased = 1;
+                $grade->update();
+            }   
+        }
+
+        return redirect()->back()->with('success', 'Grades has been released successfully.');
+    }
+
+    public function releasefinals($gradelevel_id, $course_id, $section_id){
+        $schoolyear = DB::table('school_years')->latest('id')->first();
+        $students = Students::where('course_id', '=', $course_id)->where('section_id', '=', $section_id)->get();
+        foreach($students as $student){
+            $grades = StudentGrade::where('gradelevel_id', '=', $gradelevel_id)->where('student_id', '=', $student->id)->where('semester_id', '=', 1)->where('schoolyear_id', '=', $schoolyear->id)->get();
+            foreach($grades as $grade){
+                $grade->isReleased = 2;
+                $grade->update();
+            }   
+        }
+        return redirect()->back()->with('success', 'Grades has been released successfully.');
+    }
+
+
 
     // ============================================================ RESET PASSWORD ===================================================================================  
 

@@ -71,10 +71,11 @@
                                                             <td>{{$adviser -> section -> section}}</td>
                                                             <td>
                                                                 @if($adviser -> active == null)
+                                                                    <a class="btn btn-success btn-md" href="{{route('faculty.viewStudents',['gradelevel_id'=>$adviser -> gradelevel_id, 'course_id'=>$adviser -> course_id, 'section_id'=>$adviser -> section_id])}}" style="font-size: 16px;"><i class="fas fa-user-tie"></i> View students</a>
                                                                     @if($adviser -> cardgiving == null)
-                                                                        <a class="btn btn-primary btn-md" href="{{route('faculty.card_giving', $adviser->id)}}" style="font-size: 16px;"><i class="fas fa-eye"></i> Release Card</a>
+                                                                        <a class="btn btn-primary btn-md" href="{{route('faculty.card_giving', $adviser->id)}}" style="font-size: 16px;"><i class="fas fa-file-alt"></i>  Release Card</a>
                                                                     @else
-                                                                        <a class="btn btn-secondary btn-md" href="{{route('faculty.unrelease', $adviser->id)}}" style="font-size: 16px;"><i class="fas fa-eye"></i> Unrelease Card</a>
+                                                                        <a class="btn btn-secondary btn-md" href="{{route('faculty.unrelease', $adviser->id)}}" style="font-size: 16px;"><i class="fas fa-file-alt"></i>  Unrelease Card</a>
                                                                     @endif
                                                                 @else
                                                                     <span class="badge bg-danger" style="color: white;">No action</span>

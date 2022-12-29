@@ -24,6 +24,7 @@ class Studentgrade extends Migration
             $table->integer('semester_id');
             $table->integer('midterm')->nullable();
             $table->integer('finals')->nullable();
+            $table->tinyInteger('isReleased')->nullable();
             $table->timestamps();
             $table->tinyInteger('deleted')->nullable();
             $table->date('deleted_at')->nullable();
