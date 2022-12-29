@@ -16,6 +16,7 @@ class DocumentPurposes extends Migration
         Schema::create('document_purposes', function (Blueprint $table) {
             $table->id();
             $table->string('purpose');
+            $table->string('proof_needed');
             $table->timestamps();
             $table->tinyInteger('deleted')->nullable();
             $table->date('deleted_at')->nullable();

@@ -19,7 +19,6 @@ class Documentrequests extends Migration
             $table->integer('document_id');
             $table->integer('purpose_id');
             $table->integer('gradelevel_id');
-            $table->text('other_purposes')->nullable();
             $table->string('file');
             $table->integer('status')->comment('1 - Pending, 2 - On Process, 3 - For Collection, 4 - Completed, 5 - Denied, 6 - For follow-up')->nullable();
             $table->timestamps();

@@ -54,7 +54,7 @@
             									</div>
                                                 <div class="mb-3 requestdocument">
                                                     <label class="large mb-1" for="inputpurpose" style="font-size: 20px;"><b>Purpose: </b></label>
-                                                        <span style="font-size: 20px;">{{$docreq->purpose}}</span>
+                                                        <span style="font-size: 20px;">{{$docreq->purpose->purpose}}</span>
                                                 </div>
                                                 <div class="mb-3 requestdocument">
                                                 	<label class="large mb-1" for="document_id" class="form-control @error('status') is-invalid @enderror" style="font-size: 20px;"><br><b>Status</b></label>

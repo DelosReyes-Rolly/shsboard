@@ -524,11 +524,9 @@ class AdminsController extends Controller
         // Validate the inputs
         $request->validate([
             'name' => 'required|max:255',
-            'proof_needed' => 'required|max:255',
         ]);
         $document = new Documents();
         $document->name = $request->get('name');
-        $document->proof_needed = $request->get('proof_needed');
         $document->save();
         return redirect('/documentrequest')->with('success', 'New document was added successfully');
     }
@@ -582,7 +580,6 @@ class AdminsController extends Controller
     public function updatedocument(Request $request, Documents $document){
         $validated = $request->validate([
             'name' => 'required|max:255',
-            'proof_needed' => 'required|max:255',
         ]);
        $document->update($validated);
        return redirect('/documentrequest')->with('success', 'Document has been updated.');
@@ -641,16 +638,18 @@ class AdminsController extends Controller
         // Validate the inputs
         $request->validate([
             'purpose' => 'required|max:255',
+            'proof_needed' => 'required|max:255',
         ]);
         $document = new DocumentPurposes();
         $document->purpose = $request->get('purpose');
+        $document->proof_needed = $request->get('proof_needed');
         $document->save();
         return redirect('/documentrequest')->with('success', 'New purpose was added successfully');
     }
 
       public function viewpurpose($id){
         $data = DocumentPurposes::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.documentrequests.viewpurpose', ['purpose' => $data]);
+        return view('admins.documentrequests.documentpurpose', ['purpose' => $data]);
     }
 
     public function showpurpose($id){
@@ -661,6 +660,7 @@ class AdminsController extends Controller
     public function updatepurpose(Request $request, DocumentPurposes $purpose){
         $validated = $request->validate([
             'purpose' => 'required|max:255',
+            'proof_needed' => 'required|max:255',
         ]);
        $purpose->update($validated);
        return redirect('/documentrequest')->with('success', 'Purpose has been updated.');

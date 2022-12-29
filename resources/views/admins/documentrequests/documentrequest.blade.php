@@ -146,10 +146,6 @@
 																<label class="large" for="name" style="font-size: 20px;">Document Name</label>
 																<input class="form-control @error('name') is-invalid @enderror" id="name" type="text" style="font-size: 16px;" placeholder="Document Name" name="name" value="{{ old('name') }}">
 															</div>
-															<div class="col-lg-4 col-md-4 col-sm-10">
-																<label class="large" for="proof_needed" style="font-size: 20px;">Proof Needed</label>
-																<input class="form-control @error('proof_needed') is-invalid @enderror" id="proof_needed" type="text" style="font-size: 16px;" placeholder="Proof Needed" name="proof_needed" value="{{ old('proof_needed') }}">
-															</div>
 															<div class="col-lg-4 col-md-4 col-sm-10"><br/>
 																<input type="submit" class="btn btn-primary" value="Submit">
 															</div>
@@ -182,7 +178,6 @@
                                                              <tr>
                                                                 <th class="border-gray-200" scope="col">#</th>
                                                                 <th class="border-gray-200" scope="col">Document Name</th>
-																<th class="border-gray-200" scope="col">Proof Needed</th>
                                                                 <th class="border-gray-200" scope="col">Action</th>
                                                             </tr>
                                                         </thead>
@@ -192,7 +187,6 @@
                                                                     <tr>
                                                                         <td class="text-center">{{$document -> id}}</td>
                                                                         <td>{{$document -> name}}</td>
-																		<td>{{$document -> proof_needed}}</td>
                                                                         <td>
 																			<a class="btn btn-success btn-md" href="/viewdocument/{{$document->id}}"><i class="fas fa-eye"></i> View</a>
 																			<a class="btn btn-warning btn-md" href="/showdocument/{{$document->id}}"><i class="fas fa-edit"></i> Update</a>
@@ -220,6 +214,10 @@
 															<div class="col-lg-4 col-md-4 col-sm-10">
 																<label class="large" for="purpose" style="font-size: 20px;">Purpose</label>
 																<input class="form-control @error('purpose') is-invalid @enderror" id="purpose" type="text" style="font-size: 16px;" placeholder="New purpose" name="purpose" value="{{ old('purpose') }}">
+															</div>
+															<div class="col-lg-4 col-md-4 col-sm-10">
+																<label class="large" for="proof_needed" style="font-size: 20px;">Proof Needed</label>
+																<input class="form-control @error('proof_needed') is-invalid @enderror" id="proof_needed" type="text" style="font-size: 16px;" placeholder="Proof Needed" name="proof_needed" value="{{ old('proof_needed') }}">
 															</div>
 															<div class="col-lg-4 col-md-4 col-sm-10"><br/>
 																<input type="submit" class="btn btn-primary" value="Submit">
@@ -254,6 +252,7 @@
                                                              <tr>
                                                                 <th class="border-gray-200" scope="col">#</th>
                                                                 <th class="border-gray-200" scope="col">Purposes</th>
+																<th class="border-gray-200" scope="col">Proof Needed</th>
                                                                 <th class="border-gray-200" scope="col">Action</th>
                                                             </tr>
                                                         </thead>
@@ -263,6 +262,7 @@
                                                                     <tr>
                                                                         <td class="text-center">{{$documentpurpose -> id}}</td>
                                                                         <td>{{$documentpurpose -> purpose}}</td>
+																		<td>{{$documentpurpose -> proof_needed}}</td>
                                                                         <td>
 																			<a class="btn btn-success btn-md" href="/viewpurpose/{{$documentpurpose->id}}"><i class="fas fa-eye"></i> View</a>
 																			<a class="btn btn-warning btn-md" href="/showpurpose/{{$documentpurpose->id}}"><i class="fas fa-edit"></i> Update</a>
@@ -331,11 +331,7 @@
 																				<td>{{$request -> document -> name}}</td>
 																				<td>{{$request -> student -> last_name}}, {{$request -> student -> first_name}} {{$request -> student -> middle_name}} {{$request -> student -> suffix}}</td>
 																				<td>{{$request -> student -> course -> abbreviation}}</td>
-																				@if($request -> purpose_id != 0)
-																					<td>{{$request -> purpose -> purpose}}</td>
-																				@else
-																					<td>{{$request -> other_purposes}}</td>
-																				@endif
+																				<td>{{$request -> purpose -> purpose}}</td>
 																				<td>{{$requested_at}}</td>
 																				<td>
 																					<a href="/download/{{$request -> file}}" class="btn btn-primary">Download</a> 
@@ -416,11 +412,7 @@
 																				<td>{{$request -> document -> name}}</td>
 																				<td>{{$request -> student -> last_name}}, {{$request -> student -> first_name}} {{$request -> student -> middle_name}}</td>
 																				<td>{{$request -> student -> course -> abbreviation}}</td>
-																				@if($request -> purpose_id != 0)
-																					<td>{{$request -> purpose -> purpose}}</td>
-																				@else
-																					<td>{{$request -> other_purposes}}</td>
-																				@endif
+																				<td>{{$request -> purpose -> purpose}}</td>
 																				<td>{{$requested_at}}</td>
 																				<td>
 																					<a href="/download/{{$request -> file}}" class="btn btn-primary">Download</a> 
@@ -501,11 +493,7 @@
 																				<td>{{$request -> document -> name}}</td>
 																				<td>{{$request -> student -> last_name}}, {{$request -> student -> first_name}} {{$request -> student -> middle_name}} {{$request -> student -> suffix}}</td>
 																				<td>{{$request -> student -> course -> abbreviation}}</td>
-																				@if($request -> purpose_id != 0)
-																					<td>{{$request -> purpose -> purpose}}</td>
-																				@else
-																					<td>{{$request -> other_purposes}}</td>
-																				@endif
+																				<td>{{$request -> purpose -> purpose}}</td>
 																				<td>{{$requested_at}}</td>
 																				<td>
 																					<a href="/download/{{$request -> file}}" class="btn btn-primary">Download</a> 

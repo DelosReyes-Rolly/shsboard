@@ -48,7 +48,7 @@
                                                 <!-- Form Group (content)-->
                                                 <div class="mb-3 requestdocument">
                                                     <label class="large mb-1" for="inputpurpose" style="font-size: 26px;"><b>Purpose: </b></label>
-                                                        <span style="font-size: 26px;">{{$docreq->purpose}}</span>
+                                                        <span style="font-size: 26px;">{{$docreq->purpose->purpose}}</span>
                                                 </div>
                                                 <div class="mb-3 requestdocument">
                                                     <label class="large mb-1" for="inputpurpose" style="font-size: 26px;"><b>Status: </b></label>

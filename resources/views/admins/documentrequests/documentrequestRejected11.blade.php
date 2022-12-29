@@ -102,11 +102,7 @@
 																				<td>{{$request -> document -> name}}</td>
 																				<td>{{$request -> student -> last_name}}, {{$request -> student -> first_name}} {{$request -> student -> middle_name}} {{$request -> student -> suffix}}</td>
 																				<td>{{$request -> student -> course -> abbreviation}}</td>
-																				@if($request -> purpose_id != 0)
-																					<td>{{$request -> purpose -> purpose}}</td>
-																				@else
-																					<td>{{$request -> other_purposes}}</td>
-																				@endif
+																				<td>{{$request -> purpose -> purpose}}</td>
 																				<td>{{$requested_at}}</td>
 																				<td>
 																					<a href="/download/{{$request -> file}}" class="btn btn-primary">Download</a> 

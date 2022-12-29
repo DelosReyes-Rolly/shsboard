@@ -66,50 +66,57 @@
                                                 * required field
                                             </div>
                                             <!-- Form Row-->
-                                            <div class="row gx-3 mb-3">
+                                            <div class="row">
                                                 <!-- Form Group (content)-->
-                                                <div class="mb-3 requestdocument">
+                                                <div class="col-lg-6 col-md-6 col-sm-12 requestdocument">
                                                 	<label class="large col-md-12" for="document_type" class="form-control @error('document_type') is-invalid @enderror" style="font-size: 20px;"><br><span style="color: red">*</span> Document Needed</label>
-                                                        <div class="col-md-12" hidden><input class="form-control @error('document_type') is-invalid @enderror" id="inputdocument_type" type="text" placeholder="Enter document needed" name="document_type"  value="{{ old('document_type') }}"></div>
-                                                        <select id="document_type" name="document_type" class="form-control" value="{{ old('document_type') }}" style="font-size: 16px;" >
-                                                            <option value="" disabled selected hidden>Choose Document</option>
-                                                            @foreach ($lists as $list)
-                                                                <option value="{{ $list->id }}" data-proof="{{ $list->proof_needed}}">{{ $list->name}}</option>
-                                                            @endforeach
-                                                        </select>
-            										</div>
-                                                </div>
-                                                <br>
-                                                <!-- Form Group (content)-->
-                                                <div class="requestdocument">
-                                                    <label class="large mb-1" for="inputpurpose" style="font-size: 20px;"><span style="color: red">*</span> Purpose</label>
-                                                    <div class="form-group">
-                                                        @foreach ($purposes as $purpose)
-                                                            <div class="form-check purposes col-lg-4 col-md-8 col-sm-6">
-                                                                &emsp; <input type="radio" class="form-check-input" name="purpose_id" id="{{$purpose->id}}" value="{{$purpose->id}}">
-                                                                <label for="{{$purpose->id}}" class="form-check-label">{{$purpose->purpose}}</label>
-                                                            </div>
-                                                        @endforeach
-                                                        <div class="form-check others">
-                                                            &emsp; <input type="radio" class="form-check-input" name="purpose_id" id="others" value="0">
-                                                            <label for="others" class="form-check-label">Others</label>
-                                                        </div>
-                                                        <textarea class="form-control @error('purpose') is-invalid @enderror purposeText" id="editor" type="text" style="font-size: 16px; display: none;" placeholder="Enter your purpose" name="purpose"  value="{{ old('purpose') }}"></textarea>
+                                                    <div class="col-md-12" hidden>
+                                                        <input class="form-control @error('document_type') is-invalid @enderror" id="inputdocument_type" type="text" placeholder="Enter document needed" name="document_type"  value="{{ old('document_type') }}">
                                                     </div>
+                                                    <select id="document_type" name="document_type" class="form-control" value="{{ old('document_type') }}" style="font-size: 16px;" >
+                                                        <option value="" disabled selected hidden>Choose Document</option>
+                                                        @foreach ($lists as $list)
+                                                            <option value="{{ $list->id }}">{{ $list->name}}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                                 <br>
                                                 <!-- Form Group (content)-->
-                                                <div class="mb-3 requestdocument">
-                                                     <div style="font-size: 20px;"><span style="color: red">*</span> Proof needed: <input id="proof" name="proof_needed" style="border: none;" value="" disabled>(Only DOCS, DOCX, and PDF files are allowed.)</div>
-            										<div class ="form-group row">
-            											<input type="file" name = "file" class="form-control" style="font-size: 12px;" >
+                                                <div class="col-lg-6 col-md-6 col-sm-12 requestdocument">
+                                                	<label class="large mb-1" for="inputpurpose" style="font-size: 20px;" class="form-control @error('purpose') is-invalid @enderror"><br><span style="color: red">*</span> Purpose</label>
+                                                    <div class="col-md-12" hidden>
+                                                        <input class="form-control @error('purpose') is-invalid @enderror" id="inputpurpose" type="text" placeholder="Enter purpose" name="purpose"  value="{{ old('purpose') }}">
+                                                    </div>
+                                                    <select id="purpose" name="purpose" class="form-control" value="{{ old('purpose') }}" style="font-size: 16px;" >
+                                                        <option value="" disabled selected hidden>Choose Purpose</option>
+                                                        @foreach ($purposes as $purpose)
+                                                            <option value="{{ $purpose->id }}" data-proof="{{ $purpose->proof_needed}}">{{ $purpose->purpose}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <br>
+                                                <!-- Form Group (content)-->
+                                                <div class="col-lg-10 col-md-12 col-sm-12 requestdocument">
+                                                <br><br>
+                                                    <div style="font-size: 20px;">
+                                                        <span style="color: red">*</span> Proof needed: (only JPG or PNG files are allowed)
+                                                        <input id="proof" style="width:100%; padding-left: 2%;" name="proof_needed" style="border: none;" value="" disabled><br><br>
+                                                        <input type="file" name = "file" class="form-control" style="font-size: 16px;" >
+                                                    </div>
+            										<div class ="form-group">
+            											
             										</div>                                 
             									</div> 
                                                  <!-- Save changes button-->
-                                                    <br><center> Note:<br>The documents will be processed <b>within five (5) working days</b> upon requesting.
-                                                    The documents can be claimed in the <b>Registrars Office.</b></center><br><br>
-                                                    <font face = "Verdana" size = "8"><input type="submit" class="btn btn-primary" value="Submit"margin-right: 80px;"></font>
-                                                <br><br><br><br>
+                                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                                    <center> <br>
+                                                        Note:<br>The documents will be processed <b>within five (5) working days</b> upon requesting.
+                                                        The documents can be claimed in the <b>Registrars Office.</b>
+                                                    </center>
+                                                </div>
+                                                <div class="col-lg-10 col-md-12 col-sm-12">
+                                                    <font face = "Verdana" size = "8"><input type="submit" class="btn btn-primary" value="Submit"></font>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

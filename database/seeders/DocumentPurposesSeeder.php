@@ -15,22 +15,20 @@ class DocumentPurposesSeeder extends Seeder
     public function run()
     {
         DocumentPurposes::create([
-            'purpose' => 'sample purpose 1',
+            'purpose' => 'Scholastic purposes',
+            'proof_needed' => 'list of requirements from city hall',
         ]);
         DocumentPurposes::create([
-            'purpose' => 'sample purpose 2',
+            'purpose' => 'DFA Red Ribbon copy',
+            'proof_needed' => 'list of requirements from DFA',
         ]);
         DocumentPurposes::create([
-            'purpose' => 'sample purpose 3',
+            'purpose' => 'Correction of name',
+            'proof_needed' => 'list of requirements from city hall',
         ]);
         DocumentPurposes::create([
-            'purpose' => 'sample purpose 4',
-        ]);
-        DocumentPurposes::create([
-            'purpose' => 'sample purpose 5',
-        ]);
-        DocumentPurposes::create([
-            'purpose' => 'sample purpose 6',
+            'purpose' => 'Job reference',
+            'proof_needed' => 'list of requirements from the company',
         ]);
     }
 }

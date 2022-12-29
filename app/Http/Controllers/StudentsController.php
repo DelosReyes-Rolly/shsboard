@@ -251,24 +251,12 @@ class StudentsController extends Controller
     public function documentrequestsend(Request $request){
         $request->validate([
             'document_type' => 'required',
-            'purpose_id' => 'required|max:11',
-            'purpose' => '',
-            'file' => 'required|mimes:doc,docx,docs,pdf|max:2048',
+            'purpose' => 'required|max:11',
+            'file' => 'required|mimes:jpg,png,jpeg|max:2048',
         ]);
-        if($request->get('purpose_id') == 0){
-            $request->validate([
-                'purpose' => 'required',
-            ]);
-        }
         $docreq = new DocumentRequests();
         $docreq->document_id = $request->get('document_type');
-        if($request->get('purpose_id') != 0){
-            $docreq->purpose_id = $request->get('purpose_id');
-        }
-        else{
-            $docreq->purpose_id = 0;
-            $docreq->other_purposes = $request->get('purpose');
-        }
+        $docreq->purpose_id = $request->get('purpose');
         $docreq->student_id =  Auth::user()->id;
         $docreq->gradelevel_id =  Auth::user()->gradelevel_id;
         $docreq->status = 1;
