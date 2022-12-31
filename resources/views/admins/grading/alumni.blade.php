@@ -35,9 +35,6 @@
         <hr class="mt-0 mb-4">
         <div class="card mb-4 right-to-left border-start-lg border-start-success" style="padding: 10px 40px 10px 40px;">
             <div class="card-header">
-                <div class="pull-right">
-                    <a href="{{route('student.add')}}" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Student Manually</a>
-                </div>
             </div>
             <div class="card-body p-0" style="padding: 20px 20px 20px 20px;">
                 @if($students->count() == 0)
