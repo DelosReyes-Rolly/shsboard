@@ -89,7 +89,7 @@
                                                                 <br>
                                                                 <div class="table-responsive table-billing-history">
                                                                     <table id="example" class="display nowrap" style="width:100%">
-                                                                        <thead>
+                                                                        <thead class="table-success">
                                                                             <tr>
                                                                                 <th class="border-gray-200" scope="col">#</th>
                                                                                 <th class="border-gray-200" scope="col">Subject Name</th>

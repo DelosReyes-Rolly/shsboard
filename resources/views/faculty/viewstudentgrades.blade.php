@@ -114,7 +114,7 @@
                                                     @endif
                                                     <br>
                                                     <br>
-                                                    <thead>
+                                                    <thead class="table-success">
                                                         <tr>
                                                             <th class="border-gray-200" scope="col">Code</th>
                                                             <th class="border-gray-200" scope="col">Subject Name</th>
@@ -248,7 +248,7 @@
                                                     @endif
                                                         <br>
                                                         <br>
-                                                    <thead>
+                                                    <thead class="table-success">
                                                         <tr>
                                                             <th class="border-gray-200" scope="col">Code</th>
                                                             <th class="border-gray-200" scope="col">Subject Name</th>
@@ -393,7 +393,7 @@
 
                                                     <br>
                                                     <br>
-                                                    <thead>
+                                                    <thead class="table-success">
                                                         <tr>
                                                             <th class="border-gray-200" scope="col">Code</th>
                                                             <th class="border-gray-200" scope="col">Subject Name</th>
@@ -525,7 +525,7 @@
 
                                                     <br>
                                                     <br>
-                                                    <thead>
+                                                    <thead class="table-success">
                                                         <tr>
                                                             <th class="border-gray-200" scope="col">Code</th>
                                                             <th class="border-gray-200" scope="col">Subject Name</th>

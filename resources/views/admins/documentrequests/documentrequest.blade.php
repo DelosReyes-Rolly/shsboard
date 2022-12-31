@@ -174,7 +174,7 @@
                                                 <br>
                                                 <div class="table-responsive table-billing-history">
                                                     <table id="example1" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
-                                                        <thead>
+                                                        <thead class="table-success">
                                                              <tr>
                                                                 <th class="border-gray-200" scope="col">#</th>
                                                                 <th class="border-gray-200" scope="col">Document Name</th>
@@ -248,7 +248,7 @@
                                                 <br>
                                                 <div class="table-responsive table-billing-history">
                                                     <table id="example5" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
-                                                        <thead>
+                                                        <thead class="table-success">
                                                              <tr>
                                                                 <th class="border-gray-200" scope="col">#</th>
                                                                 <th class="border-gray-200" scope="col">Purposes</th>
@@ -306,7 +306,7 @@
 												@else 
 											        <div class="table-responsive table-billing-history">
 												        <table id="example2" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
-												            <thead>
+												            <thead class="table-success">
 												                <tr>
 																	<th class="border-gray-200" scope="col">#</th>
 												                    <th class="border-gray-200" scope="col">Document</th>
@@ -387,7 +387,7 @@
 												@else
 													<div class="table-responsive table-billing-history">
 														<table id="example3" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
-														<thead>
+														<thead class="table-success">
 												                <tr>
 												                    <th class="border-gray-200" scope="col">#</th>
 												                    <th class="border-gray-200" scope="col">Document</th>
@@ -468,7 +468,7 @@
 												@else 
 											        <div class="table-responsive table-billing-history">
 												        <table id="example4" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
-												            <thead>
+												            <thead class="table-success">
 												                <tr>
 																	<th class="border-gray-200" scope="col">#</th>
 												                    <th class="border-gray-200" scope="col">Document</th>

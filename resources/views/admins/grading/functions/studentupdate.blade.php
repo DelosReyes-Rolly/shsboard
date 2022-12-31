@@ -28,7 +28,13 @@
                         <!-- Account details card-->
                         <div class="card mb-4">
                             <div class="card border-start-lg border-start-yellow">
-                                <div class="card-header"></div>
+                                <div class="card-header">
+                                    @if($student->status==1)
+                                        <div class="pull-right">
+                                            <a href="/studentaddsubject/{{$student->id}}" class="btn btn-primary"><i class="fas fa-book"> </i> Add Subject Manually</a>
+                                        </div>
+                                    @endif
+                                </div>
                                 <div class="card-body" style="padding: 10px 40px 10px 40px">
                                     <div class="mb-3" style="color: red">
                                         * required field
