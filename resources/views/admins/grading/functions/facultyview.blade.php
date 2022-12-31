@@ -34,39 +34,48 @@
 
                                     </div>
                                     <!-- Form Row-->
-                                    <div class="row gx-3 mb-3">
+                                    <div class="row">
                                         <!-- Form Group (title)-->
-                                        <div class="col-md-10">
+                                        <div class="col-lg-3 col-md-12 col-sm-12">
                                             <label style="font-size: 26px;"><b>Full Name: </b></label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-12 col-sm-12" style="margin-bottom: 10px;">
                                             <span style="font-size: 26px;">{{$faculty->last_name}}, {{$faculty->first_name}} {{$faculty->middle_name}} {{$faculty->suffix}}</span>
                                         </div>
-                                    </div>
-                                    <div class="row gx-3 mb-3">
+                                    
                                         <!-- Form Group whr-->
-                                        <div class="col-md-10">
+                                        <div class="col-lg-3 col-md-12 col-sm-12">
                                             <label style="font-size: 26px;"><b>Gender: </b></label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-12 col-sm-12" style="margin-bottom: 10px;">
                                             <span style="font-size: 26px;">{{$faculty->gender}}</span>
                                         </div>
-                                    </div>
-                                    <div class="row gx-3 mb-3">
+                                    
+                                    
                                         <!-- Form Group whr-->
-                                        <div class="col-md-10">
+                                        <div class="col-lg-3 col-md-12 col-sm-12">
                                             <label style="font-size: 26px;"><b>Username: </b></label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-12 col-sm-12" style="margin-bottom: 10px;">
                                             <span style="font-size: 26px;">{{$faculty->username}}</span>
                                         </div>
-                                    </div>
-                                    <div class="row gx-3 mb-3">
+                                   
+                                    
                                         <!-- Form Group whr-->
-                                        <div class="col-md-10">
+                                        <div class="col-lg-3 col-md-12 col-sm-12">
                                             <label style="font-size: 26px;"><b>Phone Number: </b></label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-12 col-sm-12" style="margin-bottom: 10px;">
                                             <span style="font-size: 26px;">{{$faculty->phone_number}}</span>
                                         </div>
-                                    </div>
-                                    <!-- Form Row -->
-                                    <div class="row gx-3 mb-3">
+                                  
+                                        <!-- Form Row -->
+                                    
                                         <!-- Form Group whr-->
-                                        <div class="col-md-10">
+                                        <div class="col-lg-3 col-md-12 col-sm-12">
                                             <label style="font-size: 26px;"><b>Email Address: </b></label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-12 col-sm-12" style="margin-bottom: 10px;">
                                             <span style="font-size: 26px;">{{$faculty->email}}</span>
                                         </div><br/><br/><br/><br/>
                                     </div>
