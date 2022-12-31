@@ -533,6 +533,8 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 Route::get('/deletestudent/{id}', 'deletestudent')->name('admin.deletestudent');
                 Route::get('/dropstudent/{id}', 'dropstudent')->name('admin.dropstudent');
 
+                Route::get('/studentaddsubject/{id}', 'addstudentsubject');
+
                 Route::get('/subjectadd', 'addsubject')->name('subject.add');
                 Route::get('/viewsubject/{id}','viewsubject');
                 Route::get('/showsubject/{id}','showsubject');
@@ -583,6 +585,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 Route::post('/subjectteacheradd', 'subjectteacherstore')->name('subjectteacher.store');
                 Route::post('/add/gradelevel', 'storegradelevel')->name('gradelevel.store');
                 Route::post('/advisoryadd', 'advisorystore')->name('advisory.store');
+                Route::post('/studentsubjectadd', 'studentsubjectadd')->name('studentsubjectadd.store');
                 
 
             /*
