@@ -75,18 +75,46 @@
                                         </div>
                                     </div><br/><br/>
                                     <!-- Form Row -->
-                                    <div class="row gx-3 mb-3">
+                                    <div class="row">
                                         <!-- Form Group whr-->
                                         <div class="col-md-10">
                                             <label style="font-size: 20px;"><span style="color: red">*</span> Email Address</label>
                                             <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" value="{{$student->email}}" style="font-size: 14px;"> 
+                                        </div><br/><br/><br/><br/>
+                                        <div class="col-md-10">
+                                            <div class="col-md-12"><label for="gradelevel_id" style="font-size: 20px;"><span style="color: red">*</span> Grade Level</label>
+                                                <select id="gradelevel_id" name="gradelevel_id" class="form-control" value="{{ old('$student->gradelevel_id') }}" style="font-size: 14px;">
+                                                    <option value="" disabled selected hidden>Choose Gradelevel</option>
+                                                    @foreach ($gradelevels as $gradelevel)
+                                                        <option value="{{ $gradelevel->id }}" {{ old('gradelevel', $gradelevel->id) || $student->gradelevel_id === $gradelevel->id ? 'selected' : '' }}>{{ $gradelevel->gradelevel }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div><br/><br/>
+                                        <div class="col-md-10">
+                                            <div class="col-md-12"><label for="course_id" style="font-size: 20px;"><span style="color: red">*</span> Strand</label>
+                                                <select id="course_id" name="course_id" class="form-control" value="{{ old('$student->course_id') }}" style="font-size: 14px;">
+                                                    <option value="" disabled selected hidden>Choose Course</option>
+                                                    @foreach ($courses as $course)
+                                                        <option value="{{ $course->id }}" {{ old('course', $course->id) || $student->course_id === $course->id ? 'selected' : '' }}>{{ $course->courseName}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div><br/><br/>
+                                        <div class="col-md-10">
+                                            <div class="col-md-12"><label for="section_id" style="font-size: 20px;"><span style="color: red">*</span> Section</label>
+                                                <select id="section_id" name="section_id" class="form-control" value="{{ old('$student->section_id') }}" style="font-size: 14px;">
+                                                    <option value="" disabled selected hidden>Choose Section</option>
+                                                    @foreach ($sections as $section)
+                                                        <option value="{{ $section->id }}"  {{ old('section', $section->id) || $student->section_id === $section->id ? 'selected' : '' }}>{{ $section->section}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                     <hr>
                                     <a class="btn btn-info btn-md" href="javascript:history.back()"><i class="fas fa-arrow-left"></i> Back</a>
-                                    <div class="pull-right">
-                                        <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary" value="Submit"></font>
-                                    </div>
+                                    <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary" value="Submit"></font>
                                 </div>
                             </div>
                         </div>

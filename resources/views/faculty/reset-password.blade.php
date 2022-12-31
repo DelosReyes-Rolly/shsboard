@@ -10,6 +10,12 @@
                 </div>
             </div>
             <div class="right">
+                <div class="right-logo">
+                    <center>
+                        <img src='{{ URL::asset("img/shs.png")}}'><br/><br/>
+                    </center>
+                    <div class="card-header" style="background-color: #1c8a43; color:white; text-align:center; border-radius:10px; font-weight:bold; font-family: arial black"> Reset Password</div><br/>
+                </div>
                 @if (count($errors) > 0)
 				    <div class="alert alert-danger">
 						<strong>Whoops!</strong> There were some problems with your input.
@@ -37,7 +43,7 @@
                         <label><strong>Confirm Password:</strong></label>                             
                         <input type="password"  name="confirm_password" class="form-control"/>
                     </div>
-                        <center><font face = "Bedrock" size = "3" ><input type="submit" id="reset" value="Reset Password" class="btn btn-primary"></center></font>
+                        <center><font face = "Bedrock" size = "3" ><input type="submit" id="reset" value="Reset Password" class="btn btn-primary" style="padding-left:40px; padding-right:40px;"></center></font>
                     </div>
                 </form>
                 <br>

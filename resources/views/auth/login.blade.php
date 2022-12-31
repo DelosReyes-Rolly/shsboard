@@ -12,7 +12,11 @@
                     </div>
                 </div>
                 <div class="right">
-                    <br><br>
+                    <div class="right-logo">
+                        <center>
+                            <img src='{{ URL::asset("img/shs.png")}}'><br/><br/>
+                        </center>
+                    </div>
                     <div class="card-header" style="background-color: #1c8a43; color:white; text-align:center; border-radius:10px; font-weight:bold; font-family: arial black"> {{ isset($url) ? ucwords($url) : ""}} {{ __('Login') }}</div>
                     <br><br>
                         @isset($url)
@@ -57,7 +61,7 @@
                                     </span>
                                 @enderror
                             </div><br/>
-                            <button type="submit" class="btn btn-primary">{{ __('Login') }}</button>
+                            <button type="submit" class="btn btn-primary" style="padding-left:40px; padding-right:40px;">{{ __('Login') }}</button>
                             <b><br/><br/>
                                 @if (Route::is('login.students'))
                                     <a href='{{ url("register/students") }}'>

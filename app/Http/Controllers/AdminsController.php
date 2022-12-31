@@ -1020,19 +1020,25 @@ class AdminsController extends Controller
 
 
     public function showstudent($id){
-        $data = Students::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.studentupdate', ['student' => $data]);
+        $student = Students::where('deleted', '=', null)->findOrFail($id);
+        $sections = Sections::where('deleted', '=', null)->get();
+        $courses = Courses::where('deleted', '=', null)->get();
+        $gradelevels = GradeLevels::where('deleted', '=', null)->get();
+        return view('admins.grading.functions.studentupdate', compact('student', 'courses', 'gradelevels', 'sections'));
     }
 
     public function updatestudent(Request $request, Students $student){
         $ownid=$student->id;
         $validated = $request->validate([
-            'LRN' => 'required|min:12|max:12|unique:students,LRN',
+            'LRN' => 'required|min:12|max:12|unique:students,LRN,' . $ownid,
             'first_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
             'middle_name' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
             'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
             'suffix' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
             "email" => 'required|email:rfc,dns|email|unique:students,email,' . $ownid,
+            'section_id' => 'required',
+            'course_id' => 'required',
+            'gradelevel_id' => 'required',
         ]);
         $student->update($validated);
         return redirect('/gradingstudents')->with('success', 'Student has been updated successfully!');
@@ -1314,7 +1320,7 @@ class AdminsController extends Controller
                     ->where('gradelevel_id', '=', $gradeLevelId)->where('status', '=', 1)->get();
         if($students->count() != 0){ 
             foreach($students as $student){
-                $studentredundant = StudentGrade::where('student_id', '=', $student->id)->where('subject', '=', $subjectId)->first();
+                $studentredundant = StudentGrade::where('student_id', '=', $student->id)->where('subject_id', '=', $subjectId)->first();
                 $average = $studentredundant->midterm + $studentredundant->finals;
                 if($studentredundant->count() != 0 && $average>74){
                     return redirect()->back()->with('message', 'The student already passed the subject!')->withInput();

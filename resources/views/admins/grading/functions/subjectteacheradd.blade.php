@@ -35,7 +35,7 @@
                                         <select id="faculty_id" name="faculty_id" class="form-control" value="{{ old('faculty_id') }}" style="font-size: 14px;">
                                             <option value="" disabled selected hidden>Choose Teacher</option>
                                             @foreach ($faculties as $faculty)
-                                                <option value="{{ $faculty->id }}"}>{{ $faculty->last_name }}, {{ $faculty->first_name }} {{ $faculty->middle_name }}</option>
+                                                <option value="{{ $faculty->id }}"  {{$faculty->faculty_id == $faculty->id  ? 'selected' : ''}}>{{ $faculty->last_name }}, {{ $faculty->first_name }} {{ $faculty->middle_name }}</option>
                                             @endforeach 
                                         </select>
                                     </div>

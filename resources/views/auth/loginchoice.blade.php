@@ -15,7 +15,11 @@
             </div>
           </div>
           <div class="right">
-            <br><br>
+            <div class="right-logo">
+              <center>
+                <img src='{{ URL::asset("img/shs.png")}}'><br/><br/>
+              </center>
+            </div>
             <b style="font-size:40px; color: #266C2A;"> Hello Signalian! </b><br><br>
             <b style="font-size:20px"> Please click below to proceed to your destination. </b><br><br>
             <center><br><br>
