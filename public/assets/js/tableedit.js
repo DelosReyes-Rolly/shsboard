@@ -47,8 +47,8 @@ if ("undefined" == typeof jQuery) throw new Error("Tabledit requires jQuery libr
                         action: "edit"
                     },
                     "delete": {
-                        "class": "btn btn-lg btn-default",
-                        html: '<i class="fas fa-trash-alt"></i>',
+                        "class": "btn btn-lg btn-default hidden",
+                        // html: '<i class="fas fa-trash-alt"></i>',
                         action: "delete"
                     },
                     save: {
