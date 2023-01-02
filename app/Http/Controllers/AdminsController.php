@@ -1230,6 +1230,17 @@ class AdminsController extends Controller
         Students::where('deleted', '=', null)->where('status', '=', 1)->increment('gradelevel_id', 1, ['updated_at' => now()]);
         Students::query()->where('gradelevel_id', '<', 1)->orWhere('gradelevel_id', '>', 2)->update(['status' => 2]);
         Advisories::query()->update(['active' => 1]);
+        $ads = Advisories::where('deleted', '=', null);
+        foreach($ads as $ad){
+            $newAdvisories = new Advisories;
+            $newAdvisories->faculty_id = $ad->faculty_id;
+            $newAdvisories->gradelevel_id = $ad->gradelevel_id;
+            $newAdvisories->course_id = $ad->course_id;
+            $newAdvisories->section_id = $ad->section_id;
+            $newAdvisories->schoolyear_id = $ad->schoolyear_id;
+            $newAdvisories->faculty_id = $ad->faculty_id;
+            $newAdvisories->save();
+        }
 
         return redirect('/gradingschoolyear')->with('success', 'Schoolyear has been added successfully!');
     } 
@@ -1287,55 +1298,45 @@ class AdminsController extends Controller
             'time_end' => ['required'],
         ]);
         $schoolyear = DB::table('school_years')->latest('id')->first();
-        $subjectteacherredundant = SubjectTeachers::where('faculty_id', '=', $request->faculty_id)->where('gradelevel_id', '=', $request->gradelevel_id)
-        ->where('semester_id', '=', $request->semester_id)->where('course_id', '=', $request->semester_id)->where('course_id', '=', $request->course_id)
-        ->where('section_id', '=', $request->section_id)->where('subject_id', '=', $request->subject_id)->get();
-        if($subjectteacherredundant->count() == 0){
-            $subjectteacher = new SubjectTeachers;
-            $subjectteacher->schoolyear_id = $schoolyear->id;
-            $subjectteacher->faculty_id = $request->get('faculty_id');
-            $subjectteacher->gradelevel_id = $request->get('gradelevel_id');
-            $subjectteacher->semester_id = $request->get('semester_id');
-            $subjectteacher->course_id = $request->get('course_id');
-            $subjectteacher->section_id = $request->get('section_id');
-            $subjectteacher->subject_id = $request->get('subject_id');
-            $subjectteacher->time_start = $request->get('time_start');
-            $subjectteacher->time_end = $request->get('time_end');
-            $subjectteacher->save();
-        }
-        else{
-            return redirect()->back()->with('message', 'This is a duplicate. Kindly check again.')->withInput();
-        }
 
-        // creating student grade
-
-        $subjectTeacherId = $subjectteacher->id;
-        $courseId = $subjectteacher->course_id;
-        $gradeLevelId = $subjectteacher->gradelevel_id;
-        $sectionId = $subjectteacher->section_id;
-        $semesterId = $subjectteacher->semester_id;
-        $subjectId = $subjectteacher->subject_id;
-        $teacherId = $subjectteacher->faculty_id;
-        $schoolyearId = $subjectteacher->schoolyear_id;
-        $students = Students::where('deleted', '=', NULL)->where('course_id', '=', $courseId)->where('section_id', '=', $sectionId)
-                    ->where('gradelevel_id', '=', $gradeLevelId)->where('status', '=', 1)->get();
-        if($students->count() != 0){ 
-            foreach($students as $student){
-                $studentredundant = StudentGrade::where('student_id', '=', $student->id)->where('subject_id', '=', $subjectId)->first();
-                if($studentredundant == null){
-                    $studentgrade = new StudentGrade;
-                    $studentgrade->student_id = $student->id;
-                    $studentgrade->gradelevel_id = $gradeLevelId;
-                    $studentgrade->semester_id = $semesterId;
-                    $studentgrade->subject_id = $subjectId;
-                    $studentgrade->faculty_id = $teacherId;
-                    $studentgrade->subjectteacher_id = $subjectTeacherId;
-                    $studentgrade->schoolyear_id = $schoolyearId;
-                    $studentgrade->save();
-                }
-                else{
-                    $average = $studentredundant->midterm + $studentredundant->finals;
-                    if($average<75){
+        $checkAdvisor = Advisories::where('deleted', '=', null)->where('gradelevel_id', '=', $request->gradelevel_id)->where('course_id', '=', $request->course_id)->where('section_id', '=', $request->section_id)->get();
+        if($checkAdvisor->count() != 0){
+            $subjectteacherredundant = SubjectTeachers::where('faculty_id', '=', $request->faculty_id)->where('gradelevel_id', '=', $request->gradelevel_id)->where('semester_id', '=', $request->semester_id)->where('course_id', '=', $request->course_id)->where('section_id', '=', $request->section_id)->where('subject_id', '=', $request->subject_id)->get();
+            if($subjectteacherredundant->count() == 0){
+                $subjectteacher = new SubjectTeachers;
+                $subjectteacher->schoolyear_id = $schoolyear->id;
+                $subjectteacher->faculty_id = $request->get('faculty_id');
+                $subjectteacher->gradelevel_id = $request->get('gradelevel_id');
+                $subjectteacher->semester_id = $request->get('semester_id');
+                $subjectteacher->course_id = $request->get('course_id');
+                $subjectteacher->section_id = $request->get('section_id');
+                $subjectteacher->subject_id = $request->get('subject_id');
+                $subjectteacher->time_start = $request->get('time_start');
+                $subjectteacher->time_end = $request->get('time_end');
+                $subjectteacher->save();
+            }
+    
+    
+            else{
+                return redirect()->back()->with('message', 'This is a duplicate. Kindly check again.')->withInput();
+            }
+    
+            // creating student grade
+    
+            $subjectTeacherId = $subjectteacher->id;
+            $courseId = $subjectteacher->course_id;
+            $gradeLevelId = $subjectteacher->gradelevel_id;
+            $sectionId = $subjectteacher->section_id;
+            $semesterId = $subjectteacher->semester_id;
+            $subjectId = $subjectteacher->subject_id;
+            $teacherId = $subjectteacher->faculty_id;
+            $schoolyearId = $subjectteacher->schoolyear_id;
+            $students = Students::where('deleted', '=', NULL)->where('course_id', '=', $courseId)->where('section_id', '=', $sectionId)
+                        ->where('gradelevel_id', '=', $gradeLevelId)->where('status', '=', 1)->get();
+            if($students->count() != 0){ 
+                foreach($students as $student){
+                    $studentredundant = StudentGrade::where('student_id', '=', $student->id)->where('subject_id', '=', $subjectId)->first();
+                    if($studentredundant == null){
                         $studentgrade = new StudentGrade;
                         $studentgrade->student_id = $student->id;
                         $studentgrade->gradelevel_id = $gradeLevelId;
@@ -1346,11 +1347,29 @@ class AdminsController extends Controller
                         $studentgrade->schoolyear_id = $schoolyearId;
                         $studentgrade->save();
                     }
+                    else{
+                        $average = $studentredundant->midterm + $studentredundant->finals;
+                        if($average<75){
+                            $studentgrade = new StudentGrade;
+                            $studentgrade->student_id = $student->id;
+                            $studentgrade->gradelevel_id = $gradeLevelId;
+                            $studentgrade->semester_id = $semesterId;
+                            $studentgrade->subject_id = $subjectId;
+                            $studentgrade->faculty_id = $teacherId;
+                            $studentgrade->subjectteacher_id = $subjectTeacherId;
+                            $studentgrade->schoolyear_id = $schoolyearId;
+                            $studentgrade->save();
+                        }
+                    }
                 }
-            }
-        }  
-
-        return redirect('/gradingfacultysubjects')->with('success', 'New subject of teacher was added successfully!');
+            }  
+    
+            return redirect('/gradingfacultysubjects')->with('success', 'New subject of teacher was added successfully!');
+        }
+        else{
+            return redirect()->back()->with('message', 'Kindly set advisory teacher first for this class.')->withInput();
+        }
+        
     } 
 
     public function viewsubjectteacher($id){
