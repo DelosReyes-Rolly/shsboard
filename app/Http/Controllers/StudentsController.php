@@ -124,7 +124,6 @@ class StudentsController extends Controller
     public function profile(){
         $student = Students::where('id', '=', Auth::user()->id)->first();
         $address = Addresses::where('id', '=', Auth::user()->address_id)->first();
-        dd($address);
         return view('student.profile', compact('student', 'address'));
     }
 

@@ -99,8 +99,8 @@
                                                 <div class="col-lg-10 col-md-12 col-sm-12 requestdocument">
                                                 <br><br>
                                                     <div style="font-size: 20px;">
-                                                        <span style="color: red">*</span> Proof needed: (only JPG or PNG files are allowed)
-                                                        <input id="proof" style="width:100%; padding-left: 2%;" name="proof_needed" style="border: none;" value="" disabled><br><br>
+                                                        <span style="color: red">*</span> <span>Proof needed: </span>(only JPG or PNG files are allowed)
+                                                        <input id="proof" name="proof_needed" style="border: none; width:100%; padding-left: 2%;" value="" disabled><br><br>
                                                         <input type="file" name = "file" class="form-control" style="font-size: 16px;" >
                                                     </div>
             										<div class ="form-group">

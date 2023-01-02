@@ -1112,6 +1112,7 @@ class AdminsController extends Controller
         }
         else{
             $studentredundant = StudentGrade::where('student_id', '=', $request->student_id)->where('subject', '=', $request->subject_id)->first();
+            dd($studentredundant);
             $average = $studentredundant->midterm + $studentredundant->finals;
             if($studentredundant->count() != 0 && $average>74){
                 return redirect()->back()->with('message', 'The student already passed the subject!')->withInput();
@@ -1321,11 +1322,7 @@ class AdminsController extends Controller
         if($students->count() != 0){ 
             foreach($students as $student){
                 $studentredundant = StudentGrade::where('student_id', '=', $student->id)->where('subject_id', '=', $subjectId)->first();
-                $average = $studentredundant->midterm + $studentredundant->finals;
-                if($studentredundant->count() != 0 && $average>74){
-                    return redirect()->back()->with('message', 'The student already passed the subject!')->withInput();
-                }
-                else{
+                if($studentredundant == null){
                     $studentgrade = new StudentGrade;
                     $studentgrade->student_id = $student->id;
                     $studentgrade->gradelevel_id = $gradeLevelId;
@@ -1335,6 +1332,20 @@ class AdminsController extends Controller
                     $studentgrade->subjectteacher_id = $subjectTeacherId;
                     $studentgrade->schoolyear_id = $schoolyearId;
                     $studentgrade->save();
+                }
+                else{
+                    $average = $studentredundant->midterm + $studentredundant->finals;
+                    if($average<75){
+                        $studentgrade = new StudentGrade;
+                        $studentgrade->student_id = $student->id;
+                        $studentgrade->gradelevel_id = $gradeLevelId;
+                        $studentgrade->semester_id = $semesterId;
+                        $studentgrade->subject_id = $subjectId;
+                        $studentgrade->faculty_id = $teacherId;
+                        $studentgrade->subjectteacher_id = $subjectTeacherId;
+                        $studentgrade->schoolyear_id = $schoolyearId;
+                        $studentgrade->save();
+                    }
                 }
             }
         }  
