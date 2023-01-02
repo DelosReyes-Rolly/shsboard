@@ -20,7 +20,10 @@
         </div>
     @endif
     <div class="left-to-right">
-        <h3 style="font-size: 28px; font-weight: 800;">Table of Students </h3>
+        <div style="margin: 20px;">
+            <a class="btn btn-secondary btn-lg" href="javascript:history.back()" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to subject list</a>
+        </div>
+        <h3 style="font-size: 28px; font-weight: 800;">Table of Students </h3><br/>
       <hr class="mt-0 mb-4"><br/>
             <div style="background-color: #ffffff; box-shadow: 0 4px 16px rgba(0,0,0,0.6);">
                 <div class="card-header bg-primary" style="font-size: 20px;"><b>Male</b></div>
@@ -72,7 +75,7 @@
                                         @endphp
                                     </th>
                                     <th style="font-size: 20px;">Average</th>
-                                    <!-- <th style="font-size: 20px;">Remarks</th> -->
+                                    <th style="font-size: 20px;">Remarks</th>
                                 </tr>
                             </thead>
                             <tbody>   
@@ -85,20 +88,20 @@
                                             <td class="d-none">{{$student -> id}}</td>
                                             <td style="font-size: 20px;">{{$count++;}}</td>
                                             <td style="font-size: 20px;">{{$student -> student -> last_name}}, {{$student -> student -> first_name}} {{$student -> student -> middle_name}} {{$student -> student -> suffix}}</td>
-                                            <td style="font-size: 20px;">{{$student -> midterm}}</td>
-                                            <td style="font-size: 20px;">{{$student -> finals}}</td>
-                                            <td style="font-size: 20px;">
+                                            <td style="font-size: 20px;"><div id="gradingGrades21{{$student->id}}">{{$student -> midterm}}</div></td>
+                                            <td style="font-size: 20px;"><div id="gradingGrades22{{$student->id}}">{{$student -> finals}}</div></td>
+                                            <td style="font-size: 20px;"><h3 style="font-size: 20px;" id="ave2{{$student->id}}"></h3>
                                                 @php
                                                     switch ($student -> finals && $student -> midterm) {
                                                         case ($student -> finals === 'NULL' || $student -> midterm === 'NULL'):
-                                                            echo '<h3 style="font-size: 20px;" class="ave2"></h3 >';
-                                                            @endphp<div id="notComplete2">@php
+                                                            echo '<p style="font-size: 20px;" id="ave2{{$student->id}}"></p>';
+                                                            @endphp<div id="notComplete2{{$student->id}}">@php
                                                                 echo '<span class="badge bg-danger" style="color: white;">Grades are not complete</span>';
                                                             @endphp</div>@php
                                                             break;
                                                         case ($student -> finals !== 'NULL' && $student -> midterm !== 'NULL'):
-                                                            echo '<h3 style="font-size: 20px;" class="ave2"></h3 >';
-                                                            @endphp<div id="notComplete2">@php
+                                                            echo '<p style="font-size: 20px;" id="ave2{{$student->id}}"></p>';
+                                                            @endphp<div id="notComplete2{{$student->id}}">@php
                                                                 echo $ave = ($student -> midterm + $student -> finals) / 2;
                                                             @endphp</div>@php
                                                             break;
@@ -108,12 +111,14 @@
                                                     }
                                                 @endphp
                                             </td>
-                                            <!-- <td style="font-size: 20px;">
+                                            <td style="font-size: 20px;">
+                                                <span id="remarks2{{$student->id}}" style="display:none;"></span>
+                                                <span class="badge bg-danger" id="remarksnoremarks2{{$student->id}}" style="display:none;">No remarks</span>
                                                 @php 
                                                     $ave = ($student -> midterm + $student -> finals) / 2;
                                                     switch ($ave && $student -> finals && $student -> midterm) {
                                                         case ($student -> finals === 'NULL' || $student -> midterm === 'NULL'):
-                                                            @endphp<div id="notComplete">@php
+                                                            @endphp<div id="notCompleteRemarks2{{$student->id}}">@php
                                                                 echo '<span class="badge bg-danger" style="color: white;">No remarks</span>';
                                                             @endphp</div>@php
                                                             break;
@@ -125,8 +130,7 @@
                                                         break;
                                                     }
                                                 @endphp
-                                                        
-                                            </td> -->
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -181,7 +185,7 @@
                                         @endphp
                                     </th>
                                     <th style="font-size: 20px;">Average</th>
-                                    <!-- <th style="font-size: 20px;">Remarks</th> -->
+                                    <th style="font-size: 20px;">Remarks</th>
                                 </tr>
                             </thead>
                             <tbody>   
@@ -194,20 +198,20 @@
                                             <td class="d-none">{{$student -> id}}</td>
                                             <td style="font-size: 20px;">{{$count++;}}</td>
                                             <td style="font-size: 20px;">{{$student -> student -> last_name}}, {{$student -> student -> first_name}} {{$student -> student -> middle_name}} {{$student -> student -> suffix}}</td>
-                                            <td style="font-size: 20px;">{{$student -> midterm}}</td>
-                                            <td style="font-size: 20px;">{{$student -> finals}}</td>
-                                            <td style="font-size: 20px;">
+                                            <td style="font-size: 20px;"><div id="gradingGrades1{{$student->id}}">{{$student -> midterm}}</div></td>
+                                            <td style="font-size: 20px;"><div id="gradingGrades2{{$student->id}}">{{$student -> finals}}</div></td>
+                                            <td style="font-size: 20px;"><h3 style="font-size: 20px;" id="ave{{$student->id}}"></h3>
                                                 @php
                                                     switch ($student -> finals && $student -> midterm) {
                                                         case ($student -> finals === 'NULL' || $student -> midterm === 'NULL'):
-                                                            echo '<h3 style="font-size: 20px;" class="ave"></h3 >';
-                                                            @endphp<div id="notComplete">@php
+                                                            echo '<p style="font-size: 20px;" id="ave{{$student->id}}"></p>';
+                                                            @endphp<div id="notComplete{{$student->id}}">@php
                                                                 echo '<span class="badge bg-danger" style="color: white;">Grades are not complete</span>';
                                                             @endphp</div>@php
                                                             break;
                                                         case ($student -> finals !== 'NULL' && $student -> midterm !== 'NULL'):
-                                                            echo '<h3 style="font-size: 20px;" class="ave"></h3 >';
-                                                            @endphp<div id="notComplete">@php
+                                                            echo '<p style="font-size: 20px;" id="ave{{$student->id}}"></p>';
+                                                            @endphp<div id="notComplete{{$student->id}}">@php
                                                                 echo $ave = ($student -> midterm + $student -> finals) / 2;
                                                             @endphp</div>@php
                                                             break;
@@ -217,27 +221,17 @@
                                                     }
                                                 @endphp
                                             </td>
-                                            <!-- <td style="font-size: 20px;">
+                                            <td style="font-size: 20px;">
+                                                <span id="remarks{{$student->id}}" style="display:none;"></span>
+                                                <span class="badge bg-danger" id="remarksnoremarks{{$student->id}}" style="display:none;">No remarks</span>
                                                 @php 
                                                     $ave = ($student -> midterm + $student -> finals) / 2;
                                                     switch ($ave && $student -> finals && $student -> midterm) {
                                                         case ($student -> finals === 'NULL' || $student -> midterm === 'NULL'):
-                                                            if($student -> finals === 0 && $student -> midterm !== 0){
-                                                                echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
-                                                                break;
-                                                            }
-                                                            elseif($student -> finals !== 0 && $student -> midterm === 0){
-                                                                echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
-                                                                break;
-                                                            }
-                                                            elseif($student -> finals === 0 && $student -> midterm === 0){
-                                                                echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
-                                                                break;
-                                                            }
-                                                            else{
+                                                            @endphp<div id="notCompleteRemarks{{$student->id}}">@php
                                                                 echo '<span class="badge bg-danger" style="color: white;">No remarks</span>';
-                                                                break;
-                                                            }
+                                                            @endphp</div>@php
+                                                            break;
                                                         case ($ave <='100' && $ave >'74' && $student -> finals !== 'NULL' && $student -> midterm !== 'NULL'):
                                                             echo '<span class="badge bg-success" style="color: white;">Passed</span>';
                                                             break;
@@ -247,8 +241,7 @@
                                                     }
                                                 @endphp
                                                         
-                                                        
-                                            </td> -->
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -288,15 +281,35 @@
             var finals = data.finals/2;
             var ave =(midterm + finals);
             if(Number.isNaN(ave)=== true){
-                document.getElementById('notComplete').style.display = 'block';
+                document.getElementById('notComplete'+data.id).style.display = 'block';
+                document.getElementById('remarks'+data.id).style.display = 'none';
+                document.getElementById('ave'+data.id).style.display = 'none';
+                document.getElementById('remarksnoremarks'+data.id).style.display = 'block';
+                document.getElementById('gradingGrades1'+data.id).style.display = 'none';
+                document.getElementById('gradingGrades2'+data.id).style.display = 'none';
             }
             else if(midterm != 0 && finals != 0){
-                var elements = document.getElementsByClassName("ave");
-                for (var i = 0; i < elements.length; i++) {
-                    elements[i].innerHTML = ave;
+                document.getElementById('ave'+data.id).innerHTML = ave;
+                document.getElementById('notComplete'+data.id).style.display = 'none';
+                document.getElementById('notCompleteRemarks'+data.id).style.display = 'none';
+                var heading = document.getElementById('remarks'+data.id);
+                if(ave<75){
+                    heading.innerHTML = "Failed";
+                    heading.setAttribute("class", "badge bg-danger");
+                    document.getElementById('remarks'+data.id).style.display = 'block';
                 }
-   
-                document.getElementById('notComplete').style.display = 'none';
+                else if(ave<=100){
+                    heading.innerHTML = "Passed";
+                    heading.setAttribute("class", "badge bg-success");
+                    document.getElementById('remarks'+data.id).style.display = 'block';
+                }
+                else
+                {
+                    heading.innerHTML = "Undetermined";
+                    heading.setAttribute("class", "badge bg-secondary");
+                    document.getElementById('remarks'+data.id).style.display = 'block';
+                }
+
             }
 
             }        
@@ -323,14 +336,35 @@
             var finals = data.finals/2;
             var ave =(midterm + finals);
             if(Number.isNaN(ave)=== true){
-                document.getElementById('notComplete2').style.display = 'block';
+                document.getElementById('notComplete2'+data.id).style.display = 'block';
+                document.getElementById('remarks2'+data.id).style.display = 'none';
+                document.getElementById('ave2'+data.id).style.display = 'none';
+                document.getElementById('remarksnoremarks2'+data.id).style.display = 'block';
+                document.getElementById('gradingGrades21'+data.id).style.display = 'none';
+                document.getElementById('gradingGrades22'+data.id).style.display = 'none';
             }
             else if(midterm != 0 && finals != 0){
-                var elements = document.getElementsByClassName("ave2");
-                for (n = 0; n < elements.length; ++n) {
-                    elements[n].innerHTML = ave;
+                
+                document.getElementById('ave2'+data.id).innerHTML = ave;
+                document.getElementById('notComplete2'+data.id).style.display = 'none';
+                document.getElementById('notCompleteRemarks2'+data.id).style.display = 'none';
+                var heading = document.getElementById('remarks2'+data.id);
+                if(ave<75){
+                    heading.innerHTML = "Failed";
+                    heading.setAttribute("class", "badge bg-danger");
+                    document.getElementById('remarks2'+data.id).style.display = 'block';
                 }
-                document.getElementById('notComplete2').style.display = 'none';
+                else if(ave<=100){
+                    heading.innerHTML = "Passed";
+                    heading.setAttribute("class", "badge bg-success");
+                    document.getElementById('remarks2'+data.id).style.display = 'block';
+                }
+                else
+                {
+                    heading.innerHTML = "Undetermined";
+                    heading.setAttribute("class", "badge bg-secondary");
+                    document.getElementById('remarks2'+data.id).style.display = 'block';
+                }
             }
             }
         });
