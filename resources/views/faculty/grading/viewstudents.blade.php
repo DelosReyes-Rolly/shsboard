@@ -90,7 +90,9 @@
                                             <td style="font-size: 20px;">{{$student -> student -> last_name}}, {{$student -> student -> first_name}} {{$student -> student -> middle_name}} {{$student -> student -> suffix}}</td>
                                             <td style="font-size: 20px;"><div id="gradingGrades21{{$student->id}}">{{$student -> midterm}}</div></td>
                                             <td style="font-size: 20px;"><div id="gradingGrades22{{$student->id}}">{{$student -> finals}}</div></td>
-                                            <td style="font-size: 20px;"><h3 style="font-size: 20px;" id="ave2{{$student->id}}"></h3>
+                                            <td style="font-size: 20px;">
+                                                <h3 style="font-size: 20px;" id="ave2{{$student->id}}"></h3>
+                                                <span class="badge bg-danger" id="remarksnoave2{{$student->id}}" style="display:none;">Grades are not complete</span>
                                                 @php
                                                     switch ($student -> finals && $student -> midterm) {
                                                         case ($student -> finals === 'NULL' || $student -> midterm === 'NULL'):
@@ -200,7 +202,9 @@
                                             <td style="font-size: 20px;">{{$student -> student -> last_name}}, {{$student -> student -> first_name}} {{$student -> student -> middle_name}} {{$student -> student -> suffix}}</td>
                                             <td style="font-size: 20px;"><div id="gradingGrades1{{$student->id}}">{{$student -> midterm}}</div></td>
                                             <td style="font-size: 20px;"><div id="gradingGrades2{{$student->id}}">{{$student -> finals}}</div></td>
-                                            <td style="font-size: 20px;"><h3 style="font-size: 20px;" id="ave{{$student->id}}"></h3>
+                                            <td style="font-size: 20px;">
+                                                <h3 style="font-size: 20px;" id="ave{{$student->id}}"></h3>
+                                                <span class="badge bg-danger" id="remarksnoave{{$student->id}}" style="display:none;">Grades are not complete</span>
                                                 @php
                                                     switch ($student -> finals && $student -> midterm) {
                                                         case ($student -> finals === 'NULL' || $student -> midterm === 'NULL'):
@@ -288,7 +292,7 @@
                 document.getElementById('gradingGrades1'+data.id).style.display = 'none';
                 document.getElementById('gradingGrades2'+data.id).style.display = 'none';
             }
-            else if(midterm != null && finals != null){
+            else if(data.midterm !== null && data.finals !== null){
                 document.getElementById('ave'+data.id).innerHTML = ave;
                 document.getElementById('notComplete'+data.id).style.display = 'none';
                 document.getElementById('notCompleteRemarks'+data.id).style.display = 'none';
@@ -296,25 +300,30 @@
                 if(ave<75){
                     heading.innerHTML = "Failed";
                     heading.setAttribute("class", "badge bg-danger");
+                    document.getElementById('remarksnoave'+data.id).style.display = 'none';
                     document.getElementById('remarks'+data.id).style.display = 'block';
                 }
                 else if(ave<=100){
                     heading.innerHTML = "Passed";
                     heading.setAttribute("class", "badge bg-success");
+                    document.getElementById('remarksnoave'+data.id).style.display = 'none';
                     document.getElementById('remarks'+data.id).style.display = 'block';
                 }
                 else
                 {
                     heading.innerHTML = "Undetermined";
                     heading.setAttribute("class", "badge bg-secondary");
+                    document.getElementById('remarksnoave'+data.id).style.display = 'none';
                     document.getElementById('remarks'+data.id).style.display = 'block';
                 }
 
             }
-            else if(data.midterm == NULL || data.finals == NULL){
-                document.getElementById('notComplete'+data.id).style.display = 'block';
-                document.getElementById('remarks'+data.id).style.display = 'none';
+
+            else if(data.midterm === null || data.finals === null){
+                document.getElementById('notComplete'+data.id).style.display = 'none';
                 document.getElementById('ave'+data.id).style.display = 'none';
+                document.getElementById('remarksnoave'+data.id).style.display = 'block';
+                document.getElementById('notCompleteRemarks'+data.id).style.display = 'none';
                 document.getElementById('remarksnoremarks'+data.id).style.display = 'block';
             }
 
@@ -349,7 +358,7 @@
                 document.getElementById('gradingGrades21'+data.id).style.display = 'none';
                 document.getElementById('gradingGrades22'+data.id).style.display = 'none';
             }
-            else if(midterm != null && finals != null){
+            else if(data.midterm !== null && data.finals !== null){
                 
                 document.getElementById('ave2'+data.id).innerHTML = ave;
                 document.getElementById('notComplete2'+data.id).style.display = 'none';
@@ -358,24 +367,28 @@
                 if(ave<75){
                     heading.innerHTML = "Failed";
                     heading.setAttribute("class", "badge bg-danger");
+                    document.getElementById('remarksnoave2'+data.id).style.display = 'none';
                     document.getElementById('remarks2'+data.id).style.display = 'block';
                 }
                 else if(ave<=100){
                     heading.innerHTML = "Passed";
                     heading.setAttribute("class", "badge bg-success");
+                    document.getElementById('remarksnoave2'+data.id).style.display = 'none';
                     document.getElementById('remarks2'+data.id).style.display = 'block';
                 }
                 else
                 {
                     heading.innerHTML = "Undetermined";
                     heading.setAttribute("class", "badge bg-secondary");
+                    document.getElementById('remarksnoave2'+data.id).style.display = 'none';
                     document.getElementById('remarks2'+data.id).style.display = 'block';
                 }
             }
-            else if(data.midterm == NULL || data.finals == NULL){
-                document.getElementById('notComplete2'+data.id).style.display = 'block';
-                document.getElementById('remarks2'+data.id).style.display = 'none';
+            else if(data.midterm === null || data.finals === null){
+                document.getElementById('notComplete2'+data.id).style.display = 'none';
                 document.getElementById('ave2'+data.id).style.display = 'none';
+                document.getElementById('remarksnoave2'+data.id).style.display = 'block';
+                document.getElementById('notCompleteRemarks2'+data.id).style.display = 'none';
                 document.getElementById('remarksnoremarks2'+data.id).style.display = 'block';
             }
             }
