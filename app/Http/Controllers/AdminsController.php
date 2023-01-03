@@ -949,21 +949,21 @@ class AdminsController extends Controller
     public function storestudent(Request $request){
         // Validate the inputs
 
-        $validated = $request->validate([
-            'LRN' => 'required|min:12|max:12|unique:students,LRN',
-            'first_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
-            'middle_name' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
-            'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
-            'suffix' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
-            'section_id' => ['required'],
-            'gender' => ['required'],
-            'section_id' => ['required'],
-            'gradelevel_id' => ['required'],
-            'email' => ['required', 'email', Rule::unique('students', 'email')],
-            'course_id' => ['required'],
+            $validated = $request->validate([
+                'LRN' => 'required|min:12|max:12|unique:students,LRN',
+                'first_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
+                'middle_name' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
+                'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
+                'suffix' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
+                'section_id' => ['required'],
+                'gender' => ['required'],
+                'section_id' => ['required'],
+                'gradelevel_id' => ['required'],
+                'email' => ['required', 'email', Rule::unique('students', 'email')],
+                'course_id' => ['required'],
         ]);
 
-        if (Students::where('first_name', '=', $request->get("first_name"))->count() <= 0 || Students::where('middle_name', '=', $request->get("middle_name"))->count() <= 0
+            if (Students::where('first_name', '=', $request->get("first_name"))->count() <= 0 || Students::where('middle_name', '=', $request->get("middle_name"))->count() <= 0
         || Students::where('last_name', '=', $request->get("last_name"))->count() <= 0 || Students::where('suffix', '=', $request->get("suffix"))->count() <= 0) {
             // hashing
             $chars = "abcdefghijkmnopqrstuvwxyz023456789";
