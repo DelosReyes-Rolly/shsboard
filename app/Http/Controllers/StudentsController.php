@@ -162,7 +162,7 @@ class StudentsController extends Controller
         $grade11 = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 1)->where('deleted', '=', NULL)->get();
         $grade11firstsem = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 1)->where('semester_id', '=', 1)->where('deleted', '=', NULL)->get();
         $grade11firstsemungraded = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 1)->where('semester_id', '=', 1)->where(function($q){$q->where('midterm', NULL)->orWhere('finals', NULL);})->where('deleted', '=', NULL)->get();
-        $grade11firstsemreleased = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 1)->where('semester_id', '=', 1)->where('deleted', '=', NULL)->where('isReleased', '=', NULL)->get();
+        $grade11firstsemunreleased = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 1)->where('semester_id', '=', 1)->where('deleted', '=', NULL)->where('isReleased', '=', NULL)->get();
         $grade11secondsem = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 1)->where('semester_id', '=', 2)->where('deleted', '=', NULL)->get();
         $grade11secondsemungraded = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 1)->where('semester_id', '=', 2)->where(function($q){$q->where('midterm', NULL)->orWhere('finals', NULL);})->where('deleted', '=', NULL)->get();
         $grade11secondsemunreleased = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 1)->where('semester_id', '=', 2)->where('deleted', '=', NULL)->where('isReleased', '=', NULL)->get();

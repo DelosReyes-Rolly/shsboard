@@ -1537,7 +1537,7 @@ class AdminsController extends Controller
             return redirect('/advisory')->with('success', 'New advisory class of teacher was added successfully!');
         }
         else{
-            return redirect()->back()->with('message', 'There is already an advisory teacher that is assigned to this class.')->withInput();
+            return redirect()->back()->with('warning', 'There is already an advisory teacher that is assigned to this class.')->withInput();
         }
         
     } 

@@ -53,10 +53,10 @@
 							<b><div class="text-center" style="font-size: 28px; color:green;">Profile Settings</div><br><hr style="border:1px solid grey;"></b><br>
 						</div>
 						<div class="row mt-2">
-							<div class="col-md-3" style="font-size: 18px;"><label>First Name</label><input style="font-size: 16px;" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" placeholder="{{Auth::user()->first_name}}" value={{Auth::user()->first_name}}></div>
-							<div class="col-md-3" style="font-size: 18px;"><label>Middle Name</label><input style="font-size: 16px;" type="text" class="form-control @error('middle_name') is-invalid @enderror" name="middle_name" placeholder="{{Auth::user()->middle_name}}" value={{Auth::user()->middle_name}}></div>
-							<div class="col-md-3" style="font-size: 18px;"><label>Last Name</label><input style="font-size: 16px;" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" placeholder="{{Auth::user()->last_name}}" value={{Auth::user()->last_name}}></div>
-							<div class="col-md-3" style="font-size: 18px;"><label>Suffix</label><input style="font-size: 16px;" type="text" class="form-control @error('suffix') is-invalid @enderror" name="suffix" placeholder="{{Auth::user()->suffix}}" value={{Auth::user()->suffix}}></div>
+							<div class="col-md-12" style="font-size: 18px;"><label>First Name</label><input style="font-size: 16px;" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" placeholder="{{Auth::user()->first_name}}" value={{Auth::user()->first_name}}></div><br/>
+							<div class="col-md-12" style="font-size: 18px;"><label>Middle Name</label><input style="font-size: 16px;" type="text" class="form-control @error('middle_name') is-invalid @enderror" name="middle_name" placeholder="{{Auth::user()->middle_name}}" value={{Auth::user()->middle_name}}></div><br/>
+							<div class="col-md-12" style="font-size: 18px;"><label>Last Name</label><input style="font-size: 16px;" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" placeholder="{{Auth::user()->last_name}}" value={{Auth::user()->last_name}}></div><br/>
+							<div class="col-md-12" style="font-size: 18px;"><label>Suffix</label><input style="font-size: 16px;" type="text" class="form-control @error('suffix') is-invalid @enderror" name="suffix" placeholder="{{Auth::user()->suffix}}" value={{Auth::user()->suffix}}></div><br/>
 						</div><br/>
 						<div class="row mt-3">
 							<div class="col-md-12" style="font-size: 18px;"><label>Username</label><input style="font-size: 16px;" type="text" class="form-control @error('username') is-invalid @enderror" name="username" placeholder="{{Auth::user()->username}}" value="{{Auth::user()->username}}"></div><br/><br/>
