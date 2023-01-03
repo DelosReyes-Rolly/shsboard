@@ -322,7 +322,7 @@ class FacultyController extends Controller
 
     public function uploadeval(Request $request, GradeEvaluationRequests $upload){
         $request->validate([
-            'file' => 'mimes:doc,docx,docs,pdf|max:2048',
+            'file' => 'mimes:pdf|max:2048',
         ]);
         if($request->hasFile('file')){
             $file = $request->file('file');

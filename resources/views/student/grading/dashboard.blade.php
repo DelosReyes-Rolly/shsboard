@@ -221,10 +221,12 @@
                                                                         @endif
                                                                     </td>
                                                                     <td>
-                                                                        <a href="{{route('grade-eval',['student_id'=> Auth::user()->id , 'gradelevel_id'=> $grade12second -> gradelevel_id, 
+                                                                        @if($grade12second->isReleased == 2)
+                                                                            <a href="{{route('grade-eval',['student_id'=> Auth::user()->id , 'gradelevel_id'=> $grade12second -> gradelevel_id, 
                                                                                 'course_id'=>  Auth::user()->course_id, 'section_id'=> Auth::user()->section_id,
                                                                                 'semester_id'=>  $grade12second -> semester_id, 'faculty_id'=> $grade12second -> faculty_id,
                                                                                 'subject_id'=> $grade12second -> subject_id])}}"><button class="requestGradeEvalButton">Click here</button></a>
+                                                                        @endif
                                                                     </td>
                                                                 </tr>
                                                         @endforeach
@@ -381,10 +383,12 @@
                                                                             @endif        
                                                                         </td>
                                                                         <td>
-                                                                        <a href="{{route('grade-eval',['student_id'=> Auth::user()->id , 'gradelevel_id'=> $grade12first -> gradelevel_id, 
-                                                                                'course_id'=>  Auth::user()->course_id, 'section_id'=> Auth::user()->section_id,
-                                                                                'semester_id'=>  $grade12first -> semester_id, 'faculty_id'=> $grade12first -> faculty_id,
-                                                                                'subject_id'=> $grade12first -> subject_id])}}"><button class="requestGradeEvalButton">Click here</button></a>
+                                                                            @if($grade12first -> isReleased == 2 || $grade12first -> isReleased == 1)
+                                                                                <a href="{{route('grade-eval',['student_id'=> Auth::user()->id , 'gradelevel_id'=> $grade12first -> gradelevel_id, 
+                                                                                    'course_id'=>  Auth::user()->course_id, 'section_id'=> Auth::user()->section_id,
+                                                                                    'semester_id'=>  $grade12first -> semester_id, 'faculty_id'=> $grade12first -> faculty_id,
+                                                                                    'subject_id'=> $grade12first -> subject_id])}}"><button class="requestGradeEvalButton">Click here</button></a>
+                                                                            @endif
                                                                         </td>
                                                                     </tr>
                                                         @endforeach
@@ -550,10 +554,12 @@
                                                                         @endif
                                                                     </td>
                                                                     <td>
-                                                                    <a href="{{route('grade-eval',['student_id'=> Auth::user()->id , 'gradelevel_id'=> $grade11second -> gradelevel_id, 
-                                                                                'course_id'=> Auth::user()->course_id, 'section_id'=>  Auth::user()->section_id,
-                                                                                'semester_id'=>  $grade11second -> semester_id, 'faculty_id'=> $grade11second -> faculty_id,
-                                                                                'subject_id'=> $grade11second -> subject_id])}}"><button class="requestGradeEvalButton">Click here</button></a>
+                                                                        @if($grade11second -> isReleased == 2)
+                                                                            <a href="{{route('grade-eval',['student_id'=> Auth::user()->id , 'gradelevel_id'=> $grade11second -> gradelevel_id, 
+                                                                                    'course_id'=> Auth::user()->course_id, 'section_id'=>  Auth::user()->section_id,
+                                                                                    'semester_id'=>  $grade11second -> semester_id, 'faculty_id'=> $grade11second -> faculty_id,
+                                                                                    'subject_id'=> $grade11second -> subject_id])}}"><button class="requestGradeEvalButton">Click here</button></a>
+                                                                        @endif
                                                                     </td>
                                                                 </tr>
                                                         @endforeach
@@ -707,10 +713,12 @@
                                                                             @endif        
                                                                         </td>
                                                                         <td>
-                                                                            <a href="{{route('grade-eval',['student_id'=> Auth::user()->id , 'gradelevel_id'=> $grade11first -> gradelevel_id, 
-                                                                                'course_id'=> Auth::user()->course_id, 'section_id'=> Auth::user()->section_id,
-                                                                                'semester_id'=> $grade11first -> semester_id, 'faculty_id'=> $grade11first -> faculty_id,
-                                                                                'subject_id'=> $grade11first -> subject_id])}}"><button class="requestGradeEvalButton">Click here</button></a>
+                                                                            @if($grade11first -> isReleased == 2 || $grade11first -> isReleased == 1)
+                                                                                <a href="{{route('grade-eval',['student_id'=> Auth::user()->id , 'gradelevel_id'=> $grade11first -> gradelevel_id, 
+                                                                                    'course_id'=> Auth::user()->course_id, 'section_id'=> Auth::user()->section_id,
+                                                                                    'semester_id'=> $grade11first -> semester_id, 'faculty_id'=> $grade11first -> faculty_id,
+                                                                                    'subject_id'=> $grade11first -> subject_id])}}"><button class="requestGradeEvalButton">Click here</button></a>
+                                                                            @endif
                                                                         </td></i>
                                                                     </tr>
                                                         @endforeach
