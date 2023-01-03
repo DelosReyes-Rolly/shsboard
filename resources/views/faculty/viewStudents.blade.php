@@ -24,19 +24,19 @@
         <hr class="mt-0 mb-4">
         <div class="card mb-4 left-to-right border-start-lg border-start-success" style="padding: 10px 40px 10px 40px;">
             <div class="card-header">
-                @if($releasegrades->grade_release == null)
+                @if($releasegrades->grade_release == 1)
                     <div>
                         <a class="btn btn-primary btn-lg" href="{{route('releasemidterm',['gradelevel_id'=>$gradelevel_id, 'course_id'=>$course_id, 'section_id'=>$section_id])}}" style="float: right; font-size: 18px;"><i class="fas fa-file-alt"></i> Release 1st quarter grades</a>
                     </div>
-                @elseif($releasegrades->grade_release == 1)
+                @elseif($releasegrades->grade_release == 2)
                     <div>
                         <a class="btn btn-primary btn-lg" href="{{route('releasefinals',['gradelevel_id'=>$gradelevel_id, 'course_id'=>$course_id, 'section_id'=>$section_id])}}" style="float: right; font-size: 18px;"><i class="fas fa-file-alt"></i> Release 2nd quarter grades</a>
                     </div>
-                @elseif($releasegrades->grade_release == 2)
+                @elseif($releasegrades->grade_release == 3)
                     <div>
                         <a class="btn btn-primary btn-lg" href="{{route('releasemidterm',['gradelevel_id'=>$gradelevel_id, 'course_id'=>$course_id, 'section_id'=>$section_id])}}" style="float: right; font-size: 18px;"><i class="fas fa-file-alt"></i> Release 3rd quarter grades</a>
                     </div>
-                @elseif($releasegrades->grade_release == 3)
+                @elseif($releasegrades->grade_release == 4)
                     <div>
                         <a class="btn btn-primary btn-lg" href="{{route('releasefinals',['gradelevel_id'=>$gradelevel_id, 'course_id'=>$course_id, 'section_id'=>$section_id])}}" style="float: right; font-size: 18px;"><i class="fas fa-file-alt"></i> Release 4th quarter grades</a>
                     </div>

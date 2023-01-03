@@ -19,6 +19,9 @@
                  @csrf
                  <h3 style="font-size: 28px; font-weight: 800;">Create Schedule</h3>
                 <hr class="mt-0 mb-4">
+                <div class="p-3 mb-2 bg-info text-white col-lg-12 col-md-12 col-md-12" style="border-radius: 10px;">
+                        <i class="fas fa-info"> </i> | <b> Reminder:</b> Assign advisory teacher to the class first before assigning subjects a class.
+                    </div>
                 <div class="card mb-4">
                     <div class="card border-start-lg border-start-yellow">
                         <div class="card-header"><font face = "Bedrock" size = "6"><b>New Teacher's Subject</b></font></div>
