@@ -95,13 +95,10 @@
                                                             <?php if($gradeevaluationrequest -> file == NULL):?>
                                                             <div class="alert alert-danger"><em>Please wait for teacher to upload the file.</em></div>
                                                             <?php else: ?>
-                                                                {{$gradeevaluationrequest -> file}}<br>
-                                                                <a href="/download/{{$gradeevaluationrequest -> file}}" class="btn btn-primary">Download</a> 
+                                                                <a class="btn btn-success btn-md" href="/vieweval/{{$gradeevaluationrequest->id}}"><i class="fas fa-eye"></i> View</a>
                                                             <?php endif; ?> 
                                                         </td>
-                                                        
                                                         <td>
-                                                            <a class="btn btn-success btn-md" href="/vieweval/{{$gradeevaluationrequest->id}}"><i class="fas fa-eye"></i> View</a>
                                                             <a class="btn btn-danger btn-md" href="{{route('student.deletegradeeval', $gradeevaluationrequest->id)}}"><i class="fas fa-trash-alt"></i> Delete</a>
                                                         </td>
                                                     </tr>
