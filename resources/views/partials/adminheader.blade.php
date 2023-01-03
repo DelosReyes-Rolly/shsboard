@@ -82,15 +82,15 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/gradingfacultysubjects" title="Class Schedule">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                        <span class="hide-word title-word"> <b>Class Schedule</b> </span>
-                    </a>
-                </li>
-                <li>
                     <a href="/advisory" title="Advisory">
                         <i class="fas fa-user-tag"></i>
                         <span class="hide-word title-word"> <b>Advisory</b> </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/gradingfacultysubjects" title="Class Schedule">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <span class="hide-word title-word"> <b>Class Schedule</b> </span>
                     </a>
                 </li>
             </ul>

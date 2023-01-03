@@ -38,8 +38,13 @@
         <hr class="mt-0 mb-4">
         <div class="card mb-4 border-start-lg border-start-success" style="padding: 10px 40px 10px 40px;">
             <div class="card-header">
-                <div class="pull-right">
-                    <a href="{{route('subjectteacher.add')}}" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Record</a>
+                <div class="row">
+                    <div class="p-3 mb-2 bg-info text-white col-lg-9 col-md-6 col-md-12">
+                        Reminder: Assign advisory teacher to the class first before assigning subjects.
+                    </div>
+                    <div class="pull-right col-lg-9 col-md-6 col-md-12">
+                        <a href="{{route('subjectteacher.add')}}" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Record</a>
+                    </div>
                 </div>
             </div>
             <div class="card-body p-0" style="padding: 20px 20px 20px 20px;">
