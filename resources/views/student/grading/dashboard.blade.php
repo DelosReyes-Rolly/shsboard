@@ -55,7 +55,7 @@
         @endif  
         <h3 style="font-size: 28px; font-weight: 800;">Subject Grades</h3>
         <hr class="mt-0 mb-4">
-        <div class="mb-4">
+        <div class="card mb-4">
             <div class="card border-start-lg border-start-yellow">
                 <div class="card-header" style="color: green; text-transform: uppercase; font-size: 20px;">{{Auth::user()->last_name}}, {{Auth::user()->first_name}} {{Auth::user()->middle_name}}  {{Auth::user()->suffix}} - {{(Auth::user()->LRN)}} - </div>
 

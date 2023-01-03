@@ -83,7 +83,7 @@
         </nav>
 
         <!-- Page Content  -->
-        <div id="content">
+        <div id="content" style="padding: 0px;">
 
             <nav class="navbar navbar-expand-lg navbar-light sticky-top">
                 <div class="container-fluid">

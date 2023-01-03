@@ -29,8 +29,7 @@
 </head>
 
 <body>
-<script type="text/javascript">
-    </script>
+
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar" class="sticky-top h-100 vh-100" style="box-shadow: 0 4px 16px rgba(0,0,0,1);">
