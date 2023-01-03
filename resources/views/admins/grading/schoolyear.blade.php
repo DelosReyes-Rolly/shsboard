@@ -39,10 +39,18 @@
       <hr class="mt-0 mb-4">
         <div class="card mb-4 left-to-right border-start-lg border-start-success">
             <div class="card-header" style="font-size: 20px; font-weight:bold;">
-                Example: 2022
-                <div class="pull-right">
-                    <a href="{{route('schoolyear.add')}}" class="btn btn-primary btn-md"><i class="fas fa-user-plus"></i> Add Record</a>
+                
+                <div class="row">
+                    <div class="p-3 mb-2 bg-info text-white col-lg-9 col-md-6 col-md-12" style="border-radius: 10px;">
+                        <i class="fas fa-info"> </i> | Example: 2022
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-md-12">
+                        <div class="pull-right">
+                            <a href="{{route('schoolyear.add')}}" class="btn btn-primary btn-md"><i class="fas fa-user-plus"></i> Add Record</a>
+                        </div>
+                    </div>
                 </div>
+               
             </div>
             <div class="card-body p-0">
                 @if($schoolyears->count() == 0)

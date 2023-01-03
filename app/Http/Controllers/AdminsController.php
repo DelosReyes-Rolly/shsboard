@@ -832,7 +832,7 @@ class AdminsController extends Controller
    // ============================================================ FACULTY ===================================================
 
     public function faculty(){
-        $faculties = Faculties::where('deleted', '=', null)->get();
+        $faculties = Faculties::where('deleted', '=', null)->orderBy('last_name', 'ASC')->get();
         return view('admins.grading.faculty', compact('faculties'));
     }
 
@@ -925,7 +925,7 @@ class AdminsController extends Controller
      // ============================================================ STUDENT ===================================================
 
     public function student(){
-        $students = Students::where('deleted', '=', null)->where('status', '=', 1)->get();
+        $students = Students::where('deleted', '=', null)->where('status', '=', 1)->orderBy('last_name', 'ASC')->get();
         return view('admins.grading.student', compact('students'));
     }
 
@@ -1259,8 +1259,14 @@ class AdminsController extends Controller
             'deleted' => ['required'],
             'deleted_at' => ['required'],
         ]);
-        $schoolyear->update($validated);
-        return redirect('/gradingschoolyear')->with('success', 'Schoolyear has been deleted successfully!');
+        $count = SchoolYear::all();
+        if($count->count() == 1){
+            return redirect('/gradingschoolyear')->with('warning', 'You cannot delete the only schoolyear.');
+        }
+        else{
+            $schoolyear->update($validated);
+            return redirect('/gradingschoolyear')->with('success', 'Schoolyear has been deleted successfully!');
+        }
      }
 
      public function deleteschoolyear($id){
@@ -1272,7 +1278,7 @@ class AdminsController extends Controller
     // ============================================================ SUBJECT TEACHER ===================================================
 
     public function facultysubjects(){
-        $subjectteachers = SubjectTeachers::where('deleted', '=', null)->orderBy('id', 'DESC')->get();
+        $subjectteachers = SubjectTeachers::where('deleted', '=', null)->orderBy('id', 'ASC')->get();
         return view('admins.grading.facultysubjects', compact('subjectteachers'));
     }
 
