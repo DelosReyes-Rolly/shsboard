@@ -16,36 +16,35 @@
 	<script src="{{ asset('assets/js/datatables-jquery-1.12.1.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-rowreorder-1.2.8.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-responsive-2.3.0.js') }}"></script>
-    <script>
+    <!-- not responsive -->
+    <!-- <script>
         $(document).ready(function() {
             var table = $('#sample1').DataTable( {
                 responsive: true
             } );
          
             new $.fn.dataTable.FixedHeader( table );
-        } );
-        $(document).ready(function() {
+
             var table = $('#sample2').DataTable( {
                 responsive: true
             } );
          
             new $.fn.dataTable.FixedHeader( table );
-        } );
-        $(document).ready(function() {
+
             var table = $('#sample3').DataTable( {
                 responsive: true
             } );
          
             new $.fn.dataTable.FixedHeader( table );
-        } );
-        $(document).ready(function() {
+
             var table = $('#sample4').DataTable( {
                 responsive: true
             } );
          
             new $.fn.dataTable.FixedHeader( table );
         } );
-    </script>
+   
+    </script> -->
     <div class="left-to-right">
         @if (session('alert'))
             <br/><br/>
@@ -313,7 +312,7 @@
                                                                             @endif
                                                                         </td>
                                                                         <td>
-                                                                            @if($grade12first -> isReleased == 2)
+                                                                            @if($grade12first -> isReleased == 2 || $grade12first -> isReleased == 1)
                                                                                 @php
                                                                                     $ave = ($grade12first->midterm + $grade12first->finals) / 2;
                                                                                     switch ($grade12first -> finals && $grade12first -> midterm) {
@@ -347,7 +346,7 @@
                                                                             @endif
                                                                         </td>
                                                                         <td>
-                                                                            @if($grade12first -> isReleased == 2)
+                                                                            @if($grade12first -> isReleased == 2 || $grade12first -> isReleased == 1)
                                                                                 @php 
                                                                                     switch ($ave && $grade12first -> finals && $grade12first -> midterm) {
                                                                                         case ($grade12first -> finals === 'NULL' || $grade12first -> midterm === 'NULL'):
@@ -643,7 +642,7 @@
                                                                             @endif
                                                                         </td>
                                                                         <td>
-                                                                            @if($grade11first -> isReleased == 2)
+                                                                            @if($grade11first -> isReleased == 2 || $grade11first -> isReleased == 1)
                                                                                 @php
                                                                                     $ave = ($grade11first->midterm + $grade11first->finals) / 2;
                                                                                     switch ($grade11first -> finals && $grade11first -> midterm) {
@@ -677,7 +676,7 @@
                                                                             @endif
                                                                         </td>
                                                                         <td>
-                                                                            @if($grade11first -> isReleased == 2)
+                                                                            @if($grade11first -> isReleased == 2 || $grade11first -> isReleased == 1)
                                                                                 @php 
                                                                                     switch ($ave && $grade11first -> finals && $grade11first -> midterm) {
                                                                                         case ($grade11first -> finals === 'NULL' || $grade11first -> midterm === 'NULL'):
