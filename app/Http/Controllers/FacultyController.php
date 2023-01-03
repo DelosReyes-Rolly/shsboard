@@ -298,6 +298,24 @@ class FacultyController extends Controller
                         ->update($data);
                     }
                 }
+
+                if($request->midterm == ""){
+                    $data = array(
+                        'midterm'	=>	null,
+                    );
+                    DB::table('student_grades')
+                        ->where('id', $request->id)
+                        ->update($data);
+                }
+
+                if($request->finals == ""){
+                    $data = array(
+                        'finals'	=>	null,
+                    );
+                    DB::table('student_grades')
+                        ->where('id', $request->id)
+                        ->update($data);
+                }
                 
     		}
     		if($request->action == 'delete')

@@ -288,7 +288,7 @@
                 document.getElementById('gradingGrades1'+data.id).style.display = 'none';
                 document.getElementById('gradingGrades2'+data.id).style.display = 'none';
             }
-            else if(midterm != 0 && finals != 0){
+            else if(midterm != null && finals != null){
                 document.getElementById('ave'+data.id).innerHTML = ave;
                 document.getElementById('notComplete'+data.id).style.display = 'none';
                 document.getElementById('notCompleteRemarks'+data.id).style.display = 'none';
@@ -310,6 +310,12 @@
                     document.getElementById('remarks'+data.id).style.display = 'block';
                 }
 
+            }
+            else if(data.midterm == NULL || data.finals == NULL){
+                document.getElementById('notComplete'+data.id).style.display = 'block';
+                document.getElementById('remarks'+data.id).style.display = 'none';
+                document.getElementById('ave'+data.id).style.display = 'none';
+                document.getElementById('remarksnoremarks'+data.id).style.display = 'block';
             }
 
             }        
@@ -343,7 +349,7 @@
                 document.getElementById('gradingGrades21'+data.id).style.display = 'none';
                 document.getElementById('gradingGrades22'+data.id).style.display = 'none';
             }
-            else if(midterm != 0 && finals != 0){
+            else if(midterm != null && finals != null){
                 
                 document.getElementById('ave2'+data.id).innerHTML = ave;
                 document.getElementById('notComplete2'+data.id).style.display = 'none';
@@ -365,6 +371,12 @@
                     heading.setAttribute("class", "badge bg-secondary");
                     document.getElementById('remarks2'+data.id).style.display = 'block';
                 }
+            }
+            else if(data.midterm == NULL || data.finals == NULL){
+                document.getElementById('notComplete2'+data.id).style.display = 'block';
+                document.getElementById('remarks2'+data.id).style.display = 'none';
+                document.getElementById('ave2'+data.id).style.display = 'none';
+                document.getElementById('remarksnoremarks2'+data.id).style.display = 'block';
             }
             }
         });
