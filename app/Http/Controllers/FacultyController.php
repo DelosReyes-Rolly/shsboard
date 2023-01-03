@@ -124,7 +124,7 @@ class FacultyController extends Controller
             "street" => 'nullable|regex:/^[a-z A-Z0-9]+$/u|max:255',
             "village" => 'nullable|regex:/^[a-z A-Z0-9]+$/u|max:255',
             "city" => 'nullable|alpha|max:255',
-            "zip_code" => 'nullable|digits:4|max:11', 
+            "zip_code" => 'nullable|numeric', 
         ]);
         $validated['updated_at'] = now();
         $address->update($validated);
