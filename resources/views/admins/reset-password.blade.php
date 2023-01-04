@@ -14,8 +14,8 @@
                     <center>
                         <img src='{{ URL::asset("img/shs.png")}}'><br/><br/>
                     </center>
-                    <div class="card-header" style="background-color: #1c8a43; color:white; text-align:center; border-radius:10px; font-weight:bold; font-family: arial black"> Reset Password</div><br/>
                 </div>
+                <div class="card-header" style="background-color: #1c8a43; color:white; text-align:center; border-radius:10px; font-weight:bold; font-family: arial black"> Reset Password</div><br/>
                 @if (count($errors) > 0)
 				    <div class="alert alert-danger">
 						<strong>Whoops!</strong> There were some problems with your input.
@@ -34,7 +34,6 @@
                             {{ session('alert') }}
                         </div>
                     @endif  
-                    <b><center><h4><span style="font-family: arial black;">RESET PASSWORD</h4></center></b><br/>
                     <div class="form-group animate pop">
                         <label><strong>Enter New Password:</strong></label>                                
                         <input type="password"  name="new_password" class="form-control"/>
