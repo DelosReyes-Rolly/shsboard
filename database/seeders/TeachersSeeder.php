@@ -346,7 +346,7 @@ class TeachersSeeder extends Seeder
         // ]);
 
         Faculties::create([
-            'address_id' => '1',
+            'address_id' => '28',
             'first_name' => 'Geronimo',
             'middle_name' => 'Gaona',
             'last_name' => 'Santacruz',
@@ -354,7 +354,7 @@ class TeachersSeeder extends Seeder
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
         Faculties::create([
-            'address_id' => '2',
+            'address_id' => '29',
             'first_name' => 'William',
             'middle_name' => 'Mase',
             'last_name' => 'Bouton',
@@ -364,7 +364,7 @@ class TeachersSeeder extends Seeder
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
         Faculties::create([
-            'address_id' => '3',
+            'address_id' => '30',
             'first_name' => 'Baldo',
             'middle_name' => 'Velazquez',
             'last_name' => 'Ramon',
@@ -374,7 +374,7 @@ class TeachersSeeder extends Seeder
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
         Faculties::create([
-            'address_id' => '4',
+            'address_id' => '31',
             'first_name' => 'Viviano',
             'middle_name' => 'Altamirano',
             'last_name' => 'Toledo',
@@ -382,7 +382,7 @@ class TeachersSeeder extends Seeder
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
         Faculties::create([
-            'address_id' => '5',
+            'address_id' => '32',
             'first_name' => 'Nicanor',
             'middle_name' => 'Anguiano',
             'last_name' => 'Garay',
@@ -392,7 +392,7 @@ class TeachersSeeder extends Seeder
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
         Faculties::create([
-            'address_id' => '6',
+            'address_id' => '33',
             'first_name' => 'Dalmacio',
             'middle_name' => 'Garza',
             'last_name' => 'Mateo',
@@ -402,7 +402,7 @@ class TeachersSeeder extends Seeder
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
         Faculties::create([
-            'address_id' => '7',
+            'address_id' => '34',
             'first_name' => 'Marciano',
             'middle_name' => 'Vera',
             'last_name' => 'Olivera',
@@ -412,7 +412,7 @@ class TeachersSeeder extends Seeder
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
         Faculties::create([
-            'address_id' => '8',
+            'address_id' => '35',
             'first_name' => 'Rosicler',
             'middle_name' => 'Quezada',
             'last_name' => 'Palacios',
@@ -422,7 +422,7 @@ class TeachersSeeder extends Seeder
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
         Faculties::create([
-            'address_id' => '9',
+            'address_id' => '36',
             'first_name' => 'Afrodita',
             'middle_name' => 'Baca',
             'last_name' => 'Campos',
@@ -432,7 +432,7 @@ class TeachersSeeder extends Seeder
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
         Faculties::create([
-            'address_id' => '10',
+            'address_id' => '37',
             'first_name' => 'Jamila',
             'middle_name' => 'Iglesias',
             'last_name' => 'Maldonado',
@@ -442,7 +442,7 @@ class TeachersSeeder extends Seeder
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
         Faculties::create([
-            'address_id' => '11',
+            'address_id' => '38',
             'first_name' => 'Lorea',
             'middle_name' => 'Solorio',
             'last_name' => 'Henriquez',
@@ -452,7 +452,7 @@ class TeachersSeeder extends Seeder
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
         Faculties::create([
-            'address_id' => '12',
+            'address_id' => '39',
             'first_name' => 'Numas',
             'middle_name' => 'Carrero',
             'last_name' => 'Cepada',
@@ -462,7 +462,7 @@ class TeachersSeeder extends Seeder
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
         Faculties::create([
-            'address_id' => '13',
+            'address_id' => '40',
             'first_name' => 'Palas',
             'middle_name' => 'Quiroz',
             'last_name' => 'Nieto',
@@ -472,7 +472,7 @@ class TeachersSeeder extends Seeder
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
         Faculties::create([
-            'address_id' => '14',
+            'address_id' => '41',
             'first_name' => 'Mila',
             'middle_name' => 'Alarcon',
             'last_name' => 'Barrientos',

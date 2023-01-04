@@ -1524,8 +1524,8 @@ class AdminsController extends Controller
             'course_id' => ['required'],
             'section_id' => ['required'],
         ]);
-        if (Advisories::where('gradelevel_id', '=', $request->get("gradelevel_id"))->where('active', '=', null)->count() <= 0 || Advisories::where('course_id', '=', $request->get("course_id"))->where('active', '=', null)->count() <= 0
-        || Advisories::where('section_id', '=', $request->get("section_id"))->where('active', '=', null)->count() <= 0) {
+        if (Advisories::where('gradelevel_id', '=', $request->get("gradelevel_id"))->where('active', '=', null)->where('deleted', '=', null)->count() <= 0 || Advisories::where('course_id', '=', $request->get("course_id"))->where('active', '=', null)->where('deleted', '=', null)->count() <= 0
+        || Advisories::where('section_id', '=', $request->get("section_id"))->where('active', '=', null)->where('deleted', '=', null)->count() <= 0) {
             $schoolyear = DB::table('school_years')->latest('id')->first();
             $advisory = new Advisories();
             $advisory->schoolyear_id = $schoolyear->id;

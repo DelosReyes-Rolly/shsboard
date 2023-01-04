@@ -15,8 +15,8 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         \App\Models\Admins::factory(1)->create();
-        \App\Models\Students::factory(100)->create();
-        \App\Models\Addresses::factory(130)->create();
+        // \App\Models\Students::factory(100)->create();
+        \App\Models\Addresses::factory(46)->create();
         $this->call(CoursesSeeder::class);
         $this->call(LandingsSeeder::class);
         $this->call(GradeLevelsSeeder::class);
@@ -28,6 +28,8 @@ class DatabaseSeeder extends Seeder
         $this->call(SchoolyearSeeder::class);
         $this->call(AnnouncementSeeder::class);
         $this->call(DocumentPurposesSeeder::class);
+        $this->call(DocumentPurposesSeeder::class);
+        $this->call(StudentsSeeder::class);
         // $this->call(AddressesSeeder::class);
     }
 }
