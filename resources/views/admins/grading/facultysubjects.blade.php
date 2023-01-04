@@ -40,7 +40,7 @@
             <div class="card-header">
                 <div class="row">
                     <div class="p-3 mb-2 bg-info text-white col-lg-9 col-md-6 col-md-12" style="border-radius: 10px;">
-                        <i class="fas fa-info"> </i> | <b> Reminder:</b> Assign advisory teacher to the class first before assigning subjects a class.
+                        <i class="fas fa-info"> </i> | <b> Reminder:</b> Assign advisory teacher to the class first before assigning subjects to a class.
                     </div>
                     <div class="col-lg-3 col-md-6 col-md-12">
                         <div class="pull-right">
