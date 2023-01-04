@@ -125,10 +125,14 @@
                                                             @endphp</div>@php
                                                             break;
                                                         case ($ave <='100' && $ave >'74' && $student -> finals !== 'NULL' && $student -> midterm !== 'NULL'):
-                                                            echo '<span class="badge bg-success" style="color: white;">Passed</span>';
+                                                            @endphp<div id="notCompleteRemarks2{{$student->id}}">@php
+                                                                echo '<span class="badge bg-success" style="color: white;">Passed</span>';
+                                                            @endphp</div>@php
                                                             break;
                                                         default:
-                                                            echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
+                                                            @endphp<div id="notCompleteRemarks2{{$student->id}}">@php
+                                                                echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
+                                                            @endphp</div>@php
                                                         break;
                                                     }
                                                 @endphp
@@ -237,10 +241,14 @@
                                                             @endphp</div>@php
                                                             break;
                                                         case ($ave <='100' && $ave >'74' && $student -> finals !== 'NULL' && $student -> midterm !== 'NULL'):
-                                                            echo '<span class="badge bg-success" style="color: white;">Passed</span>';
+                                                            @endphp<div id="notCompleteRemarks{{$student->i}}"d>@php
+                                                                echo '<span class="badge bg-success" style="color: white;">Passed</span>';
+                                                            @endphp</div>@php
                                                             break;
                                                         default:
-                                                            echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
+                                                            @endphp<div id="notCompleteRemarks{{$student->i}}"d>@php
+                                                                echo '<span class="badge bg-danger" style="color: white;">Failed</span>';
+                                                            @endphp</div>@php
                                                         break;
                                                     }
                                                 @endphp
@@ -294,6 +302,8 @@
             }
             else if(data.midterm !== null && data.finals !== null){
                 document.getElementById('ave'+data.id).innerHTML = ave;
+                document.getElementById('ave'+data.id).style.display = 'block';
+                document.getElementById('remarksnoremarks'+data.id).style.display = 'none';
                 document.getElementById('notComplete'+data.id).style.display = 'none';
                 document.getElementById('notCompleteRemarks'+data.id).style.display = 'none';
                 var heading = document.getElementById('remarks'+data.id);
@@ -324,6 +334,7 @@
                 document.getElementById('ave'+data.id).style.display = 'none';
                 document.getElementById('remarksnoave'+data.id).style.display = 'block';
                 document.getElementById('notCompleteRemarks'+data.id).style.display = 'none';
+                document.getElementById('remarks'+data.id).style.display = 'none';
                 document.getElementById('remarksnoremarks'+data.id).style.display = 'block';
             }
 
@@ -361,6 +372,8 @@
             else if(data.midterm !== null && data.finals !== null){
                 
                 document.getElementById('ave2'+data.id).innerHTML = ave;
+                document.getElementById('ave2'+data.id).style.display = 'block';
+                document.getElementById('remarksnoremarks2'+data.id).style.display = 'none';
                 document.getElementById('notComplete2'+data.id).style.display = 'none';
                 document.getElementById('notCompleteRemarks2'+data.id).style.display = 'none';
                 var heading = document.getElementById('remarks2'+data.id);
@@ -389,6 +402,7 @@
                 document.getElementById('ave2'+data.id).style.display = 'none';
                 document.getElementById('remarksnoave2'+data.id).style.display = 'block';
                 document.getElementById('notCompleteRemarks2'+data.id).style.display = 'none';
+                document.getElementById('remarks2'+data.id).style.display = 'none';
                 document.getElementById('remarksnoremarks2'+data.id).style.display = 'block';
             }
             }

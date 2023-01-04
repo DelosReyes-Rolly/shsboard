@@ -65,7 +65,7 @@
 								<input style="font-size: 16px;" class="form-control @error('email') is-invalid @enderror" type="text" name="email" class="form-control" placeholder="{{Auth::user()->email}}" value="{{Auth::user()->email}}">
 							</div><br/><br/>
 							<div class="col-md-12" style="font-size: 18px;"><label for="gender">Sex</label><br/>
-								<select id="gender" name="gender"  class="@error('gender') is-invalid @enderror" value="{{Auth::user()->gender}}" style="font-size: 16px; padding: 16px;">
+								<select id="gender" name="gender"  class="@error('gender') is-invalid @enderror" value="{{Auth::user()->gender}}" style="font-size: 16px; padding: 6px; width:100%;">
 									<option value="" hidden>  Please Select Sex </option>
 									<option value="Male" {{Auth::user()->gender == "Male" ?'selected' : ''}}>Male</option>
 									<option value="Female" {{Auth::user()->gender == "Female" ?'selected' : ''}}>Female</option>

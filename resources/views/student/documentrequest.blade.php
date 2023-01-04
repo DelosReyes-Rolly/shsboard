@@ -109,10 +109,10 @@
             									</div> 
                                                  <!-- Save changes button-->
                                                 <div class="col-lg-12 col-md-12 col-sm-12">
-                                                    <center> <br>
-                                                        Note:<br>The documents will be processed <b>within five (5) working days</b> upon requesting.
+                                                    <div class="p-3 mb-2 bg-info bg-gradient text-white" style="border-radius: 10px;">
+                                                        <i class="fas fa-info"> </i> | <b> Note:</b> The documents will be processed <b>within five (5) working days</b> upon requesting.
                                                         The documents can be claimed in the <b>Registrars Office.</b>
-                                                    </center>
+                                                    </div>
                                                 </div>
                                                 <div class="col-lg-10 col-md-12 col-sm-12">
                                                     <font face = "Verdana" size = "8"><input type="submit" class="btn btn-primary" value="Submit"></font>
