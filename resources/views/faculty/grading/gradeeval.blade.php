@@ -43,7 +43,7 @@
                                     <br><br>
                                     <div class="alert alert-danger"><em>No records found.</em></div>
                                 @else
-                                    <div class="h3 d-flex align-items-center" style="padding:40px;"> {{ $gradeevaluationrequests->count() }} </div>
+                                    <span class="h3 d-flex align-items-center" style="padding:12px; font-size:40px;"> <i class="fas fa-file-alt"> </i> {{$gradeevaluationrequests->count()}} </span>
                                 @endif
                                 <!-- <a class="text-arrow-icon small text-success" href="#!">
                                     View Active requests
@@ -86,7 +86,7 @@
                             <div class="alert alert-danger"><em>No records found.</em></div>
                         @else 
                             <br>
-                            <label class="large mb-1" for="inputcontent"> <div class="alert alert-primary"><em>- Upload only accepts DOCS, DOCX, and PDF files.</em></div></label><br>
+                            <label class="large mb-1" for="inputcontent"> <div class="alert alert-primary"><em>- PDF files only.</em></div></label><br>
                             <div class="table-responsive table-billing-history">
                                 <table id="example" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
                                     <thead class="table-success">
