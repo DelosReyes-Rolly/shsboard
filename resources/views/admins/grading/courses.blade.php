@@ -51,10 +51,10 @@
                         <table id="example" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
                             <thead class="table-success">
                                 <tr>
-                                    <th class="border-gray-200" scope="col">Strand Name</th>
-                                    <th class="border-gray-200" scope="col">Abbreviation</th>
-                                    <th class="border-gray-200" scope="col">Code</th>
-                                    <th class="border-gray-200" scope="col">Action</th>
+                                    <th style="width:10%" class="border-gray-200" scope="col">Strand Name</th>
+                                    <th style="width:10%" class="border-gray-200" scope="col">Abbreviation</th>
+                                    <th style="width:10%" class="border-gray-200" scope="col">Code</th>
+                                    <th style="width:10%" class="border-gray-200" scope="col">Action</th>
                                 </tr>
                             </thead>    
                             <tbody>

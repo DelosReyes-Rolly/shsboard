@@ -62,41 +62,51 @@ class AdminsController extends Controller
 
     // ============================================================ ANNOUNCEMENTS ===================================================================================
 
-    public function home(){
+    // public function home(){
 
-        Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<', Carbon::now())->update(['status' => '2']);
+    //     Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<', Carbon::now())->update(['status' => '2']);
         
-        $announcement = DB::table('announcements')
-            ->where('deleted', '=', NULL)
-            ->where('status', '=', 1)
-            ->where('privacy', '=', 2)
-            ->where('approval', '=', 2)
-            ->where('is_event', '=', NULL)
-            ->first();
-        if(is_null($announcement)) {
-            $announcement = NULL;
-        } else {
-            $matchThese = ['deleted' => NULL, 'status' => 1, 'approval' => 2, 'privacy' => 2, 'is_event' => NULL];
-            $announcement = Announcements::where($matchThese)->orderBy
-            ('created_at', 'desc')->get();
-        }
+    //     $announcement = DB::table('announcements')
+    //         ->where('deleted', '=', NULL)
+    //         ->where('status', '=', 1)
+    //         ->where('privacy', '=', 2)
+    //         ->where('approval', '=', 2)
+    //         ->where('is_event', '=', NULL)
+    //         ->first();
+    //     if(is_null($announcement)) {
+    //         $announcement = NULL;
+    //     } else {
+    //         $matchThese = ['deleted' => NULL, 'status' => 1, 'approval' => 2, 'privacy' => 2, 'is_event' => NULL];
+    //         $announcement = Announcements::where($matchThese)->orderBy
+    //         ('created_at', 'desc')->get();
+    //     }
 
-        $reminder =  DB::table('announcements')
-            ->where('deleted', '=', NULL)
-            ->where('privacy', '=', 2)
-            ->where('status', '=', 1)
-            ->where('approval', '=', NULL)
-            ->where('is_event', '=', 2)
-            ->first();
-        if(is_null($reminder)) {
-            $reminder = NULL;
-         } else {
-            $matchThese = ['deleted' => NULL, 'privacy' => 2, 'status' => 1, 'approval' => NULL, 'privacy' => 2, 'is_event' => 2];
-            $reminder = Announcements::where($matchThese)->orderBy
-            ('created_at', 'desc')->get();
-        }
-        $viewShareVars = array_keys(get_defined_vars());
-        return view('admins.home',compact($viewShareVars));
+    //     $reminder =  DB::table('announcements')
+    //         ->where('deleted', '=', NULL)
+    //         ->where('privacy', '=', 2)
+    //         ->where('status', '=', 1)
+    //         ->where('approval', '=', NULL)
+    //         ->where('is_event', '=', 2)
+    //         ->first();
+    //     if(is_null($reminder)) {
+    //         $reminder = NULL;
+    //      } else {
+    //         $matchThese = ['deleted' => NULL, 'privacy' => 2, 'status' => 1, 'approval' => NULL, 'privacy' => 2, 'is_event' => 2];
+    //         $reminder = Announcements::where($matchThese)->orderBy
+    //         ('created_at', 'desc')->get();
+    //     }
+    //     $viewShareVars = array_keys(get_defined_vars());
+    //     return view('admins.home',compact($viewShareVars));
+    // }
+
+    public function home(){
+        $schoolYear = SchoolYear::orderBy('id', 'DESC')->where('deleted', '=', null)->first();
+        $students = Students::where('deleted', '=', null)->where('status', '=', 1)->get();
+        $faculties = Faculties::where('deleted', '=', null)->get();
+        $courses = Courses::where('deleted', '=', null)->get();
+        $sections = Sections::where('deleted', '=', null)->get();
+        $subjects = Subjects::where('deleted', '=', null)->get();
+         return view('admins.home2',compact('schoolYear', 'students', 'faculties', 'courses', 'sections', 'subjects'));
     }
 
     // ============================================================ PROFILE ===================================================================================
@@ -1373,7 +1383,7 @@ class AdminsController extends Controller
             return redirect('/gradingfacultysubjects')->with('success', 'New subject of teacher was added successfully!');
         }
         else{
-            return redirect()->back()->with('message', 'Kindly set advisory teacher first for this class.')->withInput();
+            return redirect()->back()->with('warning', 'Kindly set advisory teacher first for this class.')->withInput();
         }
         
     } 

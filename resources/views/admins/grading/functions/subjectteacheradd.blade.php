@@ -127,9 +127,7 @@
                             </div><br/>
                             <hr>
                             <a class="btn btn-info btn-md" href="/gradingfacultysubjects"><i class="fas fa-arrow-left"></i> Back</a>
-                            <div class="pull-right">
-                                <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary" value="Submit"></font>
-                            </div>
+                            <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary" value="Submit"></font>
                         </div>
                     </div>
                 </div>

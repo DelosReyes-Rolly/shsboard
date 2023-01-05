@@ -39,9 +39,9 @@
         <div class="card mb-4 border-start-lg border-start-success" style="padding: 10px 40px 10px 40px;">
             <div class="card-header">
                 <div class="row">
-                    <div class="p-3 mb-2 bg-info text-white col-lg-9 col-md-6 col-md-12" style="border-radius: 10px;">
-                        <i class="fas fa-info"> </i> | <b> Reminder:</b> Assign advisory teacher to the class first before assigning subjects to a class.
-                    </div>
+                    <div class="col-lg-9 col-md-6 col-md-12" style="border-radius: 10px;">
+                    <label class="large mb-1" for="inputcontent"> <div class="alert alert-primary"><em><i class="fas fa-info"> </i> | <b> Reminder:</b> Assign advisory teacher to the class first before assigning subjects to a class.</em></div></label><br>
+                    </div>                    
                     <div class="col-lg-3 col-md-6 col-md-12">
                         <div class="pull-right">
                             <a href="{{route('subjectteacher.add')}}" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Record</a>

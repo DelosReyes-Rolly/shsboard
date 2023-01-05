@@ -98,7 +98,6 @@
                                                                 <td>
                                                                     <a class="btn btn-success btn-md" href="/viewadvisory/{{$adviser->id}}"><i class="fas fa-eye"></i> View</a>
                                                                     <a class="btn btn-warning btn-md" href="/showadvisory/{{$adviser->id}}"><i class="fas fa-edit"></i> Update</a>
-                                                                    <a class="btn btn-danger btn-md" href="{{route('admin.deleteadvisory', $adviser->id)}}"><i class="fas fa-trash-alt"></i> Delete</a>
                                                                 </td> 
                                                             </tr>
                                                     @endif
