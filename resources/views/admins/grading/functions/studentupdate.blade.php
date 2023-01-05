@@ -113,7 +113,7 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    <a class="btn btn-info btn-md" href="javascript:history.back()"><i class="fas fa-arrow-left"></i> Back</a>
+                                    <a class="btn btn-info btn-md" href="/gradingstudents"><i class="fas fa-arrow-left"></i> Back</a>
                                     <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary" value="Submit"></font>
                                 </div>
                             </div>

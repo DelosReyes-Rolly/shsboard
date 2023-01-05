@@ -82,7 +82,7 @@
                                         </div><br/>
                                         <div class="row gx-3 mb-3">
                                             <!-- Save changes button-->
-                                            <a class="btn btn-info btn-md" href="javascript:history.back()"><i class="fas fa-arrow-left"></i> Back</a> &emsp;
+                                            <a class="btn btn-info btn-md" href="/createAnnoucement"><i class="fas fa-arrow-left"></i> Back</a> &emsp;
                                             <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary" value="Submit"></font>
                                         </div>
                                     </div>

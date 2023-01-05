@@ -9,7 +9,7 @@
             <div class="container-xl px-4 mt-4">
                 <!-- page navigation-->
                 <div style="margin: 20px;">
-                    <a class="btn btn-secondary btn-lg" href="javascript:history.back()" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to activity stream</a>
+                    <a class="btn btn-secondary btn-lg" href="/createannouncement" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to activity stream</a>
                 </div>
                 <h3 style="font-size: 28px; font-weight: 800;">Update Activity</h3><br/>
                 <hr class="mt-0 mb-4">

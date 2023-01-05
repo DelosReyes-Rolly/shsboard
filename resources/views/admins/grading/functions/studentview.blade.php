@@ -98,7 +98,7 @@
                                         </div>
                                         <br/><br/><br/><br/>
                                         <div class="pull-right">
-                                            <a class="btn btn-info btn-md" href="javascript:history.back()"><i class="fas fa-arrow-left"></i> Back</a>
+                                            <a class="btn btn-info btn-md" href="/gradingstudents"><i class="fas fa-arrow-left"></i> Back</a>
                                             <a class="btn btn-warning btn-md" href="/showstudent/{{$student->id}}"><i class="fas fa-edit"></i> Update</a>
                                             <a class="btn btn-danger btn-md" href="{{route('admin.deletestudent', $student->id)}}"><i class="fas fa-trash-alt"></i> Delete</a>
                                         </div>

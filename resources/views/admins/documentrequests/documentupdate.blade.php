@@ -40,7 +40,7 @@
                                                 <br>
                                                 <input class="form-control @error('name') is-invalid @enderror" id="name" type="text" style="font-size: 16px;" placeholder="Document Name" name="name" value="{{$document->name}}">
                                             </div>
-                                            <a class="btn btn-info btn-md" href="javascript:history.back()"><i class="fas fa-arrow-left"></i> Back</a>
+                                            <a class="btn btn-info btn-md" href="/documentrequest"><i class="fas fa-arrow-left"></i> Back</a>
                                             <font face = "Verdana" size = "4"><input type="submit" class="btn btn-primary" value="Submit"></font>
                                         </div>
                                     </div>

@@ -71,7 +71,7 @@
                                             <!-- Form Group privacy-->
                                             <!-- Save changes button-->
                                             <div>
-                                                <a class="btn btn-info btn-md" href="javascript:history.back()"><i class="fas fa-arrow-left"></i> Back</a>
+                                                <a class="btn btn-info btn-md" href="/createAnnoucement"><i class="fas fa-arrow-left"></i> Back</a>
                                                 <a class="btn btn-warning btn-md" href="/showannouncement/{{$announcement->id}}"><i class="fas fa-edit"></i> Update</a>
                                                 <a class="btn btn-danger btn-md" href="/deleteadminannouncement/{{$announcement->id}}"><i class="fas fa-trash-alt"></i> Delete</a>  
                                             </div>

@@ -54,7 +54,7 @@
                                     <div class="row gx-3 mb-3" style="padding-left: 20px;">
                                         <!-- Form Group whr-->
                                         <div class="pull-right">
-                                            <a class="btn btn-info btn-md" href="javascript:history.back()"><i class="fas fa-arrow-left"></i> Back</a>
+                                            <a class="btn btn-info btn-md" href="/advisory"><i class="fas fa-arrow-left"></i> Back</a>
                                             <a class="btn btn-warning btn-md" href="/showadvisory/{{$advisory->id}}"><i class="fas fa-edit"></i> Update</a>
                                             <a class="btn btn-danger btn-md" href="{{route('admin.deleteadvisory', $advisory->id)}}"><i class="fas fa-trash-alt"></i> Delete</a>
                                         </div>

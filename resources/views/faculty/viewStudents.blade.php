@@ -17,7 +17,7 @@
             </div></br></br>
         @endif
         <div style="margin: 20px;">
-            <a class="btn btn-secondary btn-lg" href="javascript:history.back()" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to advisory list</a>
+            <a class="btn btn-secondary btn-lg" href="/advisoryfaculty" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to advisory list</a>
         </div>
         <h3 style="font-size: 28px; font-weight: 800;">Table of Students </h3>
         <br/>

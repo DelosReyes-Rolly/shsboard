@@ -31,7 +31,7 @@
         <div class="container-xl px-4 mt-4">
            
         <div style="margin: 0px;">
-            <a class="btn btn-secondary btn-lg" href="javascript:history.back()" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to student list</a>
+            <a class="btn btn-secondary btn-lg" href="/gradingstudents" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to student list</a>
         </div>
         <h3 style="font-size: 28px; font-weight: 800;">Table of Alumni </h3><br>
         <hr class="mt-0 mb-4">
