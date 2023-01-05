@@ -54,7 +54,7 @@
                     @else 
                     <br/>
                     <div class="table-responsive table-billing-history">
-                            <table class="display nowrap table-bordered table-striped table-hover table " style="width:100%">
+                            <table class="display table-bordered table-striped table-hover table " style="width:100%">
                                 <thead class="table-success">
                                     <tr>
                                         <th class="border-gray-200" scope="col">Name</th>
@@ -85,7 +85,7 @@
                     @else 
                     <br/>
                     <div class="table-responsive table-billing-history">
-                            <table class="display nowrap table-bordered table-striped table-hover" style="width:100%">
+                            <table class="display table-bordered table-striped table-hover" style="width:100%">
                                 <thead class="table-success">
                                     <tr>
                                         <th class="border-gray-200" scope="col">Name</th>

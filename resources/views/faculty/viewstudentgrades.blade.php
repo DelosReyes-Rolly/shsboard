@@ -85,7 +85,7 @@
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <table id="sample4" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
+                                                <table id="sample4" class="display table-bordered table-striped table-hover" style="width:100%">
 
                                                     @if($grade12secondsemungraded->count() == 0)
                                                         @php
@@ -219,7 +219,7 @@
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <table id="sample3" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
+                                                <table id="sample3" class="display table-bordered table-striped table-hover" style="width:100%">
 
                                                     @if($grade12firstsemungraded->count() == 0)
                                                         @php
@@ -362,7 +362,7 @@
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <table id="sample2" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
+                                                <table id="sample2" class="display table-bordered table-striped table-hover" style="width:100%">
                                                     <!-- /*check if there is an ungraded subject*/ -->
 
                                                     @if($grade11secondsemungraded->count() == 0)
@@ -495,7 +495,7 @@
                                                     Grade 11 - First Semester
                                                 </div>
                                                 <br>
-                                                <table id="sample1" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
+                                                <table id="sample1" class="display table-bordered table-striped table-hover" style="width:100%">
                                                     
                                                     @if($grade11firstsemungraded->count() == 0)
                                                         @php

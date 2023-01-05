@@ -40,7 +40,7 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-lg-9 col-md-6 col-md-12" style="border-radius: 10px;">
-                    <label class="large mb-1" for="inputcontent"> <div class="alert alert-primary"><em><i class="fas fa-info"> </i> | <b> Reminder:</b> Assign advisory teacher to the class first before assigning subjects to a class.</em></div></label><br>
+                        <label class="large mb-1" for="inputcontent"> <div class="alert alert-primary"><em><i class="fas fa-info"> </i> | <b> Reminder:</b> Assign advisory teacher to the class first before assigning subjects to a class.</em></div></label><br>
                     </div>                    
                     <div class="col-lg-3 col-md-6 col-md-12">
                         <div class="pull-right">
@@ -56,7 +56,7 @@
 				@else 
                     <br>
                     <div class="table-responsive table-billing-history">
-                        <table id="example" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
+                        <table id="example" class="display table-bordered table-striped table-hover" style="width:100%">
                             <thead class="table-success">
                                 <tr>
                                     <th class="border-gray-200" scope="col">#</th>

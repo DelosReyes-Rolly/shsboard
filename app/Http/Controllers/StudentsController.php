@@ -173,9 +173,10 @@ class StudentsController extends Controller
         $grade12secondsem = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 2)->where('semester_id', '=', 2)->where('deleted', '=', NULL)->get();
         $grade12secondsemungraded = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 2)->where('semester_id', '=', 2)->where(function($q){$q->where('midterm', NULL)->orWhere('finals', NULL);})->where('deleted', '=', NULL)->get();
         $grade12secondsemunreleased = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 2)->where('semester_id', '=', 2)->where('deleted', '=', NULL)->where('isReleased', '=', NULL)->get();
+        $gradeEvalCount = GradeEvaluationRequests::where('deleted', '=', null)->where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=',  Auth::user()->gradelevel_id)->where('course_id', '=',  Auth::user()->course_id)->where('section_id', '=',  Auth::user()->section_id)->get();
         return view('student.grading.dashboard', compact('allsubjects', 'grade11', 'grade11firstsem', 'grade11firstsemungraded', 'grade11secondsem', 'grade11secondsemungraded', 
                         'grade12', 'grade12firstsem', 'grade12firstsemungraded', 'grade12secondsem', 'grade12secondsemungraded', 'cardprint', 'grade11firstsemunreleased', 'grade11secondsemunreleased',
-                        'grade12firstsemunreleased', 'grade12secondsemunreleased'));
+                        'grade12firstsemunreleased', 'grade12secondsemunreleased', 'gradeEvalCount'));
 
     }
 

@@ -13,6 +13,7 @@
 	<link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/datatables-rowreorder-1.2.8.css') }}">
 	<link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/datatables-responsive-2.3.0.css') }}">
 	<script src="{{ asset('assets/js/jquery-3.5.1.js') }}"></script>
+	<script src="{{ asset('assets/js/datatables-jquery-1.12.1.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-rowreorder-1.2.8.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-responsive-2.3.0.js') }}"></script>
     <script>
@@ -55,7 +56,7 @@
                     <!-- tables -->
                     <h3 style="font-size: 28px; font-weight: 800;">Table of Grade Evaluations</h3>
                     <hr class="mt-0 mb-4">
-                    <div class="card mb-4 right-to-left border-start-lg border-start-success" style="padding-left: 20px;">
+                    <div class="card mb-4 right-to-left border-start-lg border-start-success" style="padding: 20px;">
                         <div class="card-header"></div>
                         <div class="card-body p-0">
                             <!--table-->
@@ -65,7 +66,7 @@
                             @else 
                                 <br>
                                 <div class="table-responsive table-billing-history">
-                                    <table id="example" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
+                                    <table id="example" class="display table-bordered table-striped table-hover" style="width:100%;">
                                         <thead class="table-success">
                                             <tr>
                                                 <th class="border-gray-200" scope="col">#</th>

@@ -173,7 +173,7 @@
                                             @else 
                                                 <br>
                                                 <div class="table-responsive table-billing-history">
-                                                    <table id="example1" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
+                                                    <table id="example1" class="display table-bordered table-striped table-hover" style="width:100%">
                                                         <thead class="table-success">
                                                              <tr>
                                                                 <th class="border-gray-200" scope="col">#</th>
@@ -247,7 +247,7 @@
                                             @else 
                                                 <br>
                                                 <div class="table-responsive table-billing-history">
-                                                    <table id="example5" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
+                                                    <table id="example5" class="display table-bordered table-striped table-hover" style="width:100%">
                                                         <thead class="table-success">
                                                              <tr>
                                                                 <th class="border-gray-200" scope="col">#</th>
@@ -305,7 +305,7 @@
 													<div class="alert alert-danger"><em>No records found.</em></div>
 												@else 
 											        <div class="table-responsive table-billing-history">
-												        <table id="example2" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
+												        <table id="example2" class="display table-bordered table-striped table-hover" style="width:100%">
 												            <thead class="table-success">
 												                <tr>
 																	<th class="border-gray-200" scope="col">#</th>
@@ -386,7 +386,7 @@
 													<div class="alert alert-danger"><em>No records found.</em></div>
 												@else
 													<div class="table-responsive table-billing-history">
-														<table id="example3" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
+														<table id="example3" class="display table-bordered table-striped table-hover" style="width:100%">
 														<thead class="table-success">
 												                <tr>
 												                    <th class="border-gray-200" scope="col">#</th>
@@ -467,7 +467,7 @@
 													<div class="alert alert-danger"><em>No records found.</em></div>
 												@else 
 											        <div class="table-responsive table-billing-history">
-												        <table id="example4" class="display nowrap table-bordered table-striped table-hover" style="width:100%">
+												        <table id="example4" class="display table-bordered table-striped table-hover" style="width:100%">
 												            <thead class="table-success">
 												                <tr>
 																	<th class="border-gray-200" scope="col">#</th>
