@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4 mb-4">
-                                <div class="card h-100 border-start-lg border-start-yellow" style="background-color: ; color: white; box-shadow: 0 4px 16px rgba(0,0,0,0.6);" >
+                                <div class="card h-100 border-start-lg border-start-yellow" style="background-color: black; color: white; box-shadow: 0 4px 16px rgba(0,0,0,0.6);" >
                                     <div class="card-body delay-1">
                                         <div class="card-header" style="font-size: 20px; font-weight: 800;">Subjects</div>
                                         <div class="h3" style="padding: 40px 40px 10px 40px;"><i class="fas fa-calendar-times"></i> {{ $subjects->count() }} </div>
