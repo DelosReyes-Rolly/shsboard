@@ -46,7 +46,7 @@
                         <div class="alert alert-primary"><i class="fas fa-info"> </i> |  Example: 2022</div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-md-4">
-                        <a href="{{route('schoolyear.add')}}" class="btn btn-primary btn-md" style="float: right;"><i class="fas fa-user-plus"></i> Add Record</a>
+                        <a href="{{route('schoolyear.add')}}" class="btn btn-primary btn-md" style="float: right;" data-toggle="modal" data-target="#createModal"><i class="fas fa-user-plus"></i> Add Record</a>
                     </div>
                 </div>
             </div>
@@ -87,7 +87,15 @@
                                         </div>
 
                                         <!-- update modal -->
-                                        <div id="editModal{{ $schoolyear->id }}" class="modal fade text-center" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div id="editModal{{ $schoolyear->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content border-start-lg border-start-yellow">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- create modal -->
+                                        <div id="createModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content border-start-lg border-start-yellow">
                                                 </div>

@@ -43,7 +43,7 @@
                         <label class="large mb-1" for="inputcontent"> <div class="alert alert-primary"><em><i class="fas fa-info"> </i> | <b> Reminder:</b> Assign advisory teacher to the class first before assigning subjects to a class.</em></div></label><br>
                     </div>                    
                     <div class="col-lg-3 col-md-6 col-md-12">
-                        <a href="{{route('subjectteacher.add')}}" class="btn btn-primary" style="float: right;"><i class="fas fa-user-plus"></i> Add Record</a>
+                        <a href="{{route('subjectteacher.add')}}" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#createModal"><i class="fas fa-user-plus"></i> Add Record</a>
                     </div>
                 </div>
             </div>
@@ -97,6 +97,13 @@
                                         </div>
                                         <!-- edit modal -->
                                         <div id="editModal{{ $subjectteacher->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content border-start-lg border-start-yellow">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- create modal -->
+                                        <div id="createModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog modal-lg" role="document">
                                                 <div class="modal-content border-start-lg border-start-yellow">
                                                 </div>

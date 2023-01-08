@@ -37,7 +37,7 @@
         <hr class="mt-0 mb-4">
         <div class="card mb-4 left-to-right border-start-lg border-start-success" style="padding: 10px 40px 10px 40px;">
             <div class="card-header" style="background-color: #ffffff;">
-                <a href="{{route('section.add')}}" class="btn btn-primary" style="float: right;"><i class="fas fa-user-plus"></i> Add Record</a>
+                <a href="{{route('section.add')}}" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#createModal"><i class="fas fa-user-plus"></i> Add Record</a>
             </div>
             <div class="card-body p-0">
                 @if($sections->count() == 0)
@@ -77,6 +77,13 @@
                                         </div>
                                         <!-- update modal -->
                                         <div id="editModal{{ $section->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content border-start-lg border-start-yellow">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- create modal -->
+                                        <div id="createModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog modal-lg" role="document">
                                                 <div class="modal-content border-start-lg border-start-yellow">
                                                 </div>

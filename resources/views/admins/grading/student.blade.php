@@ -73,7 +73,7 @@
             <div class="card-header" style="background-color: white;">
                 <a class="btn btn-success" style="font-size:20px; font-weight:bold; color:white;" href='{{ url("/gradingalumni") }}'><i class="fas fa-user-graduate"></i> Alumni</a>&ensp;
 				<a class="btn btn-danger" style="font-size:20px; font-weight:bold; color:white;" href='{{ url("/gradingdropped") }}'><i class="fas fa-user-slash"></i> Dropped</a>&ensp;
-                <a href="{{route('student.add')}}" class="btn btn-primary" style="float:right;"><i class="fas fa-user-plus"></i> Add Student Manually</a>
+                <a href="{{route('student.add')}}" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#createModal"><i class="fas fa-user-plus"></i> Add Student Manually</a>
             </div>
             <div class="card-body p-0" style="padding: 20px 20px 20px 20px;">
                 @if($students->count() == 0)
@@ -120,6 +120,13 @@
                                         </tr>
                                         <!-- edit modal -->
                                         <div id="editModal{{ $student->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content border-start-lg border-start-yellow">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- create modal -->
+                                        <div id="createModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog modal-lg" role="document">
                                                 <div class="modal-content border-start-lg border-start-yellow">
                                                 </div>

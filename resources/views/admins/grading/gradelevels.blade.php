@@ -36,7 +36,7 @@
                         <div class="alert alert-primary"><i class="fas fa-info"> </i> | Example: 12 </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-4">
-                        <a href="{{route('gradelevel.add')}}" class="btn btn-primary" style="float: right;"><i class="fas fa-user-plus"></i> Add Record</a>
+                        <a href="{{route('gradelevel.add')}}" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#createModal"><i class="fas fa-user-plus"></i> Add Record</a>
                     </div>
                 </div>
             </div>
@@ -70,6 +70,13 @@
                                         </tr>
                                         <!-- update modal -->
                                         <div id="editModal{{ $gradelevel->id }}" class="modal fade text-center" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content border-start-lg border-start-yellow">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- create modal -->
+                                        <div id="createModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content border-start-lg border-start-yellow">
                                                 </div>
