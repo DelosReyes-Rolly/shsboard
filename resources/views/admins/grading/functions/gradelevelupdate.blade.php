@@ -9,7 +9,7 @@
         @csrf
         @method('put')
         <div class="col-md-12">
-            <input type="text" name="gradelevel" class="form-control @error('gradelevel') is-invalid @enderror" value="{{$gradelevel->gradelevel}}"style="font-size: 20px;">
+            <input type="number" name="gradelevel" class="form-control @error('gradelevel') is-invalid @enderror" value="{{$gradelevel->gradelevel}}"style="font-size: 20px;" min="11" required>
         </div>
     </div>
     <div class="modal-footer">

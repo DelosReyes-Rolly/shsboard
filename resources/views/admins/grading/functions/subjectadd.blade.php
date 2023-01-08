@@ -13,15 +13,15 @@
         <div class="row">
             <div class="col-md-12">
                 <label><span style="color: red">*</span> Subject Code</label>
-                <input type="text" name="subjectcode" class="form-control @error('subjectcode') is-invalid @enderror" value="{{ old('subjectcode') }}" style="font-size: 14px;">
+                <input type="text" name="subjectcode" class="form-control @error('subjectcode') is-invalid @enderror" value="{{ old('subjectcode') }}" style="font-size: 14px;" required>
             </div>
             <div class="col-md-12">
                 <label><span style="color: red">*</span> Subject Name</label>
-                <input type="text" name="subjectname" class="form-control @error('subjectname') is-invalid @enderror" value="{{ old('subjectname') }}" style="font-size: 14px;">
+                <input type="text" name="subjectname" class="form-control @error('subjectname') is-invalid @enderror" value="{{ old('subjectname') }}" style="font-size: 14px;" required>
             </div>
             <div class="col-md-12">
                 <label><span style="color: red">*</span> Description</label>
-                <textarea type="text" name="description" id="editor2" class="form-control @error('description') is-invalid @enderror" style="font-size: 14px;">{{ old('description') }}</textarea>
+                <textarea type="text" name="description" id="editor2" class="form-control @error('description') is-invalid @enderror" style="font-size: 14px;" required>{{ old('description') }}</textarea>
             </div>
         </div>
     </div>

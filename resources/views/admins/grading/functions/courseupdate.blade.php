@@ -14,19 +14,19 @@
         <div class="row">
             <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span> Strand Name</label>
-                <input type="text" name="courseName"  class="form-control @error('courseName') is-invalid @enderror" value="{{$course->courseName}}" style="font-size: 14px;" >
+                <input type="text" name="courseName"  class="form-control @error('courseName') is-invalid @enderror" value="{{$course->courseName}}" style="font-size: 14px;"  required>
             </div><br/><br/>
             <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span> Abbreviation</label>
-                <input type="text" name="abbreviation"  class="form-control @error('abbreviation') is-invalid @enderror" value="{{$course->abbreviation}}" style="font-size: 14px;">
+                <input type="text" name="abbreviation"  class="form-control @error('abbreviation') is-invalid @enderror" value="{{$course->abbreviation}}" style="font-size: 14px;" required>
             </div><br/><br/>
             <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span> Strand Description</label>
-                <textarea name="description" type=text id="editor"  class="form-control @error('description') is-invalid @enderror">{!!$course->description!!}</textarea style="font-size: 14px;">
+                <textarea name="description" type=text id="editor"  class="form-control @error('description') is-invalid @enderror">{!!$course->description!!}</textarea style="font-size: 14px;" required>
             </div><br/><br/>
             <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span> Code</label>
-                <input type="text" name="code"  class="form-control @error('code') is-invalid @enderror" value="{{$course->code}}"style="font-size: 14px;">
+                <input type="text" name="code"  class="form-control @error('code') is-invalid @enderror" value="{{$course->code}}"style="font-size: 14px;" required>
             </div><br/><br/>
             <div class="col-md-12">
                 <label style="font-size: 20px;">Video Link (Copy embed link on youtube and paste it here) </label>

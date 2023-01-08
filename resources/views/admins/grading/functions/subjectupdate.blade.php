@@ -14,15 +14,15 @@
         <div class="row">
             <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span> Subject Code</label>
-                <input type="text" name="subjectcode" class="form-control @error('subjectcode') is-invalid @enderror" value="{{$subject->subjectcode}}" style="font-size: 14px;">
+                <input type="text" name="subjectcode" class="form-control @error('subjectcode') is-invalid @enderror" value="{{$subject->subjectcode}}" style="font-size: 14px;" required>
             </div>
             <div class="col-md-10">
                 <label style="font-size: 20px;"><span style="color: red">*</span> Subject Name</label>
-                <input type="text" name="subjectname" class="form-control @error('subjectname') is-invalid @enderror" value="{{$subject->subjectname}}" style="font-size: 14px;">
+                <input type="text" name="subjectname" class="form-control @error('subjectname') is-invalid @enderror" value="{{$subject->subjectname}}" style="font-size: 14px;" required>
             </div>
             <div class="col-md-10">
                 <label style="font-size: 20px;"><span style="color: red">*</span> Description</label>
-                <textarea type="text" name="description" id="editor" class="form-control @error('description') is-invalid @enderror" style="font-size: 14px;">{{$subject->description}}</textarea>
+                <textarea type="text" name="description" id="editor" class="form-control @error('description') is-invalid @enderror" style="font-size: 14px;" required>{{$subject->description}}</textarea>
             </div>
         </div>
     </div>

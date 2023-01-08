@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-12">
                 <label style="font-size: 28px;"><span style="color: red">*</span> Grade level</label>
-                <input type="text" name="gradelevel" class="form-control @error('gradelevel') is-invalid @enderror" value="{{ old('gradelevel') }}" style="font-size: 14px;">
+                <input type="number" name="gradelevel" class="form-control @error('gradelevel') is-invalid @enderror" value="{{ old('gradelevel') }}" style="font-size: 14px;" min="11" required>
             </div>
         </div>
     </div>

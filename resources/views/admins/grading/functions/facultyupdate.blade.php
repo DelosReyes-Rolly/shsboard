@@ -14,11 +14,11 @@
         <div class="row">
            <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span> Last Name</label>
-                <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{$faculty->last_name}}" style="font-size: 14px;">
+                <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{$faculty->last_name}}" style="font-size: 14px;" required>
             </div>
             <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span> First Name</label>
-                <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{$faculty->first_name}}" style="font-size: 14px;">
+                <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{$faculty->first_name}}" style="font-size: 14px;" required>
             </div>
             <div class="col-md-12">
                 <label style="font-size: 20px;">Middle Name</label>
@@ -30,7 +30,7 @@
             </div>
             <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span> Email Address</label>
-                <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" value="{{$faculty->email}}" style="font-size: 14px;"> 
+                <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" value="{{$faculty->email}}" style="font-size: 14px;" required> 
             </div>
         </div>
     </div>

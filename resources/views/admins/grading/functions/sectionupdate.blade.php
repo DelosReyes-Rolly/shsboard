@@ -9,7 +9,7 @@
         @csrf
         @method('put')
         <div class="col-md-12">
-            <input type="text" name="section" class="form-control @error('section') is-invalid @enderror" value="{{$section->section}}" style="font-size: 20px;">
+            <input type="text" name="section" class="form-control @error('section') is-invalid @enderror" value="{{$section->section}}" style="font-size: 20px;" required>
         </div>
     </div>
     <div class="modal-footer">

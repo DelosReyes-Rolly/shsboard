@@ -9,7 +9,7 @@
     @csrf
     @method('put')
         <div class="col-md-12">
-            <input type="text" name="schoolyear" class="form-control @error('schoolyear') is-invalid @enderror" value="{{$schoolyear->schoolyear}}"style="font-size: 20px;">
+            <input type="number" name="schoolyear" class="form-control @error('schoolyear') is-invalid @enderror" value="{{$schoolyear->schoolyear}}"style="font-size: 20px;" required>
         </div>
     </div>
     <div class="modal-footer">

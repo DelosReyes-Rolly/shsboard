@@ -17,7 +17,7 @@
             </div>
             <div class="col-md-12">
                 <div class="col-md-12"><label for="faculty_id" style="font-size: 20px;"><span style="color: red">*</span> Teacher</label>
-                    <select id="faculty_id" name="faculty_id" class="form-control" style="font-size: 14px;">    
+                    <select id="faculty_id" name="faculty_id" class="form-control" style="font-size: 14px;" required>    
                         <option value="" disabled selected hidden>Choose Teacher</option>
                         @foreach ($faculties as $faculty)
                         <option value="{{ $faculty->id }}" {{($advisory->faculty->id==$faculty->id)? 'selected':'' }}>{{ $faculty->last_name }}, {{ $faculty->first_name }} {{ $faculty->middle_name }} {{$advisory -> faculty -> suffix}}</option>

@@ -13,15 +13,15 @@
         <div class="row">       
             <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span>  LRN</label>
-                <input type="text" name="LRN" class="form-control @error('LRN') is-invalid @enderror" value="{{ old('LRN') }}" style="font-size: 14px;">
+                <input type="text" name="LRN" class="form-control @error('LRN') is-invalid @enderror" value="{{ old('LRN') }}" style="font-size: 14px;" required>
             </div>
             <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span>  Last Name</label>
-                <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}" style="font-size: 14px;">
+                <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}" style="font-size: 14px;" required>
             </div>
             <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span>  First Name</label>
-                <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}" style="font-size: 14px;">
+                <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}" style="font-size: 14px;" required>
             </div>
             <div class="col-md-12">
                 <label style="font-size: 20px;"> Middle Name</label>
@@ -33,7 +33,7 @@
             </div>
             <div class="col-md-12">
                 <label for ="gender"><span style="color: red">*</span>  Sex</label><br>
-                <select name="gender" class="form-control">
+                <select name="gender" class="form-control" required>
                     <option value=""  {{old('gender') == "" ?'selected' : ''}} disabled>  Please Select Sex </option>
                     <option value="Male">Male </option>
                     <option value="Female">Female</option>
@@ -41,7 +41,7 @@
             </div>
             <div class="col-md-12">
                 <label for="gradelevel_id" class="col-form-label text-md-end" style="font-size: 20px;"><span style="color: red">*</span>  {{ __('Grade Level') }}</label><br>
-                <select name="gradelevel_id" id="gradelevel_id" class="form-control">
+                <select name="gradelevel_id" id="gradelevel_id" class="form-control" required>
                     <option value="" {{old('gradelevel_id') == "" ?'selected' : ''}} disabled> Please Select Grade Level </option>
                     @foreach($level_data as $gradelevel_id)
                     <option value="{{$gradelevel_id->id}}">{{$gradelevel_id->gradelevel}}</option>
@@ -50,7 +50,7 @@
             </div>
             <div class="col-md-12">                                   
                 <label for="section_id" class="col-form-label text-md-end" style="font-size: 20px;"><span style="color: red">*</span>  {{ __('Section') }}</label>
-                <select name="section_id" id="section_id" class="form-control">
+                <select name="section_id" id="section_id" class="form-control" required>
                     <option value="" {{old('section_id') == "" ?'selected' : ''}} disabled> Please Select section </option>
                     @foreach($section_data as $section_id)
                     <option value="{{$section_id->id}}">{{$section_id->section}}</option>
@@ -59,7 +59,7 @@
             </div>
             <div class="col-md-12">
                 <label for="course_id" class="col-form-label text-md-end" style="font-size: 20px;"><span style="color: red">*</span>  {{ __('Strand') }}</label>
-                <select name="course_id" id="course_id" class="form-control">
+                <select name="course_id" id="course_id" class="form-control" required>
                     <option value="" {{old('course_id') == "" ?'selected' : ''}} disabled> Please Select Strand </option>
                     @foreach($courses_data as $course_id)
                     <option value="{{$course_id->id}}">{{$course_id->courseName}}</option>
@@ -68,7 +68,7 @@
             </div>
             <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span>  Email Address</label>
-                <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" style="font-size: 14px;"> 
+                <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" style="font-size: 14px;" required> 
             </div>
         </div>
     </div>

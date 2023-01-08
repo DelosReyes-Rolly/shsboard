@@ -145,7 +145,7 @@
 														<div class="row" style="padding: 20px;">
 															<div class="col-lg-4 col-md-4 col-sm-10">
 																<label class="large" for="name" style="font-size: 20px;">Document Name</label>
-																<input class="form-control @error('name') is-invalid @enderror" id="name" type="text" style="font-size: 16px;" placeholder="Document Name" name="name" value="{{ old('name') }}">
+																<input class="form-control @error('name') is-invalid @enderror" id="name" type="text" style="font-size: 16px;" placeholder="Document Name" name="name" value="{{ old('name') }}" required>
 															</div>
 															<div class="col-lg-4 col-md-4 col-sm-10"><br/>
 																<input type="submit" class="btn btn-primary" value="Submit">
@@ -228,11 +228,11 @@
 														<div class="row" style="padding: 20px;">
 															<div class="col-lg-4 col-md-4 col-sm-10">
 																<label class="large" for="purpose" style="font-size: 20px;">Purpose</label>
-																<input class="form-control @error('purpose') is-invalid @enderror" id="purpose" type="text" style="font-size: 16px;" placeholder="New purpose" name="purpose" value="{{ old('purpose') }}">
+																<input class="form-control @error('purpose') is-invalid @enderror" id="purpose" type="text" style="font-size: 16px;" placeholder="New purpose" name="purpose" value="{{ old('purpose') }}" required>
 															</div>
 															<div class="col-lg-4 col-md-4 col-sm-10">
 																<label class="large" for="proof_needed" style="font-size: 20px;">Proof Needed</label>
-																<input class="form-control @error('proof_needed') is-invalid @enderror" id="proof_needed" type="text" style="font-size: 16px;" placeholder="Proof Needed" name="proof_needed" value="{{ old('proof_needed') }}">
+																<input class="form-control @error('proof_needed') is-invalid @enderror" id="proof_needed" type="text" style="font-size: 16px;" placeholder="Proof Needed" name="proof_needed" value="{{ old('proof_needed') }}" required>
 															</div>
 															<div class="col-lg-4 col-md-4 col-sm-10"><br/>
 																<input type="submit" class="btn btn-primary" value="Submit">

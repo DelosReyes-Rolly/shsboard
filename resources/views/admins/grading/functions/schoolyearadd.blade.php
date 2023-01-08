@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-12">
                 <label style="font-size: 28px;"><span style="color: red">*</span> School Year</label>
-                <input type="text" name="schoolyear" class="form-control @error('schoolyear') is-invalid @enderror" value="{{ old('schoolyear') }}" style="font-size: 14px;">
+                <input type="number" name="schoolyear" class="form-control @error('schoolyear') is-invalid @enderror" value="{{ old('schoolyear') }}" style="font-size: 14px;" required>
             </div>
         </div>
     </div>
