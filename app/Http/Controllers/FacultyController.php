@@ -227,19 +227,32 @@ class FacultyController extends Controller
            return redirect('/createannouncement')->with('success', 'Activity has been updated.');;
        }
 
-         public function deleteactivitystream(Request $request, ActivityStreams $activitystream){
-            $validated = $request->validate([
-                'deleted' => ['required'],
-                'deleted_at' => ['required'],
-            ]);
-            $activitystream->update($validated);
-            return redirect('/createannouncement')->with('success', 'Activity has been deleted successfully!');
-         }
+        public function deleteactivitystream(ActivityStreams $activitystream, Request $request, $id){
+           //     $validated = $request->validate([
+        //         'deleted' => ['required'],
+        //         'deleted_at' => ['required'],
+        //     ]);
+        //     $activitystream->update($validated);
+        //     return redirect('/createannouncement')->with('success', 'Activity has been deleted successfully!');
+            if ($request->ajax()){
     
-         public function deleteannouncement($id){
-            $data = ActivityStreams::where('deleted', '=', null)->findOrFail($id);
-            return view('faculty.deleteactivitystream', ['activitystream' => $data]);
-         }
+                $activitystream = ActivityStreams::findOrFail($id);
+                if ($activitystream){
+        
+                    $activitystream->deleted = 1;
+                    $activitystream->deleted_at = now();
+                    $activitystream->save();
+        
+                    return response()->json(array('success' => true));
+                }
+            }
+            
+        }
+    
+        //  public function deleteannouncement($id){
+        //     $data = ActivityStreams::where('deleted', '=', null)->findOrFail($id);
+        //     return view('faculty.deleteactivitystream', ['activitystream' => $data]);
+        //  }
 
     // ============================================================ GRADES ===================================================================================  
 

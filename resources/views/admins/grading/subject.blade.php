@@ -1,5 +1,5 @@
 @include('partials.adminheader')
-@include('partials.adminThirdHeader')
+
 <main>
     <!-- new tables -->
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
@@ -17,6 +17,7 @@
 	<script src="{{ asset('assets/js/datatables-jquery-1.12.1.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-rowreorder-1.2.8.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-responsive-2.3.0.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable( {
@@ -37,10 +38,8 @@
         <h3 style="font-size: 28px; font-weight: 800;">Table of Subjects </h3>
         <hr class="mt-0 mb-4">
         <div class="card mb-4 border-start-lg border-start-success" style="padding: 10px 40px 10px 40px;">
-            <div class="card-header">
-                <div class="pull-right">
-                    <a href="{{route('subject.add')}}" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Record</a>
-                </div>
+            <div class="card-header" style="background-color: #ffffff;">
+                <a href="{{route('subject.add')}}" class="btn btn-primary" style="float: right;"><i class="fas fa-user-plus"></i> Add Record</a>
             </div>
             <div class="card-body p-0">
                 <!-- table-->
@@ -65,17 +64,23 @@
                                     $i=1;
                                 ?>
                                     @foreach ($subjects as $subject)
-                                        <tr>
+                                        <tr id="subject{{$subject->id}}">
                                             <td class="text-center"><?php echo $i++; ?></td>
                                             <td>{{$subject -> subjectcode}}</td>
                                             <td>{{$subject -> subjectname}}</td>
                                             <td>{!!$subject -> description!!}</td>
                                             <td>
-                                                <a class="btn btn-success btn-md" href="/viewsubject/{{$subject->id}}"><i class="fas fa-eye"></i> View</a>
+                                                <a class="btn btn-success btn-md" href="/viewsubject/{{$subject->id}}" data-toggle="modal" data-target="#modal-view-{{ $subject->id }}"><i class="fas fa-eye"></i> View</a>
                                                 <a class="btn btn-warning btn-md" href="/showsubject/{{$subject->id}}"><i class="fas fa-edit"></i> Update</a>
-                                                <a class="btn btn-danger btn-md" href="{{route('admin.deletesubject', $subject->id)}}"><i class="fas fa-trash-alt"></i> Delete</a>
+                                                <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $subject->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                             </td> 
                                         </tr>
+                                        <div id="modal-view-{{ $subject->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content border-start-lg border-start-yellow">
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endforeach
                             </tbody>
                         </table>
@@ -90,7 +95,69 @@
       $('.nav_btn').click(function(){
         $('.mobile_nav_items').toggleClass('active');
       });
+
+      deleteItem(e);
     });
+
+    //delete
+    function deleteItem(e){
+
+        let id = e.getAttribute('data-id');
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: true
+        });
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                if (result.isConfirmed){
+
+                    $.ajax({
+                        type:'PUT',
+                        url:'{{url("/subject/delete")}}/' +id,
+                        data:{
+                            "_token": "{{ csrf_token() }}",
+                        },
+                        success:function(data) {
+                            if (data.success){
+                                
+                                swalWithBootstrapButtons.fire(
+                                    'Deleted!',
+                                    'Subject is deleted successfully.',
+                                    "success"
+                                );
+                                $("#subject"+id+"").remove();
+                            }
+
+                        }
+                    });
+
+                }
+
+            } else if (
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    '',
+                    'error'
+                );
+            }
+        });
+
+        }
     </script>
 
 </main>

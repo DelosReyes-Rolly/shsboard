@@ -27,8 +27,10 @@
 	<link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/datatables-rowreorder-1.2.8.css') }}">
 	<link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/datatables-responsive-2.3.0.css') }}">
 	<script src="{{ asset('assets/js/jquery-3.5.1.js') }}"></script>
+	<script src="{{ asset('assets/js/datatables-jquery-1.12.1.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-rowreorder-1.2.8.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-responsive-2.3.0.js') }}"></script>
+	<script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
 
     
     <script>
@@ -53,7 +55,7 @@
                             <div class="card h-100 border-start-lg border-start-secondary" style="background-color: red; color: white; box-shadow: 0 4px 16px rgba(0,0,0,0.6);" >
                                 <div class="card-body">
                                     <div class="requesteddocument" style="color: white; font-size: 20px; font-weight: 800;">Expired Activity</div>
-                                    <div class="h3" style="padding-left: 20px; padding-bottom: 10px;"><i class="fas fa-calendar-times"> </i> {{ $expired }} </div>
+                                    <div class="h3" style="padding-left: 20px; padding-bottom: 10px; font-size:40px;"><i class="fas fa-calendar-times"> </i> {{ $expired }} </div>
                                     <!-- <a class="text-arrow-icon small text-secondary" href="#!">
                                         View expired announcements
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -66,7 +68,7 @@
                         <div class="card h-100 border-start-lg border-start-success" style="background-color: green; color: white; box-shadow: 0 4px 16px rgba(0,0,0,0.6);">
                             <div class="card-body">
                                 <div class="requesteddocument" style="color: white; font-size: 20px; font-weight: 800;">Active Annoucements</div>
-                                <div class="h3 d-flex align-items-center" style="padding-left: 20px; padding-bottom: 10px;"><i class="fas fa-bullhorn"> </i> {{ $active }} </div>
+                                <div class="h3 d-flex align-items-center" style="padding-left: 20px; padding-bottom: 10px; font-size:40px;"> <i class="fas fa-bullhorn"> </i> {{ $active }} </div>
                                 <!-- <a class="text-arrow-icon small text-success" href="#!">
                                     View Active annoucements
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -231,7 +233,7 @@
                                     <tbody>
                                         <?php $i=1; ?>
                                         @foreach ($announcementCount as $announcement)
-                                            <tr>
+                                            <tr id="announcement{{$announcement -> id}}">
                                                 <td class="text-center"><?php echo $i++; ?></td>
                                                 <td> {{$announcement -> what}} </td>
                                                 <td>{{$announcement -> gradelevel -> gradelevel}}</td>
@@ -257,11 +259,17 @@
                                                     ?>
                                                 </td>
                                                 <td>
-                                                    <a class="btn btn-success btn-md" href="/viewfacultyannouncement/{{$announcement->id}}" style="font-size: 16px;"><i class="fas fa-eye"></i> View</a>
+                                                    <a class="btn btn-success btn-md" href="/viewfacultyannouncement/{{$announcement->id}}" data-toggle="modal" data-target="#modal-view-{{$announcement->id}}" style="font-size: 16px;"><i class="fas fa-eye"></i> View</a>
                                                     <a class="btn btn-warning btn-md" href="/showfacultyannouncement/{{$announcement->id}}" style="font-size: 16px;"><i class="fas fa-edit"></i> Update</a>
-                                                    <a class="btn btn-danger btn-md" href="{{route('faculty.deleteannouncement', $announcement->id)}}" style="font-size: 16px;"><i class="fas fa-trash-alt"></i> Delete</a>
+                                                    <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $announcement->id }}" style="font-size: 16px;"><i class="fas fa-trash-alt"></i> Delete</button>
                                                 </td> 
                                             </tr>
+                                            <div id="modal-view-{{ $announcement->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+												<div class="modal-dialog modal-lg" role="document">
+													<div class="modal-content border-start-lg border-start-yellow">
+													</div>
+												</div>
+											</div>
                                         @endforeach 
                                     </tbody>
                                 </table>
@@ -276,5 +284,74 @@
     <script>
         CKEDITOR.replace( 'editor' );
     </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+        $('.nav_btn').click(function(){
+            $('.mobile_nav_items').toggleClass('active');
+        });
+        deleteItem(e);
+
+        });
+
+        //delete
+        function deleteItem(e){
+
+            let id = e.getAttribute('data-id');
+
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: true
+            });
+
+            swalWithBootstrapButtons.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    if (result.isConfirmed){
+
+                        $.ajax({
+                            type:'PUT',
+                            url:'{{url("/activitystream/delete")}}/' +id,
+                            data:{
+                                "_token": "{{ csrf_token() }}",
+                            },
+                            success:function(data) {
+                                if (data.success){
+                                    
+                                    swalWithBootstrapButtons.fire(
+                                        'Deleted!',
+                                        'An activity has been deleted successfully.',
+                                        "success"
+                                    );
+                                    $("#announcement"+id+"").remove();
+                                }
+
+                            }
+                        });
+
+                    }
+
+                } else if (
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled',
+                        '',
+                        'error'
+                    );
+                }
+            });
+
+            }
+        </script>
 
 </main>

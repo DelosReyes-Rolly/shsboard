@@ -17,7 +17,7 @@
     <script src="{{ asset('assets/js/fontawesome-5.0.13.js') }}"></script>
     <!-- <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script> -->
 	<!-- additional? -->
-
+    <script src="{{ asset('assets/js/sweetalert-new.js') }}"></script>
         
         <!-- title of site -->
         <title>SVNHS-SHS BOARD</title>

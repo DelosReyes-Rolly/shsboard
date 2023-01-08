@@ -69,15 +69,11 @@
         <h3 style="font-size: 28px; font-weight: 800;">Table of Students </h3>
         <hr class="mt-0 mb-4">
         <div class="card mb-4 right-to-left border-start-lg border-start-success" style="padding: 10px 40px 10px 40px;">
-            <div class="card-header">
-                <div class="pull-right">
-                    <a href="{{route('student.add')}}" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Student Manually</a>
-                </div>
-            </div>
-            <div style="margin: 20px;">
-				<a class="btn btn-success" style="font-size:20px; font-weight:bold; color:white;" href='{{ url("/gradingalumni") }}'><i class="fas fa-user-graduate"></i> Alumni</a>&ensp;
+            <div class="card-header" style="background-color: white;">
+                <a class="btn btn-success" style="font-size:20px; font-weight:bold; color:white;" href='{{ url("/gradingalumni") }}'><i class="fas fa-user-graduate"></i> Alumni</a>&ensp;
 				<a class="btn btn-danger" style="font-size:20px; font-weight:bold; color:white;" href='{{ url("/gradingdropped") }}'><i class="fas fa-user-slash"></i> Dropped</a>&ensp;
-			</div>
+                <a href="{{route('student.add')}}" class="btn btn-primary" style="float:right;"><i class="fas fa-user-plus"></i> Add Student Manually</a>
+            </div>
             <div class="card-body p-0" style="padding: 20px 20px 20px 20px;">
                 @if($students->count() == 0)
 					<br><br>
@@ -104,7 +100,7 @@
                                     $i=1;
                                 ?>
                                     @foreach ($students as $student)
-                                        <tr>
+                                        <tr id="student{{$student->id}}">
                                             <td class="text-center"><?php echo $i++; ?></td>
                                             <td>{{$student -> LRN}}</td>
                                             <td>{{$student -> last_name}}, {{$student -> first_name}} {{$student -> middle_name}} {{$student -> suffix}}</td>
@@ -116,7 +112,7 @@
                                             <td>
                                                 <a class="btn btn-success btn-md" href="/viewstudent/{{$student->id}}"><i class="fas fa-eye"></i> View</a>
                                                 <a class="btn btn-warning btn-md" href="/showstudent/{{$student->id}}"><i class="fas fa-edit"></i> Update</a>
-                                                <a class="btn btn-danger btn-md" href="{{route('admin.deletestudent', $student->id)}}"><i class="fas fa-trash-alt"></i> Delete</a>
+                                                <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $student->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                                 <a class="btn btn-danger btn-md" href="{{route('admin.dropstudent', $student->id)}}"><i class="fas fa-user-slash"></i> Drop</a>
                                             </td> 
                                             </td> 
@@ -135,7 +131,69 @@
       $('.nav_btn').click(function(){
         $('.mobile_nav_items').toggleClass('active');
       });
+
+      deleteItem(e);
     });
+
+    //delete
+    function deleteItem(e){
+
+        let id = e.getAttribute('data-id');
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: true
+        });
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                if (result.isConfirmed){
+
+                    $.ajax({
+                        type:'PUT',
+                        url:'{{url("/student/delete")}}/' +id,
+                        data:{
+                            "_token": "{{ csrf_token() }}",
+                        },
+                        success:function(data) {
+                            if (data.success){
+                                
+                                swalWithBootstrapButtons.fire(
+                                    'Deleted!',
+                                    'Student is deleted successfully.',
+                                    "success"
+                                );
+                                $("#student"+id+"").remove();
+                            }
+
+                        }
+                    });
+
+                }
+
+            } else if (
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    '',
+                    'error'
+                );
+            }
+        });
+
+        }
     </script>
 
 </main>

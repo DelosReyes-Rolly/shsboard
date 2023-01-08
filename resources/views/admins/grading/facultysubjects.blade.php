@@ -1,6 +1,5 @@
 
 @include('partials.adminheader')
-@include('partials.adminThirdHeader')
 <main>
     <!-- new tables -->
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
@@ -18,6 +17,7 @@
 	<script src="{{ asset('assets/js/datatables-jquery-1.12.1.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-rowreorder-1.2.8.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-responsive-2.3.0.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable( {
@@ -39,13 +39,11 @@
         <div class="card mb-4 border-start-lg border-start-success" style="padding: 10px 40px 10px 40px;">
             <div class="card-header">
                 <div class="row">
-                    <div class="col-lg-9 col-md-6 col-md-12" style="border-radius: 10px;">
+                    <div class="col-lg-9 col-md-6 col-md-12" style="border-radius: 10px; background-color: #ffffff;">
                         <label class="large mb-1" for="inputcontent"> <div class="alert alert-primary"><em><i class="fas fa-info"> </i> | <b> Reminder:</b> Assign advisory teacher to the class first before assigning subjects to a class.</em></div></label><br>
                     </div>                    
                     <div class="col-lg-3 col-md-6 col-md-12">
-                        <div class="pull-right">
-                            <a href="{{route('subjectteacher.add')}}" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Record</a>
-                        </div>
+                        <a href="{{route('subjectteacher.add')}}" class="btn btn-primary" style="float: right;"><i class="fas fa-user-plus"></i> Add Record</a>
                     </div>
                 </div>
             </div>
@@ -75,7 +73,7 @@
                                     $i=1;
                                 ?>
                                     @foreach ($subjectteachers as $subjectteacher)  
-                                        <tr id="{{$subjectteacher -> id}}">
+                                        <tr id="subjectteacher{{$subjectteacher -> id}}">
                                             <td class="text-center"><?php echo $i++; ?></td>
                                             <td>{{$subjectteacher -> faculty -> last_name}}, {{$subjectteacher -> faculty -> first_name}} {{$subjectteacher -> faculty -> middle_name}} {{$subjectteacher -> faculty -> suffix}}</td>
                                             <td>{{$subjectteacher -> gradelevel -> gradelevel}}</td>
@@ -84,12 +82,18 @@
                                             <td>{{$subjectteacher -> section -> section}}</td>
                                             <td>{{$subjectteacher -> subject -> subjectname}}</td>
                                             <td>{{$time_start =  date('h:i A', strtotime($subjectteacher -> time_start))}} - {{$time_end =  date('h:i A', strtotime($subjectteacher -> time_end))}}</td>
-                                            <td>
-                                                <a class="btn btn-success btn-md" href="/viewsubjectteacher/{{$subjectteacher->id}}"><i class="fas fa-eye"></i> View</a>
+                                            <td width=24%>
+                                                <a class="btn btn-success btn-md" href="/viewsubjectteacher/{{$subjectteacher->id}}" data-toggle="modal" data-target="#modal-view-{{ $subjectteacher->id }}"><i class="fas fa-eye"></i> View</a>
                                                 <a class="btn btn-warning btn-md" href="/showsubjectteacher/{{$subjectteacher->id}}"><i class="fas fa-edit"></i> Update</a>
-                                                <a class="btn btn-danger btn-md" href="{{route('admin.deletesubjectteacher', $subjectteacher->id)}}"><i class="fas fa-trash-alt"></i> Delete</a>
+                                                <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $subjectteacher->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                             </td> 
                                         </tr>
+                                        <div id="modal-view-{{ $subjectteacher->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content border-start-lg border-start-yellow">
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endforeach
                             </tbody>
                         </table>
@@ -104,7 +108,69 @@
       $('.nav_btn').click(function(){
         $('.mobile_nav_items').toggleClass('active');
       });
+
+      deleteItem(e);
     });
+
+    //delete
+    function deleteItem(e){
+
+        let id = e.getAttribute('data-id');
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: true
+        });
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                if (result.isConfirmed){
+
+                    $.ajax({
+                        type:'PUT',
+                        url:'{{url("/subjectteacher/delete")}}/' +id,
+                        data:{
+                            "_token": "{{ csrf_token() }}",
+                        },
+                        success:function(data) {
+                            if (data.success){
+                                
+                                swalWithBootstrapButtons.fire(
+                                    'Deleted!',
+                                    'Subject of teacher is deleted successfully.',
+                                    "success"
+                                );
+                                $("#subjectteacher"+id+"").remove();
+                            }
+
+                        }
+                    });
+
+                }
+
+            } else if (
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    '',
+                    'error'
+                );
+            }
+        });
+
+        }
     </script>
 </main>
 <br><br><br><br>

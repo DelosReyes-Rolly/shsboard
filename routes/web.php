@@ -171,8 +171,9 @@ Route::group(['middleware' => 'auth:students'], function () {
             Route::get('/studentrequest', 'documentrequest');
             Route::get('/viewrequest/{id}', 'viewrequest');
             Route::get('/showrequest/{id}', 'showrequest');
-            Route::get('/deleterequest/{id}',  'deleterequest')->name('student.deleterequest');
-            Route::put('/deletegraderequest/{id}', 'deletegraderequest');
+            // Route::get('/deleterequest/{id}',  'deleterequest')->name('student.deleterequest');
+            // Route::put('/deletegraderequest/{id}', 'deletegraderequest');
+            Route::put('/request/delete/{id}', 'deletegraderequest');
             Route::get('/password-student/{id}', 'studentresetshow');
             Route::get('/activitystream', 'activitystream');
 
@@ -222,8 +223,9 @@ Route::group(['middleware' => 'auth:students'], function () {
             Route::get('/gradeeval', 'gradeeval');
             Route::get('/vieweval/{id}', 'vieweval');
             Route::get('/grade-eval/{student_id}/{gradelevel_id}/{course_id}/{section_id}/{semester_id}/{faculty_id}/{subject_id}',  'gradeevalreq')->name('grade-eval');
-            Route::get('/deletegradeeval/{id}',  'deletegradeeval')->name('student.deletegradeeval');
-            Route::put('/deletegradeeval/{gradeeval}',  'deletegradegradeeval');
+            // Route::get('/deletegradeeval/{id}',  'deletegradeeval')->name('student.deletegradeeval');
+            // Route::put('/deletegradeeval/{gradeeval}',  'deletegradegradeeval');
+            Route::put('/gradeevaluationrequest/delete/{id}', 'deletegradeeval');
             Route::get('/printreportcard', 'printreportcard');
     });
 });
@@ -313,10 +315,10 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 | Here is where admin routes GET, homepage functions, that are included in their landing are defined.
                 |
                 */
-                Route::get('/deleteadminannouncement/{id}', 'deleteadminannouncement');
+                // Route::get('/deleteadminannouncement/{id}', 'deleteadminannouncement');
                 Route::get('/viewlanding/{id}', 'viewlanding');
                 Route::get('/showlanding/{id}', 'showlanding');
-                Route::get('/delete/{id}', 'delete');
+                // Route::get('/delete/{id}', 'deletelanding');
                 Route::get('/password-admin/{id}', 'adminresetshow');
 
 
@@ -343,7 +345,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 */
                 Route::get('/viewevent/{id}', 'viewevent');
                 Route::get('/showevent/{id}', 'showevent');
-                Route::get('/deleteevent/{id}',  'deleteevent')->name('admin.deleteevent');
+                // Route::get('/deleteevent/{id}',  'deleteevent')->name('admin.deleteevent');
 
 
                 /*
@@ -356,7 +358,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 */
                 Route::get('/viewreminder/{id}', 'viewreminder');
                 Route::get('/showreminder/{id}', 'showreminder');
-                Route::get('/deletereminder/{id}', 'deletereminder')->name('admin.deletereminder');
+                // Route::get('/deletereminder/{id}', 'deletereminder')->name('admin.deletereminder');
 
 
             /*
@@ -434,8 +436,8 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 |
                 */
                 Route::put('/updatelanding/{landing}', [AdminsController::class, 'updatelanding']);
-                Route::put('/deletelanding/{landing}',  [AdminsController::class, 'deletelanding'])->name('admin.deletelanding');
-
+                // Route::put('/deletelanding/{landing}',  [AdminsController::class, 'deletelanding'])->name('admin.deletelanding');
+                Route::put('/landing/delete/{id}', 'deletelanding');
 
                 /*
                 |-----------------------------------------------------------------------------------
@@ -446,7 +448,8 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 |
                 */
                 Route::put('/updateannouncement/{announcement}', 'updateannouncement');
-                Route::put('/deleteannouncements/{announcement}', 'deleteannouncement')->name('admin.deletelanding');
+                // Route::put('/deleteannouncements/{announcement}', 'deleteannouncement')->name('admin.deletelanding');
+                Route::put('/announcement/delete/{id}', 'deleteannouncement');
 
 
                 /*
@@ -515,22 +518,22 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 Route::get('/courseadd', 'addcourse')->name('course.add');
                 Route::get('/viewcourse/{id}','viewcourse');
                 Route::get('/showcourse/{id}','showcourse');
-                Route::get('/deletecourse/{id}', 'deletecourse')->name('admin.deletecourse');
+                // Route::get('/deletecourse/{id}', 'deletecourse')->name('admin.deletecourse');
 
                 Route::get('/sectionadd', 'addsection')->name('section.add');
                 Route::get('/viewsection/{id}','viewsection');
                 Route::get('/showsection/{id}','showsection');
-                Route::get('/deletesection/{id}', 'deletesection')->name('admin.deletesection');
+                // Route::get('/deletesection/{id}', 'deletesection')->name('admin.deletesection');
 
                 Route::get('/facultyadd', 'addfaculty')->name('faculty.add');
                 Route::get('/viewfaculty/{id}','viewfaculty');
                 Route::get('/showfaculty/{id}','showfaculty');
-                Route::get('/deletefaculty/{id}', 'deletefaculty')->name('admin.deletefaculty');
+                // Route::get('/deletefaculty/{id}', 'deletefaculty')->name('admin.deletefaculty');
 
                 Route::get('/studentadd', 'addstudent')->name('student.add');
                 Route::get('/viewstudent/{id}','viewstudent');
                 Route::get('/showstudent/{id}','showstudent');
-                Route::get('/deletestudent/{id}', 'deletestudent')->name('admin.deletestudent');
+                // Route::get('/deletestudent/{id}', 'deletestudent')->name('admin.deletestudent');
                 Route::get('/dropstudent/{id}', 'dropstudent')->name('admin.dropstudent');
 
                 Route::get('/studentaddsubject/{id}', 'addstudentsubject');
@@ -538,26 +541,26 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 Route::get('/subjectadd', 'addsubject')->name('subject.add');
                 Route::get('/viewsubject/{id}','viewsubject');
                 Route::get('/showsubject/{id}','showsubject');
-                Route::get('/deletesubject/{id}', 'deletesubject')->name('admin.deletesubject');
+                // Route::get('/deletesubject/{id}', 'deletesubject')->name('admin.deletesubject');
 
                 Route::get('/schoolyearadd', 'addschoolyear')->name('schoolyear.add');
                 Route::get('/viewschoolyear/{id}','viewschoolyear');
                 Route::get('/showschoolyear/{id}','showschoolyear');
-                Route::get('/deleteschoolyear/{id}', 'deleteschoolyear')->name('admin.deleteschoolyear');
+                // Route::get('/deleteschoolyear/{id}', 'deleteschoolyear')->name('admin.deleteschoolyear');
 
                 Route::get('/subjectteacheradd', 'subjectteacheradd')->name('subjectteacher.add');
                 Route::get('/viewsubjectteacher/{id}','viewsubjectteacher');
                 Route::get('/showsubjectteacher/{id}','showsubjectteacher');
-                Route::get('/deletesubjectteacher/{id}', 'deletesubjectteacher')->name('admin.deletesubjectteacher');
+                // Route::get('/deletesubjectteacher/{id}', 'deletesubjectteacher')->name('admin.deletesubjectteacher');
 
                 Route::get('/gradeleveladd', 'addgradelevel')->name('gradelevel.add');
                 Route::get('/showgradelevel/{id}','showgradelevel');
-                Route::get('/deletegradelevel/{id}', 'deletegradelevel')->name('admin.deletegradelevel');
+                // Route::get('/deletegradelevel/{id}', 'deletegradelevel')->name('admin.deletegradelevel');
 
                 Route::get('/advisoryadd', 'advisoryadd')->name('advisory.add');
                 Route::get('/viewadvisory/{id}','viewadvisory');
                 Route::get('/showadvisory/{id}','showadvisory');
-                Route::get('/deleteadvisory/{id}', 'deleteadvisory')->name('admin.deleteadvisory');
+                // Route::get('/deleteadvisory/{id}', 'deleteadvisory')->name('admin.deleteadvisory');
 
             /*
             |-----------------------------------------------------------------------------------
@@ -605,24 +608,41 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 |
                 */
                 Route::put('/updatecourse/{course}', 'updatecourse');
-                Route::put('/deletecourse/{course}', 'deletegradecourse');
+                // Route::put('/deletecourse/{course}', 'deletegradecourse');
+                Route::put('/course/delete/{id}', 'deletegradecourse');
+
                 Route::put('/updatesection/{section}', 'updatesection');
-                Route::put('/deletesection/{section}', 'deletegradesection');
+                // Route::put('/deletesection/{section}', 'deletegradesection');
+                Route::put('/section/delete/{id}', 'deletegradesection');
+
                 Route::put('/updatefaculty/{faculty}', 'updatefaculty');
-                Route::put('/deletefaculty/{faculty}', 'deletegradefaculty');
+                // Route::put('/deletefaculty/{faculty}', 'deletegradefaculty');
+                Route::put('/faculty/delete/{id}', 'deletegradefaculty');
+
                 Route::put('/updatestudent/{student}', 'updatestudent');
-                Route::put('/deletestudent/{student}', 'deletegradestudent');
+                // Route::put('/deletestudent/{student}', 'deletegradestudent');
+                Route::put('/student/delete/{id}', 'deletegradestudent');
+
                 Route::put('/dropstudent/{student}', 'dropgradestudent');
                 Route::put('/updatesubject/{subject}', 'updatesubject');
-                Route::put('/deletesubject/{subject}', 'deletegradesubject');
+                // Route::put('/deletesubject/{subject}', 'deletegradesubject');
+                Route::put('/subject/delete/{id}', 'deletegradesubject');
+
                 Route::put('/updateschoolyear/{schoolyear}', 'updateschoolyear');
-                Route::put('/deleteschoolyear/{schoolyear}', 'deletegradeschoolyear');
+                // Route::put('/deleteschoolyear/{schoolyear}', 'deletegradeschoolyear');
+                Route::put('/schoolyear/delete/{id}', 'deletegradeschoolyear');
+
                 Route::put('/updatesubjectteacher/{subjectteacher}', 'updatesubjectteacher');
-                Route::put('/deletesubjectteacher/{subjectteacher}', 'deletegradesubjectteacher');
+                // Route::put('/deletesubjectteacher/{subjectteacher}', 'deletegradesubjectteacher');
+                Route::put('/subjectteacher/delete/{id}', 'deletegradesubjectteacher');
+
                 Route::put('/updategradelevel/{gradelevel}', 'updategradelevel');
-                Route::put('/deletegradelevel/{gradelevel}', 'deletegradegradelevel');
+                // Route::put('/deletegradelevel/{gradelevel}', 'deletegradegradelevel');
+                Route::put('/gradelevel/delete/{id}', 'deletegradegradelevel');
+
                 Route::put('/updateadvisory/{advisory}', 'updateadvisory');
-                Route::put('/deleteadvisory/{advisory}', 'deletegradeadvisory');
+                // Route::put('/deleteadvisory/{advisory}', 'deletegradeadvisory');
+
 
         
         /*
@@ -646,7 +666,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
             Route::get('/showdocument/{id}', 'showdocument');
             Route::get('/viewrequestadmin/{id}', 'viewrequest');
             Route::get('/showrequestadmin/{id}', 'showrequest');
-            Route::get('/deletedocument/{id}',  'deletedocument')->name('admin.deletedocument');
+            // Route::get('/deletedocument/{id}',  'deletedocument')->name('admin.deletedocument');
 
             Route::get('/tableofcompleted11', 'tableofCompleted11');
             Route::get('/tableofrejected11', 'tableofRejected11');
@@ -659,7 +679,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
 
             Route::get('/viewpurpose/{id}', 'viewpurpose');
             Route::get('/showpurpose/{id}', 'showpurpose');
-            Route::get('/deletepurpose/{id}',  'deletepurpose')->name('admin.deletepurpose');
+            // Route::get('/deletepurpose/{id}',  'deletepurpose')->name('admin.deletepurpose');
 
             /*
             |-----------------------------------------------------------------------------------
@@ -683,11 +703,13 @@ Route::group(['middleware' => 'auth:admins'], function () {
             |
             */
             Route::put('/updatedocument/{document}', 'updatedocument');
-            Route::put('/deletedocument/{document}', 'deletegradedocument');
+            // Route::put('/deletedocument/{document}', 'deletegradedocument');
+            Route::put('/document/delete/{id}', 'deletegradedocument');
             Route::put('/updaterequestdocadmin/{docreq}', 'updatedocreq');
 
             Route::put('/updatepurpose/{purpose}', 'updatepurpose');
-            Route::put('/deletepurpose/{purpose}', 'deletegradepurpose');
+            // Route::put('/deletepurpose/{purpose}', 'deletegradepurpose');
+            Route::put('/purpose/delete/{id}', 'deletegradepurpose');
     });
 });
 
@@ -818,7 +840,7 @@ Route::group(['middleware' => 'auth:faculties'], function () {
             Route::get('/createannouncement', 'createannouncement');
             Route::get('/viewfacultyannouncement/{id}', 'viewannouncement');
             Route::get('/showfacultyannouncement/{id}', 'showannouncement');
-            Route::get('/deleteannouncement/{id}',  'deleteannouncement')->name('faculty.deleteannouncement');
+            // Route::get('/deleteannouncement/{id}',  'deleteannouncement')->name('faculty.deleteannouncement');
 
             /*
             |-----------------------------------------------------------------------------------
@@ -839,7 +861,8 @@ Route::group(['middleware' => 'auth:faculties'], function () {
             |
             */
             Route::put('/updatefacultyannouncement/{announcement}', 'updateannouncement');
-            Route::put('/deleteactivitystream/{activitystream}', 'deleteactivitystream');
+            // Route::put('/deleteactivitystream/{activitystream}', 'deleteactivitystream');
+            Route::put('/activitystream/delete/{id}', 'deleteactivitystream');
     });
 
 });

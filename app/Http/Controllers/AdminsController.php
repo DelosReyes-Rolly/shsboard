@@ -185,19 +185,33 @@ class AdminsController extends Controller
        return redirect('/homepage')->with('success', 'Landing content has been updated.');
    }
 
-     public function deletelanding(Request $request, Landings $landing){
-        $validated = $request->validate([
-            'deleted' => ['required'],
-            'deleted_at' => ['required'],
-        ]);
-        $landing->update($validated);
-        return redirect('/homepage')->with('success', 'Landing content has been deleted.');
-     }
+     public function deletelanding(Landings $landing, Request $request, $id){
+        // $validated = $request->validate([
+        //     'deleted' => ['required'],
+        //     'deleted_at' => ['required'],
+        // ]);
+        // $landing->update($validated);
+        // return redirect('/homepage')->with('success', 'Landing content has been deleted.');
+        if ($request->ajax()){
 
-     public function delete($id){
-        $data = Landings::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.landing.deletelanding', ['landing' => $data]);
-     }
+            $landing = Landings::findOrFail($id);
+            if ($landing){
+    
+                $landing->deleted = 1;
+                $landing->deleted_at = now();
+                $landing->save();
+    
+                return response()->json(array('success' => true));
+            }
+        }
+        
+    }
+
+
+    //  public function deletelanding($id){
+    //     $data = Landings::where('deleted', '=', null)->findOrFail($id);
+    //     return view('admins.landing.deletelanding', ['landing' => $data]);
+    //  }
 
     // ================================================================= ANNOUNCEMENT ===================================================
 
@@ -333,19 +347,32 @@ class AdminsController extends Controller
        return redirect('/createAnnoucement')->with('success', 'Announcement has been updated.');;
    }
 
-     public function deleteannouncement(Request $request, Announcements $announcement){
-        $validated = $request->validate([
-            'deleted' => ['required'],
-            'deleted_at' => ['required'],
-        ]);
-        $announcement->update($validated);
-        return redirect('/homepage')->with('success', 'Content has been deleted.');
-     }
+     public function deleteannouncement(Announcements $announcement, Request $request, $id){
+        // $validated = $request->validate([
+        //     'deleted' => ['required'],
+        //     'deleted_at' => ['required'],
+        // ]);
+        // $announcement->update($validated);
+        // return redirect('/homepage')->with('success', 'Content has been deleted.');
+        if ($request->ajax()){
 
-     public function deleteadminannouncement($id){
-        $data = Announcements::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.landing.delete', ['announcement' => $data]);
-     }
+            $announcement = Announcements::findOrFail($id);
+            if ($announcement){
+    
+                $announcement->deleted = 1;
+                $announcement->deleted_at = now();
+                $announcement->save();
+    
+                return response()->json(array('success' => true));
+            }
+        }
+        
+    }
+
+    //  public function deleteadminannouncement($id){
+    //     $data = Announcements::where('deleted', '=', null)->findOrFail($id);
+    //     return view('admins.landing.delete', ['announcement' => $data]);
+    //  }
 
      public function downloadpdf(Request $request) {
             $request->validate([
@@ -595,20 +622,32 @@ class AdminsController extends Controller
        return redirect('/documentrequest')->with('success', 'Document has been updated.');
    }
 
+     public function deletegradedocument(Documents $document, Request $request, $id){
+        // $validated = $request->validate([
+        //     'deleted' => ['required'],
+        //     'deleted_at' => ['required'],
+        // ]);
+        // $document->update($validated);
+        // return redirect('/documentrequest')->with('success', 'Document has been deleted successfully!');
+        if ($request->ajax()){
 
-     public function deletegradedocument(Request $request, Documents $document){
-        $validated = $request->validate([
-            'deleted' => ['required'],
-            'deleted_at' => ['required'],
-        ]);
-        $document->update($validated);
-        return redirect('/documentrequest')->with('success', 'Document has been deleted successfully!');
-     }
+            $document = Documents::findOrFail($id);
+            if ($document){
+    
+                $document->deleted = 1;
+                $document->deleted_at = now();
+                $document->save();
+    
+                return response()->json(array('success' => true));
+            }
+        }
+        
+    }
 
-     public function deletedocument($id){
-        $data = Documents::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.documentrequests.documentdelete', ['document' => $data]);
-     }
+    //  public function deletedocument($id){
+    //     $data = Documents::where('deleted', '=', null)->findOrFail($id);
+    //     return view('admins.documentrequests.documentdelete', ['document' => $data]);
+    //  }
 
      public function viewrequest($id){
         $data = DocumentRequests::where('deleted', '=', null)->findOrFail($id);
@@ -677,19 +716,32 @@ class AdminsController extends Controller
    }
 
 
-     public function deletegradepurpose(Request $request, DocumentPurposes $purpose){
-        $validated = $request->validate([
-            'deleted' => ['required'],
-            'deleted_at' => ['required'],
-        ]);
-        $purpose->update($validated);
-        return redirect('/documentrequest')->with('success', 'Purpose has been deleted successfully!');
-     }
+     public function deletegradepurpose(DocumentPurposes $purpose, Request $request, $id){
+        // $validated = $request->validate([
+        //     'deleted' => ['required'],
+        //     'deleted_at' => ['required'],
+        // ]);
+        // $purpose->update($validated);
+        // return redirect('/documentrequest')->with('success', 'Purpose has been deleted successfully!');
+        if ($request->ajax()){
 
-     public function deletepurpose($id){
-        $data = DocumentPurposes::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.documentrequests.purposedelete', ['purpose' => $data]);
-     }
+            $purpose = DocumentPurposes::findOrFail($id);
+            if ($purpose){
+    
+                $purpose->deleted = 1;
+                $purpose->deleted_at = now();
+                $purpose->save();
+    
+                return response()->json(array('success' => true));
+            }
+        }
+        
+    }
+
+    //  public function deletepurpose($id){
+    //     $data = DocumentPurposes::where('deleted', '=', null)->findOrFail($id);
+    //     return view('admins.documentrequests.purposedelete', ['purpose' => $data]);
+    //  }
 
      
 
@@ -770,19 +822,32 @@ class AdminsController extends Controller
        return redirect('/gradingcourses')->with('success', 'Strand has been updated successfully!');
    }
 
-     public function deletegradecourse(Request $request, Courses $course){
-        $validated = $request->validate([
-            'deleted' => ['required'],
-            'deleted_at' => ['required'],
-        ]);
-        $course->update($validated);
-        return redirect('/gradingcourses')->with('success', 'Strand has been deleted successfully!');
-     }
+     public function deletegradecourse(Courses $course, Request $request, $id){
+        // $validated = $request->validate([
+        //     'deleted' => ['required'],
+        //     'deleted_at' => ['required'],
+        // ]);
+        // $course->update($validated);
+        // return redirect('/gradingcourses')->with('success', 'Strand has been deleted successfully!');
+        if ($request->ajax()){
 
-     public function deletecourse($id){
-        $data = Courses::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.coursedelete', ['course' => $data]);
-     }
+            $course = Courses::findOrFail($id);
+            if ($course){
+    
+                $course->deleted = 1;
+                $course->deleted_at = now();
+                $course->save();
+    
+                return response()->json(array('success' => true));
+            }
+        }
+        
+    }
+
+    //  public function deletecourse($id){
+    //     $data = Courses::where('deleted', '=', null)->findOrFail($id);
+    //     return view('admins.grading.functions.coursedelete', ['course' => $data]);
+    //  }
 
      // ============================================================ SECTION ===================================================
 
@@ -825,19 +890,33 @@ class AdminsController extends Controller
        return redirect('/gradingsections')->with('success', 'Section has been updated successfully!');
    }
 
-   public function deletegradesection(Request $request, Sections $section){
-        $validated = $request->validate([
-            'deleted' => ['required'],
-            'deleted_at' => ['required'],
-        ]);
-        $section->update($validated);
-        return redirect('/gradingsections')->with('success', 'Section has been deleted successfully!');
+   public function deletegradesection(Sections $section, Request $request, $id){
+        // $validated = $request->validate([
+        //     'deleted' => ['required'],
+        //     'deleted_at' => ['required'],
+        // ]);
+        // $section->update($validated);
+        // return redirect('/gradingsections')->with('success', 'Section has been deleted successfully!');
+
+        if ($request->ajax()){
+
+            $section = Sections::findOrFail($id);
+            if ($section){
+
+                $section->deleted = 1;
+                $section->deleted_at = now();
+                $section->save();
+
+                return response()->json(array('success' => true));
+            }
+
+        }
     }
 
-    public function deletesection($id){
-        $data = sections::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.sectiondelete', ['section' => $data]);
-    }
+    // public function deletesection($id){
+    //     $data = sections::where('deleted', '=', null)->findOrFail($id);
+    //     return view('admins.grading.functions.sectiondelete', ['section' => $data]);
+    // }
 
    // ============================================================ FACULTY ===================================================
 
@@ -916,21 +995,37 @@ class AdminsController extends Controller
         return redirect('/gradingfaculty')->with('success', 'Information of teacher has been updated successfully!');
     }
 
-     public function deletegradefaculty(Request $request, Faculties $faculty){
-        $validated = $request->validate([
-            'deleted' => ['required'],
-            'deleted_at' => ['required'],
-        ]);
-        $validated['email']="";
-        $validated['password']="";
-        $faculty->update($validated);
-        return redirect('/gradingfaculty')->with('success', 'Record of teacher has been deleted successfully!');
+    public function deletegradefaculty(Faculties $faculty, Request $request, $id){
+        // $validated = $request->validate([
+        //     'deleted' => ['required'],
+        //     'deleted_at' => ['required'],
+        // ]);
+        // $validated['email']="";
+        // $validated['password']="";
+        // $faculty->update($validated);
+        // return redirect('/gradingfaculty')->with('success', 'Record of teacher has been deleted successfully!');
+        if ($request->ajax()){
+
+            $faculty = Faculties::findOrFail($id);
+            if ($faculty){
+    
+                $faculty->deleted = 1;
+                $faculty->deleted_at = now();
+                $faculty->email = "";
+                $faculty->password = "";
+                $faculty->save();
+    
+                return response()->json(array('success' => true));
+            }
+        }
+        
     }
 
-    public function deletefaculty($id){
-        $data = Faculties::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.facultydelete', ['faculty' => $data]);
-    }
+
+    // public function deletefaculty($id){
+    //     $data = Faculties::where('deleted', '=', null)->findOrFail($id);
+    //     return view('admins.grading.functions.facultydelete', ['faculty' => $data]);
+    // }
 
      // ============================================================ STUDENT ===================================================
 
@@ -1054,21 +1149,37 @@ class AdminsController extends Controller
         return redirect('/gradingstudents')->with('success', 'Student has been updated successfully!');
     }
 
-     public function deletegradestudent(Request $request, Students $student){
-        $validated = $request->validate([
-            'deleted' => ['required'],
-            'deleted_at' => ['required'],
-        ]);
-        $validated['email']="";
-        $validated['password']="";
-        $student->update($validated);
-        return redirect('/gradingstudents')->with('success', 'Record of student has been deleted successfully!');
-    }
 
-    public function deletestudent($id){
-        $data = Students::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.studentdelete', ['student' => $data]);
+    public function deletegradestudent(Students $student, Request $request, $id){
+        // $validated = $request->validate([
+        //     'deleted' => ['required'],
+        //     'deleted_at' => ['required'],
+        // ]);
+        // $validated['email']="";
+        // $validated['password']="";
+        // $student->update($validated);
+        // return redirect('/gradingstudents')->with('success', 'Record of student has been deleted successfully!');
+        if ($request->ajax()){
+
+            $student = Students::findOrFail($id);
+            if ($student){
+    
+                $student->deleted = 1;
+                $student->deleted_at = now();
+                $student->email = "";
+                $student->password = "";
+                $student->save();
+    
+                return response()->json(array('success' => true));
+            }
+        }
     }
+        
+
+    // public function deletestudent($id){
+    //     $data = Students::where('deleted', '=', null)->findOrFail($id);
+    //     return view('admins.grading.functions.studentdelete', ['student' => $data]);
+    // }
 
     public function dropgradestudent(Request $request, Students $student){
         $validated = $request->validate([
@@ -1191,19 +1302,33 @@ class AdminsController extends Controller
     }
 
 
-     public function deletegradesubject(Request $request, Subjects $subject){
-        $validated = $request->validate([
-            'deleted' => ['required'],
-            'deleted_at' => ['required'],
-        ]);
-        $subject->update($validated);
-        return redirect('/gradingsubjects')->with('success', 'Subject has been deleted successfully!');
+     public function deletegradesubject(Subjects $subject, Request $request, $id){
+        // $validated = $request->validate([
+        //     'deleted' => ['required'],
+        //     'deleted_at' => ['required'],
+        // ]);
+        // $subject->update($validated);
+        // return redirect('/gradingsubjects')->with('success', 'Subject has been deleted successfully!');
+
+        if ($request->ajax()){
+
+            $subject = Subjects::findOrFail($id);
+            if ($subject){
+
+                $subject->deleted = 1;
+                $subject->deleted_at = now();
+                $subject->save();
+
+                return response()->json(array('success' => true));
+            }
+
+        }
      }
 
-     public function deletesubject($id){
-        $data = Subjects::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.subjectdelete', ['subject' => $data]);
-     }
+    //  public function deletesubject($id){
+    //     $data = Subjects::where('deleted', '=', null)->findOrFail($id);
+    //     return view('admins.grading.functions.subjectdelete', ['subject' => $data]);
+    //  }
 
 
     // ============================================================ SCHOOL YEAR ===================================================
@@ -1263,26 +1388,44 @@ class AdminsController extends Controller
         return redirect('/gradingschoolyear')->with('success', 'Schoolyear has been updated successfully!');
     }
 
-
-     public function deletegradeschoolyear(Request $request, SchoolYear $schoolyear){
-        $validated = $request->validate([
-            'deleted' => ['required'],
-            'deleted_at' => ['required'],
-        ]);
+     public function deletegradeschoolyear(SchoolYear $schoolyear, Request $request, $id){
+        // $validated = $request->validate([
+        //     'deleted' => ['required'],
+        //     'deleted_at' => ['required'],
+        // ]);
+        // $count = SchoolYear::all();
+        // if($count->count() == 1){
+        //     return redirect('/gradingschoolyear')->with('warning', 'You cannot delete the only schoolyear.');
+        // }
+        // else{
+        //     $schoolyear->update($validated);
+        //     return redirect('/gradingschoolyear')->with('success', 'Schoolyear has been deleted successfully!');
+        // }
         $count = SchoolYear::all();
         if($count->count() == 1){
             return redirect('/gradingschoolyear')->with('warning', 'You cannot delete the only schoolyear.');
         }
         else{
-            $schoolyear->update($validated);
-            return redirect('/gradingschoolyear')->with('success', 'Schoolyear has been deleted successfully!');
-        }
-     }
+            if ($request->ajax()){
 
-     public function deleteschoolyear($id){
-        $data = SchoolYear::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.schoolyeardelete', ['schoolyear' => $data]);
-     }
+                $schoolyear = SchoolYear::findOrFail($id);
+                if ($schoolyear){
+    
+                    $schoolyear->deleted = 1;
+                    $schoolyear->deleted_at = now();
+                    $schoolyear->save();
+    
+                    return response()->json(array('success' => true));
+                }
+            }
+        }
+        
+    }
+
+    //  public function deleteschoolyear($id){
+    //     $data = SchoolYear::where('deleted', '=', null)->findOrFail($id);
+    //     return view('admins.grading.functions.schoolyeardelete', ['schoolyear' => $data]);
+    //  }
 
 
     // ============================================================ SUBJECT TEACHER ===================================================
@@ -1436,27 +1579,46 @@ class AdminsController extends Controller
         return redirect('/gradingfacultysubjects')->with('success', 'Subject of teacher has been updated successfully!');
     }
 
-     public function deletegradesubjectteacher(Request $request, SubjectTeachers $subjectteacher){
-        $validated = $request->validate([
-            'deleted' => ['required'],
-            'deleted_at' => ['required'],
-        ]);
-        $subjectteacher->update($validated);
+     public function deletegradesubjectteacher(SubjectTeachers $subjectteacher, Request $request, $id){
+        // $validated = $request->validate([
+        //     'deleted' => ['required'],
+        //     'deleted_at' => ['required'],
+        // ]);
+        // $subjectteacher->update($validated);
 
-        $studentgrades = StudentGrade::where('subjectteacher_id', '=', $subjectteacher->id)->get();
-        foreach($studentgrades as $studentgrade){
-            $studentgrade->deleted = 1;
-            $studentgrade->deleted_at = now();
-            $studentgrade->save();
-        }
+        // $studentgrades = StudentGrade::where('subjectteacher_id', '=', $subjectteacher->id)->get();
+        // foreach($studentgrades as $studentgrade){
+        //     $studentgrade->deleted = 1;
+        //     $studentgrade->deleted_at = now();
+        //     $studentgrade->save();
+        // }
 
-        return redirect('/gradingfacultysubjects')->with('success', 'Subject of teacher has been deleted successfully!');
-     }
+        // return redirect('/gradingfacultysubjects')->with('success', 'Subject of teacher has been deleted successfully!');
+            if ($request->ajax()){
 
-     public function deletesubjectteacher($id){
-        $data = SubjectTeachers::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.subjectteacherdelete', ['subjectteacher' => $data]);
-     }
+                $subjectteacher = SubjectTeachers::findOrFail($id);
+                if ($subjectteacher){
+    
+                    $subjectteacher->deleted = 1;
+                    $subjectteacher->deleted_at = now();
+                    $subjectteacher->save();
+
+                    $studentgrades = StudentGrade::where('subjectteacher_id', '=', $subjectteacher->id)->get();
+                    foreach($studentgrades as $studentgrade){
+                        $studentgrade->deleted = 1;
+                        $studentgrade->deleted_at = now();
+                        $studentgrade->save();
+                    }
+    
+                    return response()->json(array('success' => true));
+                }
+            }
+    }
+
+    //  public function deletesubjectteacher($id){
+    //     $data = SubjectTeachers::where('deleted', '=', null)->findOrFail($id);
+    //     return view('admins.grading.functions.subjectteacherdelete', ['subjectteacher' => $data]);
+    //  }
 
     // ============================================================ GRADE LEVEL ===================================================
 
@@ -1494,19 +1656,33 @@ class AdminsController extends Controller
        return redirect('/gradinggradelevels')->with('success', 'Gradelevel has been updated successfully!');
    }
 
-   public function deletegradegradelevel(Request $request, GradeLevels $gradelevel){
-        $validated = $request->validate([
-            'deleted' => ['required'],
-            'deleted_at' => ['required'],
-        ]);
-        $gradelevel->update($validated);
-        return redirect('/gradinggradelevels')->with('success', 'Gradelevel has been deleted successfully!');
+    public function deletegradegradelevel(GradeLevels $gradelevel, Request $request, $id){
+        // $validated = $request->validate([
+        //     'deleted' => ['required'],
+        //     'deleted_at' => ['required'],
+        // ]);
+        // $gradelevel->update($validated);
+        // return redirect('/gradinggradelevels')->with('success', 'Gradelevel has been deleted successfully!');
+        if ($request->ajax()){
+
+            $gradelevel = GradeLevels::findOrFail($id);
+            if ($gradelevel){
+    
+                $gradelevel->deleted = 1;
+                $gradelevel->deleted_at = now();
+                $gradelevel->save();
+    
+                return response()->json(array('success' => true));
+            }
+        }
+        
     }
 
-    public function deletegradelevel($id){
-        $data = GradeLevels::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.gradeleveldelete', ['gradelevel' => $data]);
-    }
+
+    // public function deletegradelevel($id){
+    //     $data = GradeLevels::where('deleted', '=', null)->findOrFail($id);
+    //     return view('admins.grading.functions.gradeleveldelete', ['gradelevel' => $data]);
+    // }
 
     // ============================================================ ADVISORY ===================================================
 
@@ -1586,27 +1762,27 @@ class AdminsController extends Controller
         return redirect('/advisory')->with('success', 'Advisory class of teacher has been updated successfully!');
     }
 
-     public function deletegradeadvisory(Request $request, Advisories $advisory){
-        $validated = $request->validate([
-            'deleted' => ['required'],
-            'deleted_at' => ['required'],
-        ]);
-        $advisory->update($validated);
+    //  public function deletegradeadvisory(Request $request, Advisories $advisory){
+    //     $validated = $request->validate([
+    //         'deleted' => ['required'],
+    //         'deleted_at' => ['required'],
+    //     ]);
+    //     $advisory->update($validated);
 
-        // $studentgrades = StudentGrade::where('subjectteacher_id', '=', $subjectteacher->id)->get();
-        // foreach($studentgrades as $studentgrade){
-        //     $studentgrade->deleted = 1;
-        //     $studentgrade->deleted_at = now();
-        //     $studentgrade->save();
-        // }
+    //     // $studentgrades = StudentGrade::where('subjectteacher_id', '=', $subjectteacher->id)->get();
+    //     // foreach($studentgrades as $studentgrade){
+    //     //     $studentgrade->deleted = 1;
+    //     //     $studentgrade->deleted_at = now();
+    //     //     $studentgrade->save();
+    //     // }
 
-        return redirect('/advisory')->with('success', 'Advisory class of teacher has been deleted successfully!');
-     }
+    //     return redirect('/advisory')->with('success', 'Advisory class of teacher has been deleted successfully!');
+    //  }
 
-     public function deleteadvisory($id){
-        $data = Advisories::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.advisorydelete', ['advisory' => $data]);
-     }
+    //  public function deleteadvisory($id){
+    //     $data = Advisories::where('deleted', '=', null)->findOrFail($id);
+    //     return view('admins.grading.functions.advisorydelete', ['advisory' => $data]);
+    //  }
 
      public function firstquarter($schoolyear_id){
         $advisers = Advisories::where('deleted', '=', null)->where('active', '=', null)->where('schoolyear_id', '=', $schoolyear_id)->get();

@@ -20,25 +20,53 @@
     <script>
         $(document).ready(function() {
             var table = $('#sample1').DataTable( {
-                responsive: true
+                responsive: true,
+                "searching": false,
+                paging: false,
+                "bPaginate": false,
+                "bLengthChange": false,
+                "bFilter": true,
+                "bInfo": false,
+                "bAutoWidth": false,
             } );
          
             new $.fn.dataTable.FixedHeader( table );
 
             var table = $('#sample2').DataTable( {
-                responsive: true
+                responsive: true,
+                "searching": false,
+                paging: false,
+                "bPaginate": false,
+                "bLengthChange": false,
+                "bFilter": true,
+                "bInfo": false,
+                "bAutoWidth": false,
             } );
          
             new $.fn.dataTable.FixedHeader( table );
 
             var table = $('#sample3').DataTable( {
-                responsive: true
+                responsive: true,
+                "searching": false,
+                paging: false,
+                "bPaginate": false,
+                "bLengthChange": false,
+                "bFilter": true,
+                "bInfo": false,
+                "bAutoWidth": false,
             } );
          
             new $.fn.dataTable.FixedHeader( table );
 
             var table = $('#sample4').DataTable( {
-                responsive: true
+                responsive: true,
+                "searching": false,
+                paging: false,
+                "bPaginate": false,
+                "bLengthChange": false,
+                "bFilter": true,
+                "bInfo": false,
+                "bAutoWidth": false,
             } );
          
             new $.fn.dataTable.FixedHeader( table );

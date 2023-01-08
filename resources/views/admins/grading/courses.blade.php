@@ -1,5 +1,4 @@
 @include('partials.adminheader')
-@include('partials.adminThirdHeader')
 <main>
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/rowreorder/1.2.8/css/rowReorder.dataTables.min.css">
@@ -19,7 +18,7 @@
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable( {
-                responsive: true
+                responsive: true,
             } );
          
             new $.fn.dataTable.FixedHeader( table );
@@ -35,10 +34,8 @@
         <h3 style="font-size: 28px; font-weight: 800;">Table of Strands </h3>
         <hr class="mt-0 mb-4">
         <div class="card mb-4 left-to-right border-start-lg border-start-success" style="padding: 10px 40px 10px 40px;">
-            <div class="card-header">
-                <div class="pull-right">
-                    <a href="{{route('course.add')}}" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Record</a>
-                </div><br/><br/>
+            <div class="card-header" style="background-color: #ffffff;">
+                <a href="{{route('course.add')}}" class="btn btn-primary" style="float: right;"><i class="fas fa-user-plus"></i> Add Record</a>
             </div>
             <div class="card-body p-0" style="padding: 20px 20px 20px 20px;">
                 <!-- table-->
@@ -59,14 +56,14 @@
                             </thead>    
                             <tbody>
                                     @foreach ($courses as $course)
-                                        <tr>
+                                        <tr id="course{{$course->id}}">
                                             <td>{{$course -> courseName}}</td>
                                             <td>{{$course -> abbreviation}}</td>
                                             <td>{{$course -> code}}</td>
                                             <td>
                                                 <a class="btn btn-success btn-md" href="/viewcourse/{{$course->id}}"><i class="fas fa-eye"></i> View</a>
                                                 <a class="btn btn-warning btn-md" href="/showcourse/{{$course->id}}"><i class="fas fa-edit"></i> Update</a> 
-                                                <a class="btn btn-danger btn-md" href="{{route('admin.deletecourse', $course->id)}}"><i class="fas fa-trash-alt"></i> Delete</a>
+                                                <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $course->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                             </td> 
                                         </tr>
                                     @endforeach 
@@ -78,6 +75,74 @@
         </div>  
     </div>
 
-   
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $('.nav_btn').click(function(){
+        $('.mobile_nav_items').toggleClass('active');
+      });
+
+      deleteItem(e);
+    });
+
+    //delete
+    function deleteItem(e){
+
+        let id = e.getAttribute('data-id');
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: true
+        });
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                if (result.isConfirmed){
+
+                    $.ajax({
+                        type:'PUT',
+                        url:'{{url("/course/delete")}}/' +id,
+                        data:{
+                            "_token": "{{ csrf_token() }}",
+                        },
+                        success:function(data) {
+                            if (data.success){
+                                
+                                swalWithBootstrapButtons.fire(
+                                    'Deleted!',
+                                    'Courses is deleted successfully.',
+                                    "success"
+                                );
+                                $("#course"+id+"").remove();
+                            }
+
+                        }
+                    });
+
+                }
+
+            } else if (
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    '',
+                    'error'
+                );
+            }
+        });
+
+        }
+    </script>
 </main>
 <br><br><br><br>

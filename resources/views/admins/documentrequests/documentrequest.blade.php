@@ -16,6 +16,7 @@
 	<script src="{{ asset('assets/js/datatables-jquery-1.12.1.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-rowreorder-1.2.8.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-responsive-2.3.0.js') }}"></script>
+	<script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
     <script>
         $(document).ready(function() {
             var table = $('#example1').DataTable( {
@@ -184,15 +185,21 @@
                                                         <tbody>
                                                             @foreach ($documents as $document)
                                                                 <?php $i=1;?>
-                                                                    <tr>
+                                                                    <tr id="document{{$document -> id}}">
                                                                         <td class="text-center">{{$document -> id}}</td>
                                                                         <td>{{$document -> name}}</td>
                                                                         <td>
-																			<a class="btn btn-success btn-md" href="/viewdocument/{{$document->id}}"><i class="fas fa-eye"></i> View</a>
+																			<a class="btn btn-success btn-md" href="/viewdocument/{{$document->id}}" data-toggle="modal" data-target="#modal-view-{{$document->id}}"><i class="fas fa-eye"></i> View</a>
 																			<a class="btn btn-warning btn-md" href="/showdocument/{{$document->id}}"><i class="fas fa-edit"></i> Update</a>
-																			<a class="btn btn-danger btn-md" href="{{route('admin.deletedocument', $document->id)}}"><i class="fas fa-trash-alt"></i> Delete</a>
+																			<button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $document->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                                                         </td> 
                                                                     </tr>
+																	<div id="modal-view-{{ $document->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+																		<div class="modal-dialog modal-lg" role="document">
+																			<div class="modal-content border-start-lg border-start-yellow">
+																			</div>
+																		</div>
+																	</div>
                                                             @endforeach 
                                                         </tbody>
                                                     </table>
@@ -259,16 +266,22 @@
                                                         <tbody>
                                                             @foreach ($documentpurposes as $documentpurpose)
                                                                 <?php $i=1;?>
-                                                                    <tr>
+                                                                    <tr id="documentpurpose{{$documentpurpose -> id}}">
                                                                         <td class="text-center">{{$documentpurpose -> id}}</td>
                                                                         <td>{{$documentpurpose -> purpose}}</td>
 																		<td>{{$documentpurpose -> proof_needed}}</td>
                                                                         <td>
-																			<a class="btn btn-success btn-md" href="/viewpurpose/{{$documentpurpose->id}}"><i class="fas fa-eye"></i> View</a>
+																			<a class="btn btn-success btn-md" href="/viewpurpose/{{$documentpurpose->id}}" data-toggle="modal" data-target="#modal-view-{{$documentpurpose->id}}"><i class="fas fa-eye"></i> View</a>
 																			<a class="btn btn-warning btn-md" href="/showpurpose/{{$documentpurpose->id}}"><i class="fas fa-edit"></i> Update</a>
-																			<a class="btn btn-danger btn-md" href="{{route('admin.deletepurpose', $documentpurpose->id)}}"><i class="fas fa-trash-alt"></i> Delete</a>
+																			<button class="btn btn-danger btn-md" onclick="deleteItemPurpose(this)" data-id="{{ $documentpurpose->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                                                         </td> 
                                                                     </tr>
+																	<div id="modal-view-{{ $documentpurpose->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+																		<div class="modal-dialog modal-lg" role="document">
+																			<div class="modal-content border-start-lg border-start-yellow">
+																			</div>
+																		</div>
+																	</div>
                                                             @endforeach 
                                                         </tbody>
                                                     </table>
@@ -542,5 +555,138 @@
 		 	</div>
 
 	</section>
+
+	<script type="text/javascript">
+        $(document).ready(function(){
+          $('.nav_btn').click(function(){
+            $('.mobile_nav_items').toggleClass('active');
+          });
+
+          deleteItem(e);
+		  deleteItemPurpose(e);
+
+        });
+
+        //delete document
+        function deleteItem(e){
+
+            let id = e.getAttribute('data-id');
+
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: true
+            });
+
+            swalWithBootstrapButtons.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    if (result.isConfirmed){
+
+                        $.ajax({
+                            type:'PUT',
+                            url:'{{url("/document/delete")}}/' +id,
+                            data:{
+                                "_token": "{{ csrf_token() }}",
+                            },
+                            success:function(data) {
+                                if (data.success){
+                                    
+                                    swalWithBootstrapButtons.fire(
+                                        'Deleted!',
+                                        'A document has been deleted successfully.',
+                                        "success"
+                                    );
+                                    $("#document"+id+"").remove();
+                                }
+
+                            }
+                        });
+
+                    }
+
+                } else if (
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled',
+                        '',
+                        'error'
+                    );
+                }
+            });
+
+            }
+
+			//delete Purpose
+			function deleteItemPurpose(e){
+
+				let id = e.getAttribute('data-id');
+
+				const swalWithBootstrapButtons = Swal.mixin({
+					customClass: {
+						confirmButton: 'btn btn-success',
+						cancelButton: 'btn btn-danger'
+					},
+					buttonsStyling: true
+				});
+
+				swalWithBootstrapButtons.fire({
+					title: 'Are you sure?',
+					text: "You won't be able to revert this!",
+					icon: 'warning',
+					showCancelButton: true,
+					confirmButtonText: 'Yes, delete it!',
+					cancelButtonText: 'No, cancel!',
+					reverseButtons: true
+				}).then((result) => {
+					if (result.value) {
+						if (result.isConfirmed){
+
+							$.ajax({
+								type:'PUT',
+								url:'{{url("/purpose/delete")}}/' +id,
+								data:{
+									"_token": "{{ csrf_token() }}",
+								},
+								success:function(data) {
+									if (data.success){
+										
+										swalWithBootstrapButtons.fire(
+											'Deleted!',
+											'A purpose has been deleted successfully.',
+											"success"
+										);
+										$("#documentpurpose"+id+"").remove();
+									}
+
+								}
+							});
+
+						}
+
+					} else if (
+						result.dismiss === Swal.DismissReason.cancel
+					) {
+						swalWithBootstrapButtons.fire(
+							'Cancelled',
+							'',
+							'error'
+						);
+					}
+				});
+
+				}
+    </script>
+
 </main>
 <br><br><br><br>

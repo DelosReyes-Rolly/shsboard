@@ -1,6 +1,5 @@
 
 @include('partials.adminheader')
-@include('partials.adminThirdHeader')
 <main>
     <!-- new tables -->
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
@@ -18,6 +17,7 @@
 	<script src="{{ asset('assets/js/datatables-jquery-1.12.1.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-rowreorder-1.2.8.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-responsive-2.3.0.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable( {
@@ -37,10 +37,8 @@
         <h3 style="font-size: 28px; font-weight: 800;">Table of Teacher's Advisory Class </h3>
         <hr class="mt-0 mb-4">
         <div class="card mb-4 border-start-lg border-start-success" style="padding: 10px 40px 10px 40px;">
-            <div class="card-header">
-                <div class="pull-right">
-                    <a href="{{route('advisory.add')}}" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Record</a>
-                </div>
+            <div class="card-header" style="background-color: #ffffff;">
+                <a href="{{route('advisory.add')}}" class="btn btn-primary" style="float: right;"><i class="fas fa-user-plus"></i> Add Record</a>
             </div>
             <div class="card-body p-0" style="padding: 20px 20px 20px 20px;">
                 @if($advisories->count() == 0)
@@ -96,10 +94,16 @@
                                                                 <td>{{$adviser -> course -> courseName}}</td>
                                                                 <td>{{$adviser -> section -> section}}</td>
                                                                 <td>
-                                                                    <a class="btn btn-success btn-md" href="/viewadvisory/{{$adviser->id}}"><i class="fas fa-eye"></i> View</a>
+                                                                    <a class="btn btn-success btn-md" href="/viewadvisory/{{$adviser->id}}" data-toggle="modal" data-target="#modal-view-{{ $adviser->id }}"><i class="fas fa-eye"></i> View</a>
                                                                     <a class="btn btn-warning btn-md" href="/showadvisory/{{$adviser->id}}"><i class="fas fa-edit"></i> Update</a>
                                                                 </td> 
                                                             </tr>
+                                                            <div id="modal-view-{{ $adviser->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                                                <div class="modal-dialog modal-lg" role="document">
+                                                                    <div class="modal-content border-start-lg border-start-yellow">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                     @endif
                                                 @endforeach
                                                 </tbody>

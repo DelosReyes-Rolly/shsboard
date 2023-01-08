@@ -123,8 +123,9 @@
                                 </div>
                             
                         </div>
-                    </form>
-                    <hr style="border: 1px solid grey;">
+                    </div>
+                </form>
+                <hr style="border: 1px solid grey;">
                 <!-- tables -->
                 <h3 style="font-size: 28px; font-weight: 800;">Requested Documents</h3>
                 <hr class="mt-0 mb-4">
@@ -154,7 +155,7 @@
 												$i=1;
 											?>
                                             @foreach ($requests as $request)
-                                                <tr>
+                                                <tr id="request{{$request -> id}}">
                                                     <?php $requested_at = date('F d, Y', strtotime($request -> created_at)); ?>
                                                     <td class="text-center"><?php echo $i++; ?></td>
                                                     <td>{{$request -> document -> name}}</td>
@@ -190,7 +191,7 @@
                                                     </td>
                                                     <td>
                                                         <a class="btn btn-success btn-md" href="/viewfileDocuments/{{$request->id}}"><i class="fas fa-eye"></i> View</a>
-                                                        <a class="btn btn-danger btn-md" href="{{route('student.deleterequest', $request->id)}}"><i class="fas fa-trash-alt"></i> Delete</a>
+                                                        <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $request->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                                     </td>
                                                 </tr>
                                             @endforeach 
@@ -202,4 +203,74 @@
                 </div>  
             </div>
         </section>
+        <script type="text/javascript">
+        $(document).ready(function(){
+          $('.nav_btn').click(function(){
+            $('.mobile_nav_items').toggleClass('active');
+          });
+
+          deleteItem(e);
+
+        });
+
+        //delete
+        function deleteItem(e){
+
+            let id = e.getAttribute('data-id');
+
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: true
+            });
+
+            swalWithBootstrapButtons.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    if (result.isConfirmed){
+
+                        $.ajax({
+                            type:'PUT',
+                            url:'{{url("/request/delete")}}/' +id,
+                            data:{
+                                "_token": "{{ csrf_token() }}",
+                            },
+                            success:function(data) {
+                                if (data.success){
+                                    
+                                    swalWithBootstrapButtons.fire(
+                                        'Deleted!',
+                                        'A request has been deleted successfully.',
+                                        "success"
+                                    );
+                                    $("#request"+id+"").remove();
+                                }
+
+                            }
+                        });
+
+                    }
+
+                } else if (
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled',
+                        '',
+                        'error'
+                    );
+                }
+            });
+
+            }
+    </script>
 </main>

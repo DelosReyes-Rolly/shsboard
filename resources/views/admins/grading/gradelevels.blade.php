@@ -1,5 +1,4 @@
 @include('partials.adminheader')
-@include('partials.adminThirdHeader')
 <main>
     <!-- new tables -->
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
@@ -26,14 +25,18 @@
             new $.fn.dataTable.FixedHeader( table );
         } );
     </script>
-    <div class="left-to-right" style="padding: 10px 40px 10px 40px;">
+    <div class="left-to-right">
     <h3 style="font-size: 28px; font-weight: 800;">Table of Grade Level </h3>
       <hr class="mt-0 mb-4">
         <div class="card mb-4 border-start-lg border-start-success">
-            <div class="card-header" style="font-size: 20px; font-weight:bold;">
-                Example: 12
-                <div class="pull-right">
-                    <a href="{{route('gradelevel.add')}}" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Record</a>
+            <div class="card-header" style="font-size: 20px; font-weight:bold; background-color: #ffffff;">
+                <div class="row">
+                    <div class="col-lg-9 col-md-6 col-md-8" style="border-radius: 10px;">
+                        <div class="alert alert-primary"><i class="fas fa-info"> </i> | Example: 12 </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-4">
+                        <a href="{{route('gradelevel.add')}}" class="btn btn-primary" style="float: right;"><i class="fas fa-user-plus"></i> Add Record</a>
+                    </div>
                 </div>
             </div>
             <div class="card-body p-0" style="padding: 20px 20px 20px 20px;">
@@ -56,12 +59,12 @@
                                     $i=1;
                                 ?>
                                     @foreach ($gradelevels as $gradelevel)
-                                        <tr>
+                                        <tr id="gradelevel{{$gradelevel->id}}">
                                             <td><?php echo $i++; ?></td>
                                             <td>{{$gradelevel -> gradelevel}}</td>
                                             <td>
                                                 <a class="btn btn-warning btn-md" href="/showgradelevel/{{$gradelevel->id}}"><i class="fas fa-edit"></i> Update</a>
-                                                <a class="btn btn-danger btn-md" href="{{route('admin.deletegradelevel', $gradelevel->id)}}"><i class="fas fa-trash-alt"></i> Delete</a>
+                                                <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $gradelevel->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                             </td> 
                                         </tr>
                                     @endforeach 
@@ -78,7 +81,69 @@
       $('.nav_btn').click(function(){
         $('.mobile_nav_items').toggleClass('active');
       });
+
+      deleteItem(e);
     });
+
+    //delete
+    function deleteItem(e){
+
+        let id = e.getAttribute('data-id');
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: true
+        });
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                if (result.isConfirmed){
+
+                    $.ajax({
+                        type:'PUT',
+                        url:'{{url("/gradelevel/delete")}}/' +id,
+                        data:{
+                            "_token": "{{ csrf_token() }}",
+                        },
+                        success:function(data) {
+                            if (data.success){
+                                
+                                swalWithBootstrapButtons.fire(
+                                    'Deleted!',
+                                    'Gradelevel is deleted successfully.',
+                                    "success"
+                                );
+                                $("#gradelevel"+id+"").remove();
+                            }
+
+                        }
+                    });
+
+                }
+
+            } else if (
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    '',
+                    'error'
+                );
+            }
+        });
+
+        }
     </script>
 </main>
 <br><br><br><br>

@@ -1,5 +1,4 @@
 @include('partials.adminheader')
-@include('partials.adminThirdHeader')
 <main>
     <!-- new tables -->
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
@@ -36,10 +35,8 @@
         <h3 style="font-size: 28px; font-weight: 800;">Table of Teachers </h3>
         <hr class="mt-0 mb-4">
         <div class="card mb-4 left-to-right border-start-lg border-start-success" style="padding: 10px 40px 10px 40px;">
-            <div class="card-header">
-                <div class="pull-right">
-                    <a href="{{route('faculty.add')}}" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Record</a>
-                </div>
+            <div class="card-header" style="background-color: #ffffff;">
+                <a href="{{route('faculty.add')}}" class="btn btn-primary" style="float: right;"><i class="fas fa-user-plus"></i> Add Record</a>
             </div>
             <div class="card-body p-0" style="padding: 20px 20px 20px 20px;">
                 @if($faculties->count() == 0)
@@ -65,17 +62,17 @@
                                     $i=1;
                                 ?>
                                     @foreach ($faculties as $faculty)
-                                        <tr>
+                                        <tr id="faculty{{$faculty->id}}">
                                             <td class="text-center"><?php echo $i++; ?></td>
                                             <td>{{$faculty -> last_name}} , {{$faculty -> first_name}} {{$faculty -> middle_name}} {{$faculty -> suffix}}</td>
                                             <td>{{$faculty -> gender}}</td>
                                             <td>{{$faculty -> username}}</td>
                                             <td>{{$faculty -> phone_number}}</td>
                                             <td>{{$faculty -> email}}</td>
-                                            <td>
+                                            <td width=24%>
                                                 <a class="btn btn-success btn-md" href="/viewfaculty/{{$faculty->id}}"><i class="fas fa-eye"></i> View</a>
                                                 <a class="btn btn-warning btn-md" href="/showfaculty/{{$faculty->id}}"><i class="fas fa-edit"></i> Update</a>
-                                                <a class="btn btn-danger btn-md" href="{{route('admin.deletefaculty', $faculty->id)}}"><i class="fas fa-trash-alt"></i> Delete</a>
+                                                <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $faculty->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                             </td> 
                                         </tr>
                                     @endforeach 
@@ -92,7 +89,69 @@
       $('.nav_btn').click(function(){
         $('.mobile_nav_items').toggleClass('active');
       });
+
+      deleteItem(e);
     });
+
+    //delete
+    function deleteItem(e){
+
+        let id = e.getAttribute('data-id');
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: true
+        });
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                if (result.isConfirmed){
+
+                    $.ajax({
+                        type:'PUT',
+                        url:'{{url("/faculty/delete")}}/' +id,
+                        data:{
+                            "_token": "{{ csrf_token() }}",
+                        },
+                        success:function(data) {
+                            if (data.success){
+                                
+                                swalWithBootstrapButtons.fire(
+                                    'Deleted!',
+                                    'Faculty is deleted successfully.',
+                                    "success"
+                                );
+                                $("#faculty"+id+"").remove();
+                            }
+
+                        }
+                    });
+
+                }
+
+            } else if (
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    '',
+                    'error'
+                );
+            }
+        });
+
+        }
     </script>
 </main>
 <br><br><br><br>

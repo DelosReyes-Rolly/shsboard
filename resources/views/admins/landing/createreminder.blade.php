@@ -1,5 +1,4 @@
 @include('partials.adminheader')
-@include('partials.adminSecondHeader')
 <main>
     <!-- new tables -->
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
@@ -17,6 +16,7 @@
 	<script src="{{ asset('assets/js/datatables-jquery-1.12.1.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-rowreorder-1.2.8.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-responsive-2.3.0.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable( {
@@ -145,7 +145,7 @@
                                         $i=1;
                                     ?>
                                         @foreach ($reminders as $reminder)
-                                            <tr>
+                                            <tr id="reminder{{$reminder -> id}}">
                                                 <td class="text-center"><?php echo $i++; ?></td>
                                                 <td>{!!$reminder -> content!!}</td>
                                                 <td>{{$requested_at  =   date('F d, Y', strtotime($reminder->created_at))}}</td>
@@ -166,11 +166,17 @@
                                                     ?>
                                                 </td>
                                                 <td>
-                                                    <a class="btn btn-success btn-md" href="/viewreminder/{{$reminder->id}}"><i class="fas fa-eye"></i> View</a>
+                                                    <a class="btn btn-success btn-md" href="/viewreminder/{{$reminder->id}}" data-toggle="modal" data-target="#modal-view-{{ $reminder->id }}"><i class="fas fa-eye"></i> View</a>
                                                     <a class="btn btn-warning btn-md" href="/showreminder/{{$reminder->id}}"><i class="fas fa-edit"></i> Update</a>
-                                                    <a class="btn btn-danger btn-md" href="/deleteadminannouncement/{{$reminder->id}}"><i class="fas fa-trash-alt"></i> Delete</a>  
+                                                    <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $reminder->id }}"><i class="fas fa-trash-alt"></i> Delete</button>  
                                                 </td> 
                                             </tr>
+                                            <div id="modal-view-{{ $reminder->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg" role="document">
+                                                    <div class="modal-content border-start-lg border-start-yellow">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endforeach 
                                 </tbody>
                             </table>   
@@ -192,7 +198,70 @@
       $('.nav_btn').click(function(){
         $('.mobile_nav_items').toggleClass('active');
       });
+
+      deleteItem(e);
+
     });
+
+    //delete
+    function deleteItem(e){
+
+        let id = e.getAttribute('data-id');
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: true
+        });
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                if (result.isConfirmed){
+
+                    $.ajax({
+                        type:'PUT',
+                        url:'{{url("/announcement/delete")}}/' +id,
+                        data:{
+                            "_token": "{{ csrf_token() }}",
+                        },
+                        success:function(data) {
+                            if (data.success){
+                                
+                                swalWithBootstrapButtons.fire(
+                                    'Deleted!',
+                                    'A reminder has been deleted successfully.',
+                                    "success"
+                                );
+                                $("#reminder"+id+"").remove();
+                            }
+
+                        }
+                    });
+
+                }
+
+            } else if (
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    '',
+                    'error'
+                );
+            }
+        });
+
+        }
     </script>
 
 </main>

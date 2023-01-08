@@ -1,5 +1,4 @@
 @include('partials.adminheader')
-@include('partials.adminSecondHeader')
 <main>
 <!-- new tables -->
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
@@ -193,7 +192,7 @@
                                         $i=1;
                                     ?>
                                         @foreach ($events as $event)
-                                            <tr>
+                                            <tr id="event{{$event -> id}}">
                                                 <td class="text-center"><?php echo $i++; ?></td>
                                                 <td>{{$event -> what}}</td>
                                                 <td>{{$event -> who}}</td>
@@ -219,7 +218,7 @@
                                                 <td>
                                                     <a class="btn btn-success btn-md" href="/viewevent/{{$event->id}}"><i class="fas fa-eye"></i> View</a>
                                                     <a class="btn btn-warning btn-md" href="/showevent/{{$event->id}}"><i class="fas fa-edit"></i> Update</a>
-                                                    <a class="btn btn-danger btn-md" href="/deleteadminannouncement/{{$event->id}}"><i class="fas fa-trash-alt"></i> Delete</a>  
+                                                    <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $event->id }}"><i class="fas fa-trash-alt"></i> Delete</button> 
                                                 </td> 
                                             </tr>
                                         @endforeach 
@@ -243,7 +242,70 @@
       $('.nav_btn').click(function(){
         $('.mobile_nav_items').toggleClass('active');
       });
+
+      deleteItem(e);
+
     });
+
+    //delete
+    function deleteItem(e){
+
+        let id = e.getAttribute('data-id');
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: true
+        });
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                if (result.isConfirmed){
+
+                    $.ajax({
+                        type:'PUT',
+                        url:'{{url("/announcement/delete")}}/' +id,
+                        data:{
+                            "_token": "{{ csrf_token() }}",
+                        },
+                        success:function(data) {
+                            if (data.success){
+                                
+                                swalWithBootstrapButtons.fire(
+                                    'Deleted!',
+                                    'An event has been deleted successfully.',
+                                    "success"
+                                );
+                                $("#event"+id+"").remove();
+                            }
+
+                        }
+                    });
+
+                }
+
+            } else if (
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    '',
+                    'error'
+                );
+            }
+        });
+
+        }
     </script>
 </main>
 <br><br><br><br>

@@ -205,19 +205,32 @@ class StudentsController extends Controller
         return redirect()->back()->with('success', 'Requested successfully! Please refer to Evaluation Requests page.');
     }
 
-    public function deletegradegradeeval(Request $request, GradeEvaluationRequests $gradeeval){
-        $validated = $request->validate([
-            'deleted' => ['required'],
-            'deleted_at' => ['required'],
-        ]);
-        $gradeeval->update($validated);
-        return redirect('/gradeeval')->with('success', 'Grade Evaluation has been deleted successfully!');
-     }
+     public function deletegradegradeeval(GradeEvaluationRequests $gradeeval, Request $request, $id){
+        // $validated = $request->validate([
+        //     'deleted' => ['required'],
+        //     'deleted_at' => ['required'],
+        // ]);
+        // $gradeeval->update($validated);
+        // return redirect('/gradeeval')->with('success', 'Grade Evaluation has been deleted successfully!');
+        if ($request->ajax()){
 
-     public function deletegradeeval($id){
-        $data = GradeEvaluationRequests::where('deleted', '=', null)->findOrFail($id);
-        return view('student.grading.deletegradeeval', ['gradeeval' => $data]);
-     }
+            $gradeeval = DocumentRequests::findOrFail($id);
+            if ($gradeeval){
+    
+                $gradeeval->deleted = 1;
+                $gradeeval->deleted_at = now();
+                $gradeeval->save();
+    
+                return response()->json(array('success' => true));
+            }
+        }
+        
+    }
+
+    //  public function deletegradeeval($id){
+    //     $data = GradeEvaluationRequests::where('deleted', '=', null)->findOrFail($id);
+    //     return view('student.grading.deletegradeeval', ['gradeeval' => $data]);
+    //  }
 
      public function printreportcard(){
         $stuid = Auth::user()->id;
@@ -276,17 +289,30 @@ class StudentsController extends Controller
         return redirect()->back()->with('success', 'New document request was added successfully');
     }
 
-    public function deletegraderequest($id){
-        $leave = DocumentRequests::where('deleted', '=', null)->findOrFail($id);
-        $leave->deleted = 1;
-        $leave->deleted_at = now();
-        $leave->save();
-        return redirect('/studentrequest')->with('success', 'Your request has been deleted.');
-     }
-     public function deleterequest($id){
-        $data = DocumentRequests::where('deleted', '=', null)->findOrFail($id);
-        return view('student.requestdelete', ['request' => $data]);
-     }
+     public function deletegraderequest(DocumentRequests $requestdocument, Request $request, $id){
+        // $leave = DocumentRequests::where('deleted', '=', null)->findOrFail($id);
+        // $leave->deleted = 1;
+        // $leave->deleted_at = now();
+        // $leave->save();
+        // return redirect('/studentrequest')->with('success', 'Your request has been deleted.');
+        if ($request->ajax()){
+
+            $requestdocument = DocumentRequests::findOrFail($id);
+            if ($requestdocument){
+    
+                $requestdocument->deleted = 1;
+                $requestdocument->deleted_at = now();
+                $requestdocument->save();
+    
+                return response()->json(array('success' => true));
+            }
+        }
+        
+    }
+    //  public function deleterequest($id){
+    //     $data = DocumentRequests::where('deleted', '=', null)->findOrFail($id);
+    //     return view('student.requestdelete', ['request' => $data]);
+    //  }
 
      public function viewrequest($id){
         $data = DocumentRequests::where('deleted', '=', null)->findOrFail($id);

@@ -39,7 +39,6 @@
                                             <div class="pull-right">
                                                 <a class="btn btn-info btn-md" href="/homepage"><i class="fas fa-arrow-left"></i> Back</a>
                                                 <a class="btn btn-warning btn-md" href="/showlanding/{{$landing->id}}"><i class="fas fa-edit"></i> Update</a>
-                                                <a class="btn btn-danger btn-md" href="/delete/{{$landing->id}}"><i class="fas fa-trash-alt"></i> Delete</a>
                                             </div>
                                         </div><br/>
                                     </div>

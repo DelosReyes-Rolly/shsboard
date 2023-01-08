@@ -8,7 +8,10 @@
         
             <div class="container-xl px-4 mt-4 left-to-right">
                 <!-- page navigation-->
-                <h3 style="font-size: 28px; font-weight: 800;">View Strand</h3>
+                <div style="margin: 20px;">
+                    <a class="btn btn-secondary btn-lg" href="/gradingcourses" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to strand list</a>
+                </div>
+                <h3 style="font-size: 28px; font-weight: 800;">View Strand</h3><br/>
                 <hr class="mt-0 mb-4">
                 <div class="row">
                     
@@ -57,12 +60,6 @@
                                         @if($course->link != NULL)
                                             <iframe width="100%" height="720" box-shadow = "0 5px 20px rgba(0,0,0,2)" src="{{$course -> link}}" title="ABM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                         @endif
-                                        <div class="pull-right">
-                                            <br><br><br><br>
-                                            <a class="btn btn-info btn-md" href="/gradingcourses"><i class="fas fa-arrow-left"></i> Back</a>
-                                            <a class="btn btn-warning btn-md" href="/showcourse/{{$course->id}}"><i class="fas fa-edit"></i> Update</a> 
-                                            <a class="btn btn-danger btn-md" href="{{route('admin.deletecourse', $course->id)}}"><i class="fas fa-trash-alt"></i> Delete</a> 
-                                        </div>
                                     </div><br/>
                                     <hr>
                                 </div>
