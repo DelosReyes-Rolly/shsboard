@@ -337,4 +337,9 @@ a.article:hover {
 .header-letter{
     font-size: 18px;
     font-weight: bold;
+    color:#fff; 
+    border-top: none;
+  }
+.header-letter:hover {
+    color: rgb(233, 230, 139);
   }

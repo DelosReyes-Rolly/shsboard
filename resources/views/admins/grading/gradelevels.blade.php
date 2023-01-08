@@ -16,6 +16,7 @@
 	<script src="{{ asset('assets/js/datatables-jquery-1.12.1.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-rowreorder-1.2.8.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-responsive-2.3.0.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable( {
@@ -63,10 +64,17 @@
                                             <td><?php echo $i++; ?></td>
                                             <td>{{$gradelevel -> gradelevel}}</td>
                                             <td>
-                                                <a class="btn btn-warning btn-md" href="/showgradelevel/{{$gradelevel->id}}"><i class="fas fa-edit"></i> Update</a>
+                                                <a class="btn btn-warning btn-md" href="/showgradelevel/{{$gradelevel->id}}" data-toggle="modal" data-target="#editModal{{ $gradelevel->id }}"><i class="fas fa-edit"></i> Update</a>
                                                 <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $gradelevel->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                             </td> 
                                         </tr>
+                                        <!-- update modal -->
+                                        <div id="editModal{{ $gradelevel->id }}" class="modal fade text-center" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content border-start-lg border-start-yellow">
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endforeach 
                             </tbody>
                         </table>
