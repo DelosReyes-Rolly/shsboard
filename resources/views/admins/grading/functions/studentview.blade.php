@@ -1,5 +1,4 @@
 @include('partials.adminheader')
-@include('partials.adminThirdHeader')
 <main>
 <div class="left-to-right">
             <div class="container-xl px-4 mt-4">

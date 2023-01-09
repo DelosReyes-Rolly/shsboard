@@ -196,7 +196,14 @@ class StudentsController extends Controller
         return view('student.grading.gradeeval', compact('gradeevaluationrequests'));
     }
 
-    public function gradeevalreq($student_id, $gradelevel_id, $course_id, $section_id, $semester_id, $faculty_id, $subject_id){
+    public function gradeevalreqModal($student_id, $gradelevel_id, $course_id, $section_id, $semester_id, $faculty_id, $subject_id){
+        return view('student.grading.gradeEvalModal', compact('student_id', 'gradelevel_id', 'course_id', 'section_id', 'semester_id', 'faculty_id', 'subject_id'));
+    }
+
+    public function gradeevalreq(Request $request, $student_id, $gradelevel_id, $course_id, $section_id, $semester_id, $faculty_id, $subject_id){
+        $validated = $request->validate([
+            'reason' => 'required',
+        ]);
         $gradeevalrequest = new GradeEvaluationRequests();
         $gradeevalrequest->student_id = $student_id;
         $gradeevalrequest->gradelevel_id = $gradelevel_id;
@@ -205,8 +212,8 @@ class StudentsController extends Controller
         $gradeevalrequest->semester_id = $semester_id;
         $gradeevalrequest->faculty_id = $faculty_id;
         $gradeevalrequest->subject_id = $subject_id;
+        $gradeevalrequest->reason = $request->get('reason');
         $gradeevalrequest->save();
-        $gradeevaluationrequests = GradeEvaluationRequests::where('deleted', '=', null)->where('student_id', '=', Auth::user()->id)->get();
         return redirect()->back()->with('success', 'Requested successfully! Please refer to Evaluation Requests page.');
     }
 

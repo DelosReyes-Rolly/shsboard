@@ -356,6 +356,11 @@ class FacultyController extends Controller
         return view('faculty.grading.gradeeval', compact('gradeevaluationrequests'));
     }
 
+    public function viewGradeEvaluation($id){
+        $view = GradeEvaluationRequests::where('deleted', '=', null)->findOrFail($id);
+        return view('faculty.viewGradeEvaluation', compact('view'));
+    }
+
     public function uploadeval(Request $request, GradeEvaluationRequests $upload){
         $request->validate([
             'file' => 'mimes:pdf|max:2048',

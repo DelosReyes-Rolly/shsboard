@@ -71,9 +71,16 @@
         <hr class="mt-0 mb-4">
         <div class="card mb-4 right-to-left border-start-lg border-start-success" style="padding: 10px 40px 10px 40px;">
             <div class="card-header" style="background-color: white;">
-                <a class="btn btn-success" style="font-size:20px; font-weight:bold; color:white;" href='{{ url("/gradingalumni") }}'><i class="fas fa-user-graduate"></i> Alumni</a>&ensp;
-				<a class="btn btn-danger" style="font-size:20px; font-weight:bold; color:white;" href='{{ url("/gradingdropped") }}'><i class="fas fa-user-slash"></i> Dropped</a>&ensp;
-                <a href="{{route('student.add')}}" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#createModal"><i class="fas fa-user-plus"></i> Add Student Manually</a>
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <a class="btn btn-success" style="font-size:20px; font-weight:bold; color:white;" href='{{ url("/gradingalumni") }}'><i class="fas fa-user-graduate"></i> Alumni</a>&ensp;
+                        <a class="btn btn-danger" style="font-size:20px; font-weight:bold; color:white;" href='{{ url("/gradingdropped") }}'><i class="fas fa-user-slash"></i> Dropped</a>&ensp;
+                    </div><br/><br/>
+                    <div class="col-lg-6 col-md-12 col-sm-12" style="float:right; text-align: right;">
+                        <a href="{{route('studentbatch.add')}}" class="btn btn-primary" style="display: inline-block" data-toggle="modal" data-target="#batchModal"><i class="fas fa-user-plus"></i> Add Student in Batch</a>
+                        <a href="{{route('student.add')}}" class="btn btn-primary" style="display: inline-block" data-toggle="modal" data-target="#createModal"><i class="fas fa-user-plus"></i> Add Student Manually</a>
+                    </div>
+                </div>
             </div>
             <div class="card-body p-0" style="padding: 20px 20px 20px 20px;">
                 @if($students->count() == 0)
@@ -125,18 +132,25 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- create modal -->
-                                        <div id="createModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-                                            <div class="modal-dialog modal-lg" role="document">
-                                                <div class="modal-content border-start-lg border-start-yellow">
-                                                </div>
-                                            </div>
-                                        </div>
                                     @endforeach
                             </tbody>
                         </table>
                     </div>
                 @endif
+                <!-- create modal -->
+                <div id="createModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content border-start-lg border-start-yellow">
+                        </div>
+                     </div>
+                </div>
+                <!-- batch modal -->
+                <div id="batchModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content border-start-lg border-start-yellow">
+                        </div>
+                     </div>
+                </div>
             </div>
         </div>  
     </div>

@@ -32,7 +32,7 @@
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar" class="sticky-top h-100 vh-100" style="box-shadow: 0 4px 16px rgba(0,0,0,1);">
-            <div class="sidebar-header">
+            <div class="sidebar-header sticky-top">
                 <div class="title" style="text-shadow: 0 4px 16px rgba(0,0,0,1);"><img src="{{url('/img/svnhs-logo.png')}}" style="width: 80px; height: 80px;"><img src="{{url('/img/shs.png')}}" style="width: 80px; height: 80px;"><div style="font-size: 20px;"> Signal Village National High School </div> <br/> SHS - BOARD</div>
                 <strong> <img src="{{url('/img/shs.png')}}" style="width: auto; height: auto;"></strong>
             </div>

@@ -17,6 +17,7 @@
 	<script src="{{ asset('assets/js/datatables-jquery-1.12.1.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-rowreorder-1.2.8.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-responsive-2.3.0.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable( {
@@ -93,11 +94,10 @@
                                         <tr>
                                             <th class="border-gray-200" scope="col">#</th>
                                             <th class="border-gray-200" scope="col">Grade Level</th>
-                                            <th class="border-gray-200" scope="col">Semester</th>
                                             <th class="border-gray-200" scope="col">Subject</th>
                                             <th class="border-gray-200" scope="col">Student</th>
-                                            <th class="border-gray-200" scope="col">Date Requested</th>
                                             <th class="border-gray-200" scope="col">File</th>
+                                            <th class="border-gray-200" scope="col">Action</th>
                                         </tr>
                                     </thead>
                                 <tbody>
@@ -108,23 +108,31 @@
                                                 <tr>
                                                 <td class="text-center">{{$i++}}</td>
                                                     <td>{{$gradeevaluationrequest -> gradelevel -> gradelevel}}</td>
-                                                    <td>{{$gradeevaluationrequest -> semester -> sem}}</td>
                                                     <td>{{$gradeevaluationrequest -> subject -> subjectname}}</td>
                                                     <td>{{$gradeevaluationrequest -> student -> last_name}}, {{$gradeevaluationrequest -> student -> first_name}} {{$gradeevaluationrequest -> student -> middle_name}} {{$gradeevaluationrequest -> student -> suffix}}</td>
-                                                    <td>{{$date  =   date('F d, Y', strtotime($gradeevaluationrequest->created_at))}}</td>
                                                     <td>
                                                         <?php if($gradeevaluationrequest -> file == NULL):?>
                                                             <form method="POST" action="/uploadeval/{{$gradeevaluationrequest->id}}" enctype="multipart/form-data">
                                                                 @csrf
                                                                 <input type="file" name = "file" class="form-control" style="font-size: 12px;" >
-                                                                <font face = "Verdana" size = "6"><input type="submit" class="btn btn-primary" value="Submit"></font>
+                                                                <font face = "Verdana" size = "6"><input type="submit" class="btn btn-primary" value="Submit" style="font-size: 14px;"></font>
                                                             </form>
                                                         <?php else: ?>
                                                             {{$gradeevaluationrequest -> file}}<br>
                                                             <a href="/download/{{$gradeevaluationrequest -> file}}" class="btn btn-primary">Download</a> 
                                                         <?php endif; ?> 
                                                     </td>
+                                                    <td>
+                                                        <a class="btn btn-success btn-lg" href="/viewGradeEvaluation/{{$gradeevaluationrequest->id}}" data-toggle="modal" data-target="#modal-view-{{ $gradeevaluationrequest->id }}" style="font-size: 14px;"><i class="fas fa-eye"></i> View</a>
+                                                    </td>
                                                 </tr>
+                                                <!-- view modal -->
+                                                <div id="modal-view-{{ $gradeevaluationrequest->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg" role="document">
+                                                        <div class="modal-content border-start-lg border-start-yellow">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             @endforeach
                                     </tbody>
                                 </table> 

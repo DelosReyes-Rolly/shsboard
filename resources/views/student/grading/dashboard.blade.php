@@ -16,7 +16,7 @@
 	<script src="{{ asset('assets/js/datatables-jquery-1.12.1.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-rowreorder-1.2.8.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-responsive-2.3.0.js') }}"></script>
-    <!-- not responsive -->
+    <script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
     <script>
         $(document).ready(function() {
             var table = $('#sample1').DataTable( {
@@ -754,10 +754,17 @@
                                                                         <td>
                                                                             @if($grade11first -> isReleased == 2 || $grade11first -> isReleased == 1)
                                                                                 @if($gradeEvalCount->where('semester_id', '=', $grade11first->semester_id)->where('faculty_id', '=', $grade11first->faculty_id)->where('subject_id', '=', $grade11first->subject_id)->count() == 0)
-                                                                                    <a href="{{route('grade-eval',['student_id'=> Auth::user()->id , 'gradelevel_id'=> $grade11first -> gradelevel_id, 
+                                                                                    <a href="{{route('grade-evalModal',['student_id'=> Auth::user()->id , 'gradelevel_id'=> $grade11first -> gradelevel_id, 
                                                                                     'course_id'=> Auth::user()->course_id, 'section_id'=> Auth::user()->section_id,
                                                                                     'semester_id'=> $grade11first -> semester_id, 'faculty_id'=> $grade11first -> faculty_id,
-                                                                                    'subject_id'=> $grade11first -> subject_id])}}"><button class="requestGradeEvalButton">Click here</button></a>
+                                                                                    'subject_id'=> $grade11first -> subject_id])}}" data-toggle="modal" data-target="#editModal{{ Auth::user()->id }}{{ $grade11first -> gradelevel_id }}{{ Auth::user()->course_id }}{{ Auth::user()->section_id }}{{ $grade11first -> semester_id }}{{ $grade11first -> faculty_id }}{{ $grade11first -> subject_id }}"><button class="requestGradeEvalButton">Click here</button></a>
+                                                                                    <!-- edit modal -->
+                                                                                    <div id="editModal{{ Auth::user()->id }}{{ $grade11first -> gradelevel_id }}{{ Auth::user()->course_id }}{{ Auth::user()->section_id }}{{ $grade11first -> semester_id }}{{ $grade11first -> faculty_id }}{{ $grade11first -> subject_id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                                                                        <div class="modal-dialog modal-lg" role="document">
+                                                                                            <div class="modal-content border-start-lg border-start-yellow">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
                                                                                 @else
                                                                                     <label style="color:red;" for="inputcontent"> <em><b> Requested</b></em></label><br>
                                                                                 @endif

@@ -225,7 +225,8 @@ Route::group(['middleware' => 'auth:students'], function () {
             Route::get('/studentgrade', 'grades');
             Route::get('/gradeeval', 'gradeeval');
             Route::get('/vieweval/{id}', 'vieweval');
-            Route::get('/grade-eval/{student_id}/{gradelevel_id}/{course_id}/{section_id}/{semester_id}/{faculty_id}/{subject_id}',  'gradeevalreq')->name('grade-eval');
+            Route::post('/grade-eval/{student_id}/{gradelevel_id}/{course_id}/{section_id}/{semester_id}/{faculty_id}/{subject_id}',  'gradeevalreq')->name('grade-eval');
+            Route::get('/grade-eval/{student_id}/{gradelevel_id}/{course_id}/{section_id}/{semester_id}/{faculty_id}/{subject_id}',  'gradeevalreqModal')->name('grade-evalModal');
             // Route::get('/deletegradeeval/{id}',  'deletegradeeval')->name('student.deletegradeeval');
             // Route::put('/deletegradeeval/{gradeeval}',  'deletegradegradeeval');
             Route::put('/gradeevaluationrequest/delete/{id}', 'deletegradeeval');
@@ -529,11 +530,15 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 // Route::get('/deletesection/{id}', 'deletesection')->name('admin.deletesection');
 
                 Route::get('/facultyadd', 'addfaculty')->name('faculty.add');
+                Route::get('/facultybatchadd', 'addbatchfaculty')->name('facultybatch.add');
+                Route::get('/downloadFacultyFileFormat', 'downloadFacultyFileFormat');
                 Route::get('/viewfaculty/{id}','viewfaculty');
                 Route::get('/showfaculty/{id}','showfaculty');
                 // Route::get('/deletefaculty/{id}', 'deletefaculty')->name('admin.deletefaculty');
 
                 Route::get('/studentadd', 'addstudent')->name('student.add');
+                Route::get('/studentbatchadd', 'addbatchstudent')->name('studentbatch.add');
+                Route::get('/downloadStudentFileFormat', 'downloadStudentFileFormat');
                 Route::get('/viewstudent/{id}','viewstudent');
                 Route::get('/showstudent/{id}','showstudent');
                 // Route::get('/deletestudent/{id}', 'deletestudent')->name('admin.deletestudent');
@@ -807,6 +812,7 @@ Route::group(['middleware' => 'auth:faculties'], function () {
             */
             Route::get('/facultygrade', 'grades');
             Route::get('/facultygradeeval', 'gradeeval');
+            Route::get('/viewGradeEvaluation/{id}','viewGradeEvaluation');
             Route::get('/facultysubjects', 'facultysubjects');
             Route::get('/view-students/{subject_id}/{gradelevel_id}/{semester_id}/{schoolyear_id}', 'view_students')->name('view-students');
 

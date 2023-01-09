@@ -22,6 +22,7 @@ class Gradeevaluationrequests extends Migration
             $table->integer('semester_id');
             $table->integer('faculty_id');
             $table->integer('subject_id');
+            $table->text('reason');
             $table->string('file');
             $table->timestamps();
             $table->tinyInteger('deleted')->nullable();

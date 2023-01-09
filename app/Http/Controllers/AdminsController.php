@@ -929,6 +929,10 @@ class AdminsController extends Controller
         return view('admins.grading.functions.facultyadd');
     }
 
+    public function addbatchfaculty(){
+        return view('admins.grading.functions.facultybatchadd');
+    }
+
     public function storefaculty(Request $request){
         
         // Validate the inputs
@@ -1027,6 +1031,12 @@ class AdminsController extends Controller
     //     return view('admins.grading.functions.facultydelete', ['faculty' => $data]);
     // }
 
+    public function downloadFacultyFileFormat() {
+        $file_name = 'Faculty Excel Format.xlsx';
+        $file_path = public_path('uploads/'.$file_name);
+        return response()->download($file_path);
+    } 
+
      // ============================================================ STUDENT ===================================================
 
     public function student(){
@@ -1049,6 +1059,10 @@ class AdminsController extends Controller
         $section_data= DB::table('sections')->where('deleted', '=', null)->select('id', 'section')->get();
         $courses_data= DB::table('courses')->where('deleted', '=', null)->select('id', 'courseName')->get();
         return view('admins.grading.functions.studentadd',compact('level_data','section_data', 'courses_data'), ['url' => 'students']);
+    }
+
+    public function addbatchstudent(){
+        return view('admins.grading.functions.studentbatchadd');
     }
 
     public function storestudent(Request $request){
@@ -1252,6 +1266,12 @@ class AdminsController extends Controller
             return view('/gradingstudents')->with('success', 'Added subject to student successfully!');
         }
     }
+
+    public function downloadStudentFileFormat() {
+        $file_name = 'Student Excel Format.xlsx';
+        $file_path = public_path('uploads/'.$file_name);
+        return response()->download($file_path);
+    } 
     
 
      // ============================================================ SUBJECT ===================================================
