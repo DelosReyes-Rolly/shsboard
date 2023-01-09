@@ -416,7 +416,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #f3dc60;}
 .single_post .img-post {
     position: relative;
     overflow: hidden;
-    max-height: 500px;
+    max-height: auto;
     margin-bottom: 30px
 }
 

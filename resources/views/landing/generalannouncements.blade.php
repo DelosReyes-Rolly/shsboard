@@ -1,26 +1,37 @@
 @include('partials.landingheader')
-<main style="padding: 80px ;">
-<section id="about" class="about">
-			<div class="">
+<main style="padding: 80px 40px 0px 40px;">
+<!-- announcements -->
+<section id="about" class="about fade-in-text">
+<div class=""> <!-- container  -->
 				<div id="main-content" class="blog-page">
-				    <div class="">
+				    <div class=""><br/><br/>    
+                        <div style="color: green; font-size: 40px; font-weight:bold;">Announcements</div>     
+                        <hr style="border: 1px solid black">
 				        <div class="row clearfix">
-				            <div class="col-lg-9 col-md-12 left-box">
-			               			<br><br>
+				            <div class="col-lg-9 col-md-12 left-box fade-in-text">
                                     @if($announcement == NULL)
-                                        <br><br>
+                                        <br/><br/>
                                         <div class="alert alert-danger"><em>No announcements for now.</em></div>
                                     @else 
                                         @foreach ($announcement as $announcements)
-                                            <div class="card single_post border-start-lg border-start-yellow">
+                                            <br/><br/>
+                                            <div class="card single_post">
                                                 <div class="body">
-                                                    <div>
-                                                        @if($announcements->image != NULL)
-                                                            <center><img class="d-block img-fluid" src="{{ asset('uploads/announcement/'.$announcements->image) }}" style="height:auto; width: auto;"/></center>
-                                                        @endif
-                                                    </div><br/>
-                                                    <h3><b>{!!$announcements -> what!!}</b></h3><br/>
-                                                    <p>{!!$announcements -> content!!}</p>
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-12 col-sm-12">
+                                                            <div class="img-post">
+                                                                @if($announcements->image != NULL)
+                                                                    <center><img class="d-block img-fluid" src="{{ asset('uploads/announcement/'.$announcements->image) }}" style="height:400px; width: 400px;"/></center>
+                                                                @endif
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-12 col-sm-12">
+                                                            <h3><b>{!!$announcements -> what!!}</b></h3><br/>
+                                                            <p>{!!\Illuminate\Support\Str::limit($announcements -> content, 600)!!}</p><br/><br/>
+                                                            <a class="btn btn-md btn-success" href="/seePublicAnnouncement/{{$announcements->id}}"><em>read more...</em></a>
+                                                        </div>
+                                                    </div>
                                                     <div class="footer">
                                                         <ul class="stats">
                                                             <?php $whn = date('F d, Y', strtotime($announcements -> whn)); ?>
@@ -32,12 +43,12 @@
                                                 </div>
                                             </div>
                                             <hr style="border: 1px solid black">
-                                        @endforeach     
+                                        @endforeach         
                                     @endif         
 				            </div>
 				            <br><br>
 				            <div class="col-lg-3 col-md-12 right-box">
-                            <div class="card">
+					            <div class="card">
 					                <div class="header">
 					                    <h2>Reminders</h2><br>
                                         @if ($message = Session::get('reminder'))

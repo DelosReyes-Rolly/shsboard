@@ -99,13 +99,13 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item" title="Profile">
-                                <a class="header-letter"  href="{{ url('/studentprofile') }}" style="color:#fff; border-top: none;">Profile</a>
-                            </li>
+                                <a class="header-letter navbar-a"  href="{{ url('/studentprofile') }}" style="color:#fff; border-top: none;">Profile</a>
+                            </li>&emsp;
                             <li class="nav-item" title="Change Password">
-                                <a class="header-letter" href="/password-student/{{Auth::user()->id}}" style="color:#fff; border-top: none;">Change Password</a>
-                            </li>
+                                <a class="header-letter navbar-a" href="/password-student/{{Auth::user()->id}}" style="color:#fff; border-top: none;">Change Password</a>
+                            </li>&emsp;
                             <li class="nav-item" title="Logout">
-                                <a class="header-letter" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="color:#fff; border-top: none;">{{ __('Logout') }}</a>
+                                <a class="header-letter navbar-a" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="color:#fff; border-top: none;">{{ __('Logout') }}</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>

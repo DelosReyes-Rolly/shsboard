@@ -1,9 +1,10 @@
 @include('partials.landingheader')
-<main><br/><br/>
+<main style="padding: 80px 40px 0px 40px;"><br/><br/>
     <!-- event start -->
-		<section id="about" class="about">
+		<section id="about" class="about"> 
+            <div style="color: green; font-size: 40px; font-weight:bold;">Events</div>     
+            <hr style="border: 1px solid black">
             @if($events == NULL)
-                <br><br><br><br>
 			    <div class="container">
 					<div class="container-xl px-4 mt-4 fade-in-text">
 					    <!-- page navigation-->
@@ -24,9 +25,7 @@
 				</div>
             @else 
                 @foreach ($events as $event)
-                    
-					<div class="container">
-						<br><br>
+					<div>
 						<div class="container-xl px-4 mt-4">
 						    <!-- page navigation-->
 						    <hr class="mt-9 mb-9">
@@ -35,32 +34,31 @@
 						            <!-- Account details card-->
 						            <div class="card mb-4"  style="padding: 20px 20px 20px 20px;">
 						                <div class="card border-start-lg border-start-yellow">
-						                    <div class="card-header"><h4><b>{{$event -> what}}</b></h4></div>		
+						                    <center><div class="card-header" style="color: green; font-weight:bold; font-size:20px;"><b>{{$event -> what}}</b></div></center>		
 							                <!-- Form Row-->
 							                <div class="row gx-3 mb-3"  style="padding: 10px 20px 10px 60px;">
 							                    <!-- Form Group (title)-->
-							                        <center>
-								                        <br><hr><br>
+												<div class="col-lg-4 col-md-12 col-sm-12">
+                                                    <div class="img-post">
 														@if($event->image == NULL)
 															<img class="d-block img-fluid" src="uploads/event/placeholder.png" style="width: 400px; height: 400px;"/>
 														@else
 															<img class="d-block img-fluid" src="{{ asset('uploads/event/'.$event->image) }}" style="width: auto; height: auto;"/>
 														@endif
-													</center>
-													<br>
+													</div>
+												</div>
 							                    <!-- Form Group (title)-->
-							                    <div class="col-md-9">
-							                        <br><hr>
-													{!!$event -> content!!}
+							                    <div class="col-lg-6 col-md-12 col-sm-12">
+													{!!\Illuminate\Support\Str::limit($event -> content, 2000)!!}
 							                    </div>
 							                    <!-- Form Group (title)-->
-							                    <div class="col-md-3">
-							                        <br><hr>
+							                    <div class="col-lg-2 col-md-12 col-sm-12">
 													<b>WHEN: <li>On {{$date  =   date('F d, Y', strtotime($event->whn))}}</a></li><br></b>
 													<b>WHERE: <li>{{$event -> whr}}</li></b><br>
 													<b>FROM: </b>{{$event -> sender}}<br><br>
-                                                    <b>TO: </b>{{$event -> who}}<br>
-													<br><br><br>
+                                                    <b>TO: </b>{{$event -> who}}<br><br>
+													<a class="btn btn-md btn-success" href="/seePublicEvent/{{$event->id}}"><em>read more...</em></a>
+													<br><br>
 							                    </div>
 							                </div>
 							            </div>

@@ -95,6 +95,11 @@ class StudentsController extends Controller
         return view('student.home',compact($viewShareVars));
     }
 
+    public function seeAnnouncement($id){
+        $view = Announcements::where('deleted', '=', null)->findOrFail($id);
+        return view('student.viewAnnouncement', compact('view'));
+    }
+
     
     // ============================================================ ACTIVITY STREAM ===================================================================================
 

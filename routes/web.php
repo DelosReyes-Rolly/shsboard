@@ -50,7 +50,9 @@ use Illuminate\Support\Facades\Route;
 Route::controller(LandingsController::class)->group(function(){
     Route::get('/', 'home');
     Route::get('/generalannouncements', 'announcements');
+    Route::get('/seePublicAnnouncement/{id}', 'seePublicAnnouncement');
     Route::get('/events', 'events');
+    Route::get('/seePublicEvent/{id}', 'seePublicEvent');
     Route::get('/faculty', 'faculties');
     Route::get('/courses', 'courses');
     Route::get('/coursedescription/{id}', 'coursedescription');
@@ -167,6 +169,7 @@ Route::group(['middleware' => 'auth:students'], function () {
             |
             */
             Route::get('/students', 'home');
+            Route::get('/seeAnnouncement/{id}', 'seeAnnouncement');
             Route::get('/studentprofile', 'profile');
             Route::get('/studentrequest', 'documentrequest');
             Route::get('/viewrequest/{id}', 'viewrequest');
@@ -746,6 +749,7 @@ Route::group(['middleware' => 'auth:faculties'], function () {
             |
             */
             Route::get('/faculties', 'home');
+            Route::get('/seeAnnouncement/{id}', 'seeAnnouncement');
             Route::get('/facultyprofile', 'profile');
             Route::get('/createannouncement', 'createannouncement');
             Route::get('/password-faculty/{id}', 'facultyresetshow');

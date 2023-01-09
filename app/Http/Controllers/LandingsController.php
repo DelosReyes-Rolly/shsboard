@@ -142,4 +142,14 @@ class LandingsController extends Controller
         }
     }
 
+    public function seePublicAnnouncement($id){
+        $view = Announcements::where('deleted', '=', null)->where('deleted', '=', NULL)->where('status', '=', 1)->where('privacy', '=', 1)->where('approval', '=', 2)->findOrFail($id);
+        return view('landing.viewPublicAnnouncement', compact('view'));
+    }
+
+    public function seePublicEvent($id){
+        $view = Announcements::where('deleted', '=', null)->where('deleted', '=', NULL)->where('status', '=', 1)->where('is_event', '=', 1)->findOrFail($id);
+        return view('landing.viewEvent', compact('view'));
+    }
+
 }

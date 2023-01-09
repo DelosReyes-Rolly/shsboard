@@ -99,6 +99,11 @@ class FacultyController extends Controller
         return view('faculty.home',compact($viewShareVars));
     }
 
+    public function seeAnnouncement($id){
+        $view = Announcements::where('deleted', '=', null)->findOrFail($id);
+        return view('faculty.viewAnnouncement', compact('view'));
+    }
+
     // ============================================================ PROFILE ===================================================================================
 
     public function profile(){

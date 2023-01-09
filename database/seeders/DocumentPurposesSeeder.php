@@ -30,5 +30,9 @@ class DocumentPurposesSeeder extends Seeder
             'purpose' => 'Job reference',
             'proof_needed' => 'list of requirements from the company',
         ]);
+        DocumentPurposes::create([
+            'purpose' => 'General Purposes',
+            'proof_needed' => 'general purposes',
+        ]);
     }
 }

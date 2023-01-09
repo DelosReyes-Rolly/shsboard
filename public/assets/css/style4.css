@@ -64,7 +64,7 @@ span {
 }
 
 .navbar-a:hover {
-    color: #ffffff;
+    color: yellow !important;
     background-color: unset !important;
   }
 
