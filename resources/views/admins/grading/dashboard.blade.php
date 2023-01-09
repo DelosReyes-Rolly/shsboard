@@ -1,5 +1,4 @@
 @include('partials.adminheader')
-@include('partials.adminThirdHeader')
 <main>
     <br/><br/><br/><br/><br/><br/>
     <div class="container left-to-right" style="padding: 10px 40px 10px 40px;">
