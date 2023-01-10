@@ -8,7 +8,7 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script> -->
-
+    <div style="font-size: 20px;"><a href="javascript:history.back()"> Advisory</a>&emsp;<i class="fas fa-angle-right"></i>&emsp; students</div><br/>
     <div class="left-to-right"> 
         @if ($message = Session::get('message'))
             <div class="alert alert-success alert-block">
@@ -17,7 +17,7 @@
             </div></br></br>
         @endif
         <div style="margin: 20px;">
-            <a class="btn btn-secondary btn-lg" href="/advisoryfaculty" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to advisory list</a>
+            <a class="btn btn-secondary btn-lg" href="javascript:history.back()" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to advisory list</a>
         </div>
         <h3 style="font-size: 28px; font-weight: 800;">Table of Students </h3>
         <br/>

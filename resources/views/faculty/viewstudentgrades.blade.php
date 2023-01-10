@@ -8,7 +8,7 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script> -->
-
+    <div style="font-size: 20px;"><a href="/advisoryfaculty"> Advisory</a>&emsp;<i class="fas fa-angle-right"></i>&emsp;<a href="javascript:history.back()"> students</a>&emsp;<i class="fas fa-angle-right"></i>&emsp;{{$student->last_name}}, {{$student->first_name}} {{$student->middle_name}}  {{$student->suffix}}</div><br/>
 	<link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/datatables-jquery-1.12.1.css') }}">
 	<link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/datatables-rowreorder-1.2.8.css') }}">
 	<link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/datatables-responsive-2.3.0.css') }}">

@@ -8,7 +8,7 @@
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>            
     <script src="https://markcell.github.io/jquery-tabledit/assets/js/tabledit.min.js"></script> -->
-    
+    <div style="font-size: 20px;"><a href="javascript:history.back()"> Subjects</a>&emsp;<i class="fas fa-angle-right"></i>&emsp; view students</div><br/>
     @if (count($errors) > 0)
         <div class="alert alert-danger">
             <strong>Whoops!</strong> There were some problems with your input.
@@ -21,7 +21,7 @@
     @endif
     <div class="left-to-right">
         <div style="margin: 20px;">
-            <a class="btn btn-secondary btn-lg" href="/facultysubjects" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to subject list</a>
+            <a class="btn btn-secondary btn-lg" href="javascript:history.back()" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to subject list</a>
         </div>
         <h3 style="font-size: 28px; font-weight: 800;">Table of Students </h3><br/>
       <hr class="mt-0 mb-4"><br/>

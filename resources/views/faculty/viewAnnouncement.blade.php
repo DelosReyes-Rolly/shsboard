@@ -1,6 +1,7 @@
 @include('partials.facultyheader')
 <main>
 <!-- view announcement -->
+<div style="font-size: 20px;"><a href="javascript:history.back()"> Announcements</a>&emsp;<i class="fas fa-angle-right"></i>&emsp; view announcements</div><br/>
     <div class="row">
         <div class="col-lg-8 col-md-12 col-sm-12">
             <div style="color: green; font-size: 40px; font-weight:bold;">Announcement</div>

@@ -1,7 +1,7 @@
 @include('partials.studentheader')
 <main>
 <section>
-        <div>
+        <div> 
         	<div class="left-to-right">
                 <hr style="border: 1px solid grey;">
                 @if (count($errors) > 0)

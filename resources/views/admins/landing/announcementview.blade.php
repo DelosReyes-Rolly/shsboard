@@ -7,8 +7,12 @@
 
         
             <div class="container-xl px-4 mt-4">
+                <div style="font-size: 20px;"><a href="/createAnnoucement"> Announcements</a>&emsp;<i class="fas fa-angle-right"></i>&emsp; view announcement</div><br/>
                 <!-- page navigation-->
-                <h3 style="font-size: 28px; font-weight: 800;">View Annoucement</h3>
+                <div style="margin: 20px;">
+                    <a class="btn btn-secondary btn-lg" href="/createAnnoucement" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to announcement</a>
+                </div>
+                <h3 style="font-size: 28px; font-weight: 800;">View Annoucement</h3><br/>
                 <hr class="mt-0 mb-4">
                 <div class="row">
                     
@@ -71,7 +75,6 @@
                                             <!-- Form Group privacy-->
                                             <!-- Save changes button-->
                                             <div>
-                                                <a class="btn btn-info btn-md" href="/createAnnoucement"><i class="fas fa-arrow-left"></i> Back</a>
                                                 <a class="btn btn-warning btn-md" href="/showannouncement/{{$announcement->id}}"><i class="fas fa-edit"></i> Update</a>
                                             </div>
                                         </div>

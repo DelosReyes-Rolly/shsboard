@@ -3,8 +3,12 @@
 <main>
         <div>
             <div class="container-xl px-4 mt-4 left-to-right">
+                <div style="font-size: 20px;"><a href="/createEvents"> Events</a>&emsp;<i class="fas fa-angle-right"></i>&emsp; view event</div><br/>
                 <!-- page navigation-->
-                <h3 style="font-size: 28px; font-weight: 800;">View Event </h3>
+                <div style="margin: 20px;">
+                    <a class="btn btn-secondary btn-lg" href="/createEvents" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to event</a>
+                </div>
+                <h3 style="font-size: 28px; font-weight: 800;">View Event </h3><br/>
                 <hr class="mt-0 mb-4">
                 <div class="row">
                     
@@ -67,9 +71,7 @@
                                             <!-- Form Group privacy-->
                                             <!-- Save changes button-->
                                             <div class="pull-right">
-                                                <a class="btn btn-info btn-md" href="/createEvents"><i class="fas fa-arrow-left"></i> Back</a>
-                                                <a class="btn btn-warning btn-md" href="/showevent/{{$event->id}}"><i class="fas fa-edit"></i> Update</a>
-                                                <a class="btn btn-danger btn-md" href="/deleteadminevent/{{$event->id}}"><i class="fas fa-trash-alt"></i> Delete</a>  
+                                                <a class="btn btn-warning btn-md" href="/showevent/{{$event->id}}"><i class="fas fa-edit"></i> Update</a> 
                                             </div>
                                         </div>
                                     </div>

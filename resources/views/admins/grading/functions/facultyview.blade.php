@@ -19,8 +19,12 @@
     </script>
     <div class="left-to-right">
             <div class="container-xl px-4 mt-4 left-to-right">
+                <div style="font-size: 20px;"><a href="/gradingfaculty"> Faculty</a>&emsp;<i class="fas fa-angle-right"></i>&emsp; view teacher</div><br/>
                 <!-- page navigation-->
-                <h3 style="font-size: 28px; font-weight: 800;">View Teacher</h3>
+                <div style="margin: 20px;">
+                    <a class="btn btn-secondary btn-lg" href="/gradingfaculty" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to faculty list</a>
+                </div>
+                <h3 style="font-size: 28px; font-weight: 800;">View Teacher</h3><br/>
                 <hr class="mt-0 mb-4">
                 <div class="row">
                    

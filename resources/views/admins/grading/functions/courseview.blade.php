@@ -6,6 +6,7 @@
                     
         
             <div class="container-xl px-4 mt-4 left-to-right">
+                <div style="font-size: 20px;"><a href="/gradingcourses"> Strands</a>&emsp;<i class="fas fa-angle-right"></i>&emsp; view strand</div><br/>
                 <!-- page navigation-->
                 <div style="margin: 20px;">
                     <a class="btn btn-secondary btn-lg" href="/gradingcourses" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to strand list</a>
