@@ -7,7 +7,7 @@
 	           	// 	echo '<div class="alert alert-success">'.$success.'</div>';
 	            // }
 	        ?> -->
-	       	<form action="/profile/{{Auth::user()->id}}" method="post">
+	       	<form action="/profile/{{Auth::user()->id}}" method="post"class="needs-validation" novalidate>
                 @method('PUT')
                 @csrf
 	            <div class="rounded bg-white mt-5 mb-5">
@@ -44,9 +44,24 @@
 									           	<b><div class="text-center" style="font-size: 28px; color:green;">Profile Settings</div><br><hr style="border:1px solid grey;"></b><br>
 									       	</div>
 									    <div class="row mt-2">
-									    	<div class="col-md-12" style="font-size: 18px;"><label>First Name</label><input style="font-size: 16px;" class="form-control @error('first_name') is-invalid @enderror" type="text"  name="first_name" class="form-control" placeholder="{{Auth::user()->first_name}}" value={{Auth::user()->first_name}}></div><br/><br/>
-									    	<div class="col-md-12" style="font-size: 18px;"><label>Middle Name</label><input style="font-size: 16px;" class="form-control @error('middle_name') is-invalid @enderror" type="text" name="middle_name" class="form-control" placeholder="{{Auth::user()->middle_name}}" value={{Auth::user()->middle_name}}></div><br/><br/>
-									       	<div class="col-md-12" style="font-size: 18px;"><label>Last Name</label><input style="font-size: 16px;" class="form-control @error('last_name') is-invalid @enderror" type="text" name="last_name" class="form-control" placeholder="{{Auth::user()->last_name}}" value={{Auth::user()->last_name}}></div><br/><br/>
+									    	<div class="col-md-12" style="font-size: 18px;">
+												<label>First Name</label><input style="font-size: 16px;" class="form-control @error('first_name') is-invalid @enderror" type="text" onkeydown="return alphaOnly(event);" name="first_name" class="form-control" value={{Auth::user()->first_name}} required maxlength="255">
+												<div class="invalid-feedback">
+													Please input first name.
+												</div>
+											</div><br/><br/>
+									    	<div class="col-md-12" style="font-size: 18px;">
+												<label>Middle Name</label><input style="font-size: 16px;" class="form-control @error('middle_name') is-invalid @enderror" type="text" onkeydown="return alphaOnly(event);" name="middle_name" class="form-control" value={{Auth::user()->middle_name}} required maxlength="255">
+												<div class="invalid-feedback">
+													Please input middle name.
+												</div>
+											</div><br/><br/>
+									       	<div class="col-md-12" style="font-size: 18px;">
+												<label>Last Name</label><input style="font-size: 16px;" class="form-control @error('last_name') is-invalid @enderror" type="text" onkeydown="return alphaOnly(event);" name="last_name" class="form-control" value={{Auth::user()->last_name}} required maxlength="255">
+												<div class="invalid-feedback">
+													Please input last name.
+												</div>
+											</div><br/><br/>
 									   	</div>
 									    <hr>
 				          				<div class="mt-5 text-center"><input type="submit" class="btn btn-primary profile-button" value="Submit"></div>
@@ -67,4 +82,5 @@
 			</form>
 		</div>
 	</section>
+	<script src="{{ asset('assets/js/needs-validated.js') }}"></script>
 </main>     

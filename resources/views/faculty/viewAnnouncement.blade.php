@@ -20,7 +20,9 @@
                                     <div class="img-post" style="float: left; margin: 20px;">
                                         @if($view->image != NULL)
                                             <img class="d-block img-fluid" src="{{ asset('uploads/announcement/'.$view->image) }}" style="height:400px; width: 400px;"/>
-                                        @endif       
+                                        @else
+                                            <img class="d-block img-fluid" src="{{ asset('uploads/event/placeholder.png') }}" style="height:400px; width: 400px;"/>
+                                        @endif     
                                     </div>
                                     <div style="text-align: justify; font-size: 25px;">
                                         <br/><h3><b>{!!$view -> what!!}</b></h3><br/>

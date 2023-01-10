@@ -53,28 +53,79 @@
 							<b><div class="text-center" style="font-size: 28px; color:green;">Profile Settings</div><br><hr style="border:1px solid grey;"></b><br>
 						</div>
 						<div class="row mt-2">
-							<div class="col-md-12" style="font-size: 18px;"><label>First Name</label><input style="font-size: 16px;" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" placeholder="{{Auth::user()->first_name}}" value={{Auth::user()->first_name}}></div><br/>
-							<div class="col-md-12" style="font-size: 18px;"><label>Middle Name</label><input style="font-size: 16px;" type="text" class="form-control @error('middle_name') is-invalid @enderror" name="middle_name" placeholder="{{Auth::user()->middle_name}}" value={{Auth::user()->middle_name}}></div><br/>
-							<div class="col-md-12" style="font-size: 18px;"><label>Last Name</label><input style="font-size: 16px;" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" placeholder="{{Auth::user()->last_name}}" value={{Auth::user()->last_name}}></div><br/>
-							<div class="col-md-12" style="font-size: 18px;"><label>Suffix</label><input style="font-size: 16px;" type="text" class="form-control @error('suffix') is-invalid @enderror" name="suffix" placeholder="{{Auth::user()->suffix}}" value={{Auth::user()->suffix}}></div><br/>
+							<div class="col-md-12" style="font-size: 18px;">
+								<label>First Name</label>
+								<input style="font-size: 16px;" type="text" class="form-control @error('first_name') is-invalid @enderror" onkeydown="return alphaOnly(event);" name="first_name" placeholder="{{Auth::user()->first_name}}" value={{Auth::user()->first_name}} required maxlength="255">
+								<div class="invalid-feedback">
+									Please input valid first name.
+								</div>
+							</div><br/>
+							<div class="col-md-12" style="font-size: 18px;">
+								<label>Middle Name</label>
+								<input style="font-size: 16px;" type="text" class="form-control @error('middle_name') is-invalid @enderror" onkeydown="return alphaOnly(event);" name="middle_name" placeholder="{{Auth::user()->middle_name}}" value={{Auth::user()->middle_name}} maxlength="255">
+								<div class="invalid-feedback">
+									Please input valid middle name.
+								</div>
+							</div><br/>
+							<div class="col-md-12" style="font-size: 18px;">
+								<label>Last Name</label>
+								<input style="font-size: 16px;" type="text" class="form-control @error('last_name') is-invalid @enderror" onkeydown="return alphaOnly(event);" name="last_name" placeholder="{{Auth::user()->last_name}}" value={{Auth::user()->last_name}} required maxlength="255">
+								<div class="invalid-feedback">
+									Please input valid last name.
+								</div>
+							</div><br/>
+							<div class="col-md-12" style="font-size: 18px;">
+								<label>Suffix</label>
+								<input style="font-size: 16px;" type="text" class="form-control @error('suffix') is-invalid @enderror" onkeydown="return alphaOnly(event);" name="suffix" placeholder="{{Auth::user()->suffix}}" value={{Auth::user()->suffix}} maxlength="255">
+								<div class="invalid-feedback">
+									Please input valid suffix.
+								</div>
+							</div><br/>
 						</div><br/>
 						<div class="row mt-3">
-							<div class="col-md-12" style="font-size: 18px;"><label>Username</label><input style="font-size: 16px;" type="text" class="form-control @error('username') is-invalid @enderror" name="username" placeholder="{{Auth::user()->username}}" value="{{Auth::user()->username}}"></div><br/><br/>
-							<div class="col-md-12" style="font-size: 18px;"><label>Mobile Number</label><input style="font-size: 16px;" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" placeholder="{{Auth::user()->phone_number}}" value="{{Auth::user()->phone_number}}"></div><br/><br/>
-							<div class="col-md-12" style="font-size: 18px;"><label>Email</label><input style="font-size: 16px;" type="text" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="{{Auth::user()->email}}" value="{{Auth::user()->email}}"></div><br/>
+							<div class="col-md-12" style="font-size: 18px;">
+								<label>Username</label>
+								<input style="font-size: 16px;" type="text" class="form-control @error('username') is-invalid @enderror" onkeydown="return alphaOnly(event);" name="username" placeholder="{{Auth::user()->username}}" value="{{Auth::user()->username}}">
+								<div class="invalid-feedback">
+									Please input valid username.
+								</div>
+							</div><br/><br/>
+							<div class="col-md-12" style="font-size: 18px;">
+								<label>Mobile Number</label>
+								<input style="font-size: 16px;" type="text" class="form-control @error('phone_number') is-invalid @enderror" onkeypress="return onlyNumberKey(event)" maxlength="12" minlength="11" name="phone_number" placeholder="{{Auth::user()->phone_number}}" value="{{Auth::user()->phone_number}}">
+								<div class="invalid-feedback">
+									Please input valid mobile number.
+								</div>
+							</div><br/><br/>
+							<div class="col-md-12" style="font-size: 18px;">
+								<label>Email</label>
+								<input style="font-size: 16px;" type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="{{Auth::user()->email}}" value="{{Auth::user()->email}}" required maxlength="255">
+								<div class="invalid-feedback">
+									Please input valid email.
+								</div>
+							</div><br/>
 							<div class="col-md-12" style="font-size: 18px;"><label for="gender">Sex</label>
-								<select id="gender" name="gender"  class="form-control @error('gender') is-invalid @enderror" value="{{Auth::user()->gender}}">
+								<select id="gender" name="gender"  class="form-control @error('gender') is-invalid @enderror" value="{{Auth::user()->gender}}" required>
 									<option value="" hidden>  Please Select Sex </option>
 									<option value="Male" {{Auth::user()->gender == "Male" ?'selected' : ''}}>Male</option>
 									<option value="Female" {{Auth::user()->gender == "Female" ?'selected' : ''}}>Female</option>
 								</select>
+								<div class="invalid-feedback">
+									Please input sex.
+								</div>
 							</div><br/>
 						</div>
 						<div class="row mt-2">
 							<div class="col-lg-6" style="font-size: 18px;"><label>Street</label><input style="font-size: 16px;" type="text" class="form-control @error('street') is-invalid @enderror" name="street" placeholder="{{$address->street}}" value={{$address->street}}></div>
 							<div class="col-lg-6" style="font-size: 18px;"><label>Village</label><input style="font-size: 16px;" type="text" class="form-control @error('village') is-invalid @enderror" name="village" placeholder="{{$address->village}}" value={{$address->village}}></div>
 							<div class="col-lg-6" style="font-size: 18px;"><label>City</label><input style="font-size: 16px;" type="text" class="form-control @error('city') is-invalid @enderror" name="city" placeholder="{{$address->city}}" value={{$address->city}}></div>
-							<div class="col-lg-6" style="font-size: 18px;"><label>Zip code</label><input style="font-size: 16px;" type="text" class="form-control @error('zip_code') is-invalid @enderror" name="zip_code" placeholder="{{$address->zip_code}}" value={{$address->zip_code}}></div>
+							<div class="col-lg-6" style="font-size: 18px;">
+								<label>Zip code</label>
+								<input style="font-size: 16px;" type="text" class="form-control @error('zip_code') is-invalid @enderror" onkeypress="return onlyNumberKey(event)" name="zip_code" placeholder="{{$address->zip_code}}" value={{$address->zip_code}}>
+								<div class="invalid-feedback">
+									Please input valid zip code.
+								</div>
+							</div>
 						</div><br/>
 						<hr>
 						<div class="mt-5 text-center"><input type="submit" class="btn btn-primary profile-button" value="Update"></div>

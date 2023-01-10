@@ -21,8 +21,9 @@
                                                             <div class="img-post">
                                                                 @if($announcements->image != NULL)
                                                                     <center><img class="d-block img-fluid" src="{{ asset('uploads/announcement/'.$announcements->image) }}" style="height:400px; width: 400px;"/></center>
+                                                                @else
+                                                                    <center><img class="d-block img-fluid" src="uploads/event/placeholder.png" style="width: auto; height: auto;"/></center>
                                                                 @endif
-                                                                
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6 col-md-12 col-sm-12">

@@ -31,7 +31,7 @@
         	<div>
                 <!-- boxes -->
                 <hr style="border: 1px solid grey;">
-                <form method="POST" action="{{ route('student.request') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('student.request') }}" enctype="multipart/form-data" class="needs-validation" novalidate>
                     @csrf
                     <div class="container-xl px-4 mt-4 right-to-left">
                         <!-- page navigation-->
@@ -73,12 +73,15 @@
                                                     <div class="col-md-12" hidden>
                                                         <input class="form-control @error('document_type') is-invalid @enderror" id="inputdocument_type" type="text" placeholder="Enter document needed" name="document_type"  value="{{ old('document_type') }}">
                                                     </div>
-                                                    <select id="document_type" name="document_type" class="form-control" value="{{ old('document_type') }}" style="font-size: 16px;" >
+                                                    <select id="document_type" name="document_type" class="form-control" value="{{ old('document_type') }}" style="font-size: 16px;" required>
                                                         <option value="" disabled selected hidden>Choose Document</option>
                                                         @foreach ($lists as $list)
                                                             <option value="{{ $list->id }}">{{ $list->name}}</option>
                                                         @endforeach
                                                     </select>
+                                                    <div class="invalid-feedback">
+                                                        Please choose document.
+                                                    </div>
                                                 </div>
                                                 <br>
                                                 <!-- Form Group (content)-->
@@ -87,12 +90,15 @@
                                                     <div class="col-md-12" hidden>
                                                         <input class="form-control @error('purpose') is-invalid @enderror" id="inputpurpose" type="text" placeholder="Enter purpose" name="purpose"  value="{{ old('purpose') }}">
                                                     </div>
-                                                    <select id="purpose" name="purpose" class="form-control" value="{{ old('purpose') }}" style="font-size: 16px;" >
+                                                    <select id="purpose" name="purpose" class="form-control" value="{{ old('purpose') }}" style="font-size: 16px;"  required>
                                                         <option value="" disabled selected hidden>Choose Purpose</option>
                                                         @foreach ($purposes as $purpose)
                                                             <option value="{{ $purpose->id }}" data-proof="{{ $purpose->proof_needed}}">{{ $purpose->purpose}}</option>
                                                         @endforeach
                                                     </select>
+                                                    <div class="invalid-feedback">
+                                                        Please choose purpose.
+                                                    </div>
                                                 </div>
                                                 <br>
                                                 <!-- Form Group (content)-->
@@ -101,8 +107,11 @@
                                                     <div style="font-size: 20px;">
                                                         <span style="color: red">*</span> <span>Proof needed: </span>(only JPG or PNG files are allowed)
                                                         <input id="proof" name="proof_needed" style="border: none; width:100%; padding-left: 2%;" value="" disabled><br><br>
-                                                        <input type="file" name = "file" class="form-control" style="font-size: 16px;" >
+                                                        <input type="file" name = "file" class="form-control" style="font-size: 16px;"  required>
                                                     </div>
+                                                    <div class="invalid-feedback">
+                                                        Please upload needed proof.
+                                                    </div>    
             										<div class ="form-group">
             											
             										</div>                                 
@@ -209,7 +218,7 @@
             $('.mobile_nav_items').toggleClass('active');
           });
 
-          deleteItem(e);
+          deleteItem(e);    
 
         });
 
@@ -273,4 +282,5 @@
 
             }
     </script>
+    <script src="{{ asset('assets/js/needs-validated.js') }}"></script>
 </main>

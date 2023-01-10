@@ -50,7 +50,7 @@
                             @endif
                         <div class="form-group">
                             <label for="LRN" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('LRN') }}</label>
-                                <input id="LRN" type="text" class="form-control @error('LRN') is-invalid @enderror" name="LRN" value="{{ old('LRN') }}" required autocomplete="LRN" autofocus>
+                                <input id="LRN" type="text" class="form-control @error('LRN') is-invalid @enderror" name="LRN" value="{{ old('LRN') }}" required autocomplete="LRN" autofocus onkeypress="return onlyNumberKey(event)" maxlength="12" minlength="12">
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -60,7 +60,7 @@
 
                             <div class="form-group">
                                 <label for="LRN" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('First Name') }}</label>
-                                <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" autofocus>
+                                <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" autofocus onkeydown="return alphaOnly(event);" maxlength="255">
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -70,7 +70,7 @@
 
                             <div class="form-group">
                                 <label for="middle_name" class="col-form-label text-md-end">{{ __('Middle name') }}</label>
-                                <input id="middle_name" type="text" class="form-control @error('middle_name') is-invalid @enderror" name="middle_name" value="{{ old('middle_name') }}" autocomplete="middle_name" autofocus>
+                                <input id="middle_name" type="text" class="form-control @error('middle_name') is-invalid @enderror" name="middle_name" value="{{ old('middle_name') }}" autocomplete="middle_name" autofocus onkeydown="return alphaOnly(event);" maxlength="255">
                                 @error('middle_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -80,7 +80,7 @@
 
                             <div class="form-group">
                                 <label for="last_name" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Last name') }}</label>
-                                <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" autofocus>
+                                <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" autofocus onkeydown="return alphaOnly(event);" maxlength="255">
                                 @error('last_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -90,7 +90,7 @@
 
                             <div class="form-group">
                                 <label for="suffix" class="col-form-label text-md-end"> {{ __('Suffix') }}</label>
-                                <input id="suffix" type="text" class="form-control @error('suffix') is-invalid @enderror" name="suffix" value="{{ old('suffix') }}" autocomplete="suffix" autofocus>
+                                <input id="suffix" type="text" class="form-control @error('suffix') is-invalid @enderror" name="suffix" value="{{ old('suffix') }}" autocomplete="suffix" autofocus onkeydown="return alphaOnly(event);" maxlength="255">
                                 @error('suffix')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -100,7 +100,7 @@
 
                             <div class="form-group">
                                 <label for="username" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Username') }}</label>
-                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus onkeydown="return alphaOnly(event);" maxlength="255">
                                 @error('username')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -110,7 +110,7 @@
 
                             <div class="form-group">
                                 <label for ="gender"><span style="color: red">*</span> Sex</label><br>
-                                <select name="gender" id="gender" class="form-control" value="{{ old('gender') }}" style="font-size: 14px;">
+                                <select name="gender" id="gender" class="form-control" value="{{ old('gender') }}" style="font-size: 14px;" required>
                                     <option value="" {{old('gender') == "" ?
                                     'selected' : ''}} disabled>  Please Select Sex </option>
                                     <option value="Male" {{old('gender') == "Male" ?
@@ -127,7 +127,7 @@
 
                             <div class="form-group">
                                 <label for="gradelevel_id" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Grade Level') }}</label><br>
-                                <select name="gradelevel_id" id="gradelevel_id" class="form-control" value="{{ old('gradelevel_id') }}" style="font-size: 14px;">
+                                <select name="gradelevel_id" id="gradelevel_id" class="form-control" value="{{ old('gradelevel_id') }}" style="font-size: 14px;" required>
                                     <option value="" {{old('gradelevel_id') == "" ?'selected' : ''}}  disabled> Please Select Grade Level </option>
                                     @foreach($level_data as $gradelevel_id)
                                         <option value="{{$gradelevel_id->id}}" >{{$gradelevel_id->gradelevel}}</option>
@@ -142,7 +142,7 @@
                                 
                             <div class="form-group">
                                 <label for="section_id" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Section') }}</label>
-                                <select name="section_id" id="section_id" class="form-control" value="{{ old('section_id') }}" style="font-size: 14px;">
+                                <select name="section_id" id="section_id" class="form-control" value="{{ old('section_id') }}" style="font-size: 14px;" required>
                                     <option value="" {{old('section_id') == "" ?'selected' : ''}} disabled> Please Select section </option>
                                     @foreach($section_data as $section_id)
                                         <option value="{{$section_id->id}}">{{$section_id->section}}</option>
@@ -157,7 +157,7 @@
 
                             <div class="form-group">
                                 <label for="course_id" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Strand Code') }}</label><br>
-                                <input id="course_id" type="password" class="form-control @error('course_id') is-invalid @enderror" name="course_id" value="{{ old('course_id') }}" required autocomplete="course_id" autofocus>
+                                <input id="course_id" type="password" class="form-control @error('course_id') is-invalid @enderror" name="course_id" value="{{ old('course_id') }}" required autocomplete="course_id" autofocus maxlength="255">
                                 @error('course_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -167,7 +167,7 @@
 
                             <div class="form-group">
                                 <label for="email" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Email Address') }}</label>
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" maxlength="255">
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -197,6 +197,6 @@
                         </form>
                 </div>
             </div>
-        
+            <script src="{{ asset('assets/js/needs-validated.js') }}"></script>
         <br/><br/>
         @include('partials.landingfooter')

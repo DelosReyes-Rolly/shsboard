@@ -52,7 +52,7 @@
             </div>
 
 
-            <form method="POST" action="{{ route('reminder.store') }}">
+            <form method="POST" action="{{ route('reminder.store') }}" class="needs-validation" novalidate>
                 @csrf
                 <div class="container-xl px-4 mt-4 right-to-left">
                     <!-- page navigation-->
@@ -92,11 +92,17 @@
                                             <div class="mb-3">
                                                 <label class="small mb-1" for="editor" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
                                                 <textarea class="form-control @error('content') is-invalid @enderror" id="editor" type="text" placeholder="Enter the information" name="content"  rows="10" cols="80" required>{{ old('content') }}</textarea>
+                                                <div class="invalid-feedback">
+                                                    Please input content.
+                                                </div>
                                             </div><br/>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <label class="small mb-1" for="inputexpired_at" style="font-size: 20px;"><span style="color: red">*</span> Expiry Date</label>
                                                     <input type="date" class="form-control @error('expired_at') is-invalid @enderror" id="inputexpired_at" placeholder="Enter the date" name="expired_at"  value="{{ old('expired_at') }}" required>
+                                                    <div class="invalid-feedback">
+                                                        Please input expiry date.
+                                                    </div>
                                                 </div>
                                             </div><br/>
                                             <!-- Save changes button-->
@@ -271,6 +277,6 @@
 
         }
     </script>
-
+<script src="{{ asset('assets/js/needs-validated.js') }}"></script>
 </main>
 <br><br><br><br>

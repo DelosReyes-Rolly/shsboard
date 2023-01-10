@@ -17,6 +17,7 @@
 	<script src="{{ asset('assets/js/datatables-rowreorder-1.2.8.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-responsive-2.3.0.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
+
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable( {
@@ -26,12 +27,11 @@
             new $.fn.dataTable.FixedHeader( table );
         } );
     </script>
-<div>
     <div class="container-xl px-4 mt-4">
         <h3 style="font-size: 28px; font-weight: 800;">Create Content on Homepage </h3>
         <hr class="mt-0 mb-4">
         <!-- form -->
-            <form method="POST" action="{{ route('homepage.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('homepage.store') }}" enctype="multipart/form-data" class="needs-validation" novalidate>
                 @csrf
                 <div class="container-xl px-4 mt-4">
                     <!-- page navigation-->
@@ -68,6 +68,9 @@
                                             <div class="col-md-6">
                                                 <label class="large mb-1" for="inputtitle" style="font-size: 20px;"><span style="color: red">*</span> Title</label>
                                                 <input class="form-control @error('title') is-invalid @enderror" id="inputtitle" type="text" placeholder="Enter the title" name="title"  value="{{ old('title') }}" required>
+                                                <div class="invalid-feedback">
+                                                    Please input subject.
+                                                </div>
                                             </div>
                                         </div><br/>
                                         <!-- Form Row -->
@@ -76,6 +79,9 @@
                                             <div class="mb-3" style="padding-left: 18px;">
                                                 <label class="large mb-1" for="editor" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
                                                 <textarea class="form-control @error('document_id') is-invalid @enderror" id="editor" type="text" placeholder="Enter the information" name="content" rows="10" cols="80" required>{{ old('content') }}</textarea>
+                                                <div class="invalid-feedback">
+                                                    Please input content.
+                                                </div>
                                             </div><br/>
                                             <div class="row gx-3 mb-3" style="padding-left: 22px;">
                                                 <!-- Form Group (img)-->
@@ -231,5 +237,6 @@
 
             }
     </script>
+    <script src="{{ asset('assets/js/needs-validated.js') }}"></script>
 </main>
 <br><br><br><br>

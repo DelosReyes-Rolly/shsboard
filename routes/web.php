@@ -169,7 +169,7 @@ Route::group(['middleware' => 'auth:students'], function () {
             |
             */
             Route::get('/students', 'home');
-            Route::get('/seeAnnouncement/{id}', 'seeAnnouncement');
+            Route::get('/seeAnnouncementStudent/{id}', 'seeAnnouncement');
             Route::get('/studentprofile', 'profile');
             Route::get('/studentrequest', 'documentrequest');
             Route::get('/viewrequest/{id}', 'viewrequest');

@@ -31,8 +31,6 @@
 	<script src="{{ asset('assets/js/datatables-rowreorder-1.2.8.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-responsive-2.3.0.js') }}"></script>
 	<script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
-
-    
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable( {
@@ -81,7 +79,7 @@
                 <!-- form -->
                 
                 <hr style="border: 1px solid grey;">
-                <form method="POST" action="{{ route('announcement.store') }}">
+                <form method="POST" action="{{ route('announcement.store') }}" class="needs-validation" novalidate>
                     @csrf
                     <div class="container-xl px-4 mt-4 right-to-left">
                         <!-- page navigation-->
@@ -121,18 +119,27 @@
                                                 <br>
                                                 <div class="col-md-6">
                                                     <label class="large mb-1" for="inputwhat" style="font-size: 20px;"><span style="color: red">*</span> Title</label>
-                                                    <input class="form-control @error('what') is-invalid @enderror" id="inputwhat" type="text" style="font-size: 16px;" placeholder="Enter the title" name="what"  value="{{ old('what') }}" required><br/><br/>
+                                                    <input class="form-control @error('what') is-invalid @enderror" id="inputwhat" type="text" style="font-size: 16px;" placeholder="Enter the title" name="what"  value="{{ old('what') }}" required>
+                                                    <div class="invalid-feedback">
+                                                        Please input title.
+                                                    </div>
                                                 </div>
                                                 <!-- Form Group whr-->
                                                 <div class="col-md-3">
                                                     <label class="large mb-1" for="inputwhn" style="font-size: 20px;"><span style="color: red">*</span> Date</label>
-                                                    <input type="date" class="form-control @error('whn') is-invalid @enderror" id="inputwhn" style="font-size: 16px;" placeholder="Enter the date" name="whn"  value="{{ old('whn') }}" required><br/><br/>
+                                                    <input type="date" class="form-control @error('whn') is-invalid @enderror" id="inputwhn" style="font-size: 16px;" placeholder="Enter the date" name="whn"  value="{{ old('whn') }}" required>
+                                                    <div class="invalid-feedback">
+                                                        Please input date.
+                                                    </div>
                                                 </div>
                                                 <!-- Form Group (content)-->
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="appt" style="font-size: 20px;"><span style="color: red">*</span> Time</label><br>
-                                                        <input type="time" id="whn_time" name="whn_time" value="{{ old('whn_time') }}" required><br/><br/>
+                                                        <input type="time" id="whn_time" class="form-control" name="whn_time" value="{{ old('whn_time') }}" required>
+                                                        <div class="invalid-feedback">
+                                                            Please input time.
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -146,7 +153,10 @@
                                                         @foreach ($subjects as $subject)
                                                             <option value="{{ $subject->subject->id }}">{{ $subject->subject->subjectname}}</option>
                                                         @endforeach
-                                                    </select><br/><br/>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please select subject.
+                                                    </div>
                                                 </div>
                                                 
                                                 <div class="col-lg-6 col-md-12 form-group">
@@ -156,7 +166,10 @@
                                                         @foreach ($courses as $course)
                                                             <option value="{{ $course->course->id }}">{{ $course->course->courseName}}</option>
                                                         @endforeach
-                                                    </select><br/><br/>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please select strand.
+                                                    </div>
                                                 </div>
                                                 
                                             </div>
@@ -169,7 +182,10 @@
                                                         @foreach ($sections as $section)
                                                             <option value="{{ $section->section->id }}">{{ $section->section->section}}</option>
                                                         @endforeach
-                                                    </select><br/><br/>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please select section.
+                                                    </div>
                                                 </div>
                                                 <div class="col-lg-4 col-md-12 form-group">
                                                     <label for="gradelevel_id" style="font-size: 20px;"><span style="color: red">*</span> Grade Level</label><br/>
@@ -178,18 +194,27 @@
                                                          @foreach ($gradelevels as $gradelevel)
                                                              <option value="{{ $gradelevel->gradelevel->id }}">{{ $gradelevel->gradelevel->gradelevel }}</option>
                                                         @endforeach
-                                                    </select><br/><br/>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please select grade level.
+                                                    </div>
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <label class="large mb-1" for="inputexpired_at" style="font-size: 20px;"><span style="color: red">*</span> Post Expiration</label>
-                                                    <input type="date" class="form-control @error('expired_at') is-invalid @enderror" id="inputexpired_at" style="font-size: 16px;" placeholder="Enter the date" name="expired_at"  value="{{ old('expired_at') }}" required><br/><br/>
-                                                </div><br/><br/>
+                                                    <input type="date" class="form-control @error('expired_at') is-invalid @enderror" id="inputexpired_at" style="font-size: 16px;" placeholder="Enter the date" name="expired_at"  value="{{ old('expired_at') }}" required>
+                                                    <div class="invalid-feedback">
+                                                        Please input expiry date.
+                                                    </div>
+                                                </div>
                                             </div>
                                                 <!-- Form Group (content)-->
                                                 <div class="mb-3 requestdocument">
                                                     <br>
                                                     <label class="large mb-1" for="inputcontent" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
                                                     <textarea class="form-control @error('content') is-invalid @enderror" id="editor" type="text" style="font-size: 16px;" placeholder="Enter your purpose" name="content" required>{{ old('content') }}</textarea>
+                                                    <div class="invalid-feedback">
+                                                        Please select content.
+                                                    </div>
                                                     <font face = "Verdana" size = "6"><input type="submit" class="btn btn-primary" value="Submit" style=" margin-right: 80px; font-size: 16px;"></font>
                                                 </div><br/>
                                                 <!-- Save changes button-->
@@ -260,16 +285,24 @@
                                                 </td>
                                                 <td>
                                                     <a class="btn btn-success btn-md" href="/viewfacultyannouncement/{{$announcement->id}}" data-toggle="modal" data-target="#modal-view-{{$announcement->id}}" style="font-size: 16px;"><i class="fas fa-eye"></i> View</a>
-                                                    <a class="btn btn-warning btn-md" href="/showfacultyannouncement/{{$announcement->id}}" style="font-size: 16px;"><i class="fas fa-edit"></i> Update</a>
+                                                    <a class="btn btn-warning btn-md" href="/showfacultyannouncement/{{$announcement->id}}" data-toggle="modal" data-target="#editModal{{ $announcement->id }}" style="font-size: 16px;"><i class="fas fa-edit"></i> Update</a>
                                                     <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $announcement->id }}" style="font-size: 16px;"><i class="fas fa-trash-alt"></i> Delete</button>
                                                 </td> 
                                             </tr>
+                                            <!-- modal view -->
                                             <div id="modal-view-{{ $announcement->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 												<div class="modal-dialog modal-lg" role="document">
 													<div class="modal-content border-start-lg border-start-yellow">
 													</div>
 												</div>
 											</div>
+                                            <!-- edit modal -->
+                                            <div id="editModal{{ $announcement->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg" role="document">
+                                                    <div class="modal-content border-start-lg border-start-yellow">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endforeach 
                                     </tbody>
                                 </table>
@@ -353,5 +386,5 @@
 
             }
         </script>
-
+<script src="{{ asset('assets/js/needs-validated.js') }}"></script>
 </main>

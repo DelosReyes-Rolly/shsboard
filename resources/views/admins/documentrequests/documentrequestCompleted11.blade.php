@@ -16,6 +16,7 @@
 	<script src="{{ asset('assets/js/datatables-jquery-1.12.1.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-rowreorder-1.2.8.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-responsive-2.3.0.js') }}"></script>
+	<script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
     <script>
         $(document).ready(function() {
             var table = $('#example1').DataTable( {
@@ -130,9 +131,16 @@
 																				</td>
 																				<td>
 																					<a class="btn btn-success btn-md" href="/viewfileDocument/{{$request->id}}"><i class="fas fa-eye"></i> View</a>
-																					<a class="btn btn-warning btn-md" href="/showrequestadmin/{{$request->id}}"><i class="fas fa-edit"></i> Update</a>
+																					<a class="btn btn-warning btn-md" href="/showrequestadmin/{{$request->id}}" data-toggle="modal" data-target="#editModal{{ $request->id }}"><i class="fas fa-edit"></i> Update</a>
 																				</td> 
 																			</tr>
+																			<!-- edit request -->
+																			<div id="editModal{{ $request->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+																				<div class="modal-dialog modal-lg" role="document">
+																					<div class="modal-content border-start-lg border-start-yellow">
+																					</div>
+																				</div>
+																			</div>
 																		@endif
 																	@endforeach 
 												           	</tbody>
