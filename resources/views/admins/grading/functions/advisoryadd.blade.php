@@ -1,10 +1,11 @@
+<script src="{{ asset('assets/js/needs-validated.js') }}"></script>
 <div class="modal-header">
     <h1 class="modal-title" id="staticBackdropLabel" style="font-size: 20px;">New advisory</h1>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" action="{{ route('advisory.store') }}">
+<form method="POST" action="{{ route('advisory.store') }}"class="needs-validation" novalidate>
     <div class="modal-body">
         @csrf
         <div class="mb-3" style="color: red">
@@ -19,6 +20,9 @@
                         <option value="{{ $faculty->id }}"}>{{ $faculty->last_name }}, {{ $faculty->first_name }} {{ $faculty->middle_name }}</option>
                         @endforeach 
                     </select>
+                    <div class="invalid-feedback">
+                        Please choose teacher.
+                    </div>
                 </div>
             </div>
             <div class="col-md-12">
@@ -29,6 +33,9 @@
                         <option value="{{ $gradelevel->id }}">{{ $gradelevel->gradelevel }}</option>
                         @endforeach
                     </select>
+                    <div class="invalid-feedback">
+                        Please choose grade level.
+                    </div>
                 </div>
             </div>
             <div class="col-md-12">
@@ -39,6 +46,9 @@
                         <option value="{{ $course->id }}">{{ $course->courseName}}</option>
                         @endforeach
                     </select>
+                    <div class="invalid-feedback">
+                        Please choose strand.
+                    </div>
                 </div>
             </div>
             <div class="col-md-12">
@@ -49,6 +59,9 @@
                         <option value="{{ $section->id }}">{{ $section->section}}</option>
                         @endforeach
                     </select>
+                    <div class="invalid-feedback">
+                        Please choose section.
+                    </div>
                 </div>
             </div>
         </div>

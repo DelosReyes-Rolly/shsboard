@@ -1,15 +1,19 @@
+<script src="{{ asset('assets/js/needs-validated.js') }}"></script>
 <div class="modal-header">
     <h1 class="modal-title" id="staticBackdropLabel" style="font-size: 20px;">Update Section</h1>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" action="/updatesection/{{$section->id}}">
+<form method="POST" action="/updatesection/{{$section->id}}"class="needs-validation" novalidate>
     <div class="modal-body">
         @csrf
         @method('put')
         <div class="col-md-12">
-            <input type="text" name="section" class="form-control @error('section') is-invalid @enderror" value="{{$section->section}}" style="font-size: 20px;" required>
+            <input type="text" name="section" class="form-control @error('section') is-invalid @enderror" value="{{$section->section}}" style="font-size: 20px;" onkeydown="return alphaOnly(event);" maxlength="1" minlength="1"  required>
+            <div class="invalid-feedback">
+                Please input valid section.
+            </div>
         </div>
     </div>
     <div class="modal-footer">

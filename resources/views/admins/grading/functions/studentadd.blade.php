@@ -21,31 +21,31 @@
             </div>
             <div class="col-md-12"><br/>
                 <label style="font-size: 20px;"><span style="color: red">*</span>  Last Name</label>
-                <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}"onkeydown="return alphaOnly(event);" style="font-size: 14px;" required>
+                <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}" onkeydown="return alphaOnly(event);" style="font-size: 14px;" required>
                 <div class="invalid-feedback">
                     Please input valid last name.
                 </div>
             </div>
             <div class="col-md-12"><br/>
                 <label style="font-size: 20px;"><span style="color: red">*</span>  First Name</label>
-                <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}" style="font-size: 14px;" required>
+                <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}" onkeydown="return alphaOnly(event);" style="font-size: 14px;" required>
                 <div class="invalid-feedback">
                     Please input valid first name.
                 </div>
             </div>
             <div class="col-md-12"><br/>
                 <label style="font-size: 20px;"> Middle Name</label>
-                <input type="text" name="middle_name" class="form-control @error('middle_name') is-invalid @enderror" value="{{ old('middle_name') }}" style="font-size: 14px;">
+                <input type="text" name="middle_name" class="form-control @error('middle_name') is-invalid @enderror" value="{{ old('middle_name') }}"  onkeydown="return alphaOnly(event);" style="font-size: 14px;">
                 <div class="invalid-feedback">
                     Please input valid middle name.
                 </div>
             </div>
             <div class="col-md-12"><br/>
                 <label style="font-size: 20px;">Suffix</label>
-                <input type="text" name="suffix" class="form-control @error('suffix') is-invalid @enderror" value="{{ old('suffix') }}" style="font-size: 14px;">
-            </div>
-            <div class="invalid-feedback">
-                Please input valid suffix.
+                <input type="text" name="suffix" class="form-control @error('suffix') is-invalid @enderror" value="{{ old('suffix') }}"  onkeydown="return alphaOnly(event);" style="font-size: 14px;">
+                <div class="invalid-feedback">
+                    Please input valid suffix.
+                </div>
             </div>
             <div class="col-md-12"><br/>
                 <label for ="gender"><span style="color: red">*</span>  Sex</label><br>
@@ -55,7 +55,7 @@
                     <option value="Female">Female</option>
                 </select>
                 <div class="invalid-feedback">
-                    Please a sex.
+                    Please choose sex.
                 </div>
             </div>
             <div class="col-md-12"><br/>
@@ -67,7 +67,7 @@
                     @endforeach
                 </select>
                 <div class="invalid-feedback">
-                    Please input a grade level.
+                    Please input grade level.
                 </div>
             </div>
             <div class="col-md-12"><br/>                              
@@ -79,7 +79,7 @@
                     @endforeach
                 </select>
                 <div class="invalid-feedback">
-                    Please input a section.
+                    Please input section.
                 </div>
             </div>
             <div class="col-md-12"><br/>
@@ -91,7 +91,7 @@
                     @endforeach
                 </select>
                 <div class="invalid-feedback">
-                    Please input a strand.
+                    Please input strand.
                 </div>
             </div>
             <div class="col-md-12"><br/>
@@ -108,15 +108,3 @@
         <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary btn-md" value="Submit"></font>
     </div>
 </form>
-
-<script>
-        function onlyNumberKey(evt) {
-              
-            // Only ASCII character in that range allowed
-            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
-            if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
-                return false;
-            return true;
-        }
-        function alphaOnly(event) { var key = event.keyCode; return ((key >= 65 && key <= 90) || key == 8 || key==32); } 
-    </script>

@@ -1,10 +1,11 @@
+<script src="{{ asset('assets/js/needs-validated.js') }}"></script>
 <div class="modal-header">
     <h1 class="modal-title" id="staticBackdropLabel" style="font-size: 20px;">New subject of teacher</h1>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" action="{{ route('subjectteacher.store') }}">
+<form method="POST" action="{{ route('subjectteacher.store') }}"class="needs-validation" novalidate>
     <div class="modal-body">
         @csrf
         <div class="mb-3" style="color: red">
@@ -19,6 +20,9 @@
                         <option value="{{ $faculty->id }}"  {{$faculty->faculty_id == $faculty->id  ? 'selected' : ''}}>{{ $faculty->last_name }}, {{ $faculty->first_name }} {{ $faculty->middle_name }}</option>
                         @endforeach 
                     </select>
+                    <div class="invalid-feedback">
+                        Please choose teacher.
+                    </div>
                 </div>
             </div>
             <div class="col-md-10">
@@ -29,6 +33,9 @@
                         <option value="{{ $gradelevel->id }}">{{ $gradelevel->gradelevel }}</option>
                         @endforeach
                     </select>
+                    <div class="invalid-feedback">
+                        Please choose grade level.
+                    </div>
                 </div>
             </div>
             <div class="col-md-10">
@@ -39,6 +46,9 @@
                         <option value="{{ $semester->id }}">{{ $semester->sem}}</option>
                         @endforeach
                     </select>
+                    <div class="invalid-feedback">
+                        Please choose semester.
+                    </div>
                 </div>
             </div>
             <div class="col-md-10">
@@ -49,6 +59,9 @@
                         <option value="{{ $course->id }}">{{ $course->courseName}}</option>
                         @endforeach
                     </select>
+                    <div class="invalid-feedback">
+                        Please choose strand.
+                    </div>
                 </div>
             </div>
             <div class="col-md-10">
@@ -59,6 +72,9 @@
                         <option value="{{ $section->id }}">{{ $section->section}}</option>
                         @endforeach
                     </select>
+                    <div class="invalid-feedback">
+                        Please choose section.
+                    </div>
                 </div>
             </div>
             <div class="col-md-10">
@@ -69,12 +85,18 @@
                         <option value="{{ $subject->id }}">{{ $subject->subjectname}}</option>
                         @endforeach
                     </select>
+                    <div class="invalid-feedback">
+                        Please choose subject.
+                    </div>
                 </div>
             </div>
             <div class="col-md-10">
                 <label for="appt" style="font-size: 20px;"><span style="color: red">*</span> Select a time:</label><br>
                 From: <input type="time" id="time_start" name="time_start" value="{{ old('time_start') }}" required>
                 To: <input type="time" id="time_end" name="time_end" value="{{ old('time_end') }}" required>
+                <div class="invalid-feedback">
+                    Please choose time.
+                </div>
             </div>
         </div>
     </div>

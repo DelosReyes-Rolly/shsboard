@@ -1,10 +1,11 @@
+<script src="{{ asset('assets/js/needs-validated.js') }}"></script>
 <div class="modal-header">
     <h1 class="modal-title" id="staticBackdropLabel" style="font-size: 20px;">Update Subject</h1>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" action="/updatesubject/{{$subject->id}}">
+<form method="POST" action="/updatesubject/{{$subject->id}}"class="needs-validation" novalidate>
     <div class="modal-body">
         @csrf
         @method('put')
@@ -15,14 +16,23 @@
             <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span> Subject Code</label>
                 <input type="text" name="subjectcode" class="form-control @error('subjectcode') is-invalid @enderror" value="{{$subject->subjectcode}}" style="font-size: 14px;" required>
+                <div class="invalid-feedback">
+                    Please input valid subject code.
+                </div>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span> Subject Name</label>
                 <input type="text" name="subjectname" class="form-control @error('subjectname') is-invalid @enderror" value="{{$subject->subjectname}}" style="font-size: 14px;" required>
+                <div class="invalid-feedback">
+                    Please input valid subject name.
+                </div>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span> Description</label>
                 <textarea type="text" name="description" id="editor" class="form-control @error('description') is-invalid @enderror" style="font-size: 14px;" required>{{$subject->description}}</textarea>
+                <div class="invalid-feedback">
+                    Please input valid description.
+                </div>
             </div>
         </div>
     </div>

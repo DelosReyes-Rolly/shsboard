@@ -1,10 +1,11 @@
+<script src="{{ asset('assets/js/needs-validated.js') }}"></script>
 <div class="modal-header">
     <h1 class="modal-title" id="staticBackdropLabel" style="font-size: 20px;">Update Schedule</h1>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" action="/updatesubjectteacher/{{$subjectteacher->id}}">
+<form method="POST" action="/updatesubjectteacher/{{$subjectteacher->id}}"class="needs-validation" novalidate>
     <div class="modal-body">
         @csrf
         @method('put')
@@ -20,6 +21,9 @@
                         <option value="{{ $faculty->id }}" {{($subjectteacher->faculty->id==$faculty->id)? 'selected':'' }}>{{ $faculty->last_name }}, {{ $faculty->first_name }} {{ $faculty->middle_name }} {{$subjectteacher -> faculty -> suffix}}</option>
                         @endforeach 
                     </select>
+                    <div class="invalid-feedback">
+                        Please choose teacher.
+                    </div>
                 </div>
             </div>
             <div class="col-md-10">
@@ -30,12 +34,18 @@
                         <option value="{{ $subject->id }}"{{($subjectteacher->subject->id==$subject->id)? 'selected':'' }}>{{ $subject->subjectname}}</option>
                         @endforeach
                     </select>
+                    <div class="invalid-feedback">
+                        Please choose subject.
+                    </div>
                 </div>
             </div>
             <div class="col-md-10">
                 <label for="appt" style="font-size: 20px;"><span style="color: red">*</span> Select a time:</label><br>
                 From: <input type="time" id="time_start" name="time_start" value={{$subjectteacher->time_start}} required>
                 To: <input type="time" id="time_end" name="time_end" value={{$subjectteacher->time_end}} required>
+                <div class="invalid-feedback">
+                    Please choose time.
+                </div>
             </div>
         </div>
     </div>

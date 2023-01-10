@@ -1,10 +1,11 @@
+<script src="{{ asset('assets/js/needs-validated.js') }}"></script>
 <div class="modal-header">
     <h1 class="modal-title" id="staticBackdropLabel" style="font-size: 20px;">Update Strand</h1>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" action="/updatecourse/{{$course->id}}">
+<form method="POST" action="/updatecourse/{{$course->id}}" class="needs-validation" novalidate>
     <div class="modal-body">
         @csrf
         @method('put')
@@ -14,21 +15,33 @@
         <div class="row">
             <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span> Strand Name</label>
-                <input type="text" name="courseName"  class="form-control @error('courseName') is-invalid @enderror" value="{{$course->courseName}}" style="font-size: 14px;"  required>
-            </div><br/><br/>
-            <div class="col-md-12">
+                <input type="text" name="courseName"  class="form-control @error('courseName') is-invalid @enderror" value="{{$course->courseName}}" onkeydown="return alphaOnly(event);" style="font-size: 14px;"  required>
+                <div class="invalid-feedback">
+                    Please input valid strand name.
+                </div>
+            </div>
+            <div class="col-md-12"><br/>
                 <label style="font-size: 20px;"><span style="color: red">*</span> Abbreviation</label>
-                <input type="text" name="abbreviation"  class="form-control @error('abbreviation') is-invalid @enderror" value="{{$course->abbreviation}}" style="font-size: 14px;" required>
-            </div><br/><br/>
-            <div class="col-md-12">
+                <input type="text" name="abbreviation"  class="form-control @error('abbreviation') is-invalid @enderror" value="{{$course->abbreviation}}" onkeydown="return alphaOnly(event);" style="font-size: 14px;" required>
+                <div class="invalid-feedback">
+                    Please input valid abbreviation.
+                </div>
+            </div>
+            <div class="col-md-12"><br/>
                 <label style="font-size: 20px;"><span style="color: red">*</span> Strand Description</label>
                 <textarea name="description" type=text id="editor"  class="form-control @error('description') is-invalid @enderror">{!!$course->description!!}</textarea style="font-size: 14px;" required>
-            </div><br/><br/>
-            <div class="col-md-12">
+                <div class="invalid-feedback">
+                    Please input valid description.
+                </div>
+            </div>
+            <div class="col-md-12"><br/>
                 <label style="font-size: 20px;"><span style="color: red">*</span> Code</label>
                 <input type="text" name="code"  class="form-control @error('code') is-invalid @enderror" value="{{$course->code}}"style="font-size: 14px;" required>
-            </div><br/><br/>
-            <div class="col-md-12">
+                <div class="invalid-feedback">
+                    Please input valid strand code.
+                </div>
+            </div>
+            <div class="col-md-12"><br/>
                 <label style="font-size: 20px;">Video Link (Copy embed link on youtube and paste it here) </label>
                 <input type="text" name="link"  class="form-control @error('link') is-invalid @enderror" value="{{$course->link}}" style="font-size: 14px;">
             </div>

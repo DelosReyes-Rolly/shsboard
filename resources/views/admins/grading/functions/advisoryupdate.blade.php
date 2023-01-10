@@ -1,10 +1,11 @@
+<script src="{{ asset('assets/js/needs-validated.js') }}"></script>
 <div class="modal-header">
     <h1 class="modal-title" id="staticBackdropLabel" style="font-size: 20px;">Update Class</h1>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" action="/updateadvisory/{{$advisory->id}}">
+<form method="POST" action="/updateadvisory/{{$advisory->id}}"class="needs-validation" novalidate>
     <div class="modal-body">
         @csrf
         @method('put')
@@ -23,6 +24,9 @@
                         <option value="{{ $faculty->id }}" {{($advisory->faculty->id==$faculty->id)? 'selected':'' }}>{{ $faculty->last_name }}, {{ $faculty->first_name }} {{ $faculty->middle_name }} {{$advisory -> faculty -> suffix}}</option>
                         @endforeach 
                     </select>
+                    <div class="invalid-feedback">
+                        Please choose teacher.
+                    </div>
                 </div>
             </div>
         </div>
