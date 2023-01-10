@@ -1,5 +1,6 @@
 @include('partials.adminheader')
 <main>
+<script src="{{ asset('assets/js/needs-validated.js') }}"></script>
         <div class="box-form">
             <div class="left fade-in-text">
                 <div class="overlay">
@@ -26,7 +27,7 @@
 						</ul>
 					</div>
 			    @endif
-                <form action="/reset-password-admin" method="POST">
+                <form action="/reset-password-admin" method="POST" class="needs-validation" novalidate>
 					@csrf
                     <input type="hidden" name="action" value="update" class="form-control"/>
                     @if (session('alert'))
@@ -36,11 +37,17 @@
                     @endif  
                     <div class="form-group animate pop">
                         <label><strong>Enter New Password:</strong></label>                                
-                        <input type="password"  name="new_password" class="form-control"/>
+                        <input type="password"  name="new_password" class="form-control" required minlength="6"/>
+                        <div class="invalid-feedback">
+                            Please input valid password.
+                        </div>
                     </div>
                     <div class="form-group animate pop delay-1">
                         <label><strong>Confirm Password:</strong></label>                             
-                        <input type="password"  name="confirm_password" class="form-control"/>
+                        <input type="password"  name="confirm_password" class="form-control" required minlength="6"/>
+                        <div class="invalid-feedback">
+                            Please input valid password.
+                        </div>
                     </div>
                         <center><font face = "Bedrock" size = "3" ><input type="submit" id="reset" value="Reset Password" class="btn btn-primary" style="padding-left:40px; padding-right:40px;"></center></font>
                     </div>
