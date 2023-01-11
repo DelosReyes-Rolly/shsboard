@@ -75,7 +75,7 @@
 	                                <div class="card-body">
 										<br>
 	                                    <div style="padding: 0px 40px 10px 40px">
-						                     <div style="font-size: 40px;" ><i class="fas fa-file-alt"></i>  {{ $requests->count() }} </div>
+						                     <div style="font-size: 40px;" ><i class="fas fa-file-alt"></i>  <span id="reload">{{ $requests->count() }}</span> </div>
 	                                    </div>
 	                                </div>
 	                            </div>
@@ -643,6 +643,7 @@
                                         'A document has been deleted successfully.',
                                         "success"
                                     );
+									$("#reload").load(location.href + " #reload");
                                     $("#document"+id+"").remove();
                                 }
 

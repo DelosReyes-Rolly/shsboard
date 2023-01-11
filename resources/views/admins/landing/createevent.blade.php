@@ -36,7 +36,7 @@
                         <div class="card h-100 border-start-lg border-start-secondary" style="background-color: red; color: white; box-shadow: 0 4px 16px rgba(0,0,0,0.6);" >
                             <div class="card-body">
                                 <div class="card-header" style="font-size: 20px; font-weight: 800;">Expired Events</div>
-                                <div class="h3" style="padding: 40px 40px 10px 40px"><i class="fas fa-calendar-times"></i> {{ $events->where('status', '=', 2)->count() }}</div>
+                                <div class="h3" style="padding: 40px 40px 10px 40px"><i class="fas fa-calendar-times"></i> <span id="reload">{{ $events->where('status', '=', 2)->count() }}</span></div>
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                     <div class="card h-100 border-start-lg border-start-success" style="background-color: green; color: white; box-shadow: 0 4px 16px rgba(0,0,0,0.6);">
                         <div class="card-body">
                             <div class="card-header" style="font-size: 20px; font-weight: 800;">Active Events</div>
-                            <div class="h3 d-flex align-items-center" style="padding: 40px 40px 10px 40px"><i class="fas fa-bullhorn"></i> {{ $events->where('status', '=', 1)->count() }}</div>
+                            <div class="h3 d-flex align-items-center" style="padding: 40px 40px 10px 40px"><i class="fas fa-bullhorn"></i> <span id="reload2">{{ $events->where('status', '=', 1)->count() }}</span></div>
                         </div>
                     </div>
                 </div>
@@ -318,6 +318,8 @@
                                     'An event has been deleted successfully.',
                                     "success"
                                 );
+                                $("#reload").load(location.href + " #reload");
+                                $("#reload2").load(location.href + " #reload2");
                                 $("#event"+id+"").remove();
                             }
 

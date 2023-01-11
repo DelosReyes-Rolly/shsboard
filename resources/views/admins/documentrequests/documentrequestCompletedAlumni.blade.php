@@ -32,6 +32,7 @@
 
 	
 	<section>
+	<div style="font-size: 20px;"><a href="/documentrequest"> Document Requests</a>&emsp;<i class="fas fa-angle-right"></i>&emsp; completed requests</div><br/>
 		<div>
 			<div>
 		        <!-- boxes -->

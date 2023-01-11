@@ -17,6 +17,7 @@
 	<script src="{{ asset('assets/js/datatables-rowreorder-1.2.8.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-responsive-2.3.0.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
+    <script src="https://cdn.datatables.net/fixedheader/3.1.7/js/dataTables.fixedHeader.min.js"></script>
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable( {
@@ -37,7 +38,7 @@
         <hr class="mt-0 mb-4">
         <div class="card mb-4 left-to-right border-start-lg border-start-success" style="padding: 10px 40px 10px 40px;">
             <div class="card-header" style="background-color: #ffffff;">
-                <a href="{{route('section.add')}}" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#createModal"><i class="fas fa-user-plus"></i> Add Record</a>
+                <a id="addSection" href="{{route('section.add')}}" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#createModal"><i class="fas fa-user-plus"></i> Add Record</a>
             </div>
             <div class="card-body p-0">
                 @if($sections->count() == 0)
@@ -105,7 +106,6 @@
       });
 
       deleteItem(e);
-
     });
 
     //delete

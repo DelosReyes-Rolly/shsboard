@@ -868,7 +868,8 @@ class AdminsController extends Controller
         $section = new sections();
         $section->section = $request->get('section');
         $section->save();
-        return redirect('/gradingsections')->with('success', 'Section has been added successfully!');
+        return response()->json(array('success' => true));
+        // return redirect('/gradingsections')->with('success', 'Section has been added successfully!');
     }    
 
     public function viewsection($id){
@@ -882,13 +883,15 @@ class AdminsController extends Controller
         return view('admins.grading.functions.sectionupdate', ['section' => $data]);
     }
 
-    public function updatesection(Request $request, Sections $section){
-        $validated = $request->validate([
+    public function updatesection(Request $request){
+        $request->validate([
             'section' => 'required',
         ]);
-       $section->update($validated);
-       return redirect('/gradingsections')->with('success', 'Section has been updated successfully!');
-   }
+        $section = Sections::find($request->id);
+        $section->section = $request->section;
+        $section->save();
+        return response()->json($section);
+   }    
 
    public function deletegradesection(Sections $section, Request $request, $id){
         // $validated = $request->validate([
