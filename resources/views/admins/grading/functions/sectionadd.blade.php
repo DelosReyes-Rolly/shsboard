@@ -5,7 +5,7 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" action="{{ route('section.store') }}"class="needs-validation" novalidate>
+<form method="POST" id="createSection" class="needs-validation" novalidate>
     <div class="modal-body">
         @csrf
         <div class="mb-3" style="color: red">
@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span> Section Name</label>
-                <input type="text" name="section"  class="form-control @error('section') is-invalid @enderror" value="{{ old('section') }}" style="font-size: 14px;"onkeydown="return alphaOnly(event);" maxlength="1" minlength="1"  required>
+                <input id="section" type="text" name="section"  class="form-control @error('section') is-invalid @enderror" value="{{ old('section') }}" style="font-size: 14px;"onkeydown="return alphaOnly(event);" maxlength="1" minlength="1"  required>
                 <div class="invalid-feedback">
                     Please input valid section.
                 </div>
@@ -25,3 +25,40 @@
         <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary btn-md" value="Submit"></font>
     </div>
 </form>
+<script>
+    $("#createSection").submit(function(e) {
+            e.preventDefault();
+
+            var section = $("#section").val();
+            var _token = $("input[name=_token]").val();
+
+            $.ajax({
+                type: "POST",
+                url: "{{ route('section.store') }}",
+                data: {
+                    section: section,
+                    _token: _token
+                },
+                success: function(response) {
+                    if (response) {
+                        $("#createModal").removeClass("in");
+                        $(".modal-backdrop").remove();
+                        $('body').removeClass('modal-open');
+                        $('body').css('padding-right', '');
+                        $("#createModal").hide();
+                        $("#createSection")[0].reset();
+                        $('#example').load(document.URL +  ' #example');
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success.',
+                            text: 'Section has been added successfully',
+                        })
+                    }
+                }
+            });
+            $("#saveBtn").click(function() {
+                $("#example").load("#example");
+            });
+
+        });
+</script>
