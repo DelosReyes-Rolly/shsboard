@@ -5,7 +5,7 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" action="{{ route('subjectteacher.store') }}"class="needs-validation" novalidate>
+<form method="POST" id="createSubjectteacher" class="needs-validation" novalidate>
     <div class="modal-body">
         @csrf
         <div class="mb-3" style="color: red">
@@ -14,7 +14,7 @@
         <div class="row">       
             <div class="col-md-10">
                 <div class="col-md-12"><label for="faculty_id" style="font-size: 20px;"><span style="color: red">*</span> Teacher</label>
-                    <select id="faculty_id" name="faculty_id" class="form-control" value="{{ old('faculty_id') }}" style="font-size: 14px;" required>
+                    <select id="faculty" name="faculty_id" class="form-control" value="{{ old('faculty_id') }}" style="font-size: 14px;" required>
                         <option value="" disabled selected hidden>Choose Teacher</option>
                         @foreach ($faculties as $faculty)
                         <option value="{{ $faculty->id }}"  {{$faculty->faculty_id == $faculty->id  ? 'selected' : ''}}>{{ $faculty->last_name }}, {{ $faculty->first_name }} {{ $faculty->middle_name }}</option>
@@ -27,7 +27,7 @@
             </div>
             <div class="col-md-10">
                 <div class="col-md-12"><label for="gradelevel_id" style="font-size: 20px;"><span style="color: red">*</span> Grade Level</label>
-                    <select id="gradelevel_id" name="gradelevel_id" class="form-control" value="{{ old('gradelevel_id') }}" style="font-size: 14px;" required>
+                    <select id="gradelevel" name="gradelevel_id" class="form-control" value="{{ old('gradelevel_id') }}" style="font-size: 14px;" required>
                         <option value="" disabled selected hidden>Choose Gradelevel</option>
                         @foreach ($gradelevels as $gradelevel)
                         <option value="{{ $gradelevel->id }}">{{ $gradelevel->gradelevel }}</option>
@@ -40,7 +40,7 @@
             </div>
             <div class="col-md-10">
                 <div class="col-md-12"><label for="semester_id" style="font-size: 20px;"><span style="color: red">*</span> Semester</label>
-                    <select id="semester_id" name="semester_id" class="form-control" value="{{ old('semester_id') }}" style="font-size: 14px;" required>
+                    <select id="semester" name="semester_id" class="form-control" value="{{ old('semester_id') }}" style="font-size: 14px;" required>
                         <option value="" disabled selected hidden>Choose Semester</option>
                         @foreach ($semesters as $semester)
                         <option value="{{ $semester->id }}">{{ $semester->sem}}</option>
@@ -53,7 +53,7 @@
             </div>
             <div class="col-md-10">
                 <div class="col-md-12"><label for="course_id" style="font-size: 20px;"><span style="color: red">*</span> Strand</label>
-                    <select id="course_id" name="course_id" class="form-control" value="{{ old('course_id') }}" style="font-size: 14px;" required>
+                    <select id="course" name="course_id" class="form-control" value="{{ old('course_id') }}" style="font-size: 14px;" required>
                         <option value="" disabled selected hidden>Choose Course</option>
                         @foreach ($courses as $course)
                         <option value="{{ $course->id }}">{{ $course->courseName}}</option>
@@ -66,7 +66,7 @@
             </div>
             <div class="col-md-10">
                 <div class="col-md-12"><label for="section_id" style="font-size: 20px;"><span style="color: red">*</span> Section</label>
-                    <select id="section_id" name="section_id" class="form-control" value="{{ old('section_id') }}" style="font-size: 14px;" required>
+                    <select id="section" name="section_id" class="form-control" value="{{ old('section_id') }}" style="font-size: 14px;" required>
                         <option value="" disabled selected hidden>Choose Section</option>
                         @foreach ($sections as $section)
                         <option value="{{ $section->id }}">{{ $section->section}}</option>
@@ -79,7 +79,7 @@
             </div>
             <div class="col-md-10">
                 <div class="col-md-12"><label for="subject_id" style="font-size: 20px;"><span style="color: red">*</span> Subject</label>
-                    <select id="subject_id" name="subject_id" class="form-control" value="{{ old('subject_id') }}" style="font-size: 14px;" required>
+                    <select id="subject" name="subject_id" class="form-control" value="{{ old('subject_id') }}" style="font-size: 14px;" required>
                         <option value="" disabled selected hidden>Choose Subject</option>
                         @foreach ($subjects as $subject)
                         <option value="{{ $subject->id }}">{{ $subject->subjectname}}</option>
@@ -105,3 +105,56 @@
         <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary btn-md" value="Submit"></font>
     </div>
 </form>
+<script>
+    $("#createSubjectteacher").submit(function(e) {
+            e.preventDefault();
+
+            var faculty = $("#faculty").val();
+            var gradelevel = $("#gradelevel").val();
+            var semester = $("#semester").val();
+            var course = $("#course").val();
+            var section = $("#section").val();
+            var subject = $("#subject").val();
+            var time_start = $("#time_start").val();
+            var time_end = $("#time_end").val();
+            var _token = $("input[name=_token]").val();
+
+            $.ajax({
+                type: "POST",
+                url: "{{ route('subjectteacher.store') }}",
+                data: {
+                    faculty_id: faculty,
+                    gradelevel_id: gradelevel,
+                    semester_id: semester,
+                    course_id: course,
+                    section_id: section,
+                    subject_id: subject,
+                    time_start: time_start,
+                    time_end: time_end,
+                    _token: _token
+                },
+                success: function(response) {
+                    if (response) {
+                        $("#createModal").removeClass("in");
+                        $(".modal-backdrop").remove();
+                        $('body').removeClass('modal-open');
+                        $('body').css('padding-right', '');
+                        $("#createModal").hide();
+                        $("#createSubjectteacher")[0].reset();
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success.',
+                            text: 'Subject of teacher has been added successfully',
+                        }).then(function() {
+                            location.reload(true);
+                        })
+                        
+                    }
+                }
+            });
+            $("#saveBtn").click(function() {
+                $("#example").load("#example");
+            });
+
+        });
+</script>

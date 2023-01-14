@@ -4,12 +4,12 @@
 <div class="announcement_body">
 	<div class="announcement_text top-to-bottom">Announcements</div>
 </div>
-<section id="about" class="about fade-in-text">
+<section id="about" class="about">
 <div class=""> <!-- container  -->
 				<div id="main-content" class="blog-page">
 				    <div class="">
 				        <div class="row clearfix">
-				            <div class="col-lg-9 col-md-12 left-box fade-in-text">
+				            <div class="col-lg-9 col-md-12 left-box">
                                     @if($announcement == NULL)
                                         <div class="alert alert-danger"><em>No announcements for now.</em></div>
                                     @else 

@@ -176,13 +176,16 @@ class AdminsController extends Controller
         return view('admins.landing.landingupdate', ['landing' => $data]);
     }
 
-    public function updatelanding(Request $request, Landings $landing){
-        $validated = $request->validate([
+    public function updatelanding(Request $request){
+        $request->validate([
             'title' => ['required'],
             'content' => ['required'],
         ]);
-       $landing->update($validated);
-       return redirect('/homepage')->with('success', 'Landing content has been updated.');
+        $landing = Landings::find($request->id);
+        $landing->title = $request->title;
+        $landing->content = $request->content;
+        $landing->save();
+        return response()->json($landing);
    }
 
      public function deletelanding(Landings $landing, Request $request, $id){
@@ -330,21 +333,30 @@ class AdminsController extends Controller
         return view('admins.landing.announcementupdate', ['announcement' => $data]);
     }
 
-     public function updateannouncement(Request $request, Announcements $announcement){
-        $validated = $request->validate([
+     public function updateannouncement(Request $request){
+        $request->validate([
             'what' => 'required|max:255',
             'who' => 'required|max:255',
-            'whn' => ['required'],
+            'whn' => ['required'],  
             'whn_time' => ['required'],
             'whr' => 'required|max:255',
             'sender' => 'required|max:255',
             'content' => 'required',
             'expired_at' => ['required'],
         ]);
-       $announcement->update($validated);
-       Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<=',  now())->update(['status' => '2']);
-       Announcements::where('deleted', '=', NULL)->where('status', '=', 2)->where('expired_at', '>',  now())->update(['status' => '1']);
-       return redirect('/createAnnoucement')->with('success', 'Announcement has been updated.');;
+        $announcement = Announcements::find($request->id);
+        $announcement->what = $request->what;
+        $announcement->who = $request->who;
+        $announcement->whn = $request->whn;
+        $announcement->whn_time = $request->whn_time;
+        $announcement->whr = $request->whr;
+        $announcement->sender = $request->sender;
+        $announcement->content = $request->content;
+        $announcement->expired_at = $request->expired_at;
+        $announcement->save();
+        Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<=',  now())->update(['status' => '2']);
+        Announcements::where('deleted', '=', NULL)->where('status', '=', 2)->where('expired_at', '>',  now())->update(['status' => '1']);
+        return response()->json($announcement);
    }
 
      public function deleteannouncement(Announcements $announcement, Request $request, $id){
@@ -460,7 +472,7 @@ class AdminsController extends Controller
        $event->update($validated);
        Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<',  now())->update(['status' => '2']);
        Announcements::where('deleted', '=', NULL)->where('status', '=', 2)->where('expired_at', '>',  now())->update(['status' => '1']);
-       return redirect('/createEvents')->with('success', 'Event has been updated.');
+       return response()->json($event);
    }
 
     // ================================================================= REMINDERS ===================================================
@@ -536,7 +548,7 @@ class AdminsController extends Controller
        $reminder->update($validated);
        Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<=',  now())->update(['status' => '2']);
        Announcements::where('deleted', '=', NULL)->where('status', '=', 2)->where('expired_at', '>',  now())->update(['status' => '1']);
-       return redirect('/createReminder')->with('success', 'Reminder has been updated.');
+       return response()->json($reminder);
    }
 
     
@@ -614,12 +626,14 @@ class AdminsController extends Controller
         return view('admins.documentrequests.documentupdate', ['document' => $data]);
     }
 
-    public function updatedocument(Request $request, Documents $document){
+    public function updatedocument(Request $request){
         $validated = $request->validate([
             'name' => 'required|max:255',
         ]);
-       $document->update($validated);
-       return redirect('/documentrequest')->with('success', 'Document has been updated.');
+        $document = Documents::find($request->id);
+        $document->name = $request->name;
+        $document->save();
+       return response()->json($document);
    }
 
      public function deletegradedocument(Documents $document, Request $request, $id){
@@ -693,7 +707,6 @@ class AdminsController extends Controller
         $document->purpose = $request->get('purpose');
         $document->proof_needed = $request->get('proof_needed');
         $document->save();
-        return redirect('/documentrequest')->with('success', 'New purpose was added successfully');
     }
 
       public function viewpurpose($id){
@@ -712,7 +725,7 @@ class AdminsController extends Controller
             'proof_needed' => 'required|max:255',
         ]);
        $purpose->update($validated);
-       return redirect('/documentrequest')->with('success', 'Purpose has been updated.');
+       return response()->json($purpose);
    }
 
 
@@ -795,7 +808,7 @@ class AdminsController extends Controller
             $course->image = $filename;
         }
         $course->save();
-        return redirect('/gradingcourses')->with('success', 'New strand has been added successfully!');
+        return response()->json(array('success' => true));   
     }    
 
     
@@ -810,17 +823,25 @@ class AdminsController extends Controller
         return view('admins.grading.functions.courseupdate', ['course' => $data]);
     }
 
-    public function updatecourse(Request $request, Courses $course){
-        $validated = $request->validate([
+    public function updatecourse(Request $request){
+        $request->validate([
             'courseName' => 'required|max:255',
             'abbreviation' => 'required|max:255',
             'description' => 'required',
             'code' => 'required|max:255',
             'link' => 'url|nullable',
         ]);
-       $course->update($validated);
-       return redirect('/gradingcourses')->with('success', 'Strand has been updated successfully!');
+        $course = Courses::find($request->id);
+        $course->courseName = $request->courseName;
+        $course->abbreviation = $request->abbreviation;
+        $course->description = $request->description;
+        $course->code = $request->code;
+        $course->link = $request->link;
+        $course->save();
+        return response()->json($course);
+
    }
+
 
      public function deletegradecourse(Courses $course, Request $request, $id){
         // $validated = $request->validate([
@@ -968,7 +989,7 @@ class AdminsController extends Controller
 
             $user->faculty()->create($validated);
             Mail::to($validated['email'])->send(new RegisterMail($pass));
-            return redirect('/gradingfaculty')->with('success', 'Teacher has been added successfully!');
+            return response()->json(array('success' => true));   
         }
         else{
             return redirect()->back()->with('message', 'Teacher have a duplicate name!')->withInput();
@@ -989,17 +1010,22 @@ class AdminsController extends Controller
         return view('admins.grading.functions.facultyupdate', ['faculty' => $data]);
     }
 
-    public function updatefaculty(Request $request, Faculties $faculty){
-        $ownid=$faculty->id;
-        $validated = $request->validate([
+    public function updatefaculty(Request $request){
+        $request->validate([
             'first_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
             'middle_name' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
             'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
             'suffix' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
-            "email" => 'required|email:rfc,dns|email|unique:faculties,email,' . $ownid,
+            "email" => 'required|email:rfc,dns|email|unique:faculties,email,' . $request->id,
         ]);
-        $faculty->update($validated);
-        return redirect('/gradingfaculty')->with('success', 'Information of teacher has been updated successfully!');
+        $faculty = Faculties::find($request->id); 
+        $faculty->last_name = $request->last_name;
+        $faculty->first_name = $request->first_name;
+        $faculty->middle_name = $request->middle_name;
+        $faculty->suffix = $request->suffix;
+        $faculty->email = $request->email;
+        $faculty->save();
+        return response()->json($faculty);
     }
 
     public function deletegradefaculty(Faculties $faculty, Request $request, $id){
@@ -1127,7 +1153,7 @@ class AdminsController extends Controller
                 }
             
             Mail::to($validated['email'])->send(new RegisterMail($pass));
-            return redirect('/gradingstudents')->with('success', 'Student has been added successfully!');
+            return response()->json(array('success' => true));  
         }
         else{
             return redirect()->back()->with('message', 'Student have a duplicate name!')->withInput();
@@ -1149,21 +1175,31 @@ class AdminsController extends Controller
         return view('admins.grading.functions.studentupdate', compact('student', 'courses', 'gradelevels', 'sections'));
     }
 
-    public function updatestudent(Request $request, Students $student){
-        $ownid=$student->id;
+    public function updatestudent(Request $request){
         $validated = $request->validate([
-            'LRN' => 'required|min:12|max:12|unique:students,LRN,' . $ownid,
+            'LRN' => 'required|min:12|max:12|unique:students,LRN,' . $request->LRN,
             'first_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
             'middle_name' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
             'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
             'suffix' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
-            "email" => 'required|email:rfc,dns|email|unique:students,email,' . $ownid,
+            "email" => 'required|email:rfc,dns|email|unique:students,email,' . $request->id,
             'section_id' => 'required',
             'course_id' => 'required',
             'gradelevel_id' => 'required',
         ]);
-        $student->update($validated);
-        return redirect('/gradingstudents')->with('success', 'Student has been updated successfully!');
+        $student = Students::find($request->id);
+        $student->LRN = $request->LRN;
+        $student->first_name = $request->first_name;
+        $student->middle_name = $request->middle_name;
+        $student->last_name = $request->last_name;
+        $student->suffix = $request->suffix;
+        $student->email = $request->email;
+        $student->section_id = $request->section_id;
+        $student->course_id = $request->course_id;
+        $student->gradelevel_id = $request->gradelevel_id;
+        $student->save();
+        return response()->json($student);
+        
     }
 
 
@@ -1300,7 +1336,7 @@ class AdminsController extends Controller
         $subject->subjectname = $request->get('subjectname');
         $subject->description = $request->get('description');
         $subject->save();
-        return redirect('/gradingsubjects')->with('success', 'Subject has been added successfully!');
+        return response()->json(array('success' => true));   
     }  
 
     public function viewsubject($id){
@@ -1314,14 +1350,18 @@ class AdminsController extends Controller
         return view('admins.grading.functions.subjectupdate', ['subject' => $data]);
     }
 
-    public function updatesubject(Request $request, Subjects $subject){
-        $validated = $request->validate([
+    public function updatesubject(Request $request){
+        $request->validate([
             'subjectcode' => 'required|max:255',
             'subjectname' => 'required|max:255',
             'description' => 'required',
         ]);
-        $subject->update($validated);
-        return redirect('/gradingsubjects')->with('success', 'Subject has been updated successfully!');
+        $subject = Subjects::find($request->id);
+        $subject->subjectcode = $request->get('subjectcode');
+        $subject->subjectname = $request->get('subjectname');
+        $subject->description = $request->get('description');
+        $subject->save();
+        return response()->json($subject);
     }
 
 
@@ -1400,15 +1440,17 @@ class AdminsController extends Controller
             $newAdvisories->save();
         }
 
-        return redirect('/gradingschoolyear')->with('success', 'Schoolyear has been added successfully!');
+        return response()->json(array('success' => true));
     } 
 
-    public function updateschoolyear(Request $request, SchoolYear $schoolyear){
-        $validated = $request->validate([
+    public function updateschoolyear(Request $request){
+        $request->validate([
             'schoolyear' => 'required',
         ]);
-        $schoolyear->update($validated);
-        return redirect('/gradingschoolyear')->with('success', 'Schoolyear has been updated successfully!');
+        $schoolyear = SchoolYear::find($request->id);
+        $schoolyear->schoolyear = $request->schoolyear;
+        $schoolyear->save();
+        return response()->json($schoolyear);
     }
 
      public function deletegradeschoolyear(SchoolYear $schoolyear, Request $request, $id){
@@ -1546,7 +1588,7 @@ class AdminsController extends Controller
                 }
             }  
     
-            return redirect('/gradingfacultysubjects')->with('success', 'New subject of teacher was added successfully!');
+            return response()->json(array('success' => true));  
         }
         else{
             return redirect()->back()->with('warning', 'Kindly set advisory teacher first for this class.')->withInput();
@@ -1588,7 +1630,12 @@ class AdminsController extends Controller
             'time_start' => ['required'],
             'time_end' => ['required'],
         ]);
-        $subjectteacher->update($validated);
+        $subjectteacher = SubjectTeachers::find($request->id);
+        $subjectteacher->faculty_id = $request->faculty_id;
+        $subjectteacher->subject_id = $request->subject_id;
+        $subjectteacher->time_start = $request->time_start;
+        $subjectteacher->time_end = $request->time_end;
+        $subjectteacher->save();
 
         $studentgrades = StudentGrade::where('subjectteacher_id', '=', $subjectteacher->id)->get();
         foreach($studentgrades as $studentgrade){
@@ -1599,7 +1646,7 @@ class AdminsController extends Controller
             $studentgrade->save();
         }
 
-        return redirect('/gradingfacultysubjects')->with('success', 'Subject of teacher has been updated successfully!');
+        return response()->json($subjectteacher); 
     }
 
      public function deletegradesubjectteacher(SubjectTeachers $subjectteacher, Request $request, $id){
@@ -1662,7 +1709,7 @@ class AdminsController extends Controller
         $gradelevel = new GradeLevels();
         $gradelevel->gradelevel = $request->get('gradelevel');
         $gradelevel->save();
-        return redirect('/gradinggradelevels')->with('success', 'Gradelevel has been added successfully!');
+        return response()->json(array('success' => true));   
     }    
 
 
@@ -1672,11 +1719,13 @@ class AdminsController extends Controller
     }
 
     public function updategradelevel(Request $request, GradeLevels $gradelevel){
-        $validated = $request->validate([
+        $request->validate([
             'gradelevel' => 'required',
         ]);
-       $gradelevel->update($validated);
-       return redirect('/gradinggradelevels')->with('success', 'Gradelevel has been updated successfully!');
+        $gradelevel = GradeLevels::find($request->id);
+        $gradelevel->gradelevel = $request->gradelevel;
+        $gradelevel->save();
+        return response()->json($gradelevel);
    }
 
     public function deletegradegradelevel(GradeLevels $gradelevel, Request $request, $id){
@@ -1743,7 +1792,7 @@ class AdminsController extends Controller
             $advisory->course_id = $request->get('course_id');
             $advisory->section_id = $request->get('section_id');
             $advisory->save();
-            return redirect('/advisory')->with('success', 'New advisory class of teacher was added successfully!');
+            return response()->json(array('success' => true));  
         }
         else{
             return redirect()->back()->with('warning', 'There is already an advisory teacher that is assigned to this class.')->withInput();
@@ -1767,11 +1816,10 @@ class AdminsController extends Controller
         return view('admins.grading.functions.advisoryupdate', compact('faculties'), ['advisory' => $data]);
     }
 
-    public function updateadvisory(Request $request, Advisories $advisory){
-        $validated = $request->validate([
+    public function updateadvisory(Request $request){
+        $request->validate([
             'faculty_id' => ['required'],
         ]);
-        $advisory->update($validated);
 
         // $studentgrades = StudentGrade::where('subjectteacher_id', '=', $subjectteacher->id)->get();
         // foreach($studentgrades as $studentgrade){
@@ -1781,6 +1829,10 @@ class AdminsController extends Controller
         //     $studentgrade->faculty_id = $request->faculty_id;
         //     $studentgrade->save();
         // }
+        $advisory = Advisories::find($request->id);
+        $advisory->faculty_id = $request->faculty_id;
+        $advisory->save();
+        return response()->json($advisory);
 
         return redirect('/advisory')->with('success', 'Advisory class of teacher has been updated successfully!');
     }

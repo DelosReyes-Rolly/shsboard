@@ -6,23 +6,24 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" action="/updatereminder/{{$reminder->id}}" class="needs-validation" novalidate>
+<form method="POST" id="updateReminder" class="needs-validation" novalidate>
     <div class="modal-body">
         @csrf
         @method('put')
+        <input type="hidden" id="id" name="id" value="{{$reminder->id}}"/>  
         <div class="mb-3" style="color: red">
             * required field
         </div>
         <div class="row">
             <div class="col-md-12">
-                <label class="slarge mb-1" for="inputexpired_at" style="font-size: 20px;"><span style="color: red">*</span> Expiry date</label>
-                <input type="date" class="form-control @error('expired_at') is-invalid @enderror" id="inputexpired_at" placeholder="Enter the date" name="expired_at"  value="{{$reminder->expired_at}}" required>
+                <label class="slarge mb-1" for="expired_at" style="font-size: 20px;"><span style="color: red">*</span> Expiry date</label>
+                <input type="date" class="form-control @error('expired_at') is-invalid @enderror" id="expired_at" placeholder="Enter the date" name="expired_at"  value="{{$reminder->expired_at}}" required>
                 <div class="invalid-feedback">
                     Please input expiry date.
                 </div>
             </div>
             <div class="col-md-12">
-                <label class="large mb-1" for="editor" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
+                <label class="large mb-1" for="editor2" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
                 <textarea class="form-control @error('content') is-invalid @enderror" id="editor2" type="text" placeholder="Enter the information" name="content" rows="10" cols="80" required>{{$reminder->content}}</textarea>
                 <div class="invalid-feedback">
                     Please input content.
@@ -35,8 +36,46 @@
         <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary btn-md" value="Submit"></font>
     </div>
 </form>
-<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script>
-    CKEDITOR.replace('editor2');
+        $("#updateReminder").submit(function(i) {
+            i.preventDefault();
+
+            var id = $("#id").val();
+            var expired_at = $("#expired_at").val();
+            var content = $("#editor2").val();
+            var _token = $("input[name=_token]").val();
+
+            $.ajax({
+                type: "PUT",
+                url: '{{url("/updatereminder/")}}/' + id,
+                data: {
+                    id: id,
+                    expired_at: expired_at,
+                    content: content,
+                    _token: _token,
+                },
+                success: function(response) {
+                        $("#editModal"+id).removeClass("in");
+                        $(".modal-backdrop").remove();
+                        $('body').removeClass('modal-open');
+                        $('body').css('padding-right', '');
+                        $("#editModal"+id).hide();
+                        $("#updateReminder")[0].reset();
+                        $('#reminder' + response.id +' td:nth-child(2)').text(response.content);
+                        $('#reminder' + response.id +' td:nth-child(4)').text(response.expired_at);
+                        // $('#example').load(document.URL +  ' #example');
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success.',
+                            text: 'Reminder has been updated successfully',
+                        })
+                }
+            });
+            $("#saveBtn").click(function() {
+                $("#example").load("#example");
+            });
+
+        });
+       
 </script>
 </main>

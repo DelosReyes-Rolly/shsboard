@@ -5,12 +5,13 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" action="/updateschoolyear/{{$schoolyear->id}}" class="needs-validation" novalidate>
+<form method="POST" id="updateSchoolyear" class="needs-validation" novalidate>
     <div class="modal-body">
     @csrf
     @method('put')
+    <input type="hidden" id="id" name="id" value="{{$schoolyear->id}}"/>
         <div class="col-md-12">
-            <input type="text" name="schoolyear" class="form-control @error('schoolyear') is-invalid @enderror" value="{{$schoolyear->schoolyear}}"style="font-size: 20px;"  onkeypress="return onlyNumberKey(event)" maxlength="4" minlength="4" required>
+            <input type="text" id="schoolyear" name="schoolyear" class="form-control @error('schoolyear') is-invalid @enderror" value="{{$schoolyear->schoolyear}}"style="font-size: 20px;"  onkeypress="return onlyNumberKey(event)" maxlength="4" minlength="4" required>
             <div class="invalid-feedback">
                 Please input valid school year.
             </div>
@@ -21,3 +22,42 @@
         <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary btn-md" value="Submit"></font>
     </div>
 </form>   
+<script>
+        $("#updateSchoolyear").submit(function(i) {
+            i.preventDefault();
+
+            var id = $("#id").val();
+            var schoolyear = $("#schoolyear").val();
+            var _token = $("input[name=_token]").val();
+
+            $.ajax({
+                type: "PUT",
+                url: '{{url("/updateschoolyear/")}}/' + id,
+                data: {
+                    id: id,
+                    schoolyear: schoolyear,
+                    _token: _token,
+                },
+                success: function(response) {
+                        $("#editModal"+id).removeClass("in");
+                        $(".modal-backdrop").remove();
+                        $('body').removeClass('modal-open');
+                        $('body').css('padding-right', '');
+                        $("#editModal"+id).hide();
+                        $("#updateSchoolyear")[0].reset();
+                        $('#schoolyear' + response.id +' td:nth-child(2)').text(response.schoolyear);
+                        // $('#example').load(document.URL +  ' #example');
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success.',
+                            text: 'Schoolyear has been updated successfully',
+                        })
+                }
+            });
+            $("#saveBtn").click(function() {
+                $("#example").load("#example");
+            });
+
+        });
+       
+</script>

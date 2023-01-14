@@ -5,45 +5,46 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" action="/updatefaculty/{{$faculty->id}}"class="needs-validation" novalidate>
+<form method="POST" id="updateFaculty" class="needs-validation" novalidate>
     <div class="modal-body">
         @csrf
         @method('put')
+        <input type="hidden" id="id" name="id" value="{{$faculty->id}}"/>
         <div class="mb-3" style="color: red">
             * required field
         </div>
         <div class="row">
            <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span> Last Name</label>
-                <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{$faculty->last_name}}" onkeydown="return alphaOnly(event);" style="font-size: 14px;" required>
+                <input id="lastname" type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{$faculty->last_name}}" onkeydown="return alphaOnly(event);" style="font-size: 14px;" required>
                 <div class="invalid-feedback">
                     Please input valid last name.
                 </div>
             </div>
             <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span> First Name</label>
-                <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{$faculty->first_name}}"  onkeydown="return alphaOnly(event);"style="font-size: 14px;" required>
+                <input id="firstname" type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{$faculty->first_name}}"  onkeydown="return alphaOnly(event);"style="font-size: 14px;" required>
                 <div class="invalid-feedback">
                     Please input valid first name.
                 </div>
             </div>
             <div class="col-md-12">
                 <label style="font-size: 20px;">Middle Name</label>
-                <input type="text" name="middle_name" class="form-control @error('middle_name') is-invalid @enderror" value="{{$faculty->middle_name}}"  onkeydown="return alphaOnly(event);"style="font-size: 14px;">
+                <input id="middlename" type="text" name="middle_name" class="form-control @error('middle_name') is-invalid @enderror" value="{{$faculty->middle_name}}"  onkeydown="return alphaOnly(event);"style="font-size: 14px;">
                 <div class="invalid-feedback">
                     Please input valid middle name.
                 </div>
             </div>
             <div class="col-md-12">
                 <label style="font-size: 20px;">Suffix</label>
-                <input type="text" name="suffix" class="form-control @error('suffix') is-invalid @enderror" value="{{$faculty->suffix}}" onkeydown="return alphaOnly(event);" style="font-size: 14px;">
+                <input id="suffix" type="text" name="suffix" class="form-control @error('suffix') is-invalid @enderror" value="{{$faculty->suffix}}" onkeydown="return alphaOnly(event);" style="font-size: 14px;">
                 <div class="invalid-feedback">
                     Please input valid suffix name.
                 </div>
             </div>
             <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span> Email Address</label>
-                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{$faculty->email}}" style="font-size: 14px;" required> 
+                <input id="email" type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{$faculty->email}}" style="font-size: 14px;" required> 
                 <div class="invalid-feedback">
                     Please input valid email address.
                 </div>
@@ -55,3 +56,62 @@
         <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary btn-md" value="Submit"></font>
     </div>
 </form>
+<script>
+        $("#updateFaculty").submit(function(i) {
+            i.preventDefault();
+
+            var id = $("#id").val();
+            var last_name = $("#lastname").val();
+            var first_name = $("#firstname").val();
+            var middle_name = $("#middlename").val();
+            var suffix = $("#suffix").val();
+            var email = $("#email").val();
+            var _token = $("input[name=_token]").val();
+
+            $.ajax({
+                type: "PUT",
+                url: '{{url("/updatefaculty/")}}/' + id,
+                data: {
+                    id: id,
+                    last_name: last_name,
+                    first_name: first_name,
+                    middle_name: middle_name,
+                    suffix: suffix,
+                    email: email,
+                    _token: _token
+                },
+                success: function(response) {
+                        $("#editModal"+id).removeClass("in");
+                        $(".modal-backdrop").remove();
+                        $('body').removeClass('modal-open');
+                        $('body').css('padding-right', '');
+                        $("#editModal"+id).hide();
+                        $("#updateFaculty")[0].reset();
+                        if(response.suffix == null && response.middle_name == null){
+                            $('#faculty' + response.id +' td:nth-child(2)').text(function(n) {return response.last_name + ', ' + response.first_name;});
+                        }
+                        else if(response.suffix == null){
+                            $('#faculty' + response.id +' td:nth-child(2)').text(function(n) {return response.last_name + ', ' + response.first_name + ' ' + response.middle_name;});
+                        }
+                        else if(response.middle_name == null){
+                            $('#faculty' + response.id +' td:nth-child(2)').text(function(n) {return response.last_name + ', ' + response.first_name + ' ' + response.suffix;});
+                        }
+                        else{
+                            $('#faculty' + response.id +' td:nth-child(2)').text(function(n) {return response.last_name + ', ' + response.first_name + ' ' + response.middle_name + ' ' + response.suffix;});
+                        }
+                        $('#faculty' + response.id +' td:nth-child(6)').text(response.email);
+                        // $('#example').load(document.URL +  ' #example');
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success.',
+                            text: 'Strand has been updated successfully',
+                        })
+                }
+            });
+            $("#saveBtn").click(function() {
+                $("#example").load("#example");
+            });
+
+        });
+       
+</script>

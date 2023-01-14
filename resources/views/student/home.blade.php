@@ -9,7 +9,7 @@
 				<div id="main-content" class="blog-page">
 				    <div class="">
 				        <div class="row clearfix">
-				            <div class="col-lg-9 col-md-12 left-box fade-in-text">
+				            <div class="col-lg-9 col-md-12 left-box">
                                     @if($announcement == NULL)
                                         <div class="alert alert-danger"><em>No announcements for now.</em></div>
                                     @else 

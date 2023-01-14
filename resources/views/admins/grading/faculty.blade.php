@@ -20,7 +20,8 @@
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable( {
-                responsive: true
+                responsive: true,
+                "bInfo" : false,
             } );
          
             new $.fn.dataTable.FixedHeader( table );

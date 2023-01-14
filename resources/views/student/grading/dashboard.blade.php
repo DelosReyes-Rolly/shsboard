@@ -758,13 +758,7 @@
                                                                                     'course_id'=> Auth::user()->course_id, 'section_id'=> Auth::user()->section_id,
                                                                                     'semester_id'=> $grade11first -> semester_id, 'faculty_id'=> $grade11first -> faculty_id,
                                                                                     'subject_id'=> $grade11first -> subject_id])}}" data-toggle="modal" data-target="#editModal{{ Auth::user()->id }}{{ $grade11first -> gradelevel_id }}{{ Auth::user()->course_id }}{{ Auth::user()->section_id }}{{ $grade11first -> semester_id }}{{ $grade11first -> faculty_id }}{{ $grade11first -> subject_id }}"><button class="requestGradeEvalButton">Click here</button></a>
-                                                                                    <!-- edit modal -->
-                                                                                    <div id="editModal{{ Auth::user()->id }}{{ $grade11first -> gradelevel_id }}{{ Auth::user()->course_id }}{{ Auth::user()->section_id }}{{ $grade11first -> semester_id }}{{ $grade11first -> faculty_id }}{{ $grade11first -> subject_id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-                                                                                        <div class="modal-dialog modal-lg" role="document">
-                                                                                            <div class="modal-content border-start-lg border-start-yellow">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
+                                                                                    
                                                                                 @else
                                                                                     <label style="color:red;" for="inputcontent"> <em><b> Requested</b></em></label><br>
                                                                                 @endif
@@ -789,6 +783,13 @@
     </div>
 
     <div class="content">
+        <!-- edit modal grade 11 first sem-->
+        <div id="editModal{{ Auth::user()->id }}{{ $grade11first -> gradelevel_id }}{{ Auth::user()->course_id }}{{ Auth::user()->section_id }}{{ $grade11first -> semester_id }}{{ $grade11first -> faculty_id }}{{ $grade11first -> subject_id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content border-start-lg border-start-yellow">
+                </div>
+            </div>
+        </div>
       <hr class="mt-0 mb-4">
         <div class="    mb-4">
             <div class="card border-start-lg border-start-yellow">

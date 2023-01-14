@@ -20,7 +20,8 @@
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable( {
-                responsive: true
+                responsive: true,
+                "bInfo" : false,
             } );
          
             new $.fn.dataTable.FixedHeader( table );
@@ -92,7 +93,7 @@
 
         <form method="POST" action="/add/announcements" enctype="multipart/form-data" class="needs-validation" novalidate>
             @csrf
-            <div class="container-xl px-4 mt-4 left-to-right">
+            <div class="container-xl px-4 mt-4">
                 <!-- page navigation-->
                 <h3 style="font-size: 28px; font-weight: 800;">Create Announcement </h3>
                 <hr class="mt-0 mb-4">
@@ -284,8 +285,8 @@
                                     </tr>
                                      <!-- edit modal -->
                                      <div id="editModal{{ $announcement->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-                                            <div class="modal-dialog modal-lg" role="document">
-                                                <div class="modal-content border-start-lg border-start-yellow">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content border-start-lg border-start-yellow">
                                             </div>
                                         </div>
                                     </div>

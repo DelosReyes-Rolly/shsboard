@@ -5,17 +5,18 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" action="/updatelanding/{{$landing->id}}" class="needs-validation" novalidate>
+<form method="POST" id="updateLanding" class="needs-validation" novalidate>
     <div class="modal-body">
         @csrf
         @method('put')
+        <input type="hidden" id="id" name="id" value="{{$landing->id}}"/>    
         <div class="mb-3" style="color: red">
             * required field
         </div>
         <div class="row">
             <div class="col-md-6">
-                <label class="large mb-1" for="inputtitle" style="font-size: 20px;"><span style="color: red">*</span> Title</label>
-                <input class="form-control @error('title') is-invalid @enderror" id="inputtitle" type="text" placeholder="Enter the title" name="title"  value="{{$landing->title}}" required>
+                <label class="large mb-1" for="title" style="font-size: 20px;"><span style="color: red">*</span> Title</label>
+                <input class="form-control @error('title') is-invalid @enderror" id="title" type="text" placeholder="Enter the title" name="title"  value="{{$landing->title}}" required>
                 <div class="invalid-feedback">
                     Please input title.
                 </div>
@@ -38,3 +39,44 @@
         <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary btn-md" value="Submit"></font>
     </div>
 </form>
+<script>
+        $("#updateLanding").submit(function(i) {
+            i.preventDefault();
+
+            var id = $("#id").val();
+            var title = $("#title").val();
+            var content = $("#editor2").val();
+            var _token = $("input[name=_token]").val();
+
+            $.ajax({
+                type: "PUT",
+                url: '{{url("/updatelanding/")}}/' + id,
+                data: {
+                    id: id,
+                    title: title,
+                    content: content,
+                    _token: _token,
+                },
+                success: function(response) {
+                        $("#editModal"+id).removeClass("in");
+                        $(".modal-backdrop").remove();
+                        $('body').removeClass('modal-open');
+                        $('body').css('padding-right', '');
+                        $("#editModal"+id).hide();
+                        $("#updateLanding")[0].reset();
+                        $('#landing' + response.id +' td:nth-child(2)').text(response.title);
+                        // $('#example').load(document.URL +  ' #example');
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success.',
+                            text: 'Landing has been updated successfully',
+                        })
+                }
+            });
+            $("#saveBtn").click(function() {
+                $("#example").load("#example");
+            });
+
+        });
+       
+</script>

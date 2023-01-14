@@ -21,7 +21,8 @@
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable( {
-                responsive: true
+                responsive: true,
+                "bInfo" : false,
             } );
          
             new $.fn.dataTable.FixedHeader( table );
@@ -87,7 +88,7 @@
                                                 @php $count = 1; @endphp
                                                 @foreach($advisories as $adviser)
                                                     @if($adviser->schoolyear->schoolyear == $sy->schoolyear->schoolyear)
-                                                            <tr id="{{$adviser -> id}}">
+                                                            <tr id="adviser{{$adviser -> id}}">
                                                                 <td>{{$count++}}</td>
                                                                 <td>{{$adviser -> faculty -> last_name}}, {{$adviser -> faculty -> first_name}} {{$adviser -> faculty -> middle_name}} {{$adviser -> faculty -> suffix}}</td>
                                                                 <td>{{$adviser -> gradelevel -> gradelevel}}</td>

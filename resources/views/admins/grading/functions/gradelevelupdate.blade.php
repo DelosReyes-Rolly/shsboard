@@ -5,12 +5,13 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" action="/updategradelevel/{{$gradelevel->id}}" class="needs-validation" novalidate>
+<form method="POST" id="updateGradelevel" class="needs-validation" novalidate>
     <div class="modal-body">
         @csrf
         @method('put')
         <div class="col-md-12">
-            <input type="text" name="gradelevel" class="form-control @error('gradelevel') is-invalid @enderror" value="{{$gradelevel->gradelevel}}"style="font-size: 20px;"   onkeypress="return onlyNumberKey(event)" maxlength="2" minlength="2" required>
+            <input type="hidden" id="id" name="id" value="{{$gradelevel->id}}"/>
+            <input id="gradelevel" type="text" name="gradelevel" class="form-control @error('gradelevel') is-invalid @enderror" value="{{$gradelevel->gradelevel}}"style="font-size: 20px;"   onkeypress="return onlyNumberKey(event)" maxlength="2" minlength="2" required>
             <div class="invalid-feedback">
                 Please input valid grade level.
             </div>
@@ -21,3 +22,42 @@
         <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary btn-md" value="Submit"></font>
     </div>
 </form>
+<script>
+        $("#updateGradelevel").submit(function(i) {
+            i.preventDefault();
+
+            var id = $("#id").val();
+            var gradelevel = $("#gradelevel").val();
+            var _token = $("input[name=_token]").val();
+
+            $.ajax({
+                type: "PUT",
+                url: '{{url("/updategradelevel/")}}/' + id,
+                data: {
+                    id: id,
+                    gradelevel: gradelevel,
+                    _token: _token,
+                },
+                success: function(response) {
+                        $("#editModal"+id).removeClass("in");
+                        $(".modal-backdrop").remove();
+                        $('body').removeClass('modal-open');
+                        $('body').css('padding-right', '');
+                        $("#editModal"+id).hide();
+                        $("#updateGradelevel")[0].reset();
+                        $('#gradelevel' + response.id +' td:nth-child(2)').text(response.gradelevel);
+                        // $('#example').load(document.URL +  ' #example');
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success.',
+                            text: 'Gradelevel has been updated successfully',
+                        })
+                }
+            });
+            $("#saveBtn").click(function() {
+                $("#example").load("#example");
+            });
+
+        });
+       
+</script>

@@ -47,12 +47,14 @@
                         $('body').css('padding-right', '');
                         $("#createModal").hide();
                         $("#createSection")[0].reset();
-                        $('#example').load(document.URL +  ' #example');
                         Swal.fire({
                             icon: 'success',
                             title: 'Success.',
                             text: 'Section has been added successfully',
+                        }).then(function() {
+                            location.reload(true);
                         })
+                        
                     }
                 }
             });

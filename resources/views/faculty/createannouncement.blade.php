@@ -45,7 +45,7 @@
             <div>
                 <!-- boxes -->
                 <hr style="border: 1px solid grey;">
-                <div class="container-xl px-4 mt-4 left-to-right">
+                <div class="container-xl px-4 mt-4">
                     <hr class="mt-0 mb-4">
                     <div class="row">
                         <div class="col-lg-4 mb-4">
@@ -81,7 +81,7 @@
                 <hr style="border: 1px solid grey;">
                 <form method="POST" action="{{ route('announcement.store') }}" class="needs-validation" novalidate>
                     @csrf
-                    <div class="container-xl px-4 mt-4 right-to-left">
+                    <div class="container-xl px-4 mt-4">
                         <!-- page navigation-->
                         <h3 style="font-size: 28px; font-weight: 800;">Create Activity </h3>
                         <hr class="mt-0 mb-4">
@@ -230,7 +230,7 @@
                 <!-- tables -->
                 <h3 style="font-size: 28px; font-weight: 800;">Table of Activity</h3>
                 <hr class="mt-0 mb-4">
-                <div class="card mb-4 left-to-right border-start-lg border-start-success" style="padding: 20px 20px 20px 20px;">
+                <div class="card mb-4 border-start-lg border-start-success" style="padding: 20px 20px 20px 20px;">
                     <div class="card-header"></div>
                     <div class="card-body p-0">
                         <!-- Activity table-->

@@ -20,35 +20,40 @@
     <script>
         $(document).ready(function() {
             var table = $('#example1').DataTable( {
-                responsive: true
+                responsive: true,
+                "bInfo" : false,
             } );
          
             new $.fn.dataTable.FixedHeader( table );
         } );
         $(document).ready(function() {
             var table = $('#example2').DataTable( {
-                responsive: true
+                responsive: true,
+                "bInfo" : false,
             } );
          
             new $.fn.dataTable.FixedHeader( table );
         } );
         $(document).ready(function() {
             var table = $('#example3').DataTable( {
-                responsive: true
+                responsive: true,
+                "bInfo" : false,
             } );
          
             new $.fn.dataTable.FixedHeader( table );
         } );
 		$(document).ready(function() {
             var table = $('#example4').DataTable( {
-                responsive: true
+                responsive: true,
+                "bInfo" : false,
             } );
          
             new $.fn.dataTable.FixedHeader( table );
         } );
 		$(document).ready(function() {
             var table = $('#example5').DataTable( {
-                responsive: true
+                responsive: true,
+                "bInfo" : false,
             } );
          
             new $.fn.dataTable.FixedHeader( table );

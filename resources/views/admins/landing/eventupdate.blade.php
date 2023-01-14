@@ -6,59 +6,60 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" action="/updateevent/{{$event->id}}" class="needs-validation" novalidate>
+<form method="POST" id="updateEvent"  class="needs-validation" novalidate>
     <div class="modal-body">
         @csrf
         @method('put')
+        <input type="hidden" id="id" name="id" value="{{$event->id}}"/>    
         <div class="mb-3" style="color: red">
             * required field
         </div>
         <div class="row">
             <div class="col-md-12">
-                <label class="large mb-1" for="inputsubject" style="font-size: 20px;"><span style="color: red">*</span> Subject</label>
-                <input class="form-control @error('subject') is-invalid @enderror" id="inputsubject" type="text" placeholder="Enter the title" name="what"  value="{{$event->what}}" required>
+                <label class="large mb-1" for="what" style="font-size: 20px;"><span style="color: red">*</span> Subject</label>
+                <input class="form-control @error('subject') is-invalid @enderror" id="what" type="text" placeholder="Enter the title" name="what"  value="{{$event->what}}" required>
                 <div class="invalid-feedback">
                     Please input subject.
                 </div>
             </div>
             <div class="col-md-12"><br/>
-                <label class="slarge mb-1" for="inputdate" style="font-size: 20px;"><span style="color: red">*</span> Date</label>
-                <input type="date" class="form-control @error('date') is-invalid @enderror" id="inputdate" placeholder="Enter the date" name="whn"  value="{{$event->whn}}" required>
+                <label class="slarge mb-1" for="whn" style="font-size: 20px;"><span style="color: red">*</span> Date</label>
+                <input type="date" class="form-control @error('date') is-invalid @enderror" id="whn" placeholder="Enter the date" name="whn"  value="{{$event->whn}}" required>
                 <div class="invalid-feedback">
                     Please input date.
                 </div>
             </div>
             <div class="col-md-12"><br/>
                 <label for="appt" style="font-size: 20px;"><span style="color: red">*</span> Time:</label><br>
-                <input type="time" id="time" class="form-control" name="whn_time" value="{{$event->whn_time}}" required>
+                <input type="time" id="whn_time" class="form-control" name="whn_time" value="{{$event->whn_time}}" required>
                 <div class="invalid-feedback">
                     Please input time.
                 </div>
             </div>
             <div class="col-md-12"><br/>
-                <label class="large mb-1" for="inputsender" style="font-size: 20px;"><span style="color: red">*</span> From</label>
-                <input class="form-control @error('sender') is-invalid @enderror" id="inputsender" type="text" placeholder="Enter the sender" name="sender"  value="{{$event->sender}}" required>
+                <label class="large mb-1" for="sender" style="font-size: 20px;"><span style="color: red">*</span> From</label>
+                <input class="form-control @error('sender') is-invalid @enderror" id="sender" type="text" placeholder="Enter the sender" name="sender"  value="{{$event->sender}}" required>
                 <div class="invalid-feedback">
                     Please input sender.
                 </div>
             </div>
             <div class="col-md-12"><br/>
-                <label class="large mb-1" for="inputrecipient" style="font-size: 20px;"><span style="color: red">*</span> To</label>
-                <input class="form-control @error('recipient') is-invalid @enderror" id="inputrecipient" type="text" placeholder="Enter the recipients" name="who"  value="{{$event->who}}" required>
+                <label class="large mb-1" for="who" style="font-size: 20px;"><span style="color: red">*</span> To</label>
+                <input class="form-control @error('recipient') is-invalid @enderror" id="who" type="text" placeholder="Enter the recipients" name="who"  value="{{$event->who}}" required>
                 <div class="invalid-feedback">
                     Please input recipient.
                 </div>
             </div>
             <div class="col-md-12"><br/>
-                <label class="large mb-1" for="inputlocation" style="font-size: 20px;"><span style="color: red">*</span> Location</label>
-                <input class="form-control @error('location') is-invalid @enderror" id="inputlocation" type="text" placeholder="Enter the location" name="whr"  value="{{$event->whr}}" required>
+                <label class="large mb-1" for="whr" style="font-size: 20px;"><span style="color: red">*</span> Location</label>
+                <input class="form-control @error('location') is-invalid @enderror" id="whr" type="text" placeholder="Enter the location" name="whr"  value="{{$event->whr}}" required>
                 <div class="invalid-feedback">
                     Please input location.
                 </div>
             </div>
             <div class="col-md-12"><br/>
-                <label class="slarge mb-1" for="inputpost_expiration" style="font-size: 20px;"><span style="color: red">*</span> Expired at</label>
-                <input type="date" class="form-control @error('post_expiration') is-invalid @enderror" id="inputpost_expiration" placeholder="Enter the date" name="expired_at"  value="{{$event->expired_at}}" required>
+                <label class="slarge mb-1" for="expired_at" style="font-size: 20px;"><span style="color: red">*</span> Expired at</label>
+                <input type="date" class="form-control @error('post_expiration') is-invalid @enderror" id="expired_at" placeholder="Enter the date" name="expired_at"  value="{{$event->expired_at}}" required>
                 <div class="invalid-feedback">
                     Please input expiry date.
                 </div>
@@ -80,5 +81,58 @@
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script>
     CKEDITOR.replace('editor2');
+</script>
+<script>
+        $("#updateEvent").submit(function(i) {
+            i.preventDefault();
+
+            var id = $("#id").val();
+            var what = $("#what").val();
+            var who = $("#who").val();
+            var whn = $("#whn").val();
+            var whn_time = $("#whn_time").val();
+            var whr = $("#whr").val();
+            var sender = $("#sender").val();
+            var content = $("#editor2").val();
+            var expired_at = $("#expired_at").val();
+            var _token = $("input[name=_token]").val();
+
+            $.ajax({
+                type: "PUT",
+                url: '{{url("/updateevent/")}}/' + id,
+                data: {
+                    id: id,
+                    what: what,
+                    who: who,
+                    whn: whn,
+                    whn_time: whn_time,
+                    whr: whr,
+                    sender: sender,
+                    content: content,
+                    expired_at: expired_at,
+                    _token: _token,
+                },
+                success: function(response) {
+                        $("#editModal"+id).removeClass("in");
+                        $(".modal-backdrop").remove();
+                        $('body').removeClass('modal-open');
+                        $('body').css('padding-right', '');
+                        $("#editModal"+id).hide();
+                        $("#updateEvent")[0].reset();
+                        $('#event' + response.id +' td:nth-child(2)').text(response.what);
+                        // $('#example').load(document.URL +  ' #example');
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success.',
+                            text: 'Event has been updated successfully',
+                        })
+                }
+            });
+            $("#saveBtn").click(function() {
+                $("#example").load("#example");
+            });
+
+        });
+       
 </script>
 </main>

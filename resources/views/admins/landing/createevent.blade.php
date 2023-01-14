@@ -28,9 +28,9 @@
     </script>
     <div>
             <!-- boxes -->
-            <div class="container-xl px-4 mt-4 left-to-right">
+            <div class="container-xl px-4 mt-4">
                 <hr class="mt-0 mb-4">
-                <div class="row">
+                <div class="row left-to-right">
                     <div class="col-lg-4 mb-4">
                         <!-- Billing card 2-->
                         <div class="card h-100 border-start-lg border-start-secondary" style="background-color: red; color: white; box-shadow: 0 4px 16px rgba(0,0,0,0.6);" >
@@ -53,7 +53,7 @@
 
             <form method="POST" action="{{ route('event.store') }}" enctype="multipart/form-data" class="needs-validation" novalidate>
                 @csrf
-                <div class="container-xl px-4 mt-4 right-to-left">
+                <div class="container-xl px-4 mt-4">
                     <!-- page navigation-->
                     <h3 style="font-size: 28px; font-weight: 800;">Create Event </h3>
                     <hr class="mt-0 mb-4">
