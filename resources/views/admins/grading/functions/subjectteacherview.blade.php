@@ -15,7 +15,29 @@
                 <span><b>Section:</b></span> <span> <div style="font-size: 28px;">{{$subjectteacher -> section -> section}}</div></span><br/><br/>
                 <span><b>Subject:</b></span> <span> <div style="font-size: 28px;">{{$subjectteacher -> subject -> subjectname}}</div></span><br/><br/>
                 <span><b>Time:</b></span> <span> <div style="font-size: 28px;">{{$time_start =  date('h:i A', strtotime($subjectteacher -> time_start))}} - {{$time_end =  date('h:i A', strtotime($subjectteacher -> time_end))}}</div></span><br/><br/>
-
+                <span><b>Schedule:</b></span>
+                <span>
+                    <div style="font-size: 28px;">
+                        @if ($subjectteacher -> monday != null)
+                            Mon /
+                        @endif
+                        @if ($subjectteacher -> tuesday != null)
+                            Tue /
+                        @endif
+                        @if ($subjectteacher -> wednesday != null)
+                            Wed /
+                        @endif
+                        @if ($subjectteacher -> thursday != null)
+                            Thurs /
+                        @endif
+                        @if ($subjectteacher -> friday != null)
+                            Fri /
+                        @endif
+                        @if ($subjectteacher -> saturday != null)
+                            Sat /
+                       @endif
+                    </div>
+                </span>
             </div>
         </div>
     </div>
