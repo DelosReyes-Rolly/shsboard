@@ -17,11 +17,11 @@
 	<script src="{{ asset('assets/js/datatables-rowreorder-1.2.8.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-responsive-2.3.0.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
-    <script src="https://cdn.datatables.net/fixedheader/3.1.7/js/dataTables.fixedHeader.min.js"></script>
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable( {
-                responsive: true
+                responsive: true,
+                "bInfo" : false,
             } );
          
             new $.fn.dataTable.FixedHeader( table );
@@ -50,9 +50,9 @@
                         <table id="example" class="display table-bordered table-striped table-hover" style="width:100%">
                             <thead class="table-success">
                                 <tr>
-                                    <th class="border-gray-200" scope="col">#</th>
-                                    <th class="border-gray-200" scope="col">Sections</th>
-                                    <th class="border-gray-200" scope="col">Action</th>
+                                    <th width="10%" class="border-gray-200" scope="col">#</th>
+                                    <th width="20%" class="border-gray-200" scope="col">Sections</th>
+                                    <th width="40%" class="border-gray-200" scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -61,9 +61,9 @@
                                 ?>
                                     @foreach ($sections as $section)
                                         <tr id="section{{$section->id}}">
-                                            <td class="text-center"><?php echo $i++; ?></td>
-                                            <td>{{$section -> section}}</td>
-                                            <td>
+                                            <td width="10%" class="text-center"><?php echo $i++; ?></td>
+                                            <td width="20%">{{$section -> section}}</td>
+                                            <td width="40%">
                                                 <a class="btn btn-success btn-md" href="/viewsection/{{$section->id}}" data-toggle="modal" data-target="#modal-view-{{ $section->id }}"><i class="fas fa-eye"></i> View</a>
                                                 <a class="btn btn-warning btn-md" href="/showsection/{{$section->id}}" data-toggle="modal" data-target="#editModal{{ $section->id }}"><i class="fas fa-edit"></i> Update</a>
                                                 <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $section->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
@@ -101,9 +101,7 @@
 
     <script type="text/javascript">
     $(document).ready(function(){
-      $('.nav_btn').click(function(){
-        $('.mobile_nav_items').toggleClass('active');
-      });
+    
 
       deleteItem(e);
     });
