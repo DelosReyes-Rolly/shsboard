@@ -153,6 +153,7 @@
                                                             <th class="border-gray-200" scope="col">Subject Name</th>
                                                             <th class="border-gray-200" scope="col">Teacher Name</th>
                                                             <th class="border-gray-200" scope="col">Time</th>
+                                                            <th class="border-gray-200" scope="col">Schedule</th>
                                                             <th class="border-gray-200" scope="col"><center>Third Quarter</center></th>
                                                             <th class="border-gray-200" scope="col"><center>Fourth Quarter</center></th>
                                                             <th class="border-gray-200" scope="col">Average</th>
@@ -166,7 +167,27 @@
                                                                     <td>{{$grade12second -> subject -> subjectcode}}</td>
                                                                     <td>{{$grade12second -> subject -> subjectname}}</td>
                                                                     <td>{{$grade12second -> faculty -> last_name}}, {{$grade12second -> faculty -> first_name}} {{$grade12second -> faculty -> middle_name}} {{$grade12second -> faculty -> suffix}}</td>
-                                                                    <td>{{$time_start= date('h:i A', strtotime($grade12second->time_start))}} - {{$time_end= date('h:i A', strtotime($grade12second->time_end))}}</td>
+                                                                    <td>{{$time_start= date('h:i A', strtotime($grade12second -> subjectteacher->time_start))}} - {{$time_end= date('h:i A', strtotime($grade12second -> subjectteacher->time_end))}}</td>
+                                                                    <td>
+                                                                        @if ($grade12second -> subjectteacher -> monday != null)
+                                                                            Mon /
+                                                                        @endif
+                                                                        @if ($grade12second -> subjectteacher -> tuesday != null)
+                                                                            Tue /
+                                                                        @endif
+                                                                        @if ($grade12second -> subjectteacher -> wednesday != null)
+                                                                            Wed /
+                                                                        @endif
+                                                                        @if ($grade12second -> subjectteacher -> thursday != null)
+                                                                            Thurs /
+                                                                        @endif
+                                                                        @if ($grade12second -> subjectteacher -> friday != null)
+                                                                            Fri /
+                                                                        @endif
+                                                                        @if ($grade12second -> subjectteacher -> saturday != null)
+                                                                            Sat /
+                                                                        @endif
+                                                                    </td>
                                                                     <td>
                                                                         @if($grade12second -> isReleased == 2)
                                                                             <center>{{$grade12second -> midterm}}</center>
@@ -319,6 +340,7 @@
                                                             <th class="border-gray-200" scope="col">Subject Name</th>
                                                             <th class="border-gray-200" scope="col">Teacher Name</th>
                                                             <th class="border-gray-200" scope="col">Time</th>
+                                                            <th class="border-gray-200" scope="col">Schedule</th>
                                                             <th class="border-gray-200" scope="col"><center>First Quarter</center></th>
                                                             <th class="border-gray-200" scope="col"><center>Second Quarter</center></th>
                                                             <th class="border-gray-200" scope="col">Average</th>
@@ -332,7 +354,27 @@
                                                                         <td>{{$grade12first -> subject -> subjectcode}}</td>
                                                                         <td>{{$grade12first -> subject -> subjectname}}</td>
                                                                         <td>{{$grade12first -> faculty -> last_name}}, {{$grade12first -> faculty -> first_name}} {{$grade12first -> faculty -> middle_name}} {{$grade12first -> faculty -> suffix}}</td>
-                                                                        <td>{{$time_start= date('h:i A', strtotime($grade12first->time_start))}} - {{$time_end= date('h:i A', strtotime($grade12first->time_end))}}</td>
+                                                                        <td>{{$time_start= date('h:i A', strtotime($grade12first -> subjectteacher->time_start))}} - {{$time_end= date('h:i A', strtotime($grade12first -> subjectteacher->time_end))}}</td>
+                                                                        <td>
+                                                                            @if ($grade12first -> subjectteacher -> monday != null)
+                                                                                Mon /
+                                                                            @endif
+                                                                            @if ($grade12first -> subjectteacher -> tuesday != null)
+                                                                                Tue /
+                                                                            @endif
+                                                                            @if ($grade12first -> subjectteacher -> wednesday != null)
+                                                                                Wed /
+                                                                            @endif
+                                                                            @if ($grade12first -> subjectteacher -> thursday != null)
+                                                                                Thurs /
+                                                                            @endif
+                                                                            @if ($grade12first -> subjectteacher -> friday != null)
+                                                                                Fri /
+                                                                            @endif
+                                                                            @if ($grade12first -> subjectteacher -> saturday != null)
+                                                                                Sat /
+                                                                            @endif
+                                                                        </td>
                                                                         <td>
                                                                             @if($grade12first -> isReleased == 2 || $grade12first -> isReleased == 1)
                                                                                 <center>{{$grade12first -> midterm}}</center>
@@ -494,6 +536,7 @@
                                                             <th class="border-gray-200" scope="col">Subject Name</th>
                                                             <th class="border-gray-200" scope="col">Teacher Name</th>
                                                             <th class="border-gray-200" scope="col">Time</th>
+                                                            <th class="border-gray-200" scope="col">Schedule</th>
                                                             <th class="border-gray-200" scope="col">Third Quarter</th>
                                                             <th class="border-gray-200" scope="col">Fourth Quarter</th>
                                                             <th class="border-gray-200" scope="col">Average</th>
@@ -507,7 +550,27 @@
                                                                     <td>{{$grade11second -> subject -> subjectcode}}</td>
                                                                     <td>{{$grade11second -> subject -> subjectname}}</td>
                                                                     <td>{{$grade11second -> faculty -> last_name}}, {{$grade11second -> faculty -> first_name}} {{$grade11second -> faculty -> middle_name}} {{$grade11second -> faculty -> suffix}}</td>
-                                                                    <td>{{$time_start= date('h:i A', strtotime($grade11second->time_start))}} - {{$time_end= date('h:i A', strtotime($grade11second->time_end))}}</td>
+                                                                    <td>{{$time_start= date('h:i A', strtotime($grade11second -> subjectteacher->time_start))}} - {{$time_end= date('h:i A', strtotime($grade11second -> subjectteacher->time_end))}}</td>
+                                                                    <td>
+                                                                        @if ($grade11second -> subjectteacher -> monday != null)
+                                                                            Mon /
+                                                                        @endif
+                                                                        @if ($grade11second -> subjectteacher -> tuesday != null)
+                                                                            Tue /
+                                                                        @endif
+                                                                        @if ($grade11second -> subjectteacher -> wednesday != null)
+                                                                            Wed /
+                                                                        @endif
+                                                                        @if ($grade11second -> subjectteacher -> thursday != null)
+                                                                            Thurs /
+                                                                        @endif
+                                                                        @if ($grade11second -> subjectteacher -> friday != null)
+                                                                            Fri /
+                                                                        @endif
+                                                                        @if ($grade11second -> subjectteacher -> saturday != null)
+                                                                            Sat /
+                                                                        @endif
+                                                                    </td>
                                                                     <td>
                                                                         @if($grade11second -> isReleased == 2)
                                                                             <center>{{$grade11second -> midterm}}</center>
@@ -657,6 +720,7 @@
                                                             <th class="border-gray-200" scope="col">Subject Name</th>
                                                             <th class="border-gray-200" scope="col">Teacher Name</th>
                                                             <th class="border-gray-200" scope="col">Time</th>
+                                                            <th class="border-gray-200" scope="col">Schedule</th>
                                                             <th class="border-gray-200" scope="col">First Quarter</th>
                                                             <th class="border-gray-200" scope="col">Second Quarter</th>
                                                             <th class="border-gray-200" scope="col">Average</th>
@@ -670,7 +734,27 @@
                                                                         <td>{{$grade11first -> subject -> subjectcode}}</td>
                                                                         <td>{{$grade11first -> subject -> subjectname}}</td>
                                                                         <td>{{$grade11first -> faculty -> last_name}}, {{$grade11first -> faculty -> first_name}} {{$grade11first -> faculty -> middle_name}} {{$grade11first -> faculty -> suffix}}</td>
-                                                                        <td>{{$time_start= date('h:i A', strtotime($grade11first->time_start))}} - {{$time_end= date('h:i A', strtotime($grade11first->time_end))}}</td>
+                                                                        <td>{{$time_start= date('h:i A', strtotime($grade11first -> subjectteacher->time_start))}} - {{$time_end= date('h:i A', strtotime($grade11first -> subjectteacher->time_end))}}</td>
+                                                                        <td>
+                                                                            @if ($grade11first -> subjectteacher -> monday != null)
+                                                                                Mon /
+                                                                            @endif
+                                                                            @if ($grade11first -> subjectteacher -> tuesday != null)
+                                                                                Tue /
+                                                                            @endif
+                                                                            @if ($grade11first -> subjectteacher -> wednesday != null)
+                                                                                Wed /
+                                                                            @endif
+                                                                            @if ($grade11first -> subjectteacher -> thursday != null)
+                                                                                Thurs /
+                                                                            @endif
+                                                                            @if ($grade11first -> subjectteacher -> friday != null)
+                                                                                Fri /
+                                                                            @endif
+                                                                            @if ($grade11first -> subjectteacher -> saturday != null)
+                                                                                Sat /
+                                                                            @endif
+                                                                        </td>
                                                                         <td>
                                                                             @if($grade11first -> isReleased == 2 || $grade11first -> isReleased == 1)
                                                                                 <center>{{$grade11first -> midterm}}</center>

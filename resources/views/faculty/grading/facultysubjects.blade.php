@@ -57,6 +57,7 @@
                                                         <th class="border-gray-200" scope="col">Course Name</th>
                                                         <th class="border-gray-200" scope="col">Section</th>
                                                         <th class="border-gray-200" scope="col">Time</th>
+                                                        <th class="border-gray-200" scope="col">Schedule</th>
                                                         <th class="border-gray-200" scope="col">Action</th>
                                                     </tr>
                                                 </thead>
@@ -72,6 +73,26 @@
                                                                 <td>{{$schoolyearsubject -> course -> courseName}}</td>
                                                                 <td>{{$schoolyearsubject -> section -> section}}</td>
                                                                 <td>{{$time_start =  date('h:i A', strtotime($schoolyearsubject -> time_start))}} - {{$time_end =  date('h:i A', strtotime($schoolyearsubject -> time_end))}}</td>
+                                                                <td>
+                                                                    @if ($schoolyearsubject -> monday != null)
+                                                                        Mon /
+                                                                    @endif
+                                                                    @if ($schoolyearsubject -> tuesday != null)
+                                                                        Tue /
+                                                                    @endif
+                                                                    @if ($schoolyearsubject -> wednesday != null)
+                                                                        Wed /
+                                                                    @endif
+                                                                    @if ($schoolyearsubject -> thursday != null)
+                                                                        Thurs /
+                                                                    @endif
+                                                                    @if ($schoolyearsubject -> friday != null)
+                                                                        Fri /
+                                                                    @endif
+                                                                    @if ($schoolyearsubject -> saturday != null)
+                                                                        Sat /
+                                                                    @endif
+                                                                </td>
                                                                 <td>
                                                                     <a href="{{route('view-students',['subject_id'=>$schoolyearsubject -> subject_id, 'gradelevel_id'=>$schoolyearsubject -> gradelevel_id, 'semester_id'=>$schoolyearsubject -> semester_id, 'schoolyear_id'=>$schoolyearsubject -> schoolyear_id])}}"><i class="fas fa-edit"></i>View students</a>
                                                                 </td> 

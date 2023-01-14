@@ -24,6 +24,12 @@ class Subjectteacher extends Migration
             $table->integer('semester_id');
             $table->time('time_start');
             $table->time('time_end');
+            $table->tinyInteger('monday')->nullable();
+            $table->tinyInteger('tuesday')->nullable();
+            $table->tinyInteger('wednesday')->nullable();
+            $table->tinyInteger('thursday')->nullable();
+            $table->tinyInteger('friday')->nullable();
+            $table->tinyInteger('saturday')->nullable();
             $table->timestamps();
             $table->tinyInteger('deleted')->nullable();
             $table->date('deleted_at')->nullable();

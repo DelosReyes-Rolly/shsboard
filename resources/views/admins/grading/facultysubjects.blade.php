@@ -38,7 +38,7 @@
         <h3 style="font-size: 28px; font-weight: 800;">Table of Teacher's Subjects </h3>
         <hr class="mt-0 mb-4">
         <div class="card mb-4 border-start-lg border-start-success" style="padding: 10px 40px 10px 40px;">
-            <div class="card-header">
+            <div class="card-header" style="background-color: #ffffff;">
                 <div class="row">
                     <div class="col-lg-9 col-md-6 col-md-12" style="border-radius: 10px; background-color: #ffffff;">
                         <label class="large mb-1" for="inputcontent"> <div class="alert alert-primary"><em><i class="fas fa-info"> </i> | <b> Reminder:</b> Assign advisory teacher to the class first before assigning subjects to a class.</em></div></label><br>
@@ -66,6 +66,7 @@
                                     <th class="border-gray-200" scope="col">Section</th>
                                     <th class="border-gray-200" scope="col">Subject Name</th>
                                     <th class="border-gray-200" scope="col">Time</th>
+                                    <th class="border-gray-200" scope="col">Schedule</th>
                                     <th class="border-gray-200" scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -83,6 +84,26 @@
                                             <td>{{$subjectteacher -> section -> section}}</td>
                                             <td>{{$subjectteacher -> subject -> subjectname}}</td>
                                             <td>{{$time_start =  date('h:i A', strtotime($subjectteacher -> time_start))}} - {{$time_end =  date('h:i A', strtotime($subjectteacher -> time_end))}}</td>
+                                            <td>
+                                                @if ($subjectteacher -> monday != null)
+                                                    Mon /
+                                                @endif
+                                                @if ($subjectteacher -> tuesday != null)
+                                                    Tue /
+                                                @endif
+                                                @if ($subjectteacher -> wednesday != null)
+                                                    Wed /
+                                                @endif
+                                                @if ($subjectteacher -> thursday != null)
+                                                    Thurs /
+                                                @endif
+                                                @if ($subjectteacher -> friday != null)
+                                                    Fri /
+                                                @endif
+                                                @if ($subjectteacher -> saturday != null)
+                                                    Sat /
+                                                @endif
+                                            </td>
                                             <td width=24%>
                                                 <a class="btn btn-success btn-md" href="/viewsubjectteacher/{{$subjectteacher->id}}" data-toggle="modal" data-target="#modal-view-{{ $subjectteacher->id }}"><i class="fas fa-eye"></i> View</a>
                                                 <a class="btn btn-warning btn-md" href="/showsubjectteacher/{{$subjectteacher->id}}" data-toggle="modal" data-target="#editModal{{ $subjectteacher->id }}"><i class="fas fa-edit"></i> Update</a>

@@ -1537,6 +1537,12 @@ class AdminsController extends Controller
                 $subjectteacher->subject_id = $request->get('subject_id');
                 $subjectteacher->time_start = $request->get('time_start');
                 $subjectteacher->time_end = $request->get('time_end');
+                $subjectteacher->monday = $request->get('monday');
+                $subjectteacher->tuesday = $request->get('tuesday');
+                $subjectteacher->wednesday = $request->get('wednesday');
+                $subjectteacher->thursday = $request->get('thursday');
+                $subjectteacher->friday = $request->get('friday');
+                $subjectteacher->saturday = $request->get('saturday');
                 $subjectteacher->save();
             }
     
@@ -1635,6 +1641,12 @@ class AdminsController extends Controller
         $subjectteacher->subject_id = $request->subject_id;
         $subjectteacher->time_start = $request->time_start;
         $subjectteacher->time_end = $request->time_end;
+        $subjectteacher->monday = $request->get('monday');
+        $subjectteacher->tuesday = $request->get('tuesday');
+        $subjectteacher->wednesday = $request->get('wednesday');
+        $subjectteacher->thursday = $request->get('thursday');
+        $subjectteacher->friday = $request->get('friday');
+        $subjectteacher->saturday = $request->get('saturday');
         $subjectteacher->save();
 
         $studentgrades = StudentGrade::where('subjectteacher_id', '=', $subjectteacher->id)->get();

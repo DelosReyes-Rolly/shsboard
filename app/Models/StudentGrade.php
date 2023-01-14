@@ -41,4 +41,8 @@ class StudentGrade extends Model
     public function student(){
         return $this->belongsTo(Students::class);
     }
+
+    public function subjectteacher(){
+        return $this->belongsTo(SubjectTeachers::class);
+    }
 }
