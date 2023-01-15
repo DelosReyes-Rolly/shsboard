@@ -51,14 +51,13 @@ table {
                 <div class="alert alert-danger"><center><em>Sorry. You're not currently enrolled in any subjects. Please contact the administrator.</em></center></div>
               @else 
                     <!-- Check if Enrolled in any grade 11 subjects -->
-                    @if($grade11->count() != 0)
-                                <!-- grade 11 - First Semester-->
-                                @if($grade11firstsem->count() != 0)
+                    @if($grade12->count() != 0)
+                                <!-- GRADE 12 First Semester-->
+                                @if($grade12firstsem->count() != 0)
                                     <div class="table-responsive table-billing-history">
-                                        <div class="mb-4">
-                                            <div style="font-size: 20px; font-weight:800; font-family: 'Times New Roman', Times, serif;">
-                                                First Semester
-                                            </div>
+                                        <div style="font-size: 20px; font-weight:800; font-family: 'Times New Roman', Times, serif;">
+                                            First Semester
+                                         </div>
                                                 <table id="sample1" style="width:100%;">
                                                     <thead>
                                                         <tr>
@@ -74,34 +73,34 @@ table {
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @foreach($grade11firstsem as $grade11first)
+                                                        @foreach($grade12firstsem as $grade12first)
                                                                     <tr>
                                                                         <td class="text-center">SPECIALIZED</td>
-                                                                        <td>{{$grade11first -> subject -> subjectname}}</td>
-                                                                        <td class="text-center">{{$grade11first -> midterm}}</td>
-                                                                        <td class="text-center">{{$grade11first -> finals}}</td>
+                                                                        <td>{{$grade12first -> subject -> subjectname}}</td>
+                                                                        <td class="text-center">{{$grade12first -> midterm}}</td>
+                                                                        <td class="text-center">{{$grade12first -> finals}}</td>
                                                                         <td class="text-center">
                                                                             @php
-                                                                                $ave = ($grade11first->midterm + $grade11first->finals) / 2;
-                                                                                switch ($grade11first -> finals && $grade11first -> midterm) {
-                                                                                    case ($grade11first -> finals ==='NULL' || $grade11first -> midterm === 'NULL'):
-                                                                                        if($grade11first -> finals === 0 && $grade11first -> midterm !== 0){
-                                                                                            echo $ave = ($grade11first -> midterm + $grade11first -> finals) / 2;;
+                                                                                $ave = ($grade12first->midterm + $grade12first->finals) / 2;
+                                                                                switch ($grade12first -> finals && $grade12first -> midterm) {
+                                                                                    case ($grade12first -> finals ==='NULL' || $grade12first -> midterm === 'NULL'):
+                                                                                        if($grade12first -> finals === 0 && $grade12first -> midterm !== 0){
+                                                                                            echo $ave = ($grade12first -> midterm + $grade12first -> finals) / 2;;
                                                                                             break;
                                                                                         }
-                                                                                        elseif($grade11first -> finals !== 0 && $grade11first -> midterm === 0){
-                                                                                            echo $ave = ($grade11first -> midterm + $grade11first -> finals) / 2;;
+                                                                                        elseif($grade12first -> finals !== 0 && $grade12first -> midterm === 0){
+                                                                                            echo $ave = ($grade12first -> midterm + $grade12first -> finals) / 2;;
                                                                                             break;
                                                                                         }
-                                                                                        elseif($grade11first -> finals === 0 && $grade11first -> midterm === 0){
-                                                                                            echo $ave = ($grade11first -> midterm + $grade11first -> finals) / 2;;
+                                                                                        elseif($grade12first -> finals === 0 && $grade12first -> midterm === 0){
+                                                                                            echo $ave = ($grade12first -> midterm + $grade12first -> finals) / 2;;
                                                                                             break;
                                                                                         }
                                                                                         else{
                                                                                             echo '';
                                                                                             break;
                                                                                         }
-                                                                                    case ($grade11first -> finals !== 'NULL' && $grade11first -> midterm !== 'NULL'):
+                                                                                    case ($grade12first -> finals !== 'NULL' && $grade12first -> midterm !== 'NULL'):
                                                                                         echo $ave;
                                                                                         break;
                                                                                     default:
@@ -112,17 +111,17 @@ table {
                                                                         </td>
                                                                         <td class="text-center">
                                                                             @php 
-                                                                                switch ($ave && $grade11first -> finals && $grade11first -> midterm) {
-                                                                                    case ($grade11first -> finals === 'NULL' || $grade11first -> midterm === 'NULL'):
-                                                                                        if($grade11first -> finals === 0 && $grade11first -> midterm !== 0){
+                                                                                switch ($ave && $grade12first -> finals && $grade12first -> midterm) {
+                                                                                    case ($grade12first -> finals === 'NULL' || $grade12first -> midterm === 'NULL'):
+                                                                                        if($grade12first -> finals === 0 && $grade12first -> midterm !== 0){
                                                                                             echo 'Failed';
                                                                                             break;
                                                                                         }
-                                                                                        elseif($grade11first -> finals !== 0 && $grade11first -> midterm === 0){
+                                                                                        elseif($grade12first -> finals !== 0 && $grade12first -> midterm === 0){
                                                                                             echo 'Failed';
                                                                                             break;
                                                                                         }
-                                                                                        elseif($grade11first -> finals === 0 && $grade11first -> midterm === 0){
+                                                                                        elseif($grade12first -> finals === 0 && $grade12first -> midterm === 0){
                                                                                             echo 'Failed';
                                                                                             break;
                                                                                         }
@@ -130,10 +129,10 @@ table {
                                                                                             echo '';
                                                                                             break;
                                                                                         }
-                                                                                    case ($ave <= '74' && $grade11first -> finals !== 'NULL' && $grade11first -> midterm !== 'NULL'):
+                                                                                    case ($ave <= '74' && $grade12first -> finals !== 'NULL' && $grade12first -> midterm !== 'NULL'):
                                                                                         echo 'Failed';
                                                                                         break;
-                                                                                    case ($ave <= '100' && $grade11first -> finals !== 'NULL' && $grade11first -> midterm !== 'NULL'):
+                                                                                    case ($ave <= '100' && $grade12first -> finals !== 'NULL' && $grade12first -> midterm !== 'NULL'):
                                                                                         echo 'Passed';
                                                                                         break;
                                                                                     default:
@@ -153,25 +152,25 @@ table {
                                                             <tr>
                                                                 <th width="72%" style="text-align:right;">General Average for the Semester&nbsp;</th>
                                                                 <th width="14%" class="text-center">
-                                                                    @if($grade11firstsemungraded->count() == 0)
+                                                                    @if($grade12firstsemungraded->count() == 0)
                                                                         @php
                                                                             $initials = 0;
                                                                             $initial = 0;
                                                                             $ave = 0;
                                                                         @endphp
-                                                                        @foreach($grade11firstsem as $ave)
+                                                                        @foreach($grade12firstsem  as $ave)
                                                                             @if($ave->midterm != 'NULL' || $ave->finals !='NULL')
                                                                                 @php $initials = ($ave->midterm + $ave->finals) / 2; @endphp
                                                                                 @php $initial = $initials+$initial; @endphp
                                                                             @endif
                                                                         @endforeach
                                                                         @if ($initial > 0)
-                                                                            @php $ave = $initial / $grade11firstsem->count(); @endphp
+                                                                            @php $ave = $initial / $grade12firstsem ->count(); @endphp
                                                                         @else
                                                                             @php $ave = 0; @endphp
                                                                         @endif
                                                                         @if($ave>=75)
-                                                                            <b>{{ $ave }} </b>
+                                                                            <b>{{ $ave }}</b>
                                                                         @else
                                                                             <b>{{ $ave }}</b>
                                                                         @endif
@@ -188,16 +187,15 @@ table {
                                         </div>
                                     </div>
                                 <br>
-                                @endif  
-                                @if($grade11secondsem->count() != 0)
+                                @endif
+                                <!-- Grade 12 Second Semester -->   
+                                @if($grade12secondsem->count() != 0)
                                 <br>
                                     <div class="table-responsive table-billing-history">
-                                        
-                                            
                                             <div style="font-size: 20px; font-weight:800; font-family: 'Times New Roman', Times, serif;">
                                                 Second Semester
                                             </div>
-                                                <br>
+                                            <br>
                                                 <table id="sample2" style="width:100%">
                                                     <thead>
                                                         <tr>
@@ -213,34 +211,34 @@ table {
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @foreach($grade11secondsem as $grade11second)
+                                                        @foreach($grade12secondsem as $grade12second)
                                                                 <tr>
                                                                     <td class="text-center">SPECIALIZED</td>
-                                                                    <td>{{$grade11second -> subject -> subjectname}}</td>
-                                                                    <td class="text-center">{{$grade11second -> midterm}}</td>
-                                                                    <td class="text-center">{{$grade11second -> finals}}</td>
+                                                                    <td class="text-center">{{$grade12second -> subject -> subjectname}}</td>
+                                                                    <td>{{$grade12second -> midterm}}</td>
+                                                                    <td class="text-center">{{$grade12second -> finals}}</td>
                                                                     <td class="text-center">
                                                                         @php
-                                                                            $ave = ($grade11second->midterm + $grade11second->finals) / 2;
-                                                                            switch ($grade11second -> finals && $grade11second -> midterm) {
-                                                                                case ($grade11second -> finals ==='NULL' || $grade11second -> midterm === 'NULL'):
-                                                                                    if($grade11second -> finals === 0 && $grade11second -> midterm !== 0){
-                                                                                        echo $ave = ($grade11second -> midterm + $grade11second -> finals) / 2;;
+                                                                            $ave = ($grade12second->midterm + $grade12second->finals) / 2;
+                                                                            switch ($grade12second -> finals && $grade12second -> midterm) {
+                                                                                case ($grade12second -> finals ==='NULL' || $grade12second -> midterm === 'NULL'):
+                                                                                    if($grade12second -> finals === 0 && $grade12second -> midterm !== 0){
+                                                                                        echo $ave = ($grade12second -> midterm + $grade12second -> finals) / 2;;
                                                                                         break;
                                                                                     }
-                                                                                    elseif($grade11second -> finals !== 0 && $grade11second -> midterm === 0){
-                                                                                        echo $ave = ($grade11second -> midterm + $grade11second -> finals) / 2;;
+                                                                                    elseif($grade12second -> finals !== 0 && $grade12second -> midterm === 0){
+                                                                                        echo $ave = ($grade12second -> midterm + $grade12second -> finals) / 2;;
                                                                                         break;
                                                                                     }
-                                                                                    elseif($grade11second -> finals === 0 && $grade11second -> midterm === 0){
-                                                                                        echo $ave = ($grade11second -> midterm + $grade11second -> finals) / 2;;
+                                                                                    elseif($grade12second -> finals === 0 && $grade12second -> midterm === 0){
+                                                                                        echo $ave = ($grade12second -> midterm + $grade12second -> finals) / 2;;
                                                                                         break;
                                                                                     }
                                                                                     else{
                                                                                         echo '';
                                                                                         break;
                                                                                     }
-                                                                                case ($grade11second -> finals !== 'NULL' && $grade11second -> midterm !== 'NULL'):
+                                                                                case ($grade12second -> finals !== 'NULL' && $grade12second -> midterm !== 'NULL'):
                                                                                     echo $ave;
                                                                                     break;
                                                                                 default:
@@ -251,17 +249,17 @@ table {
                                                                     </td>
                                                                     <td class="text-center">
                                                                         @php 
-                                                                            switch ($ave && $grade11second -> finals && $grade11second -> midterm) {
-                                                                                case ($grade11second -> finals === 'NULL' || $grade11second -> midterm === 'NULL'):
-                                                                                    if($grade11second -> finals === 0 && $grade11second -> midterm !== 0){
+                                                                            switch ($ave && $grade12second -> finals && $grade12second -> midterm) {
+                                                                                case ($grade12second -> finals === 'NULL' || $grade12second -> midterm === 'NULL'):
+                                                                                    if($grade12second -> finals === 0 && $grade12second -> midterm !== 0){
                                                                                         echo 'Failed';
                                                                                         break;
                                                                                     }
-                                                                                    elseif($grade11second -> finals !== 0 && $grade11second -> midterm === 0){
+                                                                                    elseif($grade12second -> finals !== 0 && $grade12second -> midterm === 0){
                                                                                         echo 'Failed';
                                                                                         break;
                                                                                     }
-                                                                                    elseif($grade11second -> finals === 0 && $grade11second -> midterm === 0){
+                                                                                    elseif($grade12second -> finals === 0 && $grade12second -> midterm === 0){
                                                                                         echo 'Failed';
                                                                                         break;
                                                                                     }
@@ -269,10 +267,10 @@ table {
                                                                                         echo '';
                                                                                         break;
                                                                                     }
-                                                                                case ($ave <= '74' && $grade11second -> finals !== 'NULL' && $grade11second -> midterm !== 'NULL'):
+                                                                                case ($ave <= '74' && $grade12second -> finals !== 'NULL' && $grade12second -> midterm !== 'NULL'):
                                                                                     echo 'Failed';
                                                                                     break;
-                                                                                case ($ave <= '100' && $grade11second -> finals !== 'NULL' && $grade11second -> midterm !== 'NULL'):
+                                                                                case ($ave <= '100' && $grade12second -> finals !== 'NULL' && $grade12second -> midterm !== 'NULL'):
                                                                                     echo 'Passed';
                                                                                     break;
                                                                                 default:
@@ -291,20 +289,20 @@ table {
                                                             <tr>
                                                                 <th width="72%" style="text-align:right;">General Average for the Semester&nbsp;</th>
                                                                 <th width="14%" class="text-center">
-                                                                    @if($grade11secondsemungraded->count() == 0)
+                                                                    @if($grade12secondsemungraded->count() == 0)
                                                                         @php
                                                                             $initials = 0;
                                                                             $initial = 0;
                                                                             $ave = 0;
                                                                         @endphp
-                                                                        @foreach($grade11secondsem  as $ave)
+                                                                        @foreach($grade12secondsem  as $ave)
                                                                             @if($ave->midterm != 'NULL' || $ave->finals !='NULL')
                                                                                 @php $initials = ($ave->midterm + $ave->finals) / 2; @endphp
                                                                                 @php $initial = $initials+$initial; @endphp
                                                                             @endif
                                                                         @endforeach
                                                                         @if ($initial > 0)
-                                                                            @php $ave = $initial / $grade11secondsem ->count(); @endphp
+                                                                            @php $ave = $initial / $grade12secondsem ->count(); @endphp
                                                                         @else
                                                                             @php $ave = 0; @endphp
                                                                         @endif
@@ -316,13 +314,16 @@ table {
                                                                     @else
                                                                         <b></b>
                                                                     @endif
-                                                                </th>
+                                                                    </th>
                                                                 <th width="14%"></th>
                                                             </tr>
                                                         </thead>
                                                     </table>
                                                 </div>
                                     </div>
+                                                                
+                                            
+                                        
                                 @else
                                 <div class="table-responsive table-billing-history">
                                         

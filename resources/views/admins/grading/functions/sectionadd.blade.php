@@ -36,7 +36,7 @@
                 type: "POST",
                 url: "{{ route('section.store') }}",
                 data: {
-                    section: section,
+                    section: section,                                                         // modal ng add
                     _token: _token
                 },
                 success: function(response) {
