@@ -71,11 +71,11 @@
                                                             <td>{{$adviser -> section -> section}}</td>
                                                             <td>
                                                                 @if($adviser -> active == null)
-                                                                    <a class="btn btn-success btn-md" href="{{route('faculty.viewStudents',['gradelevel_id'=>$adviser -> gradelevel_id, 'course_id'=>$adviser -> course_id, 'section_id'=>$adviser -> section_id])}}" style="font-size: 16px;"><i class="fas fa-user-tie"></i> View students</a>
+                                                                        <a class="btn btn-success btn-md" href="{{route('faculty.viewStudents',['gradelevel_id'=>$adviser -> gradelevel_id, 'course_id'=>$adviser -> course_id, 'section_id'=>$adviser -> section_id])}}" style="font-size: 16px;"><i class="fas fa-user-tie"></i> View students</a>
                                                                     @if($adviser -> cardgiving == null)
-                                                                        <a class="btn btn-primary btn-md" href="{{route('faculty.card_giving', $adviser->id)}}" style="font-size: 16px;"><i class="fas fa-file-alt"></i>  Release Card</a>
+                                                                        <button class="btn btn-primary btn-md" onclick="releaseCard(this)" data-id="{{ $adviser->id }}" style="font-size: 16px;"><i class="fas fa-file-alt"></i>  Release Card</button>
                                                                     @else
-                                                                        <a class="btn btn-secondary btn-md" href="{{route('faculty.unrelease', $adviser->id)}}" style="font-size: 16px;"><i class="fas fa-file-alt"></i>  Unrelease Card</a>
+                                                                        <button class="btn btn-secondary btn-md" onclick="unreleaseCard(this)" data-id="{{ $adviser->id }}" style="font-size: 16px;"><i class="fas fa-file-alt"></i>  Unrelease Card</button>
                                                                     @endif
                                                                 @else
                                                                     <span class="badge bg-danger" style="color: white;">No action</span>
@@ -102,7 +102,137 @@
       $('.nav_btn').click(function(){
         $('.mobile_nav_items').toggleClass('active');
       });
+      
+      releaseCard(e);
+      unreleaseCard(e);
     });
+
+    //release
+    function releaseCard(e){
+
+        let id = e.getAttribute('data-id');
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger',
+                width: '800px',
+            },
+            buttonsStyling: true
+        });
+
+        swalWithBootstrapButtons.fire({
+            title: '<div style="font-size:40px;">Do you want to release their cards?</div>',
+            icon: '<div style="font-size:40px;">warning</div>',
+            showCancelButton: true,
+            confirmButtonText: '<div style="font-size:40px;">Yes, release it!</div>',
+            cancelButtonText: '<div style="font-size:40px;">No, cancel!</div>',
+            width: '800px',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                if (result.isConfirmed){
+
+                    $.ajax({
+                        type:'PUT',
+                        url:'{{url("/cards")}}/' +id,
+                        data:{
+                            "_token": "{{ csrf_token() }}",
+                        },
+                        success:function(data) {
+                            if (data.success){
+                                
+                                swalWithBootstrapButtons.fire(
+                                    '<div style="font-size:40px;">Released!</div>',
+                                    '<div style="font-size:40px;">Card has been released successfully.</div>',
+                                    "success"
+                                ).then(function() {
+                                    location.reload(true);
+                                })
+                                
+                            }
+
+                        }
+                    });
+
+                }
+
+            } else if (
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    '',
+                    'error'
+                );
+            }
+        });
+
+        }
+
+    //unrelease
+    function unreleaseCard(e){
+
+        let id = e.getAttribute('data-id');
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger',
+                width: '800px',
+            },
+            buttonsStyling: true
+        });
+        
+
+        swalWithBootstrapButtons.fire({
+            title: '<div style="font-size:40px;">Do you want to unrelease their cards?</div>',
+            icon: '<div style="font-size:40px;">warning</div>',
+            showCancelButton: true,
+            confirmButtonText: '<div style="font-size:40px;">Yes, unrelease it!</div>',
+            cancelButtonText: '<div style="font-size:40px;">No, cancel!</div>',
+            width: '800px',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                if (result.isConfirmed){
+
+                    $.ajax({
+                        type:'PUT',
+                        url:'{{url("/unrelease")}}/' +id,
+                        data:{
+                            "_token": "{{ csrf_token() }}",
+                        },
+                        success:function(data) {
+                            if (data.success){
+                                
+                                swalWithBootstrapButtons.fire(
+                                    '<div style="font-size:40px;">Unreleased!</div>',
+                                    '<div style="font-size:40px;">Card has been unreleased successfully.</div>',
+                                    "success"
+                                ).then(function() {
+                                    location.reload(true);
+                                })
+                                
+                            }
+
+                        }
+                    });
+
+                }
+
+            } else if (
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    '',
+                    'error'
+                );
+            }
+        });
+
+        }
     </script>
 
     <!-- accordion -->

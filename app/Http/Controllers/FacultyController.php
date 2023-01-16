@@ -385,20 +385,34 @@ class FacultyController extends Controller
         return view('faculty.advisory', compact('advisories','schoolYear'));
     }
 
-    public function cards(Request $request, Advisories $advisory){
-        $validated = $request->validate([
-            'cardgiving' => ['required'],
-        ]);
-        $advisory->update($validated);
-        return redirect('/advisoryfaculty')->with('success', 'Card has been released successfully!');
+    public function cards(Request $request, $id){
+        if ($request->ajax()){
+
+            $advisory = Advisories::findOrFail($id);
+            if ($advisory){
+
+                $advisory->cardgiving = 1;
+                $advisory->save();
+
+                return response()->json(array('success' => true));
+            }
+
+        }
      }
 
-     public function unreleasecard(Request $request, Advisories $advisory){
-        $validated = $request->validate([
-            'cardgiving' => ['required'],
-        ]);
-        $advisory->update($validated);
-        return redirect('/advisoryfaculty')->with('success', 'Card has been unreleased successfully!');
+     public function unreleasecard(Request $request, $id){
+        if ($request->ajax()){
+
+            $advisory = Advisories::findOrFail($id);
+            if ($advisory){
+
+                $advisory->cardgiving = null;
+                $advisory->save();
+
+                return response()->json(array('success' => true));
+            }
+
+        }
      }
 
      public function unrelease($id){

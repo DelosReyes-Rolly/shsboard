@@ -230,7 +230,8 @@ Route::group(['middleware' => 'auth:students'], function () {
             // Route::get('/deletegradeeval/{id}',  'deletegradeeval')->name('student.deletegradeeval');
             // Route::put('/deletegradeeval/{gradeeval}',  'deletegradegradeeval');
             Route::put('/gradeevaluationrequest/delete/{id}', 'deletegradeeval');
-            Route::get('/printreportcard', 'printreportcard');
+            Route::get('/printreportcardgrade11', 'printreportcardgrade11');
+            Route::get('/printreportcardgrade12', 'printreportcardgrade12');
     });
 });
 
@@ -590,7 +591,9 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 Route::post('/add/course', 'storecourse')->name('course.store');
                 Route::post('/add/section', 'storesection')->name('section.store');
                 Route::post('/add/faculty', 'storefaculty')->name('faculty.store');
+                Route::post('/import_excel/importFaculty', 'importFacultyBulk')->name('facultyBulk.store');
                 Route::post('/add/student', 'storestudent')->name('student.store');
+                Route::post('/import_excel/importStudent', 'importStudentBulk')->name('studentBulk.store');
                 Route::post('/add/subject', 'storesubject')->name('subject.store');
                 Route::post('/add/schoolyear', 'storeschoolyear')->name('schoolyear.store');
                 Route::post('/subjectteacheradd', 'subjectteacherstore')->name('subjectteacher.store');

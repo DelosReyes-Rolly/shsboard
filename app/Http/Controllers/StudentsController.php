@@ -162,7 +162,8 @@ class StudentsController extends Controller
 
     // ============================================================ GRADES ===================================================================================  
     public function grades(){
-        $cardprint = Advisories::where('gradelevel_id', '=', Auth::user()->gradelevel_id)->where('course_id', '=', Auth::user()->course_id)->where('section_id', '=', Auth::user()->section_id)->where('deleted', '=', NULL)->where('active', '=', null)->first();
+        $cardprintprevious11 = Advisories::where('gradelevel_id', '=', 11)->where('course_id', '=', Auth::user()->course_id)->where('section_id', '=', Auth::user()->section_id)->where('deleted', '=', NULL)->where('active', '=', null)->first();
+        $cardprintlatest12 = Advisories::where('gradelevel_id', '=', 12)->where('course_id', '=', Auth::user()->course_id)->where('section_id', '=', Auth::user()->section_id)->where('deleted', '=', NULL)->where('active', '=', null)->first();
         $allsubjects = StudentGrade::where('student_id', '=', Auth::user()->id)->where('deleted', '=', NULL)->get();
         $grade11 = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 1)->where('deleted', '=', NULL)->get();
         $grade11firstsem = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 1)->where('semester_id', '=', 1)->where('deleted', '=', NULL)->get();
@@ -244,7 +245,7 @@ class StudentsController extends Controller
     //     return view('student.grading.deletegradeeval', ['gradeeval' => $data]);
     //  }
 
-     public function printreportcard(){
+     public function printreportcardgrade11(){
         $stuid = Auth::user()->id;
         $printreportcard = StudentGrade::where('deleted', '=', null)->where('student_id', '=', $stuid)->get();
         $grade11 = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 1)->where('deleted', '=', NULL)->get();
@@ -252,6 +253,16 @@ class StudentsController extends Controller
         $grade11firstsemungraded = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 1)->where('semester_id', '=', 1)->where(function($q){$q->where('midterm', NULL)->orWhere('finals', NULL);})->where('deleted', '=', NULL)->get();
         $grade11secondsem = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 1)->where('semester_id', '=', 2)->where('deleted', '=', NULL)->get();
         $grade11secondsemungraded = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 1)->where('semester_id', '=', 2)->where(function($q){$q->where('midterm', NULL)->orWhere('finals', NULL);})->where('deleted', '=', NULL)->get();
+        $pdf = app('dompdf.wrapper');
+        $pdf->getDomPDF()->set_option("enable_php", true);
+        $pdf->loadView('student.pdf', compact('printreportcard', 'grade11', 'grade11firstsem', 'grade11firstsemungraded', 'grade11secondsem', 'grade11secondsemungraded', 
+        'grade12', 'grade12firstsem', 'grade12firstsemungraded', 'grade12secondsem', 'grade12secondsemungraded'));
+        return $pdf->download('Grade 11 report card.pdf');
+     }
+
+     public function printreportcardgrade12(){
+        $stuid = Auth::user()->id;
+        $printreportcard = StudentGrade::where('deleted', '=', null)->where('student_id', '=', $stuid)->get();
         $grade12 = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 2)->where('deleted', '=', NULL)->get();
         $grade12firstsem = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 2)->where('semester_id', '=', 1)->where('deleted', '=', NULL)->get();
         $grade12firstsemungraded = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 2)->where('semester_id', '=', 1)->where(function($q){$q->where('midterm', NULL)->orWhere('finals', NULL);})->where('deleted', '=', NULL)->get();
@@ -259,10 +270,9 @@ class StudentsController extends Controller
         $grade12secondsemungraded = StudentGrade::where('student_id', '=', Auth::user()->id)->where('gradelevel_id', '=', 2)->where('semester_id', '=', 2)->where(function($q){$q->where('midterm', NULL)->orWhere('finals', NULL);})->where('deleted', '=', NULL)->get();
         $pdf = app('dompdf.wrapper');
         $pdf->getDomPDF()->set_option("enable_php", true);
-        $pdf->loadView('student.pdf', compact('printreportcard', 'grade11', 'grade11firstsem', 'grade11firstsemungraded', 'grade11secondsem', 'grade11secondsemungraded', 
+        $pdf->loadView('student.pdf2', compact('printreportcard', 'grade11', 'grade11firstsem', 'grade11firstsemungraded', 'grade11secondsem', 'grade11secondsemungraded', 
         'grade12', 'grade12firstsem', 'grade12firstsemungraded', 'grade12secondsem', 'grade12secondsemungraded'));
-        return $pdf->download('report_card.pdf');
-
+        return $pdf->download('Grade 12 report card.pdf');
      }
 
     // ============================================================ DOCUMENT REQUEST ===================================================================================   

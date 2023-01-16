@@ -4,7 +4,7 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" action="{{ route('student.store') }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('facultyBulk.store') }}" enctype="multipart/form-data">
     <div class="modal-body">
         @csrf
         <center><a href="/downloadFacultyFileFormat" class="btn btn-primary"><i class="fas fa-download"></i> Download Required File Format</a></center>
@@ -13,7 +13,7 @@
             * required field
         </div>
         <div style="font-size: 20px;"><span style="color: red">*</span> Upload Excel file with the required format only</div>
-        <input type="file" name="file" class="form-control" style="font-size: 16px;" required>
+        <input type="file" name="select_file" class="form-control" style="font-size: 16px;" required>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

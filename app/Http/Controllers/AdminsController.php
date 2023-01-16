@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
+use Excel;
 
 class AdminsController extends Controller
 {
@@ -1066,6 +1067,63 @@ class AdminsController extends Controller
         return response()->download($file_path);
     } 
 
+    function importFacultyBulk(Request $request){
+        $this->validate($request, [
+            'select_file'  => 'required|mimes:xls,xlsx'
+        ]);
+
+        $path = $request->file('select_file')->getRealPath();
+        // $data = Excel::load($path)->get();
+        $data = Excel::toArray([],$path);
+        if(count($data) > 0){
+            $excludedRows = 1;
+            foreach($data as $key => $value){
+                foreach($value as $row){
+                    if($excludedRows > 3){
+                        $sliced = array_slice($row,-3,5);
+                        if(in_array(null, $sliced, true)){
+                            $chars = "abcdefghijkmnopqrstuvwxyz023456789";
+                            srand((double)microtime()*1000000);
+                            $i = 0;
+                            $pass = '' ;
+                            while ($i <= 7) {
+                                $num = rand() % 33;
+                                $tmp = substr($chars, $num, 1);
+                                $pass = $pass . $tmp;
+                                $i++;
+                            }
+                            $password = bcrypt($pass);
+
+                            $address_id = DB::table('addresses')-> insertGetId(array(
+                                'city'=> 'Taguig City',
+                            ));
+
+                            $insert_data[] = array(
+                                'address_id' => $address_id,
+                                'last_name'   => $row[0],
+                                'first_name'  => $row[1],
+                                'middle_name'   => $row[2],
+                                'suffix'    => $row[3],
+                                'email'  => $row[4],
+                                'gender'   => $row[5],
+                                'username'   => $row[6],
+                                'password'   => $password,
+                            );
+                            Mail::to($row[4])->send(new RegisterMail($pass));
+                        }
+                    }
+                    $excludedRows++;
+                }
+            }
+            if(!empty($insert_data)){
+                DB::table('faculties')->insert($insert_data);
+                return back()->with('success', 'Excel Data Imported successfully.');
+            }
+        }
+    }
+
+
+
      // ============================================================ STUDENT ===================================================
 
     public function student(){
@@ -1311,6 +1369,90 @@ class AdminsController extends Controller
         $file_path = public_path('uploads/'.$file_name);
         return response()->download($file_path);
     } 
+
+    function importStudentBulk(Request $request){
+        $this->validate($request, [
+            'select_file'  => 'required|mimes:xls,xlsx'
+        ]);
+
+        $path = $request->file('select_file')->getRealPath();
+        // $data = Excel::load($path)->get();
+        $data = Excel::toArray([],$path);
+        if(count($data) > 0){
+            $excludedRows = 1;
+            $schoolyear = DB::table('school_years')->latest('id')->first();
+            $student_id = DB::table('students')->latest('id')->first()->id;
+            foreach($data as $key => $value){
+                foreach($value as $row){
+                    if($excludedRows > 3){
+                        $sliced = array_slice($row,-3,9);
+                        if(in_array(null, $sliced, true)){
+                            $chars = "abcdefghijkmnopqrstuvwxyz023456789";
+                            srand((double)microtime()*1000000);
+                            $i = 0;
+                            $pass = '' ;
+                            while ($i <= 7) {
+                                $num = rand() % 33;
+                                $tmp = substr($chars, $num, 1);
+                                $pass = $pass . $tmp;
+                                $i++;
+                            }
+                            $password = bcrypt($pass);
+
+                            $address_id = DB::table('addresses')-> insertGetId(array(
+                                'city'=> 'Taguig City',
+                            ));
+
+                            $course_id = Courses::where('deleted', '=', null)->where('abbreviation', '=', $row[1])->first()->id;
+                            $section_id = Sections::where('deleted', '=', null)->where('section', '=', $row[2])->first()->id;
+                            $gradelevel_id = GradeLevels::where('deleted', '=', null)->where('gradelevel', '=', $row[0])->first()->id;
+
+                            $insert_data[] = array(
+                                'address_id' => $address_id,
+                                'course_id' => $course_id,
+                                'section_id'=> $section_id,
+                                'LRN' => $row[3],
+                                'gradelevel_id' => $gradelevel_id,
+                                'last_name'   => $row[4],
+                                'first_name'  => $row[5],
+                                'middle_name'   => $row[6],
+                                'suffix'    => $row[7],
+                                'email'  => $row[8],
+                                'gender'   => $row[9],
+                                'username'   => $row[10],
+                                'password'   => $password,
+                            );
+
+                            $student_id++;
+                            $subjects = DB::table('subject_teachers')->where('deleted', '=', NULL)->where('course_id', '=', $course_id)->where('section_id', '=', $section_id)
+                                    ->where('gradelevel_id', '=', $gradelevel_id)->where('schoolyear_id', '=', $schoolyear->id)->get();
+                                
+                            if($subjects->count() != 0){ 
+                                foreach($subjects as $subject){
+                                    $studentgrade = new StudentGrade;
+                                    $studentgrade->student_id =  $student_id;
+                                    $studentgrade->gradelevel_id = $subject->gradelevel_id;
+                                    $studentgrade->semester_id = $subject->semester_id;
+                                    $studentgrade->subject_id = $subject->subject_id;
+                                    $studentgrade->faculty_id = $subject->faculty_id;
+                                    $studentgrade->subjectteacher_id = $subject->id;
+                                    $studentgrade->schoolyear_id = $schoolyear->id;
+                                    $studentgrade->save();
+                                }
+                            }
+
+                            Mail::to($row[8])->send(new RegisterMail($pass));
+                        }
+                    }
+                    $excludedRows++;
+                }
+            }
+            if(!empty($insert_data)){
+                DB::table('students')->insert($insert_data);
+                return back()->with('success', 'Excel Data Imported successfully.');
+            }
+        }
+    }
     
 
      // ============================================================ SUBJECT ===================================================
