@@ -28,12 +28,7 @@
         } );
     </script>
 <div class="left-to-right">
-        @if ($message = Session::get('message'))
-            <div class="alert alert-success alert-block">
-                <button type="button" class="close" data-dismiss="alert">×</button>
-                <strong>{{ $message }}</strong>
-            </div></br></br>
-        @endif
+        
         <h3 style="font-size: 28px; font-weight: 800;">Table of Sections </h3>
         <hr class="mt-0 mb-4">
         <div class="card mb-4 left-to-right border-start-lg border-start-success" style="padding: 10px 40px 10px 40px;">
