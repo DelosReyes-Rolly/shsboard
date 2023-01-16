@@ -17,6 +17,7 @@
 
         <form method="POST" action="{{ route('studentsubjectadd.store') }}" enctype="multipart/form-data">
             @csrf
+            <div id="validation-errors"></div>
             <input type="hidden" name="student_id" value="{{$student->id}}">
             <div class="container-xl px-4 mt-4">
                 <!-- page navigation-->

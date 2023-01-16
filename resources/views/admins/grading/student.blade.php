@@ -122,7 +122,7 @@
                                                 <a class="btn btn-success btn-md" href="/viewstudent/{{$student->id}}" data-toggle="modal" data-target="#modal-view-{{ $student->id }}"><i class="fas fa-eye"></i> View</a>
                                                 <a class="btn btn-warning btn-md" href="/showstudent/{{$student->id}}" data-toggle="modal" data-target="#editModal{{ $student->id }}"><i class="fas fa-edit"></i> Update</a>
                                                 <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $student->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
-                                                <a class="btn btn-danger btn-md" href="{{route('admin.dropstudent', $student->id)}}"><i class="fas fa-user-slash"></i> Drop</a>
+                                                <button class="btn btn-danger btn-md" onclick="dropItem(this)" data-id="{{ $student->id }}"><i class="fas fa-user-slash"></i> Drop</button>
                                             </td> 
                                             </td> 
                                         </tr>
@@ -170,6 +170,7 @@
       });
 
       deleteItem(e);
+      dropItem(e);
     });
 
     //delete
@@ -209,6 +210,66 @@
                                 swalWithBootstrapButtons.fire(
                                     'Deleted!',
                                     'Student is deleted successfully.',
+                                    "success"
+                                );
+                                $("#student"+id+"").remove();
+                            }
+
+                        }
+                    });
+
+                }
+
+            } else if (
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    '',
+                    'error'
+                );
+            }
+        });
+
+        }
+
+        //drop
+    function dropItem(e){
+
+        let id = e.getAttribute('data-id');
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: true
+        });
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, drop the student!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                if (result.isConfirmed){
+
+                    $.ajax({
+                        type:'PUT',
+                        url:'{{url("/dropstudent")}}/' +id,
+                        data:{
+                            "_token": "{{ csrf_token() }}",
+                        },
+                        success:function(data) {
+                            if (data.success){
+                                
+                                swalWithBootstrapButtons.fire(
+                                    'Dropped!',
+                                    'Student is dropped successfully.',
                                     "success"
                                 );
                                 $("#student"+id+"").remove();

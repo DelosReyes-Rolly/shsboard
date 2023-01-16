@@ -9,6 +9,7 @@
     <div class="modal-body">
         @csrf
         @method('PUT')
+        <div id="validation-errors"></div>
         <input type="hidden" id="id" name="id" value="{{$section->id}}"/>               <!-- lagay ka ng hidden. Yung id ng row o ng ieedit -->
         <div class="col-md-12">                                                         <!-- id ng input ay "section" -->
             <input type="text" id="section" name="section" class="form-control @error('section') is-invalid @enderror" value="{{$section->section}}" style="font-size: 20px;" onkeydown="return alphaOnly(event);" maxlength="1" minlength="1"  required>
@@ -52,7 +53,12 @@
                             title: 'Success.',                                                  //
                             text: 'Section has been updated successfully',                      //
                         })
-                }
+                },error: function (xhr) {
+                    $('#validation-errors').html('');
+                    $.each(xhr.responseJSON.errors, function(key,value) {
+                        $('#validation-errors').append('<div class="alert alert-danger"> <b>Whoops! There is a problem in your input</b> <br/> &emsp;'+value+'</div');
+                    }); 
+                },
             });
             $("#saveBtn").click(function() {                                            // wala lang to
                 $("#example").load("#example");

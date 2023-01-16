@@ -1292,12 +1292,24 @@ class AdminsController extends Controller
     //     return view('admins.grading.functions.studentdelete', ['student' => $data]);
     // }
 
-    public function dropgradestudent(Request $request, Students $student){
-        $validated = $request->validate([
-            'status' => ['required'],
-        ]);
-        $student->update($validated);
-        return redirect('/gradingstudents')->with('success', 'Student has been dropped successfully!');
+    public function dropgradestudent(Request $request, Students $student, $id){
+        // $validated = $request->validate([
+        //     'status' => ['required'],
+        // ]);
+        // $student->update($validated);
+        // return redirect('/gradingstudents')->with('success', 'Student has been dropped successfully!');
+
+        if ($request->ajax()){
+
+            $student = Students::findOrFail($id);
+            if ($student){
+    
+                $student->status = 3;
+                $student->save();
+    
+                return response()->json(array('success' => true));
+            }
+        }
     }
 
     public function dropstudent($id){

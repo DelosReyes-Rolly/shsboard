@@ -9,6 +9,7 @@
     <div class="modal-body">
         @csrf
         @method('PUT')
+        <div id="validation-errors"></div>
         <input type="hidden" id="id" name="id" value="{{$course->id}}"/>
         <div class="mb-3" style="color: red">
            * required field
@@ -97,7 +98,12 @@
                             title: 'Success.',
                             text: 'Strand has been updated successfully',
                         })
-                }
+                },error: function (xhr) {
+                    $('#validation-errors').html('');
+                    $.each(xhr.responseJSON.errors, function(key,value) {
+                        $('#validation-errors').append('<div class="alert alert-danger"> <b>Whoops! There is a problem in your input</b> <br/> &emsp;'+value+'</div');
+                    }); 
+                },
             });
             $("#saveBtn").click(function() {
                 $("#example").load("#example");

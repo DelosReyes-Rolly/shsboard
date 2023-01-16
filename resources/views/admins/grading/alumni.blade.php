@@ -16,10 +16,12 @@
 	<script src="{{ asset('assets/js/datatables-jquery-1.12.1.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-rowreorder-1.2.8.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-responsive-2.3.0.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable( {
-                responsive: true
+                responsive: true,
+                "bInfo" : false,
             } );
          
             new $.fn.dataTable.FixedHeader( table );
@@ -63,7 +65,7 @@
                                     $i=1;
                                 ?>
                                     @foreach ($students as $student)
-                                        <tr>
+                                        <tr id="student{{$student->id}}">
                                             <td class="text-center"><?php echo $i++; ?></td>
                                             <td>{{$student -> LRN}}</td>
                                             <td>{{$student -> last_name}}, {{$student -> first_name}} {{$student -> middle_name}} {{$student -> suffix}}</td>
@@ -73,12 +75,26 @@
                                             <td>{{$student -> phone_number}}</td>
                                             <td>{{$student -> email}}</td>
                                             <td>
-                                                <a class="btn btn-success btn-md" href="/viewstudent/{{$student->id}}"><i class="fas fa-eye"></i> View</a>
-                                                <a class="btn btn-warning btn-md" href="/showstudent/{{$student->id}}"><i class="fas fa-edit"></i> Update</a>
-                                                <a class="btn btn-danger btn-md" href="{{route('admin.deletestudent', $student->id)}}"><i class="fas fa-trash-alt"></i> Delete</a>
+                                                <a class="btn btn-success btn-md" href="/viewstudent/{{$student->id}}" data-toggle="modal" data-target="#modal-view-{{ $student->id }}"><i class="fas fa-eye"></i> View</a>
+                                                <a class="btn btn-warning btn-md" href="/showstudent/{{$student->id}}" data-toggle="modal" data-target="#editModal{{ $student->id }}"><i class="fas fa-edit"></i> Update</a>
+                                                <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $student->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                             </td> 
                                             </td> 
                                         </tr>
+                                        <!-- view modal -->
+                                        <div id="modal-view-{{ $student->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content border-start-lg border-start-yellow">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- edit modal -->
+                                        <div id="editModal{{ $student->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content border-start-lg border-start-yellow">
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endforeach
                             </tbody>
                         </table>
@@ -93,7 +109,69 @@
       $('.nav_btn').click(function(){
         $('.mobile_nav_items').toggleClass('active');
       });
+      deleteItem(e);
     });
+
+      //delete
+    function deleteItem(e){
+
+        let id = e.getAttribute('data-id');
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: true
+        });
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                if (result.isConfirmed){
+
+                    $.ajax({
+                        type:'PUT',
+                        url:'{{url("/student/delete")}}/' +id,
+                        data:{
+                            "_token": "{{ csrf_token() }}",
+                        },
+                        success:function(data) {
+                            if (data.success){
+                                
+                                swalWithBootstrapButtons.fire(
+                                    'Deleted!',
+                                    'Student is deleted successfully.',
+                                    "success"
+                                );
+                                $("#student"+id+"").remove();
+                            }
+
+                        }
+                    });
+
+                }
+
+            } else if (
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    '',
+                    'error'
+                );
+            }
+        });
+
+        }
+
     </script>
 
 </main>

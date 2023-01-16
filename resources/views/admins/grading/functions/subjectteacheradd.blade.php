@@ -8,6 +8,7 @@
 <form method="POST" id="createSubjectteacher" class="needs-validation" novalidate>
     <div class="modal-body">
         @csrf
+        <div id="validation-errors"></div>
         <div class="mb-3" style="color: red">
             * required field
         </div>
@@ -236,7 +237,12 @@
                             })
                             
                         }
-                    }
+                    },error: function (xhr) {
+                    $('#validation-errors').html('');
+                    $.each(xhr.responseJSON.errors, function(key,value) {
+                        $('#validation-errors').append('<div class="alert alert-danger"> <b>Whoops! There is a problem in your input</b> <br/> &emsp;'+value+'</div');
+                    }); 
+                },
                 });
                 $("#saveBtn").click(function() {
                     $("#example").load("#example");

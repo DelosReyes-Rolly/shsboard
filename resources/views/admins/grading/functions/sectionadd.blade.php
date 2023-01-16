@@ -8,6 +8,7 @@
 <form method="POST" id="createSection" class="needs-validation" novalidate>
     <div class="modal-body">
         @csrf
+        <div id="validation-errors"></div>
         <div class="mb-3" style="color: red">
             * required field
         </div>
@@ -16,7 +17,7 @@
                 <label style="font-size: 20px;"><span style="color: red">*</span> Section Name</label>
                 <input id="section" type="text" name="section"  class="form-control @error('section') is-invalid @enderror" value="{{ old('section') }}" style="font-size: 14px;"onkeydown="return alphaOnly(event);" maxlength="1" minlength="1"  required>
                 <div class="invalid-feedback">
-                    Please input valid section.
+                    Please input valid section.z
                 </div>
             </div>
         </div>
@@ -56,7 +57,12 @@
                         })
                         
                     }
-                }
+                },error: function (xhr) {
+                    $('#validation-errors').html('');
+                    $.each(xhr.responseJSON.errors, function(key,value) {
+                        $('#validation-errors').append('<div class="alert alert-danger"> <b>Whoops! There is a problem in your input</b> <br/> &emsp;'+value+'</div');
+                    }); 
+                },
             });
             $("#saveBtn").click(function() {
                 $("#example").load("#example");

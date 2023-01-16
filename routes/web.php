@@ -144,7 +144,7 @@ Route::post('/resetpassfaculty', [FacultyController::class, 'reset']);
 |
 */
 
-
+Route::group(['middleware' => 'prevent-back-history'],function(){
 Route::group(['middleware' => 'auth:students'], function () {
     
     Route::controller(StudentsController::class)->group(function(){
@@ -225,7 +225,7 @@ Route::group(['middleware' => 'auth:students'], function () {
             Route::get('/studentgrade', 'grades');
             Route::get('/gradeeval', 'gradeeval');
             Route::get('/vieweval/{id}', 'vieweval');
-            Route::post('/grade-eval/{student_id}/{gradelevel_id}/{course_id}/{section_id}/{semester_id}/{faculty_id}/{subject_id}',  'gradeevalreq')->name('grade-eval');
+            Route::post('/grade-eval',  'gradeevalreq')->name('grade-eval');
             Route::get('/grade-eval/{student_id}/{gradelevel_id}/{course_id}/{section_id}/{semester_id}/{faculty_id}/{subject_id}',  'gradeevalreqModal')->name('grade-evalModal');
             // Route::get('/deletegradeeval/{id}',  'deletegradeeval')->name('student.deletegradeeval');
             // Route::put('/deletegradeeval/{gradeeval}',  'deletegradegradeeval');
@@ -543,7 +543,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 Route::get('/viewstudent/{id}','viewstudent');
                 Route::get('/showstudent/{id}','showstudent');
                 // Route::get('/deletestudent/{id}', 'deletestudent')->name('admin.deletestudent');
-                Route::get('/dropstudent/{id}', 'dropstudent')->name('admin.dropstudent');
+                // Route::get('/dropstudent/{id}', 'dropstudent')->name('admin.dropstudent');
 
                 Route::get('/studentaddsubject/{id}', 'addstudentsubject');
 
@@ -634,7 +634,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 // Route::put('/deletestudent/{student}', 'deletegradestudent');
                 Route::put('/student/delete/{id}', 'deletegradestudent');
 
-                Route::put('/dropstudent/{student}', 'dropgradestudent');
+                Route::put('/dropstudent/{id}', 'dropgradestudent');
                 Route::put('/updatesubject/{subject}', 'updatesubject');
                 // Route::put('/deletesubject/{subject}', 'deletegradesubject');
                 Route::put('/subject/delete/{id}', 'deletegradesubject');
@@ -925,3 +925,4 @@ Route::group(['middleware' => 'auth:faculties'], function () {
     Route::group(['prefix' => 'admins'], function () { 
         Auth::routes();
     });
+});

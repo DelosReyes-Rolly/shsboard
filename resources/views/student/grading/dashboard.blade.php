@@ -91,14 +91,14 @@
                    <div class="alert alert-danger"><center><em>Sorry. You're not currently enrolled in any subjects. Please contact the administrator.</em></center></div>
                 @else 
                     <!-- Print overall Grades -->
-                    @if($cardprintlatest12->count() == 0)
+                    @if($cardprintlatest12 != null)
                         @if($cardprintlatest12->cardgiving == 1)
                             <div style="margin: 20px;">
                                 <a class="btn btn-primary btn-md" href="/printreportcardgrade11" style="float: right;"><i class="fas fa-file-alt"></i>  Print Grade 12 Report Card</a>
                             </div>
                         @endif
                     @endif<br/><br/>
-                    @if($cardprintprevious11->count() == 0)
+                    @if($cardprintprevious11 != null)
                         @if($cardprintprevious11->cardgiving == 1)
                             <div style="margin: 20px;">
                                 <a class="btn btn-primary btn-md" href="/printreportcardgrade12" style="float: right;"><i class="fas fa-file-alt"></i>  Print Grade 11 Report Card</a>

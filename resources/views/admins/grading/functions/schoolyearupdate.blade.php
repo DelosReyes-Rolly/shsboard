@@ -9,6 +9,7 @@
     <div class="modal-body">
     @csrf
     @method('put')
+    <div id="validation-errors"></div>
     <input type="hidden" id="id" name="id" value="{{$schoolyear->id}}"/>
         <div class="col-md-12">
             <input type="text" id="schoolyear" name="schoolyear" class="form-control @error('schoolyear') is-invalid @enderror" value="{{$schoolyear->schoolyear}}"style="font-size: 20px;"  onkeypress="return onlyNumberKey(event)" maxlength="4" minlength="4" required>
@@ -52,7 +53,12 @@
                             title: 'Success.',
                             text: 'Schoolyear has been updated successfully',
                         })
-                }
+                },error: function (xhr) {
+                    $('#validation-errors').html('');
+                    $.each(xhr.responseJSON.errors, function(key,value) {
+                        $('#validation-errors').append('<div class="alert alert-danger"> <b>Whoops! There is a problem in your input</b> <br/> &emsp;'+value+'</div');
+                    }); 
+                },
             });
             $("#saveBtn").click(function() {
                 $("#example").load("#example");
