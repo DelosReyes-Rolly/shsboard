@@ -987,7 +987,6 @@ class AdminsController extends Controller
             $user = Addresses::create([
                 'city'=> 'Taguig City',
             ]);
-            dd($user);
             $user->faculty()->create($validated);
             Mail::to($validated['email'])->send(new RegisterMail($pass));
             return response()->json(array('success' => true));   
