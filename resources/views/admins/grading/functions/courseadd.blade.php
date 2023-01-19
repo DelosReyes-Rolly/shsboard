@@ -64,7 +64,7 @@
     CKEDITOR.replace( 'description' );
 </script>
 <script>
-    $("#createCourse").submit(function(e) {
+    $("createCourse").submit(function(e) {
             e.preventDefault();
 
             var courseName = $("#courseName").val();

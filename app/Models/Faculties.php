@@ -20,4 +20,8 @@ use Illuminate\Notifications\Notifiable;
         protected $hidden = [
             'password',
         ];
+
+        public function specialty(){
+            return $this->belongsTo(Specialties::class);
+        }
     }

@@ -31,7 +31,7 @@
     </div>
 </form>
 <script>
-    $("#createSchoolyear").submit(function(e) {
+    $("createSchoolyear").submit(function(e) {
             e.preventDefault();
 
             var schoolyear = $("#schoolyear").val();

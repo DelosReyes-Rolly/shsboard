@@ -54,7 +54,7 @@
                                     <th class="border-gray-200" scope="col">#</th>
                                     <th class="border-gray-200" scope="col">Teacher Name</th>
                                     <th class="border-gray-200" scope="col">Gender</th>
-                                    <th class="border-gray-200" scope="col">Username</th>
+                                    <th class="border-gray-200" scope="col">Specialty</th>
                                     <th class="border-gray-200" scope="col">Phone Number</th>
                                     <th class="border-gray-200" scope="col">Email Address</th>
                                     <th class="border-gray-200" scope="col">Action</th>
@@ -69,7 +69,7 @@
                                             <td class="text-center"><?php echo $i++; ?></td>
                                             <td>{{$faculty -> last_name}} , {{$faculty -> first_name}} {{$faculty -> middle_name}} {{$faculty -> suffix}}</td>
                                             <td>{{$faculty -> gender}}</td>
-                                            <td>{{$faculty -> username}}</td>
+                                            <td>{{$faculty -> specialty -> specialty}}</td>
                                             <td>{{$faculty -> phone_number}}</td>
                                             <td>{{$faculty -> email}}</td>
                                             <td width=24%>

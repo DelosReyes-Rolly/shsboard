@@ -57,10 +57,10 @@
                                     
                                         <!-- Form Group whr-->
                                         <div class="col-lg-3 col-md-12 col-sm-12">
-                                            <label style="font-size: 26px;"><b>Username: </b></label>
+                                            <label style="font-size: 26px;"><b>Specialty: </b></label>
                                         </div>
                                         <div class="col-lg-9 col-md-12 col-sm-12" style="margin-bottom: 10px;">
-                                            <span style="font-size: 26px;">{{$faculty->username}}</span>
+                                            <span style="font-size: 26px;">{{$faculty->specialty->specialty}}</span>
                                         </div>
                                    
                                     

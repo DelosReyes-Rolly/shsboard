@@ -950,7 +950,8 @@ class AdminsController extends Controller
     }
 
     public function addfaculty(){
-        return view('admins.grading.functions.facultyadd');
+        $specialties = Specialties::where('deleted', '=', null)->get();
+        return view('admins.grading.functions.facultyadd', compact('specialties'));
     }
 
     public function addbatchfaculty(){
@@ -958,13 +959,13 @@ class AdminsController extends Controller
     }
 
     public function storefaculty(Request $request){
-        
         // Validate the inputs
         $validated = $request->validate([
-            'first_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
-            'middle_name' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
-            'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
-            'suffix' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
+            'specialty_id' => ['required'],
+            'first_name' => 'required|max:255',
+            'middle_name' => 'nullable|max:255',
+            'last_name' => 'required|max:255',
+            'suffix' => 'nullable|max:255',
             'email' => ['required', 'email', Rule::unique('faculties', 'email')],
         ]);
 
@@ -986,7 +987,7 @@ class AdminsController extends Controller
             $user = Addresses::create([
                 'city'=> 'Taguig City',
             ]);
-
+            dd($user);
             $user->faculty()->create($validated);
             Mail::to($validated['email'])->send(new RegisterMail($pass));
             return response()->json(array('success' => true));   

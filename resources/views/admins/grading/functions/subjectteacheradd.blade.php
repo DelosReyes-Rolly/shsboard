@@ -313,7 +313,7 @@
             });
         });
 
-    $("#createSubjectteacher").submit(function(e) {
+    $("createSubjectteacher").submit(function(e) {
             e.preventDefault();
             var checked = $("#createSubjectteacher input:checked").length > 0;
             if (!checked){

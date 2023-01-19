@@ -76,7 +76,7 @@
     </div>
 </form>
 <script>
-    $("#createAdvisory").submit(function(e) {
+    $("createAdvisory").submit(function(e) {
             e.preventDefault();
 
             var faculty = $("#faculty").val();

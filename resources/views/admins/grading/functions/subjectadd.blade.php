@@ -45,7 +45,7 @@
     </div>
 </form>
 <script>
-    $("#createSubject").submit(function(e) {
+    $("createSubject").submit(function(e) {
             e.preventDefault();
 
             var subjectcode = $("#subjectcode").val();

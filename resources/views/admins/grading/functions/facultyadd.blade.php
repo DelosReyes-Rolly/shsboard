@@ -23,32 +23,44 @@
                     Please input valid last name.
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12"><br/>
                 <label style="font-size: 20px;"><span style="color: red">*</span> First Name</label>
                 <input id="firstname" type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}" onkeydown="return alphaOnly(event);" style="font-size: 14px;" required>
                 <div class="invalid-feedback">
                     Please input valid first name.
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12"><br/>
                 <label style="font-size: 20px;">Middle Name</label>
                 <input id="middlename" type="text" name="middle_name" class="form-control @error('middle_name') is-invalid @enderror" value="{{ old('middle_name') }}" onkeydown="return alphaOnly(event);" style="font-size: 14px;">
                 <div class="invalid-feedback">
                     Please input valid middle name.
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12"><br/>
                 <label style="font-size: 20px;">Suffix</label>
                 <input id="suffix" type="text" name="suffix" class="form-control @error('suffix') is-invalid @enderror" value="{{ old('suffix') }}" onkeydown="return alphaOnly(event);" style="font-size: 14px;">
                 <div class="invalid-feedback">
                     Please input valid suffix name.
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12"><br/>
                 <label style="font-size: 20px;"><span style="color: red">*</span> Email Address</label>
                 <input id="email" type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" style="font-size: 14px;" required> 
                 <div class="invalid-feedback">
                     Please input valid email address.
+                </div>
+            </div>
+            <div class="col-md-12"><br/>
+                <label for="specialty_id" class="col-form-label text-md-end" style="font-size: 20px;"><span style="color: red">*</span>  {{ __('Specialty') }}</label><br>
+                <select id="specialty_id" name="specialty_id" class="form-control" required>
+                    <option value="" {{old('specialty_id') == "" ?'selected' : ''}} disabled> Please Select Specialty </option>
+                    @foreach($specialties as $specialty)
+                    <option value="{{$specialty->id}}">{{$specialty->specialty}}</option>
+                    @endforeach
+                </select>
+                <div class="invalid-feedback">
+                    Please input specialties.
                 </div>
             </div>
         </div>
@@ -67,12 +79,13 @@
             var middle_name = $("#middlename").val();
             var suffix = $("#suffix").val();
             var email = $("#email").val();
+            var specialty_id = $("#specialty_id").val();
             var _token = $("input[name=_token]").val();
-
             $.ajax({
                 type: "POST",
                 url: "{{ route('faculty.store') }}",
                 data: {
+                    specialty_id: specialty_id,
                     last_name: last_name,
                     first_name: first_name,
                     middle_name: middle_name,
@@ -80,6 +93,7 @@
                     email: email,
                     _token: _token
                 },
+                
                 success: function(response) {
                     if (response) {
                         $("#createModal").removeClass("in");

@@ -113,7 +113,7 @@
     </div>
 </form>
 <script>
-    $("#createStudent").submit(function(e) {
+    $("createStudent").submit(function(e) {
             e.preventDefault();
 
             var lrn = $("#lrn").val();
