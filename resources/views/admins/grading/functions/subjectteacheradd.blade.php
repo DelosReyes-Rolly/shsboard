@@ -1,4 +1,65 @@
 <script src="{{ asset('assets/js/needs-validated.js') }}"></script>
+<style>
+    .switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 22px;
+    }
+
+    .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+    }
+
+    .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    }
+
+    .slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    }
+
+    input:checked + .slider {
+    background-color: green;
+    }
+
+    input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+    border-radius: 20px;
+    }
+
+    .slider.round:before {
+    border-radius: 50%;
+    }
+</style>
 <div class="modal-header">
     <h1 class="modal-title" id="staticBackdropLabel" style="font-size: 20px;">New subject of teacher</h1>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -8,14 +69,51 @@
 <form method="POST" id="createSubjectteacher" class="needs-validation" novalidate>
     <div class="modal-body">
         @csrf
-        <div id="validation-errors"></div>
+        <div style="border-radius: 10px; background-color: #ffffff;">
+            <label class="large mb-1" for="inputcontent"> <div class="alert alert-primary"><em><i class="fas fa-info"> </i> | <b> Reminder:</b> Assign advisory teacher to the class first before assigning subjects to a class.</em></div></label><br>
+        </div>  
+        <div id="whoops" class="alert alert-danger" style="display: none;">
+            <b>Whoops! There is a problem in your input. Please recheck.</b> <br/>
+            <div id="validation-errors"></div>
+        </div>
         <div class="mb-3" style="color: red">
             * required field
         </div>
         <div class="row">       
             <div class="col-md-12">
+                <div class="col-md-12"><label for="switch" style="font-size: 20px;"> Suggestions</label>
+                    <label class="switch">
+                        <input type="checkbox" id="switch">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-12"><label for="specialty_id" style="font-size: 20px;"> Specialty</label>
+                    <select id="specialty_id" name="specialty_id" class="form-control" value="{{ old('specialty_id') }}" style="font-size: 14px;" disabled>
+                        <option value="" disabled selected hidden>Choose Specialty</option>
+                        @foreach ($specialties as $specialty)
+                        <option value="{{ $specialty->id }}" {{$specialty->specialty_id == $specialty->id  ? 'selected' : ''}}>{{ $specialty->specialty }}</option>
+                        @endforeach 
+                    </select>
+                    <div class="invalid-feedback">
+                        Please choose specialty.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" id="secondfac" style="display: none;"><br/>
+                <div class="col-md-12"><label for="secondfaculty_id" style="font-size: 20px;"><span style="color: red">*</span> Teacher</label>
+                    <select id="secondfaculty_id" name="secondfaculty_id" class="form-control" value="{{ old('secondfaculty_id') }}" style="font-size: 14px;" required>
+                        <option value="" disabled selected hidden>Choose Teacher</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please choose teacher.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" id="firstfac"><br/>
                 <div class="col-md-12"><label for="faculty_id" style="font-size: 20px;"><span style="color: red">*</span> Teacher</label>
-                    <select id="faculty" name="faculty_id" class="form-control" value="{{ old('faculty_id') }}" style="font-size: 14px;" required>
+                    <select id="faculty_id" name="faculty_id" class="form-control" value="{{ old('faculty_id') }}" style="font-size: 14px;" required>
                         <option value="" disabled selected hidden>Choose Teacher</option>
                         @foreach ($faculties as $faculty)
                         <option value="{{ $faculty->id }}"  {{$faculty->faculty_id == $faculty->id  ? 'selected' : ''}}>{{ $faculty->last_name }}, {{ $faculty->first_name }} {{ $faculty->middle_name }}</option>
@@ -140,6 +238,81 @@
     </div>
 </form>
 <script>
+
+    function removeOptions(selectElement) {
+    var i, L = selectElement.options.length - 1;
+    for(i = L; i >= 0; i--) {
+        selectElement.remove(i);
+    }
+    }
+
+
+    document.getElementById('switch').onchange = function() {
+        document.getElementById('specialty_id').disabled = !this.checked;
+        if (!this.checked) {
+            document.getElementById('secondfac').style.display = 'none';
+            document.getElementById('firstfac').style.display = 'block';
+        }
+        else{
+            document.getElementById('secondfac').style.display = 'block';
+            document.getElementById('firstfac').style.display = 'none';
+        }
+    };
+
+    document.getElementById('switch').onclick = function() {
+
+    }
+
+    // document.getElementById('specialty_id').onchange = function() {
+    //     var s = $("#specialty_id").val();
+    //     console.log(s);
+    // };
+
+        $('#specialty_id').change(function(){
+        removeOptions(document.getElementById('secondfaculty_id'));
+        var specialty_id = $("#specialty_id").val();
+        var _token = $("input[name=_token]").val();
+            $.ajax({
+            type: "POST",
+            url: "{{ route('specialty.search') }}",
+                    data: {
+                        specialty_id: specialty_id,
+                        _token: _token
+                    },
+                    success: function(response) {
+                        if (response) {
+                            var specialty_id = response.id;
+                            $.ajax({
+                                type: "POST",
+                                url: "{{ route('teacher.search') }}",
+                                        data: {
+                                            specialty_id: specialty_id,
+                                            _token: _token
+                                        },
+                                        success: function(response) {
+                                            if (response) {
+                                                for(i = 0; i<response.length; i++){
+                                                    if(response[i].middle_name != null &&  response[i].suffix != null){
+                                                        $('#secondfaculty_id').append('<option value="' + response[i].id + '">' + response[i].last_name + ', ' + response[i].first_name + ' ' + response[i].middle_name + ' ' + response[i].suffix + '</option>');
+                                                    }
+                                                    else if(response[i].middle_name == null &&  response[i].suffix != null){
+                                                        $('#secondfaculty_id').append('<option value="' + response[i].id + '">' + response[i].last_name + ', ' + response[i].first_name + ' ' + response[i].suffix  + '</option>');
+                                                    }
+                                                    else if(response[i].middle_name != null &&  response[i].suffix == null){
+                                                        $('#secondfaculty_id').append('<option value="' + response[i].id + '">' + response[i].last_name + ', ' + response[i].first_name + ' ' + response[i].middle_name + '</option>');
+                                                    }
+                                                    else if(response[i].middle_name == null &&  response[i].suffix == null){
+                                                        $('#secondfaculty_id').append('<option value="' + response[i].id + '">' + response[i].last_name + ', ' + response[i].first_name + '</option>');
+                                                    }
+                                                }
+                                            }
+                                        }
+                            });
+                        }
+                    }
+            });
+        });
+
     $("#createSubjectteacher").submit(function(e) {
             e.preventDefault();
             var checked = $("#createSubjectteacher input:checked").length > 0;
@@ -148,7 +321,12 @@
                 return false;
             }
             else{
-                var faculty = $("#faculty").val();
+                if ($('switch').prop('checked')) { 
+                    var faculty = $("#faculty_id").val();
+                }
+                else{
+                    var faculty = $("#secondfaculty_id").val();
+                }
                 var gradelevel = $("#gradelevel").val();
                 var semester = $("#semester").val();
                 var course = $("#course").val();
@@ -239,8 +417,9 @@
                         }
                     },error: function (xhr) {
                     $('#validation-errors').html('');
+                    document.getElementById('whoops').style.display = 'block';
                     $.each(xhr.responseJSON.errors, function(key,value) {
-                        $('#validation-errors').append('<div class="alert alert-danger"> <b>Whoops! There is a problem in your input</b> <br/> &emsp;'+value+'</div');
+                        $('#validation-errors').append('&emsp;<li>'+value+'</li>');
                     }); 
                 },
                 });

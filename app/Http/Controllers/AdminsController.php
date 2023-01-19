@@ -17,6 +17,7 @@ use App\Models\Landings;
 use App\Models\SchoolYear;
 use App\Models\Sections;
 use App\Models\Semesters;
+use App\Models\Specialties;
 use App\Models\StudentGrade;
 use App\Models\Students;
 use App\Models\Subjects;
@@ -1122,6 +1123,65 @@ class AdminsController extends Controller
         }
     }
 
+    // ============================================================ SPECIALTY ===================================================
+
+    public function specialty(){
+        $specialties = Specialties::where('deleted', '=', null)->get();
+        return view('admins.grading.specialty', compact('specialties'));
+    }
+
+    public function addspecialty(){
+        return view('admins.grading.functions.specialtyadd');
+    }
+
+    public function storespecialty(Request $request){
+        // Validate the inputs
+        $request->validate([
+            'specialty' => 'required|max:255',
+        ]);
+        $specialty = new Specialties();
+        $specialty->specialty = $request->get('specialty');
+        $specialty->save();
+        return response()->json(array('success' => true));
+        // return redirect('/gradingspecialtys')->with('success', 'Section has been added successfully!');
+    }    
+
+    public function viewspecialty($id){
+        $data = Specialties::where('deleted', '=', null)->findOrFail($id);
+        return view('admins.grading.functions.specialtyview', ['specialty' => $data]);
+    }
+
+
+    public function showspecialty($id){
+        $data = Specialties::where('deleted', '=', null)->findOrFail($id);
+        return view('admins.grading.functions.specialtyupdate', ['specialty' => $data]);
+    }
+
+    public function updatespecialty(Request $request){
+        $request->validate([
+            'specialty' => 'required',
+        ]);
+        $specialty = Specialties::find($request->id);
+        $specialty->specialty = $request->specialty;
+        $specialty->save();
+        return response()->json($specialty);
+    }    
+
+   public function deletegradespecialty(Specialties $specialty, Request $request, $id){
+        if ($request->ajax()){
+
+            $specialty = Specialties::findOrFail($id);
+            if ($specialty){
+
+                $specialty->deleted = 1;
+                $specialty->deleted_at = now();
+                $specialty->save();
+
+                return response()->json(array('success' => true));
+            }
+
+        }
+    }
 
 
      // ============================================================ STUDENT ===================================================
@@ -1582,7 +1642,7 @@ class AdminsController extends Controller
         Students::where('deleted', '=', null)->where('status', '=', 1)->increment('gradelevel_id', 1, ['updated_at' => now()]);
         Students::query()->where('gradelevel_id', '<', 1)->orWhere('gradelevel_id', '>', 2)->update(['status' => 2]);
         Advisories::query()->update(['active' => 1]);
-        $ads = Advisories::where('deleted', '=', null);
+        $ads = Advisories::where('deleted', '=', null)->get();
         foreach($ads as $ad){
             $newAdvisories = new Advisories;
             $newAdvisories->faculty_id = $ad->faculty_id;
@@ -1656,12 +1716,23 @@ class AdminsController extends Controller
 
     public function subjectteacheradd(){
         $faculties = Faculties::where('deleted', '=', null)->get();
+        $specialties = Specialties::where('deleted', '=', null)->get();
         $gradelevels = GradeLevels::all();
         $semesters = Semesters::all();
         $courses = Courses::where('deleted', '=', null)->get();
         $sections =Sections::where('deleted', '=', null)->get();
         $subjects = Subjects::where('deleted', '=', null)->get();
-        return view('admins.grading.functions.subjectteacheradd', compact('faculties', 'gradelevels', 'semesters', 'courses', 'sections', 'subjects'));
+        return view('admins.grading.functions.subjectteacheradd', compact('faculties', 'gradelevels', 'semesters', 'courses', 'sections', 'subjects', 'specialties'));
+    }
+
+    public function specialtysearch(Request $request){
+        $specialty = Specialties::find($request->specialty_id);
+        return response()->json($specialty);
+    }
+
+    public function teachersearch(Request $request){
+        $teacher = Faculties::where('specialty_id', '=', $request->specialty_id)->get();
+        return response()->json($teacher);
     }
 
     public function subjectteacherstore(Request $request){
@@ -1751,7 +1822,7 @@ class AdminsController extends Controller
             return response()->json(array('success' => true));  
         }
         else{
-            return redirect()->back()->with('warning', 'Kindly set advisory teacher first for this class.')->withInput();
+            return response()->json(['error' => 'Error msg'], 401); 
         }
         
     } 

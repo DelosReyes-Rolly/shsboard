@@ -94,14 +94,14 @@
                     @if($cardprintlatest12 != null)
                         @if($cardprintlatest12->cardgiving == 1)
                             <div style="margin: 20px;">
-                                <a class="btn btn-primary btn-md" href="/printreportcardgrade11" style="float: right;"><i class="fas fa-file-alt"></i>  Print Grade 12 Report Card</a>
+                                <a class="btn btn-primary btn-md" href="/printreportcardgrade12" style="float: right;"><i class="fas fa-file-alt"></i>  Print Grade 12 Report Card</a>
                             </div>
                         @endif
                     @endif<br/><br/>
                     @if($cardprintprevious11 != null)
                         @if($cardprintprevious11->cardgiving == 1)
                             <div style="margin: 20px;">
-                                <a class="btn btn-primary btn-md" href="/printreportcardgrade12" style="float: right;"><i class="fas fa-file-alt"></i>  Print Grade 11 Report Card</a>
+                                <a class="btn btn-primary btn-md" href="/printreportcardgrade11" style="float: right;"><i class="fas fa-file-alt"></i>  Print Grade 11 Report Card</a>
                             </div>
                         @endif
                     @endif
@@ -279,7 +279,7 @@
                                                                     </td>
                                                                     <td>
                                                                         @if($grade12second->isReleased == 2)
-                                                                            @if($gradeEvalCount->where('semester_id', '=', $grade11first->semester_id)->where('faculty_id', '=', $grade11first->faculty_id)->where('subject_id', '=', $grade11first->subject_id)->count() == 0)
+                                                                            @if($gradeEvalCount->where('semester_id', '=', $grade12second->semester_id)->where('faculty_id', '=', $grade12second->faculty_id)->where('subject_id', '=', $grade12second->subject_id)->count() == 0)
                                                                                 <a href="{{route('grade-eval',['student_id'=> Auth::user()->id , 'gradelevel_id'=> $grade12second -> gradelevel_id, 
                                                                                 'course_id'=>  Auth::user()->course_id, 'section_id'=> Auth::user()->section_id,
                                                                                 'semester_id'=>  $grade12second -> semester_id, 'faculty_id'=> $grade12second -> faculty_id,
@@ -466,7 +466,7 @@
                                                                         </td>
                                                                         <td>
                                                                             @if($grade12first -> isReleased == 2 || $grade12first -> isReleased == 1)
-                                                                                @if($gradeEvalCount->where('semester_id', '=', $grade11first->semester_id)->where('faculty_id', '=', $grade11first->faculty_id)->where('subject_id', '=', $grade11first->subject_id)->count() == 0)
+                                                                                @if($gradeEvalCount->where('semester_id', '=', $$grade12first->semester_id)->where('faculty_id', '=', $$grade12first->faculty_id)->where('subject_id', '=', $$grade12first->subject_id)->count() == 0)
                                                                                     <a href="{{route('grade-eval',['student_id'=> Auth::user()->id , 'gradelevel_id'=> $grade12first -> gradelevel_id, 
                                                                                         'course_id'=>  Auth::user()->course_id, 'section_id'=> Auth::user()->section_id,
                                                                                         'semester_id'=>  $grade12first -> semester_id, 'faculty_id'=> $grade12first -> faculty_id,
@@ -662,7 +662,7 @@
                                                                     </td>
                                                                     <td>
                                                                         @if($grade11second -> isReleased == 2)
-                                                                            @if($gradeEvalCount->where('semester_id', '=', $grade11first->semester_id)->where('faculty_id', '=', $grade11first->faculty_id)->where('subject_id', '=', $grade11first->subject_id)->count() == 0)
+                                                                            @if($gradeEvalCount->where('semester_id', '=', $grade11second->semester_id)->where('faculty_id', '=', $grade11second->faculty_id)->where('subject_id', '=', $grade11second->subject_id)->count() == 0)
                                                                                 <a href="{{route('grade-eval',['student_id'=> Auth::user()->id , 'gradelevel_id'=> $grade11second -> gradelevel_id, 
                                                                                     'course_id'=> Auth::user()->course_id, 'section_id'=>  Auth::user()->section_id,
                                                                                     'semester_id'=>  $grade11second -> semester_id, 'faculty_id'=> $grade11second -> faculty_id,

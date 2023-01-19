@@ -10,7 +10,10 @@
     <div class="modal-body">
         @csrf
         @method('put')
-        <div id="validation-errors"></div>
+        <div id="whoops" class="alert alert-danger" style="display: none;">
+            <b>Whoops! There is a problem in your input</b> <br/>
+            <div id="validation-errors"></div>
+        </div>
         <input type="hidden" id="id" name="id" value="{{$event->id}}"/>    
         <div class="mb-3" style="color: red">
             * required field
@@ -129,8 +132,9 @@
                         })
                 },error: function (xhr) {
                     $('#validation-errors').html('');
+                    document.getElementById('whoops').style.display = 'block';
                     $.each(xhr.responseJSON.errors, function(key,value) {
-                        $('#validation-errors').append('<div class="alert alert-danger"> <b>Whoops! There is a problem in your input</b> <br/> &emsp;'+value+'</div');
+                        $('#validation-errors').append('&emsp;<li>'+value+'</li>');
                     }); 
                 },
             });

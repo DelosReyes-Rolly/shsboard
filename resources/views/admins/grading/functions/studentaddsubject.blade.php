@@ -1,5 +1,6 @@
 @include('partials.adminheader')
 <main>
+<script src="{{ asset('assets/js/needs-validated.js') }}"></script> 
 <div class="left-to-right">
 
         <!-- form -->
@@ -15,7 +16,7 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('studentsubjectadd.store') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('studentsubjectadd.store') }}"  class="needs-validation" novalidate>
             @csrf
             <div id="validation-errors"></div>
             <input type="hidden" name="student_id" value="{{$student->id}}">
@@ -36,42 +37,51 @@
                                     <!-- Form Row-->
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Row -->
-                                        <div class="col-md-10">
+                                        <div class="col-md-12">
                                             <div class="col-md-12"><label for="subject_id" style="font-size: 20px;"><span style="color: red">*</span> Subject</label>
-                                                <select id="subject_id" name="subject_id" class="form-control" value="{{ old('subject_id') }}" style="font-size: 14px;">
+                                                <select id="subject_id" name="subject_id" class="form-control" value="{{ old('subject_id') }}" style="font-size: 14px;" required>
                                                     <option value="" disabled selected hidden>Choose Subject</option>
                                                     @foreach ($subjects as $subject)
                                                         <option value="{{ $subject->id }}">{{ $subject->subjectname}}</option>
                                                     @endforeach
                                                 </select>
+                                                <div class="invalid-feedback">
+                                                    Please input valid subject.
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- Form Row -->
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
-                                        <div class="col-md-10">
+                                        <div class="col-md-12">
                                             <div class="col-md-12"><label for="semester_id" style="font-size: 20px;"><span style="color: red">*</span> Semester</label>
-                                                <select id="semester_id" name="semester_id" class="form-control" value="{{ old('semester_id') }}" style="font-size: 14px;">
+                                                <select id="semester_id" name="semester_id" class="form-control" value="{{ old('semester_id') }}" style="font-size: 14px;" required>
                                                     <option value="" disabled selected hidden>Choose Semester</option>
                                                     @foreach ($semesters as $semester)
                                                         <option value="{{ $semester->id }}">{{ $semester->sem}}</option>
                                                     @endforeach
                                                 </select>
+                                                <div class="invalid-feedback">
+                                                    Please input valid semester.
+                                                </div>
                                             </div>
                                         </div>
                                     </div><br/>
                                     <!-- Form Row-->
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group (title)-->
-                                        <div class="col-md-10">
+                                        <div class="col-md-12">
                                             <div class="col-md-12"><label for="faculty_id" style="font-size: 20px;"><span style="color: red">*</span> Teacher</label>
-                                                <select id="faculty_id" name="faculty_id" class="form-control" value="{{ old('faculty_id') }}" style="font-size: 14px;">
+                                                <select id="faculty_id" name="faculty_id" class="form-control" value="{{ old('faculty_id') }}" style="font-size: 14px;" required>
                                                     <option value="" disabled selected hidden>Choose Teacher</option>
                                                     @foreach ($faculties as $faculty)
-                                                        <option value="{{ $faculty->id }}"}>{{ $faculty->last_name }}, {{ $faculty->first_name }} {{ $faculty->middle_name }}</option>
+                                                        <option value="{{ $faculty->id }}">{{ $faculty->last_name }}, {{ $faculty->first_name }} {{ $faculty->middle_name }}</option>
                                                     @endforeach 
                                                 </select>
+                                                <div class="invalid-feedback">
+                                                    Please input valid teacher.
+                                                </div>
                                             </div>
                                         </div>
                                     </div><br/>
@@ -85,11 +95,6 @@
                 </div>
             </div>
         </form>
-
-        <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-        <script>
-            CKEDITOR.replace( 'editor' );
-        </script>
     </div>
     <script type="text/javascript">
         $(document).ready(function(){

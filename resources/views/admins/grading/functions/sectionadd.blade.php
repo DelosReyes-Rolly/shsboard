@@ -8,16 +8,19 @@
 <form method="POST" id="createSection" class="needs-validation" novalidate>
     <div class="modal-body">
         @csrf
-        <div id="validation-errors"></div>
+        <div id="whoops" class="alert alert-danger" style="display: none;">
+            <b>Whoops! There is a problem in your input</b> <br/>
+            <div id="validation-errors"></div>
+        </div>
         <div class="mb-3" style="color: red">
             * required field
         </div>
         <div class="row">
             <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span> Section Name</label>
-                <input id="section" type="text" name="section"  class="form-control @error('section') is-invalid @enderror" value="{{ old('section') }}" style="font-size: 14px;"onkeydown="return alphaOnly(event);" maxlength="1" minlength="1"  required>
+                <input id="section" type="text" name="section" class="form-control @error('section') is-invalid @enderror" value="{{ old('section') }}" style="font-size: 14px;"onkeydown="return alphaOnly(event);" maxlength="1" minlength="1"  required>
                 <div class="invalid-feedback">
-                    Please input valid section.z
+                    Please input valid section.
                 </div>
             </div>
         </div>
@@ -59,8 +62,9 @@
                     }
                 },error: function (xhr) {
                     $('#validation-errors').html('');
+                    document.getElementById('whoops').style.display = 'block';
                     $.each(xhr.responseJSON.errors, function(key,value) {
-                        $('#validation-errors').append('<div class="alert alert-danger"> <b>Whoops! There is a problem in your input</b> <br/> &emsp;'+value+'</div');
+                        $('#validation-errors').append('&emsp;<li>'+value+'</li>');
                     }); 
                 },
             });

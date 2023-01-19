@@ -9,7 +9,10 @@
     <div class="modal-body">
         @csrf
         @method('put')
-        <div id="validation-errors"></div>
+        <div id="whoops" class="alert alert-danger" style="display: none;">
+            <b>Whoops! There is a problem in your input</b> <br/>
+            <div id="validation-errors"></div>
+        </div>
         <div class="col-md-12">
             <input type="hidden" id="id" name="id" value="{{$gradelevel->id}}"/>
             <input id="gradelevel" type="text" name="gradelevel" class="form-control @error('gradelevel') is-invalid @enderror" value="{{$gradelevel->gradelevel}}"style="font-size: 20px;"   onkeypress="return onlyNumberKey(event)" maxlength="2" minlength="2" required>
@@ -55,9 +58,10 @@
                         })
                 },error: function (xhr) {
                     $('#validation-errors').html('');
+                    document.getElementById('whoops').style.display = 'block';
                     $.each(xhr.responseJSON.errors, function(key,value) {
-                        $('#validation-errors').append('<div class="alert alert-danger"> <b>Whoops! There is a problem in your input</b> <br/> &emsp;'+value+'</div');
-                    }); 
+                        $('#validation-errors').append('&emsp;<li>'+value+'</li>');
+                    });
                 },
             });
             $("#saveBtn").click(function() {

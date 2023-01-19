@@ -192,12 +192,9 @@ table {
                                 @if($grade11secondsem->count() != 0)
                                 <br>
                                     <div class="table-responsive table-billing-history">
-                                        
-                                            
                                             <div style="font-size: 20px; font-weight:800; font-family: 'Times New Roman', Times, serif;">
                                                 Second Semester
                                             </div>
-                                                <br>
                                                 <table id="sample2" style="width:100%">
                                                     <thead>
                                                         <tr>

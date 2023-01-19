@@ -68,12 +68,6 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="/gradingfaculty" title="Faculty">
-                        <i class="fas fa-user-tie"></i>
-                        <span class="hide-word title-word"> <b>Faculty</b> </span>
-                    </a>
-                </li>
-                <li>
                     <a href="/gradingstudents" title="Students">
                         <i class="fas fa-users"></i>
                         <span class="hide-word title-word"> <b>Students</b> </span>
@@ -90,6 +84,22 @@
                         <i class="fas fa-chalkboard-teacher"></i>
                         <span class="hide-word title-word"> <b>Class Schedule</b> </span>
                     </a>
+                </li>
+            </ul>
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="#facultySubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" title="Faculty">
+                        <i class="fas fa-stream"></i>
+                        <span class="hide-word title-word"> <b>Faculty</b></span>
+                    </a>
+                    <ul class="collapse list-unstyled" id="facultySubmenu">
+                        <li title="Faculties">
+                            <a href="/gradingfaculty" title="Faculties"><i class="fas fa-user-tie"></i>&nbsp;<span class="hide-word"> <b>Faculties</b> </span></a>
+                        </li>
+                        <li title="Specialties">
+                            <a href="/gradingspecialty" title="Specialties"><i class="fas fa-user-tie"></i>&nbsp;<span class="hide-word"> <b>Specialties</b> </span></a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
 

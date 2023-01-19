@@ -470,7 +470,7 @@ class FacultyController extends Controller
         $schoolyear = DB::table('school_years')->latest('id')->first();
         $students = Students::where('course_id', '=', $course_id)->where('section_id', '=', $section_id)->get();
         foreach($students as $student){
-            $grades = StudentGrade::where('gradelevel_id', '=', $gradelevel_id)->where('student_id', '=', $student->id)->where('semester_id', '=', 1)->where('schoolyear_id', '=', $schoolyear->id)->get();
+            $grades = StudentGrade::where('gradelevel_id', '=', $gradelevel_id)->where('student_id', '=', $student->id)->where('semester_id', '=', 2)->where('schoolyear_id', '=', $schoolyear->id)->get();
             foreach($grades as $grade){
                 $grade->isReleased = 2;
                 $grade->update();

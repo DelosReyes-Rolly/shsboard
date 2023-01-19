@@ -8,7 +8,10 @@
 <form method="POST" id ="createReason" class="needs-validation" novalidate>
     <div class="modal-body">
         @csrf
-        <div id="validation-errors"></div>
+        <div id="whoops" class="alert alert-danger" style="display: none;">
+            <b>Whoops! There is a problem in your input</b> <br/>
+            <div id="validation-errors"></div>
+        </div>
         <input type="hidden" id="student_id" name="student_id" value="{{Auth::user()->id}}"/>
         <input type="hidden" id="gradelevel_id" name="gradelevel_id" value="{{$gradelevel_id}}"/>
         <input type="hidden" id="course_id" name="course_id" value="{{Auth::user()->course_id}}"/>
@@ -79,9 +82,10 @@
                     }
                 },error: function (xhr) {
                     $('#validation-errors').html('');
+                    document.getElementById('whoops').style.display = 'block';
                     $.each(xhr.responseJSON.errors, function(key,value) {
-                        $('#validation-errors').append('<div class="alert alert-danger"> <b>Whoops! There is a problem in your input</b> <br/> &emsp;'+value+'</div');
-                    }); 
+                        $('#validation-errors').append('&emsp;<li>'+value+'</li>');
+                    });  
                 },
             });
             $("#saveBtn").click(function() {
