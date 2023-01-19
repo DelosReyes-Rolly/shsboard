@@ -5,7 +5,6 @@ use App\Mail\RegisterMail;
 use App\Models\Addresses;
 use App\Models\Admins;
 use App\Models\Advisories;
-use App\Models\Advisory;
 use App\Models\Announcements;
 use App\Models\Courses;
 use App\Models\DocumentPurposes;
@@ -26,7 +25,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 use Excel;
 
