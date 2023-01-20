@@ -30,7 +30,7 @@
     </div>
 </form>
 <script>
-    $("createSection").submit(function(e) {
+    $("#createSection").submit(function(e) {
             e.preventDefault();
 
             var section = $("#section").val();

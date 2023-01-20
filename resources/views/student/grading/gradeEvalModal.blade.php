@@ -37,7 +37,7 @@
     </div>
 </form>
 <script>
-    $("createReason").submit(function(e) {
+    $("#createReason").submit(function(e) {
             e.preventDefault();
 
             var student_id = $("#student_id").val();

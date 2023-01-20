@@ -31,7 +31,7 @@
     </div>
 </form>
 <script>
-    $("createGradelevel").submit(function(e) {
+    $("#createGradelevel").submit(function(e) {
             e.preventDefault();
 
             var gradelevel = $("#gradelevel").val();

@@ -53,11 +53,23 @@
                     Please input valid email address.
                 </div>
             </div>
+            <div class="col-md-12"><br/>
+                <label for="specialty" class="col-form-label text-md-end" style="font-size: 20px;"><span style="color: red">*</span>  {{ __('Specialty') }}</label><br>
+                <select id="specialty" name="specialty" class="form-control" required>
+                    <option value="" disabled> Please Select Specialty </option>
+                    @foreach($specialties as $specialty)
+                    <option value="{{$specialty->id}}"{{ $faculty->specialty_id === $specialty->id ? 'selected' : '' }}>{{$specialty->specialty}}</option>
+                    @endforeach
+                </select>
+                <div class="invalid-feedback">
+                    Please input specialties.
+                </div>
+            </div>
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary btn-md" value="Submit"></font>
+        <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary btn-md" id="saveBtn" value="Submit"></font>
     </div>
 </form>
 <script>
@@ -70,6 +82,7 @@
             var middle_name = $("#middlename").val();
             var suffix = $("#suffix").val();
             var email = $("#email").val();
+            var specialty_id = $("#specialty").val();
             var _token = $("input[name=_token]").val();
 
             $.ajax({
@@ -77,6 +90,7 @@
                 url: '{{url("/updatefaculty/")}}/' + id,
                 data: {
                     id: id,
+                    specialty_id: specialty_id,
                     last_name: last_name,
                     first_name: first_name,
                     middle_name: middle_name,
@@ -91,24 +105,26 @@
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();
                         $("#updateFaculty")[0].reset();
-                        if(response.suffix == null && response.middle_name == null){
-                            $('#faculty' + response.id +' td:nth-child(2)').text(function(n) {return response.last_name + ', ' + response.first_name;});
-                        }
-                        else if(response.suffix == null){
-                            $('#faculty' + response.id +' td:nth-child(2)').text(function(n) {return response.last_name + ', ' + response.first_name + ' ' + response.middle_name;});
-                        }
-                        else if(response.middle_name == null){
-                            $('#faculty' + response.id +' td:nth-child(2)').text(function(n) {return response.last_name + ', ' + response.first_name + ' ' + response.suffix;});
-                        }
-                        else{
-                            $('#faculty' + response.id +' td:nth-child(2)').text(function(n) {return response.last_name + ', ' + response.first_name + ' ' + response.middle_name + ' ' + response.suffix;});
-                        }
-                        $('#faculty' + response.id +' td:nth-child(6)').text(response.email);
+                        // if(response.suffix == null && response.middle_name == null){
+                        //     $('#faculty' + response.id +' td:nth-child(2)').text(function(n) {return response.last_name + ', ' + response.first_name;});
+                        // }
+                        // else if(response.suffix == null){
+                        //     $('#faculty' + response.id +' td:nth-child(2)').text(function(n) {return response.last_name + ', ' + response.first_name + ' ' + response.middle_name;});
+                        // }
+                        // else if(response.middle_name == null){
+                        //     $('#faculty' + response.id +' td:nth-child(2)').text(function(n) {return response.last_name + ', ' + response.first_name + ' ' + response.suffix;});
+                        // }
+                        // else{
+                        //     $('#faculty' + response.id +' td:nth-child(2)').text(function(n) {return response.last_name + ', ' + response.first_name + ' ' + response.middle_name + ' ' + response.suffix;});
+                        // }
+                        // $('#faculty' + response.id +' td:nth-child(6)').text(response.email);
                         // $('#example').load(document.URL +  ' #example');
                         Swal.fire({
                             icon: 'success',
                             title: 'Success.',
                             text: 'Strand has been updated successfully',
+                        }).then(function() {
+                            location.reload(true);
                         })
                 },error: function (xhr) {
                     $('#validation-errors').html('');

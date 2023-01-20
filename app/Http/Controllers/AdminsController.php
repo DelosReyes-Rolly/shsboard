@@ -962,10 +962,10 @@ class AdminsController extends Controller
         // Validate the inputs
         $validated = $request->validate([
             'specialty_id' => ['required'],
-            'first_name' => 'required|max:255',
-            'middle_name' => 'nullable|max:255',
-            'last_name' => 'required|max:255',
-            'suffix' => 'nullable|max:255',
+            'first_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
+            'middle_name' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
+            'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
+            'suffix' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
             'email' => ['required', 'email', Rule::unique('faculties', 'email')],
         ]);
 
@@ -1006,12 +1006,14 @@ class AdminsController extends Controller
 
 
     public function showfaculty($id){
-        $data = Faculties::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.facultyupdate', ['faculty' => $data]);
+        $faculty = Faculties::where('deleted', '=', null)->findOrFail($id);
+        $specialties = Specialties::where('deleted', '=', null)->get();
+        return view('admins.grading.functions.facultyupdate', compact('faculty', 'specialties'));
     }
 
     public function updatefaculty(Request $request){
         $request->validate([
+            'specialty_id' => ['required'],
             'first_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
             'middle_name' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
             'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
@@ -1019,6 +1021,7 @@ class AdminsController extends Controller
             "email" => 'required|email:rfc,dns|email|unique:faculties,email,' . $request->id,
         ]);
         $faculty = Faculties::find($request->id); 
+        $faculty->specialty_id = $request->specialty_id;
         $faculty->last_name = $request->last_name;
         $faculty->first_name = $request->first_name;
         $faculty->middle_name = $request->middle_name;
@@ -1096,7 +1099,7 @@ class AdminsController extends Controller
                             $address_id = DB::table('addresses')-> insertGetId(array(
                                 'city'=> 'Taguig City',
                             ));
-
+                            $specialty_id = Specialties::where('deleted', '=', null)->where('specialty', '=', $row[6])->first()->id;
                             $insert_data[] = array(
                                 'address_id' => $address_id,
                                 'last_name'   => $row[0],
@@ -1105,7 +1108,7 @@ class AdminsController extends Controller
                                 'suffix'    => $row[3],
                                 'email'  => $row[4],
                                 'gender'   => $row[5],
-                                'username'   => $row[6],
+                                'specialty_id'   => $specialty_id,
                                 'password'   => $password,
                             );
                             Mail::to($row[4])->send(new RegisterMail($pass));

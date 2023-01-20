@@ -31,8 +31,7 @@
     </div>
 </form>
 <script>
-        $("#updateDocument").submit(function(i) {
-            i.preventDefault();
+        $("updateDocument").submit(function(i) {
 
             var id = $("#id").val();
             var name = $("#nameq").val();

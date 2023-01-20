@@ -52,9 +52,9 @@
                 </div>
             </div>
             <div class="col-md-12"><br/>
-                <label for="specialty_id" class="col-form-label text-md-end" style="font-size: 20px;"><span style="color: red">*</span>  {{ __('Specialty') }}</label><br>
-                <select id="specialty_id" name="specialty_id" class="form-control" required>
-                    <option value="" {{old('specialty_id') == "" ?'selected' : ''}} disabled> Please Select Specialty </option>
+                <label for="specialty" class="col-form-label text-md-end" style="font-size: 20px;"><span style="color: red">*</span>  {{ __('Specialty') }}</label><br>
+                <select id="specialty" name="specialty" class="form-control" required>
+                    <option value="" {{old('specialty') == "" ?'selected' : ''}} disabled> Please Select Specialty </option>
                     @foreach($specialties as $specialty)
                     <option value="{{$specialty->id}}">{{$specialty->specialty}}</option>
                     @endforeach
@@ -79,7 +79,7 @@
             var middle_name = $("#middlename").val();
             var suffix = $("#suffix").val();
             var email = $("#email").val();
-            var specialty_id = $("#specialty_id").val();
+            var specialty_id = $("#specialty").val();
             var _token = $("input[name=_token]").val();
             $.ajax({
                 type: "POST",

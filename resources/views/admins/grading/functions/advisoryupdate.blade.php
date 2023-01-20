@@ -42,8 +42,7 @@
     </div>
 </form>
 <script>
-        $("#updateAdvisory").submit(function(i) {
-            i.preventDefault();
+        $("updateAdvisory").submit(function(i) {
 
             var id = $("#id").val();
             var faculty = $("#faculty").val();
