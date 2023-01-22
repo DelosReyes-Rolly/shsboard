@@ -19,7 +19,7 @@
     <script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
     <script>
         $(document).ready(function() {
-            var table = $('#sample1').DataTable( {
+            $('table.display').DataTable( {
                 responsive: true,
                 "searching": false,
                 paging: false,
@@ -29,47 +29,8 @@
                 "bInfo": false,
                 "bAutoWidth": false,
             } );
-         
-            new $.fn.dataTable.FixedHeader( table );
 
-            var table = $('#sample2').DataTable( {
-                responsive: true,
-                "searching": false,
-                paging: false,
-                "bPaginate": false,
-                "bLengthChange": false,
-                "bFilter": true,
-                "bInfo": false,
-                "bAutoWidth": false,
-            } );
-         
-            new $.fn.dataTable.FixedHeader( table );
-
-            var table = $('#sample3').DataTable( {
-                responsive: true,
-                "searching": false,
-                paging: false,
-                "bPaginate": false,
-                "bLengthChange": false,
-                "bFilter": true,
-                "bInfo": false,
-                "bAutoWidth": false,
-            } );
-         
-            new $.fn.dataTable.FixedHeader( table );
-
-            var table = $('#sample4').DataTable( {
-                responsive: true,
-                "searching": false,
-                paging: false,
-                "bPaginate": false,
-                "bLengthChange": false,
-                "bFilter": true,
-                "bInfo": false,
-                "bAutoWidth": false,
-            } );
-         
-            new $.fn.dataTable.FixedHeader( table );
+            
         } );
    
     </script>
@@ -91,20 +52,14 @@
                    <div class="alert alert-danger"><center><em>Sorry. You're not currently enrolled in any subjects. Please contact the administrator.</em></center></div>
                 @else 
                     <!-- Print overall Grades -->
-                    @if($cardprintlatest12 != null)
-                        @if($cardprintlatest12->cardgiving == 1)
+                    @if($cardprint!= null)
+                        @if($cardprint->cardgiving == 1)
                             <div style="margin: 20px;">
-                                <a class="btn btn-primary btn-md" href="/printreportcardgrade12" style="float: right;"><i class="fas fa-file-alt"></i>  Print Grade 12 Report Card</a>
-                            </div>
-                        @endif
-                    @endif<br/><br/>
-                    @if($cardprintprevious11 != null)
-                        @if($cardprintprevious11->cardgiving == 1)
-                            <div style="margin: 20px;">
-                                <a class="btn btn-primary btn-md" href="/printreportcardgrade11" style="float: right;"><i class="fas fa-file-alt"></i>  Print Grade 11 Report Card</a>
+                                <a class="btn btn-primary btn-md" href="/printreportcard" style="float: right;"><i class="fas fa-file-alt"></i>  Print Certicicate of Grades</a>
                             </div>
                         @endif
                     @endif
+
 
                     <!-- Check if Enrolled in any grade 12 subjects -->
                     @if($grade12->count() != 0)
@@ -124,7 +79,7 @@
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <table id="sample4" class="display table-bordered table-striped table-hover" style="width:100%">
+                                                <table id="" class="display table-bordered table-striped table-hover" style="width:100%">
                                                     @if($grade12secondsemunreleased->count() == 0)
                                                         @if($grade12secondsemungraded->count() == 0)
                                                             @php
@@ -311,7 +266,7 @@
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <table id="sample3" class="display table-bordered table-striped table-hover" style="width:100%">
+                                                <table id="" class="display table-bordered table-striped table-hover" style="width:100%">
                                                     @if($grade12firstsemunreleased->count() == 0)
                                                         @if($grade12firstsemungraded->count() == 0)
                                                             @php
@@ -506,7 +461,7 @@
                                                     </div>
                                                 </div>
                                                 <br>
-                                                <table id="sample2" class="display table-bordered table-striped table-hover" style="width:100%">
+                                                <table id="" class="display table-bordered table-striped table-hover" style="width:100%">
                                                     <!-- /*check if there is an ungraded subject*/ -->
                                                     @if($grade11secondsemunreleased->count() == 0)
                                                         @if($grade11secondsemungraded->count() == 0)
@@ -691,7 +646,7 @@
                                                     Grade 11 - First Semester
                                                 </div>
                                                 <br>
-                                                <table id="sample1" class="table-bordered table-striped table-hover" style="width:100%">
+                                                <table id="" class="display table-bordered table-striped table-hover" style="width:100%">
                                                     @if($grade11firstsemunreleased->count() == 0)
                                                         @if($grade11firstsemungraded->count() == 0)
                                                             @php

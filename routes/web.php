@@ -230,8 +230,9 @@ Route::group(['middleware' => 'auth:students'], function () {
             // Route::get('/deletegradeeval/{id}',  'deletegradeeval')->name('student.deletegradeeval');
             // Route::put('/deletegradeeval/{gradeeval}',  'deletegradegradeeval');
             Route::put('/gradeevaluationrequest/delete/{id}', 'deletegradeeval');
-            Route::get('/printreportcardgrade11', 'printreportcardgrade11');
-            Route::get('/printreportcardgrade12', 'printreportcardgrade12');
+            // Route::get('/printreportcardgrade11', 'printreportcardgrade11');
+            // Route::get('/printreportcardgrade12', 'printreportcardgrade12');
+            Route::get('/printreportcard', 'printreportcard');
     });
 });
 
@@ -538,6 +539,9 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 Route::get('/showfaculty/{id}','showfaculty');
                 // Route::get('/deletefaculty/{id}', 'deletefaculty')->name('admin.deletefaculty');
 
+                Route::get('/showminload/{id}','showminload');
+                Route::get('/showmaxload/{id}','showmaxload');
+
                 Route::get('/specialtyadd', 'addspecialty')->name('specialty.add');
                 Route::get('/viewspecialty/{id}','viewspecialty');
                 Route::get('/showspecialty/{id}','showspecialty');
@@ -637,6 +641,9 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 Route::put('/updatefaculty/{faculty}', 'updatefaculty');
                 // Route::put('/deletefaculty/{faculty}', 'deletegradefaculty');
                 Route::put('/faculty/delete/{id}', 'deletegradefaculty');
+
+                Route::put('/updateminload/{minload}', 'updateminload');
+                Route::put('/updatemaxload/{maxload}', 'updatemaxload');
 
                 Route::put('/updatespecialty/{specialty}', 'updatespecialty');
                 // Route::put('/deletespecialty/{specialty}', 'deletegradespecialty');

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Subjects extends Migration
+class Loads extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class Subjects extends Migration
      */
     public function up()
     {
-        Schema::create('subjects', function (Blueprint $table) {
+        Schema::create('loads', function (Blueprint $table) {
             $table->id();
-            $table->string('subjectcode');
-            $table->string('subjectname');
-            $table->text('description');
-            $table->integer('subjectload');
+            $table->integer('master_load');
+            $table->integer('regular_load');
             $table->timestamps();
             $table->tinyInteger('deleted')->nullable();
             $table->date('deleted_at')->nullable();
@@ -32,6 +30,6 @@ class Subjects extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subjects'); 
+        Schema::dropIfExists('loads'); 
     }
 }

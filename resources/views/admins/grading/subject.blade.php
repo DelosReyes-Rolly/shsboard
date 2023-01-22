@@ -56,6 +56,7 @@
                                     <th class="border-gray-200" scope="col">#</th>
                                     <th class="border-gray-200" scope="col">Subject Code</th>
                                     <th class="border-gray-200" scope="col">Subject Name</th>
+                                    <th class="border-gray-200" scope="col">Load</th>
                                     <th class="border-gray-200" scope="col">Description</th>
                                     <th class="border-gray-200" scope="col">Action</th>
                                 </tr>
@@ -69,6 +70,7 @@
                                             <td class="text-center"><?php echo $i++; ?></td>
                                             <td>{{$subject -> subjectcode}}</td>
                                             <td>{{$subject -> subjectname}}</td>
+                                            <td class="text-center">{{$subject -> subjectload}}</td>
                                             <td>{!!$subject -> description!!}</td>
                                             <td>
                                                 <a class="btn btn-success btn-md" href="/viewsubject/{{$subject->id}}" data-toggle="modal" data-target="#modal-view-{{ $subject->id }}"><i class="fas fa-eye"></i> View</a>

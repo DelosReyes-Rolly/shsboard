@@ -80,6 +80,14 @@
                                         </div>
                                         <div class="col-lg-9 col-md-12 col-sm-12" style="margin-bottom: 10px;">
                                             <span style="font-size: 26px;">{{$faculty->email}}</span>
+                                        </div>
+                                        
+                                        <!-- Form Group whr-->
+                                        <div class="col-lg-3 col-md-12 col-sm-12">
+                                            <label style="font-size: 26px;"><b>Load: </b></label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-12 col-sm-12" style="margin-bottom: 10px;">
+                                            <span style="font-size: 26px;">{{$faculty->load}}</span>
                                         </div><br/><br/><br/><br/>
                                     </div>
 
@@ -135,12 +143,6 @@
                                                 </div>
                                         @endforeach
                                     @endif
-
-                                    <div class="pull-right">
-                                        <br/>
-                                        <a class="btn btn-info btn-md" href="/gradingfaculty"><i class="fas fa-arrow-left"></i> Back</a>
-                                        <a class="btn btn-warning btn-md" href="/showfaculty/{{$faculty->id}}"><i class="fas fa-edit"></i> Update</a>
-                                    </div>
                                     <hr>
                                 </div>
                             </div>

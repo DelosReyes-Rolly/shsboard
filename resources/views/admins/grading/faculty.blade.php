@@ -37,9 +37,21 @@
         <h3 style="font-size: 28px; font-weight: 800;">Table of Teachers </h3>
         <hr class="mt-0 mb-4">
         <div class="card mb-4 left-to-right border-start-lg border-start-success" style="padding: 10px 40px 10px 40px;">
-            <div class="card-header" style="background-color: #ffffff;float:right; text-align: right;">
-                <a href="{{route('facultybatch.add')}}" class="btn btn-primary" style="display: inline-block" data-toggle="modal" data-target="#batchModal"><i class="fas fa-user-plus"></i> Add Faculty in Batch</a>
-                <a href="{{route('faculty.add')}}" class="btn btn-primary" style="display: inline-block" data-toggle="modal" data-target="#createModal"><i class="fas fa-user-plus"></i> Add Record Manually</a>
+            <div class="card-header" style="background-color: #ffffff;">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6" style="font-size: 20px;">
+                        Minimum Load: <span id="reload">{{$load->min_load}}</span> <a class="btn btn-warning btn-sm" href="/showminload/{{$load->id}}" data-toggle="modal" data-target="#editmin"><i class="fas fa-edit"></i> Change</a><br/><br/>
+                        
+                        Maximum Load: <span id="reload2">{{$load->max_load}}</span> <a class="btn btn-warning btn-sm" href="/showmaxload/{{$load->id}}" data-toggle="modal" data-target="#editmax"><i class="fas fa-edit"></i> Change</a>
+                        
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div style="float:right; text-align: right;">
+                            <a href="{{route('facultybatch.add')}}" class="btn btn-primary" style="display: inline-block" data-toggle="modal" data-target="#batchModal"><i class="fas fa-user-plus"></i> Add Faculty in Batch</a><br/><br/>
+                            <a href="{{route('faculty.add')}}" class="btn btn-primary" style="display: inline-block" data-toggle="modal" data-target="#createModal"><i class="fas fa-user-plus"></i> Add Record Manually</a>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="card-body p-0" style="padding: 20px 20px 20px 20px;">
                 @if($faculties->count() == 0)
@@ -53,7 +65,7 @@
                                 <tr>
                                     <th class="border-gray-200" scope="col">#</th>
                                     <th class="border-gray-200" scope="col">Teacher Name</th>
-                                    <th class="border-gray-200" scope="col">Gender</th>
+                                    <th class="border-gray-200" scope="col">Loads</th>
                                     <th class="border-gray-200" scope="col">Specialty</th>
                                     <th class="border-gray-200" scope="col">Phone Number</th>
                                     <th class="border-gray-200" scope="col">Email Address</th>
@@ -68,7 +80,7 @@
                                         <tr id="faculty{{$faculty->id}}">
                                             <td class="text-center"><?php echo $i++; ?></td>
                                             <td>{{$faculty -> last_name}} , {{$faculty -> first_name}} {{$faculty -> middle_name}} {{$faculty -> suffix}}</td>
-                                            <td>{{$faculty -> gender}}</td>
+                                            <td class="text-center">{{$faculty -> load}}</td>
                                             <td>{{$faculty -> specialty -> specialty}}</td>
                                             <td>{{$faculty -> phone_number}}</td>
                                             <td>{{$faculty -> email}}</td>
@@ -103,6 +115,20 @@
                         <div class="modal-content border-start-lg border-start-yellow">
                         </div>
                    </div>
+                </div>
+                <!--min -->
+                <div id="editmin" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content border-start-lg border-start-yellow">
+                        </div>
+                    </div>
+                </div>
+                <!--max-->
+                <div id="editmax" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content border-start-lg border-start-yellow">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

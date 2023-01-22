@@ -36,6 +36,13 @@
                     Please input valid description.
                 </div>
             </div>
+            <div class="col-md-12">
+                <label style="font-size: 20px;"><span style="color: red">*</span> Subject Load</label>
+                <input id="subjectload" type="number" name="subjectload" id="editor" class="form-control @error('subjectload') is-invalid @enderror" value="{{$subject->subjectload}}" style="font-size: 14px;" onkeypress="return onlyNumberKey(event)" required>
+                <div class="invalid-feedback">
+                    Please input valid subject load.
+                </div>
+            </div>
         </div>
     </div>
     <div class="modal-footer">
@@ -51,6 +58,7 @@
             var subjectcode = $("#subjectcode").val();
             var subjectname = $("#subjectname").val();
             var description = $("#description").val();
+            var subjectload = $("#subjectload").val();
             var _token = $("input[name=_token]").val();
 
             $.ajax({
@@ -61,6 +69,7 @@
                     subjectcode: subjectcode,
                     subjectname: subjectname,
                     description: description,
+                    subjectload: subjectload,
                     _token: _token,
                 },
                 success: function(response) {
@@ -72,7 +81,8 @@
                         $("#updateSubject")[0].reset();
                         $('#subject' + response.id +' td:nth-child(2)').text(response.subjectcode);
                         $('#subject' + response.id +' td:nth-child(3)').text(response.subjectname);
-                        $('#subject' + response.id +' td:nth-child(4)').text(response.description);
+                        $('#subject' + response.id +' td:nth-child(4)').text(response.subjectload);
+                        $('#subject' + response.id +' td:nth-child(5)').text(response.description);
                         // $('#example').load(document.URL +  ' #example');
                         Swal.fire({
                             icon: 'success',

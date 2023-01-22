@@ -37,6 +37,13 @@
                     Please input valid description.
                 </div>
             </div>
+            <div class="col-md-12"><br/>
+                <label style="font-size: 20px;"><span style="color: red">*</span> Subject Load</label>
+                <input id="subjectload" type="number" name="subjectload" id="editor" class="form-control @error('subjectload') is-invalid @enderror" value="{{ old('subjectload') }}" style="font-size: 14px;" onkeypress="return onlyNumberKey(event)" required>
+                <div class="invalid-feedback">
+                    Please input valid subject load.
+                </div>
+            </div>
         </div>
     </div>
     <div class="modal-footer">
@@ -51,6 +58,7 @@
             var subjectcode = $("#subjectcode").val();
             var subjectname = $("#subjectname").val();
             var description = $("#description").val();
+            var subjectload = $("#subjectload").val();
             var _token = $("input[name=_token]").val();
 
             $.ajax({
@@ -60,6 +68,7 @@
                     subjectcode: subjectcode,
                     subjectname: subjectname,
                     description: description,
+                    subjectload: subjectload,
                     _token: _token
                 },
                 success: function(response) {
