@@ -1,65 +1,4 @@
 <script src="{{ asset('assets/js/needs-validated.js') }}"></script>
-<style>
-    .switch {
-    position: relative;
-    display: inline-block;
-    width: 48px;
-    height: 22px;
-    }
-
-    .switch input { 
-    opacity: 0;
-    width: 0;
-    height: 0;
-    }
-
-    .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-    }
-
-    .slider:before {
-    position: absolute;
-    content: "";
-    height: 14px;
-    width: 16px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-    }
-
-    input:checked + .slider {
-    background-color: green;
-    }
-
-    input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
-    }
-
-    input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-    }
-
-    /* Rounded sliders */
-    .slider.round {
-    border-radius: 20px;
-    }
-
-    .slider.round:before {
-    border-radius: 50%;
-    }
-</style>
 <div class="modal-header">
     <h1 class="modal-title" id="staticBackdropLabel" style="font-size: 20px;">New subject of teacher</h1>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -80,44 +19,24 @@
             * required field
         </div>
         <div class="row">       
-            <div class="col-md-12">
-                <div class="col-md-12"><label for="switch" style="font-size: 20px;"> Suggestions</label>
-                    <label class="switch">
-                        <input type="checkbox" id="switch">
-                        <span class="slider round"></span>
-                    </label>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="col-md-12"><label for="specialty_id" style="font-size: 20px;"> Specialty</label>
-                    <select id="specialty_id" name="specialty_id" class="form-control" value="{{ old('specialty_id') }}" style="font-size: 14px;" disabled>
-                        <option value="" disabled selected hidden>Choose Specialty</option>
-                        @foreach ($specialties as $specialty)
-                        <option value="{{ $specialty->id }}" {{$specialty->specialty_id == $specialty->id  ? 'selected' : ''}}>{{ $specialty->specialty }}</option>
-                        @endforeach 
+            
+            <div class="col-md-12"><br/>
+                <div class="col-md-12"><label for="subject_id" style="font-size: 20px;"><span style="color: red">*</span> Subject</label>
+                    <select id="subject" name="subject_id" class="form-control" value="{{ old('subject_id') }}" style="font-size: 14px;" required>
+                        <option value="" disabled selected hidden>Choose Subject</option>
+                        @foreach ($subjects as $subject)
+                        <option value="{{ $subject->id }}">{{ $subject->subjectname}}</option>
+                        @endforeach
                     </select>
                     <div class="invalid-feedback">
-                        Please choose specialty.
+                        Please choose subject.
                     </div>
                 </div>
             </div>
-            <div class="col-md-12" id="secondfac" style="display: none;"><br/>
+            <div class="col-md-12" id="secondfac"><br/>
                 <div class="col-md-12"><label for="secondfaculty_id" style="font-size: 20px;"><span style="color: red">*</span> Teacher</label>
                     <select id="secondfaculty_id" name="secondfaculty_id" class="form-control" value="{{ old('secondfaculty_id') }}" style="font-size: 14px;" required>
                         <option value="" disabled selected hidden>Choose Teacher</option>
-                    </select>
-                    <div class="invalid-feedback">
-                        Please choose teacher.
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12" id="firstfac"><br/>
-                <div class="col-md-12"><label for="faculty_id" style="font-size: 20px;"><span style="color: red">*</span> Teacher</label>
-                    <select id="faculty_id" name="faculty_id" class="form-control" value="{{ old('faculty_id') }}" style="font-size: 14px;" required>
-                        <option value="" disabled selected hidden>Choose Teacher</option>
-                        @foreach ($faculties as $faculty)
-                        <option value="{{ $faculty->id }}"  {{$faculty->faculty_id == $faculty->id  ? 'selected' : ''}}>{{ $faculty->last_name }}, {{ $faculty->first_name }} {{ $faculty->middle_name }}</option>
-                        @endforeach 
                     </select>
                     <div class="invalid-feedback">
                         Please choose teacher.
@@ -173,19 +92,6 @@
                     </select>
                     <div class="invalid-feedback">
                         Please choose section.
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12"><br/>
-                <div class="col-md-12"><label for="subject_id" style="font-size: 20px;"><span style="color: red">*</span> Subject</label>
-                    <select id="subject" name="subject_id" class="form-control" value="{{ old('subject_id') }}" style="font-size: 14px;" required>
-                        <option value="" disabled selected hidden>Choose Subject</option>
-                        @foreach ($subjects as $subject)
-                        <option value="{{ $subject->id }}">{{ $subject->subjectname}}</option>
-                        @endforeach
-                    </select>
-                    <div class="invalid-feedback">
-                        Please choose subject.
                     </div>
                 </div>
             </div>
@@ -247,46 +153,42 @@
     }
 
 
-    document.getElementById('switch').onchange = function() {
-        document.getElementById('specialty_id').disabled = !this.checked;
-        if (!this.checked) {
-            document.getElementById('secondfac').style.display = 'none';
-            document.getElementById('firstfac').style.display = 'block';
-        }
-        else{
-            document.getElementById('secondfac').style.display = 'block';
-            document.getElementById('firstfac').style.display = 'none';
-        }
-    };
-
-    document.getElementById('switch').onclick = function() {
-
-    }
-
-    // document.getElementById('specialty_id').onchange = function() {
-    //     var s = $("#specialty_id").val();
-    //     console.log(s);
+    // document.getElementById('subject').onchange = function() {
+    //     document.getElementById('subject_id').disabled = !this.checked;
+    //     if (!this.checked) {
+    //         document.getElementById('secondfac').style.display = 'none';
+    //         document.getElementById('firstfac').style.display = 'block';
+    //     }
+    //     else{
+    //         document.getElementById('secondfac').style.display = 'block';
+    //         document.getElementById('firstfac').style.display = 'none';
+    //     }
     // };
 
-        $('#specialty_id').change(function(){
+    // document.getElementById('subject').onclick = function() {
+
+    // }
+
+
+        $('#subject').change(function(){
         removeOptions(document.getElementById('secondfaculty_id'));
-        var specialty_id = $("#specialty_id").val();
+        var subject_id = $("#subject").val();
         var _token = $("input[name=_token]").val();
             $.ajax({
             type: "POST",
-            url: "{{ route('specialty.search') }}",
+            url: "{{ route('subject.search') }}",
                     data: {
-                        specialty_id: specialty_id,
+                        subject_id: subject_id,
                         _token: _token
                     },
                     success: function(response) {
                         if (response) {
-                            var specialty_id = response.id;
+                            var expertise_id = response.expertise_id;
                             $.ajax({
                                 type: "POST",
                                 url: "{{ route('teacher.search') }}",
                                         data: {
-                                            specialty_id: specialty_id,
+                                            expertise_id: expertise_id,
                                             _token: _token
                                         },
                                         success: function(response) {
@@ -321,12 +223,7 @@
                 return false;
             }
             else{
-                if ($('switch').prop('checked')) { 
-                    var faculty = $("#faculty_id").val();
-                }
-                else{
-                    var faculty = $("#secondfaculty_id").val();
-                }
+                var faculty = $("#secondfaculty_id").val();
                 var gradelevel = $("#gradelevel").val();
                 var semester = $("#semester").val();
                 var course = $("#course").val();

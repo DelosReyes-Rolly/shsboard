@@ -1,6 +1,6 @@
 <script src="{{ asset('assets/js/needs-validated.js') }}"></script>
 <div class="modal-header">
-    <h1 class="modal-title" id="staticBackdropLabel" style="font-size: 20px;">Update Minimum Load</h1>
+    <h1 class="modal-title" id="staticBackdropLabel" style="font-size: 20px;">Update Regular Load</h1>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -17,7 +17,7 @@
         <div class="col-md-12">
             <input type="number" id="minload" name="minload" class="form-control @error('minload') is-invalid @enderror" value="{{$minload->min_load}}"style="font-size: 20px;"  onkeypress="return onlyNumberKey(event)" maxlength="4" minlength="4" required>
             <div class="invalid-feedback">
-                Please input valid minimum load.
+                Please input valid load.
             </div>
         </div>
     </div>

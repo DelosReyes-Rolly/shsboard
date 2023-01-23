@@ -353,7 +353,9 @@ class TeachersSeeder extends Seeder
             'last_name' => 'Santacruz',
             'email' => 'GeronimoGaonaSantacruz@dayrep.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'load' => '0',
+            'subject_load' => '0',
+            'class_load' => '0',
+            'isMaster' => '1',
         ]);
         Faculties::create([
             'address_id' => '64',
@@ -365,7 +367,9 @@ class TeachersSeeder extends Seeder
             'gender' => 'Male',
             'username' => 'WMBouton',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'load' => '0',
+            'subject_load' => '0',
+            'class_load' => '0',
+            'isMaster' => '1',
         ]);
         Faculties::create([
             'address_id' => '65',
@@ -377,7 +381,9 @@ class TeachersSeeder extends Seeder
             'gender' => 'Male',
             'username' => 'VBRamon',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'load' => '0',
+            'subject_load' => '0',
+            'class_load' => '0',
+            'isMaster' => '1',
         ]);
         Faculties::create([
             'address_id' => '66',
@@ -387,7 +393,9 @@ class TeachersSeeder extends Seeder
             'last_name' => 'Toledo',
             'email' => 'VivianoAltamiranoToledo@rhyta.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'load' => '0',
+            'subject_load' => '0',
+            'class_load' => '0',
+            'isMaster' => '1',
         ]);
         Faculties::create([
             'address_id' => '67',
@@ -399,7 +407,9 @@ class TeachersSeeder extends Seeder
             'gender' => 'Male',
             'username' => 'NAGaray',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'load' => '0',
+            'subject_load' => '0',
+            'class_load' => '0',
+            'isMaster' => '1',
         ]);
         Faculties::create([
             'address_id' => '68',
@@ -411,7 +421,9 @@ class TeachersSeeder extends Seeder
             'gender' => 'Male',
             'username' => 'DGMateo',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'load' => '0',
+            'subject_load' => '0',
+            'class_load' => '0',
+            'isMaster' => '1',
         ]);
         Faculties::create([
             'address_id' => '69',
@@ -423,7 +435,9 @@ class TeachersSeeder extends Seeder
             'gender' => 'Male',
             'username' => 'MVOlivera',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'load' => '0',
+            'subject_load' => '0',
+            'class_load' => '0',
+            'isMaster' => 'NULL',
         ]);
         Faculties::create([
             'address_id' => '70',
@@ -435,7 +449,9 @@ class TeachersSeeder extends Seeder
             'gender' => 'Female',
             'username' => 'RQPalacios',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'load' => '0',
+            'subject_load' => '0',
+            'class_load' => '0',
+            'isMaster' => 'NULL',
         ]);
         Faculties::create([
             'address_id' => '71',
@@ -447,7 +463,9 @@ class TeachersSeeder extends Seeder
             'gender' => 'Female',
             'username' => 'ABCampos',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'load' => '0',
+            'subject_load' => '0',
+            'class_load' => '0',
+            'isMaster' => 'NULL',
         ]);
         Faculties::create([
             'address_id' => '72',
@@ -459,7 +477,9 @@ class TeachersSeeder extends Seeder
             'gender' => 'Female',
             'username' => 'JIMaldonado',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'load' => '0',
+            'subject_load' => '0',
+            'class_load' => '0',
+            'isMaster' => 'NULL',
         ]);
         Faculties::create([
             'address_id' => '73',
@@ -471,7 +491,9 @@ class TeachersSeeder extends Seeder
             'gender' => 'Female',
             'username' => 'LSHenriquez',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'load' => '0',
+            'subject_load' => '0',
+            'class_load' => '0',
+            'isMaster' => 'NULL',
         ]);
         Faculties::create([
             'address_id' => '74',
@@ -483,7 +505,9 @@ class TeachersSeeder extends Seeder
             'gender' => 'Female',
             'username' => 'NCCepada',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'load' => '0',
+            'subject_load' => '0',
+            'class_load' => '0',
+            'isMaster' => 'NULL',
         ]);
         Faculties::create([
             'address_id' => '75',
@@ -495,7 +519,9 @@ class TeachersSeeder extends Seeder
             'gender' => 'Female',
             'username' => 'PQNietos',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'load' => '0',
+            'subject_load' => '0',
+            'class_load' => '0',
+            'isMaster' => '1',
         ]);
         Faculties::create([
             'address_id' => '76',
@@ -507,7 +533,9 @@ class TeachersSeeder extends Seeder
             'gender' => 'Female',
             'username' => 'MABarrientos',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'load' => '0',
+            'subject_load' => '0',
+            'class_load' => '0',
+            'isMaster' => 'NULL',
         ]);
     }
 }

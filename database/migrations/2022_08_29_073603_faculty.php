@@ -22,7 +22,9 @@ class Faculty extends Migration
             $table->string('last_name');
             $table->string('suffix')->nullable();
             $table->string('email')->unique();
-            $table->integer('load');
+            $table->integer('subject_load');
+            $table->integer('class_load');
+            $table->tinyInteger('isMaster')->nullable();
             $table->string('gender');
             $table->string('username');
             $table->string('password');

@@ -40,9 +40,9 @@
             <div class="card-header" style="background-color: #ffffff;">
                 <div class="row">
                     <div class="col-lg-6 col-md-6" style="font-size: 20px;">
-                        Regular Load: <span id="reload">{{$load->regular_load}}</span> <a class="btn btn-warning btn-sm" href="/showminload/{{$load->id}}" data-toggle="modal" data-target="#editmin"><i class="fas fa-edit"></i> Change</a><br/><br/>
+                        Max Regular Load: <span id="reload">{{$load->regular_load}}</span> <a class="btn btn-warning btn-sm" href="/showminload/{{$load->id}}" data-toggle="modal" data-target="#editmin"><i class="fas fa-edit"></i> Change</a><br/><br/>
                         
-                        Master Load: <span id="reload2">{{$load->master_load}}</span> <a class="btn btn-warning btn-sm" href="/showmaxload/{{$load->id}}" data-toggle="modal" data-target="#editmax"><i class="fas fa-edit"></i> Change</a>
+                        Max Master Load: <span id="reload2">{{$load->master_load}}</span> <a class="btn btn-warning btn-sm" href="/showmaxload/{{$load->id}}" data-toggle="modal" data-target="#editmax"><i class="fas fa-edit"></i> Change</a>
                         
                     </div>
                     <div class="col-lg-6 col-md-6">
@@ -65,9 +65,10 @@
                                 <tr>
                                     <th class="border-gray-200" scope="col">#</th>
                                     <th class="border-gray-200" scope="col">Teacher Name</th>
-                                    <th class="border-gray-200" scope="col">Loads</th>
+                                    <th class="border-gray-200" scope="col">Subject Load</th>
+                                    <th class="border-gray-200" scope="col">Class Load</th>
                                     <th class="border-gray-200" scope="col">Expertise</th>
-                                    <th class="border-gray-200" scope="col">Phone Number</th>
+                                    <th class="border-gray-200" scope="col">Status</th>
                                     <th class="border-gray-200" scope="col">Email Address</th>
                                     <th class="border-gray-200" scope="col">Action</th>
                                 </tr>
@@ -80,9 +81,16 @@
                                         <tr id="faculty{{$faculty->id}}">
                                             <td class="text-center"><?php echo $i++; ?></td>
                                             <td>{{$faculty -> last_name}} , {{$faculty -> first_name}} {{$faculty -> middle_name}} {{$faculty -> suffix}}</td>
-                                            <td class="text-center">{{$faculty -> load}}</td>
+                                            <td>{{$faculty -> subject_load}}</td>
+                                            <td>{{$faculty -> class_load}}</td>
                                             <td>{{$faculty -> expertise -> expertise}}</td>
-                                            <td>{{$faculty -> phone_number}}</td>
+                                            <td>
+                                                @if ($faculty->isMaster == null)
+                                                    Master
+                                                @else
+                                                    Regular
+                                                @endif
+                                            </td>
                                             <td>{{$faculty -> email}}</td>
                                             <td width=24%>
                                                 <a class="btn btn-success btn-md" href="/viewfaculty/{{$faculty->id}}"><i class="fas fa-eye"></i> View</a>

@@ -606,7 +606,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 Route::post('/import_excel/importStudent', 'importStudentBulk')->name('studentBulk.store');
                 Route::post('/add/subject', 'storesubject')->name('subject.store');
                 Route::post('/add/schoolyear', 'storeschoolyear')->name('schoolyear.store');
-                Route::post('/expertisesearch', 'expertisesearch')->name('expertise.search');
+                Route::post('/subjectsearch', 'subjectsearch')->name('subject.search');
                 Route::post('/teachersearch', 'teachersearch')->name('teacher.search');
                 Route::post('/subjectteacheradd', 'subjectteacherstore')->name('subjectteacher.store');
                 Route::post('/add/gradelevel', 'storegradelevel')->name('gradelevel.store');

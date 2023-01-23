@@ -1000,6 +1000,7 @@ class AdminsController extends Controller
             'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
             'suffix' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
             'email' => ['required', 'email', Rule::unique('faculties', 'email')],
+            'isMaster' => 'nullable',
         ]);
 
         if (Faculties::where('first_name', '=', $request->get("first_name"))->count() <= 0 || Faculties::where('middle_name', '=', $request->get("middle_name"))->count() <= 0
@@ -1052,6 +1053,7 @@ class AdminsController extends Controller
             'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
             'suffix' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
             "email" => 'required|email:rfc,dns|email|unique:faculties,email,' . $request->id,
+            'isMaster' => 'nullable',
         ]);
         $faculty = Faculties::find($request->id); 
         $faculty->expertise_id = $request->expertise_id;
@@ -1060,6 +1062,7 @@ class AdminsController extends Controller
         $faculty->middle_name = $request->middle_name;
         $faculty->suffix = $request->suffix;
         $faculty->email = $request->email;
+        $faculty->isMaster = $request->isMaster;
         $faculty->save();
         return response()->json($faculty);
     }
@@ -1115,7 +1118,7 @@ class AdminsController extends Controller
             foreach($data as $key => $value){
                 foreach($value as $row){
                     if($excludedRows > 3){
-                        $sliced = array_slice($row,-3,5);
+                        $sliced = array_slice($row,-4,6);
                         if(in_array(null, $sliced, true)){
                             $chars = "abcdefghijkmnopqrstuvwxyz023456789";
                             srand((double)microtime()*1000000);
@@ -1133,6 +1136,11 @@ class AdminsController extends Controller
                                 'city'=> 'Taguig City',
                             ));
                             $expertise_id = Expertises::where('deleted', '=', null)->where('expertise', '=', $row[6])->first()->id;
+                            if($row[7] == 'Regular'){
+                                $status = 1;
+                            }else{
+                                $status = NULL;
+                            }
                             $insert_data[] = array(
                                 'address_id' => $address_id,
                                 'last_name'   => $row[0],
@@ -1143,6 +1151,7 @@ class AdminsController extends Controller
                                 'gender'   => $row[5],
                                 'expertise_id'   => $expertise_id,
                                 'password'   => $password,
+                                'isMaster' => $status,
                             );
                             Mail::to($row[4])->send(new RegisterMail($pass));
                         }
@@ -1765,9 +1774,9 @@ class AdminsController extends Controller
         return view('admins.grading.functions.subjectteacheradd', compact('faculties', 'gradelevels', 'semesters', 'courses', 'sections', 'subjects', 'expertises'));
     }
 
-    public function expertisesearch(Request $request){
-        $expertise = Expertises::find($request->expertise_id);
-        return response()->json($expertise);
+    public function subjectsearch(Request $request){
+        $subject = Subjects::find($request->subject_id);
+        return response()->json($subject);
     }
 
     public function teachersearch(Request $request){
@@ -1815,7 +1824,6 @@ class AdminsController extends Controller
                     $subjectteacher->saturday = $request->get('saturday');
                     $subjectteacher->save();
                 }
-        
         
                 else{
                     return redirect()->back()->with('message', 'This is a duplicate. Kindly check again.')->withInput();

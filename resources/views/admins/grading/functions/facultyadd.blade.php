@@ -52,6 +52,17 @@
                 </div>
             </div>
             <div class="col-md-12"><br/>
+                <label style="font-size: 20px;"><span style="color: red">*</span> Status</label>
+                <select id="status" name="status" class="form-control" required>
+                    <option value="" {{old('isMaster') == "" ?'selected' : ''}} disabled> Please Select Status </option>
+                    <option value="1">Regular</option>
+                    <option value="NULL">Master</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please input valid status.
+                </div>
+            </div>
+            <div class="col-md-12"><br/>
                 <label for="expertise" class="col-form-label text-md-end" style="font-size: 20px;"><span style="color: red">*</span>  {{ __('Expertises') }}</label><br>
                 <select id="expertise" name="expertise" class="form-control" required>
                     <option value="" {{old('expertise') == "" ?'selected' : ''}} disabled> Please Select Expertise </option>
@@ -79,6 +90,7 @@
             var middle_name = $("#middlename").val();
             var suffix = $("#suffix").val();
             var email = $("#email").val();
+            var isMaster = $("#status").val();
             var expertise_id = $("#expertise").val();
             var _token = $("input[name=_token]").val();
             $.ajax({
@@ -91,6 +103,7 @@
                     middle_name: middle_name,
                     suffix: suffix,
                     email: email,
+                    isMaster: isMaster,
                     _token: _token
                 },
                 

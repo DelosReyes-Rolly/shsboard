@@ -65,6 +65,17 @@
                     Please input expertises.
                 </div>
             </div>
+            <div class="col-md-12"><br/>
+                <label for="status" class="col-form-label text-md-end" style="font-size: 20px;"><span style="color: red">*</span>  {{ __('Status') }}</label><br>
+                <select id="status" name="status" class="form-control" required>
+                    <option value="" disabled> Please Select Expertise </option>
+                    <option value="1"{{$faculty->isMaster == "1" ?'selected' : ''}}>Regular</option>
+                    <option value="NULL"{{$faculty->isMaster == "NULL" ?'selected' : ''}}>Master</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please input status.
+                </div>
+            </div>
         </div>
     </div>
     <div class="modal-footer">
@@ -83,6 +94,7 @@
             var suffix = $("#suffix").val();
             var email = $("#email").val();
             var expertise_id = $("#expertise").val();
+            var isMaster = $("#status").val();
             var _token = $("input[name=_token]").val();
 
             $.ajax({
@@ -96,6 +108,7 @@
                     middle_name: middle_name,
                     suffix: suffix,
                     email: email,
+                    isMaster: isMaster,
                     _token: _token
                 },
                 success: function(response) {
