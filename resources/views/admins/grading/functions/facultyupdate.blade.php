@@ -54,15 +54,15 @@
                 </div>
             </div>
             <div class="col-md-12"><br/>
-                <label for="specialty" class="col-form-label text-md-end" style="font-size: 20px;"><span style="color: red">*</span>  {{ __('Specialty') }}</label><br>
-                <select id="specialty" name="specialty" class="form-control" required>
-                    <option value="" disabled> Please Select Specialty </option>
-                    @foreach($specialties as $specialty)
-                    <option value="{{$specialty->id}}"{{ $faculty->specialty_id === $specialty->id ? 'selected' : '' }}>{{$specialty->specialty}}</option>
+                <label for="expertise" class="col-form-label text-md-end" style="font-size: 20px;"><span style="color: red">*</span>  {{ __('Expertise') }}</label><br>
+                <select id="expertise" name="expertise" class="form-control" required>
+                    <option value="" disabled> Please Select Expertise </option>
+                    @foreach($expertises as $expertise)
+                    <option value="{{$expertise->id}}"{{ $faculty->expertise_id === $expertise->id ? 'selected' : '' }}>{{$expertise->expertise}}</option>
                     @endforeach
                 </select>
                 <div class="invalid-feedback">
-                    Please input specialties.
+                    Please input expertises.
                 </div>
             </div>
         </div>
@@ -82,7 +82,7 @@
             var middle_name = $("#middlename").val();
             var suffix = $("#suffix").val();
             var email = $("#email").val();
-            var specialty_id = $("#specialty").val();
+            var expertise_id = $("#expertise").val();
             var _token = $("input[name=_token]").val();
 
             $.ajax({
@@ -90,7 +90,7 @@
                 url: '{{url("/updatefaculty/")}}/' + id,
                 data: {
                     id: id,
-                    specialty_id: specialty_id,
+                    expertise_id: expertise_id,
                     last_name: last_name,
                     first_name: first_name,
                     middle_name: middle_name,

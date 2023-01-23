@@ -96,8 +96,8 @@
                         <li title="Faculties">
                             <a href="/gradingfaculty" title="Faculties"><i class="fas fa-user-tie"></i>&nbsp;<span class="hide-word"> <b>Faculties</b> </span></a>
                         </li>
-                        <li title="Specialties">
-                            <a href="/gradingspecialty" title="Specialties"><i class="fas fa-user-tie"></i>&nbsp;<span class="hide-word"> <b>Specialties</b> </span></a>
+                        <li title="Expertises">
+                            <a href="/gradingexpertise" title="Expertises"><i class="fas fa-user-tie"></i>&nbsp;<span class="hide-word"> <b>Expertises</b> </span></a>
                         </li>
                     </ul>
                 </li>

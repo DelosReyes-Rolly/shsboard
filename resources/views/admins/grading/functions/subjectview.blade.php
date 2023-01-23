@@ -17,8 +17,8 @@
         <label style="font-size: 20px;"><b>Description: </b></label>
         <span style="font-size: 20px;">{{$subject->description}}</span><br/>
 
-        <label style="font-size: 20px;"><b>Load: </b></label>
-        <span style="font-size: 20px;">{{$subject->subjectload}}</span><br/>
+        <label style="font-size: 20px;"><b>Expertise Needed: </b></label>
+        <span style="font-size: 20px;">{{$subject->expertise->expertise}}</span><br/>
 
     </div>
     <div class="modal-footer">

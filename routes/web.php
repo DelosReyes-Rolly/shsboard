@@ -500,7 +500,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
             Route::get('/gradingcourses', 'courses'); 
             Route::get('/gradingsections', 'section'); 
             Route::get('/gradingfaculty', 'faculty');
-            Route::get('/gradingspecialty', 'specialty');
+            Route::get('/gradingexpertise', 'expertise');
             Route::get('/gradingstudents', 'student'); 
             Route::get('/gradingalumni', 'alumni'); 
             Route::get('/gradingdropped', 'dropped'); 
@@ -542,9 +542,9 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 Route::get('/showminload/{id}','showminload');
                 Route::get('/showmaxload/{id}','showmaxload');
 
-                Route::get('/specialtyadd', 'addspecialty')->name('specialty.add');
-                Route::get('/viewspecialty/{id}','viewspecialty');
-                Route::get('/showspecialty/{id}','showspecialty');
+                Route::get('/expertiseadd', 'addexpertise')->name('expertise.add');
+                Route::get('/viewexpertise/{id}','viewexpertise');
+                Route::get('/showexpertise/{id}','showexpertise');
 
                 Route::get('/studentadd', 'addstudent')->name('student.add');
                 Route::get('/studentbatchadd', 'addbatchstudent')->name('studentbatch.add');
@@ -600,13 +600,13 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 Route::post('/add/course', 'storecourse')->name('course.store');
                 Route::post('/add/section', 'storesection')->name('section.store');
                 Route::post('/add/faculty', 'storefaculty')->name('faculty.store');
-                Route::post('/add/specialty', 'storespecialty')->name('specialty.store');
+                Route::post('/add/expertise', 'storeexpertise')->name('expertise.store');
                 Route::post('/import_excel/importFaculty', 'importFacultyBulk')->name('facultyBulk.store');
                 Route::post('/add/student', 'storestudent')->name('student.store');
                 Route::post('/import_excel/importStudent', 'importStudentBulk')->name('studentBulk.store');
                 Route::post('/add/subject', 'storesubject')->name('subject.store');
                 Route::post('/add/schoolyear', 'storeschoolyear')->name('schoolyear.store');
-                Route::post('/specialtysearch', 'specialtysearch')->name('specialty.search');
+                Route::post('/expertisesearch', 'expertisesearch')->name('expertise.search');
                 Route::post('/teachersearch', 'teachersearch')->name('teacher.search');
                 Route::post('/subjectteacheradd', 'subjectteacherstore')->name('subjectteacher.store');
                 Route::post('/add/gradelevel', 'storegradelevel')->name('gradelevel.store');
@@ -645,9 +645,9 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 Route::put('/updateminload/{minload}', 'updateminload');
                 Route::put('/updatemaxload/{maxload}', 'updatemaxload');
 
-                Route::put('/updatespecialty/{specialty}', 'updatespecialty');
-                // Route::put('/deletespecialty/{specialty}', 'deletegradespecialty');
-                Route::put('/specialty/delete/{id}', 'deletegradespecialty');
+                Route::put('/updateexpertise/{expertise}', 'updateexpertise');
+                // Route::put('/deleteexpertise/{expertise}', 'deletegradeexpertise');
+                Route::put('/expertise/delete/{id}', 'deletegradeexpertise');
 
                 Route::put('/updatestudent/{student}', 'updatestudent');
                 // Route::put('/deletestudent/{student}', 'deletegradestudent');

@@ -52,15 +52,15 @@
                 </div>
             </div>
             <div class="col-md-12"><br/>
-                <label for="specialty" class="col-form-label text-md-end" style="font-size: 20px;"><span style="color: red">*</span>  {{ __('Specialty') }}</label><br>
-                <select id="specialty" name="specialty" class="form-control" required>
-                    <option value="" {{old('specialty') == "" ?'selected' : ''}} disabled> Please Select Specialty </option>
-                    @foreach($specialties as $specialty)
-                    <option value="{{$specialty->id}}">{{$specialty->specialty}}</option>
+                <label for="expertise" class="col-form-label text-md-end" style="font-size: 20px;"><span style="color: red">*</span>  {{ __('Expertises') }}</label><br>
+                <select id="expertise" name="expertise" class="form-control" required>
+                    <option value="" {{old('expertise') == "" ?'selected' : ''}} disabled> Please Select Expertise </option>
+                    @foreach($expertises as $expertise)
+                    <option value="{{$expertise->id}}">{{$expertise->expertise}}</option>
                     @endforeach
                 </select>
                 <div class="invalid-feedback">
-                    Please input specialties.
+                    Please input expertises.
                 </div>
             </div>
         </div>
@@ -79,13 +79,13 @@
             var middle_name = $("#middlename").val();
             var suffix = $("#suffix").val();
             var email = $("#email").val();
-            var specialty_id = $("#specialty").val();
+            var expertise_id = $("#expertise").val();
             var _token = $("input[name=_token]").val();
             $.ajax({
                 type: "POST",
                 url: "{{ route('faculty.store') }}",
                 data: {
-                    specialty_id: specialty_id,
+                    expertise_id: expertise_id,
                     last_name: last_name,
                     first_name: first_name,
                     middle_name: middle_name,

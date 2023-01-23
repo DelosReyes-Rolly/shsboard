@@ -1,11 +1,11 @@
 <script src="{{ asset('assets/js/needs-validated.js') }}"></script>
 <div class="modal-header">
-    <h1 class="modal-title" id="staticBackdropLabel" style="font-size: 20px;">New specialty</h1>
+    <h1 class="modal-title" id="staticBackdropLabel" style="font-size: 20px;">New expertise</h1>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" id="createSpecialty" class="needs-validation" novalidate>
+<form method="POST" id="createExpertise" class="needs-validation" novalidate>
     <div class="modal-body">
         @csrf
         <div id="whoops" class="alert alert-danger" style="display: none;">
@@ -17,10 +17,10 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <label style="font-size: 20px;"><span style="color: red">*</span> Specialty Name</label>
-                <input id="specialty" type="text" name="specialty"  class="form-control @error('specialty') is-invalid @enderror" value="{{ old('specialty') }}" style="font-size: 14px;"onkeydown="return alphaOnly(event);" maxlength="255"  required>
+                <label style="font-size: 20px;"><span style="color: red">*</span> Expertise Name</label>
+                <input id="expertise" type="text" name="expertise"  class="form-control @error('expertise') is-invalid @enderror" value="{{ old('expertise') }}" style="font-size: 14px;"onkeydown="return alphaOnly(event);" maxlength="255"  required>
                 <div class="invalid-feedback">
-                    Please input valid specialty.
+                    Please input valid expertise.
                 </div>
             </div>
         </div>
@@ -30,17 +30,17 @@
     </div>
 </form>
 <script>
-    $("#createSpecialty").submit(function(e) {
+    $("#createExpertise").submit(function(e) {
             e.preventDefault();
 
-            var specialty = $("#specialty").val();
+            var expertise = $("#expertise").val();
             var _token = $("input[name=_token]").val();
 
             $.ajax({
                 type: "POST",
-                url: "{{ route('specialty.store') }}",
+                url: "{{ route('expertise.store') }}",
                 data: {
-                    specialty: specialty,                                                         // modal ng add
+                    expertise: expertise,                                                         // modal ng add
                     _token: _token
                 },
                 success: function(response) {
@@ -50,11 +50,11 @@
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
                         $("#createModal").hide();
-                        $("#createSpecialty")[0].reset();
+                        $("#createExpertise")[0].reset();
                         Swal.fire({
                             icon: 'success',
                             title: 'Success.',
-                            text: 'Specialty has been added successfully',
+                            text: 'Expertise has been added successfully',
                         }).then(function() {
                             location.reload(true);
                         })

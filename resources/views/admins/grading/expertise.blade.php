@@ -29,14 +29,14 @@
     </script>
 <div class="left-to-right">
         
-        <h3 style="font-size: 28px; font-weight: 800;">Table of Faculty Specialties </h3>
+        <h3 style="font-size: 28px; font-weight: 800;">Table of Faculty Expertise </h3>
         <hr class="mt-0 mb-4">
         <div class="card mb-4 left-to-right border-start-lg border-start-success" style="padding: 10px 40px 10px 40px;">
             <div class="card-header" style="background-color: #ffffff;"> <!-- ito yung button sa pagadd-->
-                <a id="addSection" href="{{route('specialty.add')}}" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#createModal"><i class="fas fa-user-plus"></i> Add Record</a>
+                <a id="addSection" href="{{route('expertise.add')}}" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#createModal"><i class="fas fa-user-plus"></i> Add Record</a>
             </div>
             <div class="card-body p-0">
-                @if($specialties->count() == 0)
+                @if($expertises->count() == 0)
 					<br><br>
 					<div class="alert alert-danger"><em>No records found.</em></div>
 				@else 
@@ -46,7 +46,7 @@
                             <thead class="table-success">
                                 <tr>
                                     <th width="10%" class="border-gray-200" scope="col">#</th>
-                                    <th width="20%" class="border-gray-200" scope="col">Specialties</th>
+                                    <th width="20%" class="border-gray-200" scope="col">Expertise</th>
                                     <th width="40%" class="border-gray-200" scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -54,25 +54,25 @@
                                 <?php 
                                     $i=1;
                                 ?>
-                                    @foreach ($specialties as $specialty)
-                                        <tr id="specialty{{$specialty->id}}">
+                                    @foreach ($expertises as $expertise)
+                                        <tr id="expertise{{$expertise->id}}">
                                             <td width="10%" class="text-center"><?php echo $i++; ?></td>
-                                            <td width="20%">{{$specialty -> specialty}}</td>
+                                            <td width="20%">{{$expertise -> expertise}}</td>
                                             <td width="40%">
-                                                <a class="btn btn-success btn-md" href="/viewspecialty/{{$specialty->id}}" data-toggle="modal" data-target="#modal-view-{{ $specialty->id }}"><i class="fas fa-eye"></i> View</a>
-                                                <a class="btn btn-warning btn-md" href="/showspecialty/{{$specialty->id}}" data-toggle="modal" data-target="#editModal{{ $specialty->id }}"><i class="fas fa-edit"></i> Update</a>
-                                                <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $specialty->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
+                                                <a class="btn btn-success btn-md" href="/viewexpertise/{{$expertise->id}}" data-toggle="modal" data-target="#modal-view-{{ $expertise->id }}"><i class="fas fa-eye"></i> View</a>
+                                                <a class="btn btn-warning btn-md" href="/showexpertise/{{$expertise->id}}" data-toggle="modal" data-target="#editModal{{ $expertise->id }}"><i class="fas fa-edit"></i> Update</a>
+                                                <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $expertise->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                             </td> 
                                         </tr>
                                         <!-- view modal -->
-                                        <div id="modal-view-{{ $specialty->id }}" class="modal fade text-center" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div id="modal-view-{{ $expertise->id }}" class="modal fade text-center" tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content border-start-lg border-start-yellow">
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- update modal -->
-                                        <div id="editModal{{ $specialty->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div id="editModal{{ $expertise->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog modal-lg" role="document">
                                                 <div class="modal-content border-start-lg border-start-yellow">
                                                 </div>
@@ -128,7 +128,7 @@
 
                     $.ajax({
                         type:'PUT',
-                        url:'{{url("/specialty/delete")}}/' +id,
+                        url:'{{url("/expertise/delete")}}/' +id,
                         data:{
                             "_token": "{{ csrf_token() }}",
                         },
@@ -140,7 +140,7 @@
                                     'Section is deleted successfully.',
                                     "success"
                                 );
-                                $("#specialty"+id+"").remove();
+                                $("#expertise"+id+"").remove();
                             }
 
                         }

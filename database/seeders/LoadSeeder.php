@@ -16,7 +16,7 @@ class LoadSeeder extends Seeder
     {
         Loads::create([
             'master_load' => '6',
-            'regular_load' => '1',
+            'regular_load' => '5',
         ]);
     }
 }

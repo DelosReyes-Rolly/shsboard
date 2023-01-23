@@ -16,7 +16,7 @@ class Faculty extends Migration
         Schema::create('faculties', function (Blueprint $table) {
             $table->id();
             $table->integer('address_id');
-            $table->integer('specialty_id');
+            $table->integer('expertise_id');
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');

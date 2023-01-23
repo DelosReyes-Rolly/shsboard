@@ -347,7 +347,7 @@ class TeachersSeeder extends Seeder
 
         Faculties::create([
             'address_id' => '63',
-            'specialty_id' => '1',
+            'expertise_id' => '1',
             'first_name' => 'Geronimo',
             'middle_name' => 'Gaona',
             'last_name' => 'Santacruz',
@@ -357,7 +357,7 @@ class TeachersSeeder extends Seeder
         ]);
         Faculties::create([
             'address_id' => '64',
-            'specialty_id' => '2',
+            'expertise_id' => '2',
             'first_name' => 'William',
             'middle_name' => 'Mase',
             'last_name' => 'Bouton',
@@ -369,7 +369,7 @@ class TeachersSeeder extends Seeder
         ]);
         Faculties::create([
             'address_id' => '65',
-            'specialty_id' => '3',
+            'expertise_id' => '3',
             'first_name' => 'Baldo',
             'middle_name' => 'Velazquez',
             'last_name' => 'Ramon',
@@ -381,7 +381,7 @@ class TeachersSeeder extends Seeder
         ]);
         Faculties::create([
             'address_id' => '66',
-            'specialty_id' => '4',
+            'expertise_id' => '4',
             'first_name' => 'Viviano',
             'middle_name' => 'Altamirano',
             'last_name' => 'Toledo',
@@ -391,7 +391,7 @@ class TeachersSeeder extends Seeder
         ]);
         Faculties::create([
             'address_id' => '67',
-            'specialty_id' => '5',
+            'expertise_id' => '5',
             'first_name' => 'Nicanor',
             'middle_name' => 'Anguiano',
             'last_name' => 'Garay',
@@ -403,7 +403,7 @@ class TeachersSeeder extends Seeder
         ]);
         Faculties::create([
             'address_id' => '68',
-            'specialty_id' => '6',
+            'expertise_id' => '6',
             'first_name' => 'Dalmacio',
             'middle_name' => 'Garza',
             'last_name' => 'Mateo',
@@ -415,7 +415,7 @@ class TeachersSeeder extends Seeder
         ]);
         Faculties::create([
             'address_id' => '69',
-            'specialty_id' => '1',
+            'expertise_id' => '1',
             'first_name' => 'Marciano',
             'middle_name' => 'Vera',
             'last_name' => 'Olivera',
@@ -427,7 +427,7 @@ class TeachersSeeder extends Seeder
         ]);
         Faculties::create([
             'address_id' => '70',
-            'specialty_id' => '2',
+            'expertise_id' => '2',
             'first_name' => 'Rosicler',
             'middle_name' => 'Quezada',
             'last_name' => 'Palacios',
@@ -439,7 +439,7 @@ class TeachersSeeder extends Seeder
         ]);
         Faculties::create([
             'address_id' => '71',
-            'specialty_id' => '3',
+            'expertise_id' => '3',
             'first_name' => 'Afrodita',
             'middle_name' => 'Baca',
             'last_name' => 'Campos',
@@ -451,7 +451,7 @@ class TeachersSeeder extends Seeder
         ]);
         Faculties::create([
             'address_id' => '72',
-            'specialty_id' => '4',
+            'expertise_id' => '4',
             'first_name' => 'Jamila',
             'middle_name' => 'Iglesias',
             'last_name' => 'Maldonado',
@@ -463,7 +463,7 @@ class TeachersSeeder extends Seeder
         ]);
         Faculties::create([
             'address_id' => '73',
-            'specialty_id' => '5',
+            'expertise_id' => '5',
             'first_name' => 'Lorea',
             'middle_name' => 'Solorio',
             'last_name' => 'Henriquez',
@@ -475,7 +475,7 @@ class TeachersSeeder extends Seeder
         ]);
         Faculties::create([
             'address_id' => '74',
-            'specialty_id' => '6',
+            'expertise_id' => '6',
             'first_name' => 'Numas',
             'middle_name' => 'Carrero',
             'last_name' => 'Cepada',
@@ -487,7 +487,7 @@ class TeachersSeeder extends Seeder
         ]);
         Faculties::create([
             'address_id' => '75',
-            'specialty_id' => '1',
+            'expertise_id' => '1',
             'first_name' => 'Palas',
             'middle_name' => 'Quiroz',
             'last_name' => 'Nieto',
@@ -499,7 +499,7 @@ class TeachersSeeder extends Seeder
         ]);
         Faculties::create([
             'address_id' => '76',
-            'specialty_id' => '2',
+            'expertise_id' => '2',
             'first_name' => 'Mila',
             'middle_name' => 'Alarcon',
             'last_name' => 'Barrientos',

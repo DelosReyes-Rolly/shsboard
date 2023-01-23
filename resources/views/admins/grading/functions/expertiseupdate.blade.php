@@ -1,11 +1,11 @@
 <script src="{{ asset('assets/js/needs-validated.js') }}"></script>
 <div class="modal-header">
-    <h1 class="modal-title" id="staticBackdropLabel" style="font-size: 20px;">Update Specialty</h1>
+    <h1 class="modal-title" id="staticBackdropLabel" style="font-size: 20px;">Update dExpertise</h1>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" id="updateSpecialty" class="needs-validation" novalidate>     <!-- may yung id na update specialty ilalagay mo sa baba sa script -->
+<form method="POST" id="updatedExpertise" class="needs-validation" novalidate>     <!-- may yung id na update expertise ilalagay mo sa baba sa script -->
     <div class="modal-body">
         @csrf
         @method('PUT')
@@ -13,11 +13,11 @@
             <b>Whoops! There is a problem in your input</b> <br/>
             <div id="validation-errors"></div>
         </div>
-        <input type="hidden" id="id" name="id" value="{{$specialty->id}}"/>               <!-- lagay ka ng hidden. Yung id ng row o ng ieedit -->
-        <div class="col-md-12">                                                         <!-- id ng input ay "specialty" -->
-            <input type="text" id="specialty" name="specialty" class="form-control @error('specialty') is-invalid @enderror" value="{{$specialty->specialty}}" style="font-size: 20px;" onkeydown="return alphaOnly(event);" maxlength="255"  required>
+        <input type="hidden" id="id" name="id" value="{{$expertise->id}}"/>               <!-- lagay ka ng hidden. Yung id ng row o ng ieedit -->
+        <div class="col-md-12">                                                         <!-- id ng input ay "expertise" -->
+            <input type="text" id="expertise" name="expertise" class="form-control @error('expertise') is-invalid @enderror" value="{{$expertise->expertise}}" style="font-size: 20px;" onkeydown="return alphaOnly(event);" maxlength="255"  required>
             <div class="invalid-feedback">
-                Please input valid specialty.
+                Please input valid expertise.
             </div>
         </div>
     </div>
@@ -27,19 +27,19 @@
     </div>
 </form>
 <script>
-        $("#updateSpecialty").submit(function(i) {                         // dito bababa yung input kapag nagsubmit dahil sa input id sa form
+        $("#updatedExpertise").submit(function(i) {                         // dito bababa yung input kapag nagsubmit dahil sa input id sa form
             i.preventDefault();                                          // wala lang to
 
             var id = $("#id").val();                                     // yung variable na id lalagayan niya ng laman na galing sa input na may id na "id".  .val() = value
-            var specialty = $("#specialty").val();                           // yung variable na specialty lalagayan niya ng laman na galing sa input na may id na "specialty".  .val() = value
+            var expertise = $("#expertise").val();                           // yung variable na expertise lalagayan niya ng laman na galing sa input na may id na "expertise".  .val() = value
             var _token = $("input[name=_token]").val();                  // wala lang to
 
             $.ajax({
                 type: "PUT",                                            // PUT pang update
-                url: '{{url("/updatespecialty/")}}/' + id,                // url mo kasama id
+                url: '{{url("/updateexpertise/")}}/' + id,                // url mo kasama id
                 data: {                                 
                     id: id,                                             //
-                    specialty: specialty,                                   // ito yung data na ipapasa sa controller
+                    expertise: expertise,                                   // ito yung data na ipapasa sa controller
                     _token: _token,                                     //
                 },
                 success: function(response) {                           // kapag nagsuccess
@@ -48,13 +48,13 @@
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();                     // hanggang dito
-                        $("#updateSpecialty")[0].reset();                // irereset niya yung form
-                        $('#specialty' + response.id +' td:nth-child(2)').text(response.specialty);               // copy paste mo lang to. Bale pinapalitan lang niya yung row. Yung "specialty" id siya ng tr
-                                                                                                            // yung response galing siya sa controller yung return response()->json($specialty). Yung td:nth-child(2) column bale 2nd column
+                        $("#updatedExpertise")[0].reset();                // irereset niya yung form
+                        $('#expertise' + response.id +' td:nth-child(2)').text(response.expertise);               // copy paste mo lang to. Bale pinapalitan lang niya yung row. Yung "expertise" id siya ng tr
+                                                                                                            // yung response galing siya sa controller yung return response()->json($expertise). Yung td:nth-child(2) column bale 2nd column
                         Swal.fire({                                                             //sweetalert
                             icon: 'success',                                                    //
                             title: 'Success.',                                                  //
-                            text: 'Specialty has been updated successfully',                      //
+                            text: 'Expertise has been updated successfully',                      //
                         })
                 },error: function (xhr) {
                     $('#validation-errors').html('');

@@ -69,10 +69,7 @@
                                             <div class="row">
                                                 <!-- Form Group (content)-->
                                                 <div class="col-lg-6 col-md-6 col-sm-12 requestdocument">
-                                                	<label class="large col-md-12" for="document_type" class="form-control @error('document_type') is-invalid @enderror" style="font-size: 20px;"><br><span style="color: red">*</span> Document Needed</label>
-                                                    <div class="col-md-12" hidden>
-                                                        <input class="form-control @error('document_type') is-invalid @enderror" id="inputdocument_type" type="text" placeholder="Enter document needed" name="document_type"  value="{{ old('document_type') }}">
-                                                    </div>
+                                                	<label class="large mb-1" for="document_type" class="form-control @error('document_type') is-invalid @enderror" style="font-size: 20px;"><br><span style="color: red">*</span> Document Needed</label>
                                                     <select id="document_type" name="document_type" class="form-control" value="{{ old('document_type') }}" style="font-size: 16px;" required>
                                                         <option value="" disabled selected hidden>Choose Document</option>
                                                         @foreach ($lists as $list)
@@ -87,9 +84,6 @@
                                                 <!-- Form Group (content)-->
                                                 <div class="col-lg-6 col-md-6 col-sm-12 requestdocument">
                                                 	<label class="large mb-1" for="inputpurpose" style="font-size: 20px;" class="form-control @error('purpose') is-invalid @enderror"><br><span style="color: red">*</span> Purpose</label>
-                                                    <div class="col-md-12" hidden>
-                                                        <input class="form-control @error('purpose') is-invalid @enderror" id="inputpurpose" type="text" placeholder="Enter purpose" name="purpose"  value="{{ old('purpose') }}">
-                                                    </div>
                                                     <select id="purpose" name="purpose" class="form-control" value="{{ old('purpose') }}" style="font-size: 16px;"  required>
                                                         <option value="" disabled selected hidden>Choose Purpose</option>
                                                         @foreach ($purposes as $purpose)
@@ -117,11 +111,9 @@
             										</div>                                 
             									</div> 
                                                  <!-- Save changes button-->
-                                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                                    <div class="p-3 mb-2 bg-info bg-gradient text-white" style="border-radius: 10px;">
-                                                        <i class="fas fa-info"> </i> | <b> Note:</b> The documents will be processed <b>within five (5) working days</b> upon requesting.
-                                                        The documents can be claimed in the <b>Registrars Office.</b>
-                                                    </div>
+                                                <div class="col-lg-12 col-md-12 col-sm-12" style="border-radius: 10px; background-color: #ffffff;">
+                                                    <label class="large mb-1" for="inputcontent"> <div class="alert alert-primary"><em><i class="fas fa-info"> </i> | <b> Note:</b> The documents will be processed <b>within five (5) working days</b> upon requesting.
+                                                    The documents can be claimed in the <b>Registrars Office.</b></em></div></label><br>
                                                 </div>
                                                 <div class="col-lg-10 col-md-12 col-sm-12">
                                                     <font face = "Verdana" size = "8"><input type="submit" class="btn btn-primary" value="Submit"></font>

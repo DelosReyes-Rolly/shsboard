@@ -21,7 +21,7 @@ use Illuminate\Notifications\Notifiable;
             'password',
         ];
 
-        public function specialty(){
-            return $this->belongsTo(Specialties::class);
+        public function expertise(){
+            return $this->belongsTo(Expertises::class);
         }
     }

@@ -18,7 +18,7 @@ class Subjects extends Migration
             $table->string('subjectcode');
             $table->string('subjectname');
             $table->text('description');
-            $table->integer('subjectload');
+            $table->integer('expertise_id');
             $table->timestamps();
             $table->tinyInteger('deleted')->nullable();
             $table->date('deleted_at')->nullable();

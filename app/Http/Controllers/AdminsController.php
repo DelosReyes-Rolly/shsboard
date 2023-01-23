@@ -10,6 +10,7 @@ use App\Models\Courses;
 use App\Models\DocumentPurposes;
 use App\Models\DocumentRequests;
 use App\Models\Documents;
+use App\Models\Expertises;
 use App\Models\Faculties;
 use App\Models\GradeLevels;
 use App\Models\Landings;
@@ -17,7 +18,6 @@ use App\Models\Loads;
 use App\Models\SchoolYear;
 use App\Models\Sections;
 use App\Models\Semesters;
-use App\Models\Specialties;
 use App\Models\StudentGrade;
 use App\Models\Students;
 use App\Models\Subjects;
@@ -28,7 +28,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 use Excel;
-use Faculty;
 
 class AdminsController extends Controller
 {
@@ -984,8 +983,8 @@ class AdminsController extends Controller
     }
 
     public function addfaculty(){
-        $specialties = Specialties::where('deleted', '=', null)->get();
-        return view('admins.grading.functions.facultyadd', compact('specialties'));
+        $expertises = Expertises::where('deleted', '=', null)->get();
+        return view('admins.grading.functions.facultyadd', compact('expertises'));
     }
 
     public function addbatchfaculty(){
@@ -995,7 +994,7 @@ class AdminsController extends Controller
     public function storefaculty(Request $request){
         // Validate the inputs
         $validated = $request->validate([
-            'specialty_id' => ['required'],
+            'expertise_id' => ['required'],
             'first_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
             'middle_name' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
             'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
@@ -1041,13 +1040,13 @@ class AdminsController extends Controller
 
     public function showfaculty($id){
         $faculty = Faculties::where('deleted', '=', null)->findOrFail($id);
-        $specialties = Specialties::where('deleted', '=', null)->get();
-        return view('admins.grading.functions.facultyupdate', compact('faculty', 'specialties'));
+        $expertises = Expertises::where('deleted', '=', null)->get();
+        return view('admins.grading.functions.facultyupdate', compact('faculty', 'expertises'));
     }
 
     public function updatefaculty(Request $request){
         $request->validate([
-            'specialty_id' => ['required'],
+            'expertise_id' => ['required'],
             'first_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
             'middle_name' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
             'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
@@ -1055,7 +1054,7 @@ class AdminsController extends Controller
             "email" => 'required|email:rfc,dns|email|unique:faculties,email,' . $request->id,
         ]);
         $faculty = Faculties::find($request->id); 
-        $faculty->specialty_id = $request->specialty_id;
+        $faculty->expertise_id = $request->expertise_id;
         $faculty->last_name = $request->last_name;
         $faculty->first_name = $request->first_name;
         $faculty->middle_name = $request->middle_name;
@@ -1133,7 +1132,7 @@ class AdminsController extends Controller
                             $address_id = DB::table('addresses')-> insertGetId(array(
                                 'city'=> 'Taguig City',
                             ));
-                            $specialty_id = Specialties::where('deleted', '=', null)->where('specialty', '=', $row[6])->first()->id;
+                            $expertise_id = Expertises::where('deleted', '=', null)->where('expertise', '=', $row[6])->first()->id;
                             $insert_data[] = array(
                                 'address_id' => $address_id,
                                 'last_name'   => $row[0],
@@ -1142,7 +1141,7 @@ class AdminsController extends Controller
                                 'suffix'    => $row[3],
                                 'email'  => $row[4],
                                 'gender'   => $row[5],
-                                'specialty_id'   => $specialty_id,
+                                'expertise_id'   => $expertise_id,
                                 'password'   => $password,
                             );
                             Mail::to($row[4])->send(new RegisterMail($pass));
@@ -1160,57 +1159,57 @@ class AdminsController extends Controller
 
     // ============================================================ SPECIALTY ===================================================
 
-    public function specialty(){
-        $specialties = Specialties::where('deleted', '=', null)->get();
-        return view('admins.grading.specialty', compact('specialties'));
+    public function expertise(){
+        $expertises = Expertises::where('deleted', '=', null)->get();
+        return view('admins.grading.expertise', compact('expertises'));
     }
 
-    public function addspecialty(){
-        return view('admins.grading.functions.specialtyadd');
+    public function addexpertise(){
+        return view('admins.grading.functions.expertiseadd');
     }
 
-    public function storespecialty(Request $request){
+    public function storeexpertise(Request $request){
         // Validate the inputs
         $request->validate([
-            'specialty' => 'required|max:255',
+            'expertise' => 'required|max:255',
         ]);
-        $specialty = new Specialties();
-        $specialty->specialty = $request->get('specialty');
-        $specialty->save();
+        $expertise = new Expertises();
+        $expertise->expertise = $request->get('expertise');
+        $expertise->save();
         return response()->json(array('success' => true));
-        // return redirect('/gradingspecialtys')->with('success', 'Section has been added successfully!');
+        // return redirect('/gradingexpertises')->with('success', 'Section has been added successfully!');
     }    
 
-    public function viewspecialty($id){
-        $data = Specialties::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.specialtyview', ['specialty' => $data]);
+    public function viewexpertise($id){
+        $data = Expertises::where('deleted', '=', null)->findOrFail($id);
+        return view('admins.grading.functions.expertiseview', ['expertise' => $data]);
     }
 
 
-    public function showspecialty($id){
-        $data = Specialties::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.specialtyupdate', ['specialty' => $data]);
+    public function showexpertise($id){
+        $data = Expertises::where('deleted', '=', null)->findOrFail($id);
+        return view('admins.grading.functions.expertiseupdate', ['expertise' => $data]);
     }
 
-    public function updatespecialty(Request $request){
+    public function updateexpertise(Request $request){
         $request->validate([
-            'specialty' => 'required',
+            'expertise' => 'required',
         ]);
-        $specialty = Specialties::find($request->id);
-        $specialty->specialty = $request->specialty;
-        $specialty->save();
-        return response()->json($specialty);
+        $expertise = Expertises::find($request->id);
+        $expertise->expertise = $request->expertise;
+        $expertise->save();
+        return response()->json($expertise);
     }    
 
-   public function deletegradespecialty(Specialties $specialty, Request $request, $id){
+   public function deletegradeexpertise(Expertises $expertise, Request $request, $id){
         if ($request->ajax()){
 
-            $specialty = Specialties::findOrFail($id);
-            if ($specialty){
+            $expertise = Expertises::findOrFail($id);
+            if ($expertise){
 
-                $specialty->deleted = 1;
-                $specialty->deleted_at = now();
-                $specialty->save();
+                $expertise->deleted = 1;
+                $expertise->deleted_at = now();
+                $expertise->save();
 
                 return response()->json(array('success' => true));
             }
@@ -1570,7 +1569,8 @@ class AdminsController extends Controller
     }
 
     public function addsubject(){
-        return view('admins.grading.functions.subjectadd');
+        $expertises = Expertises::where('deleted', '=', null)->get();
+        return view('admins.grading.functions.subjectadd', compact('expertises'));
     }
 
     public function storesubject(Request $request){
@@ -1579,13 +1579,13 @@ class AdminsController extends Controller
             'subjectcode' => 'required|max:255',
             'subjectname' => 'required|max:255',
             'description' => 'required',
-            'subjectload' => 'required',
+            'expertise_id' => 'required',
         ]);
         $subject = new Subjects();
         $subject->subjectcode = $request->get('subjectcode');
         $subject->subjectname = $request->get('subjectname');
         $subject->description = $request->get('description');
-        $subject->subjectload = $request->get('subjectload');
+        $subject->expertise_id = $request->get('expertise_id');
         $subject->save();
         return response()->json(array('success' => true));   
     }  
@@ -1597,8 +1597,9 @@ class AdminsController extends Controller
 
 
     public function showsubject($id){
-        $data = Subjects::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.subjectupdate', ['subject' => $data]);
+        $subject = Subjects::where('deleted', '=', null)->findOrFail($id);
+        $expertises = Expertises::where('deleted', '=', null)->get();
+        return view('admins.grading.functions.subjectupdate', compact('subject', 'expertises'));
     }
 
     public function updatesubject(Request $request){
@@ -1606,13 +1607,13 @@ class AdminsController extends Controller
             'subjectcode' => 'required|max:255',
             'subjectname' => 'required|max:255',
             'description' => 'required',
-            'subjectload' => 'required',
+            'expertise_id' => 'required',
         ]);
         $subject = Subjects::find($request->id);
         $subject->subjectcode = $request->get('subjectcode');
         $subject->subjectname = $request->get('subjectname');
         $subject->description = $request->get('description');
-        $subject->subjectload = $request->get('subjectload');
+        $subject->expertise_id = $request->get('expertise_id');
         $subject->save();
         return response()->json($subject);
     }
@@ -1755,22 +1756,22 @@ class AdminsController extends Controller
 
     public function subjectteacheradd(){
         $faculties = Faculties::where('deleted', '=', null)->get();
-        $specialties = Specialties::where('deleted', '=', null)->get();
+        $expertises = Expertises::where('deleted', '=', null)->get();
         $gradelevels = GradeLevels::all();
         $semesters = Semesters::all();
         $courses = Courses::where('deleted', '=', null)->get();
         $sections =Sections::where('deleted', '=', null)->get();
         $subjects = Subjects::where('deleted', '=', null)->get();
-        return view('admins.grading.functions.subjectteacheradd', compact('faculties', 'gradelevels', 'semesters', 'courses', 'sections', 'subjects', 'specialties'));
+        return view('admins.grading.functions.subjectteacheradd', compact('faculties', 'gradelevels', 'semesters', 'courses', 'sections', 'subjects', 'expertises'));
     }
 
-    public function specialtysearch(Request $request){
-        $specialty = Specialties::find($request->specialty_id);
-        return response()->json($specialty);
+    public function expertisesearch(Request $request){
+        $expertise = Expertises::find($request->expertise_id);
+        return response()->json($expertise);
     }
 
     public function teachersearch(Request $request){
-        $teacher = Faculties::where('specialty_id', '=', $request->specialty_id)->get();
+        $teacher = Faculties::where('expertise_id', '=', $request->expertise_id)->get();
         return response()->json($teacher);
     }
 

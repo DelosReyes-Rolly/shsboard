@@ -40,9 +40,9 @@
             <div class="card-header" style="background-color: #ffffff;">
                 <div class="row">
                     <div class="col-lg-6 col-md-6" style="font-size: 20px;">
-                        Minimum Load: <span id="reload">{{$load->min_load}}</span> <a class="btn btn-warning btn-sm" href="/showminload/{{$load->id}}" data-toggle="modal" data-target="#editmin"><i class="fas fa-edit"></i> Change</a><br/><br/>
+                        Regular Load: <span id="reload">{{$load->regular_load}}</span> <a class="btn btn-warning btn-sm" href="/showminload/{{$load->id}}" data-toggle="modal" data-target="#editmin"><i class="fas fa-edit"></i> Change</a><br/><br/>
                         
-                        Maximum Load: <span id="reload2">{{$load->max_load}}</span> <a class="btn btn-warning btn-sm" href="/showmaxload/{{$load->id}}" data-toggle="modal" data-target="#editmax"><i class="fas fa-edit"></i> Change</a>
+                        Master Load: <span id="reload2">{{$load->master_load}}</span> <a class="btn btn-warning btn-sm" href="/showmaxload/{{$load->id}}" data-toggle="modal" data-target="#editmax"><i class="fas fa-edit"></i> Change</a>
                         
                     </div>
                     <div class="col-lg-6 col-md-6">
@@ -66,7 +66,7 @@
                                     <th class="border-gray-200" scope="col">#</th>
                                     <th class="border-gray-200" scope="col">Teacher Name</th>
                                     <th class="border-gray-200" scope="col">Loads</th>
-                                    <th class="border-gray-200" scope="col">Specialty</th>
+                                    <th class="border-gray-200" scope="col">Expertise</th>
                                     <th class="border-gray-200" scope="col">Phone Number</th>
                                     <th class="border-gray-200" scope="col">Email Address</th>
                                     <th class="border-gray-200" scope="col">Action</th>
@@ -81,7 +81,7 @@
                                             <td class="text-center"><?php echo $i++; ?></td>
                                             <td>{{$faculty -> last_name}} , {{$faculty -> first_name}} {{$faculty -> middle_name}} {{$faculty -> suffix}}</td>
                                             <td class="text-center">{{$faculty -> load}}</td>
-                                            <td>{{$faculty -> specialty -> specialty}}</td>
+                                            <td>{{$faculty -> expertise -> expertise}}</td>
                                             <td>{{$faculty -> phone_number}}</td>
                                             <td>{{$faculty -> email}}</td>
                                             <td width=24%>

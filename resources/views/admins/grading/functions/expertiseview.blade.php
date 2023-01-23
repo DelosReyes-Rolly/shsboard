@@ -1,6 +1,6 @@
 <main>
     <div class="modal-header">
-        <h1 style="font-size: 28px;" ><label><b>Specialty </b></label></h1>
+        <h1 style="font-size: 28px;" ><label><b>Expertise </b></label></h1>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -8,7 +8,7 @@
     <div class="modal-body">
         <div style="font-size: 40px; font-weight:bold; color: green;">
             <div class="card-body" style="padding: 10px 40px 10px 40px">
-                <h1 style="font-size: 28px;" >{{$specialty->specialty}}</h1>
+                <h1 style="font-size: 28px;" >{{$expertise->expertise}}</h1>
             </div>
         </div>
     </div>

@@ -9,4 +9,8 @@ class Subjects extends Model
 {
     protected $guarded = [];
     use HasFactory;
+
+    public function expertise(){
+        return $this->belongsTo(Expertises::class);
+    }
 }

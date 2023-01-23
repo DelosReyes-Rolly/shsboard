@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Specialties extends Migration
+class Expertises extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class Specialties extends Migration
      */
     public function up()
     {
-        Schema::create('specialties', function (Blueprint $table) {
+        Schema::create('expertises', function (Blueprint $table) {
             $table->id();
-            $table->string('specialty');
+            $table->string('expertise');
             $table->timestamps();
             $table->tinyInteger('deleted')->nullable();
             $table->date('deleted_at')->nullable();
@@ -29,6 +29,6 @@ class Specialties extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('specialties'); 
+        Schema::dropIfExists('expertises'); 
     }
 }

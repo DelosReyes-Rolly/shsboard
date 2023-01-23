@@ -28,10 +28,10 @@ class DatabaseSeeder extends Seeder
         $this->call(SchoolyearSeeder::class);
         $this->call(AnnouncementSeeder::class);
         $this->call(DocumentPurposesSeeder::class);
-        $this->call(DocumentPurposesSeeder::class);
+        // $this->call(DocumentPurposesSeeder::class);
         $this->call(StudentsSeeder::class);
         // $this->call(AddressesSeeder::class);
-        $this->call(SpecialtiesSeeder::class);
+        $this->call(ExpertisesSeeder::class);
         $this->call(LoadSeeder::class);
     }
 }

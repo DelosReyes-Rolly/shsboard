@@ -37,10 +37,15 @@
                 </div>
             </div>
             <div class="col-md-12">
-                <label style="font-size: 20px;"><span style="color: red">*</span> Subject Load</label>
-                <input id="subjectload" type="number" name="subjectload" id="editor" class="form-control @error('subjectload') is-invalid @enderror" value="{{$subject->subjectload}}" style="font-size: 14px;" onkeypress="return onlyNumberKey(event)" required>
+                <label for="expertise_id" style="font-size: 20px;"><span style="color: red">*</span> Subject</label>
+                <select id="expertise" name="expertise_id" class="form-control" value="{{ old('expertise_id') }}" style="font-size: 14px;" required>
+                    <option value="" disabled selected hidden>Choose Subject</option>
+                    @foreach ($expertises as $expertise)
+                    <option value="{{ $expertise->id }}"{{($subject->expertise->id==$expertise->id)? 'selected':'' }}>{{ $expertise->expertise}}</option>
+                    @endforeach
+                </select>
                 <div class="invalid-feedback">
-                    Please input valid subject load.
+                    Please choose expertise.
                 </div>
             </div>
         </div>
@@ -58,7 +63,7 @@
             var subjectcode = $("#subjectcode").val();
             var subjectname = $("#subjectname").val();
             var description = $("#description").val();
-            var subjectload = $("#subjectload").val();
+            var expertise_id = $("#expertise").val();
             var _token = $("input[name=_token]").val();
 
             $.ajax({
@@ -69,7 +74,7 @@
                     subjectcode: subjectcode,
                     subjectname: subjectname,
                     description: description,
-                    subjectload: subjectload,
+                    expertise_id: expertise_id,
                     _token: _token,
                 },
                 success: function(response) {
@@ -79,15 +84,17 @@
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();
                         $("#updateSubject")[0].reset();
-                        $('#subject' + response.id +' td:nth-child(2)').text(response.subjectcode);
-                        $('#subject' + response.id +' td:nth-child(3)').text(response.subjectname);
-                        $('#subject' + response.id +' td:nth-child(4)').text(response.subjectload);
-                        $('#subject' + response.id +' td:nth-child(5)').text(response.description);
+                        // $('#subject' + response.id +' td:nth-child(2)').text(response.subjectcode);
+                        // $('#subject' + response.id +' td:nth-child(3)').text(response.subjectname);
+                        // $('#subject' + response.id +' td:nth-child(4)').text(response.expertise_id);
+                        // $('#subject' + response.id +' td:nth-child(5)').text(response.description);
                         // $('#example').load(document.URL +  ' #example');
                         Swal.fire({
                             icon: 'success',
                             title: 'Success.',
                             text: 'Subject has been updated successfully',
+                        }).then(function() {
+                            location.reload(true);
                         })
                 },error: function (xhr) {
                     $('#validation-errors').html('');
