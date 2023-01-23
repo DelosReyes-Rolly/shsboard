@@ -65,7 +65,7 @@
                    <select id="gradelevel" name="gradelevel_id" class="form-control" value="{{ old('$student->gradelevel_id') }}" style="font-size: 14px;">
                         <option value="" disabled selected hidden>Choose Gradelevel</option>
                         @foreach ($gradelevels as $gradelevel)
-                            <option value="{{ $gradelevel->id }}" {{ old('gradelevel', $gradelevel->id) || $student->gradelevel_id === $gradelevel->id ? 'selected' : '' }}>{{ $gradelevel->gradelevel }}</option>
+                            <option value="{{ $gradelevel->id }}"{{($student->gradelevel->id==$gradelevel->id)? 'selected':'' }}>{{ $gradelevel->gradelevel}}</option>
                         @endforeach
                     </select>
                     <div class="invalid-feedback">
@@ -78,7 +78,7 @@
                    <select id="course" name="course_id" class="form-control" value="{{ old('$student->course_id') }}" style="font-size: 14px;">
                         <option value="" disabled selected hidden>Choose Course</option>
                         @foreach ($courses as $course)
-                            <option value="{{ $course->id }}" {{ old('course', $course->id) || $student->course_id === $course->id ? 'selected' : '' }}>{{ $course->courseName}}</option>
+                            <option value="{{ $course->id }}"{{($student->course->id==$course->id)? 'selected':'' }}>{{ $course->courseName}}</option>
                         @endforeach
                     </select>
                     <div class="invalid-feedback">
@@ -91,7 +91,7 @@
                     <select id="section" name="section_id" class="form-control" value="{{ old('$student->section_id') }}" style="font-size: 14px;">
                        <option value="" disabled selected hidden>Choose Section</option>
                         @foreach ($sections as $section)
-                           <option value="{{ $section->id }}"  {{ old('section', $section->id) || $student->section_id === $section->id ? 'selected' : '' }}>{{ $section->section}}</option>
+                            <option value="{{ $section->id }}"{{($student->section->id==$section->id)? 'selected':'' }}>{{ $section->section}}</option>
                         @endforeach
                     </select>
                     <div class="invalid-feedback">
