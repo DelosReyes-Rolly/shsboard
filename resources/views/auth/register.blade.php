@@ -127,10 +127,10 @@
 
                             <div class="form-group">
                                 <label for="gradelevel_id" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Grade Level') }}</label><br>
-                                <select name="gradelevel_id" id="gradelevel_id" class="form-control" value="{{ old('gradelevel_id') }}" style="font-size: 14px;" required>
-                                    <option value=""disabled> Please Select Grade Level </option>
+                                <select name="gradelevel_id" id="gradelevel_id" class="form-control" style="font-size: 14px;" required>
+                                    <option value="" {{old('gradelevel_id') == "" ?'selected' : ''}}  disabled> Please Select Grade Level </option>
                                     @foreach($level_data as $gradelevel_id)
-                                        <option value="{{$gradelevel_id->id}}"  {{old('gradelevel_id') == "" ?'selected' : ''}}  >{{$gradelevel_id->gradelevel}}</option>
+                                        <option value="{{$gradelevel_id->id}}"  {{(old('gradelevel_id')==$gradelevel_id->id)? 'selected':''}}>{{$gradelevel_id->gradelevel}}</option>
                                     @endforeach
                                 </select>
                                 @error('gradelevel_id')
@@ -142,10 +142,10 @@
                                 
                             <div class="form-group">
                                 <label for="section_id" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Section') }}</label>
-                                <select name="section_id" id="section_id" class="form-control" value="{{ old('section_id') }}" style="font-size: 14px;" required>
-                                    <option value=""  disabled> Please Select section </option>
+                                <select name="section_id" id="section_id" class="form-control" style="font-size: 14px;" required>
+                                    <option value="" {{old('section_id') == "" ?'selected' : ''}} disabled> Please Select section </option>
                                     @foreach($section_data as $section_id)
-                                        <option value="{{$section_id->id}}"{{old('section_id') == "" ?'selected' : ''}}>{{$section_id->section}}</option>
+                                        <option value="{{$section_id->id}}"{{(old('section_id')==$section_id->id)? 'selected':''}}>{{$section_id->section}}</option>
                                     @endforeach
                                 </select>
                                 @error('section')
