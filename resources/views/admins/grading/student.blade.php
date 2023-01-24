@@ -1,5 +1,4 @@
 @include('partials.adminheader')
-@include('partials.adminSecondHeader')
 <main>
     <!-- new tables -->
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
@@ -98,7 +97,6 @@
                                     <th class="border-gray-200" scope="col">Student Name</th>
                                     <!-- <th class="border-gray-200" scope="col">Address</th> -->
                                     <th class="border-gray-200" scope="col">Gender</th>
-                                    <th class="border-gray-200" scope="col">Username</th>
                                     <th class="border-gray-200" scope="col">Phone Number</th>
                                     <th class="border-gray-200" scope="col">Email Address</th>
                                     <th class="border-gray-200" scope="col">Action</th>
@@ -115,7 +113,6 @@
                                             <td>{{$student -> last_name}}, {{$student -> first_name}} {{$student -> middle_name}} {{$student -> suffix}}</td>
 
                                             <td>{{$student -> gender}}</td>
-                                            <td>{{$student -> username}}</td>
                                             <td>{{$student -> phone_number}}</td>
                                             <td>{{$student -> email}}</td>
                                             <td>

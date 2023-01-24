@@ -1,5 +1,6 @@
 @include('partials.adminheader')
 @include('partials.adminSecondHeader')
+<script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
 <main>
 <div class="left-to-right">
         <div class="left-to-right">
@@ -24,7 +25,7 @@
                                         <!-- Form Group (title)-->
                                         <div class="col-md-6">
                                             <label class="large mb-1" for="inputtitle" style="font-size: 26px;"><b>Title:</b></label><br/>
-                                            <h2 style="font-size: 30px;"><b>{{$landing->title}}</b></h2>
+                                            <h2 style="font-size: 30px;"><b><div id="reloadlanding2">{{$landing->title}}</div></b></h2>
                                         </div>
                                     </div><br/>
                                     <div class="row gx-3 mb-3">
@@ -38,16 +39,23 @@
                                         <!-- Form Group (content)-->
                                         <div class="col-md-6">
                                             <label class="large mb-1" style="font-size: 26px;"><b>Content:</b></label>
-                                            {!!$landing->content!!}
+                                            <div id="reloadlanding">{!!$landing->content!!}</div>
                                             <!-- Save changes button-->
                                             <div class="pull-right">
-                                                <a class="btn btn-warning btn-md" href="/showlanding/{{$landing->id}}"><i class="fas fa-edit"></i> Update</a>
+                                                <a class="btn btn-warning btn-md" href="/showlanding/{{$landing->id}}" data-toggle="modal" data-target="#editModal{{ $landing->id }}"><i class="fas fa-edit"></i> Update</a>
                                             </div>
                                         </div><br/>
                                     </div>
                                 </div>
                             </div>
-                        </div>         
+                        </div>  
+                         <!-- edit modal -->
+                         <div id="editModal{{ $landing->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content border-start-lg border-start-yellow">
+                                </div>
+                            </div>
+                        </div>       
             </div> 
         </div>
 </div>

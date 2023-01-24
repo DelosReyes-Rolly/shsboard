@@ -30,12 +30,12 @@
     </div>
 </form>
 <script>
-    $("#createSection").submit(function(e) {
+    $("#createSection").on("submit", ".btn-submit", function(e){
             e.preventDefault();
 
             var section = $("#section").val();
             var _token = $("input[name=_token]").val();
-
+            
             $.ajax({
                 type: "POST",
                 url: "{{ route('section.store') }}",
