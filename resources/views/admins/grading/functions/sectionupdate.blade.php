@@ -27,7 +27,7 @@
     </div>
 </form>
 <script>
-        $("updateSection").submit(function(i) {                         // dito bababa yung input kapag nagsubmit dahil sa input id sa form
+        $("#updateSection").submit(function(i) {                         // dito bababa yung input kapag nagsubmit dahil sa input id sa form
             i.preventDefault();                                          // wala lang to
 
             var id = $("#id").val();                                     // yung variable na id lalagayan niya ng laman na galing sa input na may id na "id".  .val() = value

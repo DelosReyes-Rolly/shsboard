@@ -2,8 +2,11 @@
     padding: 0;
     margin: 0;
 }
-html {
+/* html {
   width: 100vw;
+} */
+body {
+  padding-right: 0px !important
 }
 /* html{
   overflow-y: overlay;
