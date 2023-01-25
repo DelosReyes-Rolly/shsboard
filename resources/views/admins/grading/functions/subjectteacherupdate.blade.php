@@ -117,8 +117,9 @@
     </div>
 </form>
 <script>
-        $("#updateSubjectteacher").submit(function(i) {
-            i.preventDefault();
+
+
+        function formPost(){
             var checked = $("#updateSubjectteacher input:checked").length > 0;
             if (!checked){
                 $(".weekday").show();
@@ -218,6 +219,6 @@
                     $("#example").load("#example");
                 });
             }
-        });
+        }
        
 </script>

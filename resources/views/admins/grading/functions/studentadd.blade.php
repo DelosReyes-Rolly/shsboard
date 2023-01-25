@@ -64,7 +64,7 @@
             </div>
             <div class="col-md-12"><br/>
                 <label for="gradelevel_id" class="col-form-label text-md-end" style="font-size: 20px;"><span style="color: red">*</span>  {{ __('Grade Level') }}</label><br>
-                <select id="gradelevel" name="gradelevel_id" id="gradelevel_id" class="form-control" required>
+                <select id="gradelevel_id" name="gradelevel_id" id="gradelevel_id" class="form-control" required>
                     <option value="" {{old('gradelevel_id') == "" ?'selected' : ''}} disabled> Please Select Grade Level </option>
                     @foreach($level_data as $gradelevel_id)
                     <option value="{{$gradelevel_id->id}}">{{$gradelevel_id->gradelevel}}</option>
@@ -76,7 +76,7 @@
             </div>
             <div class="col-md-12"><br/>                              
                 <label for="section_id" class="col-form-label text-md-end" style="font-size: 20px;"><span style="color: red">*</span>  {{ __('Section') }}</label>
-                <select id="section" name="section_id" id="section_id" class="form-control" required>
+                <select id="section_id" name="section_id" id="section_id" class="form-control" required>
                     <option value="" {{old('section_id') == "" ?'selected' : ''}} disabled> Please Select section </option>
                     @foreach($section_data as $section_id)
                     <option value="{{$section_id->id}}">{{$section_id->section}}</option>
@@ -88,7 +88,7 @@
             </div>
             <div class="col-md-12"><br/>
                 <label for="course_id" class="col-form-label text-md-end" style="font-size: 20px;"><span style="color: red">*</span>  {{ __('Strand') }}</label>
-                <select id="course" name="course_id" id="course_id" class="form-control" required>
+                <select id="course_id" name="course_id" id="course_id" class="form-control" required>
                     <option value="" {{old('course_id') == "" ?'selected' : ''}} disabled> Please Select Strand </option>
                     @foreach($courses_data as $course_id)
                     <option value="{{$course_id->id}}">{{$course_id->courseName}}</option>
@@ -113,37 +113,13 @@
     </div>
 </form>
 <script>
-    $("#createStudent").submit(function(e) {
-            e.preventDefault();
-
-            var lrn = $("#lrn").val();
-            var last_name = $("#last_name").val();
-            var first_name = $("#first_name").val();
-            var middle_name = $("#middle_name").val();
-            var suffix = $("#suffix").val();
-            var gender = $("#gender").val();
-            var gradelevel = $("#gradelevel").val();
-            var section = $("#section").val();
-            var course = $("#course").val();
-            var email = $("#email").val();
-            var _token = $("input[name=_token]").val();
+        function formPost(){
+            var form_data = $("form#createStudent").serialize();
 
             $.ajax({
                 type: "POST",
                 url: "{{ route('student.store') }}",
-                data: {
-                    LRN: lrn,
-                    last_name: last_name,
-                    first_name: first_name,
-                    middle_name: middle_name,
-                    suffix: suffix,
-                    gender: gender,
-                    gradelevel_id: gradelevel,
-                    course_id: course,
-                    section_id: section,
-                    email: email,           
-                    _token: _token
-                },
+                data:form_data,
                 success: function(response) {
                     if (response) {
                         $("#createModal").removeClass("in");
@@ -169,9 +145,5 @@
                     }); 
                 },
             });
-            $("#saveBtn").click(function() {
-                $("#example").load("#example");
-            });
-
-        });
+        }
 </script>

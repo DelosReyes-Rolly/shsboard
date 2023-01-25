@@ -39,9 +39,7 @@
     </div>
 </form>
 <script>
-        $("#updatePurpose").submit(function(i) {
-            i.preventDefault();
-
+        function formPost(){
             var id = $("#id").val();
             var purpose = $("#purpose").val();
             var proof_needed = $("#proof_needed").val();
@@ -73,10 +71,6 @@
                         })
                 }
             });
-            $("#saveBtn").click(function() {
-                $("#example").load("#example");
-            });
-
-        });
+        }
 </script> 
 </main>

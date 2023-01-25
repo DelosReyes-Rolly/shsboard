@@ -27,27 +27,33 @@
     </div>
 </form>
 <script>
-        $("#updatedExpertise").submit(function(i) {                         // dito bababa yung input kapag nagsubmit dahil sa input id sa form
-            i.preventDefault();                                          // wala lang to
+        // $("#updatedExpertise").submit(function(i) {                         // dito bababa yung input kapag nagsubmit dahil sa input id sa form
+        //     i.preventDefault();                                          // wala lang to
 
-            var id = $("#id").val();                                     // yung variable na id lalagayan niya ng laman na galing sa input na may id na "id".  .val() = value
-            var expertise = $("#expertise").val();                           // yung variable na expertise lalagayan niya ng laman na galing sa input na may id na "expertise".  .val() = value
-            var _token = $("input[name=_token]").val();                  // wala lang to
+        //     var id = $("#id").val();                                     // yung variable na id lalagayan niya ng laman na galing sa input na may id na "id".  .val() = value
+        //     var expertise = $("#expertise").val();                           // yung variable na expertise lalagayan niya ng laman na galing sa input na may id na "expertise".  .val() = value
+        //     var _token = $("input[name=_token]").val();                  // wala lang to
+
+            
+        //     $("#saveBtn").click(function() {                                            // wala lang to
+        //         $("#example").load("#example");
+        //     });
+
+        // });
+
+        function formPost(){
+            var form_data = $("form#updateExpertise").serialize();
 
             $.ajax({
                 type: "PUT",                                            // PUT pang update
                 url: '{{url("/updateexpertise/")}}/' + id,                // url mo kasama id
-                data: {                                 
-                    id: id,                                             //
-                    expertise: expertise,                                   // ito yung data na ipapasa sa controller
-                    _token: _token,                                     //
-                },
+                data:form_data,
                 success: function(response) {                           // kapag nagsuccess
-                        $("#editModal"+id).removeClass("in");           //copy paste mo lang to. Pang hide lang to ng modal
+                        $("#editModal"+response.id).removeClass("in");           //copy paste mo lang to. Pang hide lang to ng modal
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
-                        $("#editModal"+id).hide();                     // hanggang dito
+                        $("#editModal"+response.id).hide();                     // hanggang dito
                         $("#updatedExpertise")[0].reset();                // irereset niya yung form
                         $('#expertise' + response.id +' td:nth-child(2)').text(response.expertise);               // copy paste mo lang to. Bale pinapalitan lang niya yung row. Yung "expertise" id siya ng tr
                                                                                                             // yung response galing siya sa controller yung return response()->json($expertise). Yung td:nth-child(2) column bale 2nd column
@@ -64,10 +70,6 @@
                     }); 
                 },
             });
-            $("#saveBtn").click(function() {                                            // wala lang to
-                $("#example").load("#example");
-            });
-
-        });
+        }
        
 </script>

@@ -39,7 +39,7 @@
             </div>
             <div class="col-md-12"><br/>                              
                 <label for="expertise_id" class="col-form-label text-md-end" style="font-size: 20px;"><span style="color: red">*</span>  {{ __('Expertise Needed') }}</label>
-                <select id="expertise" name="expertise_id" id="expertise_id" class="form-control" required>
+                <select id="expertise_id" name="expertise_id" id="expertise_id" class="form-control" required>
                     <option value="" {{old('expertise_id') == "" ?'selected' : ''}} disabled> Please Select Expertise Needed </option>
                     @foreach($expertises as $expertise_id)
                     <option value="{{$expertise_id->id}}">{{$expertise_id->expertise}}</option>
@@ -57,25 +57,13 @@
     </div>
 </form>
 <script>
-    $("#createSubject").submit(function(e) {
-            e.preventDefault();
-
-            var subjectcode = $("#subjectcode").val();
-            var subjectname = $("#subjectname").val();
-            var description = $("#description").val();
-            var expertise_id = $("#expertise").val();
-            var _token = $("input[name=_token]").val();
+        function formPost(){
+            var form_data = $("form#createSubject").serialize();
 
             $.ajax({
                 type: "POST",
                 url: "{{ route('subject.store') }}",
-                data: {
-                    subjectcode: subjectcode,
-                    subjectname: subjectname,
-                    description: description,
-                    expertise_id: expertise_id,
-                    _token: _token
-                },
+                data:form_data,
                 success: function(response) {
                     if (response) {
                         $("#createModal").removeClass("in");
@@ -101,9 +89,5 @@
                     }); 
                 },
             });
-            $("#saveBtn").click(function() {
-                $("#example").load("#example");
-            });
-
-        });
+        }
 </script>

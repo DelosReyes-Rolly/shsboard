@@ -64,7 +64,7 @@
             </div>
             <div class="col-md-12"><br/>
                 <label for="expertise" class="col-form-label text-md-end" style="font-size: 20px;"><span style="color: red">*</span>  {{ __('Expertises') }}</label><br>
-                <select id="expertise" name="expertise" class="form-control" required>
+                <select id="expertise_id" name="expertise" class="form-control" required>
                     <option value="" {{old('expertise') == "" ?'selected' : ''}} disabled> Please Select Expertise </option>
                     @foreach($expertises as $expertise)
                     <option value="{{$expertise->id}}">{{$expertise->expertise}}</option>
@@ -82,31 +82,32 @@
     </div>
 </form>
 <script>
-    $("#createFaculty").submit(function(e) {
-            e.preventDefault();
+    // $("#createFaculty").submit(function(e) {
+    //         e.preventDefault();
 
-            var last_name = $("#lastname").val();
-            var first_name = $("#firstname").val();
-            var middle_name = $("#middlename").val();
-            var suffix = $("#suffix").val();
-            var email = $("#email").val();
-            var isMaster = $("#status").val();
-            var expertise_id = $("#expertise").val();
-            var _token = $("input[name=_token]").val();
+    //         var last_name = $("#lastname").val();
+    //         var first_name = $("#firstname").val();
+    //         var middle_name = $("#middlename").val();
+    //         var suffix = $("#suffix").val();
+    //         var email = $("#email").val();
+    //         var isMaster = $("#status").val();
+    //         var expertise_id = $("#expertise").val();
+    //         var _token = $("input[name=_token]").val();
+            
+    //         $("#saveBtn").click(function() {
+    //             $("#example").load("#example");
+    //         });
+
+    //     });
+
+    
+        function formPost(){
+            var form_data = $("form#createFaculty").serialize();
+
             $.ajax({
                 type: "POST",
                 url: "{{ route('faculty.store') }}",
-                data: {
-                    expertise_id: expertise_id,
-                    last_name: last_name,
-                    first_name: first_name,
-                    middle_name: middle_name,
-                    suffix: suffix,
-                    email: email,
-                    isMaster: isMaster,
-                    _token: _token
-                },
-                
+                data:form_data,
                 success: function(response) {
                     if (response) {
                         $("#createModal").removeClass("in");
@@ -132,9 +133,5 @@
                     }); 
                 },
             });
-            $("#saveBtn").click(function() {
-                $("#example").load("#example");
-            });
-
-        });
+        }
 </script>

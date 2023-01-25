@@ -37,32 +37,31 @@
     </div>
 </form>
 <script>
-    $("#createReason").submit(function(e) {
-            e.preventDefault();
+    // $("#createReason").submit(function(e) {
+    //         e.preventDefault();
 
-            var student_id = $("#student_id").val();
-            var gradelevel_id = $("#gradelevel_id").val();
-            var course_id = $("#course_id").val();
-            var section_id = $("#section_id").val();
-            var semester_id = $("#semester_id").val();
-            var faculty_id = $("#faculty_id").val();
-            var subject_id = $("#subject_id").val();
-            var reason = $("#reason").val();
-            var _token = $("input[name=_token]").val();
+    //         var student_id = $("#student_id").val();
+    //         var gradelevel_id = $("#gradelevel_id").val();
+    //         var course_id = $("#course_id").val();
+    //         var section_id = $("#section_id").val();
+    //         var semester_id = $("#semester_id").val();
+    //         var faculty_id = $("#faculty_id").val();
+    //         var subject_id = $("#subject_id").val();
+    //         var reason = $("#reason").val();
+    //         var _token = $("input[name=_token]").val();
+            
+    //         $("#saveBtn").click(function() {
+    //             $("#example").load("#example");
+    //         });
+
+    //     });
+        function formPost(){
+            var form_data = $("form#createReason").serialize();
+
             $.ajax({
                 type: "POST",
                 url : "{{ route('grade-eval') }}",
-                data: {
-                    student_id: student_id,
-                    gradelevel_id: gradelevel_id,
-                    course_id: course_id,
-                    section_id: section_id,
-                    semester_id: semester_id,
-                    faculty_id: faculty_id,
-                    subject_id: subject_id,
-                    reason: reason,
-                    _token: _token
-                },
+                data:form_data,
                 success: function(response) {
                     if (response) {
                         $("#createModal").removeClass("in");
@@ -88,9 +87,5 @@
                     });  
                 },
             });
-            $("#saveBtn").click(function() {
-                $("#example").load("#example");
-            });
-
-        });
+        }
 </script>

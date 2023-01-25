@@ -64,57 +64,37 @@
     CKEDITOR.replace( 'description' );
 </script>
 <script>
-    $("#createCourse").submit(function(e) {
-            e.preventDefault();
-
-            var courseName = $("#courseName").val();
-            var abbreviation = $("#abbreviation").val();
-            var description = $("#description").val();
-            var code = $("#code").val();
-            var link = $("#link").val();
-            var file = $("#file").val();
-            var _token = $("input[name=_token]").val();
+        function formPost(){
+            var form_data = $("form#createCourse").serialize();
 
             $.ajax({
-                type: "POST",
-                url: "{{ route('course.store') }}",
-                data: {
-                    courseName: courseName,
-                    abbreviation: abbreviation,
-                    description: description,
-                    code: code,
-                    link: link,
-                    file: file,
-                    _token: _token
-                },
-                success: function(response) {
-                    if (response) {
-                        $("#createModal").removeClass("in");
-                        $(".modal-backdrop").remove();
-                        $('body').removeClass('modal-open');
-                        $('body').css('padding-right', '');
-                        $("#createModal").hide();
-                        $("#createCourse")[0].reset();
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Success.',
-                            text: 'Strand has been added successfully',
-                        }).then(function() {
-                            location.reload(true);
-                        })
-                        
-                    }
-                },error: function (xhr) {
-                    $('#validation-errors').html('');
-                    document.getElementById('whoops').style.display = 'block';
-                    $.each(xhr.responseJSON.errors, function(key,value) {
-                        $('#validation-errors').append('&emsp;<li>'+value+'</li>');
-                    }); 
-                },
-            });
-            $("#saveBtn").click(function() {
-                $("#example").load("#example");
-            });
-
-        });
+                    type: "POST",
+                    url: "{{ route('course.store') }}",
+                    data:form_data,
+                    success: function(response) {
+                        if (response) {
+                            $("#createModal").removeClass("in");
+                            $(".modal-backdrop").remove();
+                            $('body').removeClass('modal-open');
+                            $('body').css('padding-right', '');
+                            $("#createModal").hide();
+                            $("#createCourse")[0].reset();
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success.',
+                                text: 'Strand has been added successfully',
+                            }).then(function() {
+                                location.reload(true);
+                            })
+                            
+                        }
+                    },error: function (xhr) {
+                        $('#validation-errors').html('');
+                        document.getElementById('whoops').style.display = 'block';
+                        $.each(xhr.responseJSON.errors, function(key,value) {
+                            $('#validation-errors').append('&emsp;<li>'+value+'</li>');
+                        }); 
+                    },
+                });
+        }
 </script>

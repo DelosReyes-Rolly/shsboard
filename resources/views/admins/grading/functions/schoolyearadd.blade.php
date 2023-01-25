@@ -31,19 +31,13 @@
     </div>
 </form>
 <script>
-    $("#createSchoolyear").submit(function(e) {
-            e.preventDefault();
-
-            var schoolyear = $("#schoolyear").val();
-            var _token = $("input[name=_token]").val();
+        function formPost(){
+            var form_data = $("form#createSchoolyear").serialize();
 
             $.ajax({
                 type: "POST",
                 url: "{{ route('schoolyear.store') }}",
-                data: {
-                    schoolyear: schoolyear,
-                    _token: _token
-                },
+                data:form_data,
                 success: function(response) {
                     if (response) {
                         $("#createModal").removeClass("in");
@@ -68,10 +62,6 @@
                         $('#validation-errors').append('&emsp;<li>'+value+'</li>');
                     });
                 },
-            });
-            $("#saveBtn").click(function() {
-                $("#example").load("#example");
-            });
-
-        });
+            })
+        }
 </script>

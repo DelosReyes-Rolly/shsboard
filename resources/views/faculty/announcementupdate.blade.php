@@ -6,7 +6,7 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" action="/updatefacultyannouncement/{{$announcement->id}}" class="needs-validation" novalidate>
+<form method="POST" id="activityStreamupdate" class="needs-validation" novalidate>
     <div class="modal-body">
         @csrf
         @method('put')
@@ -109,4 +109,35 @@
     CKEDITOR.replace('editor2');
 </script>
 
+<script>
+    function formPost(){
+            var form_data = $("form#activityStreamupdate").serialize();
+
+            $.ajax({
+                type: "PUT",                                            // PUT pang update
+                url: '{{url("/updatefacultyannouncement/")}}/' + id,                // url mo kasama id
+                data:form_data,
+                success: function(response) {                           // kapag nagsuccess
+                        $("#editModal"+response.id).removeClass("in");           //copy paste mo lang to. Pang hide lang to ng modal
+                        $(".modal-backdrop").remove();
+                        $('body').removeClass('modal-open');
+                        $('body').css('padding-right', '');
+                        $("#editModal"+response.id).hide();                     // hanggang dito
+                        $("#activityStreamupdate")[0].reset();                // irereset niya yung form
+                        $('#section' + response.id +' td:nth-child(2)').text(response.section);               // copy paste mo lang to. Bale pinapalitan lang niya yung row. Yung "section" id siya ng tr                                                                        // yung response galing siya sa controller yung return response()->json($section). Yung td:nth-child(2) column bale 2nd column
+                        Swal.fire({                                                             //sweetalert
+                            icon: 'success',                                                    //
+                            title: 'Success.',                                                  //
+                            text: 'Announcement has been updated successfully',                      //
+                        })
+                },error: function (xhr) {
+                    $('#validation-errors').html('');
+                    document.getElementById('whoops').style.display = 'block';
+                    $.each(xhr.responseJSON.errors, function(key,value) {
+                        $('#validation-errors').append('&emsp;<li>'+value+'</li>');
+                    }); 
+                },
+            });
+        }
+</script>
 </main>

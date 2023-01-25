@@ -34,20 +34,25 @@
             var schoolyear = $("#schoolyear").val();
             var _token = $("input[name=_token]").val();
 
+            
+            $("#saveBtn").click(function() {
+                $("#example").load("#example");
+            });
+
+        });
+        function formPost(){
+            var form_data = $("form#updateSchoolyesr").serialize();
+
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updateschoolyear/")}}/' + id,
-                data: {
-                    id: id,
-                    schoolyear: schoolyear,
-                    _token: _token,
-                },
+                data:form_data,
                 success: function(response) {
-                        $("#editModal"+id).removeClass("in");
+                        $("#editModal"+response.id).removeClass("in");  
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
-                        $("#editModal"+id).hide();
+                        $("#editModal"+response.id).hide();
                         $("#updateSchoolyear")[0].reset();
                         $('#schoolyear' + response.id +' td:nth-child(2)').text(response.schoolyear);
                         // $('#example').load(document.URL +  ' #example');
@@ -64,10 +69,6 @@
                     }); 
                 },
             });
-            $("#saveBtn").click(function() {
-                $("#example").load("#example");
-            });
-
-        });
+        }
        
 </script>

@@ -34,20 +34,26 @@
             var gradelevel = $("#gradelevel").val();
             var _token = $("input[name=_token]").val();
 
+            
+            $("#saveBtn").click(function() {
+                $("#example").load("#example");
+            });
+
+        });
+
+        function formPost(){
+            var form_data = $("form#updateGradelevel").serialize();
+
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updategradelevel/")}}/' + id,
-                data: {
-                    id: id,
-                    gradelevel: gradelevel,
-                    _token: _token,
-                },
-                success: function(response) {
-                        $("#editModal"+id).removeClass("in");
+                 data:form_data,
+                success: function(response) {                           // kapag nagsuccess
+                        $("#editModal"+response.id).removeClass("in");  
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
-                        $("#editModal"+id).hide();
+                        $("#editModal"+response.id).hide();
                         $("#updateGradelevel")[0].reset();
                         $('#gradelevel' + response.id +' td:nth-child(2)').text(response.gradelevel);
                         // $('#example').load(document.URL +  ' #example');
@@ -64,10 +70,6 @@
                     });
                 },
             });
-            $("#saveBtn").click(function() {
-                $("#example").load("#example");
-            });
-
-        });
+        }
        
 </script>

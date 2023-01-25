@@ -62,7 +62,7 @@
             </div>
             <div class="col-md-10"><br/>
                 <div class="col-md-12"><label for="gradelevel_id" style="font-size: 20px;"><span style="color: red">*</span> Grade Level</label>
-                   <select id="gradelevel" name="gradelevel_id" class="form-control" value="{{ old('$student->gradelevel_id') }}" style="font-size: 14px;">
+                   <select id="gradelevel_id" name="gradelevel_id" class="form-control" value="{{ old('$student->gradelevel_id') }}" style="font-size: 14px;">
                         <option value="" disabled selected hidden>Choose Gradelevel</option>
                         @foreach ($gradelevels as $gradelevel)
                             <option value="{{ $gradelevel->id }}"{{($student->gradelevel->id==$gradelevel->id)? 'selected':'' }}>{{ $gradelevel->gradelevel}}</option>
@@ -75,7 +75,7 @@
             </div>
             <div class="col-md-10"><br/>
                 <div class="col-md-12"><label for="course_id" style="font-size: 20px;"><span style="color: red">*</span> Strand</label>
-                   <select id="course" name="course_id" class="form-control" value="{{ old('$student->course_id') }}" style="font-size: 14px;">
+                   <select id="course_id" name="course_id" class="form-control" value="{{ old('$student->course_id') }}" style="font-size: 14px;">
                         <option value="" disabled selected hidden>Choose Course</option>
                         @foreach ($courses as $course)
                             <option value="{{ $course->id }}"{{($student->course->id==$course->id)? 'selected':'' }}>{{ $course->courseName}}</option>
@@ -88,7 +88,7 @@
             </div>
             <div class="col-md-10"><br/>
                 <div class="col-md-12"><label for="section_id" style="font-size: 20px;"><span style="color: red">*</span> Section</label>
-                    <select id="section" name="section_id" class="form-control" value="{{ old('$student->section_id') }}" style="font-size: 14px;">
+                    <select id="section_id" name="section_id" class="form-control" value="{{ old('$student->section_id') }}" style="font-size: 14px;">
                        <option value="" disabled selected hidden>Choose Section</option>
                         @foreach ($sections as $section)
                             <option value="{{ $section->id }}"{{($student->section->id==$section->id)? 'selected':'' }}>{{ $section->section}}</option>
@@ -107,43 +107,42 @@
     </div>
 </form>
 <script>
-        $("#updateStudent").submit(function(i) {
-            i.preventDefault();
+        // $("#updateStudent").submit(function(i) {
+        //     i.preventDefault();
 
-            var id = $("#id").val();
-            var LRNs = $("#LRNs").val();
-            var last_name = $("#lastname").val();
-            var first_name = $("#firstname").val();
-            var middle_name = $("#middlename").val();
-            var suffix = $("#suffix").val();
-            var gradelevel = $("#gradelevel").val();
-            var section = $("#section").val();
-            var course = $("#course").val();
-            var email = $("#email").val();
-            var _token = $("input[name=_token]").val();
+        //     var id = $("#id").val();
+        //     var LRNs = $("#LRNs").val();
+        //     var last_name = $("#lastname").val();
+        //     var first_name = $("#firstname").val();
+        //     var middle_name = $("#middlename").val();
+        //     var suffix = $("#suffix").val();
+        //     var gradelevel = $("#gradelevel").val();
+        //     var section = $("#section").val();
+        //     var course = $("#course").val();
+        //     var email = $("#email").val();
+        //     var _token = $("input[name=_token]").val();
+
+            
+        //     $("#saveBtn").click(function() {
+        //         $("#example").load("#example");
+        //     });
+
+        // });
+
+
+        function formPost(){
+            var form_data = $("form#updateStudent").serialize();
 
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updatestudent/")}}/' + id,
-                data: {
-                    id: id,
-                    LRN: LRNs,
-                    last_name: last_name,
-                    first_name: first_name,
-                    middle_name: middle_name,
-                    suffix: suffix,
-                    gradelevel_id: gradelevel,
-                    course_id: course,
-                    section_id: section,
-                    email: email,           
-                    _token: _token
-                },
-                success: function(response) {
-                        $("#editModal"+id).removeClass("in");
+                data:form_data,
+                success: function(response) {                           // kapag nagsuccess
+                        $("#editModal"+response.id).removeClass("in"); 
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
-                        $("#editModal"+id).hide();
+                        $("#editModal"+response.id).hide();
                         $("#updateStudent")[0].reset();
                         $('#student' + response.id +' td:nth-child(2)').text(response.LRN);
                         if(response.suffix == null && response.middle_name == null){
@@ -174,10 +173,6 @@
                     }); 
                 },
             });
-            $("#saveBtn").click(function() {
-                $("#example").load("#example");
-            });
-
-        });
+        }
        
 </script>

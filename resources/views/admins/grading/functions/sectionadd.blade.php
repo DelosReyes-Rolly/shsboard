@@ -30,19 +30,13 @@
     </div>
 </form>
 <script>
-    $("#createSection").submit(function(e) {
-            e.preventDefault();
+    function formPost(){
+        var form_data = $("form#createSection").serialize();
 
-            var section = $("#section").val();
-            var _token = $("input[name=_token]").val();
-            
-            $.ajax({
+        $.ajax({
                 type: "POST",
                 url: "{{ route('section.store') }}",
-                data: {
-                    section: section,                                                         // modal ng add
-                    _token: _token
-                },
+                data:form_data,
                 success: function(response) {
                     if (response) {
                         $("#createModal").removeClass("in");
@@ -67,10 +61,6 @@
                         $('#validation-errors').append('&emsp;<li>'+value+'</li>');
                     }); 
                 },
-            });
-            $("#saveBtn").click(function() {
-                $("#example").load("#example");
-            });
-
-        });
+            })
+    }
 </script>

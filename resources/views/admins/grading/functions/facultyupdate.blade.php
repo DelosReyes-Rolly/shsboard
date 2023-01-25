@@ -55,7 +55,7 @@
             </div>
             <div class="col-md-12"><br/>
                 <label for="expertise" class="col-form-label text-md-end" style="font-size: 20px;"><span style="color: red">*</span>  {{ __('Expertise') }}</label><br>
-                <select id="expertise" name="expertise" class="form-control" required>
+                <select id="expertise_id" name="expertise" class="form-control" required>
                     <option value="" disabled> Please Select Expertise </option>
                     @foreach($expertises as $expertise)
                     <option value="{{$expertise->id}}"{{ $faculty->expertise_id === $expertise->id ? 'selected' : '' }}>{{$expertise->expertise}}</option>
@@ -84,39 +84,39 @@
     </div>
 </form>
 <script>
-        $("#updateFaculty").submit(function(i) {
-            i.preventDefault();
+        // $("#updateFaculty").submit(function(i) {
+        //     i.preventDefault();
 
-            var id = $("#id").val();
-            var last_name = $("#lastname").val();
-            var first_name = $("#firstname").val();
-            var middle_name = $("#middlename").val();
-            var suffix = $("#suffix").val();
-            var email = $("#email").val();
-            var expertise_id = $("#expertise").val();
-            var isMaster = $("#status").val();
-            var _token = $("input[name=_token]").val();
+        //     var id = $("#id").val();
+        //     var last_name = $("#lastname").val();
+        //     var first_name = $("#firstname").val();
+        //     var middle_name = $("#middlename").val();
+        //     var suffix = $("#suffix").val();
+        //     var email = $("#email").val();
+        //     var expertise_id = $("#expertise").val();
+        //     var isMaster = $("#status").val();
+        //     var _token = $("input[name=_token]").val();
+
+            
+        //     $("#saveBtn").click(function() {
+        //         $("#example").load("#example");
+        //     });
+
+        // });
+
+        function formPost(){
+            var form_data = $("form#updateFaculty").serialize();
 
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updatefaculty/")}}/' + id,
-                data: {
-                    id: id,
-                    expertise_id: expertise_id,
-                    last_name: last_name,
-                    first_name: first_name,
-                    middle_name: middle_name,
-                    suffix: suffix,
-                    email: email,
-                    isMaster: isMaster,
-                    _token: _token
-                },
+                data:form_data,
                 success: function(response) {
-                        $("#editModal"+id).removeClass("in");
+                        $("#editModal"+response.id).removeClass("in");
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
-                        $("#editModal"+id).hide();
+                        $("#editModal"+response.id).hide();
                         $("#updateFaculty")[0].reset();
                         // if(response.suffix == null && response.middle_name == null){
                         //     $('#faculty' + response.id +' td:nth-child(2)').text(function(n) {return response.last_name + ', ' + response.first_name;});
@@ -135,7 +135,7 @@
                         Swal.fire({
                             icon: 'success',
                             title: 'Success.',
-                            text: 'Strand has been updated successfully',
+                            text: 'Teacher has been updated successfully',
                         }).then(function() {
                             location.reload(true);
                         })
@@ -147,10 +147,6 @@
                     });  
                 },
             });
-            $("#saveBtn").click(function() {
-                $("#example").load("#example");
-            });
-
-        });
+        }
        
 </script>

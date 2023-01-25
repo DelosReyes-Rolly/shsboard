@@ -36,13 +36,21 @@
             var expertise = $("#expertise").val();
             var _token = $("input[name=_token]").val();
 
+            
+            $("#saveBtn").click(function() {
+                $("#example").load("#example");
+            });
+
+        });
+
+
+        function formPost(){
+            var form_data = $("form#createExpertise").serialize();
+
             $.ajax({
                 type: "POST",
                 url: "{{ route('expertise.store') }}",
-                data: {
-                    expertise: expertise,                                                         // modal ng add
-                    _token: _token
-                },
+                data:form_data,
                 success: function(response) {
                     if (response) {
                         $("#createModal").removeClass("in");
@@ -68,9 +76,5 @@
                     });  
                 },
             });
-            $("#saveBtn").click(function() {
-                $("#example").load("#example");
-            });
-
-        });
+        }
 </script>

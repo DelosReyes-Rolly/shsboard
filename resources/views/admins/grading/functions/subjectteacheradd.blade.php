@@ -215,8 +215,7 @@
             });
         });
 
-    $("#createSubjectteacher").submit(function(e) {
-            e.preventDefault();
+        function formPost(){
             var checked = $("#createSubjectteacher input:checked").length > 0;
             if (!checked){
                 $(".weekday").show();
@@ -324,8 +323,5 @@
                     $("#example").load("#example");
                 });
             }
-
-            
-
-        });
+        }
 </script>

@@ -56,33 +56,19 @@
     </div>
 </form>
 <script>
-        $("#updateSubject").submit(function(i) {
-            i.preventDefault();
-
-            var id = $("#id").val();
-            var subjectcode = $("#subjectcode").val();
-            var subjectname = $("#subjectname").val();
-            var description = $("#description").val();
-            var expertise_id = $("#expertise").val();
-            var _token = $("input[name=_token]").val();
+        function formPost(){
+            var form_data = $("form#updateSubject").serialize();
 
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updatesubject/")}}/' + id,
-                data: {
-                    id: id,
-                    subjectcode: subjectcode,
-                    subjectname: subjectname,
-                    description: description,
-                    expertise_id: expertise_id,
-                    _token: _token,
-                },
-                success: function(response) {
-                        $("#editModal"+id).removeClass("in");
+                data:form_data,
+                success: function(response) {                           // kapag nagsuccess
+                        $("#editModal"+response.id).removeClass("in"); 
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
-                        $("#editModal"+id).hide();
+                        $("#editModal"+response.id).hide();
                         $("#updateSubject")[0].reset();
                         // $('#subject' + response.id +' td:nth-child(2)').text(response.subjectcode);
                         // $('#subject' + response.id +' td:nth-child(3)').text(response.subjectname);
@@ -103,10 +89,6 @@
                     }); 
                 },
             });
-            $("#saveBtn").click(function() {
-                $("#example").load("#example");
-            });
-
-        });
+        }
        
 </script>

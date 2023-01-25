@@ -86,9 +86,7 @@
         CKEDITOR.replace('editor2');
     </script>
 <script>
-        $("#updateAnnouncement").submit(function(i) {
-            i.preventDefault();
-
+        function formPost(){
             var id = $("#id").val();
             var what = $("#what").val();
             var who = $("#who").val();
@@ -137,11 +135,5 @@
                         }); 
                 },
             });
-            $("#saveBtn").click(function() {
-                $("#example").load("#example");
-            });
-
-        });
-       
-       
+        }
 </script>

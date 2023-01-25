@@ -41,9 +41,7 @@
     </div>
 </form>
 <script>
-        $("#updateReminder").submit(function(i) {
-            i.preventDefault();
-
+        function formPost(){
             var id = $("#id").val();
             var expired_at = $("#expired_at").val();
             var content = $("#editor2").val();
@@ -81,11 +79,7 @@
                     }); 
                 },
             });
-            $("#saveBtn").click(function() {
-                $("#example").load("#example");
-            });
-
-        });
+        }
        
 </script>
 </main>

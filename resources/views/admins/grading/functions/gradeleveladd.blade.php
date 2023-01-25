@@ -31,19 +31,13 @@
     </div>
 </form>
 <script>
-    $("#createGradelevel").submit(function(e) {
-            e.preventDefault();
+        function formPost(){
+        var form_data = $("form#createGradelevel").serialize();
 
-            var gradelevel = $("#gradelevel").val();
-            var _token = $("input[name=_token]").val();
-
-            $.ajax({
+        $.ajax({
                 type: "POST",
-                url: "{{ route('gradelevel.store') }}",
-                data: {
-                    gradelevel: gradelevel,
-                    _token: _token
-                },
+                url: "{{ route('section.store') }}",
+                data:form_data,
                 success: function(response) {
                     if (response) {
                         $("#createModal").removeClass("in");
@@ -68,10 +62,6 @@
                         $('#validation-errors').append('&emsp;<li>'+value+'</li>');
                     }); 
                 },
-            });
-            $("#saveBtn").click(function() {
-                $("#example").load("#example");
-            });
-
-        });
+            })
+    }
 </script>

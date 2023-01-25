@@ -1,4 +1,17 @@
 @include('partials.landingheader')
+<style>
+
+    .password{
+        height: 34px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+    }
+    
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
 <!-- student login start -->
     <br/><br/><br/><br/>
     <div class="loginOthers">     
@@ -177,7 +190,7 @@
 
                             <div class="form-group">
                                 <label for="password" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Password') }}</label>
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="password @error('password') is-invalid @enderror" name="password" required autocomplete="new-password"><span style="position: relative; "><i class="bi bi-eye-slash animate pop" style="margin-left: -42px;  cursor: pointer; font-size:28px;" id="togglePassword"></i></span>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -187,7 +200,7 @@
 
                             <div class="form-group">
                                 <label for="password-confirm" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Confirm Password') }}</label>
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="password" name="password_confirmation" required autocomplete="new-password"><span style=""><i class="bi bi-eye-slash animate pop" style="margin-left: -42px; margin-top:-2px; cursor: pointer; font-size:28px;" id="togglePassword2"></i></span>
                             </div>
                             <center><font face = "Bedrock" size = "3" >
                                 <button type="submit" class="btn btn-primary" style="padding-left:40px; padding-right:40px;">
@@ -198,5 +211,43 @@
                 </div>
             </div>
             <script src="{{ asset('assets/js/needs-validated.js') }}"></script>
+            <script>
+                const togglePassword = document.querySelector("#togglePassword");
+                const password = document.querySelector("#password");
+
+                togglePassword.addEventListener("click", function () {
+                    // toggle the type attribute
+                    const type = password.getAttribute("type") === "password" ? "text" : "password";
+                    password.setAttribute("type", type);
+                    
+                    // toggle the icon
+                    this.classList.toggle("bi-eye");
+                });
+
+                // prevent form submit
+                const form = document.querySelector("form");
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                });
+            </script>
+            <script>
+                const togglePassword2 = document.querySelector("#togglePassword2");
+                const password2 = document.querySelector("#password-confirm");
+
+                togglePassword2.addEventListener("click", function () {
+                    // toggle the type attribute
+                    const type = password2.getAttribute("type") === "password" ? "text" : "password";
+                    password2.setAttribute("type", type);
+                    
+                    // toggle the icon
+                    this.classList.toggle("bi-eye");
+                });
+
+                // prevent form submit
+                const form2 = document.querySelector("form");
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                });
+            </script>
         <br/><br/>
         @include('partials.landingfooter')

@@ -48,20 +48,26 @@
             var faculty = $("#faculty").val();
             var _token = $("input[name=_token]").val();
 
+            
+            $("#saveBtn").click(function() {
+                $("#example").load("#example");
+            });
+
+        });
+
+        function formPost(){
+            var form_data = $("form#updateAdvisory").serialize();
+
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updateadvisory/")}}/' + id,
-                data: {
-                    id: id,
-                    faculty_id: faculty,
-                    _token: _token
-                },
+                data:form_data,
                 success: function(response) {
-                        $("#editModal"+id).removeClass("in");
+                        $("#editModal"+response.id).removeClass("in");
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
-                        $("#editModal"+id).hide();
+                        $("#editModal"+response.id).hide();
                         $("#updateAdvisory")[0].reset();
                         // $('#example').load(document.URL +  ' #example');
                         Swal.fire({
@@ -79,10 +85,6 @@
                     }); 
                 },
             });
-            $("#saveBtn").click(function() {
-                $("#example").load("#example");
-            });
-
-        });
+        }
        
 </script>

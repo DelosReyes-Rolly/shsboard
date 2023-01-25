@@ -44,9 +44,8 @@
     </div>
 </form>
 <script>
-        $("#updateLanding").submit(function(i) {
-            i.preventDefault();
 
+        function formPost(){
             var id = $("#id").val();
             var title = $("#title").val();
             var content = $("#editor2").val();
@@ -85,10 +84,6 @@
                     }); 
                 },
             });
-            $("#saveBtn").click(function() {
-                $("#example").load("#example");
-            });
-
-        });
+        }
        
 </script>

@@ -31,8 +31,7 @@
     </div>
 </form>
 <script>
-        $("updateDocument").submit(function(i) {
-
+        function formPost(){
             var id = $("#id").val();
             var name = $("#nameq").val();
             var _token = $("input[name=_token]").val();
@@ -61,11 +60,6 @@
                         })
                 }
             });
-            $("#saveBtn").click(function() {
-                $("#example").load("#example");
-            });
-
-        });
-       
+        }
 </script>
 </main>

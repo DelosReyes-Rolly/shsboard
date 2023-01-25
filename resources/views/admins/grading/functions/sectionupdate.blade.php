@@ -27,30 +27,22 @@
     </div>
 </form>
 <script>
-        $("#updateSection").submit(function(i) {                         // dito bababa yung input kapag nagsubmit dahil sa input id sa form
-            i.preventDefault();                                          // wala lang to
 
-            var id = $("#id").val();                                     // yung variable na id lalagayan niya ng laman na galing sa input na may id na "id".  .val() = value
-            var section = $("#section").val();                           // yung variable na section lalagayan niya ng laman na galing sa input na may id na "section".  .val() = value
-            var _token = $("input[name=_token]").val();                  // wala lang to
+        function formPost(){
+            var form_data = $("form#updateSection").serialize();
 
             $.ajax({
                 type: "PUT",                                            // PUT pang update
                 url: '{{url("/updatesection/")}}/' + id,                // url mo kasama id
-                data: {                                 
-                    id: id,                                             //
-                    section: section,                                   // ito yung data na ipapasa sa controller
-                    _token: _token,                                     //
-                },
+                data:form_data,
                 success: function(response) {                           // kapag nagsuccess
-                        $("#editModal"+id).removeClass("in");           //copy paste mo lang to. Pang hide lang to ng modal
+                        $("#editModal"+response.id).removeClass("in");           //copy paste mo lang to. Pang hide lang to ng modal
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
-                        $("#editModal"+id).hide();                     // hanggang dito
+                        $("#editModal"+response.id).hide();                     // hanggang dito
                         $("#updateSection")[0].reset();                // irereset niya yung form
-                        $('#section' + response.id +' td:nth-child(2)').text(response.section);               // copy paste mo lang to. Bale pinapalitan lang niya yung row. Yung "section" id siya ng tr
-                                                                                                            // yung response galing siya sa controller yung return response()->json($section). Yung td:nth-child(2) column bale 2nd column
+                        $('#section' + response.id +' td:nth-child(2)').text(response.section);               // copy paste mo lang to. Bale pinapalitan lang niya yung row. Yung "section" id siya ng tr                                                                        // yung response galing siya sa controller yung return response()->json($section). Yung td:nth-child(2) column bale 2nd column
                         Swal.fire({                                                             //sweetalert
                             icon: 'success',                                                    //
                             title: 'Success.',                                                  //
@@ -64,10 +56,6 @@
                     }); 
                 },
             });
-            $("#saveBtn").click(function() {                                            // wala lang to
-                $("#example").load("#example");
-            });
-
-        });
+        }
        
 </script>

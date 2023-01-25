@@ -62,35 +62,19 @@
     CKEDITOR.replace( 'description' );
 </script> 
 <script>
-        $("#updateCourse").submit(function(i) {
-            i.preventDefault();
-
-            var id = $("#id").val();
-            var courseName = $("#courseName").val();
-            var abbreviation = $("#abbreviation").val();
-            var description = $("#description").val();
-            var code = $("#code").val();
-            var link = $("#link").val();
-            var _token = $("input[name=_token]").val();
+        function formPost(){
+            var form_data = $("form#updateCourse").serialize();
 
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updatecourse/")}}/' + id,
-                data: {
-                    id: id,
-                    courseName: courseName,
-                    abbreviation: abbreviation,
-                    description: description,
-                    code: code,
-                    link: link,
-                    _token: _token
-                },
+                data:form_data,
                 success: function(response) {
-                        $("#editModal"+id).removeClass("in");
+                        $("#editModal"+response.id).removeClass("in");
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
-                        $("#editModal"+id).hide();
+                        $("#editModal"+response.id).hide();
                         $("#updateCourse")[0].reset();
                         $('#course' + response.id +' td:nth-child(1)').text(response.courseName);
                         $('#course' + response.id +' td:nth-child(2)').text(response.abbreviation);
@@ -109,10 +93,5 @@
                     }); 
                 },
             });
-            $("#saveBtn").click(function() {
-                $("#example").load("#example");
-            });
-
-        });
-       
+        }
 </script>
