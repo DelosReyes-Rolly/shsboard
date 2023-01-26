@@ -122,6 +122,7 @@
                         $('body').css('padding-right', '');
                         $("#createModal").hide();
                         $("#createFaculty")[0].reset();
+                        $(":submit").removeAttr("disabled");
                         Swal.fire({
                             icon: 'success',
                             title: 'Success.',
@@ -129,8 +130,6 @@
                         }).then(function() {
                             location.reload(true);
                         })
-                        $(":submit").removeAttr("disabled");
-                        
                     }
                 },error: function (xhr) {
                     $('#validation-errors').html('');
