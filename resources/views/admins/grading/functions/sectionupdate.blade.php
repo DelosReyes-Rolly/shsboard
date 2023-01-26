@@ -36,6 +36,7 @@
             .ajaxStop(function () {
                 $loading.hide();
             });
+            $('#whoops').hide();
             var form_data = $("form#updateSection").serialize();
             $(":submit").attr("disabled", true);
             $.ajax({

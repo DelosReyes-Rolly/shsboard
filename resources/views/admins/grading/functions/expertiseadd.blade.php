@@ -52,6 +52,7 @@
             .ajaxStop(function () {
                 $loading.hide();
             });
+            $('#whoops').hide();
             var form_data = $("form#createExpertise").serialize();
             $(":submit").attr("disabled", true);
             $.ajax({

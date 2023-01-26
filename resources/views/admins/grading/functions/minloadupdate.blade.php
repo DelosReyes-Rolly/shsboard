@@ -13,6 +13,7 @@
         <b>Whoops! There is a problem in your input</b> <br/>
         <div id="validation-errors"></div>
     </div>
+    <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
     <input type="hidden" id="id" name="id" value="{{$minload->id}}"/>
         <div class="col-md-12">
             <input type="number" id="minload" name="minload" class="form-control @error('minload') is-invalid @enderror" value="{{$minload->regular_load}}"style="font-size: 20px;"  onkeypress="return onlyNumberKey(event)" maxlength="4" minlength="4" required>
@@ -27,13 +28,19 @@
     </div>
 </form>   
 <script>
-        $("#updateMinload").submit(function(i) {
-            i.preventDefault();
-
+        var $loading = $('#loadingDiv').hide();
+        function formPost(){
+            $(document).ajaxStart(function () {
+                $loading.show();
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
+            $('#whoops').hide();
             var id = $("#id").val();
             var min_load = $("#minload").val();
             var _token = $("input[name=_token]").val();
-
+            $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updateminload/")}}/' + id,
@@ -49,6 +56,7 @@
                         $('body').css('padding-right', '');
                         $("#editmin").hide();
                         $("#updateMinload")[0].reset();
+                        $(":submit").removeAttr("disabled");
                         // $('#example').load(document.URL +  ' #example');
                         Swal.fire({
                             icon: 'success',
@@ -63,12 +71,9 @@
                     $.each(xhr.responseJSON.errors, function(key,value) {
                         $('#validation-errors').append('&emsp;<li>'+value+'</li>');
                     }); 
+                    $(":submit").removeAttr("disabled");
                 },
             });
-            $("#saveBtn").click(function() {
-                $("#example").load("#example");
-            });
-
-        });
+        }
        
 </script>

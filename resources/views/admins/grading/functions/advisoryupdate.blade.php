@@ -13,6 +13,7 @@
             <b>Whoops! There is a problem in your input</b> <br/>
             <div id="validation-errors"></div>
         </div>
+        <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <input type="hidden" id="id" name="id" value="{{$advisory->id}}"/>
         <div class="mb-3" style="color: red">
             * required field
@@ -42,22 +43,29 @@
     </div>
 </form>
 <script>
-        $("updateAdvisory").submit(function(i) {
+        // $("updateAdvisory").submit(function(i) {
 
-            var id = $("#id").val();
-            var faculty = $("#faculty").val();
-            var _token = $("input[name=_token]").val();
+        //     var id = $("#id").val();
+        //     var faculty = $("#faculty").val();
+        //     var _token = $("input[name=_token]").val();
 
             
-            $("#saveBtn").click(function() {
-                $("#example").load("#example");
-            });
+        //     $("#saveBtn").click(function() {
+        //         $("#example").load("#example");
+        //     });
 
-        });
-
+        // });
+        var $loading = $('#loadingDiv').hide();
         function formPost(){
+            $(document).ajaxStart(function () {
+                $loading.show();
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
+            $('#whoops').hide();
             var form_data = $("form#updateAdvisory").serialize();
-
+            $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updateadvisory/")}}/' + id,
@@ -69,6 +77,7 @@
                         $('body').css('padding-right', '');
                         $("#editModal"+response.id).hide();
                         $("#updateAdvisory")[0].reset();
+                        $(":submit").removeAttr("disabled");
                         // $('#example').load(document.URL +  ' #example');
                         Swal.fire({
                             icon: 'success',
@@ -83,6 +92,7 @@
                     $.each(xhr.responseJSON.errors, function(key,value) {
                         $('#validation-errors').append('&emsp;<li>'+value+'</li>');
                     }); 
+                    $(":submit").removeAttr("disabled");
                 },
             });
         }

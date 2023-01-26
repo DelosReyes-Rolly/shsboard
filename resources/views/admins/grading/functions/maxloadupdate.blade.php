@@ -13,6 +13,7 @@
         <b>Whoops! There is a problem in your input</b> <br/>
         <div id="validation-errors"></div>
     </div>
+    <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
     <input type="hidden" id="id" name="id" value="{{$maxload->id}}"/>
         <div class="col-md-12">
             <input type="number" id="maxload" name="maxload" class="form-control @error('maxload') is-invalid @enderror" value="{{$maxload->master_load}}"style="font-size: 20px;"  onkeypress="return onlyNumberKey(event)" maxlength="4" minlength="4" required>
@@ -27,13 +28,19 @@
     </div>
 </form>   
 <script>
-        $("#updateMaxload").submit(function(i) {
-            i.preventDefault();
-
+        var $loading = $('#loadingDiv').hide();
+        function formPost(){
+            $(document).ajaxStart(function () {
+                $loading.show();
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
+            $('#whoops').hide();
             var id = $("#id").val();
             var max_load = $("#maxload").val();
             var _token = $("input[name=_token]").val();
-
+            $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updatemaxload/")}}/' + id,
@@ -49,6 +56,7 @@
                         $('body').css('padding-right', '');
                         $("#editmax").hide();
                         $("#updateMaxload")[0].reset();
+                        $(":submit").removeAttr("disabled");
                         // $('#example').load(document.URL +  ' #example');
                         Swal.fire({
                             icon: 'success',
@@ -62,13 +70,10 @@
                     document.getElementById('whoops').style.display = 'block';
                     $.each(xhr.responseJSON.errors, function(key,value) {
                         $('#validation-errors').append('&emsp;<li>'+value+'</li>');
-                    }); 
+                    });
+                    $(":submit").removeAttr("disabled"); 
                 },
             });
-            $("#saveBtn").click(function() {
-                $("#example").load("#example");
-            });
-
-        });
+        }
        
 </script>

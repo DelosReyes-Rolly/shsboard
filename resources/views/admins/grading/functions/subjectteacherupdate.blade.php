@@ -13,6 +13,7 @@
             <b>Whoops! There is a problem in your input</b> <br/>
             <div id="validation-errors"></div>
         </div>
+        <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <input type="hidden" id="id" name="id" value="{{$subjectteacher->id}}"/>
         <div class="mb-3" style="color: red">
             * required field
@@ -118,8 +119,15 @@
 </form>
 <script>
 
-
+var $loading = $('#loadingDiv').hide();
         function formPost(){
+            $(document).ajaxStart(function () {
+                $loading.show();
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
+            $('#whoops').hide();
             var checked = $("#updateSubjectteacher input:checked").length > 0;
             if (!checked){
                 $(".weekday").show();
@@ -174,7 +182,7 @@
                     var saturday = $("#saturday").val();
                 }
                 var _token = $("input[name=_token]").val();
-
+                $(":submit").attr("disabled", true);
                 $.ajax({
                     type: "PUT",
                     url: '{{url("/updatesubjectteacher/")}}/' + id,
@@ -199,6 +207,7 @@
                             $('body').css('padding-right', '');
                             $("#editModal"+id).hide();
                             $("#updateSubjectteacher")[0].reset();
+                            $(":submit").removeAttr("disabled");
                             // $('#example').load(document.URL +  ' #example');
                             Swal.fire({
                                 icon: 'success',
@@ -213,10 +222,8 @@
                         $.each(xhr.responseJSON.errors, function(key,value) {
                             $('#validation-errors').append('&emsp;<li>'+value+'</li>');
                         }); 
+                        $(":submit").removeAttr("disabled");
                     },
-                });
-                $("#saveBtn").click(function() {
-                    $("#example").load("#example");
                 });
             }
         }

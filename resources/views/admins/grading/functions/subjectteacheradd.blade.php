@@ -18,6 +18,7 @@
             @endif
             <div id="validation-errors"></div>
         </div>
+        <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <div class="mb-3" style="color: red">
             * required field
         </div>
@@ -217,8 +218,15 @@
                     }
             });
         });
-
+        var $loading = $('#loadingDiv').hide();
         function formPost(){
+            $(document).ajaxStart(function () {
+                $loading.show();
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
+            $('#whoops').hide();
             var checked = $("#createSubjectteacher input:checked").length > 0;
             if (!checked){
                 $(".weekday").show();
@@ -276,7 +284,7 @@
                     var saturday = $("#saturday").val();
                 }
                 var _token = $("input[name=_token]").val();
-
+                $(":submit").attr("disabled", true);
                 $.ajax({
                     type: "POST",
                     url: "{{ route('subjectteacher.store') }}",
@@ -305,6 +313,7 @@
                             $('body').css('padding-right', '');
                             $("#createModal").hide();
                             $("#createSubjectteacher")[0].reset();
+                            $(":submit").removeAttr("disabled");
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Success.',
@@ -320,10 +329,8 @@
                     $.each(xhr.responseJSON.errors, function(key,value) {
                         $('#validation-errors').append('&emsp;<li>'+value+'</li>');
                     }); 
+                    $(":submit").removeAttr("disabled");
                 },
-                });
-                $("#saveBtn").click(function() {
-                    $("#example").load("#example");
                 });
             }
         }

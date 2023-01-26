@@ -122,6 +122,7 @@
             .ajaxStop(function () {
                 $loading.hide();
             });
+            $('#whoops').hide();
             var form_data = $("form#createStudent").serialize();
             $(":submit").attr("disabled", true);
             $.ajax({

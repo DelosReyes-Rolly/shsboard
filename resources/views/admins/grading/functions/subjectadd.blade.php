@@ -66,6 +66,7 @@
             .ajaxStop(function () {
                 $loading.hide();
             });
+            $('#whoops').hide();
             var form_data = $("form#createSubject").serialize();
             $(":submit").attr("disabled", true);
             $.ajax({

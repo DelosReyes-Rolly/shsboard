@@ -49,6 +49,7 @@
             .ajaxStop(function () {
                 $loading.hide();
             });
+            $('#whoops').hide();
             var form_data = $("form#updateSchoolyesr").serialize();
             $(":submit").attr("disabled", true);
             $.ajax({
