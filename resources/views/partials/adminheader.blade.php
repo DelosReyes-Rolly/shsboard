@@ -65,6 +65,9 @@
                         <li title="Subjects">
                             <a href="/gradingsubjects"><i class="fas fa-book"></i> <span class="hide-word"> <b>Subjects</b></span></a>
                         </li>
+                        <li title="Expertises">
+                            <a href="/gradingexpertise"><i class="fas fa-user-tie"> </i><span class="hide-word">&nbsp; <b>Expertises</b> </span></a>
+                        </li>
                     </ul>
                 </li>
                 <li>
@@ -85,21 +88,11 @@
                         <span class="hide-word title-word"> <b>Class Schedule</b> </span>
                     </a>
                 </li>
-            </ul>
-            <ul class="list-unstyled components">
                 <li>
-                    <a href="#facultySubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" title="Faculty">
-                        <i class="fas fa-stream"></i>
-                        <span class="hide-word title-word"> <b>Faculty</b></span>
+                    <a href="/gradingfaculty" title="Faculties">
+                        <i class="fas fa-user-tie"></i>
+                        <span class="hide-word title-word"> <b>Faculties</b> </span>
                     </a>
-                    <ul class="collapse list-unstyled" id="facultySubmenu">
-                        <li title="Faculties">
-                            <a href="/gradingfaculty" title="Faculties"><i class="fas fa-user-tie"></i>&nbsp;<span class="hide-word"> <b>Faculties</b> </span></a>
-                        </li>
-                        <li title="Expertises">
-                            <a href="/gradingexpertise" title="Expertises"><i class="fas fa-user-tie"></i>&nbsp;<span class="hide-word"> <b>Expertises</b> </span></a>
-                        </li>
-                    </ul>
                 </li>
             </ul>
 

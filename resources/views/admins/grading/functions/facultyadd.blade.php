@@ -64,7 +64,7 @@
             </div>
             <div class="col-md-12"><br/>
                 <label for="expertise" class="col-form-label text-md-end" style="font-size: 20px;"><span style="color: red">*</span>  {{ __('Expertises') }}</label><br>
-                <select id="expertise_id" name="expertise" class="form-control" required>
+                <select id="expertise_id" name="expertise_id" class="form-control" required>
                     <option value="" {{old('expertise') == "" ?'selected' : ''}} disabled> Please Select Expertise </option>
                     @foreach($expertises as $expertise)
                     <option value="{{$expertise->id}}">{{$expertise->expertise}}</option>
@@ -99,11 +99,10 @@
     //         });
 
     //     });
-
-    
         function formPost(){
+            
             var form_data = $("form#createFaculty").serialize();
-
+console.log(form_data);
             $.ajax({
                 type: "POST",
                 url: "{{ route('faculty.store') }}",
