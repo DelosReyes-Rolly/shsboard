@@ -1,5 +1,21 @@
+<style>
+    form i {
+        cursor: pointer;
+        font-size: 20px;
+    }
 
+    #password{
+        height: 34px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
+</style>
 @include('partials.landingheader')
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <div class="loginchoice loginOthers">     
 		<div class="col-md-12 text-center">
             <div class="box-form">
@@ -54,7 +70,8 @@
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror animate pop" name="password" minlength="6" required autocomplete="current-password">
+                                <input id="password" type="password" class="@error('password') is-invalid @enderror animate pop" name="password" minlength="6" required autocomplete="current-password">
+                                <i class="bi bi-eye-slash animate pop" style="margin-left: -30px;" id="togglePassword"></i>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -89,4 +106,17 @@
             </div>
         </div>
     </div>
+    <script>
+        const togglePassword = document.querySelector("#togglePassword");
+        const password = document.querySelector("#password");
+
+        togglePassword.addEventListener("click", function () {
+            // toggle the type attribute
+            const type = password.getAttribute("type") === "password" ? "text" : "password";
+            password.setAttribute("type", type);
+            
+            // toggle the icon
+            this.classList.toggle("bi-eye");
+        });
+    </script>
 @include('partials.landingfooter')

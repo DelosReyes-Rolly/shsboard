@@ -242,12 +242,6 @@
                     // toggle the icon
                     this.classList.toggle("bi-eye");
                 });
-
-                // prevent form submit
-                const form2 = document.querySelector("form");
-                form.addEventListener('submit', function (e) {
-                    e.preventDefault();
-                });
             </script>
         <br/><br/>
         @include('partials.landingfooter')
