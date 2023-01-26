@@ -15,6 +15,7 @@
         <div class="mb-3" style="color: red">
             * required field
         </div>
+        <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <div class="row">
             <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span> Last Name</label>
@@ -99,10 +100,16 @@
     //         });
 
     //     });
+        var $loading = $('#loadingDiv').hide();
         function formPost(){
-            
+            $(document).ajaxStart(function () {
+                $loading.show();
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
             var form_data = $("form#createFaculty").serialize();
-console.log(form_data);
+            $(":submit").attr("disabled", true);
             $.ajax({
                 type: "POST",
                 url: "{{ route('faculty.store') }}",
@@ -122,6 +129,7 @@ console.log(form_data);
                         }).then(function() {
                             location.reload(true);
                         })
+                        $(":submit").removeAttr("disabled");
                         
                     }
                 },error: function (xhr) {
@@ -130,6 +138,7 @@ console.log(form_data);
                     $.each(xhr.responseJSON.errors, function(key,value) {
                         $('#validation-errors').append('&emsp;<li>'+value+'</li>');
                     }); 
+                    $(":submit").removeAttr("disabled");
                 },
             });
         }
