@@ -48,6 +48,7 @@
             .ajaxStop(function () {
                 $loading.hide();
             });
+            $('#whoops').hide();
             var id = $("#id").val();
             var purpose = $("#purpose").val();
             var proof_needed = $("#proof_needed").val();

@@ -50,7 +50,7 @@
                 $loading.hide();
             });
             $('#whoops').hide();
-            var form_data = $("form#updateSchoolyesr").serialize();
+            var form_data = $("form#updateSchoolyear").serialize();
             $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",

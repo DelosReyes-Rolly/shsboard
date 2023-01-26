@@ -40,6 +40,7 @@
             .ajaxStop(function () {
                 $loading.hide();
             });
+            $('#whoops').hide();
             var id = $("#id").val();
             var name = $("#nameq").val();
             var _token = $("input[name=_token]").val();

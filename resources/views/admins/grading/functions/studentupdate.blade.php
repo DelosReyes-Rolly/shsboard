@@ -146,7 +146,7 @@
                             $('#student' + response.id +' td:nth-child(3)').text(function(n) {return response.last_name + ', ' + response.first_name + ' ' + response.middle_name + ' ' + response.suffix;});
                         }
                         $('#student' + response.id +' td:nth-child(4)').text(response.gender);
-                        $('#student' + response.id +' td:nth-child(5)').text(response.email);
+                        $('#student' + response.id +' td:nth-child(6)').text(response.email);
                         // $('#example').load(document.URL +  ' #example');
                         $(":submit").removeAttr("disabled");
                         Swal.fire({

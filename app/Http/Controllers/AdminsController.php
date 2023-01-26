@@ -1343,7 +1343,7 @@ class AdminsController extends Controller
 
     public function updatestudent(Request $request){
         $validated = $request->validate([
-            'LRN' => 'required|min:12|max:12|unique:students,LRN,' . $request->LRN,
+            'LRN' => 'required|min:12|max:12|unique:students,LRN,' . $request->id,
             'first_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
             'middle_name' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
             'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
@@ -2030,7 +2030,7 @@ class AdminsController extends Controller
         return view('admins.grading.functions.gradelevelupdate', ['gradelevel' => $data]);
     }
 
-    public function updategradelevel(Request $request, GradeLevels $gradelevel){
+    public function updategradelevel(Request $request){
         $request->validate([
             'gradelevel' => 'required',
         ]);
