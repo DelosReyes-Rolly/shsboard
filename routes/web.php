@@ -544,6 +544,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
 
                 Route::get('/expertiseadd', 'addexpertise')->name('expertise.add');
                 Route::get('/viewexpertise/{id}','viewexpertise');
+                Route::get('/viewteacherexpertise/{id}','viewteacherexpertise');
                 Route::get('/showexpertise/{id}','showexpertise');
 
                 Route::get('/studentadd', 'addstudent')->name('student.add');

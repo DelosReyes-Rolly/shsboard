@@ -15,7 +15,7 @@
     </div>
     <input type="hidden" id="id" name="id" value="{{$minload->id}}"/>
         <div class="col-md-12">
-            <input type="number" id="minload" name="minload" class="form-control @error('minload') is-invalid @enderror" value="{{$minload->min_load}}"style="font-size: 20px;"  onkeypress="return onlyNumberKey(event)" maxlength="4" minlength="4" required>
+            <input type="number" id="minload" name="minload" class="form-control @error('minload') is-invalid @enderror" value="{{$minload->regular_load}}"style="font-size: 20px;"  onkeypress="return onlyNumberKey(event)" maxlength="4" minlength="4" required>
             <div class="invalid-feedback">
                 Please input valid load.
             </div>

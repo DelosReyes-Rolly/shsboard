@@ -64,7 +64,7 @@
                             <thead class="table-success">
                                 <tr>
                                     <th class="border-gray-200" scope="col">#</th>
-                                    <th class="border-gray-200" scope="col">Teacher Name</th>
+                                    <th class="border-gray-200" scope="col">Name</th>
                                     <th class="border-gray-200" scope="col">Subject Load</th>
                                     <th class="border-gray-200" scope="col">Class Load</th>
                                     <th class="border-gray-200" scope="col">Expertise</th>

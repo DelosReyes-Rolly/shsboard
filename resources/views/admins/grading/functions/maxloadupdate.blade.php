@@ -15,7 +15,7 @@
     </div>
     <input type="hidden" id="id" name="id" value="{{$maxload->id}}"/>
         <div class="col-md-12">
-            <input type="number" id="maxload" name="maxload" class="form-control @error('maxload') is-invalid @enderror" value="{{$maxload->max_load}}"style="font-size: 20px;"  onkeypress="return onlyNumberKey(event)" maxlength="4" minlength="4" required>
+            <input type="number" id="maxload" name="maxload" class="form-control @error('maxload') is-invalid @enderror" value="{{$maxload->master_load}}"style="font-size: 20px;"  onkeypress="return onlyNumberKey(event)" maxlength="4" minlength="4" required>
             <div class="invalid-feedback">
                 Please input valid maximum load.
             </div>

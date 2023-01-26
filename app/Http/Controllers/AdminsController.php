@@ -1167,7 +1167,7 @@ class AdminsController extends Controller
         }
     }
 
-    // ============================================================ SPECIALTY ===================================================
+    // ============================================================ EXPERTISES ===================================================
 
     public function expertise(){
         $expertises = Expertises::where('deleted', '=', null)->get();
@@ -1191,10 +1191,14 @@ class AdminsController extends Controller
     }    
 
     public function viewexpertise($id){
-        $data = Expertises::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.expertiseview', ['expertise' => $data]);
+        $data = Subjects::where('deleted', '=', null)->where('expertise_id', '=', $id)->get();
+        return view('admins.grading.functions.expertiseview', compact('data'));
     }
 
+    public function viewteacherexpertise($id){
+        $data = Faculties::where('deleted', '=', null)->where('expertise_id', '=', $id)->get();
+        return view('admins.grading.functions.expertiseteacherview', compact('data'));
+    }
 
     public function showexpertise($id){
         $data = Expertises::where('deleted', '=', null)->findOrFail($id);

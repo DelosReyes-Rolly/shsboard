@@ -63,11 +63,18 @@
                                             <td>{{$course -> abbreviation}}</td>
                                             <td>{{$course -> code}}</td>
                                             <td>
-                                                <a class="btn btn-success btn-md" href="/viewcourse/{{$course->id}}"><i class="fas fa-eye"></i> View</a>
+                                                <a class="btn btn-success btn-md" href="/viewcourse/{{$course->id}}" data-toggle="modal" data-target="#modal-view-{{ $course->id }}"><i class="fas fa-eye"></i> View</a>
                                                 <a class="btn btn-warning btn-md" href="/showcourse/{{$course->id}}" data-toggle="modal" data-target="#editModal{{ $course->id }}"><i class="fas fa-edit"></i> Update</a>
                                                 <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $course->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                             </td> 
                                         </tr>
+                                        <!-- view modal -->
+                                        <div id="modal-view-{{ $course->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content border-start-lg border-start-yellow">
+                                                </div>
+                                            </div>
+                                        </div>
                                         <!-- update modal -->
                                         <div id="editModal{{ $course->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog modal-lg" role="document">
