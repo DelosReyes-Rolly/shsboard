@@ -28,7 +28,7 @@
             new $.fn.dataTable.FixedHeader( table );
         } );
     </script>
-    <div class="container-xl px-4 mt-4">
+    <div>
         <h3 style="font-size: 28px; font-weight: 800;">Create Content on Homepage </h3>
         <hr class="mt-0 mb-4">
         <!-- form -->
@@ -64,29 +64,27 @@
                                         <div class="mb-3" style="color: red">
                                             * required field
                                         </div>
-                                        <div class="row gx-3 mb-3">
+                                        <div class="row">
                                             <!-- Form Group (title)-->
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <label class="large mb-1" for="inputtitle" style="font-size: 20px;"><span style="color: red">*</span> Title</label>
                                                 <input class="form-control @error('title') is-invalid @enderror" id="inputtitle" type="text" placeholder="Enter the title" name="title"  value="{{ old('title') }}" required>
                                                 <div class="invalid-feedback">
                                                     Please input subject.
                                                 </div>
                                             </div>
-                                        </div><br/>
-                                        <!-- Form Row -->
-                                      
                                             <!-- Form Group (content)-->
-                                            <div class="mb-3" style="padding-left: 18px;">
+                                            <div class="col-md-12">
                                                 <label class="large mb-1" for="editor" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
                                                 <textarea class="form-control @error('document_id') is-invalid @enderror" id="editor" type="text" placeholder="Enter the information" name="content" rows="10" cols="80" required>{{ old('content') }}</textarea>
                                                 <div class="invalid-feedback">
                                                     Please input content.
                                                 </div>
                                             </div><br/>
-                                            <div class="row gx-3 mb-3" style="padding-left: 22px;">
+                                        </div><br/>
+                                            <div class="row" style="padding-left: 22px;">
                                                 <!-- Form Group (img)-->
-                                                <div class="col-md-6">
+                                                <div class="col-md-12">
                                                     <label class="large mb-1" for="inputcontent" style="font-size: 20px;">Image (Only png and jpg files are allowed)</label>
                                                     <div class ="form-group row">
                                                         <div class="col-md-8"></div>

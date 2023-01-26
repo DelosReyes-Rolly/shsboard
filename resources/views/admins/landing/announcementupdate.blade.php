@@ -13,6 +13,7 @@
             <b>Whoops! There is a problem in your input</b> <br/>
             <div id="validation-errors"></div>
         </div>
+        <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <input type="hidden" id="id" name="id" value="{{$announcement->id}}"/>
         <div class="mb-3" style="color: red">
             * required field
@@ -86,7 +87,14 @@
         CKEDITOR.replace('editor2');
     </script>
 <script>
+    var $loading = $('#loadingDiv').hide();
         function formPost(){
+            $(document).ajaxStart(function () {
+                $loading.show();
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
             var id = $("#id").val();
             var what = $("#what").val();
             var who = $("#who").val();
@@ -97,7 +105,7 @@
             var content = $("#editor2").val();
             var expired_at = $("#expired_at").val();
             var _token = $("input[name=_token]").val();
-
+            $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updateannouncement/")}}/' + id,
@@ -121,6 +129,7 @@
                         $("#editModal"+id).hide();
                         $("#updateAnnouncement")[0].reset();
                         $('#announcement' + response.id +' td:nth-child(2)').text(response.what);
+                        $(":submit").removeAttr("disabled");
                         // $('#example').load(document.URL +  ' #example');
                         Swal.fire({
                             icon: 'success',
@@ -133,6 +142,7 @@
                         $.each(xhr.responseJSON.errors, function(key,value) {
                             $('#validation-errors').append('&emsp;<li>'+value+'</li>');
                         }); 
+                        $(":submit").removeAttr("disabled");
                 },
             });
         }

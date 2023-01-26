@@ -145,4 +145,5 @@
 		<hr style="border:1px solid black;">
 		</div>
 	</form>
+	<script src="{{ asset('assets/js/needs-validated2.js') }}"></script>
 </main>     

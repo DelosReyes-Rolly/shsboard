@@ -13,6 +13,7 @@
             <b>Whoops! There is a problem in your input</b> <br/>
             <div id="validation-errors"></div>
         </div>
+        <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <div class="col-md-12">
             <input type="hidden" id="id" name="id" value="{{$gradelevel->id}}"/>
             <input id="gradelevel" type="text" name="gradelevel" class="form-control @error('gradelevel') is-invalid @enderror" value="{{$gradelevel->gradelevel}}"style="font-size: 20px;"   onkeypress="return onlyNumberKey(event)" maxlength="2" minlength="2" required>
@@ -27,23 +28,29 @@
     </div>
 </form>
 <script>
-        $("#updateGradelevel").submit(function(i) {
-            i.preventDefault();
+        // $("#updateGradelevel").submit(function(i) {
+        //     i.preventDefault();
 
-            var id = $("#id").val();
-            var gradelevel = $("#gradelevel").val();
-            var _token = $("input[name=_token]").val();
+        //     var id = $("#id").val();
+        //     var gradelevel = $("#gradelevel").val();
+        //     var _token = $("input[name=_token]").val();
 
             
-            $("#saveBtn").click(function() {
-                $("#example").load("#example");
-            });
+        //     $("#saveBtn").click(function() {
+        //         $("#example").load("#example");
+        //     });
 
-        });
-
+        // });
+        var $loading = $('#loadingDiv').hide();
         function formPost(){
+            $(document).ajaxStart(function () {
+                $loading.show();
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
             var form_data = $("form#updateGradelevel").serialize();
-
+            $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updategradelevel/")}}/' + id,
@@ -56,6 +63,7 @@
                         $("#editModal"+response.id).hide();
                         $("#updateGradelevel")[0].reset();
                         $('#gradelevel' + response.id +' td:nth-child(2)').text(response.gradelevel);
+                        $(":submit").removeAttr("disabled");
                         // $('#example').load(document.URL +  ' #example');
                         Swal.fire({
                             icon: 'success',
@@ -68,6 +76,7 @@
                     $.each(xhr.responseJSON.errors, function(key,value) {
                         $('#validation-errors').append('&emsp;<li>'+value+'</li>');
                     });
+                    $(":submit").removeAttr("disabled");
                 },
             });
         }

@@ -13,6 +13,7 @@
             <b>Whoops! There is a problem in your input</b> <br/>
             <div id="validation-errors"></div>
         </div>
+        <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <input type="hidden" id="id" name="id" value="{{$expertise->id}}"/>               <!-- lagay ka ng hidden. Yung id ng row o ng ieedit -->
         <div class="col-md-12">                                                         <!-- id ng input ay "expertise" -->
             <input type="text" id="expertise" name="expertise" class="form-control @error('expertise') is-invalid @enderror" value="{{$expertise->expertise}}" style="font-size: 20px;" onkeydown="return alphaOnly(event);" maxlength="255"  required>
@@ -40,10 +41,16 @@
         //     });
 
         // });
-
+        var $loading = $('#loadingDiv').hide();
         function formPost(){
+            $(document).ajaxStart(function () {
+                $loading.show();
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
             var form_data = $("form#updateExpertise").serialize();
-
+            $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",                                            // PUT pang update
                 url: '{{url("/updateexpertise/")}}/' + id,                // url mo kasama id
@@ -56,7 +63,7 @@
                         $("#editModal"+response.id).hide();                     // hanggang dito
                         $("#updatedExpertise")[0].reset();                // irereset niya yung form
                         $('#expertise' + response.id +' td:nth-child(2)').text(response.expertise);               // copy paste mo lang to. Bale pinapalitan lang niya yung row. Yung "expertise" id siya ng tr
-                                                                                                            // yung response galing siya sa controller yung return response()->json($expertise). Yung td:nth-child(2) column bale 2nd column
+                        $(":submit").removeAttr("disabled");                                                                                 // yung response galing siya sa controller yung return response()->json($expertise). Yung td:nth-child(2) column bale 2nd column
                         Swal.fire({                                                             //sweetalert
                             icon: 'success',                                                    //
                             title: 'Success.',                                                  //
@@ -68,6 +75,7 @@
                     $.each(xhr.responseJSON.errors, function(key,value) {
                         $('#validation-errors').append('&emsp;<li>'+value+'</li>');
                     }); 
+                    $(":submit").removeAttr("disabled");
                 },
             });
         }

@@ -13,6 +13,7 @@
             <b>Whoops! There is a problem in your input</b> <br/>
             <div id="validation-errors"></div>
         </div>
+        <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <input type="hidden" id="id" name="id" value="{{$student->id}}"/>
         <div class="mb-3" style="color: red">
             * required field
@@ -107,32 +108,18 @@
     </div>
 </form>
 <script>
-        // $("#updateStudent").submit(function(i) {
-        //     i.preventDefault();
-
-        //     var id = $("#id").val();
-        //     var LRNs = $("#LRNs").val();
-        //     var last_name = $("#lastname").val();
-        //     var first_name = $("#firstname").val();
-        //     var middle_name = $("#middlename").val();
-        //     var suffix = $("#suffix").val();
-        //     var gradelevel = $("#gradelevel").val();
-        //     var section = $("#section").val();
-        //     var course = $("#course").val();
-        //     var email = $("#email").val();
-        //     var _token = $("input[name=_token]").val();
-
-            
-        //     $("#saveBtn").click(function() {
-        //         $("#example").load("#example");
-        //     });
-
-        // });
 
 
+        var $loading = $('#loadingDiv').hide();
         function formPost(){
+            $(document).ajaxStart(function () {
+                $loading.show();
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
             var form_data = $("form#updateStudent").serialize();
-
+            $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updatestudent/")}}/' + id,
@@ -160,6 +147,7 @@
                         $('#student' + response.id +' td:nth-child(4)').text(response.gender);
                         $('#student' + response.id +' td:nth-child(5)').text(response.email);
                         // $('#example').load(document.URL +  ' #example');
+                        $(":submit").removeAttr("disabled");
                         Swal.fire({
                             icon: 'success',
                             title: 'Success.',
@@ -171,6 +159,7 @@
                     $.each(xhr.responseJSON.errors, function(key,value) {
                         $('#validation-errors').append('&emsp;<li>'+value+'</li>');
                     }); 
+                    $(":submit").removeAttr("disabled");
                 },
             });
         }

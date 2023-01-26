@@ -10,6 +10,7 @@
     <div class="modal-body">
         @csrf
         @method('put')
+        <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <input type="hidden" id="id" name="id" value="{{$purpose->id}}"/>
         <div class="mb-3" style="color: red">
             * required field
@@ -39,12 +40,19 @@
     </div>
 </form>
 <script>
+        var $loading = $('#loadingDiv').hide();
         function formPost(){
+            $(document).ajaxStart(function () {
+                $loading.show();
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
             var id = $("#id").val();
             var purpose = $("#purpose").val();
             var proof_needed = $("#proof_needed").val();
             var _token = $("input[name=_token]").val();
-
+            $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updatepurpose/")}}/' + id,
@@ -63,13 +71,21 @@
                         $("#updatePurpose")[0].reset();
                         $('#documentpurpose' + response.id +' td:nth-child(2)').text(response.purpose);
                         $('#documentpurpose' + response.id +' td:nth-child(3)').text(response.proof_needed);
+                        $(":submit").removeAttr("disabled");
                         // $('#example').load(purpose.URL +  ' #example');
                         Swal.fire({
                             icon: 'success',
                             title: 'Success.',
                             text: 'Purpose has been updated successfully',
                         })
-                }
+                },error: function (xhr) {
+                    $('#validation-errors').html('');
+                    document.getElementById('whoops').style.display = 'block';
+                    $.each(xhr.responseJSON.errors, function(key,value) {
+                        $('#validation-errors').append('&emsp;<li>'+value+'</li>');
+                    }); 
+                    $(":submit").removeAttr("disabled");
+                },
             });
         }
 </script> 

@@ -1840,7 +1840,8 @@ class AdminsController extends Controller
                     }
             
                     else{
-                        return redirect()->back()->with('message', 'This is a duplicate. Kindly check again.')->withInput();
+                        return response()->json(['error' => 'Duplicate yung subject lodi'], 422); 
+                        // return redirect()->back()->with('message', 'This is a duplicate. Kindly check again.')->withInput();
                     }
             
                     // creating student grade
@@ -1889,11 +1890,16 @@ class AdminsController extends Controller
                     return response()->json(array('success' => true));  
                 }
                 else{
-                    return response()->json(['error' => 'Error msg1'], 401); 
+                    return response()->json(['message' => 'Walang advisor, set ka muna'], 422); 
                 }
             }
+            else{
+                return response()->json(['error' => 'Lampas class load kana idolo'], 422); 
+            }
         }
-    
+        else{
+            return response()->json(['error' => 'Lampas subject load kana idolo'], 422); 
+        }
     } 
 
     public function viewsubjectteacher($id){

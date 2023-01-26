@@ -9,7 +9,11 @@
     <div class="modal-body">
         @csrf
         @method('put')
-        <div id="validation-errors"></div>
+        <div id="whoops" class="alert alert-danger" style="display: none;">
+            <b>Whoops! There is a problem in your input</b> <br/>
+            <div id="validation-errors"></div>
+        </div>
+        <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <input type="hidden" id="id" name="id" value="{{$subject->id}}"/>
         <div class="mb-3" style="color: red">
             * required field
@@ -56,9 +60,16 @@
     </div>
 </form>
 <script>
+        var $loading = $('#loadingDiv').hide();
         function formPost(){
+            $(document).ajaxStart(function () {
+                $loading.show();
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
             var form_data = $("form#updateSubject").serialize();
-
+            $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updatesubject/")}}/' + id,
@@ -70,6 +81,7 @@
                         $('body').css('padding-right', '');
                         $("#editModal"+response.id).hide();
                         $("#updateSubject")[0].reset();
+                        $(":submit").removeAttr("disabled");
                         // $('#subject' + response.id +' td:nth-child(2)').text(response.subjectcode);
                         // $('#subject' + response.id +' td:nth-child(3)').text(response.subjectname);
                         // $('#subject' + response.id +' td:nth-child(4)').text(response.expertise_id);
@@ -87,6 +99,7 @@
                     $.each(xhr.responseJSON.errors, function(key,value) {
                         $('#validation-errors').append('<div class="alert alert-danger"> <b>Whoops! There is a problem in your input</b> <br/> &emsp;'+value+'</div');
                     }); 
+                    $(":submit").removeAttr("disabled");
                 },
             });
         }

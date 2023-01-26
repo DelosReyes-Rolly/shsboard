@@ -12,6 +12,7 @@
             <b>Whoops! There is a problem in your input</b> <br/>
             <div id="validation-errors"></div>
         </div>
+        <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <div class="mb-3" style="color: red">
             * required field
         </div>
@@ -30,23 +31,29 @@
     </div>
 </form>
 <script>
-    $("#createExpertise").submit(function(e) {
-            e.preventDefault();
+    // $("#createExpertise").submit(function(e) {
+    //         e.preventDefault();
 
-            var expertise = $("#expertise").val();
-            var _token = $("input[name=_token]").val();
+    //         var expertise = $("#expertise").val();
+    //         var _token = $("input[name=_token]").val();
 
             
-            $("#saveBtn").click(function() {
-                $("#example").load("#example");
-            });
+    //         $("#saveBtn").click(function() {
+    //             $("#example").load("#example");
+    //         });
 
-        });
+    //     });
 
-
+    var $loading = $('#loadingDiv').hide();
         function formPost(){
+            $(document).ajaxStart(function () {
+                $loading.show();
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
             var form_data = $("form#createExpertise").serialize();
-
+            $(":submit").attr("disabled", true);
             $.ajax({
                 type: "POST",
                 url: "{{ route('expertise.store') }}",
@@ -59,6 +66,7 @@
                         $('body').css('padding-right', '');
                         $("#createModal").hide();
                         $("#createExpertise")[0].reset();
+                        $(":submit").removeAttr("disabled");
                         Swal.fire({
                             icon: 'success',
                             title: 'Success.',
@@ -73,7 +81,8 @@
                     document.getElementById('whoops').style.display = 'block';
                     $.each(xhr.responseJSON.errors, function(key,value) {
                         $('#validation-errors').append('&emsp;<li>'+value+'</li>');
-                    });  
+                    }); 
+                    $(":submit").removeAttr("disabled"); 
                 },
             });
         }

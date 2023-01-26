@@ -10,6 +10,7 @@
     <div class="modal-body">
         @csrf
         @method('put')
+        <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <input type="hidden" id="id" name="id" value="{{$document->id}}"/>
         <div class="mb-3" style="color: red">
             * required field
@@ -31,11 +32,18 @@
     </div>
 </form>
 <script>
+     var $loading = $('#loadingDiv').hide();
         function formPost(){
+            $(document).ajaxStart(function () {
+                $loading.show();
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
             var id = $("#id").val();
             var name = $("#nameq").val();
             var _token = $("input[name=_token]").val();
-
+            $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updatedocument/")}}/' + id,
@@ -52,13 +60,21 @@
                         $("#editModal"+id).hide();
                         $("#updateDocument")[0].reset();
                         $('#document' + response.id +' td:nth-child(2)').text(response.name);
+                        $(":submit").removeAttr("disabled");
                         // $('#example').load(document.URL +  ' #example');
                         Swal.fire({
                             icon: 'success',
                             title: 'Success.',
                             text: 'Document has been updated successfully',
                         })
-                }
+                },error: function (xhr) {
+                    $('#validation-errors').html('');
+                    document.getElementById('whoops').style.display = 'block';
+                    $.each(xhr.responseJSON.errors, function(key,value) {
+                        $('#validation-errors').append('&emsp;<li>'+value+'</li>');
+                    }); 
+                    $(":submit").removeAttr("disabled");
+                },
             });
         }
 </script>

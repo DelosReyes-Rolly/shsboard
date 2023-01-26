@@ -12,6 +12,7 @@
             <b>Whoops! There is a problem in your input</b> <br/>
             <div id="validation-errors"></div>
         </div>
+        <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <input type="hidden" id="student_id" name="student_id" value="{{Auth::user()->id}}"/>
         <input type="hidden" id="gradelevel_id" name="gradelevel_id" value="{{$gradelevel_id}}"/>
         <input type="hidden" id="course_id" name="course_id" value="{{Auth::user()->course_id}}"/>
@@ -55,9 +56,16 @@
     //         });
 
     //     });
+    var $loading = $('#loadingDiv').hide();
         function formPost(){
+            $(document).ajaxStart(function () {
+                $loading.show();
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
             var form_data = $("form#createReason").serialize();
-
+            $(":submit").attr("disabled", true);
             $.ajax({
                 type: "POST",
                 url : "{{ route('grade-eval') }}",
@@ -70,6 +78,7 @@
                         $('body').css('padding-right', '');
                         $("#createModal").hide();
                         $("#createReason")[0].reset();
+                        $(":submit").removeAttr("disabled");
                         Swal.fire({
                             icon: 'success',
                             title: 'Success.',
@@ -85,6 +94,7 @@
                     $.each(xhr.responseJSON.errors, function(key,value) {
                         $('#validation-errors').append('&emsp;<li>'+value+'</li>');
                     });  
+                    $(":submit").removeAttr("disabled");
                 },
             });
         }

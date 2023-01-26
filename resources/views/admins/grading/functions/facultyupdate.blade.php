@@ -13,6 +13,7 @@
             <b>Whoops! There is a problem in your input</b> <br/>
             <div id="validation-errors"></div>
         </div>
+        <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <input type="hidden" id="id" name="id" value="{{$faculty->id}}"/>
         <div class="mb-3" style="color: red">
             * required field
@@ -103,10 +104,16 @@
         //     });
 
         // });
-
+        var $loading = $('#loadingDiv').hide();
         function formPost(){
+            $(document).ajaxStart(function () {
+                $loading.show();
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
             var form_data = $("form#updateFaculty").serialize();
-
+            $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updatefaculty/")}}/' + id,
@@ -118,6 +125,7 @@
                         $('body').css('padding-right', '');
                         $("#editModal"+response.id).hide();
                         $("#updateFaculty")[0].reset();
+                        $(":submit").removeAttr("disabled");
                         // if(response.suffix == null && response.middle_name == null){
                         //     $('#faculty' + response.id +' td:nth-child(2)').text(function(n) {return response.last_name + ', ' + response.first_name;});
                         // }
@@ -145,6 +153,7 @@
                     $.each(xhr.responseJSON.errors, function(key,value) {
                         $('#validation-errors').append('&emsp;<li>'+value+'</li>');
                     });  
+                    $(":submit").removeAttr("disabled");
                 },
             });
         }

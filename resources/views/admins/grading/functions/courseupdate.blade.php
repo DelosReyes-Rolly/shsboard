@@ -13,6 +13,7 @@
             <b>Whoops! There is a problem in your input</b> <br/>
             <div id="validation-errors"></div>
         </div>
+        <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <input type="hidden" id="id" name="id" value="{{$course->id}}"/>
         <div class="mb-3" style="color: red">
            * required field
@@ -62,9 +63,16 @@
     CKEDITOR.replace( 'description' );
 </script> 
 <script>
+    var $loading = $('#loadingDiv').hide();
         function formPost(){
+            $(document).ajaxStart(function () {
+                $loading.show();
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
             var form_data = $("form#updateCourse").serialize();
-
+            $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updatecourse/")}}/' + id,
@@ -79,6 +87,7 @@
                         $('#course' + response.id +' td:nth-child(1)').text(response.courseName);
                         $('#course' + response.id +' td:nth-child(2)').text(response.abbreviation);
                         $('#course' + response.id +' td:nth-child(3)').text(response.code);
+                        $(":submit").removeAttr("disabled");
                         // $('#example').load(document.URL +  ' #example');
                         Swal.fire({
                             icon: 'success',
@@ -91,6 +100,7 @@
                     $.each(xhr.responseJSON.errors, function(key,value) {
                         $('#validation-errors').append('&emsp;<li>'+value+'</li>');
                     }); 
+                    $(":submit").removeAttr("disabled");
                 },
             });
         }

@@ -13,6 +13,7 @@
         <b>Whoops! There is a problem in your input</b> <br/>
         <div id="validation-errors"></div>
     </div>
+    <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
     <input type="hidden" id="id" name="id" value="{{$schoolyear->id}}"/>
         <div class="col-md-12">
             <input type="text" id="schoolyear" name="schoolyear" class="form-control @error('schoolyear') is-invalid @enderror" value="{{$schoolyear->schoolyear}}"style="font-size: 20px;"  onkeypress="return onlyNumberKey(event)" maxlength="4" minlength="4" required>
@@ -27,22 +28,29 @@
     </div>
 </form>   
 <script>
-        $("#updateSchoolyear").submit(function(i) {
-            i.preventDefault();
+        // $("#updateSchoolyear").submit(function(i) {
+        //     i.preventDefault();
 
-            var id = $("#id").val();
-            var schoolyear = $("#schoolyear").val();
-            var _token = $("input[name=_token]").val();
+        //     var id = $("#id").val();
+        //     var schoolyear = $("#schoolyear").val();
+        //     var _token = $("input[name=_token]").val();
 
             
-            $("#saveBtn").click(function() {
-                $("#example").load("#example");
-            });
+        //     $("#saveBtn").click(function() {
+        //         $("#example").load("#example");
+        //     });
 
-        });
+        // });
+        var $loading = $('#loadingDiv').hide();
         function formPost(){
+            $(document).ajaxStart(function () {
+                $loading.show();
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
             var form_data = $("form#updateSchoolyesr").serialize();
-
+            $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updateschoolyear/")}}/' + id,
@@ -55,6 +63,7 @@
                         $("#editModal"+response.id).hide();
                         $("#updateSchoolyear")[0].reset();
                         $('#schoolyear' + response.id +' td:nth-child(2)').text(response.schoolyear);
+                        $(":submit").removeAttr("disabled");
                         // $('#example').load(document.URL +  ' #example');
                         Swal.fire({
                             icon: 'success',
@@ -67,6 +76,7 @@
                     $.each(xhr.responseJSON.errors, function(key,value) {
                         $('#validation-errors').append('&emsp;<li>'+value+'</li>');
                     }); 
+                    $(":submit").removeAttr("disabled");
                 },
             });
         }

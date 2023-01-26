@@ -13,6 +13,9 @@
         </div>  
         <div id="whoops" class="alert alert-danger" style="display: none;">
             <b>Whoops! There is a problem in your input. Please recheck.</b> <br/>
+            @if ($message = Session::get('message'))
+                <strong>{{ $message }}</strong>
+            @endif
             <div id="validation-errors"></div>
         </div>
         <div class="mb-3" style="color: red">

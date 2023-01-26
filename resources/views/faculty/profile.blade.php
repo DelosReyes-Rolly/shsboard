@@ -123,6 +123,6 @@
 		</div>	
 		<hr style="border:1px solid black;"><hr>
 		</div>
-		<script src="{{ asset('assets/js/needs-validated.js') }}"></script>
+		<script src="{{ asset('assets/js/needs-validated2.js') }}"></script>
 	</form>
 </main>     

@@ -12,6 +12,7 @@
             <b>Whoops! There is a problem in your input</b> <br/>
             <div id="validation-errors"></div>
         </div>
+        <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <div class="mb-3" style="color: red">
             * required field
         </div>
@@ -57,9 +58,16 @@
     </div>
 </form>
 <script>
+    var $loading = $('#loadingDiv').hide();
         function formPost(){
+            $(document).ajaxStart(function () {
+                $loading.show();
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
             var form_data = $("form#createSubject").serialize();
-
+            $(":submit").attr("disabled", true);
             $.ajax({
                 type: "POST",
                 url: "{{ route('subject.store') }}",
@@ -72,6 +80,7 @@
                         $('body').css('padding-right', '');
                         $("#createModal").hide();
                         $("#createSubject")[0].reset();
+                        $(":submit").removeAttr("disabled");
                         Swal.fire({
                             icon: 'success',
                             title: 'Success.',
@@ -87,6 +96,7 @@
                     $.each(xhr.responseJSON.errors, function(key,value) {
                         $('#validation-errors').append('&emsp;<li>'+value+'</li>');
                     }); 
+                    $(":submit").removeAttr("disabled");
                 },
             });
         }
