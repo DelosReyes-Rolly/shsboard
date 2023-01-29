@@ -10,6 +10,9 @@
         @csrf
         <div id="whoops" class="alert alert-danger" style="display: none;">
             <b>Whoops! There is a problem in your input</b> <br/>
+            @if ($message = Session::get('message'))
+                <strong>{{ $message }}</strong>
+            @endif
             <div id="validation-errors"></div>
         </div>
         <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
@@ -150,6 +153,9 @@
                 },error: function (xhr) {
                     $('#validation-errors').html('');
                     document.getElementById('whoops').style.display = 'block';
+                    if(xhr.responseJSON.error != undefined){
+                        $('#validation-errors').append('&emsp;<li>'+xhr.responseJSON.error+'</li>');
+                    }
                     $.each(xhr.responseJSON.errors, function(key,value) {
                         $('#validation-errors').append('&emsp;<li>'+value+'</li>');
                     }); 

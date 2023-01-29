@@ -1027,7 +1027,7 @@ class AdminsController extends Controller
             return response()->json(array('success' => true));   
         }
         else{
-            return redirect()->back()->with('message', 'Teacher have a duplicate name!')->withInput();
+            return response()->json(['error' => 'Sorry. Teacher has a duplicate name.'], 422); 
         }
     }
 
@@ -1322,7 +1322,7 @@ class AdminsController extends Controller
             return response()->json(array('success' => true));  
         }
         else{
-            return redirect()->back()->with('message', 'Student have a duplicate name!')->withInput();
+            return response()->json(['error' => 'Sorry. Student have a duplicate name.'], 422); 
         }
     }  
 
@@ -1460,14 +1460,14 @@ class AdminsController extends Controller
         $facultysubject = SubjectTeachers::where('faculty_id', '=', $request->faculty_id)->where('subject_id', '=', $request->subject_id)
         ->where('schoolyear_id', '=', $schoolyear->id)->where('semester_id', '=', $request->semester_id)->first();
         if($facultysubject->count() == 0){
-            return redirect()->back()->with('message', 'Sorry! No class offering for this teacher this semester')->withInput();
+            return response()->json(['error' => 'Sorry! No class offering for this teacher this semester.'], 422); 
         }
         else{
             $studentredundant = StudentGrade::where('student_id', '=', $request->student_id)->where('subject', '=', $request->subject_id)->first();
             dd($studentredundant);
             $average = $studentredundant->midterm + $studentredundant->finals;
             if($studentredundant->count() != 0 && $average>74){
-                return redirect()->back()->with('message', 'The student already passed the subject!')->withInput();
+                return response()->json(['error' => 'Sorry! The student already passed the subject.'], 422); 
             }
             else{
                 $studentgrade = new StudentGrade();
@@ -1840,8 +1840,7 @@ class AdminsController extends Controller
                     }
             
                     else{
-                        return response()->json(['error' => 'Duplicate yung subject lodi'], 422); 
-                        // return redirect()->back()->with('message', 'This is a duplicate. Kindly check again.')->withInput();
+                        return response()->json(['error' => 'This is a duplicate subject for this class.'], 422); 
                     }
             
                     // creating student grade
@@ -1890,15 +1889,15 @@ class AdminsController extends Controller
                     return response()->json(array('success' => true));  
                 }
                 else{
-                    return response()->json(['message' => 'Walang advisor, set ka muna'], 422); 
+                    return response()->json(['error' => 'Sorry. This class has no advisory teacher. Kindly set first at the Advisory page.'], 422); 
                 }
             }
             else{
-                return response()->json(['error' => 'Lampas class load kana idolo'], 422); 
+                return response()->json(['error' => 'Sorry. This teacher has maximum class load.'], 422); 
             }
         }
         else{
-            return response()->json(['error' => 'Lampas subject load kana idolo'], 422); 
+            return response()->json(['error' => 'Sorry. This teacher has maximum subject load.'], 422); 
         }
     } 
 
@@ -1926,7 +1925,7 @@ class AdminsController extends Controller
     }
 
     public function updatesubjectteacher(Request $request, SubjectTeachers $subjectteacher){
-        $validated = $request->validate([
+        $request->validate([
             'faculty_id' => ['required'],
             // 'gradelevel_id' => ['required'],
             // 'semester_id' => ['required'],
