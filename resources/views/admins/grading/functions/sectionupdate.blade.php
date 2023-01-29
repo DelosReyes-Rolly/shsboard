@@ -13,7 +13,7 @@
             <b>Whoops! There is a problem in your input</b> <br/>
             <div id="validation-errors"></div>
         </div>
-        <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
+        <center><div id="loadingDiv{{$section->id}}" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <input type="hidden" id="id" name="id" value="{{$section->id}}"/>               <!-- lagay ka ng hidden. Yung id ng row o ng ieedit -->
         <div class="col-md-12">                                                         <!-- id ng input ay "section" -->
             <input type="text" id="section" name="section" class="form-control @error('section') is-invalid @enderror" value="{{$section->section}}" style="font-size: 20px;" onkeydown="return alphaOnly(event);" maxlength="1" minlength="1"  required>
@@ -28,7 +28,9 @@
     </div>
 </form>
 <script>
-        var $loading = $('#loadingDiv').hide();
+        var id = $('#id').val();
+        console.log(id);
+        var $loading = $('#loadingDiv' + id).hide();
         function formPost(){
             $(document).ajaxStart(function () {
                 $loading.show();
@@ -60,9 +62,6 @@
                 },error: function (xhr) {
                     $('#validation-errors').html('');
                     document.getElementById('whoops').style.display = 'block';
-                    if(xhr.responseJSON.error != undefined){
-                        $('#validation-errors').append('&emsp;<li>'+xhr.responseJSON.error+'</li>');
-                    }
                     $.each(xhr.responseJSON.errors, function(key,value) {
                         $('#validation-errors').append('&emsp;<li>'+value+'</li>');
                     });

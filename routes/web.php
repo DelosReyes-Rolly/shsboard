@@ -698,6 +698,8 @@ Route::group(['middleware' => 'auth:admins'], function () {
             Route::get('/viewrequestadmin/{id}', 'viewrequest');
             Route::get('/showrequestadmin/{id}', 'showrequest');
             // Route::get('/deletedocument/{id}',  'deletedocument')->name('admin.deletedocument');
+            Route::get('/documentadd', 'adddocument')->name('document.add');
+            Route::get('/purposeadd', 'addpurpose')->name('purpose.add');
 
             Route::get('/tableofcompleted11', 'tableofCompleted11');
             Route::get('/tableofrejected11', 'tableofRejected11');

@@ -571,6 +571,10 @@ class AdminsController extends Controller
         return view('admins.documentrequests.documentrequest', compact('requests', 'documents', 'requests11', 'requests12', 'alumni', 'documentpurposes'));
     }
 
+    public function adddocument(){
+        return view('admins.documentrequests.documentadd');
+    }
+
     public function storedocument(Request $request){
         // Validate the inputs
         $request->validate([
@@ -579,7 +583,7 @@ class AdminsController extends Controller
         $document = new Documents();
         $document->name = $request->get('name');
         $document->save();
-        return redirect('/documentrequest')->with('success', 'New document was added successfully');
+        return response()->json(array('success' => true));
     }
 
 
@@ -629,7 +633,7 @@ class AdminsController extends Controller
     }
 
     public function updatedocument(Request $request){
-        $validated = $request->validate([
+        $request->validate([
             'name' => 'required|max:255',
         ]);
         $document = Documents::find($request->id);
@@ -664,6 +668,9 @@ class AdminsController extends Controller
     //     $data = Documents::where('deleted', '=', null)->findOrFail($id);
     //     return view('admins.documentrequests.documentdelete', ['document' => $data]);
     //  }
+    public function addpurpose(){
+        return view('admins.documentrequests.purposeadd');
+    }
 
      public function viewrequest($id){
         $data = DocumentRequests::where('deleted', '=', null)->findOrFail($id);
@@ -680,7 +687,7 @@ class AdminsController extends Controller
             'status' => ['required'],
         ]);
        $docreq->update($validated);
-       return redirect('/documentrequest')->with('success', 'The request has been updated.');
+       return response()->json($docreq);
    }
 
      public function downloadpdfdoc(Request $request) {
@@ -709,6 +716,7 @@ class AdminsController extends Controller
         $document->purpose = $request->get('purpose');
         $document->proof_needed = $request->get('proof_needed');
         $document->save();
+        return response()->json(array('success' => true));
     }
 
       public function viewpurpose($id){

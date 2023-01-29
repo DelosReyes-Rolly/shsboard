@@ -136,43 +136,17 @@
 												</form>
 											</div>
 											<br><br>
-											<div style="box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
-												<div class="card-header" style="font-size: 20px;">Add Document</div><br>
-													@if ($message = Session::get('message'))
-														<div class="alert alert-success alert-block">
-															<button type="button" class="close" data-dismiss="alert">×</button>
-															<strong>{{ $message }}</strong>
-														</div>
-													@endif
-	
-													<form method="POST" action="{{ route('document.store') }}">
-														@csrf
-														<div class="row" style="padding: 20px;">
-															<div class="col-lg-4 col-md-4 col-sm-10">
-																<label class="large" for="name" style="font-size: 20px;">Document Name</label>
-																<input class="form-control @error('name') is-invalid @enderror" id="name" type="text" style="font-size: 16px;" placeholder="Document Name" name="name" value="{{ old('name') }}" required>
-															</div>
-															<div class="col-lg-4 col-md-4 col-sm-10"><br/>
-																<input type="submit" class="btn btn-primary" value="Submit">
-															</div>
-														</div><br>
-														<!-- Save changes button-->
-														
-													</form><br>
-									
-											</div>
-											<br><br>
 	                                        <!-- Table of Documents  -->
 	                                        <div class="card-header" style="font-size: 20px;">
 	                                        	Table of Available Documents
-	                                    	</div>
-
-											@if ($message = Session::get('document'))
-												<div class="alert alert-success alert-block">
-													<button type="button" class="close" data-dismiss="alert">×</button>
-													<strong>{{ $message }}</strong>
+												<a id="addDocument" href="{{route('document.add')}}" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#createModalDocument"><i class="fas fa-user-plus"></i> Add Document</a>
+												<div id="createModalDocument" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+													<div class="modal-dialog modal-lg" role="document">
+														<div class="modal-content border-start-lg border-start-yellow">
+														</div>
+													</div>
 												</div>
-											@endif
+											</div>
                                             @if($documents == NULL)
                                                 <br><br>
                                                 <div class="alert alert-danger"><em>No records found.</em></div>
@@ -219,48 +193,17 @@
                                                 </div>    
                                             @endif 
 											<br><br>
-
-											<div style="box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
-												<div class="card-header" style="font-size: 20px;">Add Purpose</div><br>
-													@if ($message = Session::get('message'))
-														<div class="alert alert-success alert-block">
-															<button type="button" class="close" data-dismiss="alert">×</button>
-															<strong>{{ $message }}</strong>
-														</div>
-													@endif
-													<form method="POST" action="{{ route('purpose.store') }}">
-														@csrf
-														<div class="row" style="padding: 20px;">
-															<div class="col-lg-4 col-md-4 col-sm-10">
-																<label class="large" for="purpose" style="font-size: 20px;">Purpose</label>
-																<input class="form-control @error('purpose') is-invalid @enderror" id="purpose" type="text" style="font-size: 16px;" placeholder="New purpose" name="purpose" value="{{ old('purpose') }}" required>
-															</div>
-															<div class="col-lg-4 col-md-4 col-sm-10">
-																<label class="large" for="proof_needed" style="font-size: 20px;">Proof Needed</label>
-																<input class="form-control @error('proof_needed') is-invalid @enderror" id="proof_needed" type="text" style="font-size: 16px;" placeholder="Proof Needed" name="proof_needed" value="{{ old('proof_needed') }}" required>
-															</div>
-															<div class="col-lg-4 col-md-4 col-sm-10"><br/>
-																<input type="submit" class="btn btn-primary" value="Submit">
-															</div>
-														</div><br>
-														<!-- Save changes button-->
-														
-													</form><br>
-												
-											</div>
-
-											<br><br>
 											<!-- Table of Purposes -->
 	                                        <div class="card-header" style="font-size: 20px;">
 	                                        	Table of Purposes
-	                                    	</div>
-
-											@if ($message = Session::get('document'))
-												<div class="alert alert-success alert-block">
-													<button type="button" class="close" data-dismiss="alert">×</button>
-													<strong>{{ $message }}</strong>
+												<a id="addPurpose" href="{{route('purpose.add')}}" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#createModalPurpose"><i class="fas fa-user-plus"></i> Add Purpose</a>
+												<div id="createModalPurpose" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+													<div class="modal-dialog modal-lg" role="document">
+														<div class="modal-content border-start-lg border-start-yellow">
+														</div>
+													</div>
 												</div>
-											@endif
+	                                    	</div>
                                             @if($documentpurposes == NULL)
                                                 <br><br>
                                                 <div class="alert alert-danger"><em>No records found.</em></div>
