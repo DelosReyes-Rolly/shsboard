@@ -161,32 +161,32 @@ class FacultyController extends Controller
         public function storeannouncement(Request $request){
             // Validate the inputs
             $request->validate([
-                'what' => 'required|max:255',
-                'whn' => 'required',
+                'inputwhat' => 'required|max:255',
+                'inputwhn' => 'required',
                 'whn_time' => 'required',
                 'gradelevel_id' => 'required',
                 'course_id' => 'required',
                 'section_id' => 'required',
                 'subject_id' => 'required',
-                'content' => 'required',
-                'expired_at' => 'required',
+                'editors' => 'required',
+                'inputexpired_at' => 'required',
             ]);
             $announcement = new ActivityStreams();
-            $announcement->what = $request->get('what');
-            $announcement->whn = $request->get('whn');
+            $announcement->what = $request->get('inputwhat');
+            $announcement->whn = $request->get('inputwhn');
             $announcement->whn_time = $request->get('whn_time');
-            $announcement->content = $request->get('content');
+            $announcement->content = $request->get('editors');
             $announcement->gradelevel_id = $request->get('gradelevel_id');
             $announcement->course_id = $request->get('course_id');
             $announcement->section_id = $request->get('section_id');
             $announcement->subject_id = $request->get('subject_id');
-            $announcement->expired_at = $request->get('expired_at');
+            $announcement->expired_at = $request->get('inputexpired_at');
             $announcement->status = 1;
             $announcement->faculty_id =  Auth::user()->id;
             $announcement->save();
             ActivityStreams::where('deleted', '=', NULL)->where('expired_at', '<',  now())->update(['status' => '2']);
             ActivityStreams::where('deleted', '=', NULL)->where('expired_at', '>',  now())->update(['status' => '1']);
-            return redirect('/createannouncement')->with('success', 'New activity was added successfully!');
+            return response()->json(array('success' => true)); 
         }
 
 

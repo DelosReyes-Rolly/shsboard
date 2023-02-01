@@ -28,7 +28,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 use Excel;
-use Subjectteacher;
 
 class AdminsController extends Controller
 {
@@ -283,7 +282,7 @@ class AdminsController extends Controller
             'sender' => 'required|max:255',
             'recipient' => 'required|max:255',
             'location' => 'required|max:255',
-            'content' => 'required',
+            'contents' => 'required',
             'post_expiration' => 'required',
             'image' => 'mimes:png,jpg,jpeg|max:2048',
         ]);
@@ -294,7 +293,7 @@ class AdminsController extends Controller
         $announcement->whn_time = $request->get('time');
         $announcement->whr = $request->get('location');
         $announcement->sender = $request->get('sender');
-        $announcement->content = $request->get('content');
+        $announcement->content = $request->get('contents');
         $announcement->expired_at = $request->get('post_expiration');  
         $announcement->privacy = 2;
         $announcement->approval = 2;
@@ -308,7 +307,7 @@ class AdminsController extends Controller
         }
         $announcement->save();
         Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<',  now())->update(['status' => '2']);
-        return redirect()->back()->with('success', 'New private announcement was added successfully');
+        return response()->json(array('success' => true)); 
     }
 
     public function approve($id){

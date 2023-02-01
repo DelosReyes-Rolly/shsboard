@@ -80,7 +80,7 @@
                 <!-- form -->
                 
                 <hr style="border: 1px solid grey;">
-                <form method="POST" action="{{ route('announcement.store') }}" class="needs-validation" novalidate>
+                <form method="POST" id="createFacultyannouncement" class="needs-validation" novalidate>
                     @csrf
                     <div class="container-xl px-4 mt-4">
                         <!-- page navigation-->
@@ -96,23 +96,11 @@
                                             <div class="mb-3" style="color: red">
                                                 * required field
                                             </div>
-                                            @if ($message = Session::get('message'))
-                                                <div class="alert alert-success alert-block">
-                                                    <button type="button" class="close" data-dismiss="alert">×</button>
-                                                    <strong>{{ $message }}</strong>
-                                                </div>
-                                            @endif
-                                                        
-                                            @if (count($errors) > 0)
-                                                <div class="alert alert-danger">
-                                                    <strong>Whoops!</strong> There were some problems with your input.
-                                                    <ul>
-                                                        @foreach ($errors->all() as $error)
-                                                            <li>{{ $error }}</li>
-                                                        @endforeach
-                                                    </ul>
-                                                </div>
-                                            @endif
+                                            <div id="whoops" class="alert alert-danger" style="display: none;">
+                                                <b>Whoops! There is a problem in your input</b> <br/>
+                                                <div id="validation-errors"></div>
+                                            </div>
+                                            <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
                                             </div>
                                             <!-- Form Row-->
                                             <div class="row gx-3 mb-3 requestdocument">
@@ -120,7 +108,7 @@
                                                 <br>
                                                 <div class="col-md-6">
                                                     <label class="large mb-1" for="inputwhat" style="font-size: 20px;"><span style="color: red">*</span> Title</label>
-                                                    <input class="form-control @error('what') is-invalid @enderror" id="inputwhat" type="text" style="font-size: 16px;" placeholder="Enter the title" name="what"  value="{{ old('what') }}" required>
+                                                    <input class="form-control @error('inputwhat') is-invalid @enderror" id="inputwhat" type="text" style="font-size: 16px;" placeholder="Enter the title" name="inputwhat"  value="{{ old('inputwhat') }}" required>
                                                     <div class="invalid-feedback">
                                                         Please input title.
                                                     </div>
@@ -128,7 +116,7 @@
                                                 <!-- Form Group whr-->
                                                 <div class="col-md-3">
                                                     <label class="large mb-1" for="inputwhn" style="font-size: 20px;"><span style="color: red">*</span> Date</label>
-                                                    <input type="date" class="form-control @error('whn') is-invalid @enderror" id="inputwhn" style="font-size: 16px;" placeholder="Enter the date" name="whn"  value="{{ old('whn') }}" required>
+                                                    <input type="date" class="form-control @error('inputwhn') is-invalid @enderror" id="inputinputwhn" style="font-size: 16px;" placeholder="Enter the date" name="inputwhn"  value="{{ old('inputwhn') }}" required>
                                                     <div class="invalid-feedback">
                                                         Please input date.
                                                     </div>
@@ -202,7 +190,7 @@
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <label class="large mb-1" for="inputexpired_at" style="font-size: 20px;"><span style="color: red">*</span> Post Expiration</label>
-                                                    <input type="date" class="form-control @error('expired_at') is-invalid @enderror" id="inputexpired_at" style="font-size: 16px;" placeholder="Enter the date" name="expired_at"  value="{{ old('expired_at') }}" required>
+                                                    <input type="date" class="form-control @error('inputexpired_at') is-invalid @enderror" id="inputexpired_at" style="font-size: 16px;" placeholder="Enter the date" name="inputexpired_at"  value="{{ old('inputexpired_at') }}" required>
                                                     <div class="invalid-feedback">
                                                         Please input expiry date.
                                                     </div>
@@ -211,10 +199,10 @@
                                                 <!-- Form Group (content)-->
                                                 <div class="mb-3 requestdocument">
                                                     <br>
-                                                    <label class="large mb-1" for="inputcontent" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
-                                                    <textarea class="form-control @error('content') is-invalid @enderror" id="editor" type="text" style="font-size: 16px;" placeholder="Enter your purpose" name="content" required>{{ old('content') }}</textarea>
+                                                    <label class="large mb-1" for="editors" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
+                                                    <textarea class="form-control @error('editors') is-invalid @enderror" id="editors" type="text" style="font-size: 16px;" placeholder="Enter your purpose" name="editors" required>{{ old('editors') }}</textarea>
                                                     <div class="invalid-feedback">
-                                                        Please select content.
+                                                        Please input content.
                                                     </div>
                                                     <font face = "Verdana" size = "6"><input type="submit" class="btn btn-primary" value="Submit" style=" margin-right: 80px; font-size: 16px;"></font>
                                                 </div><br/>
@@ -316,7 +304,51 @@
     </section> 
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script>
-        CKEDITOR.replace( 'editor' );
+        CKEDITOR.replace( 'editors' );
+    </script>
+    <script src="{{ asset('assets/js/needs-validated.js') }}"></script>
+    <script>
+        var $loading = $('#loadingDiv').hide();
+        function formPost(){
+            $(document).ajaxStart(function () {
+                $loading.show();
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
+            $('#whoops').hide();
+            var form_data = $("form#createFacultyannouncement").serialize();
+            $(":submit").attr("disabled", true);
+            $.ajax({
+                type: "POST",
+                url: "{{ route('announcement.store') }}",
+                data:form_data,
+                success: function(response) {
+                    if (response) {
+                        $("#createFacultyannouncement")[0].reset();
+                        $(":submit").removeAttr("disabled");
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success.',
+                            text: 'Activity has been added successfully',
+                        }).then(function() {
+                            location.reload(true);
+                        })
+                        
+                    }
+                },error: function (xhr) {
+                    $('#validation-errors').html('');
+                    document.getElementById('whoops').style.display = 'block';
+                    if(xhr.responseJSON.error != undefined){
+                        $('#validation-errors').append('&emsp;<li>'+xhr.responseJSON.error+'</li>');
+                    }
+                    $.each(xhr.responseJSON.errors, function(key,value) {
+                        $('#validation-errors').append('&emsp;<li>'+value+'</li>');
+                    }); 
+                    $(":submit").removeAttr("disabled");
+                },
+            });
+        }
     </script>
     <script type="text/javascript">
         $(document).ready(function(){
@@ -387,5 +419,4 @@
 
             }
         </script>
-<script src="{{ asset('assets/js/needs-validated.js') }}"></script>
 </main>

@@ -398,7 +398,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 |
                 */
                 Route::post('/add/announcements', 'storeannouncement');
-                Route::post('/add/privateannouncements', 'storeprivateannouncement');
+                Route::post('/add/privateannouncements', 'storeprivateannouncement')->name('add.privateannouncmeent');
                 Route::post('/downloadPDF', 'downloadpdf')->name('admin.downloadpdf');
 
                 /*
