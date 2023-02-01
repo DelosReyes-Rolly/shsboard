@@ -1,7 +1,17 @@
 @include('partials.studentheader')
 <main>
 <!-- view announcement -->
-<div style="font-size: 20px;"><a href="javascript:history.back()"> Announcements</a>&emsp;<i class="fas fa-angle-right"></i>&emsp; view announcement</div><br/>
+    <div style="font-size: 20px;">  
+		<nav  aria-label = "breadcrumb">
+            <!--Add the "breadcrumb" class to ul element that represents the breadcrumb-->
+            <ul class = "breadcrumb">
+               <!--Add the ".breadcrumb-item" class to each li element within the breadcrumb-->
+               <li class = "breadcrumb-item"><a class="bca" href = "javascript:history.back()">Announcements</a></li>
+               <!--Add the "active" class to li element to represent the current page-->
+               <li class = "breadcrumb-item active" aria-current = "page">View announcement</li>
+            </ul>
+         </nav>
+	</div>
     <div class="row">
         <div class="col-lg-8 col-md-12 col-sm-12">
             <div style="color: green; font-size: 40px; font-weight:bold;">Announcement</div>
