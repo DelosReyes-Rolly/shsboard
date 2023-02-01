@@ -188,31 +188,29 @@
                                                         Please select grade level.
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-3">
+                                                <div class="col-lg-2">
                                                     <label class="large mb-1" for="inputexpired_at" style="font-size: 20px;"><span style="color: red">*</span> Post Expiration</label>
                                                     <input type="date" class="form-control @error('inputexpired_at') is-invalid @enderror" id="inputexpired_at" style="font-size: 16px;" placeholder="Enter the date" name="inputexpired_at"  value="{{ old('inputexpired_at') }}" required>
                                                     <div class="invalid-feedback">
                                                         Please input expiry date.
                                                     </div>
                                                 </div>
-                                            </div>
-                                                <!-- Form Group (content)-->
-                                                <div class="mb-3 requestdocument">
-                                                    <br>
-                                                    <label class="large mb-1" for="editors" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
-                                                    <textarea class="form-control @error('editors') is-invalid @enderror" id="editors" type="text" style="font-size: 16px;" placeholder="Enter your purpose" name="editors" required>{{ old('editors') }}</textarea>
+                                                <div class="col-lg-12">
+                                                    <br/><label class="large mb-1" for="editors" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
+                                                    <textarea class="form-control @error('editors') is-invalid @enderror" rows="10" cols="80" id="editors" type="text" style="font-size: 16px;" placeholder="Enter your content" name="editors" required>{{ old('editors') }}</textarea>
                                                     <div class="invalid-feedback">
                                                         Please input content.
                                                     </div>
-                                                    <font face = "Verdana" size = "6"><input type="submit" class="btn btn-primary" value="Submit" style=" margin-right: 80px; font-size: 16px;"></font>
-                                                </div><br/>
+                                                </div>
+                                                <br/><font face = "Verdana" size = "8"><input type="submit" class="btn btn-primary" value="Submit" style=" margin-right: 80px; font-size: 16px;"></font>
+                                            </div>
+                                                <br/>
                                                 <!-- Save changes button-->
                                                 
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
+                            </div>
                         </div>
                     </form>
                     <hr style="border: 1px solid grey;">
@@ -302,10 +300,10 @@
             </div>
         </div>
     </section> 
-    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <!-- <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script>
         CKEDITOR.replace( 'editors' );
-    </script>
+    </script> -->
     <script src="{{ asset('assets/js/needs-validated.js') }}"></script>
     <script>
         var $loading = $('#loadingDiv').hide();

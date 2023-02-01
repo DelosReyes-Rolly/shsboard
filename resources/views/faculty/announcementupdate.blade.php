@@ -40,7 +40,7 @@
                 <select id="gradelevel_id" name="gradelevel_id" value="{{ old('gradelevel_id') }}" style="font-size: 16px; padding: 12px; display: block; width: 100%;" required>
                     <option value="" disabled selected hidden>Choose Gradelevel</option>
                     @foreach ($gradelevels as $gradelevel)
-                    <option value="{{ $gradelevel->gradelevel->id }}" {{($gradelevel->gradelevel->id==$gradelevel->id)? 'selected':'' }}>{{ $gradelevel->gradelevel->gradelevel }}</option>
+                    <option value="{{ $gradelevel->gradelevel->id }}" {{($announcement->gradelevel->id==$gradelevel->id)? 'selected':'' }}>{{ $gradelevel->gradelevel->gradelevel }}</option>
                     @endforeach
                 </select>
                 <div class="invalid-feedback">
@@ -50,9 +50,9 @@
             <div class="col-md-12">
                 <label for="course_id" style="font-size: 20px;"><span style="color: red">*</span> Strand</label>
                 <select id="course_id" name="course_id" value="{{ old('course_id') }}" style="font-size: 16px; padding: 12px; display: block; width: 100%;" required>
-                    <option value="" disabled selected hidden>Choose Course</option>
+                    <option value="" disabled selected hidden>Choose Strand</option>
                     @foreach ($courses as $course)
-                    <option value="{{ $course->course->id }}"{{($course->course->id==$course->id)? 'selected':'' }}>{{ $course->course->courseName}}</option>
+                    <option value="{{ $course->id }}" {{($announcement->course->id==$course->id)? 'selected':'' }}>{{ $course->course->courseName}}</option>
                     @endforeach
                 </select>
                 <div class="invalid-feedback">
@@ -64,7 +64,7 @@
                 <select id="section_id" name="section_id" value="{{ old('section_id') }}" style="font-size: 16px; padding: 12px; display: block; width: 100%;" required>
                     <option value="" disabled selected hidden>Choose Section</option>
                     @foreach ($sections as $section)
-                    <option value="{{ $section->section->id }}"{{($section->section->id==$section->id)? 'selected':'' }}>{{ $section->section->section}}</option>
+                    <option value="{{ $section->section->id }}"{{($announcement->section->id==$section->id)? 'selected':'' }}>{{ $section->section->section}}</option>
                     @endforeach
                 </select>
                 <div class="invalid-feedback">
@@ -76,7 +76,7 @@
                 <select id="subject_id" name="subject_id" value="{{ old('subject_id') }}" style="font-size: 16px; padding: 12px; display: block; width: 100%;" required>
                     <option value="" disabled selected hidden>Choose Subject</option>
                     @foreach ($subjects as $subject)
-                    <option value="{{ $subject->subject->id }}"{{($subject->subject->id==$subject->id)? 'selected':'' }}>{{ $subject->subject->subjectname}}</option>
+                    <option value="{{ $subject->id }}"{{($announcement->subject->id==$subject->id)? 'selected':'' }}>{{ $subject->subject->subjectname}}</option>
                     @endforeach
                 </select>
                 <div class="invalid-feedback">
@@ -85,14 +85,14 @@
             </div>
             <div class="col-md-12">
                 <label class="slarge mb-1" for="inputexpired_at" style="font-size: 20px;"><span style="color: red">*</span> Expired at</label>
-                <input type="date" class="form-control @error('expired_at') is-invalid @enderror" id="inputexpired_at" placeholder="Enter the date" name="expired_at"  value="{{$announcement->expired_at}}" style="font-size: 20px; padding: 20px;" required>
+                <input type="date" class="form-control @error('expired_at') is-invalid @enderror" id="inputexpired_at" placeholder="Enter the date" name="expired_at"  value="{{$announcement->expired_at}}" style="font-size: 16px; padding: 20px;" required>
                 <div class="invalid-feedback">
                     Please input expiry date.
                 </div>
             </div>
             <div class="col-md-12">
                 <label class="large mb-1" for="editor" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
-                <textarea class="form-control @error('content') is-invalid @enderror" id="editor2" type="text" placeholder="Enter the information" name="content"  rows="10" cols="80" required>{{$announcement->content}}</textarea>
+                <textarea class="form-control @error('content') is-invalid @enderror" id="editor2" type="text" placeholder="Enter the information" name="content" style="font-size: 16px;" rows="10" cols="80" required>{{$announcement->content}}</textarea>
                 <div class="invalid-feedback">
                     Please input content.
                 </div>
@@ -104,10 +104,10 @@
         <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary btn-md" value="Submit" style="font-size: 16px;"></font>
     </div>
 </form>
-<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<!-- <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script>
     CKEDITOR.replace('editor2');
-</script>
+</script> -->
 
 <script>
     function formPost(){

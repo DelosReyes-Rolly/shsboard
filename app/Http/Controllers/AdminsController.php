@@ -1850,7 +1850,7 @@ class AdminsController extends Controller
 
                         //add class load
                         $countuniqueclass = SubjectTeachers::where('faculty_id', '=', $request->faculty_id)->where('gradelevel_id', '=', $request->gradelevel_id)->where('semester_id', '=', $request->semester_id)->where('course_id', '=', $request->course_id)->where('section_id', '=', $request->section_id)->where('schoolyear_id', '=', $schoolyear->id)->get();
-                        if($countuniqueclass == 1){
+                        if($countuniqueclass->count() == 1){
                             Faculties::where('id', '=', $request->faculty_id)->increment('class_load');
                         }
                         
