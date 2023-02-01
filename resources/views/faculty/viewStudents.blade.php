@@ -8,7 +8,17 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script> -->
-    <div style="font-size: 20px;"><a href="javascript:history.back()"> Advisory</a>&emsp;<i class="fas fa-angle-right"></i>&emsp; students</div><br/>
+    <div style="font-size: 20px;">  
+		<nav  aria-label = "breadcrumb">
+            <!--Add the "breadcrumb" class to ul element that represents the breadcrumb-->
+            <ul class = "breadcrumb">
+               <!--Add the ".breadcrumb-item" class to each li element within the breadcrumb-->
+               <li class = "breadcrumb-item"><a class="bca" href = "javascript:history.back()">Advisory</a></li>
+               <!--Add the "active" class to li element to represent the current page-->
+               <li class = "breadcrumb-item active" aria-current = "page">Students</li>
+            </ul>
+         </nav>
+	</div>
     <div class="left-to-right"> 
         @if ($message = Session::get('message'))
             <div class="alert alert-success alert-block">

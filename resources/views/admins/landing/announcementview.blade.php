@@ -7,7 +7,17 @@
 
         
             <div class="container-xl px-4 mt-4">
-                <div style="font-size: 20px;"><a href="/createAnnoucement"> Announcements</a>&emsp;<i class="fas fa-angle-right"></i>&emsp; view announcement</div><br/>
+                <div style="font-size: 20px;">
+                    <nav  aria-label = "breadcrumb">
+                        <!--Add the "breadcrumb" class to ul element that represents the breadcrumb-->
+                        <ul class = "breadcrumb">
+                        <!--Add the ".breadcrumb-item" class to each li element within the breadcrumb-->
+                        <li class = "breadcrumb-item"><a class="bca" href = "/createAnnouncement">Announcements</a></li>
+                        <!--Add the "active" class to li element to represent the current page-->
+                        <li class = "breadcrumb-item active" aria-current = "page">View announcement</li>
+                        </ul>
+                    </nav>
+                </div>
                 <!-- page navigation-->
                 <div style="margin: 20px;">
                     <a class="btn btn-secondary btn-lg" href="/createAnnoucement" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to announcement</a>

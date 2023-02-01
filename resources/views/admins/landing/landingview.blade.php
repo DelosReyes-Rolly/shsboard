@@ -5,7 +5,17 @@
 <div class="left-to-right">
         <div class="left-to-right">
             <div class="container-xl px-4 mt-4">
-                <div style="font-size: 20px;"><a href="/homepage"> Homepage</a>&emsp;<i class="fas fa-angle-right"></i>&emsp; view content</div><br/>
+                <div style="font-size: 20px;">
+                    <nav  aria-label = "breadcrumb">
+                        <!--Add the "breadcrumb" class to ul element that represents the breadcrumb-->
+                        <ul class = "breadcrumb">
+                        <!--Add the ".breadcrumb-item" class to each li element within the breadcrumb-->
+                        <li class = "breadcrumb-item"><a class="bca" href = "/homepage">Homepage</a></li>
+                        <!--Add the "active" class to li element to represent the current page-->
+                        <li class = "breadcrumb-item active" aria-current = "page">View Content</li>
+                        </ul>
+                    </nav>
+                </div>
                 <!-- page navigation-->
                 <div style="margin: 20px;">
                     <a class="btn btn-secondary btn-lg" href="/homepage" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to homepage</a>

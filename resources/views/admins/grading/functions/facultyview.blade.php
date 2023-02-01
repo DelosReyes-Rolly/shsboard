@@ -18,8 +18,18 @@
         } );
     </script>
     <div class="left-to-right">
+        <div style="font-size: 20px;">
+            <nav  aria-label = "breadcrumb">
+                <!--Add the "breadcrumb" class to ul element that represents the breadcrumb-->
+                <ul class = "breadcrumb">
+                <!--Add the ".breadcrumb-item" class to each li element within the breadcrumb-->
+                <li class = "breadcrumb-item"><a class="bca" href = "/gradingfaculty">Faculty</a></li>
+                <!--Add the "active" class to li element to represent the current page-->
+                <li class = "breadcrumb-item active" aria-current = "page">View teacher</li>
+                </ul>
+            </nav>
+        </div>
             <div class="container-xl px-4 mt-4 left-to-right">
-                <div style="font-size: 20px;"><a href="/gradingfaculty"> Faculty</a>&emsp;<i class="fas fa-angle-right"></i>&emsp; view teacher</div><br/>
                 <!-- page navigation-->
                 <div style="margin: 20px;">
                     <a class="btn btn-secondary btn-lg" href="/gradingfaculty" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to faculty list</a>

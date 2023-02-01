@@ -8,7 +8,18 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script> -->
-    <div style="font-size: 20px;"><a href="/advisoryfaculty"> Advisory</a>&emsp;<i class="fas fa-angle-right"></i>&emsp;<a href="javascript:history.back()"> students</a>&emsp;<i class="fas fa-angle-right"></i>&emsp;{{$student->last_name}}, {{$student->first_name}} {{$student->middle_name}}  {{$student->suffix}}</div><br/>
+    <div style="font-size: 20px;">  
+		<nav  aria-label = "breadcrumb">
+            <!--Add the "breadcrumb" class to ul element that represents the breadcrumb-->
+            <ul class = "breadcrumb">
+               <!--Add the ".breadcrumb-item" class to each li element within the breadcrumb-->
+               <li class = "breadcrumb-item"><a class="bca" href = "/advisoryfaculty">Advisory</a></li>
+               <li class = "breadcrumb-item"><a class="bca" href = "javascript:history.back()">Students</a></li>
+               <!--Add the "active" class to li element to represent the current page-->
+               <li class = "breadcrumb-item active" aria-current = "page">{{$student->last_name}}, {{$student->first_name}} {{$student->middle_name}}  {{$student->suffix}}</li>
+            </ul>
+         </nav>
+	</div>
 	<link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/datatables-jquery-1.12.1.css') }}">
 	<link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/datatables-rowreorder-1.2.8.css') }}">
 	<link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/datatables-responsive-2.3.0.css') }}">

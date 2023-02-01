@@ -8,7 +8,17 @@
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>            
     <script src="https://markcell.github.io/jquery-tabledit/assets/js/tabledit.min.js"></script> -->
-    <div style="font-size: 20px;"><a href="javascript:history.back()"> Subjects</a>&emsp;<i class="fas fa-angle-right"></i>&emsp; view students</div><br/>
+    <div style="font-size: 20px;">  
+		<nav  aria-label = "breadcrumb">
+            <!--Add the "breadcrumb" class to ul element that represents the breadcrumb-->
+            <ul class = "breadcrumb">
+               <!--Add the ".breadcrumb-item" class to each li element within the breadcrumb-->
+               <li class = "breadcrumb-item"><a class="bca" href = "javascript:history.back()">Subjects</a></li>
+               <!--Add the "active" class to li element to represent the current page-->
+               <li class = "breadcrumb-item active" aria-current = "page">View students</li>
+            </ul>
+         </nav>
+	</div>
     @if (count($errors) > 0)
         <div class="alert alert-danger">
             <strong>Whoops!</strong> There were some problems with your input.
