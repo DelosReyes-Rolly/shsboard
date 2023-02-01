@@ -69,6 +69,7 @@
                     $('#validation-errors').html('');
                     document.getElementById('whoops').style.display = 'block';
                     if(xhr.responseJSON.error != undefined){
+                        $("#validation-errors").html("");
                         $('#validation-errors').append('&emsp;<li>'+xhr.responseJSON.error+'</li>');
                     }
                     $.each(xhr.responseJSON.errors, function(key,value) {
