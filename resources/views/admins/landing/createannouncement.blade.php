@@ -297,10 +297,10 @@
                 </div>
             </div>
         </div>  
-        <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+        <!-- <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
         <script>
             CKEDITOR.replace( 'editor' );
-        </script>
+        </script> -->
     </div>
     <script type="text/javascript">
         $(document).ready(function(){

@@ -33,7 +33,7 @@
             </div>
             <div class="col-md-12"><br/>
                 <label style="font-size: 20px;"><span style="color: red">*</span> Strand Description</label>
-                <textarea id="description" name="description" type=text class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea style="font-size: 14px;" required>
+                <textarea id="description" name="description" type=text class="form-control @error('description') is-invalid @enderror" style="font-size: 14px;" rows="10" cols="60" required>{{ old('description') }}</textarea>
                 <div class="invalid-feedback">
                     Please input valid description.
                 </div>
@@ -60,10 +60,10 @@
         <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary btn-md" value="Submit"></font>
     </div>
 </form>
-<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<!-- <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script>
     CKEDITOR.replace( 'description' );
-</script>
+</script> -->
 <script>
         var $loading = $('#loadingDiv').hide();
         function formPost(){

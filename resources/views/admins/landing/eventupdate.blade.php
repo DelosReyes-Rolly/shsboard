@@ -83,10 +83,10 @@
         <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary btn-md" value="Submit"></font>
     </div>
 </form>
-<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<!-- <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script>
     CKEDITOR.replace('editor2');
-</script>
+</script> -->
 <script>
         var $loading = $('#loadingDiv').hide();
         function formPost(){

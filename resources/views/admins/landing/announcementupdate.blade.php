@@ -70,7 +70,7 @@
             </div>
             <div class="col-md-12"><br/>
                 <label class="large mb-1" for="editor" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
-                <textarea id="editor2" class="form-control @error('content') is-invalid @enderror" type="text" placeholder="Enter the information" name="content"  rows="10" cols="80" required>{{$announcement->content}}</textarea>
+                <textarea id="editor2" class="form-control @error('content') is-invalid @enderror" type="text" placeholder="Enter the information" name="content" rows="10" cols="80" required>{{$announcement->content}}</textarea>
                 <div class="invalid-feedback">
                     Please input content.
                 </div>
@@ -82,10 +82,10 @@
         <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary btn-md" value="Submit"></font>
     </div>
 </form>
-<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<!-- <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script>
         CKEDITOR.replace('editor2');
-    </script>
+    </script> -->
 <script>
     var $loading = $('#loadingDiv').hide();
         function formPost(){

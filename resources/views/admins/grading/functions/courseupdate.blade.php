@@ -35,7 +35,7 @@
             </div>
             <div class="col-md-12"><br/>
                 <label style="font-size: 20px;"><span style="color: red">*</span> Strand Description</label>
-                <textarea id="description" name="description" type=text class="form-control @error('description') is-invalid @enderror">{!!$course->description!!}</textarea style="font-size: 14px;" required>
+                <textarea id="description" name="description" type=text class="form-control @error('description') is-invalid @enderror" rows="10" cols="60" style="font-size: 14px;" required>{!!$course->description!!}</textarea>
                 <div class="invalid-feedback">
                     Please input valid description.
                 </div>

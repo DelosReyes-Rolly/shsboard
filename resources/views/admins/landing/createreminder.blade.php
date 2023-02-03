@@ -202,10 +202,10 @@
 
 
 
-        <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+        <!-- <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
         <script>
             CKEDITOR.replace( 'editor' );
-        </script>
+        </script> -->
 
      <script type="text/javascript">
     $(document).ready(function(){

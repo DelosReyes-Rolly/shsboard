@@ -64,10 +64,10 @@
                     
                 </div>
             </form>
-        <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+        <!-- <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
         <script>
             CKEDITOR.replace( 'editor' );
-        </script>
+        </script> -->
         @if ($message = Session::get('approval'))
             <div class="alert alert-success alert-block">
                 <button type="button" class="close" data-dismiss="alert">×</button>
