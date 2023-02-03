@@ -2,8 +2,8 @@
 @include('partials.adminSecondHeader')
 <script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
 <main>
-<div class="left-to-right">
-        <div class="left-to-right">
+<div class="">
+        <div class="">
             <div class="container-xl px-4 mt-4">
                 <div style="font-size: 20px;">
                     <nav  aria-label = "breadcrumb">

@@ -29,7 +29,7 @@
         } );
     </script>
 <!-- reports -->
-<div class="left-to-right">
+<div class="">
         @if ($message = Session::get('message'))    
             <div class="alert alert-success alert-block">
                 <button type="button" class="close" data-dismiss="alert">×</button>

@@ -34,7 +34,7 @@
         } );
    
     </script>
-    <div class="left-to-right">
+    <div class="">
         @if (session('alert'))
             <br/><br/>
             <div class="alert alert-success">

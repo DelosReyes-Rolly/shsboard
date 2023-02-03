@@ -11,7 +11,7 @@
 			<div style="margin-top: 40px; margin-bottom: 200px; padding: 40px 40px 40px 40px" class="course-box">
 				@foreach ($landings as $landing)
 					@if($landing -> title == "The DEPED VISION")
-						<div class="left-to-right">
+						<div class="">
 							<div class="faculty-title">{{$landing -> title}}<br/><br/></div>
 							{!!$landing -> content!!}<br/><br/><br/><br/>
 						</div>
@@ -21,7 +21,7 @@
 							{!!$landing -> content!!}<br/><br/><br/><br/>
 						</div>
 					@elseif($landing -> title == "CORE VALUES")
-						<div class="left-to-right">
+						<div class="">
 							<div class="faculty-title">{{$landing -> title}}<br/><br/></div>
 							{!!$landing -> content!!}<br/><br/><br/><br/>
 						</div>	

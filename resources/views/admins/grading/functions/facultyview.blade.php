@@ -17,7 +17,7 @@
             new $.fn.dataTable.FixedHeader( table );
         } );
     </script>
-    <div class="left-to-right">
+    <div class="">
         <div style="font-size: 20px;">
             <nav  aria-label = "breadcrumb">
                 <!--Add the "breadcrumb" class to ul element that represents the breadcrumb-->

@@ -2,7 +2,7 @@
 <main>
 <section>
         <div> 
-        	<div class="left-to-right">
+        	<div class="">
                 <hr style="border: 1px solid grey;">
                 @if (count($errors) > 0)
                     <div class="alert alert-danger">

@@ -3,7 +3,7 @@
 <main>
 <script src="{{ asset('assets/js/needs-validated.js') }}"></script>
         <!-- form -->
-    <div class="left-to-right">
+    <div class="">
         <form method="POST" id="createPrivateannouncement" class="needs-validation" novalidate>
             @csrf
             <div class="container-xl px-4 mt-4">

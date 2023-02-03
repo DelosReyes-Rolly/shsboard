@@ -28,7 +28,7 @@
         } );
     </script>
 <!-- reports -->
-<div class="left-to-right">
+<div class="">
         <div style="margin: 0px;">
             <a class="btn btn-secondary btn-lg" href="/gradingstudents" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to student list</a>
         </div>

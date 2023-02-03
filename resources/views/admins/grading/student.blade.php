@@ -28,7 +28,7 @@
         } );
     </script>
 <!-- reports -->
-<div class="left-to-right">
+<div class="">
         <div class="container-xl px-4 mt-4">
             <!-- page navigation-->
             <h3 style="font-size: 28px;"><b>Print Student Report</b> </h3>

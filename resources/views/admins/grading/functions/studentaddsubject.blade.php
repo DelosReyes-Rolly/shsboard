@@ -1,7 +1,7 @@
 @include('partials.adminheader')
 <main>
 <script src="{{ asset('assets/js/needs-validated.js') }}"></script> 
-<div class="left-to-right">
+<div class="">
 
         <!-- form -->
                     

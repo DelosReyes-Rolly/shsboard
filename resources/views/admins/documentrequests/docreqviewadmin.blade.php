@@ -2,7 +2,7 @@
 <main>
 <section>
         <div>
-        	<div class="left-to-right">
+        	<div class="">
                 <h3 style="font-size: 28px; font-weight: 800;">Requested Document</h3>
                 <hr style="border: 1px solid grey;">
                 

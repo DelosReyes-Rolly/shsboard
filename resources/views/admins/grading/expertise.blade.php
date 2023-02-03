@@ -27,7 +27,7 @@
             new $.fn.dataTable.FixedHeader( table );
         } );
     </script>
-<div class="left-to-right">
+<div class="">
         
         <h3 style="font-size: 28px; font-weight: 800;">Table of Faculty Expertise </h3>
         <hr class="mt-0 mb-4">

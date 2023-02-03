@@ -2,7 +2,7 @@
 @include('partials.adminheader')
 @include('partials.adminSecondHeader')
     <div class="col-xl-8">
-        <div class="left-to-right">
+        <div class="">
             <h3 style="font-size: 28px; font-weight: 800;">Delete Strand </h3>  
             <hr class="mt-0 mb-4">
             <div class="card mb-4">

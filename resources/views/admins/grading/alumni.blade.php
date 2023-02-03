@@ -28,7 +28,7 @@
         } );
     </script>
 <!-- reports -->
-<div class="left-to-right">
+<div class="">
         <div class="container-xl px-4 mt-4">
            
         <div style="margin: 0px;">
