@@ -6,13 +6,14 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" id="activityStreamupdate" class="needs-validation" novalidate>
+<form method="POST" id="activityStreamupdate{{$announcement->id}}" class="needs-validation" novalidate>
     <div class="modal-body">
         @csrf
         @method('put')
         <div class="mb-3" style="color: red">
             * required field
         </div>
+        <input type="hidden" id="id" name="id" value="{{$announcement->id}}"/>            
         <div class="row">
             <div class="col-md-12">
                 <label class="large mb-1" for="inputwhat" style="font-size: 20px;"><span style="color: red">*</span> What</label>
@@ -112,7 +113,7 @@
 <script>
     function formPost(){
             var form_data = $("form#activityStreamupdate").serialize();
-
+            $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",                                            // PUT pang update
                 url: '{{url("/updatefacultyannouncement/")}}/' + id,                // url mo kasama id
@@ -123,8 +124,9 @@
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
                         $("#editModal"+response.id).hide();                     // hanggang dito
-                        $("#activityStreamupdate")[0].reset();                // irereset niya yung form
-                        $('#section' + response.id +' td:nth-child(2)').text(response.section);               // copy paste mo lang to. Bale pinapalitan lang niya yung row. Yung "section" id siya ng tr                                                                        // yung response galing siya sa controller yung return response()->json($section). Yung td:nth-child(2) column bale 2nd column
+                        $("#activityStreamupdate"+ id)[0].reset();                // irereset niya yung form
+                        $('#section' + response.id +' td:nth-child(2)').text(response.section);    
+                        $(":submit").removeAttr("disabled");               // copy paste mo lang to. Bale pinapalitan lang niya yung row. Yung "section" id siya ng tr                                                                        // yung response galing siya sa controller yung return response()->json($section). Yung td:nth-child(2) column bale 2nd column
                         Swal.fire({                                                             //sweetalert
                             icon: 'success',                                                    //
                             title: 'Success.',                                                  //
@@ -140,7 +142,10 @@
                     $.each(xhr.responseJSON.errors, function(key,value) {
                         $('#validation-errors').append('&emsp;<li>'+value+'</li>');
                     }); 
+                    $(":submit").removeAttr("disabled");
                 },
+            }).ajaxStop(function () {
+                $loading.hide();
             });
         }
 </script>

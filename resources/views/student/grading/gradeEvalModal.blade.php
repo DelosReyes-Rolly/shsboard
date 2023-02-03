@@ -12,7 +12,7 @@
             <b>Whoops! There is a problem in your input</b> <br/>
             <div id="validation-errors"></div>
         </div>
-        <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
+        <center><div hidden id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <input type="hidden" id="student_id" name="student_id" value="{{Auth::user()->id}}"/>
         <input type="hidden" id="gradelevel_id" name="gradelevel_id" value="{{$gradelevel_id}}"/>
         <input type="hidden" id="course_id" name="course_id" value="{{Auth::user()->course_id}}"/>
