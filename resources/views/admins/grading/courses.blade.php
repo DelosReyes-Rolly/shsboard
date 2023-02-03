@@ -16,6 +16,7 @@
 	<script src="{{ asset('assets/js/datatables-rowreorder-1.2.8.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-responsive-2.3.0.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
+    
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable( {
@@ -63,7 +64,7 @@
                                             <td>{{$course -> abbreviation}}</td>
                                             <td>{{$course -> code}}</td>
                                             <td>
-                                                <a class="btn btn-success btn-md" href="/viewcourse/{{$course->id}}" data-toggle="modal" onclick="viewItem(this)" data-id="{{ $course->id }}" data-target="#modal-view-{{ $course->id }}"><i class="fas fa-eye"></i> View</a>
+                                                <a class="btn btn-success btn-md" href="/viewcourse/{{$course->id}}" data-toggle="modal" onclick="viewItem(this)" data-id="{{ $course->id }}" data-target="#modal-view-{{ $course->id }}"><i class="fa-solid fa-eye"></i> View</a>
                                                 <a class="btn btn-warning btn-md" href="/showcourse/{{$course->id}}" data-toggle="modal" onclick="editItem(this)" data-id="{{ $course->id }}" data-target="#editModal{{ $course->id }}"><i class="fas fa-edit"></i> Update</a>
                                                 <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $course->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                             </td> 
