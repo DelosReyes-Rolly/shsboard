@@ -5,7 +5,7 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" id="updateMaxload" class="needs-validation" novalidate>
+<form method="POST" id="updateMaxload{{$master_load->id}}" class="needs-validation" novalidate>
     <div class="modal-body">
     @csrf
     @method('put')
@@ -13,7 +13,7 @@
         <b>Whoops! There is a problem in your input</b> <br/>
         <div id="validation-errors"></div>
     </div>
-    <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
+    <center><div hidden id="loadingDiv{{$master_load->id}}" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
     <input type="hidden" id="id" name="id" value="{{$maxload->id}}"/>
         <div class="col-md-12">
             <input type="number" id="maxload" name="maxload" class="form-control @error('maxload') is-invalid @enderror" value="{{$maxload->master_load}}"style="font-size: 20px;"  onkeypress="return onlyNumberKey(event)" maxlength="4" minlength="4" required>
@@ -28,7 +28,7 @@
     </div>
 </form>   
 <script>
-        var $loading = $('#loadingDiv').hide();
+        var $loading = $('#loadingDiv'+ id);
         function formPost(){
             $(document).ajaxStart(function () {
                 $loading.show();
@@ -55,7 +55,7 @@
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
                         $("#editmax").hide();
-                        $("#updateMaxload")[0].reset();
+                        $("#updateMaxload"+ id)[0].reset();
                         $(":submit").removeAttr("disabled");
                         // $('#example').load(document.URL +  ' #example');
                         Swal.fire({
@@ -77,6 +77,8 @@
                     });
                     $(":submit").removeAttr("disabled"); 
                 },
+            }).ajaxStop(function () {
+                $loading.hide();
             });
         }
        

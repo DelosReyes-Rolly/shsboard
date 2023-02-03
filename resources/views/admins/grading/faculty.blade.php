@@ -40,9 +40,9 @@
             <div class="card-header" style="background-color: #ffffff;">
                 <div class="row">
                     <div class="col-lg-6 col-md-6" style="font-size: 20px;">
-                        Max Regular Load: <span id="reload">{{$load->regular_load}}</span> <a class="btn btn-warning btn-sm" href="/showminload/{{$load->id}}" data-toggle="modal" data-target="#editmin"><i class="fas fa-edit"></i> Change</a><br/><br/>
+                        Max Regular Load: <span id="reload">{{$load->regular_load}}</span> <a class="btn btn-warning btn-sm" href="/showminload/{{$load->id}}" data-toggle="modal" onclick="editReg(this)" data-id="{{ $load->id }}" data-target="#editmin"><i class="fas fa-edit"></i> Change</a><br/><br/>
                         
-                        Max Master Load: <span id="reload2">{{$load->master_load}}</span> <a class="btn btn-warning btn-sm" href="/showmaxload/{{$load->id}}" data-toggle="modal" data-target="#editmax"><i class="fas fa-edit"></i> Change</a>
+                        Max Master Load: <span id="reload2">{{$load->master_load}}</span> <a class="btn btn-warning btn-sm" href="/showmaxload/{{$load->id}}" data-toggle="modal" onclick="editMas(this)" data-id="{{ $load>id }}" data-target="#editmax"><i class="fas fa-edit"></i> Change</a>
                         
                     </div>
                     <div class="col-lg-6 col-md-6">
@@ -147,9 +147,17 @@
       $('.nav_btn').click(function(){
         $('.mobile_nav_items').toggleClass('active');
       });
+      editReg(e);
+      editMas(e);
       editItem(e);
       deleteItem(e);
     });
+    function editReg(e){
+        id = e.getAttribute('data-id');
+    }
+    function editMas(e){
+        id = e.getAttribute('data-id');
+    }
     function editItem(e){
         id = e.getAttribute('data-id');
     }
