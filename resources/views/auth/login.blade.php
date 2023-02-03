@@ -1,8 +1,8 @@
 <style>
-    form i {
+    /* form i {
         cursor: pointer;
         font-size: 20px;
-    }
+    } */
 
     #password{
         height: 34px;
@@ -71,7 +71,7 @@
                             <div class="form-group">
                                 <label>Password</label>
                                 <input id="password" type="password" class="@error('password') is-invalid @enderror" name="password" minlength="6" required autocomplete="current-password">
-                                <i class="bi bi-eye-slash" style="margin-left: -30px;" id="togglePassword"></i>
+                                <!-- <i class="bi bi-eye-slash" style="margin-left: -30px;" id="togglePassword"></i> -->
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -106,7 +106,7 @@
             </div>
         </div>
     </div>
-    <script>
+    <!-- <script>
         const togglePassword = document.querySelector("#togglePassword");
         const password = document.querySelector("#password");
 
@@ -118,5 +118,5 @@
             // toggle the icon
             this.classList.toggle("bi-eye");
         });
-    </script>
+    </script> -->
 @include('partials.landingfooter')

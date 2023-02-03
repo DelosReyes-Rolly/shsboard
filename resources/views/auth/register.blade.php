@@ -190,7 +190,7 @@
 
                             <div class="form-group">
                                 <label for="password" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Password') }}</label>
-                                <input id="password" type="password" class="password @error('password') is-invalid @enderror" name="password" required autocomplete="new-password"><span style="position: relative; "><i class="bi bi-eye-slash animate pop" style="margin-left: -42px;  cursor: pointer; font-size:28px;" id="togglePassword"></i></span>
+                                <input id="password" type="password" class="password @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -200,7 +200,7 @@
 
                             <div class="form-group">
                                 <label for="password-confirm" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Confirm Password') }}</label>
-                                <input id="password-confirm" type="password" class="password" name="password_confirmation" required autocomplete="new-password"><span style=""><i class="bi bi-eye-slash animate pop" style="margin-left: -42px; margin-top:-2px; cursor: pointer; font-size:28px;" id="togglePassword2"></i></span>
+                                <input id="password-confirm" type="password" class="password" name="password_confirmation" required autocomplete="new-password">
                             </div>
                             <center><font face = "Bedrock" size = "3" >
                                 <button type="submit" class="btn btn-primary" style="padding-left:40px; padding-right:40px;">
@@ -211,7 +211,7 @@
                 </div>
             </div>
             <script src="{{ asset('assets/js/needs-validated.js') }}"></script>
-            <script>
+            <!-- <script>
                 const togglePassword = document.querySelector("#togglePassword");
                 const password = document.querySelector("#password");
 
@@ -242,6 +242,6 @@
                     // toggle the icon
                     this.classList.toggle("bi-eye");
                 });
-            </script>
+            </script> -->
         <br/><br/>
         @include('partials.landingfooter')
