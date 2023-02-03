@@ -77,6 +77,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="/gradingfaculty" title="Faculties">
+                        <i class="fas fa-user-tie"></i>
+                        <span class="hide-word title-word"> <b>Faculties</b> </span>
+                    </a>
+                </li>
+                <li>
                     <a href="/advisory" title="Advisory">
                         <i class="fas fa-user-tag"></i>
                         <span class="hide-word title-word"> <b>Advisory</b> </span>
@@ -86,12 +92,6 @@
                     <a href="/gradingfacultysubjects" title="Class Schedule">
                         <i class="fas fa-chalkboard-teacher"></i>
                         <span class="hide-word title-word"> <b>Class Schedule</b> </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/gradingfaculty" title="Faculties">
-                        <i class="fas fa-user-tie"></i>
-                        <span class="hide-word title-word"> <b>Faculties</b> </span>
                     </a>
                 </li>
             </ul>

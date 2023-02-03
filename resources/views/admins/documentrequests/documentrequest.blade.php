@@ -19,44 +19,44 @@
 	<script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
     <script>
         $(document).ready(function() {
-            var table = $('#example1').DataTable( {
+            var table1 = $('#example1').DataTable( {
                 responsive: true,
                 "bInfo" : false,
             } );
          
-            new $.fn.dataTable.FixedHeader( table );
+            new $.fn.dataTable.FixedHeader( table1 );
         } );
         $(document).ready(function() {
-            var table = $('#example2').DataTable( {
+            var table2 = $('#example2').DataTable( {
                 responsive: true,
                 "bInfo" : false,
             } );
          
-            new $.fn.dataTable.FixedHeader( table );
+            new $.fn.dataTable.FixedHeader( table2 );
         } );
         $(document).ready(function() {
-            var table = $('#example3').DataTable( {
+            var table3 = $('#example3').DataTable( {
                 responsive: true,
                 "bInfo" : false,
             } );
          
-            new $.fn.dataTable.FixedHeader( table );
+            new $.fn.dataTable.FixedHeader( table3 );
         } );
 		$(document).ready(function() {
-            var table = $('#example4').DataTable( {
+            var table4 = $('#example4').DataTable( {
                 responsive: true,
                 "bInfo" : false,
             } );
          
-            new $.fn.dataTable.FixedHeader( table );
+            new $.fn.dataTable.FixedHeader( table4 );
         } );
 		$(document).ready(function() {
-            var table = $('#example5').DataTable( {
+            var table5 = $('#example5').DataTable( {
                 responsive: true,
                 "bInfo" : false,
             } );
          
-            new $.fn.dataTable.FixedHeader( table );
+            new $.fn.dataTable.FixedHeader( table5 );
         } );
     </script>
 </head>

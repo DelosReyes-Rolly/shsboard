@@ -5,7 +5,7 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" id="updateCourse" class="needs-validation" novalidate>
+<form method="POST" id="updateCourse{{$course->id}}" class="needs-validation" novalidate>
     <div class="modal-body">
         @csrf
         @method('PUT')
@@ -13,7 +13,7 @@
             <b>Whoops! There is a problem in your input</b> <br/>
             <div id="validation-errors"></div>
         </div>
-        <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
+        <center><div hidden id="loadingDiv{{$course->id}}" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <input type="hidden" id="id" name="id" value="{{$course->id}}"/>
         <div class="mb-3" style="color: red">
            * required field
@@ -58,12 +58,13 @@
         <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary btn-md" value="Submit"></font>
     </div>
 </form>
-<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<!-- <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script>
     CKEDITOR.replace( 'description' );
-</script> 
+</script>  -->
 <script>
-    var $loading = $('#loadingDiv').hide();
+    console.log(id);
+    var $loading = $('#loadingDiv'+ id);
         function formPost(){
             $(document).ajaxStart(function () {
                 $loading.show();
@@ -72,22 +73,22 @@
                 $loading.hide();
             });
             $('#whoops').hide();
-            var form_data = $("form#updateCourse").serialize();
+            var form_data = $("form#updateCourse"+id).serialize();
             $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updatecourse/")}}/' + id,
                 data:form_data,
                 success: function(response) {
-                        $("#editModal"+response.id).removeClass("in");
+                        $("#editModal"+id).removeClass("in");
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
-                        $("#editModal"+response.id).hide();
-                        $("#updateCourse")[0].reset();
-                        $('#course' + response.id +' td:nth-child(1)').text(response.courseName);
-                        $('#course' + response.id +' td:nth-child(2)').text(response.abbreviation);
-                        $('#course' + response.id +' td:nth-child(3)').text(response.code);
+                        $("#editModal"+id).hide();
+                        $("#updateCourse"+id).get(0).reset()
+                        $('#course' + id +' td:nth-child(1)').text(response.courseName);
+                        $('#course' + id +' td:nth-child(2)').text(response.abbreviation);
+                        $('#course' + id +' td:nth-child(3)').text(response.code);
                         $(":submit").removeAttr("disabled");
                         // $('#example').load(document.URL +  ' #example');
                         Swal.fire({
