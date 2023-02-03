@@ -30,7 +30,7 @@
             <!-- boxes -->
             <div class="container-xl px-4 mt-4">
                 <hr class="mt-0 mb-4">
-                <div class="row left-to-right">
+                <div class="row">
                     <div class="col-lg-4 mb-4">
                         <!-- Billing card 2-->
                         <div class="card h-100 border-start-lg border-start-secondary" style="background-color: red; color: white; box-shadow: 0 4px 16px rgba(0,0,0,0.6);" >
@@ -188,7 +188,7 @@
             <!-- tables -->
             <h3 style="font-size: 28px; font-weight: 800;">Table of Events</h3>
             <hr class="mt-0 mb-4">
-            <div class="card mb-4 left-to-right border-start-lg border-start-yellow" style="padding: 10px 40px 10px 40px">
+            <div class="card mb-4 border-start-lg border-start-yellow" style="padding: 10px 40px 10px 40px">
                 <div class="card-header"></div>
                 <div class="card-body p-0">
                     <!-- Events table-->

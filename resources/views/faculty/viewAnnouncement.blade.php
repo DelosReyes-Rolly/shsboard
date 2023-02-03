@@ -26,7 +26,7 @@
 			<div id="main-content" class="blog-page">
 				    <div class="row clearfix">
 				        <div class="col-lg-12 col-md-12 left-box">
-                            <div class="card single_post left-to-right border-start-lg border-start-yellow">
+                            <div class="card single_post border-start-lg border-start-yellow">
                                 <div class="body">
                                     <div class="img-post" style="float: left; margin: 20px;">
                                         @if($view->image != NULL)

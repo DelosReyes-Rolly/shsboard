@@ -68,7 +68,7 @@
 		<div>
 			<div>
 		        <!-- boxes -->
-		        <div class="container-xl px-4 mt-4 left-to-right">
+		        <div class="container-xl px-4 mt-4">
 	                <!-- page navigation-->
 	                <hr class="mt-0 mb-4">
 	                <div class="row">
@@ -260,7 +260,7 @@
 	            </div>
 				<!-- tables need join -->
 				<!-- tables -->
-				<div class="container-xl px-4 mt-4 left-to-right">
+				<div class="container-xl px-4 mt-4">
 					<hr class="mt-0 mb-4">
 	                <div class="row">
 					

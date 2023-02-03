@@ -50,7 +50,7 @@
 							<!-- End Header Navigation -->
 
 				            <!-- Collect the nav links, forms, and other content for toggling -->
-				            <div class="collapse navbar-collapse menu-ui-design left-to-right" id="navbar-menu">
+				            <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
 				                <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
 				                <li class=" smooth-menu active"></li>
 									<li class="smooth-menu"><a  class="a-header" href="{{ url('/') }}">Announcement</a></li>

@@ -5,7 +5,7 @@
         <div>
             <h3 style="font-size: 28px; font-weight: 800;">Delete Document</h3>
            <hr class="mt-0 mb-4">
-            <div class="card mb-4 left-to-right">
+            <div class="card mb-4">
                 <div class="card border-start-lg border-start-yellow">
                     <div class="card-header"><i class="fas fa-trash-alt fa-2x"></i><font face = "Bedrock" size = "6"><b>  Delete Record</b></font></div>
                     <div class="card-body" style="padding: 10px 40px 10px 40px">

@@ -32,7 +32,7 @@
         <h3 style="font-size: 28px; font-weight: 800;">Table of Students </h3>
         <br/>
         <hr class="mt-0 mb-4">
-        <div class="card mb-4 left-to-right border-start-lg border-start-success" style="padding: 10px 40px 10px 40px;">
+        <div class="card mb-4 border-start-lg border-start-success" style="padding: 10px 40px 10px 40px;">
             <div class="card-header">
                 @if($releasegrades->grade_release == 1)
                     <div>

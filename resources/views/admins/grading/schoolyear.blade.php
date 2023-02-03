@@ -39,7 +39,7 @@
             </div></br></br>
         @endif
       <hr class="mt-0 mb-4">
-        <div class="card mb-4 left-to-right border-start-lg border-start-success">
+        <div class="card mb-4 border-start-lg border-start-success">
             <div class="card-header" style="font-size: 20px; font-weight:bold; background-color: #ffffff;">
                 
                 <div class="row">

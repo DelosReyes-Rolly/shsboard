@@ -30,7 +30,7 @@
     <div>
         <div class="container-xl">
             <hr>
-            <div class="row left-to-right">
+            <div class="row">
                 <div class="col-lg-4 mb-4">
                     <div class="card h-100 border-start-lg border-start-secondary" style="background-color: red; color: white; box-shadow: 0 4px 16px rgba(0,0,0,0.6);" >
                         <div class="card-body delay-1">

@@ -1,11 +1,11 @@
 @include('partials.adminheader')
 <main>
     <br/><br/><br/><br/><br/><br/>
-    <div class="container left-to-right" style="padding: 10px 40px 10px 40px;">
+    <div class="container" style="padding: 10px 40px 10px 40px;">
         <div class="container-xl px-4 mt-4">
             <hr class="mt-0 mb-4">
             <div class="row">
-                <div class="col-lg-4 mb-4 left-to-right">
+                <div class="col-lg-4 mb-4">
                     <!-- Billing card 1-->
                     <div class="card h-100 border-start-lg border-start-primary" style="box-shadow: 0 4px 16px rgba(0,0,0,1);">
                         <div class="card-body">
@@ -17,7 +17,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 mb-4 left-to-right">
+                <div class="col-lg-4 mb-4">
                     <!-- Billing card 2-->
                     <div class="card h-100 border-start-lg border-start-secondary" style="box-shadow: 0 4px 16px rgba(0,0,0,1);">
                         <div class="card-body">
@@ -29,7 +29,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 mb-4 left-to-right">
+                <div class="col-lg-4 mb-4">
                     <!-- Billing card 3-->
                     <div class="card h-100 border-start-lg border-start-success" style="box-shadow: 0 4px 16px rgba(0,0,0,1);">
                         <div class="card-body">
@@ -77,7 +77,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 mb-4 left-to-right">
+                <div class="col-lg-4 mb-4">
                     <!-- Billing card 2-->
                     <div class="card h-100 border-start-lg border-start-secondary" style="box-shadow: 0 4px 16px rgba(0,0,0,1);">
                         <div class="card-body">
@@ -89,7 +89,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 mb-4 left-to-right">
+                <div class="col-lg-4 mb-4">
                     <!-- Billing card 2-->
                     <div class="card h-100 border-start-lg border-start-secondary" style="box-shadow: 0 4px 16px rgba(0,0,0,1);">
                         <div class="card-body">

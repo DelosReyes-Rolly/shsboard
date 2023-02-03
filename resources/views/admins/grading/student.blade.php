@@ -33,7 +33,7 @@
             <!-- page navigation-->
             <h3 style="font-size: 28px;"><b>Print Student Report</b> </h3>
             <hr class="mt-0 mb-4">
-            <div class="row left-to-right">
+            <div class="row">
                     <div class="card mb-4">
                     <div class="border-start-lg border-start-yellow">
                         <div class="card-header"></div>

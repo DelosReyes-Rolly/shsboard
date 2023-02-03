@@ -29,7 +29,7 @@
     <div class="left-to-right">
         <div class="container-xl px-4 mt-4">
             <hr class="mt-0 mb-4">
-            <div class="container-xl px-4 mt-4 left-to-right">
+            <div class="container-xl px-4 mt-4">
                 <hr class="mt-0 mb-4">
                 <div class="row">
                     <div class="col-lg-4 mb-4">
@@ -63,7 +63,7 @@
             <!-- tables -->
             <h3 style="font-size: 28px; font-weight: 800;">Table of Private Reminders</h3>
             <hr class="mt-0 mb-4">
-            <div class="card mb-4 left-to-right border-start-lg border-start-yellow" style="padding: 10px 40px 10px 40px;">
+            <div class="card mb-4 border-start-lg border-start-yellow" style="padding: 10px 40px 10px 40px;">
                 <div class="card-header"></div>
                 <div class="card-body p-0">
                     <!-- Events table-->
