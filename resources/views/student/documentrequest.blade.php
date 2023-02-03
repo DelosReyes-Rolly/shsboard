@@ -191,7 +191,7 @@
                                                         ?>
                                                     </td>
                                                     <td>
-                                                        <a class="btn btn-success btn-md" href="/viewfileDocuments/{{$request->id}}"><i class="fas fa-eye"></i> View</a>
+                                                        <a class="btn btn-success btn-md" href="/viewfileDocuments/{{$request->id}}"><i class="fa-solid fa-eye"></i> View</a>
                                                         <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $request->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                                     </td>
                                                 </tr>

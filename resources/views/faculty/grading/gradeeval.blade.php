@@ -123,7 +123,7 @@
                                                         <?php endif; ?> 
                                                     </td>
                                                     <td>
-                                                        <a class="btn btn-success btn-lg" href="/viewGradeEvaluation/{{$gradeevaluationrequest->id}}" data-toggle="modal" data-target="#modal-view-{{ $gradeevaluationrequest->id }}" style="font-size: 14px;"><i class="fas fa-eye"></i> View</a>
+                                                        <a class="btn btn-success btn-lg" href="/viewGradeEvaluation/{{$gradeevaluationrequest->id}}" data-toggle="modal" data-target="#modal-view-{{ $gradeevaluationrequest->id }}" style="font-size: 14px;"><i class="fa-solid fa-eye"></i> View</a>
                                                     </td>
                                                 </tr>
                                                 <!-- view modal -->

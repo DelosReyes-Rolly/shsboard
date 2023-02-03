@@ -85,17 +85,17 @@
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();
-                        $("#updateCourse"+id).get(0).reset()
+                        $("#updateCourse"+id).get(0).reset();
                         $('#course' + id +' td:nth-child(1)').text(response.courseName);
                         $('#course' + id +' td:nth-child(2)').text(response.abbreviation);
                         $('#course' + id +' td:nth-child(3)').text(response.code);
                         $(":submit").removeAttr("disabled");
                         // $('#example').load(document.URL +  ' #example');
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Success.',
-                            text: 'Strand has been updated successfully',
-                        })
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success.',
+                                text: 'Strand has been updated successfully',
+                            })
                 },error: function (xhr) {
                     $('#validation-errors').html('');
                     document.getElementById('whoops').style.display = 'block';
@@ -108,6 +108,8 @@
                     }); 
                     $(":submit").removeAttr("disabled");
                 },
+            }).ajaxStop(function () {
+                $loading.hide();
             });
         }
 </script>

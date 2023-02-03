@@ -105,7 +105,7 @@
                                                 @endif
                                             </td>
                                             <td width=24%>
-                                                <a class="btn btn-success btn-md" href="/viewsubjectteacher/{{$subjectteacher->id}}" data-toggle="modal" data-target="#modal-view-{{ $subjectteacher->id }}"><i class="fas fa-eye"></i> View</a>
+                                                <a class="btn btn-success btn-md" href="/viewsubjectteacher/{{$subjectteacher->id}}" data-toggle="modal" data-target="#modal-view-{{ $subjectteacher->id }}"><i class="fa-solid fa-eye"></i> View</a>
                                                 <a class="btn btn-warning btn-md" href="/showsubjectteacher/{{$subjectteacher->id}}" data-toggle="modal" data-target="#editModal{{ $subjectteacher->id }}"><i class="fas fa-edit"></i> Update</a>
                                                 <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $subjectteacher->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                             </td> 

@@ -141,7 +141,7 @@
 																					?>
 																				</td>
 																				<td>
-																					<a class="btn btn-success btn-md" href="/viewfileDocument/{{$request->id}}"><i class="fas fa-eye"></i> View</a>
+																					<a class="btn btn-success btn-md" href="/viewfileDocument/{{$request->id}}"><i class="fa-solid fa-eye"></i> View</a>
 																					<a class="btn btn-warning btn-md" href="/showrequestadmin/{{$request->id}}" data-toggle="modal" data-target="#editModal{{ $request->id }}"><i class="fas fa-edit"></i> Update</a>
 																				</td> 
 																			</tr>

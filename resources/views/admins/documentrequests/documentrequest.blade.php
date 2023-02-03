@@ -168,7 +168,7 @@
                                                                         <td class="text-center">{{$document -> id}}</td>
                                                                         <td>{{$document -> name}}</td>
                                                                         <td>
-																			<a class="btn btn-success btn-md" href="/viewdocument/{{$document->id}}" data-toggle="modal" data-target="#modal-view-{{$document->id}}"><i class="fas fa-eye"></i> View</a>
+																			<a class="btn btn-success btn-md" href="/viewdocument/{{$document->id}}" data-toggle="modal" data-target="#modal-view-{{$document->id}}"><i class="fa-solid fa-eye"></i> View</a>
 																			<a class="btn btn-warning btn-md" href="/showdocument/{{$document->id}}" data-toggle="modal" data-target="#editModal{{ $document->id }}"><i class="fas fa-edit"></i> Update</a>
 																			<button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $document->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                                                         </td> 
@@ -227,7 +227,7 @@
                                                                         <td>{{$documentpurpose -> purpose}}</td>
 																		<td>{{$documentpurpose -> proof_needed}}</td>
                                                                         <td>
-																			<a class="btn btn-success btn-md" href="/viewpurpose/{{$documentpurpose->id}}" data-toggle="modal" data-target="#modal-view-{{$documentpurpose->id}}"><i class="fas fa-eye"></i> View</a>
+																			<a class="btn btn-success btn-md" href="/viewpurpose/{{$documentpurpose->id}}" data-toggle="modal" data-target="#modal-view-{{$documentpurpose->id}}"><i class="fa-solid fa-eye"></i> View</a>
 																			<a class="btn btn-warning btn-md" href="/showpurpose/{{$documentpurpose->id}}" data-toggle="modal" data-target="#editModal{{ $documentpurpose->id }}"><i class="fas fa-edit"></i> Update</a>
 																			<button class="btn btn-danger btn-md" onclick="deleteItemPurpose(this)" data-id="{{ $documentpurpose->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                                                         </td> 
@@ -335,7 +335,7 @@
 																					?>
 																				</td>
 																				<td>
-																					<a class="btn btn-success btn-md" href="/viewfileDocument/{{$request->id}}"><i class="fas fa-eye"></i> View</a>
+																					<a class="btn btn-success btn-md" href="/viewfileDocument/{{$request->id}}"><i class="fa-solid fa-eye"></i> View</a>
 																					<a class="btn btn-warning btn-md" href="/showrequestadmin/{{$request->id}}" data-toggle="modal" data-target="#editModal{{ $request->id }}"><i class="fas fa-edit"></i> Update</a>
 																				</td> 
 																			</tr>
@@ -423,7 +423,7 @@
 																					?>
 																				</td>
 																				<td>
-																					<a class="btn btn-success btn-md" href="/viewfileDocument/{{$request->id}}"><i class="fas fa-eye"></i> View</a>
+																					<a class="btn btn-success btn-md" href="/viewfileDocument/{{$request->id}}"><i class="fa-solid fa-eye"></i> View</a>
 																					<a class="btn btn-warning btn-md" href="/showrequestadmin/{{$request->id}}" data-toggle="modal" data-target="#editModal{{ $request->id }}"><i class="fas fa-edit"></i> Update</a>
 																				</td> 
 																			</tr>
@@ -511,7 +511,7 @@
 																					?>
 																				</td>
 																				<td>
-																					<a class="btn btn-success btn-md" href="/viewfileDocument/{{$request->id}}"><i class="fas fa-eye"></i> View</a>
+																					<a class="btn btn-success btn-md" href="/viewfileDocument/{{$request->id}}"><i class="fa-solid fa-eye"></i> View</a>
 																					<a class="btn btn-warning btn-md" href="/showrequestadmin/{{$request->id}}" data-toggle="modal" data-target="#editModal{{ $request->id }}"><i class="fas fa-edit"></i> Update</a>
 																				</td> 
 																			</tr>

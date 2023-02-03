@@ -76,7 +76,7 @@
                                             <tr>
                                                 <td>{{$male -> last_name}}, {{$male -> first_name}} {{$male -> middle_name}} {{$male -> suffix}}</td>
                                                 <td>
-                                                    <a class="btn btn-success btn-md" href="/viewstudentgrades/{{$male->id}}" style="font-size:14px;"><i class="fas fa-eye"></i> View Grades</a>
+                                                    <a class="btn btn-success btn-md" href="/viewstudentgrades/{{$male->id}}" style="font-size:14px;"><i class="fa-solid fa-eye"></i> View Grades</a>
                                                 </td> 
                                             </tr>
                                         @endforeach 
@@ -107,7 +107,7 @@
                                             <tr>
                                                 <td>{{$female -> last_name}}, {{$female -> first_name}} {{$female -> middle_name}} {{$female -> suffix}}</td>
                                                 <td>
-                                                    <a class="btn btn-success btn-md" href="/viewstudentgrades/{{$female->id}}" style="font-size:14px;"><i class="fas fa-eye"></i> View Grades</a>
+                                                    <a class="btn btn-success btn-md" href="/viewstudentgrades/{{$female->id}}" style="font-size:14px;"><i class="fa-solid fa-eye"></i> View Grades</a>
                                                 </td> 
                                             </tr>
                                         @endforeach 

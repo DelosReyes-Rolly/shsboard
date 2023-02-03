@@ -142,7 +142,7 @@
                                                 <td>{{$landing -> title}}</td>
                                                 <td>{{$landing -> image}}</td>
                                                 <td>
-                                                    <a class="btn btn-success btn-md" href="/viewlanding/{{$landing->id}}"><i class="fas fa-eye"></i> View</a>
+                                                    <a class="btn btn-success btn-md" href="/viewlanding/{{$landing->id}}"><i class="fa-solid fa-eye"></i> View</a>
                                                     <a class="btn btn-warning btn-md" href="/showlanding/{{$landing->id}}" data-toggle="modal" data-target="#editModal{{ $landing->id }}"><i class="fas fa-edit"></i> Update</a>
                                                     <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $landing->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                                 </td> 
