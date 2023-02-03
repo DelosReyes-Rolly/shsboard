@@ -5,7 +5,7 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" id="updateAnnouncement" class="needs-validation" novalidate>
+<form method="POST" id="updateAnnouncement{{$announcement->id}}" class="needs-validation" novalidate>
     <div class="modal-body">
         @csrf
         @method('put')
@@ -13,7 +13,7 @@
             <b>Whoops! There is a problem in your input</b> <br/>
             <div id="validation-errors"></div>
         </div>
-        <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
+        <center><div hidden id="loadingDiv{{$announcement->id}}" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <input type="hidden" id="id" name="id" value="{{$announcement->id}}"/>
         <div class="mb-3" style="color: red">
             * required field
@@ -87,7 +87,7 @@
         CKEDITOR.replace('editor2');
     </script> -->
 <script>
-    var $loading = $('#loadingDiv').hide();
+    var $loading = $('#loadingDiv'+ id);
         function formPost(){
             $(document).ajaxStart(function () {
                 $loading.show();
@@ -127,7 +127,7 @@
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();
-                        $("#updateAnnouncement")[0].reset();
+                        $("#updateAnnouncement"+ id)[0].reset();
                         $('#announcement' + response.id +' td:nth-child(2)').text(response.what);
                         $(":submit").removeAttr("disabled");
                         // $('#example').load(document.URL +  ' #example');
@@ -148,6 +148,8 @@
                         }); 
                         $(":submit").removeAttr("disabled");
                 },
+            }).ajaxStop(function () {
+                $loading.hide();
             });
         }
 </script>

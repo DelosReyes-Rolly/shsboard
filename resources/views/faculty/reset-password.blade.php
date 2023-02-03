@@ -34,11 +34,11 @@
                         </div>
                     @endif  
                     <input type="hidden" name="action" value="update" class="form-control"/>
-                    <div class="form-group animate pop">
+                    <div class="form-group">
                         <label><strong>Enter New Password:</strong></label>                                
                         <input type="password"  name="new_password" class="form-control"/>
                     </div>
-                    <div class="form-group animate pop delay-1">
+                    <div class="form-group">
                         <label><strong>Confirm Password:</strong></label>                             
                         <input type="password"  name="confirm_password" class="form-control"/>
                     </div>

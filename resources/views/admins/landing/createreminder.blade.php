@@ -52,7 +52,7 @@
             </div>
 
 
-            <form method="POST" action="{{ route('reminder.store') }}" class="needs-validation" novalidate>
+            <form method="POST" id="createReminder" class="needs-validation" novalidate>
                 @csrf
                 <div class="container-xl px-4 mt-4">
                     <!-- page navigation-->
@@ -173,7 +173,7 @@
                                                 </td>
                                                 <td>
                                                     <a class="btn btn-success btn-md" href="/viewreminder/{{$reminder->id}}" data-toggle="modal" data-target="#modal-view-{{ $reminder->id }}"><i class="fa-solid fa-eye"></i> View</a>
-                                                    <a class="btn btn-warning btn-md" href="/showreminder/{{$reminder->id}}" data-toggle="modal" data-target="#editModal{{ $reminder->id }}"><i class="fas fa-edit"></i> Update</a>
+                                                    <a class="btn btn-warning btn-md" href="/showreminder/{{$reminder->id}}" data-toggle="modal" onclick="editItem(this)" data-id="{{ $reminder->id }}" data-target="#editModal{{ $reminder->id }}"><i class="fas fa-edit"></i> Update</a>
                                                     <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $reminder->id }}"><i class="fas fa-trash-alt"></i> Delete</button>  
                                                 </td> 
                                             </tr>
@@ -212,11 +212,13 @@
       $('.nav_btn').click(function(){
         $('.mobile_nav_items').toggleClass('active');
       });
-
+      editItem(e);
       deleteItem(e);
 
     });
-
+    function editItem(e){
+        id = e.getAttribute('data-id');
+    }
     //delete
     function deleteItem(e){
 
@@ -280,5 +282,51 @@
         }
     </script>
 <script src="{{ asset('assets/js/needs-validated.js') }}"></script>
+<script>
+        var $loading = $('#loadingDiv');
+        function formPost(){
+            $(document).ajaxStart(function () {
+                $loading.show();
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
+            $('#whoops').hide();
+            var form_data = $("form#createReminder").serialize();
+            $(":submit").attr("disabled", true);
+            $.ajax({
+                type: "POST",
+                url: "{{ route('reminder.store') }}",
+                data:form_data,
+                success: function(response) {
+                    if (response) {
+                        $("#createReminder")[0].reset();
+                        $(":submit").removeAttr("disabled");
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success.',
+                            text: 'Reminder has been added successfully',
+                        }).then(function() {
+                            location.reload(true);
+                        })
+                        
+                    }
+                },error: function (xhr) {
+                    $('#validation-errors').html('');
+                    document.getElementById('whoops').style.display = 'block';
+                    if(xhr.responseJSON.error != undefined){
+                        $("#validation-errors").html("");
+                        $('#validation-errors').append('&emsp;<li>'+xhr.responseJSON.error+'</li>');
+                    }
+                    $.each(xhr.responseJSON.errors, function(key,value) {
+                        $('#validation-errors').append('&emsp;<li>'+value+'</li>');
+                    }); 
+                    $(":submit").removeAttr("disabled");
+                },
+            }).ajaxStop(function () {
+                $loading.hide();
+            });
+        }
+</script>
 </main>
 <br><br><br><br>

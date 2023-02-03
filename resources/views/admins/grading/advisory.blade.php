@@ -98,7 +98,7 @@
                                                                 <td>{{$adviser -> section -> section}}</td>
                                                                 <td>
                                                                     <a class="btn btn-success btn-md" href="/viewadvisory/{{$adviser->id}}" data-toggle="modal" data-target="#modal-view-{{ $adviser->id }}"><i class="fa-solid fa-eye"></i> View</a>
-                                                                    <a class="btn btn-warning btn-md" href="/showadvisory/{{$adviser->id}}" data-toggle="modal" data-target="#editModal{{ $adviser->id }}"><i class="fas fa-edit"></i> Update</a>
+                                                                    <a class="btn btn-warning btn-md" href="/showadvisory/{{$adviser->id}}" data-toggle="modal" onclick="editItem(this)" data-id="{{ $adviser->id }}" data-target="#editModal{{ $adviser->id }}"><i class="fas fa-edit"></i> Update</a>
                                                                 </td> 
                                                             </tr>
                                                             <!-- view modal -->
@@ -142,6 +142,7 @@
       $('.nav_btn').click(function(){
         $('.mobile_nav_items').toggleClass('active');
       });
+      editItem(e);
     });
     </script>
 

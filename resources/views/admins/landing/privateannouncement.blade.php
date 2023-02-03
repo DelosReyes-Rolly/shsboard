@@ -171,6 +171,8 @@
                     }); 
                     $(":submit").removeAttr("disabled");
                 },
+            }).ajaxStop(function () {
+                $loading.hide();
             });
         }
 </script>

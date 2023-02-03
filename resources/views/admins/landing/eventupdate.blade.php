@@ -6,7 +6,7 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" id="updateEvent"  class="needs-validation" novalidate>
+<form method="POST" id="updateEvent{{$event->id}}"  class="needs-validation" novalidate>
     <div class="modal-body">
         @csrf
         @method('put')
@@ -14,7 +14,7 @@
             <b>Whoops! There is a problem in your input</b> <br/>
             <div id="validation-errors"></div>
         </div>
-        <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
+        <center><div hidden id="loadingDiv{{$event->id}}" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <input type="hidden" id="id" name="id" value="{{$event->id}}"/>    
         <div class="mb-3" style="color: red">
             * required field
@@ -88,7 +88,7 @@
     CKEDITOR.replace('editor2');
 </script> -->
 <script>
-        var $loading = $('#loadingDiv').hide();
+        var $loading = $('#loadingDiv'+ id);
         function formPost(){
             $(document).ajaxStart(function () {
                 $loading.show();
@@ -128,7 +128,7 @@
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();
-                        $("#updateEvent")[0].reset();
+                        $("#updateEvent"+ id)[0].reset();
                         $('#event' + response.id +' td:nth-child(2)').text(response.what);
                         $(":submit").removeAttr("disabled");
                         // $('#example').load(document.URL +  ' #example');
@@ -149,6 +149,8 @@
                     }); 
                     $(":submit").removeAttr("disabled");
                 },
+            }).ajaxStop(function () {
+                $loading.hide();
             });
         }
 </script>

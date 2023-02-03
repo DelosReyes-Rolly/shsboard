@@ -51,7 +51,7 @@
                 </div>
             </div>
 
-            <form method="POST" action="{{ route('event.store') }}" enctype="multipart/form-data" class="needs-validation" novalidate>
+            <form method="POST" id="createEvent" enctype="multipart/form-data" class="needs-validation" novalidate>
                 @csrf
                 <div class="container-xl px-4 mt-4">
                     <!-- page navigation-->
@@ -242,7 +242,7 @@
                                                 </td>
                                                 <td>
                                                     <a class="btn btn-success btn-md" href="/viewevent/{{$event->id}}"><i class="fa-solid fa-eye"></i> View</a>
-                                                    <a class="btn btn-warning btn-md" href="/showevent/{{$event->id}}" data-toggle="modal" data-target="#editModal{{ $event->id }}"><i class="fas fa-edit"></i> Update</a>
+                                                    <a class="btn btn-warning btn-md" href="/showevent/{{$event->id}}" data-toggle="modal" onclick="editItem(this)" data-id="{{ $event->id }}" data-target="#editModal{{ $event->id }}"><i class="fas fa-edit"></i> Update</a>
                                                     <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $event->id }}"><i class="fas fa-trash-alt"></i> Delete</button> 
                                                 </td> 
                                             </tr>
@@ -274,11 +274,13 @@
       $('.nav_btn').click(function(){
         $('.mobile_nav_items').toggleClass('active');
       });
-
+      editItem(e);
       deleteItem(e);
 
     });
-
+    function editItem(e){
+        id = e.getAttribute('data-id');
+    }
     //delete
     function deleteItem(e){
 
@@ -342,5 +344,51 @@
         }
     </script>
     <script src="{{ asset('assets/js/needs-validated.js') }}"></script>
+    <script>
+        var $loading = $('#loadingDiv');
+        function formPost(){
+            $(document).ajaxStart(function () {
+                $loading.show();
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
+            $('#whoops').hide();
+            var form_data = $("form#createEvent").serialize();
+            $(":submit").attr("disabled", true);
+            $.ajax({
+                type: "POST",
+                url: "{{ route('event.store') }}",
+                data:form_data,
+                success: function(response) {
+                    if (response) {
+                        $("#createEvent")[0].reset();
+                        $(":submit").removeAttr("disabled");
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success.',
+                            text: 'Event has been added successfully',
+                        }).then(function() {
+                            location.reload(true);
+                        })
+                        
+                    }
+                },error: function (xhr) {
+                    $('#validation-errors').html('');
+                    document.getElementById('whoops').style.display = 'block';
+                    if(xhr.responseJSON.error != undefined){
+                        $("#validation-errors").html("");
+                        $('#validation-errors').append('&emsp;<li>'+xhr.responseJSON.error+'</li>');
+                    }
+                    $.each(xhr.responseJSON.errors, function(key,value) {
+                        $('#validation-errors').append('&emsp;<li>'+value+'</li>');
+                    }); 
+                    $(":submit").removeAttr("disabled");
+                },
+            }).ajaxStop(function () {
+                $loading.hide();
+            });
+        }
+</script>
 </main>
 <br><br><br><br>

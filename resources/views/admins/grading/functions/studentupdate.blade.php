@@ -5,7 +5,7 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" id="updateStudent" class="needs-validation" novalidate>
+<form method="POST" id="updateStudent{{$student->id}}" class="needs-validation" novalidate>
     <div class="modal-body">
         @csrf
         @method('put')
@@ -13,7 +13,7 @@
             <b>Whoops! There is a problem in your input</b> <br/>
             <div id="validation-errors"></div>
         </div>
-        <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
+        <center><div hidden id="loadingDiv{{$student->id}}" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <input type="hidden" id="id" name="id" value="{{$student->id}}"/>
         <div class="mb-3" style="color: red">
             * required field
@@ -110,7 +110,7 @@
 <script>
 
 
-        var $loading = $('#loadingDiv').hide();
+        var $loading = $('#loadingDiv'+ id);
         function formPost(){
             $(document).ajaxStart(function () {
                 $loading.show();
@@ -119,20 +119,20 @@
                 $loading.hide();
             });
             $('#whoops').hide();
-            var form_data = $("form#updateStudent").serialize();
+            var form_data = $("form#updateStudent"+ id).serialize();
             $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updatestudent/")}}/' + id,
                 data:form_data,
                 success: function(response) {                           // kapag nagsuccess
-                        $("#editModal"+response.id).removeClass("in"); 
+                        $("#editModal"+id).removeClass("in"); 
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
-                        $("#editModal"+response.id).hide();
-                        $("#updateStudent")[0].reset();
-                        $('#student' + response.id +' td:nth-child(2)').text(response.LRN);
+                        $("#editModal"+id).hide();
+                        $("#updateStudent"+ id)[0].reset();
+                        $('#student' + id +' td:nth-child(2)').text(response.LRN);
                         if(response.suffix == null && response.middle_name == null){
                             $('#student' + response.id +' td:nth-child(3)').text(function(n) {return response.last_name + ', ' + response.first_name;});
                         }
@@ -166,6 +166,8 @@
                     }); 
                     $(":submit").removeAttr("disabled");
                 },
+            }).ajaxStop(function () {
+                $loading.hide();
             });
         }
        

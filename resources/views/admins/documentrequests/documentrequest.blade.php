@@ -169,7 +169,7 @@
                                                                         <td>{{$document -> name}}</td>
                                                                         <td>
 																			<a class="btn btn-success btn-md" href="/viewdocument/{{$document->id}}" data-toggle="modal" data-target="#modal-view-{{$document->id}}"><i class="fa-solid fa-eye"></i> View</a>
-																			<a class="btn btn-warning btn-md" href="/showdocument/{{$document->id}}" data-toggle="modal" data-target="#editModal{{ $document->id }}"><i class="fas fa-edit"></i> Update</a>
+																			<a class="btn btn-warning btn-md" href="/showdocument/{{$document->id}}" data-toggle="modal" onclick="editDoc(this)" data-id="{{ $document->id }}" data-target="#editModal{{ $document->id }}"><i class="fas fa-edit"></i> Update</a>
 																			<button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $document->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                                                         </td> 
                                                                     </tr>
@@ -228,7 +228,7 @@
 																		<td>{{$documentpurpose -> proof_needed}}</td>
                                                                         <td>
 																			<a class="btn btn-success btn-md" href="/viewpurpose/{{$documentpurpose->id}}" data-toggle="modal" data-target="#modal-view-{{$documentpurpose->id}}"><i class="fa-solid fa-eye"></i> View</a>
-																			<a class="btn btn-warning btn-md" href="/showpurpose/{{$documentpurpose->id}}" data-toggle="modal" data-target="#editModal{{ $documentpurpose->id }}"><i class="fas fa-edit"></i> Update</a>
+																			<a class="btn btn-warning btn-md" href="/showpurpose/{{$documentpurpose->id}}" data-toggle="modal" onclick="editPur(this)" data-id="{{ $documentpurpose->id }}" data-target="#editModal{{ $documentpurpose->id }}"><i class="fas fa-edit"></i> Update</a>
 																			<button class="btn btn-danger btn-md" onclick="deleteItemPurpose(this)" data-id="{{ $documentpurpose->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                                                         </td> 
                                                                     </tr>
@@ -546,12 +546,18 @@
           $('.nav_btn').click(function(){
             $('.mobile_nav_items').toggleClass('active');
           });
-
+		  editDoc(e);
+		  editPur(e);
           deleteItem(e);
 		  deleteItemPurpose(e);
 
         });
-
+		function editDoc(e){
+			id = e.getAttribute('data-id');
+		}
+		function editPur(e){
+			id = e.getAttribute('data-id');
+		}
         //delete document
         function deleteItem(e){
 

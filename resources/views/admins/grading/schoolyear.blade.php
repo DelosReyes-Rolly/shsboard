@@ -75,7 +75,7 @@
                                             <td>{{$schoolyear -> schoolyear}}</td>
                                             <td>
                                                 <a class="btn btn-success btn-md" href="/viewschoolyear/{{$schoolyear->id}}" data-toggle="modal" data-target="#modal-view-{{ $schoolyear->id }}"><i class="fa-solid fa-eye"></i> View</a>
-                                                <a class="btn btn-warning btn-md" href="/showschoolyear/{{$schoolyear->id}}" data-toggle="modal" data-target="#editModal{{ $schoolyear->id }}"><i class="fas fa-edit"></i> Update</a>
+                                                <a class="btn btn-warning btn-md" href="/showschoolyear/{{$schoolyear->id}}" onclick="editItem(this)" data-id="{{ $schoolyear->id }}" data-toggle="modal" data-target="#editModal{{ $schoolyear->id }}"><i class="fas fa-edit"></i> Update</a>
                                                 <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $schoolyear->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                             </td> 
                                         </tr>
@@ -115,10 +115,12 @@
       $('.nav_btn').click(function(){
         $('.mobile_nav_items').toggleClass('active');
       });
-
+      editItem(e);
       deleteItem(e);
     });
-
+    function editItem(e){
+        id = e.getAttribute('data-id');
+    }
     //delete
     function deleteItem(e){
 

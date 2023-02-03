@@ -63,7 +63,7 @@
     CKEDITOR.replace( 'description' );
 </script>  -->
 <script>
-    console.log(id);
+
     var $loading = $('#loadingDiv'+ id);
         function formPost(){
             $(document).ajaxStart(function () {

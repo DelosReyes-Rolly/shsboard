@@ -32,7 +32,7 @@
         <h3 style="font-size: 28px; font-weight: 800;">Create Content on Homepage </h3>
         <hr class="mt-0 mb-4">
         <!-- form -->
-            <form method="POST" action="{{ route('homepage.store') }}" enctype="multipart/form-data" class="needs-validation" novalidate>
+            <form method="POST" id="createHome" enctype="multipart/form-data" class="needs-validation" novalidate>
                 @csrf
                 <div class="container-xl px-4 mt-4">
                     <!-- page navigation-->
@@ -143,7 +143,7 @@
                                                 <td>{{$landing -> image}}</td>
                                                 <td>
                                                     <a class="btn btn-success btn-md" href="/viewlanding/{{$landing->id}}"><i class="fa-solid fa-eye"></i> View</a>
-                                                    <a class="btn btn-warning btn-md" href="/showlanding/{{$landing->id}}" data-toggle="modal" data-target="#editModal{{ $landing->id }}"><i class="fas fa-edit"></i> Update</a>
+                                                    <a class="btn btn-warning btn-md" href="/showlanding/{{$landing->id}}" onclick="editItem(this)" data-id="{{ $landing->id }}" data-toggle="modal" data-target="#editModal{{ $landing->id }}"><i class="fas fa-edit"></i> Update</a>
                                                     <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $landing->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                                 </td> 
                                             </tr>
@@ -172,10 +172,12 @@
           $('.nav_btn').click(function(){
             $('.mobile_nav_items').toggleClass('active');
           });
-
+          editItem(e);
           deleteItem(e);
         });
-
+        function editItem(e){
+            id = e.getAttribute('data-id');
+        }
         //delete
         function deleteItem(e){
 
@@ -237,5 +239,51 @@
             }
     </script>
     <script src="{{ asset('assets/js/needs-validated.js') }}"></script>
+    <script>
+        var $loading = $('#loadingDiv').hide();
+        function formPost(){
+            $(document).ajaxStart(function () {
+                $loading.show();
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
+            $('#whoops').hide();
+            var form_data = $("form#createHome").serialize();
+            $(":submit").attr("disabled", true);
+            $.ajax({
+                type: "POST",
+                url: "{{ route('homepage.store') }}",
+                data:form_data,
+                success: function(response) {
+                    if (response) {
+                        $("#createHome")[0].reset();
+                        $(":submit").removeAttr("disabled");
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success.',
+                            text: 'Home content has been added successfully',
+                        }).then(function() {
+                            location.reload(true);
+                        })
+                        
+                    }
+                },error: function (xhr) {
+                    $('#validation-errors').html('');
+                    document.getElementById('whoops').style.display = 'block';
+                    if(xhr.responseJSON.error != undefined){
+                        $("#validation-errors").html("");
+                        $('#validation-errors').append('&emsp;<li>'+xhr.responseJSON.error+'</li>');
+                    }
+                    $.each(xhr.responseJSON.errors, function(key,value) {
+                        $('#validation-errors').append('&emsp;<li>'+value+'</li>');
+                    }); 
+                    $(":submit").removeAttr("disabled");
+                },
+            }).ajaxStop(function () {
+                $loading.hide();
+            });
+        }
+</script>
 </main>
 <br><br><br><br>

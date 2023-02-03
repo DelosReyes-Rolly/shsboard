@@ -50,7 +50,7 @@
         </div>
 
         <!-- reports -->
-        <div class="container-xl px-4 mt-4 right-to-left">
+        <div class="container-xl px-4 mt-4">
             <!-- page navigation-->
             <h3 style="font-size: 28px;"><b>Print Announcement Report</b> </h3>
             <hr class="mt-0 mb-4">
@@ -91,7 +91,7 @@
             </div>
         </div>      
 
-        <form method="POST" action="/add/announcements" enctype="multipart/form-data" class="needs-validation" novalidate>
+        <form method="POST" id="addAnnouncement" enctype="multipart/form-data" class="needs-validation" novalidate>
             @csrf
             <div class="container-xl px-4 mt-4">
                 <!-- page navigation-->
@@ -279,7 +279,7 @@
                                         </td>
                                         <td>
                                             <a class="btn btn-success btn-md" href="/viewannouncement/{{$announcement->id}}"><i class="fa-solid fa-eye"></i> View</a>
-                                            <a class="btn btn-warning btn-md" href="/showannouncement/{{$announcement->id}}" data-toggle="modal" data-target="#editModal{{ $announcement->id }}"><i class="fas fa-edit"></i> Update</a>
+                                            <a class="btn btn-warning btn-md" href="/showannouncement/{{$announcement->id}}" onclick="editItem(this)" data-id="{{ $announcement->id }}" data-toggle="modal" data-target="#editModal{{ $announcement->id }}"><i class="fas fa-edit"></i> Update</a>
                                             <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $announcement->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                         </td> 
                                     </tr>
@@ -307,11 +307,13 @@
           $('.nav_btn').click(function(){
             $('.mobile_nav_items').toggleClass('active');
           });
-
+          editItem(e);
           deleteItem(e);
 
         });
-
+        function editItem(e){
+            id = e.getAttribute('data-id');
+        }
         //delete
         function deleteItem(e){
 
@@ -376,5 +378,51 @@
 
     </script>
     <script src="{{ asset('assets/js/needs-validated.js') }}"></script>
+    <script>
+        var $loading = $('#loadingDiv').hide();
+        function formPost(){
+            $(document).ajaxStart(function () {
+                $loading.show();
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
+            $('#whoops').hide();
+            var form_data = $("form#addAnnouncement").serialize();
+            $(":submit").attr("disabled", true);
+            $.ajax({
+                type: "POST",
+                url: "{{ route('add.privateannouncmeent') }}",
+                data:form_data,
+                success: function(response) {
+                    if (response) {
+                        $("#addAnnouncement")[0].reset();
+                        $(":submit").removeAttr("disabled");
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success.',
+                            text: 'Announcement has been added successfully',
+                        }).then(function() {
+                            location.reload(true);
+                        })
+                        
+                    }
+                },error: function (xhr) {
+                    $('#validation-errors').html('');
+                    document.getElementById('whoops').style.display = 'block';
+                    if(xhr.responseJSON.error != undefined){
+                        $("#validation-errors").html("");
+                        $('#validation-errors').append('&emsp;<li>'+xhr.responseJSON.error+'</li>');
+                    }
+                    $.each(xhr.responseJSON.errors, function(key,value) {
+                        $('#validation-errors').append('&emsp;<li>'+value+'</li>');
+                    }); 
+                    $(":submit").removeAttr("disabled");
+                },
+            }).ajaxStop(function () {
+                $loading.hide();
+            });
+        }
+</script>
 </main>
 <br><br><br><br>

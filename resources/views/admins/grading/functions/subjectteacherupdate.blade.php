@@ -5,7 +5,7 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" id="updateSubjectteacher" class="needs-validation" novalidate>
+<form method="POST" id="updateSubjectteacher{{$subjectteacher->id}}" class="needs-validation" novalidate>
     <div class="modal-body">
         @csrf
         @method('put')
@@ -13,7 +13,7 @@
             <b>Whoops! There is a problem in your input</b> <br/>
             <div id="validation-errors"></div>
         </div>
-        <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
+        <center><div hidden id="loadingDiv{{$subjectteacher->id}}" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <input type="hidden" id="id" name="id" value="{{$subjectteacher->id}}"/>
         <div class="mb-3" style="color: red">
             * required field
@@ -119,7 +119,7 @@
 </form>
 <script>
 
-var $loading = $('#loadingDiv').hide();
+var $loading = $('#loadingDiv'+ id);
         function formPost(){
             $(document).ajaxStart(function () {
                 $loading.show();
@@ -206,7 +206,7 @@ var $loading = $('#loadingDiv').hide();
                             $('body').removeClass('modal-open');
                             $('body').css('padding-right', '');
                             $("#editModal"+id).hide();
-                            $("#updateSubjectteacher")[0].reset();
+                            $("#updateSubjectteacher"+ id)[0].reset();
                             $(":submit").removeAttr("disabled");
                             // $('#example').load(document.URL +  ' #example');
                             Swal.fire({
@@ -228,6 +228,8 @@ var $loading = $('#loadingDiv').hide();
                         }); 
                         $(":submit").removeAttr("disabled");
                     },
+                }).ajaxStop(function () {
+                    $loading.hide();
                 });
             }
         }

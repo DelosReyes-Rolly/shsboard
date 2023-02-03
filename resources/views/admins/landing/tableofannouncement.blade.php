@@ -112,7 +112,7 @@
                                         </td>
                                         <td>
                                             <a class="btn btn-success btn-md" href="/viewannouncement/{{$announcement->id}}"><i class="fa-solid fa-eye"></i> View</a>
-                                            <a class="btn btn-warning btn-md" href="/showannouncement/{{$announcement->id}}" data-toggle="modal" data-target="#editModal{{ $announcement->id }}"><i class="fas fa-edit"></i> Update</a>
+                                            <a class="btn btn-warning btn-md" href="/showannouncement/{{$announcement->id}}" onclick="editItem(this)" data-id="{{ $announcement->id }}" data-toggle="modal" data-target="#editModal{{ $announcement->id }}"><i class="fas fa-edit"></i> Update</a>
                                             <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $announcement->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                         </td> 
                                     </tr>
@@ -136,11 +136,13 @@
           $('.nav_btn').click(function(){
             $('.mobile_nav_items').toggleClass('active');
           });
-
+          editItem(e);
           deleteItem(e);
 
         });
-
+        function editItem(e){
+            id = e.getAttribute('data-id');
+        }
         //delete
         function deleteItem(e){
 

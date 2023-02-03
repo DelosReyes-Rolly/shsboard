@@ -164,7 +164,7 @@ class AdminsController extends Controller
             $landing->image = $filename;
         }
         $landing->save();
-        return redirect('/homepage')->with('success', 'New content was added successfully');
+        return response()->json(array('success' => true));
     }
     
     public function viewlanding($id){

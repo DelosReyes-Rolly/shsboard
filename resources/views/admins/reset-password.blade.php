@@ -35,14 +35,14 @@
                             {{ session('alert') }}
                         </div>
                     @endif  
-                    <div class="form-group animate pop">
+                    <div class="form-group">
                         <label><strong>Enter New Password:</strong></label>                                
                         <input type="password"  name="new_password" class="form-control" required minlength="6"/>
                         <div class="invalid-feedback">
                             Please input valid password.
                         </div>
                     </div>
-                    <div class="form-group animate pop delay-1">
+                    <div class="form-group">
                         <label><strong>Confirm Password:</strong></label>                             
                         <input type="password"  name="confirm_password" class="form-control" required minlength="6"/>
                         <div class="invalid-feedback">

@@ -5,7 +5,7 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" id="updateSchoolyear" class="needs-validation" novalidate>
+<form method="POST" id="updateSchoolyear{{$schoolyear->id}}" class="needs-validation" novalidate>
     <div class="modal-body">
     @csrf
     @method('put')
@@ -13,7 +13,7 @@
         <b>Whoops! There is a problem in your input</b> <br/>
         <div id="validation-errors"></div>
     </div>
-    <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
+    <center><div hidden id="loadingDiv{{$schoolyear->id}}" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
     <input type="hidden" id="id" name="id" value="{{$schoolyear->id}}"/>
         <div class="col-md-12">
             <input type="text" id="schoolyear" name="schoolyear" class="form-control @error('schoolyear') is-invalid @enderror" value="{{$schoolyear->schoolyear}}"style="font-size: 20px;"  onkeypress="return onlyNumberKey(event)" maxlength="4" minlength="4" required>
@@ -41,7 +41,7 @@
         //     });
 
         // });
-        var $loading = $('#loadingDiv').hide();
+        var $loading = $('#loadingDiv'+ id);
         function formPost(){
             $(document).ajaxStart(function () {
                 $loading.show();
@@ -50,7 +50,7 @@
                 $loading.hide();
             });
             $('#whoops').hide();
-            var form_data = $("form#updateSchoolyear").serialize();
+            var form_data = $("form#updateSchoolyear"+id).serialize();
             $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",
@@ -61,9 +61,9 @@
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
-                        $("#editModal"+response.id).hide();
-                        $("#updateSchoolyear")[0].reset();
-                        $('#schoolyear' + response.id +' td:nth-child(2)').text(response.schoolyear);
+                        $("#editModal"+id).hide();
+                        $("#updateSchoolyear"+id)[0].reset();
+                        $('#schoolyear' + id +' td:nth-child(2)').text(response.schoolyear);
                         $(":submit").removeAttr("disabled");
                         // $('#example').load(document.URL +  ' #example');
                         Swal.fire({
@@ -83,6 +83,8 @@
                     }); 
                     $(":submit").removeAttr("disabled");
                 },
+            }).ajaxStop(function () {
+                $loading.hide();
             });
         }
        

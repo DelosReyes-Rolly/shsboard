@@ -5,7 +5,7 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" id="updatedExpertise" class="needs-validation" novalidate>     <!-- may yung id na update expertise ilalagay mo sa baba sa script -->
+<form method="POST" id="updatedExpertise{{$expertise->id}}" class="needs-validation" novalidate>     <!-- may yung id na update expertise ilalagay mo sa baba sa script -->
     <div class="modal-body">
         @csrf
         @method('PUT')
@@ -13,7 +13,7 @@
             <b>Whoops! There is a problem in your input</b> <br/>
             <div id="validation-errors"></div>
         </div>
-        <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
+        <center><div hidden id="loadingDiv{{$expertise->id}}" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <input type="hidden" id="id" name="id" value="{{$expertise->id}}"/>               <!-- lagay ka ng hidden. Yung id ng row o ng ieedit -->
         <div class="col-md-12">                                                         <!-- id ng input ay "expertise" -->
             <input type="text" id="expertise" name="expertise" class="form-control @error('expertise') is-invalid @enderror" value="{{$expertise->expertise}}" style="font-size: 20px;" onkeydown="return alphaOnly(event);" maxlength="255"  required>
@@ -41,7 +41,7 @@
         //     });
 
         // });
-        var $loading = $('#loadingDiv').hide();
+        var $loading = $('#loadingDiv'+ id);
         function formPost(){
             $(document).ajaxStart(function () {
                 $loading.show();
@@ -50,20 +50,20 @@
                 $loading.hide();
             });
             $('#whoops').hide();
-            var form_data = $("form#updateExpertise").serialize();
+            var form_data = $("form#updateExpertise"+ id).serialize();
             $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",                                            // PUT pang update
                 url: '{{url("/updateexpertise/")}}/' + id,                // url mo kasama id
                 data:form_data,
                 success: function(response) {                           // kapag nagsuccess
-                        $("#editModal"+response.id).removeClass("in");           //copy paste mo lang to. Pang hide lang to ng modal
+                        $("#editModal"+id).removeClass("in");           //copy paste mo lang to. Pang hide lang to ng modal
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
-                        $("#editModal"+response.id).hide();                     // hanggang dito
-                        $("#updatedExpertise")[0].reset();                // irereset niya yung form
-                        $('#expertise' + response.id +' td:nth-child(2)').text(response.expertise);               // copy paste mo lang to. Bale pinapalitan lang niya yung row. Yung "expertise" id siya ng tr
+                        $("#editModal"+id).hide();                     // hanggang dito
+                        $("#updatedExpertise"+ id)[0].reset();                // irereset niya yung form
+                        $('#expertise' + id +' td:nth-child(2)').text(response.expertise);               // copy paste mo lang to. Bale pinapalitan lang niya yung row. Yung "expertise" id siya ng tr
                         $(":submit").removeAttr("disabled");                                                                                 // yung response galing siya sa controller yung return response()->json($expertise). Yung td:nth-child(2) column bale 2nd column
                         Swal.fire({                                                             //sweetalert
                             icon: 'success',                                                    //
@@ -82,6 +82,8 @@
                     }); 
                     $(":submit").removeAttr("disabled");
                 },
+            }).ajaxStop(function () {
+                $loading.hide();
             });
         }
        

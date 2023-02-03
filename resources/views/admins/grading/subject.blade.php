@@ -74,7 +74,7 @@
                                             <td>{!!$subject -> description!!}</td>
                                             <td>
                                                 <a class="btn btn-success btn-md" href="/viewsubject/{{$subject->id}}" data-toggle="modal" data-target="#modal-view-{{ $subject->id }}"><i class="fa-solid fa-eye"></i> View</a>
-                                                <a class="btn btn-warning btn-md" href="/showsubject/{{$subject->id}}" data-toggle="modal" data-target="#editModal{{ $subject->id }}"><i class="fas fa-edit"></i> Update</a>
+                                                <a class="btn btn-warning btn-md" href="/showsubject/{{$subject->id}}" data-toggle="modal" onclick="editItem(this)" data-id="{{ $subject->id }}" data-target="#editModal{{ $subject->id }}"><i class="fas fa-edit"></i> Update</a>
                                                 <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $subject->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                             </td> 
                                         </tr>
@@ -113,10 +113,12 @@
       $('.nav_btn').click(function(){
         $('.mobile_nav_items').toggleClass('active');
       });
-
+      editItem(e);
       deleteItem(e);
     });
-
+    function editItem(e){
+        id = e.getAttribute('data-id');
+    }
     //delete
     function deleteItem(e){
 
