@@ -68,7 +68,7 @@
 		<div>
 			<div>
 		        <!-- boxes -->
-		        <div class="container-xl px-4 mt-4">
+		        <div class="px-2 mt-2">
 	                <!-- page navigation-->
 	                <hr class="mt-0 mb-4">
 	                <div class="row">
@@ -90,7 +90,7 @@
 	            </div>
 				
 		        <!-- create new documents and print -->
-	            <div class="container-xl px-4 mt-4 right-to-left">
+	            <div class="px-2 mt-2 right-to-left">
 	                <!-- page navigation-->
 					<h3 style="font-size: 28px; font-weight: 800;">Document for Request</h3>
 	                <hr class="mt-0 mb-4">
@@ -102,7 +102,7 @@
 	                                <div class="card-header"></div>
 	                                <div class="card-body">
 										<br>
-	                                    <div style="padding: 10px 40px 10px 40px">
+	                                    <div>
 											@if (count($errors) > 0)
 												<div class="alert alert-danger">
 													<button type="button" class="close" data-dismiss="alert">×</button>
@@ -140,6 +140,7 @@
 	                                        <div class="card-header" style="font-size: 20px;">
 	                                        	Table of Available Documents
 												<a id="addDocument" href="{{route('document.add')}}" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#createModalDocument"><i class="fas fa-user-plus"></i> Add Document</a>
+												<br/><br/>
 												<div id="createModalDocument" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 													<div class="modal-dialog modal-lg" role="document">
 														<div class="modal-content border-start-lg border-start-yellow">
@@ -197,6 +198,7 @@
 	                                        <div class="card-header" style="font-size: 20px;">
 	                                        	Table of Purposes
 												<a id="addPurpose" href="{{route('purpose.add')}}" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#createModalPurpose"><i class="fas fa-user-plus"></i> Add Purpose</a>
+												<br/><br/>
 												<div id="createModalPurpose" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 													<div class="modal-dialog modal-lg" role="document">
 														<div class="modal-content border-start-lg border-start-yellow">
@@ -260,7 +262,7 @@
 	            </div>
 				<!-- tables need join -->
 				<!-- tables -->
-				<div class="container-xl px-4 mt-4">
+				<div class="px-2 mt-2">
 					<hr class="mt-0 mb-4">
 	                <div class="row">
 					

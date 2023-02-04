@@ -2,7 +2,7 @@
 @include('partials.adminSecondHeader')
 <main>
         <div>
-            <div class="container-xl px-4 mt-4 left-to-right">
+            <div class="px-2 mt-2 left-to-right">
                 <div style="font-size: 20px;">
                     <nav  aria-label = "breadcrumb">
                         <!--Add the "breadcrumb" class to ul element that represents the breadcrumb-->

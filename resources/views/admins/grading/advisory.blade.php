@@ -37,7 +37,7 @@
         @endif
         <h3 style="font-size: 28px; font-weight: 800;">Table of Teacher's Advisory Class </h3>
         <hr class="mt-0 mb-4">
-        <div class="card mb-4 border-start-lg border-start-success" style="padding: 10px 40px 10px 40px;">
+        <div class="card mb-4 border-start-lg border-start-success" style="padding: 10px 20px 10px 20px;">
             <div class="card-header" style="background-color: #ffffff;">
                 <a href="{{route('advisory.add')}}" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#createModal"><i class="fas fa-user-plus"></i> Add Record</a>
             </div>

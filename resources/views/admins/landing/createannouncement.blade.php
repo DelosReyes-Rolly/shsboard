@@ -50,7 +50,7 @@
         </div>
 
         <!-- reports -->
-        <div class="container-xl px-4 mt-4">
+        <div class="px-2 mt-2">
             <!-- page navigation-->
             <h3 style="font-size: 28px;"><b>Print Announcement Report</b> </h3>
             <hr class="mt-0 mb-4">
@@ -93,7 +93,7 @@
 
         <form method="POST" id="addAnnouncement" enctype="multipart/form-data" class="needs-validation" novalidate>
             @csrf
-            <div class="container-xl px-4 mt-4">
+            <div class="px-2 mt-2">
                 <!-- page navigation-->
                 <h3 style="font-size: 28px; font-weight: 800;">Create Announcement </h3>
                 <hr class="mt-0 mb-4">
@@ -226,7 +226,7 @@
         @endif
         <h3 style="font-size: 28px; font-weight: 800;">Table of Annoucements</h3>
         <hr class="mt-0 mb-4">
-        <div class="card mb-4 right-to-left border-start-lg border-start-yellow" style="padding: 10px 40px 10px 40px;">
+        <div class="card mb-4 right-to-left border-start-lg border-start-yellow" style="padding: 10px 20px 10px 20px;">
             <div class="card-header"></div>
             <div class="card-body p-0">
                 <!-- Announcements table-->

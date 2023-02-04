@@ -28,7 +28,7 @@
     </script>
 <div>
             <!-- boxes -->
-            <div class="container-xl px-4 mt-4">
+            <div class="px-2 mt-2">
                 <hr class="mt-0 mb-4">
                 <div class="row">
                     <div class="col-lg-4 mb-4">
@@ -54,7 +54,7 @@
 
             <form method="POST" id="createReminder" class="needs-validation" novalidate>
                 @csrf
-                <div class="container-xl px-4 mt-4">
+                <div class="px-2 mt-2">
                     <!-- page navigation-->
                     <h3 style="font-size: 28px; font-weight: 800;">Create Reminder </h3>
                     <hr class="mt-0 mb-4">

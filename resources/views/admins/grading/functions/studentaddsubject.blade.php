@@ -20,7 +20,7 @@
             @csrf
             <div id="validation-errors"></div>
             <input type="hidden" name="student_id" value="{{$student->id}}">
-            <div class="container-xl px-4 mt-4">
+            <div class="px-2 mt-2">
                 <!-- page navigation-->
                 <h3 style="font-size: 28px; font-weight: 800;">Add subject to {{$student->last_name}}, {{$student->first_name}} {{$student->middle_name}} {{$student->suffix}}</h3>
                 <hr class="mt-0 mb-4">

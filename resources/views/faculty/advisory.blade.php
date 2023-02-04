@@ -35,7 +35,7 @@
         @endif
         <h3 style="font-size: 28px; font-weight: 800;">Advisory Class </h3>
         <hr class="mt-0 mb-4">
-        <div class="card mb-4 border-start-lg border-start-success" style="padding: 10px 40px 10px 40px;">
+        <div class="card mb-4 border-start-lg border-start-success" style="padding: 10px 20px 10px 20px;">
             <div class="card-body p-0" style="padding: 20px 20px 20px 20px;">
                 @if($advisories->count() == 0)
 					<br><br>

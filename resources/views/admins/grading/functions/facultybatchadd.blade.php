@@ -13,7 +13,7 @@
             <div id="validation-errors"></div>
         </div>
         <center><div hidden id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
-        <center><a href="/downloadFacultyFileFormat" class="btn btn-primary"><i class="fas fa-download"></i> Download Required File Format</a></center>
+        <center><a href="/downloadFacultyFileFormat" class="btn btn-primary"><i class="fas fa-download"></i> Download File Format</a></center>
         <br/>
         <div class="mb-3" style="color: red">
             * required field

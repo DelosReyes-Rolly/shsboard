@@ -5,7 +5,7 @@
     <div class="">
             <form method="POST" action="/add/privatereminders"class="needs-validation" novalidate>
                 @csrf
-                <div class="container-xl px-4 mt-4 left-to-left">
+                <div class="px-2 mt-2 left-to-left">
                     <!-- page navigation-->
                     <h3 style="font-size: 28px; font-weight: 800;">Create Private Reminder</h3>
                     <hr class="mt-0 mb-4">

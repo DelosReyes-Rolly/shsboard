@@ -123,7 +123,6 @@ nav.navbar.bootsnav {
 .svnhshead{
     padding-bottom: 10px;
     font-size: small;
-
 }
 
 /*.navbar-brand*/
@@ -853,7 +852,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #f3dc60;}
     display: block;
 }
 
-.container_title{border-bottom: 8px solid #f3dc60; color: black; letter-spacing: 4px;}
+.container_title{border-bottom: 8px solid #f3dc60; color: black; letter-spacing: 4px; font-size: 60px;}
 
 .course-intro{margin: 40px 180px 40px 180px; font-size: medium; font-weight: 600;display: block;}
 
@@ -2001,5 +2000,28 @@ button[type=submit]{       /*login button*/
 @media (max-width: 768px) {
   .loginOthers{
     height:1000px;
+  }
+}
+
+
+.announcementletter{
+  font-size: 40px;
+}
+.enrollmentreport{
+  font-size: 60px;
+}
+/* === ADJUSTABLES ===*/
+@media (max-width: 768px) {
+  .announcementletter{
+    font-size: 20px;
+  }
+  .svnhshead{
+    font-size: 10px!important;
+  }
+  .enrollmentreport{
+    font-size: 20px;
+  }
+  .container_title{
+    font-size: 40px;
   }
 }

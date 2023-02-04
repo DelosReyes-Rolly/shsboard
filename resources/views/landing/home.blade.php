@@ -26,23 +26,17 @@
    @foreach ($home as $homes)
         <!--about start -->
 		@if($homes -> title == "About")
-				<!-- <div class="section-heading text-center">
-					<h2>{{$homes -> title}}</h2>
-				</div> -->
-				<br/><br/><br/><br/><br/><br/>
-					<div class="row" style="padding:0px 40px 0px 40px;">
-						<div class="col-sm-2"></div>
-						<div class="col-sm-4">
-							<div class="reveal fade-left">{{$homes -> title}}</div>
-							<div class="titlelanding reveal fade-bottom">SVNHS</div><br/>
-							<div class="reveal fade-left"><p style="padding-top: 60px;">{!!$homes -> content!!}</p></div>
-						</div>
-						<div class="col-sm-6 reveal fade-right"  >
-							<img src="{{ asset('uploads/landing/'.$homes->image) }}" style = "width: 1000px; height: auto; box-shadow: 0 4px 16px rgba(0,0,0,1);"/>
-						</div>
-					</div>
-				
-
+			<br/><br/><br/><br/><br/><br/>
+			<div class="container" style="padding:0px 40px 0px 40px;">
+				<div>
+					<div class="reveal fade-left">{{$homes -> title}}</div>
+					<div class="titlelanding reveal fade-bottom">SVNHS</div><br/>
+					<div class="reveal fade-left"><p style="padding-top: 60px;">{!!$homes -> content!!}</p></div>
+				</div>
+				<div class="reveal fade-right">
+					<img src="{{ asset('uploads/landing/'.$homes->image) }}" style = "width: 1000px; height: auto; box-shadow: 0 4px 16px rgba(0,0,0,1);"/>
+				</div>
+			</div>
 		@elseif($homes -> title == "Principal Message")
 		<br/><br/><br/><br/><br/><br/>
 				<div class="container">
@@ -84,7 +78,7 @@
 	<br/><br/><br/><br/><br/><br/>
 			<div class="container reveal fade-bottom"  style="padding:0px 40px 0px 40px;">
 
-					<b style="font-size: 60px;" >Enrollment Report</b>
+					<div class="enrollmentreport"><b>Enrollment Report</b></div>
 			       	<!-- page navigation-->
 			        <center>
 				       <hr class="mt-9 mb-9">

@@ -4,7 +4,7 @@
 			<center>
 				<div>
 					<br><br><br><br>
-					<b style="font-size: 60px;" class="container_title">THE FACULTY MEMBERS</b><br/><br/>
+					<b class="container_title">THE FACULTY MEMBERS</b><br/><br/>
 					<b>Senior High School Department</b>
 				</div>
 			</center>
@@ -29,7 +29,7 @@
 				@endforeach
 			</div>
 			<center>
-				<b style="font-size: 60px;" class="container_title">FACULTY MEMBERS</b><br/><br/><br/><br/>
+				<b class="container_title">FACULTY MEMBERS</b><br/><br/><br/><br/>
 				<div class="row gx-4 mb-4">
 					<div class="reveal fade-left">
 						<div class="card single_post faculty-box" >

@@ -1,8 +1,8 @@
 @include('partials.adminheader')
 <main>
     <br/><br/><br/><br/><br/><br/>
-    <div class="container" style="padding: 10px 40px 10px 40px;">
-        <div class="container-xl px-4 mt-4">
+    <div class="container" style="padding: 10px 20px 10px 20px;">
+        <div class="px-2 mt-2">
             <hr class="mt-0 mb-4">
             <div class="row">
                 <div class="col-lg-4 mb-4">

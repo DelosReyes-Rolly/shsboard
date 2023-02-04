@@ -6,7 +6,7 @@
 
 
         
-            <div class="container-xl px-4 mt-4">
+            <div class="px-2 mt-2">
                 <div style="font-size: 20px;">
                     <nav  aria-label = "breadcrumb">
                         <!--Add the "breadcrumb" class to ul element that represents the breadcrumb-->

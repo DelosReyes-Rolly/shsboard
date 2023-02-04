@@ -17,7 +17,7 @@
                 <form method="POST" action="/updaterequest/{{$docreq->id}}" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
-                    <div class="container-xl px-4 mt-4">
+                    <div class="px-2 mt-2">
                         <!-- page navigation-->
                         <h3 style="font-size: 28px; font-weight: 800;">Request Documents</h3>
                         <hr class="mt-0 mb-4">

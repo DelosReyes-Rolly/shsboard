@@ -34,7 +34,7 @@
         <!-- form -->
             <form method="POST" id="createHome" enctype="multipart/form-data" class="needs-validation" novalidate>
                 @csrf
-                <div class="container-xl px-4 mt-4">
+                <div class="px-2 mt-2">
                     <!-- page navigation-->
                     <div class="row">
                             @if ($message = Session::get('message'))

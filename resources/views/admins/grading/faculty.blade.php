@@ -36,13 +36,13 @@
         @endif
         <h3 style="font-size: 28px; font-weight: 800;">Table of Teachers </h3>
         <hr class="mt-0 mb-4">
-        <div class="card mb-4 border-start-lg border-start-success" style="padding: 10px 40px 10px 40px;">
+        <div class="card mb-4 border-start-lg border-start-success" style="padding: 10px 20px 10px 20px;">
             <div class="card-header" style="background-color: #ffffff;">
                 <div class="row">
                     <div class="col-lg-6 col-md-6" style="font-size: 20px;">
                         Max Regular Load: <span id="reload">{{$load->regular_load}}</span> <a class="btn btn-warning btn-sm" href="/showminload/{{$load->id}}" data-toggle="modal" onclick="editReg(this)" data-id="{{ $load->id }}" data-target="#editmin"><i class="fas fa-edit"></i> Change</a><br/><br/>
                         
-                        Max Master Load: <span id="reload2">{{$load->master_load}}</span> <a class="btn btn-warning btn-sm" href="/showmaxload/{{$load->id}}" data-toggle="modal" onclick="editMas(this)" data-id="{{ $load>id }}" data-target="#editmax"><i class="fas fa-edit"></i> Change</a>
+                        Max Master Load: <span id="reload2">{{$load->master_load}}</span> <a class="btn btn-warning btn-sm" href="/showmaxload/{{$load->id}}" data-toggle="modal" onclick="editMas(this)" data-id="{{ $load->id }}" data-target="#editmax"><i class="fas fa-edit"></i> Change</a>
                         
                     </div>
                     <div class="col-lg-6 col-md-6">

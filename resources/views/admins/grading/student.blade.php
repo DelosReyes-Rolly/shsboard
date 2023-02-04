@@ -29,7 +29,7 @@
     </script>
 <!-- reports -->
 <div class="">
-        <div class="container-xl px-4 mt-4">
+        <div class="px-2 mt-2">
             <!-- page navigation-->
             <h3 style="font-size: 28px;"><b>Print Student Report</b> </h3>
             <hr class="mt-0 mb-4">
@@ -69,15 +69,15 @@
         @endif
         <h3 style="font-size: 28px; font-weight: 800;">Table of Students </h3>
         <hr class="mt-0 mb-4">
-        <div class="card mb-4 right-to-left border-start-lg border-start-success" style="padding: 10px 40px 10px 40px;">
+        <div class="card mb-4 right-to-left border-start-lg border-start-success" style="padding: 10px 20px 10px 20px;">
             <div class="card-header" style="background-color: white;">
                 <div class="row">
                     <div class="col-lg-6 col-md-12 col-sm-12">
-                        <a class="btn btn-success" style="font-size:20px; font-weight:bold; color:white;" href='{{ url("/gradingalumni") }}'><i class="fas fa-user-graduate"></i> Alumni</a>&ensp;
-                        <a class="btn btn-danger" style="font-size:20px; font-weight:bold; color:white;" href='{{ url("/gradingdropped") }}'><i class="fas fa-user-slash"></i> Dropped</a>&ensp;
+                        <a class="btn btn-success" style="font-size:20px; font-weight:bold; color:white;" href='{{ url("/gradingalumni") }}'><i class="fas fa-user-graduate"></i> Alumni</a><br/><br/>
+                        <a class="btn btn-danger" style="font-size:20px; font-weight:bold; color:white;" href='{{ url("/gradingdropped") }}'><i class="fas fa-user-slash"></i> Dropped</a><br/><br/>
                     </div><br/><br/>
                     <div class="col-lg-6 col-md-12 col-sm-12" style="float:right; text-align: right;">
-                        <a href="{{route('studentbatch.add')}}" class="btn btn-primary" style="display: inline-block" data-toggle="modal" data-target="#batchModal"><i class="fas fa-user-plus"></i> Add Student in Batch</a>
+                        <a href="{{route('studentbatch.add')}}" class="btn btn-primary" style="display: inline-block" data-toggle="modal" data-target="#batchModal"><i class="fas fa-user-plus"></i> Add Student in Batch</a><br/><br/>
                         <a href="{{route('student.add')}}" class="btn btn-primary" style="display: inline-block" data-toggle="modal" data-target="#createModal"><i class="fas fa-user-plus"></i> Add Student Manually</a>
                     </div>
                 </div>
