@@ -20,6 +20,7 @@
             </ul>
          </nav>
 	</div>
+    <br/><br/>
 	<link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/datatables-jquery-1.12.1.css') }}">
 	<link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/datatables-rowreorder-1.2.8.css') }}">
 	<link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/datatables-responsive-2.3.0.css') }}">
@@ -64,9 +65,6 @@
                 {{ session('alert') }}
             </div>
         @endif  
-        <div style="margin: 20px;">
-            <a class="btn btn-secondary btn-lg" href="/advisoryfaculty" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to advisory list</a>
-        </div>
         <h3 style="font-size: 28px; font-weight: 800;">Subject Grades</h3>
         <br/>
         <hr class="mt-0 mb-4">

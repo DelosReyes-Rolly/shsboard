@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
-
+<style>
+        .swal2-popup {
+        font-size: 20px !important;
+        font-family:Arial, Helvetica, sans-serif;
+        }
+    </style>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

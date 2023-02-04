@@ -31,7 +31,7 @@
     @endif
     <div class="left-to-right">
         <div style="margin: 20px;">
-            <a class="btn btn-secondary btn-lg" href="javascript:history.back()" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to subject list</a>
+            <a class="btn btn-secondary btn-lg" href="javascript:history.back()" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to subject list</a><br/><br/>
         </div>
         <h3 style="font-size: 28px; font-weight: 800;">Table of Students </h3><br/>
       <hr class="mt-0 mb-4"><br/>

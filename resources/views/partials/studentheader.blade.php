@@ -42,7 +42,10 @@
                 <li title="Announcement">
                     <a href="{{ url('/') }}">
                         <i class="fas fa-chalkboard"></i>
-                        <span class="hide-word title-word"><b> Announcement</b></span>
+                        <span class="hide-word title-word"><b>
+                             <div class="Ashort">Announces</div>
+                             <div class="Along">Announcement</div>
+                        </b></span>
                     </a>
                 </li>
                 <li title="Activity Stream">
@@ -92,7 +95,7 @@
                     <button type="button" id="sidebarCollapse" class="btn btn-info">
                         <i class="fas fa-align-left"></i>
                     </button>
-                    <div style="padding-left:10px; color: #fff; font-weight:bold; font-style: Verdana;">Welcome Student {{Auth::user()->first_name}}!</div>
+                    <div class="greetingstop" style="padding-left:10px; color: #fff; font-weight:bold; font-style: Verdana;">Welcome Student {{Auth::user()->first_name}}!</div>
                     <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
                     </button>
