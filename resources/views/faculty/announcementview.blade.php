@@ -1,7 +1,7 @@
 <main>
     <div class="modal-header">
         <h1 style="font-size: 28px;" ><label><b>Activity</b></label></h1>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-size:40px;">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>

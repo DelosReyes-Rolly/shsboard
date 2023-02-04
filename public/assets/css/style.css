@@ -2003,14 +2003,22 @@ button[type=submit]{       /*login button*/
   }
 }
 
-
+/* ======================================================================== ADJUSTABLES ===================================================================================*/
 .announcementletter{
   font-size: 40px;
 }
 .enrollmentreport{
   font-size: 60px;
 }
-/* === ADJUSTABLES ===*/
+
+.Along{
+  display:block;
+}
+
+.Ashort{
+  display: none;
+}
+
 @media (max-width: 768px) {
   .announcementletter{
     font-size: 20px;
@@ -2023,5 +2031,17 @@ button[type=submit]{       /*login button*/
   }
   .container_title{
     font-size: 40px;
+  }
+  .announcement_text{
+    font-size: 28px;
+  }
+  .greetingstop{
+    font-size: 12px;
+  }
+  .Along{
+    display:none;
+  }
+  .Ashort{
+    display: block;
   }
 }

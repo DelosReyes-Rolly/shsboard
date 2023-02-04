@@ -2,7 +2,7 @@
 <script src="{{ asset('assets/js/needs-validated.js') }}"></script>
 <div class="modal-header">
     <h1 class="modal-title" id="staticBackdropLabel" style="font-size: 20px;">Update Activity</h1>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-size:40px;">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
@@ -10,6 +10,10 @@
     <div class="modal-body">
         @csrf
         @method('put')
+        <div id="whoops" class="alert alert-danger" style="display: none;">
+            <b>Whoops! There is a problem in your input</b> <br/>
+            <div id="validation-errors"></div>
+        </div>
         <div class="mb-3" style="color: red">
             * required field
         </div>
@@ -112,7 +116,9 @@
 
 <script>
     function formPost(){
-            var form_data = $("form#activityStreamupdate").serialize();
+            $('#whoops').hide();
+            var form_data = $("form#activityStreamupdate"+id).serialize();
+            console.log(form_data);
             $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",                                            // PUT pang update
@@ -129,7 +135,7 @@
                         $(":submit").removeAttr("disabled");               // copy paste mo lang to. Bale pinapalitan lang niya yung row. Yung "section" id siya ng tr                                                                        // yung response galing siya sa controller yung return response()->json($section). Yung td:nth-child(2) column bale 2nd column
                         Swal.fire({                                                             //sweetalert
                             icon: 'success',                                                    //
-                            title: 'Success.',                                                  //
+                            title: '<div style="font-size: 60px;">Success.</div>',                                                  //
                             text: 'Announcement has been updated successfully',                      //
                         })
                 },error: function (xhr) {
@@ -144,8 +150,6 @@
                     }); 
                     $(":submit").removeAttr("disabled");
                 },
-            }).ajaxStop(function () {
-                $loading.hide();
             });
         }
 </script>

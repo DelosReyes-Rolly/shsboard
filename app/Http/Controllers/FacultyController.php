@@ -226,7 +226,7 @@ class FacultyController extends Controller
            $announcement->update($validated);
            ActivityStreams::where('deleted', '=', NULL)->where('expired_at', '<',  now())->update(['status' => '2']);
            ActivityStreams::where('deleted', '=', NULL)->where('expired_at', '>',  now())->update(['status' => '1']);
-           return redirect('/createannouncement')->with('success', 'Activity has been updated.');;
+           return response()->json($announcement);
        }
 
         public function deleteactivitystream(ActivityStreams $activitystream, Request $request, $id){

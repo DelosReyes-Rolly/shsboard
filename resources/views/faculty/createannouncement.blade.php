@@ -375,12 +375,11 @@
             });
 
             swalWithBootstrapButtons.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: '<div style="font-size:40px;">Are you sure?</div>',
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
+                confirmButtonText: '<div style="font-size:40px;">Yes, delete it!</div>',
+                cancelButtonText: '<div style="font-size:40px;">No, cancel!</div>',
                 reverseButtons: true
             }).then((result) => {
                 if (result.value) {
@@ -396,8 +395,8 @@
                                 if (data.success){
                                     
                                     swalWithBootstrapButtons.fire(
-                                        'Deleted!',
-                                        'An activity has been deleted successfully.',
+                                        '<div style="font-size:40px;">Deleted!</div>',
+                                        '<div style="font-size:40px;">An activity has been deleted successfully.</div>',
                                         "success"
                                     );
                                     $("#announcement"+id+"").remove();
@@ -412,9 +411,9 @@
                     result.dismiss === Swal.DismissReason.cancel
                 ) {
                     swalWithBootstrapButtons.fire(
-                        'Cancelled',
-                        '',
-                        'error'
+                        '<div style="font-size:40px;">Cancelled</div>',
+                        '<div style="font-size:40px;"> </div>',
+                        '<div style="font-size:40px;">error</div>'
                     );
                 }
             });
