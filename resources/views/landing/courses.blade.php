@@ -23,7 +23,7 @@
 								@if($count !=6)
 									<div class="col-lg-4 col-md-12  left-to-right course-hover">
 										@if($strand->id == 1)
-											<a class="card single_post course-box" href="/coursedescription/{{$strand->id}}">
+											<a class="card single_post course-box" href="{!! route('coursedescription',['id'=>$strand->id]) !!}">
 												@if($strand->image == NULL)
 													<img src="{{ URL::asset('img/shs.png')}}" class="course-image">
 												@else
@@ -37,7 +37,7 @@
 												</div>
 											</a> @php $count++; @endphp
 										@elseif($strand->id == 2)
-											<a class="card single_post course-box" href="/coursedescription/{{$strand->id}}">
+											<a class="card single_post course-box" href="{!! route('coursedescription',['id'=>$strand->id]) !!}">
 												@if($strand->image == NULL)
 													<img src="{{ URL::asset('img/shs.png')}}" class="course-image">
 												@else
@@ -51,7 +51,7 @@
 												</div>
 											</a> @php $count++; @endphp
 										@elseif($strand->id == 3)
-											<a class="card single_post course-box" href="/coursedescription/{{$strand->id}}">
+											<a class="card single_post course-box" href="{!! route('coursedescription',['id'=>$strand->id]) !!}">
 												@if($strand->image == NULL)
 													<img src="{{ URL::asset('img/shs.png')}}" class="course-image">
 												@else
@@ -65,7 +65,7 @@
 												</div>
 											</a> @php $count++; @endphp
 										@elseif($strand->id == 4)
-											<a class="card single_post course-box" href="/coursedescription/{{$strand->id}}">
+											<a class="card single_post course-box" href="{!! route('coursedescription',['id'=>$strand->id]) !!}">
 												@if($strand->image == NULL)
 													<img src="{{ URL::asset('img/shs.png')}}" class="course-image">
 												@else
@@ -79,7 +79,7 @@
 												</div>
 											</a> @php $count++; @endphp
 										@elseif($strand->id == 5)
-											<a class="card single_post course-box" href="/coursedescription/{{$strand->id}}">
+											<a class="card single_post course-box" href="{!! route('coursedescription',['id'=>$strand->id]) !!}">
 												@if($strand->image == NULL)
 													<img src="{{ URL::asset('img/shs.png')}}" class="course-image">
 												@else
@@ -93,7 +93,7 @@
 												</div>
 											</a> @php $count++; @endphp
 										@elseif($strand->id == 6)
-											<a class="card single_post course-box" href="/coursedescription/{{$strand->id}}">
+											<a class="card single_post course-box" href="{!! route('coursedescription',['id'=>$strand->id]) !!}">
 												@if($strand->image == NULL)
 													<img src="{{ URL::asset('img/shs.png')}}" class="course-image">
 												@else
@@ -115,7 +115,7 @@
 									@if($strand->id == 7)
 										<div class="col-sm-2 left-to-right course-hover"></div>
 										<div class="col-lg-4 left-to-right">
-											<a class="card single_post course-box" href="/coursedescription/{{$strand->id}}">
+											<a class="card single_post course-box" href="{!! route('coursedescription',['id'=>$strand->id]) !!}">
 												@if($strand->image == NULL)
 													<img src="{{ URL::asset('img/shs.png')}}" class="course-image">
 												@else
@@ -131,7 +131,7 @@
 										</div>
 									@elseif($strand->id == 8)
 										<div class="col-lg-4 left-to-right course-hover">
-											<a class="card single_post course-box" href="/coursedescription/{{$strand->id}}">
+											<a class="card single_post course-box" href="{!! route('coursedescription',['id'=>$strand->id]) !!}">
 												@if($strand->image == NULL)
 													<img src="{{ URL::asset('img/shs.png')}}" class="course-image">
 												@else
@@ -148,7 +148,7 @@
 										<div class="col-sm-2 left-to-right course-hover"></div>
 									@elseif($strand->id >= 9)
 										<div class="col-lg-4 left-to-right course-hover">
-											<a class="card single_post course-box" href="/coursedescription/{{$strand->id}}">
+											<a class="card single_post course-box" href="{!! route('coursedescription',['id'=>$strand->id]) !!}">
 												@if($strand->image == NULL)
 													<img src="{{ URL::asset('img/shs.png')}}" class="course-image">
 												@else

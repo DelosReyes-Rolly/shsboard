@@ -24,7 +24,7 @@
 					<iframe width="100%" height="720" box-shadow = "0 5px 20px rgba(0,0,0,2)" src="{{$course -> link}}" title="ABM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 				@endif<br><br>
 				<hr style="border: 0.6px solid green">
-				<h1><a href="/courses">Back to Strands</a></h1>
+				<h1><a href="javascript:history.back()">Back to Strands</a></h1>
 			</center>
 		</div>
 	</section>
