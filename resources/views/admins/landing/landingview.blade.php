@@ -10,7 +10,7 @@
                         <!--Add the "breadcrumb" class to ul element that represents the breadcrumb-->
                         <ul class = "breadcrumb">
                         <!--Add the ".breadcrumb-item" class to each li element within the breadcrumb-->
-                        <li class = "breadcrumb-item"><a class="bca" href = "/homepage">Homepage</a></li>
+                        <li class = "breadcrumb-item"><a class="bca" href = "{{ url('homepage') }}">Homepage</a></li>
                         <!--Add the "active" class to li element to represent the current page-->
                         <li class = "breadcrumb-item active" aria-current = "page">View Content</li>
                         </ul>
@@ -18,7 +18,7 @@
                 </div>
                 <!-- page navigation-->
                 <div style="margin: 20px;">
-                    <a class="btn btn-secondary btn-lg" href="/homepage" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to homepage</a>
+                    <a class="btn btn-secondary btn-lg" href="{{ url('homepage') }}" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to homepage</a>
                 </div>
                 <h3 style="font-size: 28px; font-weight: 800;">View on Home</h3><br/>
                 <hr class="mt-0 mb-4">
