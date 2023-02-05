@@ -6,8 +6,8 @@
 	    // 	echo '<div class="alert alert-success">'.$success.'</div>';
 	    // }
 	?> -->
-
-	<form action="/facultyprofile/{{Auth::user()->id}}/{{$address->id}}" method="post">
+	
+	<form action="{{ url('facultyprofile',['student'=>Auth::user()->id, 'address'=>$address->id]) }}" method="post">
         @method('PUT')
          @csrf
 	    <div class="rounded bg-white mt-5 mb-5 top-to-bottom">

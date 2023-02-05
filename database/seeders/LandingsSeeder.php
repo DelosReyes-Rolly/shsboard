@@ -30,6 +30,8 @@ class LandingsSeeder extends Seeder
             'content' => '<p style="font-size:18px;">&quot;We are all very excited about the 2021-22 school year, where classrooms once again will be full with activities and ideas that challenge and inspire our students. Our amazing teachers work hard to create an exceptional learning environment for our students. As a result, our school has been recognized at the state and national levels as being an example of not just excellent teaching, learning, but also high levels of student achievement and growth, and exemplary arts education programs. This year, we continue our journey as a Leader in Me School. &quot;</p>
             ',
             'image' => 'principal.jpg',
+            'deleted' => '1',
+            'deleted_at' => '2023-02-06',
         ]);
         Landings::create([
             'title' => 'The DEPED VISION',

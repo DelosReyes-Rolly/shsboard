@@ -8,9 +8,9 @@
 			<br><br><br><br>
 			<center>
 				@if($course->image == NULL)
-					<img src="{{ URL::asset('img/shs.png')}}" style="width: 600px; height: 600px;" class="">
+					<img src="{{ URL::asset('img/shs.png')}}" style="width: 100%; height: 100%;" class="">
 				@else
-					<img src="{{ asset('img/'.$course->image) }}" style="width: 600px; height: 600px;" class=""/>
+					<img src="{{ asset('img/'.$course->image) }}" style="width: 100%; height: 100%;" class=""/>
 				@endif<br><br>
 
 				<div class="academic_track">{{$course -> abbreviation}}</div>

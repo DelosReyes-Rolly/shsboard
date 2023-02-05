@@ -40,9 +40,9 @@
             <div class="card-header" style="background-color: #ffffff;">
                 <div class="row">
                     <div class="col-lg-6 col-md-6" style="font-size: 20px;">
-                        Max Regular Load: <span id="reload">{{$load->regular_load}}</span> <a class="btn btn-warning btn-sm" href="/showminload/{{$load->id}}" data-toggle="modal" onclick="editReg(this)" data-id="{{ $load->id }}" data-target="#editmin"><i class="fas fa-edit"></i> Change</a><br/><br/>
+                        Max Regular Load: <span id="reload">{{$load->regular_load}}</span> <a class="btn btn-warning btn-sm" href="{{ url('showminload',['id'=>$load->id]) }}" data-toggle="modal" onclick="editReg(this)" data-id="{{ $load->id }}" data-target="#editmin"><i class="fas fa-edit"></i> Change</a><br/><br/>
                         
-                        Max Master Load: <span id="reload2">{{$load->master_load}}</span> <a class="btn btn-warning btn-sm" href="/showmaxload/{{$load->id}}" data-toggle="modal" onclick="editMas(this)" data-id="{{ $load->id }}" data-target="#editmax"><i class="fas fa-edit"></i> Change</a>
+                        Max Master Load: <span id="reload2">{{$load->master_load}}</span> <a class="btn btn-warning btn-sm" href="{{ url('showmaxload',['id'=>$load->id]) }}" data-toggle="modal" onclick="editMas(this)" data-id="{{ $load->id }}" data-target="#editmax"><i class="fas fa-edit"></i> Change</a>
                         
                     </div>
                     <div class="col-lg-6 col-md-6">
@@ -93,8 +93,8 @@
                                             </td>
                                             <td>{{$faculty -> email}}</td>
                                             <td width=24%>
-                                                <a class="btn btn-success btn-md" href="/viewfaculty/{{$faculty->id}}"><i class="fa-solid fa-eye"></i> View</a>
-                                                <a class="btn btn-warning btn-md" href="/showfaculty/{{$faculty->id}}" data-toggle="modal" onclick="editItem(this)" data-id="{{ $faculty->id }}" data-target="#editModal{{ $faculty->id }}"><i class="fas fa-edit"></i> Update</a>
+                                                <a class="btn btn-success btn-md" href="{{ url('viewfaculty',['id'=>$faculty->id]) }}"><i class="fa-solid fa-eye"></i> View</a>
+                                                <a class="btn btn-warning btn-md" href="{{ url('showfaculty',['id'=>$faculty->id]) }}" data-toggle="modal" onclick="editItem(this)" data-id="{{ $faculty->id }}" data-target="#editModal{{ $faculty->id }}"><i class="fas fa-edit"></i> Update</a>
                                                 <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $faculty->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                             </td> 
                                         </tr>

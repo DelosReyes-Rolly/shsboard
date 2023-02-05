@@ -97,7 +97,7 @@
                                                             <?php if($gradeevaluationrequest -> file == NULL):?>
                                                             <div class="alert alert-danger"><em>Please wait for teacher to upload the file.</em></div>
                                                             <?php else: ?>
-                                                                <a class="btn btn-success btn-md" href="/vieweval/{{$gradeevaluationrequest->id}}"><i class="fa-solid fa-eye"></i> View</a>
+                                                                <a class="btn btn-success btn-md" href="{{ url('vieweval',['id'=>$gradeevaluationrequest->id]) }}"><i class="fa-solid fa-eye"></i> View</a>
                                                             <?php endif; ?> 
                                                         </td>
                                                         <td>

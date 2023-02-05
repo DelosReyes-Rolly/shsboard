@@ -78,7 +78,7 @@
 								<li class="smooth-menu"><a class="a-header" href='{{ url("generalannouncements") }}'>General Announcements</a></li>
 								<li class="smooth-menu"><a class="a-header" href='{{ url("events") }}'>Events</a></li>
 								<li class="smooth-menu"><a class="a-header" href='{{ url("faculty") }}'>Faculties</a></li>
-								<li class="smooth-menu"><a class="a-header" href='{{ url("courses") }}'>Strands</a></li>
+								<li class="smooth-menu"><a class="a-header" href='{{ url("strand") }}'>Strands</a></li>
 								<li class="smooth-menu"><a class="a-header" href='{{ url("logins") }}'>Log In</a></li>
 			                </ul><!--/.nav -->
 			            </div><!-- /.navbar-collapse -->

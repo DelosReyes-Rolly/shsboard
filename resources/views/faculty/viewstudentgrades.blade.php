@@ -13,7 +13,7 @@
             <!--Add the "breadcrumb" class to ul element that represents the breadcrumb-->
             <ul class = "breadcrumb">
                <!--Add the ".breadcrumb-item" class to each li element within the breadcrumb-->
-               <li class = "breadcrumb-item"><a class="bca" href = "/advisoryfaculty">Advisory</a></li>
+               <li class = "breadcrumb-item"><a class="bca" href = "{{ url('advisoryfaculty') }}">Advisory</a></li>
                <li class = "breadcrumb-item"><a class="bca" href = "javascript:history.back()">Students</a></li>
                <!--Add the "active" class to li element to represent the current page-->
                <li class = "breadcrumb-item active" aria-current = "page">{{$student->last_name}}, {{$student->first_name}} {{$student->middle_name}}  {{$student->suffix}}</li>
@@ -74,7 +74,7 @@
 
                 <!-- check if enrolled in any subjects in any grade -->
                 @if($allsubjects->count() == 0)
-                   <div class="alert alert-danger"><center><em>Sorry. You're not currently enrolled in any subjects. Please contact the administrator.</em></center></div>
+                   <div class="alert alert-danger"><center><em>Sorry. Student not currently enrolled in any subjects. Please contact the administrator.</em></center></div>
                 @else 
                     <!-- Check if Enrolled in any grade 12 subjects -->
                     @if($grade12->count() != 0)

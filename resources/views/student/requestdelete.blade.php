@@ -23,7 +23,7 @@
                                 </div>
                             @endif
                             
-                            <form method="post" action="/deletegraderequest/{{$request->id}}">
+                            <form method="post" action="{{ url('deletegraderequest',['id'=>$request->id]) }}">
                                 @method('PUT')
                                 @csrf
                                 <div class="alert alert-danger">

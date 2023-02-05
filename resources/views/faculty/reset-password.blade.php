@@ -26,7 +26,7 @@
 						</ul>
 					</div>
 			    @endif
-                <form action="/reset-password-faculty" method="POST">
+                <form action="{{ url('reset-password-faculty') }}" method="POST">
 					@csrf
                     @if (session('alert'))
                         <div class="alert alert-success">

@@ -73,8 +73,8 @@
                                             <td>{{$subject -> expertise -> expertise}}</td>
                                             <td>{!!$subject -> description!!}</td>
                                             <td>
-                                                <a class="btn btn-success btn-md" href="/viewsubject/{{$subject->id}}" data-toggle="modal" data-target="#modal-view-{{ $subject->id }}"><i class="fa-solid fa-eye"></i> View</a>
-                                                <a class="btn btn-warning btn-md" href="/showsubject/{{$subject->id}}" data-toggle="modal" onclick="editItem(this)" data-id="{{ $subject->id }}" data-target="#editModal{{ $subject->id }}"><i class="fas fa-edit"></i> Update</a>
+                                                <a class="btn btn-success btn-md" href="{{ url('viewsubject',['id'=>$subject->id]) }}" data-toggle="modal" data-target="#modal-view-{{ $subject->id }}"><i class="fa-solid fa-eye"></i> View</a>
+                                                <a class="btn btn-warning btn-md" href="{{ url('showsubject',['id'=>$subject->id]) }}" data-toggle="modal" onclick="editItem(this)" data-id="{{ $subject->id }}" data-target="#editModal{{ $subject->id }}"><i class="fas fa-edit"></i> Update</a>
                                                 <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $subject->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                             </td> 
                                         </tr>

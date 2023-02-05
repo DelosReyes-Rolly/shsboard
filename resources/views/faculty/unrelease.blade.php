@@ -23,7 +23,7 @@
                                 </div>
                             @endif
                             
-                            <form method="post" action="/unrelease/{{$card->id}}}">
+                            <form method="post" action="{{ url('unrelease',['id'=>$card->id]) }}">
                                 @method('PUT')
                                 @csrf
                                 <div class="alert alert-primary">

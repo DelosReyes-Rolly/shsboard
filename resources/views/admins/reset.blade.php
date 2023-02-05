@@ -25,7 +25,7 @@
                         <strong>{{ $message }}</strong>
                     </div></br></br>
                 @endif
-                <form method="POST" action="/resetpassadmin/">
+                <form method="POST" action="{{ url('resetpassadmin') }}">
                     @csrf
                     <div class="form-group">
                         <label for="email" class="col-form-label text-md-end">{{ __('Email Address') }}</label>

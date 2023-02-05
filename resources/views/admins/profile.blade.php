@@ -7,7 +7,7 @@
 	           	// 	echo '<div class="alert alert-success">'.$success.'</div>';
 	            // }
 	        ?> -->
-	       	<form action="/profile/{{Auth::user()->id}}" method="post"class="needs-validation" novalidate>
+	       	<form action="{{ url('profile',['id'=>Auth::user()->id]) }}" method="post"class="needs-validation" novalidate>
                 @method('PUT')
                 @csrf
 	            <div class="rounded bg-white mt-5 mb-5">

@@ -23,7 +23,7 @@
                                 </div>
                             @endif
                             
-                            <form method="post" action="/deleteactivitystream/{{$activitystream->id}}">
+                            <form method="post" action="{{ url('deleteactivitystream,['id'=>$activitystream->id }}">
                                 @method('PUT')
                                 @csrf
                                 <div class="alert alert-danger">

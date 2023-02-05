@@ -32,7 +32,7 @@
         <div class="px-2 mt-2">
            
         <div style="margin: 0px;">
-            <a class="btn btn-secondary btn-lg" href="/gradingstudents" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to student list</a>
+            <a class="btn btn-secondary btn-lg" href="{{ url('gradingstudents') }}" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to student list</a>
         </div>
         <h3 style="font-size: 28px; font-weight: 800;">Table of Alumni </h3><br>
         <hr class="mt-0 mb-4">
@@ -75,8 +75,8 @@
                                             <td>{{$student -> phone_number}}</td>
                                             <td>{{$student -> email}}</td>
                                             <td>
-                                                <a class="btn btn-success btn-md" href="/viewstudent/{{$student->id}}" data-toggle="modal" data-target="#modal-view-{{ $student->id }}"><i class="fa-solid fa-eye"></i> View</a>
-                                                <a class="btn btn-warning btn-md" href="/showstudent/{{$student->id}}" data-toggle="modal" data-target="#editModal{{ $student->id }}"><i class="fas fa-edit"></i> Update</a>
+                                                <a class="btn btn-success btn-md" href="{{ url('viewstudent',['id'=>$student->id]) }}" data-toggle="modal" data-target="#modal-view-{{ $student->id }}"><i class="fa-solid fa-eye"></i> View</a>
+                                                <a class="btn btn-warning btn-md" href="{{ url('showstudent',['id'=>$student->id]) }}" data-toggle="modal" data-target="#editModal{{ $student->id }}"><i class="fas fa-edit"></i> Update</a>
                                                 <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $student->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                             </td> 
                                             </td> 

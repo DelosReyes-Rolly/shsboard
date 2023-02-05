@@ -54,8 +54,8 @@ Route::controller(LandingsController::class)->group(function(){
     Route::get('/events', 'events');
     Route::get('/seePublicEvent/{id}', 'seePublicEvent');
     Route::get('/faculty', 'faculties');
-    Route::get('/courses', 'courses');
-    Route::get('/coursedescription/{id}', 'coursedescription')->name('coursedescription');
+    Route::get('/strand', 'courses');
+    Route::get('/stranddescription/{id}', 'coursedescription')->name('stranddescription');
     Route::get('/logins','login')->name('logins');
 });
 

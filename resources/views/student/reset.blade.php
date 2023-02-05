@@ -29,7 +29,7 @@
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
-                <form method="POST" action="/resetpassstudent/">
+                <form method="POST" action="{{ url('resetpassstudent') }}">
                     @csrf
                     <div class="form-group">
                         <label for="email" class="col-form-label text-md-end">{{ __('Email Address') }}</label>

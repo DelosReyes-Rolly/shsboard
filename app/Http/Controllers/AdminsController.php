@@ -1743,7 +1743,7 @@ class AdminsController extends Controller
         // }
         $count = SchoolYear::all();
         if($count->count() == 1){
-            return redirect('/gradingschoolyear')->with('warning', 'You cannot delete the only schoolyear.');
+            return response()->json(['error' => 'Sorry. You cannot delete the only schoolyear.'], 422); 
         }
         else{
             if ($request->ajax()){

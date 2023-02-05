@@ -169,8 +169,8 @@
                                                                         <td class="text-center">{{$document -> id}}</td>
                                                                         <td>{{$document -> name}}</td>
                                                                         <td>
-																			<a class="btn btn-success btn-md" href="/viewdocument/{{$document->id}}" data-toggle="modal" data-target="#modal-view-{{$document->id}}"><i class="fa-solid fa-eye"></i> View</a>
-																			<a class="btn btn-warning btn-md" href="/showdocument/{{$document->id}}" data-toggle="modal" onclick="editDoc(this)" data-id="{{ $document->id }}" data-target="#editModal{{ $document->id }}"><i class="fas fa-edit"></i> Update</a>
+																			<a class="btn btn-success btn-md" href="{{ url('viewdocument',['id'=>$document->id]) }}" data-toggle="modal" data-target="#modal-view-{{$document->id}}"><i class="fa-solid fa-eye"></i> View</a>
+																			<a class="btn btn-warning btn-md" href="{{ url('showdocument',['id'=>$document->id]) }}" data-toggle="modal" onclick="editDoc(this)" data-id="{{ $document->id }}" data-target="#editModal{{ $document->id }}"><i class="fas fa-edit"></i> Update</a>
 																			<button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $document->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                                                         </td> 
                                                                     </tr>
@@ -229,8 +229,8 @@
                                                                         <td>{{$documentpurpose -> purpose}}</td>
 																		<td>{{$documentpurpose -> proof_needed}}</td>
                                                                         <td>
-																			<a class="btn btn-success btn-md" href="/viewpurpose/{{$documentpurpose->id}}" data-toggle="modal" data-target="#modal-view-{{$documentpurpose->id}}"><i class="fa-solid fa-eye"></i> View</a>
-																			<a class="btn btn-warning btn-md" href="/showpurpose/{{$documentpurpose->id}}" data-toggle="modal" onclick="editPur(this)" data-id="{{ $documentpurpose->id }}" data-target="#editModal{{ $documentpurpose->id }}"><i class="fas fa-edit"></i> Update</a>
+																			<a class="btn btn-success btn-md" href="{{ url('viewpurpose',['id'=>$documentpurpose->id]) }}" data-toggle="modal" data-target="#modal-view-{{$documentpurpose->id}}"><i class="fa-solid fa-eye"></i> View</a>
+																			<a class="btn btn-warning btn-md" href="{{ url('showpurpose',['id'=>$documentpurpose->id]) }}" data-toggle="modal" onclick="editPur(this)" data-id="{{ $documentpurpose->id }}" data-target="#editModal{{ $documentpurpose->id }}"><i class="fas fa-edit"></i> Update</a>
 																			<button class="btn btn-danger btn-md" onclick="deleteItemPurpose(this)" data-id="{{ $documentpurpose->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                                                         </td> 
                                                                     </tr>
@@ -313,7 +313,7 @@
 																				<td>{{$request -> purpose -> purpose}}</td>
 																				<td>{{$requested_at}}</td>
 																				<td>
-																					<a href="/download/{{$request -> file}}" class="btn btn-primary">Download</a> 
+																					<a href="{{ url('download',['file'=>$request-file]) }}" class="btn btn-primary">Download</a> 
 																				</td>
 																				<td>
 																					<?php 
@@ -337,8 +337,8 @@
 																					?>
 																				</td>
 																				<td>
-																					<a class="btn btn-success btn-md" href="/viewfileDocument/{{$request->id}}"><i class="fa-solid fa-eye"></i> View</a>
-																					<a class="btn btn-warning btn-md" href="/showrequestadmin/{{$request->id}}" data-toggle="modal" data-target="#editModal{{ $request->id }}"><i class="fas fa-edit"></i> Update</a>
+																					<a class="btn btn-success btn-md" href="{{ url('viewfileDocument',['id'=>$request->id]) }}"><i class="fa-solid fa-eye"></i> View</a>
+																					<a class="btn btn-warning btn-md" href="{{ url('showrequestadmin',['id'=>$request->id]) }}"data-toggle="modal" data-target="#editModal{{ $request->id }}"><i class="fas fa-edit"></i> Update</a>
 																				</td> 
 																			</tr>
 																			<!-- edit request -->
@@ -401,7 +401,7 @@
 																				<td>{{$request -> purpose -> purpose}}</td>
 																				<td>{{$requested_at}}</td>
 																				<td>
-																					<a href="/download/{{$request -> file}}" class="btn btn-primary">Download</a> 
+																					<a href="{{ url('download',['file'=>$request->file]) }}" class="btn btn-primary">Download</a> 
 																				</td>
 																				<td>
 																					<?php 
@@ -425,8 +425,8 @@
 																					?>
 																				</td>
 																				<td>
-																					<a class="btn btn-success btn-md" href="/viewfileDocument/{{$request->id}}"><i class="fa-solid fa-eye"></i> View</a>
-																					<a class="btn btn-warning btn-md" href="/showrequestadmin/{{$request->id}}" data-toggle="modal" data-target="#editModal{{ $request->id }}"><i class="fas fa-edit"></i> Update</a>
+																					<a class="btn btn-success btn-md" href="{{ url('viewfileDocument',['id'=>$request->id]) }}"><i class="fa-solid fa-eye"></i> View</a>
+																					<a class="btn btn-warning btn-md" href="{{ url('showrequestadmin',['id'=>$request->id]) }}"data-toggle="modal" data-target="#editModal{{ $request->id }}"><i class="fas fa-edit"></i> Update</a>
 																				</td> 
 																			</tr>
 																			<!-- edit request -->
@@ -489,7 +489,7 @@
 																				<td>{{$request -> purpose -> purpose}}</td>
 																				<td>{{$requested_at}}</td>
 																				<td>
-																					<a href="/download/{{$request -> file}}" class="btn btn-primary">Download</a> 
+																					<a href="{{ url('download',['file'=>$request-file]) }}" class="btn btn-primary">Download</a> 
 																				</td>
 																				<td>
 																					<?php 
@@ -513,8 +513,8 @@
 																					?>
 																				</td>
 																				<td>
-																					<a class="btn btn-success btn-md" href="/viewfileDocument/{{$request->id}}"><i class="fa-solid fa-eye"></i> View</a>
-																					<a class="btn btn-warning btn-md" href="/showrequestadmin/{{$request->id}}" data-toggle="modal" data-target="#editModal{{ $request->id }}"><i class="fas fa-edit"></i> Update</a>
+																					<a class="btn btn-success btn-md" href="{{ url('viewfileDocument',['id'=>$request->id]) }}"><i class="fa-solid fa-eye"></i> View</a>
+																					<a class="btn btn-warning btn-md" href="{{ url('showrequestadmin',['id'=>$request->id]) }}" data-toggle="modal" data-target="#editModal{{ $request->id }}"><i class="fas fa-edit"></i> Update</a>
 																				</td> 
 																			</tr>
 																			<!-- edit request -->

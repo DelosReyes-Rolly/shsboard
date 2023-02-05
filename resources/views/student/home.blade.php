@@ -21,15 +21,15 @@
                                                             <div class="img-post">
                                                                 @if($announcements->image != NULL)
                                                                     <center><img class="d-block img-fluid" src="{{ asset('uploads/announcement/'.$announcements->image) }}" style="height:400px; width: 400px;"/></center>
-                                                                @else
-                                                                    <center><img class="d-block img-fluid" src="uploads/event/placeholder.png" style="width: auto; height: auto;"/></center>
+                                                                @else"{{url('/img/svnhs-logo.png')}}"
+                                                                    <center><img class="d-block img-fluid" src="{{url('uploads/event/placeholder.png')}}" style="width: auto; height: auto;"/></center>
                                                                 @endif
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6 col-md-12 col-sm-12">
                                                             <h3><b>{!!$announcements -> what!!}</b></h3><br/>
                                                             <p>{!!\Illuminate\Support\Str::limit($announcements -> content, 600)!!}</p><br/><br/>
-                                                            <a class="btn btn-md btn-success" href="/seeAnnouncementStudent/{{$announcements->id}}"><em>read more...</em></a>
+                                                            <a class="btn btn-md btn-success" href="{{ url('seeAnnouncementStudent',['id'=>$announcements->id]) }}"><em>read more...</em></a>
                                                         </div>
                                                     </div>
                                                     <div class="footer">

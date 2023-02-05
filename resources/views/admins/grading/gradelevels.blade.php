@@ -65,7 +65,7 @@
                                             <td><?php echo $i++; ?></td>
                                             <td>{{$gradelevel -> gradelevel}}</td>
                                             <td>
-                                                <a class="btn btn-warning btn-md" href="/showgradelevel/{{$gradelevel->id}}" data-toggle="modal" onclick="editItem(this)" data-id="{{ $gradelevel->id }}" data-target="#editModal{{ $gradelevel->id }}"><i class="fas fa-edit"></i> Update</a>
+                                                <a class="btn btn-warning btn-md" href="{{ url('showgradelevel',['id'=>$gradelevel->id]) }}" data-toggle="modal" onclick="editItem(this)" data-id="{{ $gradelevel->id }}" data-target="#editModal{{ $gradelevel->id }}"><i class="fas fa-edit"></i> Update</a>
                                                 <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $gradelevel->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                             </td> 
                                         </tr>

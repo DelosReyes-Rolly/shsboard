@@ -182,7 +182,7 @@
                                 <a class="header-letter" href='{{ url("profile") }}'>Profile</a>
                             </li>&emsp;
                             <li class="nav-item" title="Change Password">
-                                <a class="header-letter" href="/password-admin/{{Auth::user()->id}}}">Change Password</a>
+                                <a class="header-letter" href="{{ url('password-admin',['id'=>Auth::user()->id]) }}">Change Password</a>
                             </li>&emsp;
                             <li class="nav-item" title="Logout">
                                 <a class="header-letter" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>

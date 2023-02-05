@@ -90,8 +90,8 @@
                                                     <br><center> Note:<br>The documents will be processed <b>within five (5) working days</b> upon requesting.
                                                     The documents can be claimed in the <b>Registrars Office.</b></center><br><br>
                                                     <div class="pull-right">
-                                                        <a class="btn btn-info btn-md" href="/studentrequest"><i class="fas fa-arrow-left"></i> Back</a>
-                                                        <a class="btn btn-warning btn-md" href="/showrequest/{{$docreq->id}}"><i class="fas fa-edit"></i> Update</a>
+                                                        <a class="btn btn-info btn-md" href="{{ url('studentrequest') }}"><i class="fas fa-arrow-left"></i> Back</a>
+                                                        <a class="btn btn-warning btn-md" href="{{ url('showrequest',['id'=>$docreq->id]) }}"><i class="fas fa-edit"></i> Update</a>
                                                         <a class="btn btn-danger btn-md" href="{{route('student.deleterequest', $docreq->id)}}"><i class="fas fa-trash-alt"></i> Delete</a>
                                                     </div>
                                             </div>

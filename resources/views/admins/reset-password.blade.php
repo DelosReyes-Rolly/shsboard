@@ -27,7 +27,7 @@
 						</ul>
 					</div>
 			    @endif
-                <form action="/reset-password-admin" method="POST" class="needs-validation" novalidate>
+                <form action="{{ url('/reset-password-admin') }}" method="POST" class="needs-validation" novalidate>
 					@csrf
                     <input type="hidden" name="action" value="update" class="form-control"/>
                     @if (session('alert'))

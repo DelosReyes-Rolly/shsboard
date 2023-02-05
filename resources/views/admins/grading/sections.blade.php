@@ -59,8 +59,8 @@
                                             <td width="10%" class="text-center"><?php echo $i++; ?></td>
                                             <td width="20%">{{$section -> section}}</td>
                                             <td width="40%">
-                                                <a class="btn btn-success btn-md" href="/viewsection/{{$section->id}}" data-toggle="modal" data-target="#modal-view-{{ $section->id }}"><i class="fa-solid fa-eye"></i> View</a>
-                                                <a class="btn btn-warning btn-md" href="/showsection/{{$section->id}}" data-toggle="modal" onclick="editItem(this)" data-id="{{ $section->id }}" data-target="#editModal{{ $section->id }}"><i class="fas fa-edit"></i> Update</a>
+                                                <a class="btn btn-success btn-md" href="{{ url('viewsection',['id'=>$section->id]) }}" data-toggle="modal" data-target="#modal-view-{{ $section->id }}"><i class="fa-solid fa-eye"></i> View</a>
+                                                <a class="btn btn-warning btn-md" href="{{ url('showsection',['id'=>$section->id]) }}"data-toggle="modal" onclick="editItem(this)" data-id="{{ $section->id }}" data-target="#editModal{{ $section->id }}"><i class="fas fa-edit"></i> Update</a>
                                                 <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $section->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                             </td> 
                                         </tr>
