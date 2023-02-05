@@ -845,7 +845,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #f3dc60;}
 /* ===========================================COURSES========================================== */
 
 #course_container_body{			/*Container ng course*/
-    height: 200px;
+    height: 280px;
     padding-top: 120px;
     font-size: 20px;
     text-align: center;
