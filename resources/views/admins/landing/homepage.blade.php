@@ -249,12 +249,17 @@
                 $loading.hide();
             });
             $('#whoops').hide();
-            var form_data = $("form#createHome").serialize();
+            var form = $('#createHome')[0];
+            var form_data =  new FormData(form);
             $(":submit").attr("disabled", true);
             $.ajax({
                 type: "POST",
                 url: "{{ route('homepage.store') }}",
                 data:form_data,
+                enctype: 'multipart/form-data',
+                processData: false,  // Important!
+                contentType: false,
+                cache: false,
                 success: function(response) {
                     if (response) {
                         $("#createHome")[0].reset();

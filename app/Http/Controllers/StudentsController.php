@@ -329,7 +329,7 @@ class StudentsController extends Controller
             $docreq->file = $filename;
         }   
         $docreq->save();
-        return redirect()->back()->with('success', 'New document request was added successfully');
+        return response()->json(array('success' => true));  
     }
 
      public function deletegraderequest(DocumentRequests $requestdocument, Request $request, $id){

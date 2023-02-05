@@ -62,13 +62,15 @@
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();                     // hanggang dito
-                        $("#updatedExpertise"+ id)[0].reset();                // irereset niya yung form
+                        $("#updateExpertise"+ id)[0].reset();                // irereset niya yung form
                         $('#expertise' + id +' td:nth-child(2)').text(response.expertise);               // copy paste mo lang to. Bale pinapalitan lang niya yung row. Yung "expertise" id siya ng tr
                         $(":submit").removeAttr("disabled");                                                                                 // yung response galing siya sa controller yung return response()->json($expertise). Yung td:nth-child(2) column bale 2nd column
                         Swal.fire({                                                             //sweetalert
                             icon: 'success',                                                    //
                             title: 'Success.',                                                  //
                             text: 'Expertise has been updated successfully',                      //
+                        }).then(function() {
+                            location.reload(true);
                         })
                 },error: function (xhr) {
                     $('#validation-errors').html('');

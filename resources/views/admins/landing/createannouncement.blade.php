@@ -388,12 +388,17 @@
                 $loading.hide();
             });
             $('#whoops').hide();
-            var form_data = $("form#addAnnouncement").serialize();
+            var form = $('#addAnnouncement')[0];
+            var form_data =  new FormData(form);
             $(":submit").attr("disabled", true);
             $.ajax({
                 type: "POST",
                 url: "{{ route('add.privateannouncmeent') }}",
                 data:form_data,
+                enctype: 'multipart/form-data',
+                processData: false,  // Important!
+                contentType: false,
+                cache: false,
                 success: function(response) {
                     if (response) {
                         $("#addAnnouncement")[0].reset();

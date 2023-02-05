@@ -9,7 +9,7 @@
         @method('PUT')
          @csrf
 	    <div class="rounded bg-white mt-5 mb-5 top-to-bottom">
-		<div style="font-size: 20px; background-color:rgb(229, 238, 229) ;">
+		<div style="font-size: 20px; background-color:rgb(248, 248, 248) ;">
 			<b>Profile Information</b>
 			<hr style="border:1px solid black;">
 		</div>

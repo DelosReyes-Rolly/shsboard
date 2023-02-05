@@ -57,7 +57,7 @@
 		<header class="top-area">
 			<div class="header-area">
 				<!-- Start Navigation -->
-			    <nav class="navbar navbar-default bootsnav navbar-fixed dark no-background">
+			    <nav class="navbar navbar-default bootsnav navbar-fixed dark no-background" style="box-shadow: 0 4px 16px rgba(0,0,0,0.4);">
 
 			        <div class="container">
 

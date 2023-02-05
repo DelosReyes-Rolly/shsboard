@@ -141,8 +141,8 @@
 																					?>
 																				</td>
 																				<td>
-																					<a class="btn btn-success btn-md" href="/viewfileDocument/{{$request->id}}"><i class="fa-solid fa-eye"></i> View</a>
-																					<a class="btn btn-warning btn-md" href="/showrequestadmin/{{$request->id}}" data-toggle="modal" data-target="#editModal{{ $request->id }}"><i class="fas fa-edit"></i> Update</a>
+																					<a class="btn btn-success btn-md" href="{{ url('viewfileDocument',['id'=>$request->id]) }}"><i class="fa-solid fa-eye"></i> View</a>
+																					<a class="btn btn-warning btn-md" href="{{ url('showrequestadmin',['id'=>$request->id]) }}" data-toggle="modal" onclick="editDoc(this)" data-id="{{ $request->id }}" data-target="#editModal{{ $request->id }}"><i class="fas fa-edit"></i> Update</a>
 																				</td> 
 																			</tr>
 																			<!-- edit request -->
@@ -168,7 +168,18 @@
 				</div>
 		  		<!-- end of tables -->
 		 	</div>
-
+																						
 	</section>
 </main>
+<script>
+	 $(document).ready(function(){
+		$('.nav_btn').click(function(){
+            $('.mobile_nav_items').toggleClass('active');
+          });
+		  editDoc(e);
+    });
+	function editDoc(e){
+		id = e.getAttribute('data-id');
+	}
+</script>
 <br><br><br><br>

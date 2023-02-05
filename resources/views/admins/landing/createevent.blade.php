@@ -354,12 +354,17 @@
                 $loading.hide();
             });
             $('#whoops').hide();
-            var form_data = $("form#createEvent").serialize();
+            var form = $('#createEvent')[0];
+            var form_data =  new FormData(form);
             $(":submit").attr("disabled", true);
             $.ajax({
                 type: "POST",
                 url: "{{ route('event.store') }}",
                 data:form_data,
+                enctype: 'multipart/form-data',
+                processData: false,  // Important!
+                contentType: false,
+                cache: false,
                 success: function(response) {
                     if (response) {
                         $("#createEvent")[0].reset();

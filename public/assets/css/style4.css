@@ -3,7 +3,7 @@
 body {
     font-family: 'Poppins', sans-serif;
     background: #fafafa;
-    background-color:rgb(229, 238, 229)
+    background-color:rgb(251, 255, 251)
 }
 
 p {
@@ -24,7 +24,7 @@ a:focus {
 
 .breadcrumb {
     margin-bottom: 0;
-    background-color:rgb(229, 238, 229);
+    background-color:rgb(248, 248, 248);
 }
 
 .bca{
@@ -42,7 +42,7 @@ a:focus {
     border-radius: 0px;
     margin-bottom: 40px;
     background-color: #032e12;
-    box-shadow: 10px 2px 16px rgba(0,0,0,1);
+    box-shadow: 10px 2px 16px rgba(0,0,0,0.8);
 }
 
 .nav ul li a:hover {
@@ -264,7 +264,7 @@ a.article:hover {
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     #sidebar {
         min-width: 200px;
         max-width: 200px;

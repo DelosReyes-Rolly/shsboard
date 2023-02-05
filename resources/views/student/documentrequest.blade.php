@@ -31,7 +31,7 @@
         	<div>
                 <!-- boxes -->
                 <hr style="border: 1px solid grey;">
-                <form method="POST" action="{{ route('student.request') }}" enctype="multipart/form-data" class="needs-validation" novalidate>
+                <form method="POST" id="requestdocstud" enctype="multipart/form-data" class="needs-validation" novalidate>
                     @csrf
                     <div class="px-2 mt-2 right-to-left">
                         <!-- page navigation-->
@@ -43,23 +43,10 @@
                                 <div class="card mb-4">
                                     <div class="border-start-lg border-start-yellow">
                                         <div class="card-header">
-                                            @if ($messages = Session::get('messages'))
-                                                <div class="alert alert-success alert-block">
-                                                    <button type="button" class="close" data-dismiss="alert">×</button>
-                                                    <strong>{{ $messages }}</strong>
-                                                </div>
-                                            @endif
-                                                        
-                                            @if (count($errors) > 0)
-                                                <div class="alert alert-danger">
-                                                    <strong>Whoops!</strong> There were some problems with your input.
-                                                    <ul>
-                                                        @foreach ($errors->all() as $error)
-                                                            <li>{{ $error }}</li>
-                                                        @endforeach
-                                                    </ul>
-                                                </div>
-                                            @endif
+                                            <div id="whoops" class="alert alert-danger" style="display: none;">
+                                                <b>Whoops! There is a problem in your input</b> <br/>
+                                                <div id="validation-errors"></div>
+                                            </div>
                                         </div>
                                         <div class="card-body">
                                             <div class="mb-3" style="color: red">
@@ -101,11 +88,11 @@
                                                     <div style="font-size: 20px;">
                                                         <span style="color: red">*</span> <span>Proof needed: </span>(only JPG or PNG files are allowed)
                                                         <input id="proof" name="proof_needed" style="border: none; width:100%; padding-left: 2%;" value="" disabled><br><br>
-                                                        <input type="file" name = "file" class="form-control" style="font-size: 16px;"  required>
+                                                        <input type="file" id="file" name = "file" class="form-control" style="font-size: 16px;" required>
+                                                        <div class="invalid-feedback">
+                                                            Please upload needed proof.
+                                                        </div>  
                                                     </div>
-                                                    <div class="invalid-feedback">
-                                                        Please upload needed proof.
-                                                    </div>    
             										<div class ="form-group">
             											
             										</div>                                 
@@ -275,4 +262,46 @@
             }
     </script>
     <script src="{{ asset('assets/js/needs-validated.js') }}"></script>
+    <script>
+        function formPost(){
+            $('#whoops').hide(); 
+            var form = $('#requestdocstud')[0];
+            var form_data =  new FormData(form);
+            $(":submit").attr("disabled", true);
+            $.ajax({
+                type: "POST",
+                url: "{{ route('student.request') }}",
+                data:form_data,
+                enctype: 'multipart/form-data',
+                processData: false,  // Important!
+                contentType: false,
+                cache: false,
+                success: function(response) {
+                    if (response) {
+                        $("#requestdocstud")[0].reset();
+                        $(":submit").removeAttr("disabled");
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success.',
+                            text: 'Requested document has been added successfully',
+                        }).then(function() {
+                            location.reload(true);
+                        })
+                        
+                    }
+                },error: function (xhr) {
+                    $('#validation-errors').html('');
+                    document.getElementById('whoops').style.display = 'block';
+                    if(xhr.responseJSON.error != undefined){
+                        $("#validation-errors").html("");
+                        $('#validation-errors').append('&emsp;<li>'+xhr.responseJSON.error+'</li>');
+                    }
+                    $.each(xhr.responseJSON.errors, function(key,value) {
+                        $('#validation-errors').append('&emsp;<li>'+value+'</li>');
+                    }); 
+                    $(":submit").removeAttr("disabled");
+                },
+            });
+        }
+</script>
 </main>

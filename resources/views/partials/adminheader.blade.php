@@ -33,7 +33,7 @@
 
     <div class="wrapper">
         <!-- Sidebar  -->
-        <nav id="sidebar" class="sticky-top h-100 vh-100" style="box-shadow: 0 4px 16px rgba(0,0,0,1);">
+        <nav id="sidebar" class="sticky-top h-100 vh-100" style="box-shadow: 0 4px 16px rgba(0,0,0,0.4);">
             <div class="sidebar-header sticky-top">
                 <div class="title" style="text-shadow: 0 4px 16px rgba(0,0,0,1);"><img src="{{url('/img/svnhs-logo.png')}}" style="width: 80px; height: 80px;"><img src="{{url('/img/shs.png')}}" style="width: 80px; height: 80px;"><div style="font-size: 20px;"> Signal Village National High School </div> <br/> SHS - BOARD</div>
                 <strong> <img src="{{url('/img/shs.png')}}" style="width: auto; height: auto;"></strong>
@@ -49,7 +49,12 @@
                 <li>
                     <a href="#academicSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" title="School Management Access">
                     <i class="fas fa-school"></i>
-                        <span class="hide-word title-word"> <b>Access Management</b></span>
+                        <span class="hide-word title-word">
+                            <b>
+                                <div class="Ashort">Access Manage</div>
+                                <div class="Along">Access Management</div>
+                            </b>
+                        </span>
                     </a>
                     <ul class="collapse list-unstyled" id="academicSubmenu">
                         <li title="School year">
@@ -119,7 +124,14 @@
                             <a href='{{ url("/homepage") }}'><i class="fas fa-home"></i> <span class="hide-word"> <b>Homepage</b></span></a>
                         </li>
                         <li title="Public Announcements">
-                            <a href='{{ url("/createAnnoucement") }}'><i class="fas fa-bullhorn"></i> <span class="hide-word"> <b>Announcements</b></span></a>
+                            <a href='{{ url("/createAnnoucement") }}'><i class="fas fa-bullhorn"></i> 
+                                <span class="hide-word title-word">
+                                <b>
+                                    <div class="Ashort">Announces</div>
+                                    <div class="Along">Announcements</div>
+                                </b>
+                            </a>
+                        </span>
                         </li>
                         <li title="Public Events">
                             <a href='{{ url("/createEvents") }}'><i class="fas fa-calendar-times"></i> <span class="hide-word"> <b>Events</b></span></a>
@@ -140,10 +152,23 @@
                     </a>
                     <ul class="collapse list-unstyled" id="bulletinSubmenu">
                         <li title="Private Announcements">
-                            <a href='{{ url("/privateannouncement") }}'><i class="fas fa-bullhorn"></i> <span class="hide-word"> <b>Announcements</b></span></a>
+                            <a href='{{ url("/privateannouncement") }}'><i class="fas fa-bullhorn"></i> 
+                                <span class="hide-word">
+                                <b>
+                                    <div class="Ashort">Announce</div>
+                                    <div class="Along">Announcements</div>
+                                </b>
+                            </a>
+                            
                         </li>
                         <li title="Private Table of Announcement">
-                            <a href='{{ url("/tableofannouncement") }}'><i class="fas fa-table"></i> <span class="hide-word"> <b>Table of Announcements</b></span></a>
+                            <a href='{{ url("/tableofannouncement") }}'><i class="fas fa-table"></i> <span class="hide-word"> 
+                                <span class="hide-word">
+                                <b>
+                                    <div class="Ashort">Table of Announces</div>
+                                    <div class="Along">Table of Announcements</div>
+                                </b>
+                            </a>
                         </li>
                         <li title="Private Reminder">
                             <a href='{{ url("/privatereminders") }}'><i class="fas fa-sticky-note"></i> <span class="hide-word"> <b>Reminders</b></span></a>
