@@ -41,7 +41,7 @@
 
             <ul class="list-unstyled components">
                 <li title="Dashboard">
-                    <a href="/">
+                    <a href='{{ url("/") }}'>
                         <i class="fas fa-chalkboard"></i>
                         <span class="hide-word title-word"> <b>Dashboard</b> </span>
                     </a>
@@ -53,45 +53,45 @@
                     </a>
                     <ul class="collapse list-unstyled" id="academicSubmenu">
                         <li title="School year">
-                            <a href="/gradingschoolyear"><i class="fas fa-calendar-alt"></i> <span class="hide-word"> <b>School Year</b></span></a>
+                            <a href='{{ url("/gradingschoolyear") }}'><i class="fas fa-calendar-alt"></i> <span class="hide-word"> <b>School Year</b></span></a>
                         </li>
                         <li title="Grade Levels">
-                            <a href="/gradinggradelevels"><i class="fas fa-signal"></i> <span class="hide-word"> <b>Grade Levels</b></span></a>
+                            <a href='{{ url("/gradinggradelevels") }}'><i class="fas fa-signal"></i> <span class="hide-word"> <b>Grade Levels</b></span></a>
                         </li>
                         <li title="Strands">
-                            <a href="/gradingcourses"><i class="fas fa-sitemap"></i> <span class="hide-word"> <b>Strands</b></span></a>
+                            <a href='{{ url("/gradingcourses") }}'><i class="fas fa-sitemap"></i> <span class="hide-word"> <b>Strands</b></span></a>
                         </li>
                         <li title="Sections">
-                            <a href="/gradingsections"><i class="fas fa-bars"></i> <span class="hide-word"> <b>Sections</b></span></a>
+                            <a href='{{ url("/gradingsections") }}'><i class="fas fa-bars"></i> <span class="hide-word"> <b>Sections</b></span></a>
                         </li>
                         <li title="Subjects">
-                            <a href="/gradingsubjects"><i class="fas fa-book"></i> <span class="hide-word"> <b>Subjects</b></span></a>
+                            <a href='{{ url("/gradingsubjects") }}'><i class="fas fa-book"></i> <span class="hide-word"> <b>Subjects</b></span></a>
                         </li>
                         <li title="Expertises">
-                            <a href="/gradingexpertise"><i class="fas fa-user-tie"> </i><span class="hide-word">&nbsp; <b>Expertises</b> </span></a>
+                            <a href='{{ url("/gradingexpertise") }}'><i class="fas fa-user-tie"> </i><span class="hide-word">&nbsp; <b>Expertises</b> </span></a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="/gradingstudents" title="Students">
+                    <a href='{{ url("/gradingstudents") }}' title="Students">
                         <i class="fas fa-users"></i>
                         <span class="hide-word title-word"> <b>Students</b> </span>
                     </a>
                 </li>
                 <li>
-                    <a href="/gradingfaculty" title="Faculties">
+                    <a href='{{ url("/gradingfaculty") }}' title="Faculties">
                         <i class="fas fa-user-tie"></i>
                         <span class="hide-word title-word"> <b>Faculties</b> </span>
                     </a>
                 </li>
                 <li>
-                    <a href="/advisory" title="Advisory">
+                    <a href='{{ url("/advisory") }}' title="Advisory">
                         <i class="fas fa-user-tag"></i>
                         <span class="hide-word title-word"> <b>Advisory</b> </span>
                     </a>
                 </li>
                 <li>
-                    <a href="/gradingfacultysubjects" title="Class Schedule">
+                    <a href='{{ url("/gradingfacultysubjects") }}' title="Class Schedule">
                         <i class="fas fa-chalkboard-teacher"></i>
                         <span class="hide-word title-word"> <b>Class Schedule</b> </span>
                     </a>
