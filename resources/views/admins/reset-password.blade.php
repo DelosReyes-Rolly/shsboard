@@ -49,7 +49,7 @@
                             Please input valid password.
                         </div>
                     </div>
-                        <center><font face = "Bedrock" size = "3" ><input type="submit" id="reset" value="Reset Password" class="btn btn-primary" style="padding-left:40px; padding-right:40px;"></center></font>
+                        <center><font face = "Bedrock" size = "3" ><input type="submit" id="reset" value="Reset Password" style="padding-left:40px; padding-right:40px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 20px; background-color:#1c8a43; color: #ffffff; border: none; border-radius: 20px; cursor:pointer;"></center></font>
                     </div>
                 </form>
                 <br>

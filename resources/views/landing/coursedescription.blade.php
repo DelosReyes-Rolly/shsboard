@@ -5,12 +5,11 @@
 			<hr style="border: 2px solid green">
 		</div>
 		<div class="container">
-			<br><br><br><br>
 			<center>
 				@if($course->image == NULL)
-					<img src="{{ URL::asset('img/shs.png')}}" style="width: 100%; height: 100%;" class="">
+					<img src="{{ URL::asset('img/shs.png')}}" class="strand-logos">
 				@else
-					<img src="{{ asset('img/'.$course->image) }}" style="width: 100%; height: 100%;" class=""/>
+					<img src="{{ asset('img/'.$course->image) }}" class="strand-logos"/>
 				@endif<br><br>
 
 				<div class="academic_track">{{$course -> abbreviation}}</div>

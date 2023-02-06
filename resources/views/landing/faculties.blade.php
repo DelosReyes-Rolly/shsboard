@@ -33,7 +33,7 @@
 				<div class="row gx-4 mb-4">
 					<div class="reveal fade-left">
 						<div class="card single_post faculty-box" >
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">DR. RYAN REYNOLDS</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">Principal IV</div>
@@ -44,7 +44,7 @@
 				<div class="row gx-4 mb-4">
 					<div class="reveal fade-right">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">DR. ANGEL CRISOSTOMO</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">HEAD TEACHER IV / SHS COOR</div>
@@ -55,7 +55,7 @@
 				<div class="row gx-4 mb-4">
 					<div class=" col-lg-3 reveal fade-left">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">DR. REY VALERA</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">SHS COUNCIL PRESIDENT</div>
@@ -65,7 +65,7 @@
 					</div>
 					<div class=" col-lg-3  reveal fade-left">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">MS. SHARON CUNETA</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">SHS FOCAL PERSON</div>
@@ -74,7 +74,7 @@
 					</div>
 					<div class=" col-lg-3  reveal fade-left">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">DR. LILY HIPOLITO</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">SHS COUNCIL CHAIRMAN</div>
@@ -84,7 +84,7 @@
 					</div>		
 					<div class=" col-lg-3  reveal fade-left">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">DR. ARCEE MADRIGAL</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">SHS LIS & RECORDS COORDINATOR</div>
@@ -94,7 +94,7 @@
 					</div>
 					<div class=" col-lg-3  reveal fade-right">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">MS. MADONNA CRUZ</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">VICE PRESIDENT</div>
@@ -103,7 +103,7 @@
 					</div>
 					<div class=" col-lg-3 reveal fade-right">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">MS. ANN BALASI</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">SECRETARY</div>
@@ -112,7 +112,7 @@
 					</div>
 					<div class=" col-lg-3  reveal fade-right">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">MS. MARIAN RIVERA</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">TREASURER</div>
@@ -122,7 +122,7 @@
 					</div>
 					<div class=" col-lg-3  reveal fade-right">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">MS. MIRIAM DEFENSOR</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">AUDITOR</div>
@@ -131,7 +131,7 @@
 					</div>
 					<div class=" col-lg-3  reveal fade-left">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">MR. JOE BERTINGS</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">PUBLIC INFORMATION OFFICER</div>
@@ -140,7 +140,7 @@
 					</div>
 					<div class=" col-lg-3  reveal fade-left">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">MS. KAREN DAVILA</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">BUSINESS MANAGER</div>
@@ -149,7 +149,7 @@
 					</div>
 					<div class=" col-lg-3  reveal fade-left">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">MS. HYDELYN CASTRO</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">MEDTRANS AND SCIENCE TEACHER</div> -->
@@ -157,7 +157,7 @@
 					</div>
 					<div class=" col-lg-3  reveal fade-left">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">MR. RODOLFI CASTRO</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">MANAGEMENT TEACHER</div> -->
@@ -165,7 +165,7 @@
 					</div>
 					<div class=" col-lg-3  reveal fade-right">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">MS. AMIE BUENO</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">CAREGIVING TEACHER</div> -->
@@ -173,7 +173,7 @@
 					</div>
 					<div class=" col-lg-3  reveal fade-right">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">MS. JONNALYN BLAZE</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">FILIPINO TEACHER</div> -->
@@ -181,7 +181,7 @@
 					</div>
 					<div class=" col-lg-3  reveal fade-right">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">MR. RAY MUNDO</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">CALCULUS TEACHER</div> -->
@@ -189,7 +189,7 @@
 					</div>
 					<div class=" col-lg-3  reveal fade-right">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">MS. RUTH MACAPAGAL</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">LANGUAGE COMMUNICATION TEACHER</div> -->
@@ -197,7 +197,7 @@
 					</div>
 					<div class=" col-lg-3  reveal fade-left">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">MS. MEL TIANGCO</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">FILIPINO SA PILING LARANG TEACHER</div>
@@ -206,7 +206,7 @@
 					</div>
 					<div class=" col-lg-3  reveal fade-left">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">MS. EVALYN DELOS SANTOS</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">WIKA SA PAGBASA SA PANANALIKSIK TEACHER</div> -->
@@ -214,7 +214,7 @@
 					</div>
 					<div class=" col-lg-3  reveal fade-left">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">DR. RENATO HERMAN</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">SCOUT MASTER</div>
@@ -223,7 +223,7 @@
 					</div>
 					<div class=" col-lg-3  reveal fade-left">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">DR. RONALD LAURENTE</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">COOOKERY, BAKING & FBS TEACHER</div>
@@ -233,7 +233,7 @@
 					</div>
 					<div class=" col-lg-3  reveal fade-right">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">MS. MARCELINE CAROL</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">LITERATURE TEACHER</div> -->
@@ -241,7 +241,7 @@
 					</div>
 					<div class=" col-lg-3  reveal fade-right">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">MR. NATHAN RENATO</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">LANGUAGE TEACHER</div> -->
@@ -249,7 +249,7 @@
 					</div>
 					<div class=" col-lg-3  reveal fade-right">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">MS. LESLEY PEREZ</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">PHYSICS TEACHER</div> -->
@@ -257,7 +257,7 @@
 					</div>
 					<div class=" col-lg-3  reveal fade-right">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">MR. JAY PAREDES</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">GENERAL SCIENCE TEACHER</div> -->
@@ -265,7 +265,7 @@
 					</div>
 					<div class=" col-lg-3  reveal fade-left">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">MS. MARICEL SORIANO</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">READING AND WRITING TEACHER</div> -->
@@ -273,7 +273,7 @@
 					</div>
 					<div class=" col-lg-3  reveal fade-left">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">MR. JOSEPH ROXAS</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">GEN MATH & STATISTICS TEACHER</div> -->
@@ -281,7 +281,7 @@
 					</div>
 					<div class=" col-lg-3  reveal fade-left">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">MS. MARY ANN RESTOSO</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">SCIENCE TEACHER</div> -->
@@ -289,7 +289,7 @@
 					</div>
 					<div class=" col-lg-3  reveal fade-left">
 						<div class="card single_post faculty-box">
-							<img src="img/faculty-profile.png" class="course-image" style="border-radius: 100%;">
+							<img src="img/faculty-profile.jpg" class="faculty-image" style="border-radius: 100%;">
 							<div class="teachername">MS. GRACE ANN URSULA</div>
 							<div class="teacherposition">SHS PERSONNEL</div>
 							<!-- <div class="teacherposition">RESEARCH TEACHER</div> -->

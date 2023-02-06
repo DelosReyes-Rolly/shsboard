@@ -112,18 +112,18 @@
                                                     <td>{{$gradeevaluationrequest -> student -> last_name}}, {{$gradeevaluationrequest -> student -> first_name}} {{$gradeevaluationrequest -> student -> middle_name}} {{$gradeevaluationrequest -> student -> suffix}}</td>
                                                     <td>
                                                         <?php if($gradeevaluationrequest -> file == NULL):?>
-                                                            <form method="POST" action="{{ url('uploadeval',['id'=>$gradeevaluationrequest->id) }}" enctype="multipart/form-data">
+                                                            <form method="POST" action="{{ url('uploadeval',['id'=>$gradeevaluationrequest->id]) }}" enctype="multipart/form-data">
                                                                 @csrf
                                                                 <input type="file" name = "file" class="form-control" style="font-size: 12px;" >
                                                                 <font face = "Verdana" size = "6"><input type="submit" class="btn btn-primary" value="Submit" style="font-size: 14px;"></font>
                                                             </form>
                                                         <?php else: ?>
                                                             {{$gradeevaluationrequest -> file}}<br>
-                                                            <a href="{{ url('download',['file'=>$gradeevaluationrequest -> file) }}" class="btn btn-primary">Download</a> 
+                                                            <a href="{{ url('download',['file'=>$gradeevaluationrequest -> file]) }}" class="btn btn-primary">Download</a> 
                                                         <?php endif; ?> 
                                                     </td>
                                                     <td>
-                                                        <a class="btn btn-success btn-lg" href="{{ url('viewGradeEvaluation,['id'=>$gradeevaluationrequest->id }}" data-toggle="modal" data-target="#modal-view-{{ $gradeevaluationrequest->id }}" style="font-size: 14px;"><i class="fa-solid fa-eye"></i> View</a>
+                                                        <a class="btn btn-success btn-lg" href="{{ url('viewGradeEvaluation',['id'=>$gradeevaluationrequest->id]) }}" data-toggle="modal" data-target="#modal-view-{{ $gradeevaluationrequest->id }}" style="font-size: 14px;"><i class="fa-solid fa-eye"></i> View</a>
                                                     </td>
                                                 </tr>
                                                 <!-- view modal -->

@@ -2,516 +2,763 @@
 <html>
     <head>
         <style>
-            html,
-                body {
-                height: 100%;
-                width: 100%;
-                margin: 0px;
-                background: linear-gradient(90deg, rgba(47,54,64,1) 23%, rgba(24,27,32,1) 100%);
-                }
+            body {
+  margin: 0;
+  font-size: 20px;
+}
 
-                .moon {
-                background: linear-gradient(90deg, rgba(208,208,208,1) 48%, rgba(145,145,145,1) 100%);
-                position: absolute;
-                top: -100px;
-                left: -300px;
-                width: 900px;
-                height: 900px;
-                content: '';
-                border-radius: 100%;
-                box-shadow: 0px 0px 30px -4px rgba(0,0,0,0.5);
-                }
+* {
+  box-sizing: border-box;
+}
 
-                .moon__crater {
-                position: absolute;
-                content: '';
-                border-radius: 100%;
-                background: linear-gradient(90deg, rgba(122,122,122,1) 38%, rgba(195,195,195,1) 100%);
-                opacity: 0.6;
-                }
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: white;
+  color: black;
+  font-family: arial, sans-serif;
+  overflow: hidden;
+}
 
-                .moon__crater1 {
-                top: 250px;
-                left: 500px;
-                width: 60px;
-                height: 180px;
-                }
+.content {
+  position: relative;
+  width: 600px;
+  max-width: 100%;
+  margin: 20px;
+  background: white;
+  padding: 60px 40px;
+  text-align: center;
+  box-shadow: -10px 10px 67px -12px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  animation: apparition 0.8s 1.2s cubic-bezier(0.39, 0.575, 0.28, 0.995) forwards;
+}
+.content p {
+  font-size: 1.3rem;
+  margin-top: 0;
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.1rem;
+  color: #595959;
+}
+.content p:last-child {
+  margin-bottom: 0;
+}
+.content button {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.5rem 1rem;
+  border: 3px solid #595959;
+  background: transparent;
+  font-size: 1rem;
+  color: #595959;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: bold;
+}
 
-                .moon__crater2 {
-                top: 650px;
-                left: 340px;
-                width: 40px;
-                height: 80px;
-                transform: rotate(55deg);
-                }
+.particle {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+}
+.particle:nth-child(1) {
+  top: 66.0912453761%;
+  left: 57.3689416419%;
+  font-size: 11px;
+  filter: blur(0.02px);
+  animation: 27s float2 infinite;
+}
+.particle:nth-child(2) {
+  top: 73.1707317073%;
+  left: 19.6078431373%;
+  font-size: 20px;
+  filter: blur(0.04px);
+  animation: 27s floatReverse infinite;
+}
+.particle:nth-child(3) {
+  top: 37.2093023256%;
+  left: 59.9803343166%;
+  font-size: 17px;
+  filter: blur(0.06px);
+  animation: 31s floatReverse infinite;
+}
+.particle:nth-child(4) {
+  top: 59.4397076736%;
+  left: 79.333986288%;
+  font-size: 21px;
+  filter: blur(0.08px);
+  animation: 34s float infinite;
+}
+.particle:nth-child(5) {
+  top: 82.2521419829%;
+  left: 66.8633235005%;
+  font-size: 17px;
+  filter: blur(0.1px);
+  animation: 39s floatReverse2 infinite;
+}
+.particle:nth-child(6) {
+  top: 18.3796856106%;
+  left: 35.0535540409%;
+  font-size: 27px;
+  filter: blur(0.12px);
+  animation: 32s floatReverse infinite;
+}
+.particle:nth-child(7) {
+  top: 37.6811594203%;
+  left: 52.5291828794%;
+  font-size: 28px;
+  filter: blur(0.14px);
+  animation: 23s floatReverse infinite;
+}
+.particle:nth-child(8) {
+  top: 6.7469879518%;
+  left: 66.9902912621%;
+  font-size: 30px;
+  filter: blur(0.16px);
+  animation: 26s float2 infinite;
+}
+.particle:nth-child(9) {
+  top: 54.0540540541%;
+  left: 31.5581854043%;
+  font-size: 14px;
+  filter: blur(0.18px);
+  animation: 21s floatReverse2 infinite;
+}
+.particle:nth-child(10) {
+  top: 69.3528693529%;
+  left: 18.6457311089%;
+  font-size: 19px;
+  filter: blur(0.2px);
+  animation: 38s floatReverse infinite;
+}
+.particle:nth-child(11) {
+  top: 72.8155339806%;
+  left: 70.3125%;
+  font-size: 24px;
+  filter: blur(0.22px);
+  animation: 22s floatReverse infinite;
+}
+.particle:nth-child(12) {
+  top: 53.3980582524%;
+  left: 28.3203125%;
+  font-size: 24px;
+  filter: blur(0.24px);
+  animation: 29s float infinite;
+}
+.particle:nth-child(13) {
+  top: 40.5307599517%;
+  left: 0.9718172983%;
+  font-size: 29px;
+  filter: blur(0.26px);
+  animation: 28s float2 infinite;
+}
+.particle:nth-child(14) {
+  top: 19.4174757282%;
+  left: 29.296875%;
+  font-size: 24px;
+  filter: blur(0.28px);
+  animation: 31s floatReverse2 infinite;
+}
+.particle:nth-child(15) {
+  top: 10.7711138311%;
+  left: 76.6961651917%;
+  font-size: 17px;
+  filter: blur(0.3px);
+  animation: 31s floatReverse2 infinite;
+}
+.particle:nth-child(16) {
+  top: 74.7847478475%;
+  left: 35.538005923%;
+  font-size: 13px;
+  filter: blur(0.32px);
+  animation: 35s float2 infinite;
+}
+.particle:nth-child(17) {
+  top: 34.7406513872%;
+  left: 58.3090379009%;
+  font-size: 29px;
+  filter: blur(0.34px);
+  animation: 39s float2 infinite;
+}
+.particle:nth-child(18) {
+  top: 35.792019347%;
+  left: 21.4216163583%;
+  font-size: 27px;
+  filter: blur(0.36px);
+  animation: 40s float2 infinite;
+}
+.particle:nth-child(19) {
+  top: 34.9514563107%;
+  left: 45.8984375%;
+  font-size: 24px;
+  filter: blur(0.38px);
+  animation: 22s float infinite;
+}
+.particle:nth-child(20) {
+  top: 95.4489544895%;
+  left: 55.2813425469%;
+  font-size: 13px;
+  filter: blur(0.4px);
+  animation: 22s float2 infinite;
+}
+.particle:nth-child(21) {
+  top: 3.8882138518%;
+  left: 31.2805474096%;
+  font-size: 23px;
+  filter: blur(0.42px);
+  animation: 21s floatReverse2 infinite;
+}
+.particle:nth-child(22) {
+  top: 8.8019559902%;
+  left: 90.373280943%;
+  font-size: 18px;
+  filter: blur(0.44px);
+  animation: 39s float2 infinite;
+}
+.particle:nth-child(23) {
+  top: 85.8536585366%;
+  left: 38.2352941176%;
+  font-size: 20px;
+  filter: blur(0.46px);
+  animation: 33s floatReverse infinite;
+}
+.particle:nth-child(24) {
+  top: 90.0726392252%;
+  left: 74.0740740741%;
+  font-size: 26px;
+  filter: blur(0.48px);
+  animation: 30s float2 infinite;
+}
+.particle:nth-child(25) {
+  top: 78.335373317%;
+  left: 5.8997050147%;
+  font-size: 17px;
+  filter: blur(0.5px);
+  animation: 27s floatReverse2 infinite;
+}
+.particle:nth-child(26) {
+  top: 54.2372881356%;
+  left: 34.1130604288%;
+  font-size: 26px;
+  filter: blur(0.52px);
+  animation: 25s floatReverse2 infinite;
+}
+.particle:nth-child(27) {
+  top: 24.2424242424%;
+  left: 26.3414634146%;
+  font-size: 25px;
+  filter: blur(0.54px);
+  animation: 28s float infinite;
+}
+.particle:nth-child(28) {
+  top: 46.772228989%;
+  left: 51.9098922625%;
+  font-size: 21px;
+  filter: blur(0.56px);
+  animation: 36s float2 infinite;
+}
+.particle:nth-child(29) {
+  top: 93.3171324423%;
+  left: 22.4828934506%;
+  font-size: 23px;
+  filter: blur(0.58px);
+  animation: 35s floatReverse2 infinite;
+}
+.particle:nth-child(30) {
+  top: 76.6584766585%;
+  left: 10.8481262327%;
+  font-size: 14px;
+  filter: blur(0.6px);
+  animation: 35s floatReverse2 infinite;
+}
+.particle:nth-child(31) {
+  top: 56.4476885645%;
+  left: 31.3111545988%;
+  font-size: 22px;
+  filter: blur(0.62px);
+  animation: 31s floatReverse infinite;
+}
+.particle:nth-child(32) {
+  top: 11.7791411043%;
+  left: 3.9408866995%;
+  font-size: 15px;
+  filter: blur(0.64px);
+  animation: 38s floatReverse infinite;
+}
+.particle:nth-child(33) {
+  top: 8.7272727273%;
+  left: 93.6585365854%;
+  font-size: 25px;
+  filter: blur(0.66px);
+  animation: 27s floatReverse2 infinite;
+}
+.particle:nth-child(34) {
+  top: 88.6699507389%;
+  left: 50.395256917%;
+  font-size: 12px;
+  filter: blur(0.68px);
+  animation: 33s float infinite;
+}
+.particle:nth-child(35) {
+  top: 85.0241545894%;
+  left: 38.9105058366%;
+  font-size: 28px;
+  filter: blur(0.7px);
+  animation: 31s float infinite;
+}
+.particle:nth-child(36) {
+  top: 87.061668682%;
+  left: 51.6066212269%;
+  font-size: 27px;
+  filter: blur(0.72px);
+  animation: 32s floatReverse infinite;
+}
+.particle:nth-child(37) {
+  top: 16.5450121655%;
+  left: 13.698630137%;
+  font-size: 22px;
+  filter: blur(0.74px);
+  animation: 30s float infinite;
+}
+.particle:nth-child(38) {
+  top: 42.2085889571%;
+  left: 53.2019704433%;
+  font-size: 15px;
+  filter: blur(0.76px);
+  animation: 29s floatReverse infinite;
+}
+.particle:nth-child(39) {
+  top: 91.6256157635%;
+  left: 29.6442687747%;
+  font-size: 12px;
+  filter: blur(0.78px);
+  animation: 40s floatReverse infinite;
+}
+.particle:nth-child(40) {
+  top: 35.8787878788%;
+  left: 90.7317073171%;
+  font-size: 25px;
+  filter: blur(0.8px);
+  animation: 21s floatReverse infinite;
+}
+.particle:nth-child(41) {
+  top: 83.698296837%;
+  left: 55.7729941292%;
+  font-size: 22px;
+  filter: blur(0.82px);
+  animation: 28s float infinite;
+}
+.particle:nth-child(42) {
+  top: 94.6979038224%;
+  left: 75.1730959446%;
+  font-size: 11px;
+  filter: blur(0.84px);
+  animation: 36s floatReverse2 infinite;
+}
+.particle:nth-child(43) {
+  top: 73.4299516908%;
+  left: 94.3579766537%;
+  font-size: 28px;
+  filter: blur(0.86px);
+  animation: 23s float infinite;
+}
+.particle:nth-child(44) {
+  top: 16.7281672817%;
+  left: 17.7690029615%;
+  font-size: 13px;
+  filter: blur(0.88px);
+  animation: 34s floatReverse infinite;
+}
+.particle:nth-child(45) {
+  top: 69.864698647%;
+  left: 97.7295162883%;
+  font-size: 13px;
+  filter: blur(0.9px);
+  animation: 30s float infinite;
+}
+.particle:nth-child(46) {
+  top: 35.2078239609%;
+  left: 75.6385068762%;
+  font-size: 18px;
+  filter: blur(0.92px);
+  animation: 27s float2 infinite;
+}
+.particle:nth-child(47) {
+  top: 91.0411622276%;
+  left: 93.567251462%;
+  font-size: 26px;
+  filter: blur(0.94px);
+  animation: 28s floatReverse infinite;
+}
+.particle:nth-child(48) {
+  top: 46.3208685163%;
+  left: 52.4781341108%;
+  font-size: 29px;
+  filter: blur(0.96px);
+  animation: 26s float2 infinite;
+}
+.particle:nth-child(49) {
+  top: 52.6829268293%;
+  left: 61.7647058824%;
+  font-size: 20px;
+  filter: blur(0.98px);
+  animation: 37s floatReverse2 infinite;
+}
+.particle:nth-child(50) {
+  top: 59.9508599509%;
+  left: 21.6962524655%;
+  font-size: 14px;
+  filter: blur(1px);
+  animation: 33s float2 infinite;
+}
+.particle:nth-child(51) {
+  top: 92.7960927961%;
+  left: 46.1236506379%;
+  font-size: 19px;
+  filter: blur(1.02px);
+  animation: 37s floatReverse infinite;
+}
+.particle:nth-child(52) {
+  top: 89.7657213317%;
+  left: 27.6953511375%;
+  font-size: 11px;
+  filter: blur(1.04px);
+  animation: 34s floatReverse2 infinite;
+}
+.particle:nth-child(53) {
+  top: 53.2687651332%;
+  left: 35.0877192982%;
+  font-size: 26px;
+  filter: blur(1.06px);
+  animation: 24s float2 infinite;
+}
+.particle:nth-child(54) {
+  top: 31.1435523114%;
+  left: 9.7847358121%;
+  font-size: 22px;
+  filter: blur(1.08px);
+  animation: 27s floatReverse infinite;
+}
+.particle:nth-child(55) {
+  top: 55.5420219245%;
+  left: 87.1694417238%;
+  font-size: 21px;
+  filter: blur(1.1px);
+  animation: 24s float2 infinite;
+}
+.particle:nth-child(56) {
+  top: 56.2268803946%;
+  left: 55.390702275%;
+  font-size: 11px;
+  filter: blur(1.12px);
+  animation: 34s floatReverse2 infinite;
+}
+.particle:nth-child(57) {
+  top: 49.3218249075%;
+  left: 57.3689416419%;
+  font-size: 11px;
+  filter: blur(1.14px);
+  animation: 28s floatReverse infinite;
+}
+.particle:nth-child(58) {
+  top: 59.6577017115%;
+  left: 55.9921414538%;
+  font-size: 18px;
+  filter: blur(1.16px);
+  animation: 37s float2 infinite;
+}
+.particle:nth-child(59) {
+  top: 50.7936507937%;
+  left: 44.1609421001%;
+  font-size: 19px;
+  filter: blur(1.18px);
+  animation: 23s floatReverse2 infinite;
+}
+.particle:nth-child(60) {
+  top: 13.7086903305%;
+  left: 70.796460177%;
+  font-size: 17px;
+  filter: blur(1.2px);
+  animation: 26s floatReverse infinite;
+}
+.particle:nth-child(61) {
+  top: 91.4004914005%;
+  left: 26.6272189349%;
+  font-size: 14px;
+  filter: blur(1.22px);
+  animation: 29s float2 infinite;
+}
+.particle:nth-child(62) {
+  top: 14.4927536232%;
+  left: 8.7548638132%;
+  font-size: 28px;
+  filter: blur(1.24px);
+  animation: 27s float infinite;
+}
+.particle:nth-child(63) {
+  top: 41.1260709914%;
+  left: 16.7158308751%;
+  font-size: 17px;
+  filter: blur(1.26px);
+  animation: 24s floatReverse2 infinite;
+}
+.particle:nth-child(64) {
+  top: 50.0613496933%;
+  left: 13.7931034483%;
+  font-size: 15px;
+  filter: blur(1.28px);
+  animation: 34s float infinite;
+}
+.particle:nth-child(65) {
+  top: 47.3429951691%;
+  left: 59.3385214008%;
+  font-size: 28px;
+  filter: blur(1.3px);
+  animation: 28s float infinite;
+}
+.particle:nth-child(66) {
+  top: 56.3106796117%;
+  left: 63.4765625%;
+  font-size: 24px;
+  filter: blur(1.32px);
+  animation: 25s float2 infinite;
+}
+.particle:nth-child(67) {
+  top: 0.9708737864%;
+  left: 49.8046875%;
+  font-size: 24px;
+  filter: blur(1.34px);
+  animation: 35s float infinite;
+}
+.particle:nth-child(68) {
+  top: 21.3333333333%;
+  left: 7.8048780488%;
+  font-size: 25px;
+  filter: blur(1.36px);
+  animation: 26s float infinite;
+}
+.particle:nth-child(69) {
+  top: 1.9464720195%;
+  left: 9.7847358121%;
+  font-size: 22px;
+  filter: blur(1.38px);
+  animation: 32s float infinite;
+}
+.particle:nth-child(70) {
+  top: 53.9759036145%;
+  left: 3.8834951456%;
+  font-size: 30px;
+  filter: blur(1.4px);
+  animation: 32s float2 infinite;
+}
+.particle:nth-child(71) {
+  top: 43.9024390244%;
+  left: 32.3529411765%;
+  font-size: 20px;
+  filter: blur(1.42px);
+  animation: 38s float2 infinite;
+}
+.particle:nth-child(72) {
+  top: 54.7677261614%;
+  left: 7.858546169%;
+  font-size: 18px;
+  filter: blur(1.44px);
+  animation: 33s float infinite;
+}
+.particle:nth-child(73) {
+  top: 88.7804878049%;
+  left: 20.5882352941%;
+  font-size: 20px;
+  filter: blur(1.46px);
+  animation: 37s float infinite;
+}
+.particle:nth-child(74) {
+  top: 56.2268803946%;
+  left: 89.0207715134%;
+  font-size: 11px;
+  filter: blur(1.48px);
+  animation: 24s floatReverse infinite;
+}
+.particle:nth-child(75) {
+  top: 78.239608802%;
+  left: 3.9292730845%;
+  font-size: 18px;
+  filter: blur(1.5px);
+  animation: 31s floatReverse2 infinite;
+}
+.particle:nth-child(76) {
+  top: 18.4914841849%;
+  left: 21.5264187867%;
+  font-size: 22px;
+  filter: blur(1.52px);
+  animation: 35s floatReverse infinite;
+}
+.particle:nth-child(77) {
+  top: 55.1390568319%;
+  left: 58.4225900682%;
+  font-size: 27px;
+  filter: blur(1.54px);
+  animation: 38s float2 infinite;
+}
+.particle:nth-child(78) {
+  top: 88.0195599022%;
+  left: 52.0628683694%;
+  font-size: 18px;
+  filter: blur(1.56px);
+  animation: 21s float infinite;
+}
+.particle:nth-child(79) {
+  top: 27.4509803922%;
+  left: 71.8503937008%;
+  font-size: 16px;
+  filter: blur(1.58px);
+  animation: 29s float2 infinite;
+}
+.particle:nth-child(80) {
+  top: 37.0280146163%;
+  left: 89.1283055828%;
+  font-size: 21px;
+  filter: blur(1.6px);
+  animation: 23s floatReverse2 infinite;
+}
 
-                .moon__crater3 {
-                top: -20px;
-                left: 40px;
-                width: 65px;
-                height: 120px;
-                transform: rotate(250deg);
-                }
+@keyframes apparition {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(180px);
+  }
+}
+@keyframes floatReverse {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-180px);
+  }
+}
+@keyframes float2 {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(28px);
+  }
+}
+@keyframes floatReverse2 {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-28px);
+  }
+}
 
-                .star {
-                background: grey;
-                position: absolute;
-                width: 5px;
-                height: 5px;
-                content: '';
-                border-radius: 100%;
-                transform: rotate(250deg);
-                opacity: 0.4;
-                animation-name: shimmer;
-                animation-duration: 1.5s;
-                animation-iteration-count: infinite;
-                animation-direction: alternate;
-                }
-
-                @keyframes shimmer {
-                from {opacity: 0;}
-                to {opacity: 0.7;}
-                }
-
-                .star1 {
-                top: 40%;
-                left: 50%;
-                animation-delay: 1s;
-                }
-
-                .star2 {
-                top: 60%;
-                left: 90%;
-                animation-delay: 3s;
-                }
-
-                .star3 {
-                top: 10%;
-                left: 70%;
-                animation-delay: 2s;
-                }
-
-                .star4 {
-                top: 90%;
-                left: 40%;
-                }
-
-                .star5 {
-                top: 20%;
-                left: 30%;
-                animation-delay: 0.5s;
-                }
-
-                .error {
-                position: absolute;
-                left: 100px;
-                top: 200px;
-                transform: translateY(-60%);
-                font-family: 'Righteous', cursive;
-                color: #363e49;
-                }
-
-                .error__title {
-                font-size: 10em;
-                }
-
-                .error__subtitle {
-                font-size: 2em;
-                }
-
-                .error__description {
-                opacity: 0.5;
-                }
-
-                .error__button {
-                min-width: 7em;
-                margin-top: 3em;
-                margin-right: 0.5em;
-                padding: 0.5em 2em;
-                outline: none;
-                border: 2px solid #2f3640;
-                background-color: transparent;
-                border-radius: 8em;
-                color: #576375;
-                cursor: pointer;
-                transition-duration: 0.2s;
-                font-size: 0.75em;
-                font-family: 'Righteous', cursive;
-                }
-
-                .error__button:hover {
-                color: #21252c;
-                }
-
-                .error__button--active {
-                background-color: #e67e22;
-                border: 2px solid #e67e22;
-                color: white;
-                }
-
-                .error__button--active:hover {
-                box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.5);
-                color: white;
-                }
-
-                .astronaut {
-                position: absolute;
-                width: 185px;
-                height: 300px;
-                left: 70%;
-                top: 50%;
-                transform: translate(-50%, -50%) rotate(20deg) scale(1.2);
-                }
-
-                .astronaut__head {
-                background-color: white;
-                position: absolute;
-                top: 60px;
-                left: 60px;
-                width: 60px;
-                height: 60px;
-                content: '';
-                border-radius: 2em;
-                }
-
-                .astronaut__head-visor-flare1 {
-                background-color: #7f8fa6;
-                position: absolute;
-                top: 28px;
-                left: 40px;
-                width: 10px;
-                height: 10px;
-                content: '';
-                border-radius: 2em;
-                opacity: 0.5;
-                }
-
-                .astronaut__head-visor-flare2 {
-                background-color: #718093;
-                position: absolute;
-                top: 40px;
-                left: 38px;
-                width: 5px;
-                height: 5px;
-                content: '';
-                border-radius: 2em;
-                opacity: 0.3;
-                }
-
-                .astronaut__backpack {
-                background-color: #bfbfbf;
-                position: absolute;
-                top: 90px;
-                left: 47px;
-                width: 86px;
-                height: 90px;
-                content: '';
-                border-radius: 8px;
-                }
-
-                .astronaut__body {
-                background-color: #e6e6e6;
-                position: absolute;
-                top: 115px;
-                left: 55px;
-                width: 70px;
-                height: 80px;
-                content: '';
-                border-radius: 8px;
-                }
-
-                .astronaut__body__chest {
-                background-color: #d9d9d9;
-                position: absolute;
-                top: 140px;
-                left: 68px;
-                width: 45px;
-                height: 25px;
-                content: '';
-                border-radius: 6px;
-                }
-
-                .astronaut__arm-left1 {
-                background-color: #e6e6e6;
-                position: absolute;
-                top: 127px;
-                left: 9px;
-                width: 65px;
-                height: 20px;
-                content: '';
-                border-radius: 8px;
-                transform: rotate(-30deg);
-                }
-
-                .astronaut__arm-left2 {
-                background-color: #e6e6e6;
-                position: absolute;
-                top: 102px;
-                left: 7px;
-                width: 20px;
-                height: 45px;
-                content: '';
-                border-radius: 8px;
-                transform: rotate(-12deg);
-                border-top-left-radius: 8em;
-                border-top-right-radius: 8em;
-                }
-
-                .astronaut__arm-right1 {
-                background-color: #e6e6e6;
-                position: absolute;
-                top: 113px;
-                left: 100px;
-                width: 65px;
-                height: 20px;
-                content: '';
-                border-radius: 8px;
-                transform: rotate(-10deg);
-                }
-
-                .astronaut__arm-right2 {
-                background-color: #e6e6e6;
-                position: absolute;
-                top: 78px;
-                left: 141px;
-                width: 20px;
-                height: 45px;
-                content: '';
-                border-radius: 8px;
-                transform: rotate(-10deg);
-                border-top-left-radius: 8em;
-                border-top-right-radius: 8em;
-                }
-
-                .astronaut__arm-thumb-left {
-                background-color: #e6e6e6;
-                position: absolute;
-                top: 110px;
-                left: 21px;
-                width: 10px;
-                height: 6px;
-                content: '';
-                border-radius: 8em;
-                transform: rotate(-35deg);
-                }
-
-                .astronaut__arm-thumb-right {
-                background-color: #e6e6e6;
-                position: absolute;
-                top: 90px;
-                left: 133px;
-                width: 10px;
-                height: 6px;
-                content: '';
-                border-radius: 8em;
-                transform: rotate(20deg);
-                }
-
-                .astronaut__wrist-left {
-                background-color: #e67e22;
-                position: absolute;
-                top: 122px;
-                left: 6.5px;
-                width: 21px;
-                height: 4px;
-                content: '';
-                border-radius: 8em;
-                transform: rotate(-15deg);
-                }
-
-                .astronaut__wrist-right {
-                background-color: #e67e22;
-                position: absolute;
-                top: 98px;
-                left: 141px;
-                width: 21px;
-                height: 4px;
-                content: '';
-                border-radius: 8em;
-                transform: rotate(-10deg);
-                }
-
-                .astronaut__leg-left {
-                background-color: #e6e6e6;
-                position: absolute;
-                top: 188px;
-                left: 50px;
-                width: 23px;
-                height: 75px;
-                content: '';
-                transform: rotate(10deg);
-                }
-
-                .astronaut__leg-right {
-                background-color: #e6e6e6;
-                position: absolute;
-                top: 188px;
-                left: 108px;
-                width: 23px;
-                height: 75px;
-                content: '';
-                transform: rotate(-10deg);
-                }
-
-                .astronaut__foot-left {
-                background-color: white;
-                position: absolute;
-                top: 240px;
-                left: 43px;
-                width: 28px;
-                height: 20px;
-                content: '';
-                transform: rotate(10deg);
-                border-radius: 3px;
-                border-top-left-radius: 8em;
-                border-top-right-radius: 8em;
-                border-bottom: 4px solid #e67e22;
-                }
-
-                .astronaut__foot-right {
-                background-color: white;
-                position: absolute;
-                top: 240px;
-                left: 111px;
-                width: 28px;
-                height: 20px;
-                content: '';
-                transform: rotate(-10deg);
-                border-radius: 3px;
-                border-top-left-radius: 8em;
-                border-top-right-radius: 8em;
-                border-bottom: 4px solid #e67e22;
-                }
             </style>
         <title>Page not found - 404</title>
         
     </head>
-    <body>
-    
-    
-        <div class="moon"></div>
-        <div class="moon__crater moon__crater1"></div>
-        <div class="moon__crater moon__crater2"></div>
-        <div class="moon__crater moon__crater3"></div>
+    <body>   
+        <main class='container'>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>4</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <span class='particle'>0</span>
+        <article class='content'>
+            <p style="font-size: 80px; color:green;"><strong>404</strong> not found</p><br/><br/>
+            <p style="font-size: 40px; color:black;"><strong>Sorry. Looks like the developers fell asleep...</strong></p>
+        </article>
+        </main>
 
-        <div class="star star1"></div>
-        <div class="star star2"></div>
-        <div class="star star3"></div>
-        <div class="star star4"></div>
-        <div class="star star5"></div>
-
-        <div class="error">
-        <div class="error__title">404</div>
-        <div class="error__subtitle">Hmmm...</div>
-        <div class="error__subtitle">Page not found</div>
-        <div class="error__description">It looks like the developers fell asleep......</div>
-        </div>
-
-        <div class="astronaut">
-        <div class="astronaut__backpack"></div>
-        <div class="astronaut__body"></div>
-        <div class="astronaut__body__chest"></div>
-        <div class="astronaut__arm-left1"></div>
-        <div class="astronaut__arm-left2"></div>
-        <div class="astronaut__arm-right1"></div>
-        <div class="astronaut__arm-right2"></div>
-        <div class="astronaut__arm-thumb-left"></div>
-        <div class="astronaut__arm-thumb-right"></div>
-        <div class="astronaut__leg-left"></div>
-        <div class="astronaut__leg-right"></div>
-        <div class="astronaut__foot-left"></div>
-        <div class="astronaut__foot-right"></div>
-        <div class="astronaut__wrist-left"></div>
-        <div class="astronaut__wrist-right"></div>
-        
-        <div class="astronaut__cord">
-            <canvas id="cord" height="500px" width="500px"></canvas>
-        </div>
-        
-        <div class="astronaut__head">
-            <canvas id="visor" width="60px" height="60px"></canvas>
-            <a href="" class="astronaut__head-visor-flare1" style="background: transparent; border: none !important; font-size:0; cursor: default;"></a>
-            <div class="astronaut__head-visor-flare2"></div>
-        </div>
-        </div>
     
     </body>
-    <script>
-        function drawVisor() {
-            const canvas = document.getElementById('visor');
-            const ctx = canvas.getContext('2d');
-            
-            ctx.beginPath();
-            ctx.moveTo(5, 45);
-            ctx.bezierCurveTo(15, 64, 45, 64, 55, 45);
-            
-            ctx.lineTo(55, 20);
-            ctx.bezierCurveTo(55, 15, 50, 10, 45, 10);
-            
-            ctx.lineTo(15, 10);
-            
-            ctx.bezierCurveTo(15, 10, 5, 10, 5, 20);
-            ctx.lineTo(5, 45);
-            
-            ctx.fillStyle = '#2f3640';
-            ctx.strokeStyle = '#f5f6fa';
-            ctx.fill();
-            ctx.stroke();
-        }
-
-        const cordCanvas = document.getElementById('cord');
-        const ctx = cordCanvas.getContext('2d');
-
-        let y1 = 160;
-        let y2 = 100;
-        let y3 = 100;
-
-        let y1Forward = true;
-        let y2Forward = false;
-        let y3Forward = true;
-
-        function animate() {
-            requestAnimationFrame(animate);
-            ctx.clearRect(0, 0, innerWidth, innerHeight);
-            
-            ctx.beginPath();
-            ctx.moveTo(130, 170);
-            ctx.bezierCurveTo(250, y1, 345, y2, 400, y3);
-            
-            ctx.strokeStyle = 'white';
-            ctx.lineWidth = 8;
-            ctx.stroke();
-            
-            
-            if (y1 === 100) {
-                y1Forward = true;
-            }
-            
-            if (y1 === 300) {
-                y1Forward = false;
-            }
-            
-            if (y2 === 100) {
-                y2Forward = true;
-            }
-            
-            if (y2 === 310) {
-                y2Forward = false;
-            }
-            
-            if (y3 === 100) {
-                y3Forward = true;
-            }
-            
-            if (y3 === 317) {
-                y3Forward = false;
-            }
-            
-            y1Forward ? y1 += 1 : y1 -= 1;
-            y2Forward ? y2 += 1 : y2 -= 1;
-            y3Forward ? y3 += 1 : y3 -= 1;
-        }
-        drawVisor();
-        animate();
-    </script>
 </html>

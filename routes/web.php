@@ -420,7 +420,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 |
                 */
                 Route::post('/add/reminder', 'storereminder')->name('reminder.store');
-                Route::post('/add/privatereminders', 'storeprivatereminder');
+                Route::post('/add/privatereminders', 'storeprivatereminder')->name('add.privatereminder');
             
 
             /*

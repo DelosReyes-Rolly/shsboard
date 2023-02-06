@@ -445,7 +445,7 @@ class AdminsController extends Controller
         }
         $announcement->save();
         Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<',  now())->update(['status' => '2']);
-        return redirect('/createEvents')->with('success', 'New event was added successfully');
+        return response()->json(array('success' => true)); 
     }
 
     public function viewevent($id){
@@ -510,7 +510,7 @@ class AdminsController extends Controller
         $announcement->status = 1;
         $announcement->save();
         Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<',  now())->update(['status' => '2']);
-        return redirect('/createReminder')->with('success', 'New reminder was added successfully');
+        return response()->json(array('success' => true)); 
     }
 
     public function storeprivatereminder(Request $request){
@@ -527,7 +527,7 @@ class AdminsController extends Controller
         $announcement->status = 1;
         $announcement->save();
         Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<',  now())->update(['status' => '2']);
-        return redirect('/privatereminders')->with('success', 'New private reminder was added successfully');
+        return response()->json(array('success' => true)); 
     }
 
     public function viewreminder($id){
@@ -1457,7 +1457,8 @@ class AdminsController extends Controller
     }
 
     public function studentsubjectadd(Request $request){
-        $validated = $request->validate([
+        $request->validate([
+            'gradelevel_id' => 'required',
             'subject_id' => 'required',
             'student_id' => 'required',
             'faculty_id' => 'required',
@@ -1466,15 +1467,29 @@ class AdminsController extends Controller
         $schoolyear = DB::table('school_years')->latest('id')->first();
         $facultysubject = SubjectTeachers::where('faculty_id', '=', $request->faculty_id)->where('subject_id', '=', $request->subject_id)
         ->where('schoolyear_id', '=', $schoolyear->id)->where('semester_id', '=', $request->semester_id)->first();
-        if($facultysubject->count() == 0){
+        if($facultysubject == null){
             return response()->json(['error' => 'Sorry! No class offering for this teacher this semester.'], 422); 
         }
         else{
-            $studentredundant = StudentGrade::where('student_id', '=', $request->student_id)->where('subject', '=', $request->subject_id)->first();
-            dd($studentredundant);
-            $average = $studentredundant->midterm + $studentredundant->finals;
-            if($studentredundant->count() != 0 && $average>74){
-                return response()->json(['error' => 'Sorry! The student already passed the subject.'], 422); 
+            $studentredundant = StudentGrade::where('student_id', '=', $request->student_id)->where('subject_id', '=', $request->subject_id)->first();
+            
+            if($studentredundant != null){
+                $average = $studentredundant->midterm + $studentredundant->finals;
+                if($average>74){
+                    return response()->json(['error' => 'Sorry! The student already passed the subject.'], 422); 
+                }
+                else{
+                    $studentgrade = new StudentGrade();
+                    $studentgrade->student_id = $request->get('student_id');
+                    $studentgrade->gradelevel_id = $request->get('gradelevel_id');
+                    $studentgrade->subject_id = $request->get('subject_id');
+                    $studentgrade->faculty_id = $request->get('faculty_id');
+                    $studentgrade->subjectteacher_id = $facultysubject->id;
+                    $studentgrade->schoolyear_id = $schoolyear->id;
+                    $studentgrade->semester_id = $request->get('semester_id');
+                    $studentgrade->save();
+                    return response()->json(array('success' => true));   
+                }
             }
             else{
                 $studentgrade = new StudentGrade();
@@ -1486,8 +1501,8 @@ class AdminsController extends Controller
                 $studentgrade->schoolyear_id = $schoolyear->id;
                 $studentgrade->semester_id = $request->get('semester_id');
                 $studentgrade->save();
+                return response()->json(array('success' => true));   
             }
-            return view('/gradingstudents')->with('success', 'Added subject to student successfully!');
         }
     }
 

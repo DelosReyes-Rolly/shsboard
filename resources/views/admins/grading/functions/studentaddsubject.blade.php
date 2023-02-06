@@ -1,22 +1,16 @@
 @include('partials.adminheader')
 <main>
-<script src="{{ asset('assets/js/needs-validated.js') }}"></script> 
 <div class="">
-
+<script src="{{ asset('assets/js/jquery-3.5.1.js') }}"></script>
         <!-- form -->
                     
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <strong>Whoops!</strong> There were some problems with your input.
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        <div id="whoops" class="alert alert-danger" style="display: none;">
+            <b>Whoops! There is a problem in your input</b> <br/>
+            <div id="validation-errors"></div>
+        </div>
+        <center><div hidden id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
 
-        <form method="POST" action="{{ route('studentsubjectadd.store') }}"  class="needs-validation" novalidate>
+        <form method="POST" id="createSubjectStudent" class="needs-validation" novalidate>
             @csrf
             <div id="validation-errors"></div>
             <input type="hidden" name="student_id" value="{{$student->id}}">
@@ -35,8 +29,9 @@
                                         * required field
                                     </div>
                                     <!-- Form Row-->
-                                    <div class="row gx-3 mb-3">
+                                    <div class="row">
                                         <!-- Form Row -->
+                                        <input type="hidden" id="gradelevel_id" name="gradelevel_id" value="{{$student->gradelevel_id}}">
                                         <div class="col-md-12">
                                             <div class="col-md-12"><label for="subject_id" style="font-size: 20px;"><span style="color: red">*</span> Subject</label>
                                                 <select id="subject_id" name="subject_id" class="form-control" value="{{ old('subject_id') }}" style="font-size: 14px;" required>
@@ -50,11 +45,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- Form Row -->
-                                    <div class="row gx-3 mb-3">
-                                        <!-- Form Group whr-->
-                                        <div class="col-md-12">
+                                        <div class="col-md-12"><br/>
                                             <div class="col-md-12"><label for="semester_id" style="font-size: 20px;"><span style="color: red">*</span> Semester</label>
                                                 <select id="semester_id" name="semester_id" class="form-control" value="{{ old('semester_id') }}" style="font-size: 14px;" required>
                                                     <option value="" disabled selected hidden>Choose Semester</option>
@@ -67,11 +58,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div><br/>
-                                    <!-- Form Row-->
-                                    <div class="row gx-3 mb-3">
-                                        <!-- Form Group (title)-->
-                                        <div class="col-md-12">
+                                        <div class="col-md-12"><br/>
                                             <div class="col-md-12"><label for="faculty_id" style="font-size: 20px;"><span style="color: red">*</span> Teacher</label>
                                                 <select id="faculty_id" name="faculty_id" class="form-control" value="{{ old('faculty_id') }}" style="font-size: 14px;" required>
                                                     <option value="" disabled selected hidden>Choose Teacher</option>
@@ -84,9 +71,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div><br/>
+                                    </div>
                                     <hr>
-                                    <a class="btn btn-info btn-md" href="javascript:history.back()"><i class="fas fa-arrow-left"></i> Back</a>
                                     <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary" value="Submit"></font>
                                 </div>
                             </div>
@@ -96,12 +82,60 @@
             </div>
         </form>
     </div>
+    <script src="{{ asset('assets/js/needs-validated.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function(){
           $('.nav_btn').click(function(){
             $('.mobile_nav_items').toggleClass('active');
           });
         });
+
+        var $loading = $('#loadingDiv').hide();
+        function formPost(){
+            $(document).ajaxStart(function () {
+                $loading.show();
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
+            $('#whoops').hide();
+            var form_data = $("form#createSubjectStudent").serialize();
+            $(":submit").attr("disabled", true);
+            $.ajax({
+                type: "POST",
+                url: "{{ route('studentsubjectadd.store') }}",
+                data:form_data,
+                success: function(response) {
+                    if (response) {
+                        $("#createModal").removeClass("in");
+                        $(".modal-backdrop").remove();
+                        $('body').removeClass('modal-open');
+                        $('body').css('padding-right', '');
+                        $("#createModal").hide();
+                        $("#createSubjectStudent")[0].reset();
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success.',
+                            text: 'Subject of student has been added successfully',
+                        }).then(function() {
+                            location.reload(true);
+                        })
+                        
+                    }
+                },error: function (xhr) {
+                    $('#validation-errors').html('');
+                    document.getElementById('whoops').style.display = 'block';
+                    if(xhr.responseJSON.error != undefined){
+                        $("#validation-errors").html("");
+                        $('#validation-errors').append('&emsp;<li>'+xhr.responseJSON.error+'</li>');
+                    }
+                    $.each(xhr.responseJSON.errors, function(key,value) {
+                        $('#validation-errors').append('&emsp;<li>'+value+'</li>');
+                    }); 
+                    $(":submit").removeAttr("disabled");
+                },
+            });
+        }
     </script>
 </main>
 <br><br><br><br>

@@ -73,12 +73,12 @@
             <div class="card-header" style="background-color: white;">
                 <div class="row">
                     <div class="col-lg-6 col-md-12 col-sm-12">
-                        <a class="btn btn-success" style="font-size:20px; font-weight:bold; color:white;" href='{{ url("/gradingalumni") }}'><i class="fas fa-user-graduate"></i> Alumni</a><br/><br/>
+                        <a class="btn btn-success" style="font-size:20px; font-weight:bold; color:white;" href='{{ url("/gradingalumni") }}'><i class="fas fa-user-graduate"></i> Alumni</a>
                         <a class="btn btn-danger" style="font-size:20px; font-weight:bold; color:white;" href='{{ url("/gradingdropped") }}'><i class="fas fa-user-slash"></i> Dropped</a><br/><br/>
-                    </div><br/><br/>
+                    </div>
                     <div class="col-lg-6 col-md-12 col-sm-12" style="float:right; text-align: right;">
-                        <a href="{{route('studentbatch.add')}}" class="btn btn-primary" style="display: inline-block" data-toggle="modal" data-target="#batchModal"><i class="fas fa-user-plus"></i> Add Student in Batch</a><br/><br/>
-                        <a href="{{route('student.add')}}" class="btn btn-primary" style="display: inline-block" data-toggle="modal" data-target="#createModal"><i class="fas fa-user-plus"></i> Add Student Manually</a>
+                        <a href="{{route('studentbatch.add')}}" class="btn btn-primary student-table" style="display: inline-block" data-toggle="modal" data-target="#batchModal"><i class="fas fa-user-plus"></i> Add Student in Batch</a>
+                        <a href="{{route('student.add')}}" class="btn btn-primary student-table" style="display: inline-block" data-toggle="modal" data-target="#createModal"><i class="fas fa-user-plus"></i> Add Student Manually</a>
                     </div>
                 </div>
             </div>

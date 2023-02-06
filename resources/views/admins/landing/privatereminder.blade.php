@@ -3,7 +3,7 @@
 <main>
         <!-- form -->
     <div class="">
-            <form method="POST" action="/add/privatereminders"class="needs-validation" novalidate>
+            <form method="POST" id="createPrivatereminder" class="needs-validation" novalidate>
                 @csrf
                 <div class="px-2 mt-2 left-to-left">
                     <!-- page navigation-->
@@ -15,23 +15,11 @@
                             <div class="card mb-4">
                                 <div class="card border-start-lg border-start-yellow">
                                     <div class="card-header">
-                                        @if ($message = Session::get('message'))
-                                            <div class="alert alert-success alert-block">
-                                                <button type="button" class="close" data-dismiss="alert">×</button>
-                                                <strong>{{ $message }}</strong>
-                                            </div>
-                                        @endif
-                                                    
-                                        @if (count($errors) > 0)
-                                            <div class="alert alert-danger">
-                                                <strong>Whoops!</strong> There were some problems with your input.
-                                                <ul>
-                                                    @foreach ($errors->all() as $error)
-                                                        <li>{{ $error }}</li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
-                                        @endif
+                                        <div id="whoops" class="alert alert-danger" style="display: none;">
+                                            <b>Whoops! There is a problem in your input</b> <br/>
+                                            <div id="validation-errors"></div>
+                                        </div>
+                                        <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
                                     </div>
                                     <div class="card-body" style="padding: 10px 40px 10px 40px">
                                         <div class="">
@@ -82,5 +70,56 @@
         });
     </script>
     <script src="{{ asset('assets/js/needs-validated.js') }}"></script>
+    <script>
+        var $loading = $('#loadingDiv').hide();
+        function formPost(){
+            $(document).ajaxStart(function () {
+                $loading.show();
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
+            $('#whoops').hide();
+            var form = $('#createPrivatereminder')[0];
+            var form_data =  new FormData(form);
+            $(":submit").attr("disabled", true);
+            $.ajax({
+                type: "POST",
+                url: "{{ route('add.privatereminder') }}",
+                data:form_data,
+                enctype: 'multipart/form-data',
+                processData: false,  // Important!
+                contentType: false,
+                cache: false,
+                success: function(response) {
+                    if (response) {
+                        $("#createPrivatereminder")[0].reset();
+                        $(":submit").removeAttr("disabled");
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success.',
+                            text: 'Private reminder has been added successfully',
+                        }).then(function() {
+                            location.reload(true);
+                        })
+                        
+                    }
+                },error: function (xhr) {
+                    $('#validation-errors').html('');
+                    document.getElementById('whoops').style.display = 'block';
+                    if(xhr.responseJSON.error != undefined){
+                        $("#validation-errors").html("");
+                        $('#validation-errors').append('&emsp;<li>'+xhr.responseJSON.error+'</li>');
+                    }
+                    $.each(xhr.responseJSON.errors, function(key,value) {
+                        $('#validation-errors').append('&emsp;<li>'+value+'</li>');
+                    }); 
+                    $(":submit").removeAttr("disabled");
+                },
+            }).ajaxStop(function () {
+                $loading.hide();
+            });
+        }
+</script>
 </main>
 <br><br><br><br>

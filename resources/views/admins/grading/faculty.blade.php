@@ -39,16 +39,15 @@
         <div class="card mb-4 border-start-lg border-start-success" style="padding: 10px 20px 10px 20px;">
             <div class="card-header" style="background-color: #ffffff;">
                 <div class="row">
-                    <div class="col-lg-6 col-md-6" style="font-size: 20px;">
+                    <div class="col-lg-4 col-md-12" style="font-size: 20px;">
                         Max Regular Load: <span id="reload">{{$load->regular_load}}</span> <a class="btn btn-warning btn-sm" href="{{ url('showminload',['id'=>$load->id]) }}" data-toggle="modal" onclick="editReg(this)" data-id="{{ $load->id }}" data-target="#editmin"><i class="fas fa-edit"></i> Change</a><br/><br/>
-                        
                         Max Master Load: <span id="reload2">{{$load->master_load}}</span> <a class="btn btn-warning btn-sm" href="{{ url('showmaxload',['id'=>$load->id]) }}" data-toggle="modal" onclick="editMas(this)" data-id="{{ $load->id }}" data-target="#editmax"><i class="fas fa-edit"></i> Change</a>
                         
                     </div>
-                    <div class="col-lg-6 col-md-6">
+                    <div class="col-lg-8 col-md-12">
                         <div style="float:right; text-align: right;">
-                            <a href="{{route('facultybatch.add')}}" class="btn btn-primary" style="display: inline-block" data-toggle="modal" data-target="#batchModal"><i class="fas fa-user-plus"></i> Add Faculty in Batch</a><br/><br/>
-                            <a href="{{route('faculty.add')}}" class="btn btn-primary" style="display: inline-block" data-toggle="modal" data-target="#createModal"><i class="fas fa-user-plus"></i> Add Record Manually</a>
+                            <a href="{{route('facultybatch.add')}}" class="btn btn-primary student-table" style="display: inline-block" data-toggle="modal" data-target="#batchModal"><i class="fas fa-user-plus"></i> Add Faculty in Batch</a>
+                            <a href="{{route('faculty.add')}}" class="btn btn-primary student-table" style="display: inline-block" data-toggle="modal" data-target="#createModal"><i class="fas fa-user-plus"></i> Add Record Manually</a>
                         </div>
                     </div>
                 </div>

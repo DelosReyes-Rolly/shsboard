@@ -17,7 +17,7 @@
         <div style="margin: 0px;">
             <a class="btn btn-secondary btn-lg" href="{{ url('gradeeval') }}" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to grade evaluation request</a><br/><br/><br/><br/>
         </div>
-        <iframe height= "1000" width= "100%" src="{{ url('views',['file'=$gradeevaluationrequest -> file]) }}"></iframe>
+        <iframe height= "1000" width= "100%" src="{{ url('views',['file'=>$gradeevaluationrequest -> file]) }}"></iframe>
     </section>
 </main>
 <br><br><br><br>
