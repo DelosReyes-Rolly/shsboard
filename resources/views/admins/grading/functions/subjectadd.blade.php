@@ -58,7 +58,7 @@
     </div>
 </form>
 <script>
-    var $loading = $('#loadingDiv').hide();
+        var $loading = $('#loadingDiv').hide();
         function formPost(){
             $(document).ajaxStart(function () {
                 $loading.show();
