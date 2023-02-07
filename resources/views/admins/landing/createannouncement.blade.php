@@ -104,23 +104,11 @@
                             <div class="border-start-lg border-start-yellow">
                                 <div class="card-header">
                                     <!-- form -->
-                                    @if ($message = Session::get('message'))
-                                        <div class="alert alert-success alert-block">
-                                            <button type="button" class="close" data-dismiss="alert">×</button>
-                                            <strong>{{ $message }}</strong>
-                                        </div>
-                                    @endif
-                                    
-                                    @if (count($errors) > 0)
-                                        <div class="alert alert-danger">
-                                            <strong>Whoops!</strong> There were some problems with your input.
-                                            <ul>
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
+                                    <div id="whoops" class="alert alert-danger" style="display: none;">
+                                        <b>Whoops! There is a problem in your input</b> <br/>
+                                        <div id="validation-errors"></div>
+                                    </div>
+                                    <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
                                 </div>
                                 <div class="card-body" style="padding: 10px 40px 10px 40px">
                                     <div class="mb-3" style="color: red">
@@ -191,8 +179,8 @@
                                         </div><br/>
                                         <!-- Form Group (content)-->
                                         <div class="mb-3">
-                                            <label class="large mb-1" for="editor" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
-                                            <textarea class="form-control @error('content') is-invalid @enderror" id="editor" type="text" placeholder="Enter the information" name="content"  rows="10" cols="80" required>{{ old('content') }}</textarea>
+                                            <label class="large mb-1" for="contents" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
+                                            <textarea class="form-control @error('contents') is-invalid @enderror" id="contents" type="text" placeholder="Enter the information" name="contents"  rows="10" cols="80" required>{{ old('content') }}</textarea>
                                             <div class="invalid-feedback">
                                                 Please input content.
                                             </div>
@@ -297,9 +285,9 @@
                 </div>
             </div>
         </div>  
-        <!-- <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+        <!-- <script src="{{ asset('ckcontents/ckcontents.js') }}"></script>
         <script>
-            CKEDITOR.replace( 'editor' );
+            CKEDITOR.replace( 'contents' );
         </script> -->
     </div>
     <script type="text/javascript">
@@ -393,7 +381,7 @@
             $(":submit").attr("disabled", true);
             $.ajax({
                 type: "POST",
-                url: "{{ route('add.privateannouncmeent') }}",
+                url: "{{ route('add.publicannouncement') }}",
                 data:form_data,
                 enctype: 'multipart/form-data',
                 processData: false,  // Important!

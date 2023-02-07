@@ -124,7 +124,7 @@
                             <a href='{{ url("/homepage") }}'><i class="fas fa-home"></i> <span class="hide-word"> <b>Homepage</b></span></a>
                         </li>
                         <li title="Public Announcements">
-                            <a href='{{ url("/createAnnoucement") }}'><i class="fas fa-bullhorn"></i> 
+                            <a href='{{ url("/createAnnouncement") }}'><i class="fas fa-bullhorn"></i> 
                                 <span class="hide-word title-word">
                                 <b>
                                     <div class="Ashort">Announces</div>

@@ -35,31 +35,31 @@ class LandingsSeeder extends Seeder
         ]);
         Landings::create([
             'title' => 'The DEPED VISION',
-            'content' => '<p>We dream of Filipinos who passionately love their and whose values and competencies enable them to realize their full potential and contribute meaningfully to building the nation.&nbsp;</p>
+            'content' => '<p style="font-size: 20px;">We dream of Filipinos who passionately love their and whose values and competencies enable them to realize their full potential and contribute meaningfully to building the nation.&nbsp;</p>
 
-            <p>As a learner-centered public insttution, the Department of Education, continuously improves itself to better serve its stakeholders.</p>',
+            <p style="font-size: 20px;">As a learner-centered public insttution, the Department of Education, continuously improves itself to better serve its stakeholders.</p>',
         ]);
         Landings::create([
             'title' => 'The DEPED Mission',
-            'content' => '<p>To protect and promote the right of every Filipino to quality, equitable, culture-based, and&nbsp;complete basic education where.</p>
+            'content' => '<p style="font-size: 20px;">To protect and promote the right of every Filipino to quality, equitable, culture-based, and&nbsp;complete basic education where.</p>
 
-            <p><strong>Students</strong> learn in a child-friendly, gender-sensitive, safe, and motivating environment.</p>
+            <p style="font-size: 20px;"><strong>Students</strong> learn in a child-friendly, gender-sensitive, safe, and motivating environment.</p>
             
-            <p><strong>Teachers</strong> facilitate learning and constantly nurture every learner.</p>
+            <p style="font-size: 20px;"><strong>Teachers</strong> facilitate learning and constantly nurture every learner.</p>
             
-            <p><strong>Administrators and staff,</strong> as stewards of the institution, ensure an enabling and supportive</p>
+            <p style="font-size: 20px;"><strong>Administrators and staff,</strong> as stewards of the institution, ensure an enabling and supportive</p>
             
-            <p><strong>Family,community, and other stakeholders</strong> are eactively engaged and share responsibility for&nbsp;developing life-long learners.</p>',
+            <p style="font-size: 20px;"><strong>Family,community, and other stakeholders</strong> are eactively engaged and share responsibility for&nbsp;developing life-long learners.</p>',
         ]);
         Landings::create([
             'title' => 'CORE VALUES',
-            'content' => '<p><strong>Maka-Diyos</strong></p>
+            'content' => '<p style="font-size: 20px;"><strong>Maka-Diyos</strong></p>
 
-            <p><strong>Maka-tao</strong></p>
+            <p style="font-size: 20px;"><strong>Maka-tao</strong></p>
             
-            <p><strong>Makakalikasan</strong></p>
+            <p style="font-size: 20px;"><strong>Makakalikasan</strong></p>
             
-            <p><strong>Makabansa</strong></p>',
+            <p style="font-size: 20px;"><strong>Makabansa</strong></p>',
         ]);
         Landings::create([
             'title' => 'Strands Offered',

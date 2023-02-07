@@ -22,7 +22,7 @@
                                         <div class="col-lg-10 col-md-12 col-sm-12">
                                             <div class="img-post" style="float: left; margin: 20px;">
                                                 @if($view->image == NULL)
-													<img class="d-block img-fluid" src="uploads/event/placeholder.png" style="width: 400px; height: 400px;"/>
+													<img class="d-block img-fluid event-image" src="{{url('uploads/event/placeholder.png')}}"/>
 												@else
 													<img class="d-block img-fluid" src="{{ asset('uploads/event/'.$view->image) }}" style="width: 400px; height: 400px;"/>
 												@endif    

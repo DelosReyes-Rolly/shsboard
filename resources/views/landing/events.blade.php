@@ -41,7 +41,7 @@
 												<div class="col-lg-4 col-md-12 col-sm-12">
                                                     <div class="img-post">
 														@if($event->image == NULL)
-															<img class="d-block img-fluid" src="uploads/event/placeholder.png" style="width: 400px; height: 400px;"/>
+															<img class="d-block img-fluid" src="{{url('uploads/event/placeholder.png')}}" style="width: auto; height: auto;"/>
 														@else
 															<img class="d-block img-fluid" src="{{ asset('uploads/event/'.$event->image) }}" style="width: auto; height: auto;"/>
 														@endif
@@ -57,7 +57,7 @@
 													<b>WHERE: <li>{{$event -> whr}}</li></b><br>
 													<b>FROM: </b>{{$event -> sender}}<br><br>
                                                     <b>TO: </b>{{$event -> who}}<br><br>
-													<a class="btn btn-md btn-success" href="/seePublicEvent/{{$event->id}}"><em>read more...</em></a>
+													<a class="btn btn-md btn-success" href="{{ url('seePublicEvent',['id'=>$event->id]) }}"><em>read more...</em></a>
 													<br><br>
 							                    </div>
 							                </div>

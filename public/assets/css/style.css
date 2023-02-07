@@ -1940,7 +1940,7 @@ button[type=submit]{       /*login button*/
   /* ===================================================================================================== FACULTIES LANDING ==================================================================================================================== */
 
   .faculty-title{
-    font-size: 20px;
+    font-size: 40px;
     font-weight: bold;
     color: #036322;
   }
@@ -2034,6 +2034,15 @@ button[type=submit]{       /*login button*/
   margin-bottom: 20px;
 }
 
+.announcement-image{
+  height: 100%;
+  width: 100%;
+}
+
+.event-image{
+  width: 400px; 
+  height: 400px;
+}
 @media (max-width: 1000px) {
   .announcementletter{
     font-size: 20px;
@@ -2064,6 +2073,14 @@ button[type=submit]{       /*login button*/
     height: 100%;
     width: 100%;
     padding-top: 140px;
+  }
+  .announcement-image{
+    height: 100%;
+    width: 100%;
+  }
+  .event-image{
+    height: 100%;
+    width: 100%;
   }
 }
 

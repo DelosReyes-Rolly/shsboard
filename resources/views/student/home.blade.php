@@ -21,7 +21,7 @@
                                                             <div class="img-post">
                                                                 @if($announcements->image != NULL)
                                                                     <center><img class="d-block img-fluid" src="{{ asset('uploads/announcement/'.$announcements->image) }}" style="height:400px; width: 400px;"/></center>
-                                                                @else"{{url('/img/svnhs-logo.png')}}"
+                                                                @else
                                                                     <center><img class="d-block img-fluid" src="{{url('uploads/event/placeholder.png')}}" style="width: auto; height: auto;"/></center>
                                                                 @endif
                                                             </div>

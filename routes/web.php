@@ -305,7 +305,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
             */
             Route::get('/landing', 'landing');
             Route::get('/homepage', 'homepage');
-            Route::get('/createAnnoucement', 'createannouncement');
+            Route::get('/createAnnouncement', 'createannouncement');
             Route::get('/tableofannouncement', 'tableofannouncement');
             Route::get('/privateannouncement', 'privateannouncement');
             Route::get('/createEvents', 'createevent');
@@ -397,8 +397,8 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 | Here is where admin routes POST, landing functions, that are included in their landing are defined.
                 |
                 */
-                Route::post('/add/announcements', 'storeannouncement');
-                Route::post('/add/privateannouncements', 'storeprivateannouncement')->name('add.privateannouncmeent');
+                Route::post('/add/announcements', 'storeannouncement')->name('add.publicannouncement');
+                Route::post('/add/privateannouncements', 'storeprivateannouncement')->name('add.privateannouncement');
                 Route::post('/downloadPDF', 'downloadpdf')->name('admin.downloadpdf');
 
                 /*

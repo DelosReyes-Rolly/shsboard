@@ -145,7 +145,7 @@
             $(":submit").attr("disabled", true);
             $.ajax({
                 type: "POST",
-                url: "{{ route('add.privateannouncmeent') }}",
+                url: "{{ route('add.privateannouncement') }}",
                 data:form_data,
                 enctype: 'multipart/form-data',
                 processData: false,  // Important!

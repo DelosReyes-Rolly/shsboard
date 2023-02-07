@@ -8,25 +8,27 @@
 					<b>Senior High School Department</b>
 				</div>
 			</center>
-			<div style="margin-top: 40px; margin-bottom: 200px; padding: 40px 40px 40px 40px" class="course-box">
-				@foreach ($landings as $landing)
-					@if($landing -> title == "The DEPED VISION")
-						<div class="">
-							<div class="faculty-title">{{$landing -> title}}<br/><br/></div>
-							{!!$landing -> content!!}<br/><br/><br/><br/>
-						</div>
-					@elseif($landing -> title == "The DEPED Mission")
-						<div class="right-to-left">
-							<div class="faculty-title">{{$landing -> title}}<br/><br/></div>
-							{!!$landing -> content!!}<br/><br/><br/><br/>
-						</div>
-					@elseif($landing -> title == "CORE VALUES")
-						<div class="">
-							<div class="faculty-title">{{$landing -> title}}<br/><br/></div>
-							{!!$landing -> content!!}<br/><br/><br/><br/>
-						</div>	
-					@endif
-				@endforeach
+			<div style="margin-top: 40px; margin-bottom: 200px; padding: 40px 40px 40px 40px;" class="course-box">
+				<center>
+					@foreach ($landings as $landing)
+						@if($landing -> title == "The DEPED VISION")
+							<div class="">
+								<div class="faculty-title">{{$landing -> title}}<br/><br/></div>
+								<div style="font-size: 60px;">{!!$landing -> content!!}</div><br/><br/><br/><br/>
+							</div>
+						@elseif($landing -> title == "The DEPED Mission")
+							<div class="right-to-left">
+								<div class="faculty-title">{{$landing -> title}}<br/><br/></div>
+								{!!$landing -> content!!}<br/><br/><br/><br/>
+							</div>
+						@elseif($landing -> title == "CORE VALUES")
+							<div class="">
+								<div class="faculty-title">{{$landing -> title}}<br/><br/></div>
+								{!!$landing -> content!!}<br/><br/><br/><br/>
+							</div>	
+						@endif
+					@endforeach
+				</center>
 			</div>
 			<center>
 				<b class="container_title">FACULTY MEMBERS</b><br/><br/><br/><br/>

@@ -4,7 +4,7 @@
 <br/><br/><br/><br/>
     <div class="row">
         <div class="col-lg-8 col-md-12 col-sm-12">
-            <div style="color: green; font-size: 40px; font-weight:bold;">Announcement</div>
+            <div class="announcementletter" style="color: green; font-weight:bold;">Announcements</div>     
         </div>
         <div class="col-lg-4 col-md-12 col-sm-12">
             <a href="javascript:history.back()" style="float: right; font-size: 18px; background-color:grey; padding: 10px; color: white; border-radius:10px;"><i class="fas fa-arrow-left"></i>   Back to announcements</a>
@@ -20,7 +20,7 @@
                                 <div class="body">
                                     <div class="img-post" style="float: left; margin: 20px;">
                                         @if($view->image != NULL)
-                                            <img class="d-block img-fluid" src="{{ asset('uploads/announcement/'.$view->image) }}" style="height:400px; width: 400px;"/>
+                                            <img class="d-block img-fluid announcement-image" src="{{ asset('uploads/announcement/'.$view->image) }}"/>
                                         @endif       
                                     </div>
                                     <div style="text-align: justify; font-size: 25px;">
