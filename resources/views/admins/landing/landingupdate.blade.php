@@ -28,17 +28,17 @@
             </div>
             <div class="col-md-12">
                 <label class="large mb-1" for="editor2" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
-                <textarea class="form-control @error('editor2') is-invalid @enderror" id="editor2" type="text" placeholder="Enter the information" name="editor2" rows="10" cols="80" required>{{$landing->content}}</textarea>
+                <textarea class="form-control @error('editor2') is-invalid @enderror" id="editor2{{$landing->id}}" type="text" placeholder="Enter the information" name="editor2" rows="10" cols="80" required>{{$landing->content}}</textarea>
                 <div class="invalid-feedback">
                     Please input content.
                 </div>
             </div><br/>
         </div>
     </div>
-    <!-- <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script>
-        CKEDITOR.replace('editor2');
-    </script> -->
+        CKEDITOR.replace('editor2'+ id);
+    </script>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary btn-md" value="Submit"></font>
@@ -47,6 +47,7 @@
 <script>
  var $loading = $('#loadingDiv'+ id);
         function formPost(){
+            CKupdate();
             $(document).ajaxStart(function () {
                 $loading.show();
             })
@@ -57,6 +58,7 @@
             var title = $("#title").val();
             var content = $("#editor2").val();
             var _token = $("input[name=_token]").val();
+            console.log(content);
             $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",
@@ -82,7 +84,6 @@
                             title: 'Success.',
                             text: 'Landing has been updated successfully',
                         });
-                        $("#reloadlanding").load(location.href + " #reloadlanding");
                         $("#reloadlanding2").load(location.href + " #reloadlanding2");
                 },error: function (xhr) {
                     $('#validation-errors').html('');
