@@ -57,28 +57,28 @@
 						<div class="row mt-2">
 							<div class="col-md-12" style="font-size: 18px;">
 								<label>First Name</label>
-								<input  style="font-size: 16px;" class="form-control @error('first_name') is-invalid @enderror" type="text" onkeydown="return alphaOnly(event);" name="first_name" class="form-control" placeholder="{{Auth::user()->first_name}}" required maxlength="255" value={{Auth::user()->first_name}}>
+								<input  style="font-size: 16px;" class="form-control @error('first_name') is-invalid @enderror" type="text" onkeydown="return alphaOnly(event);" name="first_name" class="form-control" placeholder="{{Auth::user()->first_name}}" required maxlength="255" value="{{Auth::user()->first_name}}">
 								<div class="invalid-feedback">
 									Please input first name.
 								</div>
 							</div><br/>
 							<div class="col-md-12" style="font-size: 18px;">
 								<label>Middle Name</label>
-								<input style="font-size: 16px;" class="form-control @error('middle_name') is-invalid @enderror" type="text" onkeydown="return alphaOnly(event);" name="middle_name" class="form-control" placeholder="{{Auth::user()->middle_name}}" maxlength="255" value={{Auth::user()->middle_name}}>
+								<input style="font-size: 16px;" class="form-control @error('middle_name') is-invalid @enderror" type="text" onkeydown="return alphaOnly(event);" name="middle_name" class="form-control" placeholder="{{Auth::user()->middle_name}}" maxlength="255" value="{{Auth::user()->middle_name}}">
 								<div class="invalid-feedback">
 									Please input valid middle name.
 								</div>
 							</div><br/>
 							<div class="col-md-12" style="font-size: 18px;">
 								<label>Last Name</label>
-								<input style="font-size: 16px;" class="form-control @error('last_name') is-invalid @enderror" type="text" onkeydown="return alphaOnly(event);" name="last_name" class="form-control" placeholder="{{Auth::user()->last_name}}"  required maxlength="255" value={{Auth::user()->last_name}}>
+								<input style="font-size: 16px;" class="form-control @error('last_name') is-invalid @enderror" type="text" onkeydown="return alphaOnly(event);" name="last_name" class="form-control" placeholder="{{Auth::user()->last_name}}"  required maxlength="255" value="{{Auth::user()->last_name}}">
 								<div class="invalid-feedback">
 									Please input last name.
 								</div>
 							</div><br/>
 							<div class="col-md-12" style="font-size: 18px;">
 								<label>Suffix</label>
-								<input style="font-size: 16px;" type="text" class="form-control @error('suffix') is-invalid @enderror" onkeydown="return alphaOnly(event);" name="suffix" placeholder="{{Auth::user()->suffix}}" maxlength="255" value={{Auth::user()->suffix}}>
+								<input style="font-size: 16px;" type="text" class="form-control @error('suffix') is-invalid @enderror" onkeydown="return alphaOnly(event);" name="suffix" placeholder="{{Auth::user()->suffix}}" maxlength="255" value="{{Auth::user()->suffix}}">
 								<div class="invalid-feedback">
 									Please input valid suffix.
 								</div>

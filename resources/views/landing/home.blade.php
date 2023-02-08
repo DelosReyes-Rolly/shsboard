@@ -59,13 +59,13 @@
 		<br/><br/><br/><br/><br/><br/>
 				<div class="container">
 					<div class="about-content">
-						<div class="row" style="padding:0px 40px 0px 40px;">>
+						<div class="row" style="padding:0px 40px 0px 40px;">
 							<div class="col-sm-6">
 								<div class="titlelanding reveal fade-bottom">{{$homes -> title}}</div>
 								<div class="reveal fade-left"><p style="padding-top: 60px;">{!!$homes -> content!!}</p></div>
 							</div>
 							<div class="col-sm-offset-1 col-sm-5 reveal fade-right">
-								<img src="{{ asset('uploads/landing/'.$homes->image) }}" style = "width: 800px; height: 400px"/>
+								<img src="{{ asset('uploads/landing/'.$homes->image) }}" style = "width: auto; height: auto; box-shadow: 0 4px 16px rgba(0,0,0,1);"/>
 							</div>
 						</div>
 					</div>

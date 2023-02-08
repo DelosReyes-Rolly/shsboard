@@ -1,6 +1,7 @@
 @include('partials.adminheader')
 @include('partials.adminSecondHeader')
 <main>
+<script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
         <div>
             <div class="px-2 mt-2 left-to-right">
                 <div style="font-size: 20px;">
@@ -10,7 +11,7 @@
                         <!--Add the ".breadcrumb-item" class to each li element within the breadcrumb-->
                         <li class = "breadcrumb-item"><a class="bca" href = "{{ url('createEvents') }}">Events</a></li>
                         <!--Add the "active" class to li element to represent the current page-->
-                        <li class = "breadcrumb-item active" aria-current = "page">View event</li>
+                        <li class = "breadcrumb-item active" aria-current = "page">view event</li>
                         </ul>
                     </nav>
                 </div>
@@ -23,8 +24,8 @@
                 <div class="row">
                     
                         <!-- Account details card-->
-                        <div class="card mb-4 left-to-right">
-                            <div class="card border-start-lg border-start-yellow">
+                        <div class="card mb-4 left-to-right" id="reloadlanding2">
+                            <div class="border-start-lg border-start-yellow">
                                 <div class="card-header"></div>
                                 <div class="card-body" style="padding: 10px 40px 10px 40px">
                                     <!-- Form Row-->
@@ -74,23 +75,36 @@
                                             </div><br/>
                                         @endif
                                         <div class="mb-3">
-                                            <label class="large mb-1" for="editor" style="font-size: 26px;"><b>Content: </b></label>
+                                            <label class="large mb-1" for="editor" style="font-size: 26px;"><b>Content: </b></label><br/>
                                                 <span style="font-size: 26px;">{!!$event->content!!}</span>
                                         </div><br/>
                                         <div class="row gx-3 mb-3">
                                             <!-- Form Group privacy-->
                                             <!-- Save changes button-->
                                             <div class="pull-right">
-                                                <a class="btn btn-warning btn-md" href="/showevent/{{$event->id}}"><i class="fas fa-edit"></i> Update</a> 
+                                                <a class="btn btn-warning btn-md" href="{{ url('showevent',['id'=>$event->id]) }}" data-toggle="modal" onclick="editItem(this)" data-id="{{ $event->id }}" data-target="#editModal{{ $event->id }}"><i class="fas fa-edit"></i> Update</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                              <!-- edit modal -->
+                            <div id="editModal{{ $event->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content border-start-lg border-start-yellow">
+                                    </div>
+                                </div>
+                            </div>  
                         </div>
-                    
                 </div>
             </div>
-        
+        <script type="text/javascript">
+            $(document).ready(function(){
+                editItem(e);
+            });
+            function editItem(e){
+                id = e.getAttribute('data-id');
+            }
+        </script>
 </main>
 <br><br><br><br>

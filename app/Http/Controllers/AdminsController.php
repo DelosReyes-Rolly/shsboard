@@ -118,9 +118,9 @@ class AdminsController extends Controller
 
     public function profileupdate(Request $request, Admins $admin){
         $validated = $request->validate([
-            'first_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
-            'middle_name' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
-            'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
+            'first_name' => 'required|regex:/^[\pL\s\-]+$/u|max:255',
+            'middle_name' => 'nullable|regex:/^[\pL\s\-]+$/u|max:255',
+            'last_name' => 'required|regex:/^[\pL\s\-]+$/u|max:255',
         ]);
 
         $admin->update($validated);
@@ -150,12 +150,12 @@ class AdminsController extends Controller
         // Validate the inputs
         $request->validate([
             'title' => 'required|max:255',
-            'content' => 'required',
+            'editor' => 'required',
             'image' => 'mimes:png,jpg,jpeg|max:2048',
         ]);
         $landing = new Landings;
         $landing->title = $request->get('title');
-        $landing->content = $request->get('content');
+        $landing->content = $request->get('editor');
         if($request->hasFile('image')){
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
@@ -282,7 +282,7 @@ class AdminsController extends Controller
             'sender' => 'required|max:255',
             'recipient' => 'required|max:255',
             'location' => 'required|max:255',
-            'contents' => 'required',
+            'editor' => 'required',
             'post_expiration' => 'required',
             'image' => 'mimes:png,jpg,jpeg|max:2048',
         ]);
@@ -293,7 +293,7 @@ class AdminsController extends Controller
         $announcement->whn_time = $request->get('time');
         $announcement->whr = $request->get('location');
         $announcement->sender = $request->get('sender');
-        $announcement->content = $request->get('contents');
+        $announcement->content = $request->get('editor');
         $announcement->expired_at = $request->get('post_expiration');  
         $announcement->privacy = 2;
         $announcement->approval = 2;
@@ -421,7 +421,7 @@ class AdminsController extends Controller
             'sender' => 'required|max:255',
             'recipient' => 'required|max:255',
             'location' => 'required|max:255',
-            'content' => 'required',
+            'editor' => 'required',
             'post_expiration' => 'required',
             'image' => 'mimes:png,jpg,jpeg|max:2048',
         ]);
@@ -432,7 +432,7 @@ class AdminsController extends Controller
         $announcement->whn_time = $request->get('time');
         $announcement->whr = $request->get('location');
         $announcement->sender = $request->get('sender');
-        $announcement->content = $request->get('content');
+        $announcement->content = $request->get('editor');
         $announcement->expired_at = $request->get('post_expiration');
         $announcement->is_event = 1;
         $announcement->status = 1;
@@ -836,14 +836,14 @@ class AdminsController extends Controller
         $request->validate([
             'courseName' => 'required|max:255',
             'abbreviation' => 'required|max:255',
-            'description' => 'required',
+            'descriptionupdate' => 'required',
             'code' => 'required|max:255',
             'link' => 'url|nullable',
         ]);
         $course = Courses::find($request->id);
         $course->courseName = $request->courseName;
         $course->abbreviation = $request->abbreviation;
-        $course->description = $request->description;
+        $course->description = $request->get('descriptionupdate');
         $course->code = $request->code;
         $course->link = $request->link;
         $course->save();
@@ -1003,10 +1003,10 @@ class AdminsController extends Controller
         // Validate the inputs
         $validated = $request->validate([
             'expertise_id' => ['required'],
-            'first_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
-            'middle_name' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
-            'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
-            'suffix' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
+            'first_name' => 'required|regex:/^[\pL\s\-]+$/u|max:255',
+            'middle_name' => 'nullable|regex:/^[\pL\s\-]+$/u|max:255',
+            'last_name' => 'required|regex:/^[\pL\s\-]+$/u|max:255',
+            'suffix' => 'nullable|max:255',
             'email' => ['required', 'email', Rule::unique('faculties', 'email')],
             'isMaster' => 'nullable',
         ]);
@@ -1056,10 +1056,10 @@ class AdminsController extends Controller
     public function updatefaculty(Request $request){
         $request->validate([
             'expertise_id' => ['required'],
-            'first_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
-            'middle_name' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
-            'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
-            'suffix' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
+            'first_name' => 'required|regex:/^[\pL\s\-]+$/u|max:255',
+            'middle_name' => 'nullable|regex:/^[\pL\s\-]+$/u|max:255',
+            'last_name' => 'required|regex:/^[\pL\s\-]+$/u|max:255',
+            'suffix' => 'nullable|max:255',
             "email" => 'required|email:rfc,dns|email|unique:faculties,email,' . $request->id,
             'isMaster' => 'nullable',
         ]);
@@ -1272,10 +1272,10 @@ class AdminsController extends Controller
 
             $validated = $request->validate([
                 'LRN' => 'required|min:12|max:12|unique:students,LRN',
-                'first_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
-                'middle_name' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
-                'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
-                'suffix' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
+                'first_name' => 'required|regex:/^[\pL\s\-]+$/u|max:255',
+                'middle_name' => 'nullable|regex:/^[\pL\s\-]+$/u|max:255',
+                'last_name' => 'required|regex:/^[\pL\s\-]+$/u|max:255',
+                'suffix' => 'nullable|max:255',
                 'section_id' => ['required'],
                 'gender' => ['required'],
                 'section_id' => ['required'],
@@ -1351,10 +1351,10 @@ class AdminsController extends Controller
     public function updatestudent(Request $request){
         $validated = $request->validate([
             'LRN' => 'required|min:12|max:12|unique:students,LRN,' . $request->id,
-            'first_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
-            'middle_name' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
-            'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
-            'suffix' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
+            'first_name' => 'required|regex:/^[\pL\s\-]+$/u|max:255',
+            'middle_name' => 'nullable|regex:/^[\pL\s\-]+$/u|max:255',
+            'last_name' => 'required|regex:/^[\pL\s\-]+$/u|max:255',
+            'suffix' => 'nullable|max:255',
             "email" => 'required|email:rfc,dns|email|unique:students,email,' . $request->id,
             'section_id' => 'required',
             'course_id' => 'required',

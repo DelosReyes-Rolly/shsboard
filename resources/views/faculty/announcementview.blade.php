@@ -31,7 +31,7 @@
         <span style="font-size: 20px;">{{$announcement -> subject -> subjectname}}</span><br/>
 
         <label style="font-size: 20px;"><b>Content: </b></label>
-        <span style="font-size: 20px;">{!!$announcement->content!!}</span><br/>
+        <span style="font-size: 20px;">{{$announcement->content}}</span><br/>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-size: 16px;">Close</button>

@@ -18,10 +18,10 @@
                                         @foreach ($announcement as $announcements)
                                             <div class="card single_post left-to-right">
                                                 <div class="body">
-                                                    <h3><b>{!!$announcements -> what!!}</b></h3><br/>
+                                                    <h3><b>{{$announcements -> what}}</b></h3><br/>
                                                     <h4><b>Subject Name: {{$announcements -> subject -> subjectname}}<b></h4><br/>
                                                     <h6><b>Teacher: {{$announcements -> faculty -> last_name}}, {{$announcements -> faculty -> first_name}} {{$announcements -> faculty -> middle_name}}<b></h6><br/>
-                                                    {!!$announcements -> content!!}</p><br/>
+                                                    {{$announcements -> content}}</p><br/>
                                                     Gradelevel: {{$announcements -> gradelevel -> gradelevel}} <br/>
                                                     Strand: {{$announcements -> course -> courseName}} <br/>
                                                     Section: {{$announcements -> section -> section}} <br/>

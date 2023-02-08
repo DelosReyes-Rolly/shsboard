@@ -26,5 +26,10 @@
         return true;
     }
 
+    function CKupdate() {
+      for (instance in CKEDITOR.instances)
+          CKEDITOR.instances[instance].updateElement();
+    }
+
     // letters only
-    function alphaOnly(event) { var key = event.keyCode; return ((key >= 65 && key <= 90) || key == 8 || key==32); } 
+    function alphaOnly(event) { var key = event.keyCode; return ((key >= 65 && key <= 90) || key == 8 || key==32 || key==13 || key==190); } 

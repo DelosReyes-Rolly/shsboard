@@ -149,10 +149,10 @@ class RegisterController extends Controller
 
             $validated = $request->validate([
                 'LRN' => 'required|min:12|max:12|unique:students,LRN',
-                'first_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
-                'middle_name' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
-                'last_name' => 'required|regex:/^[\pL\s]+$/u|max:255',
-                'suffix' => 'nullable|regex:/^[\pL\s]+$/u|max:255',
+                'first_name' => 'required|regex:/^[\pL\s\-]+$/u|max:255',
+                'middle_name' => 'nullable|regex:/^[\pL\s\-]+$/u|max:255',
+                'last_name' => 'required|regex:/^[\pL\s\-]+$/u|max:255',
+                'suffix' => 'nullable|regex:/^[\pL\s\-]+$/u|max:255',
                 'username' => 'required|max:255',
                 'gender' => ['required'],
                 'section_id' => ['required'],

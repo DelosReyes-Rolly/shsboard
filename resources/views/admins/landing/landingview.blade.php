@@ -52,7 +52,7 @@
                                             <div id="reloadlanding">{!!$landing->content!!}</div>
                                             <!-- Save changes button-->
                                             <div class="pull-right">
-                                                <a class="btn btn-warning btn-md" href="/showlanding/{{$landing->id}}" data-toggle="modal" data-target="#editModal{{ $landing->id }}"><i class="fas fa-edit"></i> Update</a>
+                                                <a class="btn btn-warning btn-md" href="{{ url('showlanding',['id'=>$landing->id]) }}" data-id="{{ $landing->id }}" data-toggle="modal" data-target="#editModal{{ $landing->id }}"><i class="fas fa-edit"></i> Update</a>
                                             </div>
                                         </div><br/>
                                     </div>
@@ -69,5 +69,13 @@
             </div> 
         </div>
 </div>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                editItem(e);
+            });
+            function editItem(e){
+                id = e.getAttribute('data-id');
+            }
+        </script>
 </main>
 <br><br><br><br>

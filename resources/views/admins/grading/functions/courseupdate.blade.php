@@ -35,7 +35,7 @@
             </div>
             <div class="col-md-12"><br/>
                 <label style="font-size: 20px;"><span style="color: red">*</span> Strand Description</label>
-                <textarea id="description" name="description" type=text class="form-control @error('description') is-invalid @enderror" rows="10" cols="60" style="font-size: 14px;" required>{!!$course->description!!}</textarea>
+                <textarea id="descriptionupdate{{$course->id}}" name="descriptionupdate" type=text class="form-control @error('descriptionupdate') is-invalid @enderror" rows="10" cols="60" style="font-size: 14px;" required>{!!$course->description!!}</textarea>
                 <div class="invalid-feedback">
                     Please input valid description.
                 </div>
@@ -58,14 +58,15 @@
         <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary btn-md" value="Submit"></font>
     </div>
 </form>
-<!-- <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script>
-    CKEDITOR.replace( 'description' );
-</script>  -->
+    CKEDITOR.replace( 'descriptionupdate' + id);
+</script> 
 <script>
 
     var $loading = $('#loadingDiv'+ id);
         function formPost(){
+            CKupdate();
             $(document).ajaxStart(function () {
                 $loading.show();
             })

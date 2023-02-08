@@ -69,8 +69,8 @@
                 </div>
             </div>
             <div class="col-md-12"><br/>
-                <label class="large mb-1" for="editor" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
-                <textarea id="editor2" class="form-control @error('content') is-invalid @enderror" type="text" placeholder="Enter the information" name="content" rows="10" cols="80" required>{{$announcement->content}}</textarea>
+                <label class="large mb-1" for="editor2" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
+                <textarea id="editor2{{$announcement->id}}" class="form-control @error('editor2') is-invalid @enderror" type="text" placeholder="Enter the information" name="editor2" rows="10" cols="80" required>{{$announcement->content}}</textarea>
                 <div class="invalid-feedback">
                     Please input content.
                 </div>
@@ -82,13 +82,14 @@
         <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary btn-md" value="Submit"></font>
     </div>
 </form>
-<!-- <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script>
-        CKEDITOR.replace('editor2');
-    </script> -->
+        CKEDITOR.replace('editor2'+ id);
+    </script>
 <script>
     var $loading = $('#loadingDiv'+ id);
         function formPost(){
+            CKupdate();
             $(document).ajaxStart(function () {
                 $loading.show();
             })
@@ -102,7 +103,7 @@
             var whn_time = $("#whn_time").val();
             var whr = $("#whr").val();
             var sender = $("#sender").val();
-            var content = $("#editor2").val();
+            var content = $("#editor2"+id).val();
             var expired_at = $("#expired_at").val();
             var _token = $("input[name=_token]").val();
             $(":submit").attr("disabled", true);
@@ -135,7 +136,8 @@
                             icon: 'success',
                             title: 'Success.',
                             text: 'Announcement has been updated successfully',
-                        })
+                        });
+                        $("#reloadlanding2").load(location.href + " #reloadlanding2");
                 },error: function (xhr) {
                     $('#validation-errors').html('');
                         document.getElementById('whoops').style.display = 'block';

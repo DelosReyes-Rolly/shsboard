@@ -79,7 +79,7 @@
                                             <!-- Form Group (content)-->
                                             <div class="mb-3">
                                                 <label class="small mb-1" for="contents" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
-                                                <textarea class="form-control @error('contents') is-invalid @enderror" id="contents" type="text" placeholder="Enter the information" name="contents"  rows="10" cols="80" required>{{ old('content') }}</textarea>
+                                                <textarea class="form-control @error('contents') is-invalid @enderror" id="contents" type="text" placeholder="Enter the information" name="contents" required>{{ old('content') }}</textarea>
                                                 <div class="invalid-feedback">
                                                     Please input content.
                                                 </div>

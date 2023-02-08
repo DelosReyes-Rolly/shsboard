@@ -91,7 +91,7 @@
                                             <!-- Form Group (content)-->
                                             <div class="col-md-12">
                                                 <br/><label for="editor" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
-                                                <textarea class="form-control @error('contents') is-invalid @enderror" id="contents" type="text" rows="10" cols="60" placeholder="Enter the information" name="contents" required>{{ old('content') }}</textarea>
+                                                <textarea class="form-control @error('editor') is-invalid @enderror" id="editor" type="text" rows="10" cols="60" placeholder="Enter the information" name="editor" required>{{ old('content') }}</textarea>
                                                 <div class="invalid-feedback">
                                                     Please input content.
                                                 </div>
@@ -118,10 +118,10 @@
                 </div>
             </div>
         </form>
-        <!-- <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+        <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
         <script>
-            CKEDITOR.replace( 'content' );
-        </script> -->
+            CKEDITOR.replace( 'editor' );
+        </script>
     <script type="text/javascript">
         $(document).ready(function(){
           $('.nav_btn').click(function(){
@@ -133,6 +133,7 @@
     <script>
         var $loading = $('#loadingDiv').hide();
         function formPost(){
+            CKupdate();
             $(document).ajaxStart(function () {
                 $loading.show();
             })

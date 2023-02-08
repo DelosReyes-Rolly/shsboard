@@ -267,7 +267,7 @@
                                         </td>
                                         <td>
                                             <a class="btn btn-success btn-md" href="{{ url('viewannouncement',['id'=>$announcement->id]) }}"><i class="fa-solid fa-eye"></i> View</a>
-                                            <a class="btn btn-warning btn-md" href="{{ url('viewannouncement',['id'=>$announcement->id]) }}" onclick="editItem(this)" data-id="{{ $announcement->id }}" data-toggle="modal" data-target="#editModal{{ $announcement->id }}"><i class="fas fa-edit"></i> Update</a>
+                                            <a class="btn btn-warning btn-md" href="{{ url('showannouncement',['id'=>$announcement->id]) }}" onclick="editItem(this)" data-id="{{ $announcement->id }}" data-toggle="modal" data-target="#editModal{{ $announcement->id }}"><i class="fas fa-edit"></i> Update</a>
                                             <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $announcement->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
                                         </td> 
                                     </tr>
@@ -285,10 +285,10 @@
                 </div>
             </div>
         </div>  
-        <!-- <script src="{{ asset('ckcontents/ckcontents.js') }}"></script>
+        <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
         <script>
             CKEDITOR.replace( 'contents' );
-        </script> -->
+        </script>
     </div>
     <script type="text/javascript">
         $(document).ready(function(){
@@ -369,6 +369,7 @@
     <script>
         var $loading = $('#loadingDiv').hide();
         function formPost(){
+            CKupdate();
             $(document).ajaxStart(function () {
                 $loading.show();
             })
