@@ -116,30 +116,30 @@
 											@endif
 	                                        <!-- print document -->
 											<div style="box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
-												<div class="card-header" style="font-size: 20px;">Print Document Request Report</div><br>
+												<div class="card-header" style="font-size: 24px;">Print Document Request Report</div><br>
 												<form action="{{route('admin.downloadpdfdoc')}}" method="POST">
 													@csrf
 													<div class="row" style="padding: 40px;">
 														<div class="col-md-2">
 															<b>From:</b>
-															<input type="date" name="dateFrom" class="form-control" value="<?php echo date('Y-m-d'); ?>" /><br/>
+															<input style="font-size: 24px;" type="date" name="dateFrom" class="form-control" value="<?php echo date('Y-m-d'); ?>" /><br/>
 														</div>
 														<div class="col-md-2">
 															<b>To:</b>
-															<input type="date" name="dateTo" class="form-control" value="<?php echo date('Y-m-d'); ?>" />
+															<input style="font-size: 24px;" type="date" name="dateTo" class="form-control" value="<?php echo date('Y-m-d'); ?>" />
 														</div>
 														<div class="col-md-3">
 															<br/>
-															<input type="submit" name="submit" class="btn btn-primary" value="Print"/></input>
+															<input  style="font-size: 24px;" type="submit" name="submit" class="btn btn-primary" value="Print"/></input>
 														</div>
 													</div>
 												</form>
 											</div>
 											<br><br>
 	                                        <!-- Table of Documents  -->
-	                                        <div class="card-header" style="font-size: 20px;">
+	                                        <div class="card-header" style="font-size: 24px;">
 	                                        	Table of Available Documents
-												<a id="addDocument" href="{{route('document.add')}}" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#createModalDocument"><i class="fas fa-user-plus"></i> Add Document</a>
+												<a id="addDocument" href="{{route('document.add')}}" class="btn btn-primary" style="float: right; font-size: 20px;" data-toggle="modal" data-target="#createModalDocument"><i class="fas fa-user-plus"></i> Add Document</a>
 												<br/><br/>
 												<div id="createModalDocument" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 													<div class="modal-dialog modal-lg" role="document">
@@ -197,7 +197,7 @@
 											<!-- Table of Purposes -->
 	                                        <div class="card-header" style="font-size: 20px;">
 	                                        	Table of Purposes
-												<a id="addPurpose" href="{{route('purpose.add')}}" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#createModalPurpose"><i class="fas fa-user-plus"></i> Add Purpose</a>
+												<a id="addPurpose" href="{{route('purpose.add')}}" class="btn btn-primary" style="float: right; font-size: 20px;" data-toggle="modal" data-target="#createModalPurpose"><i class="fas fa-user-plus"></i> Add Purpose</a>
 												<br/><br/>
 												<div id="createModalPurpose" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 													<div class="modal-dialog modal-lg" role="document">

@@ -16,7 +16,7 @@
 					<br><br><br><br>
 					<div class="row gx-4 mb-4">
 						@if ($strands->count() == 0)
-							<div class="alert alert-danger"><em>No strand available yet.</em></div>
+							<div class="alert alert-danger"><em style="font-size: 28px;">No strand available yet.</em></div>
 						@else
 							@php $count = 0; @endphp
 							@foreach($strands as $strand)

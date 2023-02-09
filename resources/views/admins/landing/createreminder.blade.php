@@ -35,8 +35,8 @@
                         <!-- Billing card 2-->
                         <div class="card h-100 border-start-lg border-start-secondary" style="background-color: red; color: white; box-shadow: 0 4px 16px rgba(0,0,0,0.6);" >
                             <div class="card-body">
-                                <div class="card-header" style="font-size: 20px; font-weight: 800;">Expired Reminders</div>
-                                <div class="h3" style="padding: 40px 40px 10px 40px"><i class="fas fa-calendar-times"></i> <span id="reload">{{ $reminders->where('status', '=', 2)->count() }}</span></div>
+                                <div class="card-header" style="font-size: 22px; font-weight: 800;">Expired Reminders</div>
+                                <div class="h3" style="padding: 40px 40px 10px 40px; font-size: 40px;"><i class="fas fa-calendar-times"></i> <span id="reload">{{ $reminders->where('status', '=', 2)->count() }}</span></div>
                             </div>
                         </div>
                     </div>
@@ -44,8 +44,8 @@
                     <!-- Billing card 3-->
                     <div class="card h-100 border-start-lg border-start-success" style="background-color: green; color: white; box-shadow: 0 4px 16px rgba(0,0,0,0.6);">
                         <div class="card-body">
-                            <div class="card-header" style="font-size: 20px; font-weight: 800;">Active Reminders</div>
-                            <div class="h3 d-flex align-items-center" style="padding: 40px 40px 10px 40px"><i class="fas fa-bullhorn"></i> <span id="reload2">{{ $reminders->where('status', '=', 1)->count() }}</span></div>
+                            <div class="card-header" style="font-size: 22px; font-weight: 800;">Active Reminders</div>
+                            <div class="h3 d-flex align-items-center" style="padding: 40px 40px 10px 40px; font-size: 40px;"><i class="fas fa-bullhorn"></i> <span id="reload2">{{ $reminders->where('status', '=', 1)->count() }}</span></div>
                         </div>
                     </div>
                 </div>
@@ -78,16 +78,16 @@
                                         </div>
                                             <!-- Form Group (content)-->
                                             <div class="mb-3">
-                                                <label class="small mb-1" for="contents" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
-                                                <textarea class="form-control @error('contents') is-invalid @enderror" id="contents" type="text" placeholder="Enter the information" name="contents" required>{{ old('content') }}</textarea>
+                                                <label class="small mb-1" for="contents" style="font-size: 24px;"><span style="color: red">*</span> Content</label>
+                                                <textarea style="font-size:24px;" class="form-control @error('contents') is-invalid @enderror" id="contents" type="text" placeholder="Enter the information" name="contents" required>{{ old('content') }}</textarea>
                                                 <div class="invalid-feedback">
                                                     Please input content.
                                                 </div>
                                             </div><br/>
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <label class="small mb-1" for="expired_at" style="font-size: 20px;"><span style="color: red">*</span> Expiry Date</label>
-                                                    <input type="date" class="form-control @error('expired_at') is-invalid @enderror" id="expired_at" placeholder="Enter the date" name="expired_at"  value="{{ old('expired_at') }}" required>
+                                                    <label class="small mb-1" for="expired_at" style="font-size: 24px;"><span style="color: red">*</span> Expiry Date</label>
+                                                    <input style="font-size:24px;" type="date" class="form-control @error('expired_at') is-invalid @enderror" id="expired_at" placeholder="Enter the date" name="expired_at"  value="{{ old('expired_at') }}" required>
                                                     <div class="invalid-feedback">
                                                         Please input expiry date.
                                                     </div>

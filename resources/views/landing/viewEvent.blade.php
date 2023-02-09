@@ -20,23 +20,21 @@
                                 <div class="body">
                                     <div class="row">
                                         <div class="col-lg-10 col-md-12 col-sm-12">
-                                            <div class="img-post" style="float: left; margin: 20px;">
-                                                @if($view->image == NULL)
-													<img class="d-block img-fluid event-image" src="{{url('uploads/event/placeholder.png')}}"/>
-												@else
-													<img class="d-block img-fluid" src="{{ asset('uploads/event/'.$view->image) }}" style="width: 400px; height: 400px;"/>
-												@endif    
-                                            </div>
+                                            @if($view->image != NULL)
+                                                <div class="img-post" style="float: left; margin: 20px;">
+                                                    <img class="d-block img-fluid announcement-image" src="{{ asset('uploads/event/'.$view->image) }}"/>
+                                                </div>
+                                            @endif    
                                             <div style="text-align: justify; font-size: 25px;">
-                                                <br/><h3><b>{!!$view -> what!!}</b></h3><br/>
+                                                <br/><h3 style="font-size: 40px;"><b>{!!$view -> what!!}</b></h3><br/>
                                                 <p>{!!$view -> content!!}</p><br/><br/>
                                             </div>
                                         </div>
                                         <div class="col-lg-2 col-md-12 col-sm-12" style="margin-top: 20px;">
-											<b>WHEN: <li>On {{$date  =   date('F d, Y', strtotime($view->whn))}}</a></li><br></b>
-											<b>WHERE: <li>{{$view -> whr}}</li></b><br>
-											<b>FROM: </b>{{$view -> sender}}<br><br>
-                                            <b>TO: </b>{{$view -> who}}<br><br>
+											<b style="font-size: 20px;">WHEN: <li>On {{$date  =   date('F d, Y', strtotime($view->whn))}}</a></li><br></b>
+											<b style="font-size: 20px;">WHERE: <li>{{$view -> whr}}</li></b><br>
+											<b style="font-size: 20px;">FROM: </b>{{$view -> sender}}<br><br>
+                                            <b style="font-size: 20px;">TO: </b>{{$view -> who}}<br><br>
 											<br><br>
 							            </div>
                                     </div>

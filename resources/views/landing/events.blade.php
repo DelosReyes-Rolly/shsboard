@@ -32,11 +32,11 @@
 						    <div class="row">
 						        <div class="col-xl-12">
 						            <!-- Account details card-->
-						            <div class="card mb-4"  style="padding: 20px 20px 20px 20px;">
+						            <div class="card mb-4">
 						                <div class="card border-start-lg border-start-yellow">
-						                    <center><div class="card-header" style="color: green; font-weight:bold; font-size:20px;"><b>{{$event -> what}}</b></div></center>		
+						                    <center><div class="card-header" style="color: green; font-weight:bold; font-size:40px;"><b>{{$event -> what}}</b></div></center>		
 							                <!-- Form Row-->
-							                <div class="row gx-3 mb-3"  style="padding: 10px 20px 10px 60px;">
+							                <div class="row gx-3 mb-3"  style="padding: 10px 10px 10px 10px;">
 							                    <!-- Form Group (title)-->
 												<div class="col-lg-4 col-md-12 col-sm-12">
                                                     <div class="img-post">
@@ -49,16 +49,15 @@
 												</div>
 							                    <!-- Form Group (title)-->
 							                    <div class="col-lg-6 col-md-12 col-sm-12">
-													{!!\Illuminate\Support\Str::limit($event -> content, 2000)!!}
-							                    </div>
+													{!!\Illuminate\Support\Str::limit($event -> content, 400)!!}
+							                    </div><br/>
 							                    <!-- Form Group (title)-->
 							                    <div class="col-lg-2 col-md-12 col-sm-12">
-													<b>WHEN: <li>On {{$date  =   date('F d, Y', strtotime($event->whn))}}</a></li><br></b>
-													<b>WHERE: <li>{{$event -> whr}}</li></b><br>
-													<b>FROM: </b>{{$event -> sender}}<br><br>
-                                                    <b>TO: </b>{{$event -> who}}<br><br>
-													<a class="btn btn-md btn-success" href="{{ url('seePublicEvent',['id'=>$event->id]) }}"><em>read more...</em></a>
-													<br><br>
+													<b style="font-size: 20px;">WHEN: <li>On {{$date  =   date('F d, Y', strtotime($event->whn))}}</a></li><br></b>
+													<b style="font-size: 20px;">WHERE: <li>{{$event -> whr}}</li></b><br>
+													<b style="font-size: 20px;">FROM: </b>{{$event -> sender}}<br><br>
+                                                    <b style="font-size: 20px;">TO: </b>{{$event -> who}}<br><br>
+													<a class="btn btn-md btn-success" href="{{ url('seePublicEvent',['id'=>$event->id]) }}"><em style="font-size: 20px;">read more...</em></a>
 							                    </div>
 							                </div>
 							            </div>

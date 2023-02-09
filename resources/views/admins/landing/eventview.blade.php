@@ -31,16 +31,16 @@
                                     <!-- Form Row-->
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group (title)-->
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <label class="large mb-1" for="inputwhat" style="font-size: 26px;"><b>Subject: </b></label>
                                             <span style="font-size: 26px;">{{$event->what}}</span>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
                                             <label class="slarge mb-1" for="inputwhn" style="font-size: 26px;"><b>When: </b></label>
                                             <span style="font-size: 26px;">{{$requested_at  =   date('F d, Y', strtotime($event->whn))}}</span>
                                         </div>
                                         <!-- Form Group (content)-->
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
                                             <label for="appt" style="font-size: 26px;"><b>Time: </b></label>
                                             <span style="font-size: 26px;">{{$time_start =  date('h:i A', strtotime($event->whn_time))}}</span>
                                         </div>

@@ -499,7 +499,7 @@ class AdminsController extends Controller
     public function storereminder(Request $request){
         // Validate the inputs
         $request->validate([
-            'contents' => 'required|max:40',
+            'contents' => 'required|max:200',
             'expired_at' => 'required',
         ]);
         $announcement = new Announcements();
@@ -516,7 +516,7 @@ class AdminsController extends Controller
     public function storeprivatereminder(Request $request){
         // Validate the inputs
         $request->validate([
-            'content' => 'required|max:40',
+            'content' => 'required|max:200',
             'expired_at' => 'required',
         ]);
         $announcement = new Announcements();

@@ -5,7 +5,7 @@
 				<div>
 					<br><br><br><br>
 					<b class="container_title">THE FACULTY MEMBERS</b><br/><br/>
-					<b>Senior High School Department</b>
+					<b style="font-size: 40px;">Senior High School Department</b>
 				</div>
 			</center>
 			<div style="margin-top: 40px; margin-bottom: 200px; padding: 40px 40px 40px 40px;" class="course-box">

@@ -1,6 +1,5 @@
 @include('partials.facultyheader')
 <main>
-<!-- view announcement -->
     <div style="font-size: 20px;">  
 		<nav  aria-label = "breadcrumb">
             <!--Add the "breadcrumb" class to ul element that represents the breadcrumb-->
@@ -8,13 +7,13 @@
                <!--Add the ".breadcrumb-item" class to each li element within the breadcrumb-->
                <li class = "breadcrumb-item"><a class="bca" href = "javascript:history.back()">Announcements</a></li>
                <!--Add the "active" class to li element to represent the current page-->
-               <li class = "breadcrumb-item active" aria-current = "page">View announcement</li>
+               <li class = "breadcrumb-item active" aria-current = "page">view announcement</li>
             </ul>
          </nav>
 	</div>
     <div class="row">
         <div class="col-lg-8 col-md-12 col-sm-12">
-            <div style="color: green; font-size: 40px; font-weight:bold;">Announcement</div>
+            <div class="announcementletter" style="color: green; font-weight:bold;">Announcements</div>     
         </div>
         <div class="col-lg-4 col-md-12 col-sm-12">
             <a class="btn btn-secondary btn-lg" href="javascript:history.back()" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to announcements</a>
@@ -23,18 +22,18 @@
     <hr style="border: 1px solid black">
     <section>
 	    <div>
-			<div id="main-content" class="blog-page">
+        <div id="main-content" class="blog-page">
 				    <div class="row clearfix">
 				        <div class="col-lg-12 col-md-12 left-box">
-                            <div class="card single_post border-start-lg border-start-yellow">
+                            <div class="card single_post left-to-right border-start-lg border-start-yellow">
                                 <div class="body">
-                                    <div class="img-post" style="float: left; margin: 20px;">
-                                        @if($view->image != NULL)
-                                            <img class="d-block img-fluid" src="{{ asset('uploads/announcement/'.$view->image) }}" style="height:400px; width: 400px;"/>
-                                        @endif     
-                                    </div>
-                                    <div style="text-align: justify; font-size: 25px;">
-                                        <br/><h3><b>{!!$view -> what!!}</b></h3><br/>
+                                    @if($view->image != NULL)
+                                        <div class="img-post" style="float: left; margin: 20px;">
+                                            <img class="d-block img-fluid announcement-image" src="{{ asset('uploads/announcement/'.$view->image) }}" />
+                                        </div>
+                                    @endif   
+                                    <div style="font-size: 25px;"><br/>
+                                        <h3 style="font-size: 40px;"><b>{!!$view -> what!!}</b></h3><br/>
                                         <p>{!!$view -> content!!}</p><br/><br/>
                                     </div>
                                     <div class="footer">

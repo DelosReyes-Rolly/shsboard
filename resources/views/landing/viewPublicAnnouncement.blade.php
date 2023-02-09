@@ -18,13 +18,13 @@
 				        <div class="col-lg-12 col-md-12 left-box">
                             <div class="card single_post left-to-right border-start-lg border-start-yellow">
                                 <div class="body">
-                                    <div class="img-post" style="float: left; margin: 20px;">
-                                        @if($view->image != NULL)
+                                    @if($view->image != NULL)
+                                        <div class="img-post" style="float: left; margin: 20px;">
                                             <img class="d-block img-fluid announcement-image" src="{{ asset('uploads/announcement/'.$view->image) }}"/>
-                                        @endif       
-                                    </div>
-                                    <div style="text-align: justify; font-size: 25px;">
-                                        <br/><h3><b>{!!$view -> what!!}</b></h3><br/>
+                                        </div>
+                                    @endif   
+                                    <div style="font-size: 25px;"><br/>
+                                        <h3 style="font-size: 40px;"><b>{!!$view -> what!!}</b></h3><br/>
                                         <p>{!!$view -> content!!}</p><br/><br/>
                                     </div>
                                     <div class="footer">
@@ -45,5 +45,4 @@
 		</div>
     </section>
 </main>
-<br><br><br><br>
 @include('partials.landingfooter')

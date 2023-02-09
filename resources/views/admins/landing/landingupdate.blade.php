@@ -56,7 +56,7 @@
             });
             var id = $("#id").val();
             var title = $("#title").val();
-            var content = $("#editor2").val();
+            var content = $("#editor2"+id).val();
             var _token = $("input[name=_token]").val();
             console.log(content);
             $(":submit").attr("disabled", true);

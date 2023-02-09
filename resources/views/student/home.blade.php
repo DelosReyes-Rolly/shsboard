@@ -20,16 +20,16 @@
                                                         <div class="col-lg-6 col-md-12 col-sm-12">
                                                             <div class="img-post">
                                                                 @if($announcements->image != NULL)
-                                                                    <center><img class="d-block img-fluid" src="{{ asset('uploads/announcement/'.$announcements->image) }}" style="height:400px; width: 400px;"/></center>
+                                                                    <center><img class="d-block img-fluid announcement-image3" src="{{ asset('uploads/announcement/'.$announcements->image) }}"/></center>
                                                                 @else
-                                                                    <center><img class="d-block img-fluid" src="{{url('uploads/event/placeholder.png')}}" style="width: auto; height: auto;"/></center>
+                                                                    <center><img class="d-block img-fluid announcement-image3" src="{{url('uploads/event/placeholder.png')}}"/></center>
                                                                 @endif
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6 col-md-12 col-sm-12">
-                                                            <h3><b>{!!$announcements -> what!!}</b></h3><br/>
-                                                            <p>{!!\Illuminate\Support\Str::limit($announcements -> content, 600)!!}</p><br/><br/>
-                                                            <a class="btn btn-md btn-success" href="{{ url('seeAnnouncementStudent',['id'=>$announcements->id]) }}"><em>read more...</em></a>
+                                                            <h3 style="font-size: 28px;"><b>{!!$announcements -> what!!}</b></h3><br/>
+                                                            <p>{!!\Illuminate\Support\Str::limit($announcements -> content, 100)!!}</p><br/>
+                                                            <a class="btn btn-md btn-success" href="{{ url('seeAnnouncementStudent',['id'=>$announcements->id]) }}"><em style="font-size: 20px;">read more...</em></a>
                                                         </div>
                                                     </div>
                                                     <div class="footer">
@@ -50,7 +50,7 @@
 				            <div class="col-lg-3 col-md-12 right-box">
 					            <div class="card">
 					                <div class="header">
-					                    <h2>Reminders</h2><br>
+					                    <h2 style="font-size: 28px;">Reminders</h2><br>
                                         @if ($message = Session::get('reminder'))
                                             <div class="alert alert-success alert-block">
                                                 <button type="button" class="close" data-dismiss="alert">×</button>
@@ -59,7 +59,7 @@
                                         @endif
                                         @if($reminder == NULL)
                                             <br><br>
-                                            <div class="alert alert-danger"><em>No reminders for now.</em></div>
+                                            <div class="alert alert-danger"><em style="font-size: 20px;">No reminders for now.</em></div>
                                         @else 
                                             @foreach ($reminder as $reminders)
                                                 <div class="single_post fade-in-text">
