@@ -113,9 +113,16 @@
                                         <td>
                                             <a class="btn btn-success btn-md" href="{{ url('viewannouncement',['id'=>$announcement->id]) }}"><i class="fa-solid fa-eye"></i> View</a>
                                             <a class="btn btn-warning btn-md" href="{{ url('showannouncement',['id'=>$announcement->id]) }}" onclick="editItem(this)" data-id="{{ $announcement->id }}" data-toggle="modal" data-target="#editModal{{ $announcement->id }}"><i class="fas fa-edit"></i> Update</a>
-                                            <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $announcement->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
+                                            <a class="btn btn-danger btn-md" href="{{ url('deleteannouncement',['id'=>$announcement->id]) }}" data-toggle="modal" onclick="deleteItem(this)" data-id="{{ $announcement->id }}" data-target="#deleteModal{{ $announcement->id }}"><i class="fas fa-trash-alt"></i> Delete</a>
                                         </td> 
                                     </tr>
+                                    <!-- delete modal -->
+                                    <div id="deleteModal{{ $announcement->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content border-start-lg border-start-yellow">
+                                            </div>
+                                        </div>
+                                    </div>  
                                     <!-- update announcement -->
                                     <div id="editModal{{ $announcement->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
                                         <div class="modal-dialog modal-lg" role="document">
@@ -145,65 +152,8 @@
         }
         //delete
         function deleteItem(e){
-
-            let id = e.getAttribute('data-id');
-
-            const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                    confirmButton: 'btn btn-success',
-                    cancelButton: 'btn btn-danger'
-                },
-                buttonsStyling: true
-            });
-
-            swalWithBootstrapButtons.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
-                reverseButtons: true
-            }).then((result) => {
-                if (result.value) {
-                    if (result.isConfirmed){
-
-                        $.ajax({
-                            type:'PUT',
-                            url:'{{url("/announcement/delete")}}/' +id,
-                            data:{
-                                "_token": "{{ csrf_token() }}",
-                            },
-                            success:function(data) {
-                                if (data.success){
-                                    
-                                    swalWithBootstrapButtons.fire(
-                                        'Deleted!',
-                                        'An announcement has been deleted successfully.',
-                                        "success"
-                                    );
-                                    $("#reload").load(location.href + " #reload");
-                                    $("#reload2").load(location.href + " #reload2");
-                                    $("#announcement"+id+"").remove();
-                                }
-
-                            }
-                        });
-
-                    }
-
-                } else if (
-                    result.dismiss === Swal.DismissReason.cancel
-                ) {
-                    swalWithBootstrapButtons.fire(
-                        'Cancelled',
-                        '',
-                        'error'
-                    );
-                }
-            });
-
-            }
+            id = e.getAttribute('data-id');
+        }
     </script>
 </main>
 <br><br><br><br>

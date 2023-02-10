@@ -272,7 +272,7 @@
                                                 <td>
                                                     <a class="btn btn-success btn-md" href="{{ url('viewfacultyannouncement',['id'=>$announcement->id]) }}" data-toggle="modal" data-target="#modal-view-{{$announcement->id}}" style="font-size: 16px;"><i class="fa-solid fa-eye"></i> View</a>
                                                     <a class="btn btn-warning btn-md" href="{{ url('showfacultyannouncement',['id'=>$announcement->id]) }}" data-toggle="modal" onclick="editItem(this)" data-id="{{ $announcement->id }}" data-target="#editModal{{ $announcement->id }}" style="font-size: 16px;"><i class="fas fa-edit"></i> Update</a>
-                                                    <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $announcement->id }}" style="font-size: 16px;"><i class="fas fa-trash-alt"></i> Delete</button>
+                                                    <a class="btn btn-danger btn-md" href="{{ url('deleteannouncementfaculty',['id'=>$announcement->id]) }}" data-toggle="modal" onclick="deleteItem(this)" data-id="{{ $announcement->id }}" data-target="#deleteModal{{ $announcement->id }}"><i class="fas fa-trash-alt"></i> Delete</a>
                                                 </td> 
                                             </tr>
                                             <!-- modal view -->
@@ -282,6 +282,13 @@
 													</div>
 												</div>
 											</div>
+                                            <!-- delete modal -->
+                                            <div id="deleteModal{{ $announcement->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg" role="document">
+                                                    <div class="modal-content border-start-lg border-start-yellow">
+                                                    </div>
+                                                </div>
+                                            </div> 
                                             <!-- edit modal -->
                                             <div id="editModal{{ $announcement->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
                                                 <div class="modal-dialog modal-lg" role="document">
@@ -360,63 +367,8 @@
         function editItem(e){
             id = e.getAttribute('data-id');
         }
-        //delete
         function deleteItem(e){
-
-            let id = e.getAttribute('data-id');
-
-            const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                    confirmButton: 'btn btn-success',
-                    cancelButton: 'btn btn-danger'
-                },
-                buttonsStyling: true
-            });
-
-            swalWithBootstrapButtons.fire({
-                title: '<div style="font-size:40px;">Are you sure?</div>',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: '<div style="font-size:40px;">Yes, delete it!</div>',
-                cancelButtonText: '<div style="font-size:40px;">No, cancel!</div>',
-                reverseButtons: true
-            }).then((result) => {
-                if (result.value) {
-                    if (result.isConfirmed){
-
-                        $.ajax({
-                            type:'PUT',
-                            url:'{{url("/activitystream/delete")}}/' +id,
-                            data:{
-                                "_token": "{{ csrf_token() }}",
-                            },
-                            success:function(data) {
-                                if (data.success){
-                                    
-                                    swalWithBootstrapButtons.fire(
-                                        '<div style="font-size:40px;">Deleted!</div>',
-                                        '<div style="font-size:40px;">An activity has been deleted successfully.</div>',
-                                        "success"
-                                    );
-                                    $("#announcement"+id+"").remove();
-                                }
-
-                            }
-                        });
-
-                    }
-
-                } else if (
-                    result.dismiss === Swal.DismissReason.cancel
-                ) {
-                    swalWithBootstrapButtons.fire(
-                        '<div style="font-size:40px;">Cancelled</div>',
-                        '',
-                        '<div style="font-size:40px;">error</div>'
-                    );
-                }
-            });
-
-            }
+            id = e.getAttribute('data-id');
+        }
         </script>
 </main>

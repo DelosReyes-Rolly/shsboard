@@ -31,7 +31,7 @@
     </script>
 <div class="">
   
-    <h3 style="font-size: 28px; font-weight: 800;">Table of School year </h3>   
+    <h3 style="font-size: 28px; font-weight: 800;">Table of School Year </h3>   
         @if ($message = Session::get('message'))
             <div class="alert alert-success alert-block">
                 <button type="button" class="close" data-dismiss="alert">×</button>
@@ -76,7 +76,7 @@
                                             <td>
                                                 <a class="btn btn-success btn-md" href="{{ url('viewschoolyear',['id'=>$schoolyear->id]) }}" data-toggle="modal" data-target="#modal-view-{{ $schoolyear->id }}"><i class="fa-solid fa-eye"></i> View</a>
                                                 <a class="btn btn-warning btn-md" href="{{ url('showschoolyear',['id'=>$schoolyear->id]) }}"onclick="editItem(this)" data-id="{{ $schoolyear->id }}" data-toggle="modal" data-target="#editModal{{ $schoolyear->id }}"><i class="fas fa-edit"></i> Update</a>
-                                                <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $schoolyear->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
+                                                <a class="btn btn-danger btn-md" href="{{ url('deleteschoolyear',['id'=>$schoolyear->id]) }}" data-toggle="modal" onclick="deleteItem(this)" data-id="{{ $schoolyear->id }}" data-target="#deleteModal{{ $schoolyear->id }}"><i class="fas fa-trash-alt"></i> Delete</a>
                                             </td> 
                                         </tr>
                                         <!-- view modal -->
@@ -86,7 +86,13 @@
                                                 </div>
                                             </div>
                                         </div>
-
+                                        <!-- delete modal -->
+                                        <div id="deleteModal{{ $schoolyear->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content border-start-lg border-start-yellow">
+                                                </div>
+                                            </div>
+                                        </div>   
                                         <!-- update modal -->
                                         <div id="editModal{{ $schoolyear->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
@@ -123,63 +129,8 @@
     }
     //delete
     function deleteItem(e){
-
-        let id = e.getAttribute('data-id');
-
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: 'btn btn-success',
-                cancelButton: 'btn btn-danger'
-            },
-            buttonsStyling: true
-        });
-
-        swalWithBootstrapButtons.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, cancel!',
-            reverseButtons: true
-        }).then((result) => {
-            if (result.value) {
-                if (result.isConfirmed){
-
-                    $.ajax({
-                        type:'PUT',
-                        url:'{{url("/schoolyear/delete")}}/' +id,
-                        data:{
-                            "_token": "{{ csrf_token() }}",
-                        },
-                        success:function(data) {
-                            if (data.success){
-                                
-                                swalWithBootstrapButtons.fire(
-                                    'Deleted!',
-                                    'Schoolyear is deleted successfully.',
-                                    "success"
-                                );
-                                $("#schoolyear"+id+"").remove();
-                            }
-
-                        }
-                    });
-
-                }
-
-            } else if (
-                result.dismiss === Swal.DismissReason.cancel
-            ) {
-                swalWithBootstrapButtons.fire(
-                    'Cancelled',
-                    '',
-                    'error'
-                );
-            }
-        });
-
-        }
+        id = e.getAttribute('data-id');
+    }
     </script>
 </main>
 <br><br><br><br>

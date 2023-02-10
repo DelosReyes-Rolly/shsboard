@@ -139,7 +139,7 @@
                                         $i=1;
                                     ?>
                                         @foreach ($reminders as $reminder)
-                                            <tr id="reminder{{$reminder -> id}}">
+                                            <tr id="announcement{{$reminder -> id}}">
                                                 <td class="text-center"><?php echo $i++; ?></td>
                                                 <td>{!!$reminder -> content!!}</td>
                                                 <td>{{$requested_at  =   date('F d, Y', strtotime($reminder->created_at))}}</td>
@@ -162,7 +162,7 @@
                                                 <td>
                                                     <a class="btn btn-success btn-md" href="{{ url('viewreminder',['id'=>$reminder->id]) }}" data-toggle="modal" data-target="#modal-view-{{ $reminder->id }}"><i class="fa-solid fa-eye"></i> View</a>
                                                     <a class="btn btn-warning btn-md" href="{{ url('showreminder',['id'=>$reminder->id]) }}" data-toggle="modal" onclick="editItem(this)" data-id="{{ $reminder->id }}" data-target="#editModal{{ $reminder->id }}"><i class="fas fa-edit"></i> Update</a>
-                                                    <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $reminder->id }}"><i class="fas fa-trash-alt"></i> Delete</button>  
+                                                    <a class="btn btn-danger btn-md" href="{{ url('deleteannouncement',['id'=>$reminder->id]) }}" data-toggle="modal" onclick="deleteItem(this)" data-id="{{ $reminder->id }}" data-target="#deleteModal{{ $reminder>id }}"><i class="fas fa-trash-alt"></i> Delete</a>
                                                 </td> 
                                             </tr>
                                             <!-- view reminder -->
@@ -172,6 +172,13 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- delete modal -->
+                                            <div id="deleteModal{{ $reminder->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg" role="document">
+                                                    <div class="modal-content border-start-lg border-start-yellow">
+                                                    </div>
+                                                </div>
+                                            </div>   
                                             <!-- update reminder -->
                                             <div id="editModal{{ $reminder->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
                                                     <div class="modal-dialog modal-lg" role="document">
@@ -209,65 +216,8 @@
     }
     //delete
     function deleteItem(e){
-
-        let id = e.getAttribute('data-id');
-
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: 'btn btn-success',
-                cancelButton: 'btn btn-danger'
-            },
-            buttonsStyling: true
-        });
-
-        swalWithBootstrapButtons.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, cancel!',
-            reverseButtons: true
-        }).then((result) => {
-            if (result.value) {
-                if (result.isConfirmed){
-
-                    $.ajax({
-                        type:'PUT',
-                        url:'{{url("/announcement/delete")}}/' +id,
-                        data:{
-                            "_token": "{{ csrf_token() }}",
-                        },
-                        success:function(data) {
-                            if (data.success){
-                                
-                                swalWithBootstrapButtons.fire(
-                                    'Deleted!',
-                                    'A reminder has been deleted successfully.',
-                                    "success"
-                                );
-                                $("#reload").load(location.href + " #reload");
-                                $("#reload2").load(location.href + " #reload2");
-                                $("#reminder"+id+"").remove();
-                            }
-
-                        }
-                    });
-
-                }
-
-            } else if (
-                result.dismiss === Swal.DismissReason.cancel
-            ) {
-                swalWithBootstrapButtons.fire(
-                    'Cancelled',
-                    '',
-                    'error'
-                );
-            }
-        });
-
-        }
+        id = e.getAttribute('data-id');
+    }
     </script>
 <script src="{{ asset('assets/js/needs-validated.js') }}"></script>
 <script>

@@ -680,7 +680,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #f3dc60;}
   background:url(../../img/svnhs.jpg)no-repeat;
   background-size:cover;
   background-position: center;
-  height:1000px;
+  height: 1600px;
 }
 .reg:before{
   position:absolute;
@@ -1325,20 +1325,28 @@ color: white;
     cursor: pointer;
     font-weight: bold;
     letter-spacing: 2px;
+    transition: color .4s ease;
+    transition: background .4s ease;
   }
   .buttones2 {
     background-color: red;
+    transition: color .4s ease;
+    transition: background .4s ease;
   }
   .buttones3 {
     background-color: green;
+    transition: color .4s ease;
+    transition: background .4s ease;
   }
 
   .buttones:hover{
-    background-color: #edcd1f;
+    background-color: #ffffff;
+    color: #edcd1f;
   }
 
   .buttone2:hover{
-    background-color: #edcd1f;
+    background-color: #ffffff;
+    color: #edcd1f;
   }
 
   /* ===============================================COURSE DESCRIPTION====================== */
@@ -2061,8 +2069,8 @@ button[type=submit]{       /*login button*/
 }
 
 .strand-logos{
-  height: 20%;
-  width: 20%;
+  height: 40%;
+  width: 40%;
 }
 
 .course-name{

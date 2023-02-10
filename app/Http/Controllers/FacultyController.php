@@ -251,10 +251,10 @@ class FacultyController extends Controller
             
         }
     
-        //  public function deleteannouncement($id){
-        //     $data = ActivityStreams::where('deleted', '=', null)->findOrFail($id);
-        //     return view('faculty.deleteactivitystream', ['activitystream' => $data]);
-        //  }
+         public function deleteannouncement($id){
+            $data = ActivityStreams::where('deleted', '=', null)->findOrFail($id);
+            return view('faculty.deleteactivitystream', ['activitystream' => $data]);
+         }
 
     // ============================================================ GRADES ===================================================================================  
 

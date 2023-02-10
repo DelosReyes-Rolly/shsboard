@@ -197,14 +197,14 @@
                                     </span>
                                 @enderror
                                 <span style="float:left;"><input id="showpass" type="checkbox" onclick="showpassw()"></span>
-                                <span style="float:left;"><label for="showpass">&nbsp;Show password</label></span><br/>
+                                <span style="float:left;"><label for="showpass">&ensp;Show password</label></span><br/>
                             </div>
 
                             <div class="form-group">
                                 <label for="password-confirm" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Confirm Password') }}</label>
                                 <input id="password-confirm" type="password" class="password" name="password_confirmation" required autocomplete="new-password"><br/>
                                 <span style="float:left;"><input id="showpass2" type="checkbox" onclick="showpassw2()"></span>
-                                <span style="float:left;"><label for="showpass2">&nbsp;Show password</label></span><br/>
+                                <span style="float:left;"><label for="showpass2">&ensp;Show password</label></span><br/>
                             </div>
                             <center><font face = "Bedrock" size = "3" >
                                 <button type="submit" class="btn btn-primary" style="padding-left:40px; padding-right:40px;">

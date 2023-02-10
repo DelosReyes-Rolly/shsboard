@@ -212,10 +212,10 @@ class AdminsController extends Controller
     }
 
 
-    //  public function deletelanding($id){
-    //     $data = Landings::where('deleted', '=', null)->findOrFail($id);
-    //     return view('admins.landing.deletelanding', ['landing' => $data]);
-    //  }
+     public function deletelandingpublic($id){
+        $data = Landings::where('deleted', '=', null)->findOrFail($id);
+        return view('admins.landing.deletelanding', ['landing' => $data]);
+     }
 
     // ================================================================= ANNOUNCEMENT ===================================================
 
@@ -382,10 +382,10 @@ class AdminsController extends Controller
         
     }
 
-    //  public function deleteadminannouncement($id){
-    //     $data = Announcements::where('deleted', '=', null)->findOrFail($id);
-    //     return view('admins.landing.delete', ['announcement' => $data]);
-    //  }
+     public function deleteannouncementpublic($id){
+        $data = Announcements::where('deleted', '=', null)->findOrFail($id);
+        return view('admins.landing.delete', ['announcement' => $data]);
+     }
 
      public function downloadpdf(Request $request) {
             $request->validate([
@@ -663,10 +663,10 @@ class AdminsController extends Controller
         
     }
 
-    //  public function deletedocument($id){
-    //     $data = Documents::where('deleted', '=', null)->findOrFail($id);
-    //     return view('admins.documentrequests.documentdelete', ['document' => $data]);
-    //  }
+     public function deletedocument($id){
+        $data = Documents::where('deleted', '=', null)->findOrFail($id);
+        return view('admins.documentrequests.documentdelete', ['document' => $data]);
+     }
     public function addpurpose(){
         return view('admins.documentrequests.purposeadd');
     }
@@ -760,10 +760,10 @@ class AdminsController extends Controller
         
     }
 
-    //  public function deletepurpose($id){
-    //     $data = DocumentPurposes::where('deleted', '=', null)->findOrFail($id);
-    //     return view('admins.documentrequests.purposedelete', ['purpose' => $data]);
-    //  }
+     public function deletepurpose($id){
+        $data = DocumentPurposes::where('deleted', '=', null)->findOrFail($id);
+        return view('admins.documentrequests.purposedelete', ['purpose' => $data]);
+     }
 
      
 
@@ -874,10 +874,10 @@ class AdminsController extends Controller
         
     }
 
-    //  public function deletecourse($id){
-    //     $data = Courses::where('deleted', '=', null)->findOrFail($id);
-    //     return view('admins.grading.functions.coursedelete', ['course' => $data]);
-    //  }
+     public function deletecourse($id){
+        $data = Courses::where('deleted', '=', null)->findOrFail($id);
+        return view('admins.grading.functions.coursedelete', ['course' => $data]);
+     }
 
      // ============================================================ SECTION ===================================================
 
@@ -893,12 +893,18 @@ class AdminsController extends Controller
     public function storesection(Request $request){
         // Validate the inputs
         $request->validate([
-            'section' => 'required|unique:sections|max:255',
+            'section' => 'required|max:255',
         ]);
-        $section = new sections();
-        $section->section = $request->get('section');
-        $section->save();
-        return response()->json(array('success' => true));
+        $sectionunique = Sections::where('deleted', '=', null)->where('section', '=', $request->get('section'))->get();
+        if($sectionunique->count() == 0){
+            $section = new sections();
+            $section->section = $request->get('section');
+            $section->save();
+            return response()->json(array('success' => true));
+        }
+        else{
+            return response()->json(['error' => 'Section is already taken.'], 422); 
+        }
         // return redirect('/gradingsections')->with('success', 'Section has been added successfully!');
     }    
 
@@ -946,10 +952,10 @@ class AdminsController extends Controller
         }
     }
 
-    // public function deletesection($id){
-    //     $data = sections::where('deleted', '=', null)->findOrFail($id);
-    //     return view('admins.grading.functions.sectiondelete', ['section' => $data]);
-    // }
+    public function deletesection($id){
+        $data = sections::where('deleted', '=', null)->findOrFail($id);
+        return view('admins.grading.functions.sectiondelete', ['section' => $data]);
+    }
 
     // ============================================================ LOAD ===================================================
 
@@ -1102,10 +1108,10 @@ class AdminsController extends Controller
     }
 
 
-    // public function deletefaculty($id){
-    //     $data = Faculties::where('deleted', '=', null)->findOrFail($id);
-    //     return view('admins.grading.functions.facultydelete', ['faculty' => $data]);
-    // }
+    public function deletefaculty($id){
+        $data = Faculties::where('deleted', '=', null)->findOrFail($id);
+        return view('admins.grading.functions.facultydelete', ['faculty' => $data]);
+    }
 
     public function downloadFacultyFileFormat() {
         $file_name = 'Faculty Excel Format.xlsx';
@@ -1237,6 +1243,11 @@ class AdminsController extends Controller
 
         }
     }
+
+    public function deleteexpertise($id){
+        $data = Expertises::where('deleted', '=', null)->findOrFail($id);
+        return view('admins.grading.functions.expertisedelete', ['expertise' => $data]);
+     }
 
 
      // ============================================================ STUDENT ===================================================
@@ -1402,10 +1413,10 @@ class AdminsController extends Controller
     }
         
 
-    // public function deletestudent($id){
-    //     $data = Students::where('deleted', '=', null)->findOrFail($id);
-    //     return view('admins.grading.functions.studentdelete', ['student' => $data]);
-    // }
+    public function deletestudent($id){
+        $data = Students::where('deleted', '=', null)->findOrFail($id);
+        return view('admins.grading.functions.studentdelete', ['student' => $data]);
+    }
 
     public function dropgradestudent(Request $request, Students $student, $id){
         // $validated = $request->validate([
@@ -1678,10 +1689,10 @@ class AdminsController extends Controller
         }
      }
 
-    //  public function deletesubject($id){
-    //     $data = Subjects::where('deleted', '=', null)->findOrFail($id);
-    //     return view('admins.grading.functions.subjectdelete', ['subject' => $data]);
-    //  }
+     public function deletesubject($id){
+        $data = Subjects::where('deleted', '=', null)->findOrFail($id);
+        return view('admins.grading.functions.subjectdelete', ['subject' => $data]);
+     }
 
 
     // ============================================================ SCHOOL YEAR ===================================================
@@ -1711,26 +1722,32 @@ class AdminsController extends Controller
         $request->validate([
             'schoolyear' => 'required|numeric|unique:school_years',
         ]);
-        $schoolyear = new SchoolYear();
-        $schoolyear->schoolyear = $request->get('schoolyear');
-        $schoolyear->save();
-
-        Students::where('deleted', '=', null)->where('status', '=', 1)->increment('gradelevel_id', 1, ['updated_at' => now()]);
-        Students::query()->where('gradelevel_id', '<', 1)->orWhere('gradelevel_id', '>', 2)->update(['status' => 2]);
-        Advisories::query()->update(['active' => 1]);
-        $ads = Advisories::where('deleted', '=', null)->get();
-        foreach($ads as $ad){
-            $newAdvisories = new Advisories;
-            $newAdvisories->faculty_id = $ad->faculty_id;
-            $newAdvisories->gradelevel_id = $ad->gradelevel_id;
-            $newAdvisories->course_id = $ad->course_id;
-            $newAdvisories->section_id = $ad->section_id;
-            $newAdvisories->schoolyear_id = $ad->schoolyear_id;
-            $newAdvisories->faculty_id = $ad->faculty_id;
-            $newAdvisories->save();
+        $schoolyearunique = SchoolYear::where('deleted', '=', null)->where('schoolyear', '=', $request->get('schoolyear'))->get();
+        if($schoolyearunique->count() == 0){
+            $schoolyear = new SchoolYear();
+            $schoolyear->schoolyear = $request->get('schoolyear');
+            $schoolyear->save();
+    
+            Students::where('deleted', '=', null)->where('status', '=', 1)->increment('gradelevel_id', 1, ['updated_at' => now()]);
+            Students::query()->where('gradelevel_id', '<', 1)->orWhere('gradelevel_id', '>', 2)->update(['status' => 2]);
+            Advisories::query()->update(['active' => 1]);
+            $ads = Advisories::where('deleted', '=', null)->get();
+            foreach($ads as $ad){
+                $newAdvisories = new Advisories;
+                $newAdvisories->faculty_id = $ad->faculty_id;
+                $newAdvisories->gradelevel_id = $ad->gradelevel_id;
+                $newAdvisories->course_id = $ad->course_id;
+                $newAdvisories->section_id = $ad->section_id;
+                $newAdvisories->schoolyear_id = $ad->schoolyear_id;
+                $newAdvisories->faculty_id = $ad->faculty_id;
+                $newAdvisories->save();
+            }
+            return response()->json(array('success' => true));
         }
-
-        return response()->json(array('success' => true));
+        else{
+            return response()->json(['error' => 'Schoolyear is already taken.'], 422); 
+        }
+        
     } 
 
     public function updateschoolyear(Request $request){
@@ -1756,31 +1773,27 @@ class AdminsController extends Controller
         //     $schoolyear->update($validated);
         //     return redirect('/gradingschoolyear')->with('success', 'Schoolyear has been deleted successfully!');
         // }
-        $count = SchoolYear::all();
-        if($count->count() == 1){
-            return response()->json(['error' => 'Sorry. You cannot delete the only schoolyear.'], 422); 
-        }
-        else{
-            if ($request->ajax()){
-
+        if ($request->ajax()){
+            $count = SchoolYear::all();
+            if($count->count() == 1){
+                return response()->json(['error' => 'Sorry. You cannot delete the only schoolyear.'], 422); 
+            }
+            else{
                 $schoolyear = SchoolYear::findOrFail($id);
                 if ($schoolyear){
-    
                     $schoolyear->deleted = 1;
                     $schoolyear->deleted_at = now();
                     $schoolyear->save();
-    
                     return response()->json(array('success' => true));
                 }
             }
-        }
-        
+    }
     }
 
-    //  public function deleteschoolyear($id){
-    //     $data = SchoolYear::where('deleted', '=', null)->findOrFail($id);
-    //     return view('admins.grading.functions.schoolyeardelete', ['schoolyear' => $data]);
-    //  }
+     public function deleteschoolyear($id){
+        $data = SchoolYear::where('deleted', '=', null)->findOrFail($id);
+        return view('admins.grading.functions.schoolyeardelete', ['schoolyear' => $data]);
+     }
 
 
     // ============================================================ SUBJECT TEACHER ===================================================
@@ -1793,7 +1806,7 @@ class AdminsController extends Controller
     public function subjectteacheradd(){
         $faculties = Faculties::where('deleted', '=', null)->get();
         $expertises = Expertises::where('deleted', '=', null)->get();
-        $gradelevels = GradeLevels::all();
+        $gradelevels = GradeLevels::where('deleted', '=', null)->get();
         $semesters = Semesters::all();
         $courses = Courses::where('deleted', '=', null)->get();
         $sections =Sections::where('deleted', '=', null)->get();
@@ -2034,10 +2047,10 @@ class AdminsController extends Controller
             }
     }
 
-    //  public function deletesubjectteacher($id){
-    //     $data = SubjectTeachers::where('deleted', '=', null)->findOrFail($id);
-    //     return view('admins.grading.functions.subjectteacherdelete', ['subjectteacher' => $data]);
-    //  }
+     public function deletesubjectteacher($id){
+        $data = SubjectTeachers::where('deleted', '=', null)->findOrFail($id);
+        return view('admins.grading.functions.subjectteacherdelete', ['subjectteacher' => $data]);
+     }
 
     // ============================================================ GRADE LEVEL ===================================================
 
@@ -2053,12 +2066,19 @@ class AdminsController extends Controller
     public function storegradelevel(Request $request){
         // Validate the inputs
         $request->validate([
-            'gradelevel' => 'required|numeric|unique:grade_levels',
+            'gradelevel' => 'required|numeric',
         ]);
-        $gradelevel = new GradeLevels();
-        $gradelevel->gradelevel = $request->get('gradelevel');
-        $gradelevel->save();
-        return response()->json(array('success' => true));   
+        $gradelevelunique = GradeLevels::where('deleted', '=', null)->where('gradelevel', '=', $request->get('gradelevel'));
+        if($gradelevelunique->count()==0){
+            $gradelevel = new GradeLevels();
+            $gradelevel->gradelevel = $request->get('gradelevel');
+            $gradelevel->save();
+            return response()->json(array('success' => true));   
+        }
+        else{
+            return response()->json(['error' => 'Gradelevel is already taken.'], 422); 
+        }
+        
     }    
 
 
@@ -2100,10 +2120,10 @@ class AdminsController extends Controller
     }
 
 
-    // public function deletegradelevel($id){
-    //     $data = GradeLevels::where('deleted', '=', null)->findOrFail($id);
-    //     return view('admins.grading.functions.gradeleveldelete', ['gradelevel' => $data]);
-    // }
+    public function deletegradelevel($id){
+        $data = GradeLevels::where('deleted', '=', null)->findOrFail($id);
+        return view('admins.grading.functions.gradeleveldelete', ['gradelevel' => $data]);
+    }
 
     // ============================================================ ADVISORY ===================================================
 
@@ -2117,7 +2137,7 @@ class AdminsController extends Controller
 
     public function advisoryadd(){
         $faculties = Faculties::where('deleted', '=', null)->get();
-        $gradelevels = GradeLevels::all();
+        $gradelevels = GradeLevels::where('deleted', '=', null)->get();;
         $semesters = Semesters::all();
         $courses = Courses::where('deleted', '=', null)->get();
         $sections =Sections::where('deleted', '=', null)->get();

@@ -241,10 +241,10 @@ class StudentsController extends Controller
         
     }
 
-    //  public function deletegradeeval($id){
-    //     $data = GradeEvaluationRequests::where('deleted', '=', null)->findOrFail($id);
-    //     return view('student.grading.deletegradeeval', ['gradeeval' => $data]);
-    //  }
+     public function deletegradeeval($id){
+        $data = GradeEvaluationRequests::where('deleted', '=', null)->findOrFail($id);
+        return view('student.grading.deletegradeeval', ['gradeeval' => $data]);
+     }
 
     //  public function printreportcardgrade11(){
     //     $stuid = Auth::user()->id;

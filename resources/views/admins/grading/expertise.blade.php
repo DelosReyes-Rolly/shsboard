@@ -62,10 +62,10 @@
                                                 <a class="btn btn-success btn-md" href="{{ url('viewexpertise',['id'=>$expertise->id]) }}" data-toggle="modal" data-target="#modal-view-{{ $expertise->id }}"><i class="fa-solid fa-eye"></i> Subjects</a>
                                                 <a class="btn btn-success btn-md" href="{{ url('viewteacherexpertise',['id'=>$expertise->id]) }}" data-toggle="modal" data-target="#modal-view-teacher-{{ $expertise->id }}"><i class="fa-solid fa-eye"></i> Teachers</a>
                                                 <a class="btn btn-warning btn-md" href="{{ url('showexpertise',['id'=>$expertise->id]) }}" data-toggle="modal" onclick="editItem(this)" data-id="{{ $expertise->id }}" data-target="#editModal{{ $expertise->id }}"><i class="fas fa-edit"></i> Update</a>
-                                                <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $expertise->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
+                                                <a class="btn btn-danger btn-md" href="{{ url('deleteexpertise',['id'=>$expertise->id]) }}" data-toggle="modal" onclick="deleteItem(this)" data-id="{{ $expertise->id }}" data-target="#deleteModal{{ $expertise->id }}"><i class="fas fa-trash-alt"></i> Delete</a>
                                             </td> 
                                         </tr>
-                                        <!-- view modal subjects -->
+                                        <!-- view modal expertises -->
                                         <div id="modal-view-{{ $expertise->id }}" class="modal fade text-center" tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog modal-lg" role="document">
                                                 <div class="modal-content border-start-lg border-start-yellow">
@@ -79,6 +79,13 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- delete modal -->
+                                        <div id="deleteModal{{ $expertise->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content border-start-lg border-start-yellow">
+                                                </div>
+                                            </div>
+                                        </div>   
                                         <!-- update modal -->
                                         <div id="editModal{{ $expertise->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog modal-lg" role="document">
@@ -106,70 +113,15 @@
     $(document).ready(function(){
     
         editItem(e);
-      deleteItem(e);
+        deleteItem(e);
     });
     function editItem(e){
         id = e.getAttribute('data-id');
     }
     //delete
     function deleteItem(e){
-
-        let id = e.getAttribute('data-id');
-
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: 'btn btn-success',
-                cancelButton: 'btn btn-danger'
-            },
-            buttonsStyling: true
-        });
-
-        swalWithBootstrapButtons.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, cancel!',
-            reverseButtons: true
-        }).then((result) => {
-            if (result.value) {
-                if (result.isConfirmed){
-
-                    $.ajax({
-                        type:'PUT',
-                        url:'{{url("/expertise/delete")}}/' +id,
-                        data:{
-                            "_token": "{{ csrf_token() }}",
-                        },
-                        success:function(data) {
-                            if (data.success){
-                                
-                                swalWithBootstrapButtons.fire(
-                                    'Deleted!',
-                                    'Section is deleted successfully.',
-                                    "success"
-                                );
-                                $("#expertise"+id+"").remove();
-                            }
-
-                        }
-                    });
-
-                }
-
-            } else if (
-                result.dismiss === Swal.DismissReason.cancel
-            ) {
-                swalWithBootstrapButtons.fire(
-                    'Cancelled',
-                    '',
-                    'error'
-                );
-            }
-        });
-
-        }
+        id = e.getAttribute('data-id');
+    }
     </script>
 </main>
 <br><br><br><br>

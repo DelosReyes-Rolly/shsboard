@@ -227,7 +227,7 @@ Route::group(['middleware' => 'auth:students'], function () {
             Route::get('/vieweval/{id}', 'vieweval');
             Route::post('/grade-eval',  'gradeevalreq')->name('grade-eval');
             Route::get('/grade-eval/{student_id}/{gradelevel_id}/{course_id}/{section_id}/{semester_id}/{faculty_id}/{subject_id}',  'gradeevalreqModal')->name('grade-evalModal');
-            // Route::get('/deletegradeeval/{id}',  'deletegradeeval')->name('student.deletegradeeval');
+            Route::get('/deletegradeeval/{id}',  'deletegradeeval');
             // Route::put('/deletegradeeval/{gradeeval}',  'deletegradegradeeval');
             Route::put('/gradeevaluationrequest/delete/{id}', 'deletegradeeval');
             // Route::get('/printreportcardgrade11', 'printreportcardgrade11');
@@ -324,7 +324,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 // Route::get('/deleteadminannouncement/{id}', 'deleteadminannouncement');
                 Route::get('/viewlanding/{id}', 'viewlanding');
                 Route::get('/showlanding/{id}', 'showlanding');
-                // Route::get('/delete/{id}', 'deletelanding');
+                Route::get('/deletelandingpublic/{id}', 'deletelandingpublic');
                 Route::get('/password-admin/{id}', 'adminresetshow');
 
 
@@ -340,6 +340,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 Route::get('/decline/{id}', 'decline')->name('admin.decline');
                 Route::get('/viewannouncement/{id}','viewannouncement');
                 Route::get('/showannouncement/{id}','showannouncement');
+                Route::get('/deleteannouncement/{id}',  'deleteannouncementpublic');
 
                 /*
                 |-----------------------------------------------------------------------------------
@@ -454,7 +455,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 |
                 */
                 Route::put('/updateannouncement/{announcement}', 'updateannouncement');
-                // Route::put('/deleteannouncements/{announcement}', 'deleteannouncement')->name('admin.deletelanding');
+                // Route::put('/deleteannouncements/{announcement}', 'deleteannouncement');
                 Route::put('/announcement/delete/{id}', 'deleteannouncement');
 
 
@@ -525,19 +526,19 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 Route::get('/courseadd', 'addcourse')->name('course.add');
                 Route::get('/viewcourse/{id}','viewcourse');
                 Route::get('/showcourse/{id}','showcourse');
-                // Route::get('/deletecourse/{id}', 'deletecourse')->name('admin.deletecourse');
+                Route::get('/deletecourse/{id}', 'deletecourse');
 
                 Route::get('/sectionadd', 'addsection')->name('section.add');
                 Route::get('/viewsection/{id}','viewsection');
                 Route::get('/showsection/{id}','showsection');
-                // Route::get('/deletesection/{id}', 'deletesection')->name('admin.deletesection');
+                Route::get('/deletesection/{id}', 'deletesection');
 
                 Route::get('/facultyadd', 'addfaculty')->name('faculty.add');
                 Route::get('/facultybatchadd', 'addbatchfaculty')->name('facultybatch.add');
                 Route::get('/downloadFacultyFileFormat', 'downloadFacultyFileFormat');
                 Route::get('/viewfaculty/{id}','viewfaculty');
                 Route::get('/showfaculty/{id}','showfaculty');
-                // Route::get('/deletefaculty/{id}', 'deletefaculty')->name('admin.deletefaculty');
+                Route::get('/deletefaculty/{id}', 'deletefaculty');
 
                 Route::get('/showminload/{id}','showminload');
                 Route::get('/showmaxload/{id}','showmaxload');
@@ -546,13 +547,14 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 Route::get('/viewexpertise/{id}','viewexpertise');
                 Route::get('/viewteacherexpertise/{id}','viewteacherexpertise');
                 Route::get('/showexpertise/{id}','showexpertise');
+                Route::get('/deleteexpertise/{id}', 'deleteexpertise');
 
                 Route::get('/studentadd', 'addstudent')->name('student.add');
                 Route::get('/studentbatchadd', 'addbatchstudent')->name('studentbatch.add');
                 Route::get('/downloadStudentFileFormat', 'downloadStudentFileFormat');
                 Route::get('/viewstudent/{id}','viewstudent');
                 Route::get('/showstudent/{id}','showstudent');
-                // Route::get('/deletestudent/{id}', 'deletestudent')->name('admin.deletestudent');
+                Route::get('/deletestudent/{id}', 'deletestudent');
                 // Route::get('/dropstudent/{id}', 'dropstudent')->name('admin.dropstudent');
 
                 Route::get('/studentaddsubject/{id}', 'addstudentsubject');
@@ -560,21 +562,21 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 Route::get('/subjectadd', 'addsubject')->name('subject.add');
                 Route::get('/viewsubject/{id}','viewsubject');
                 Route::get('/showsubject/{id}','showsubject');
-                // Route::get('/deletesubject/{id}', 'deletesubject')->name('admin.deletesubject');
+                Route::get('/deletesubject/{id}', 'deletesubject');
 
                 Route::get('/schoolyearadd', 'addschoolyear')->name('schoolyear.add');
                 Route::get('/viewschoolyear/{id}','viewschoolyear');
                 Route::get('/showschoolyear/{id}','showschoolyear');
-                // Route::get('/deleteschoolyear/{id}', 'deleteschoolyear')->name('admin.deleteschoolyear');
+                Route::get('/deleteschoolyear/{id}', 'deleteschoolyear');
 
                 Route::get('/subjectteacheradd', 'subjectteacheradd')->name('subjectteacher.add');
                 Route::get('/viewsubjectteacher/{id}','viewsubjectteacher');
                 Route::get('/showsubjectteacher/{id}','showsubjectteacher');
-                // Route::get('/deletesubjectteacher/{id}', 'deletesubjectteacher')->name('admin.deletesubjectteacher');
+                Route::get('/deletesubjectteacher/{id}', 'deletesubjectteacher');
 
                 Route::get('/gradeleveladd', 'addgradelevel')->name('gradelevel.add');
                 Route::get('/showgradelevel/{id}','showgradelevel');
-                // Route::get('/deletegradelevel/{id}', 'deletegradelevel')->name('admin.deletegradelevel');
+                Route::get('/deletegradelevel/{id}', 'deletegradelevel');
 
                 Route::get('/advisoryadd', 'advisoryadd')->name('advisory.add');
                 Route::get('/viewadvisory/{id}','viewadvisory');
@@ -697,7 +699,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
             Route::get('/showdocument/{id}', 'showdocument');
             Route::get('/viewrequestadmin/{id}', 'viewrequest');
             Route::get('/showrequestadmin/{id}', 'showrequest');
-            // Route::get('/deletedocument/{id}',  'deletedocument')->name('admin.deletedocument');
+            Route::get('/deletedocument/{id}',  'deletedocument');
             Route::get('/documentadd', 'adddocument')->name('document.add');
             Route::get('/purposeadd', 'addpurpose')->name('purpose.add');
 
@@ -712,7 +714,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
 
             Route::get('/viewpurpose/{id}', 'viewpurpose');
             Route::get('/showpurpose/{id}', 'showpurpose');
-            // Route::get('/deletepurpose/{id}',  'deletepurpose')->name('admin.deletepurpose');
+            Route::get('/deletedocumentpurpose/{id}',  'deletepurpose');
 
             /*
             |-----------------------------------------------------------------------------------
@@ -875,7 +877,7 @@ Route::group(['middleware' => 'auth:faculties'], function () {
             Route::get('/createannouncement', 'createannouncement');
             Route::get('/viewfacultyannouncement/{id}', 'viewannouncement');
             Route::get('/showfacultyannouncement/{id}', 'showannouncement');
-            // Route::get('/deleteannouncement/{id}',  'deleteannouncement')->name('faculty.deleteannouncement');
+            Route::get('/deleteannouncementfaculty/{id}',  'deleteannouncement');
 
             /*
             |-----------------------------------------------------------------------------------

@@ -73,7 +73,7 @@
                                 <input id="password" type="password" class="@error('password') is-invalid @enderror" name="password" minlength="6" required autocomplete="current-password"><br/><br/>
                                 <!-- <i class="bi bi-eye-slash" style="margin-left: -30px;" id="togglePassword"></i> -->
                                     <span style="float:left;"><input id="showpass" type="checkbox" onclick="showpassw()"></span>
-                                    <span style="float:left;"><label for="showpass">&nbsp;Show password</label></span>
+                                    <span style="float:left; margin:-4px;"><label for="showpass">&ensp;Show password</label></span>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

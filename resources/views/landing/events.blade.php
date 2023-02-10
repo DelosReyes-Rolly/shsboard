@@ -53,10 +53,10 @@
 							                    </div><br/>
 							                    <!-- Form Group (title)-->
 							                    <div class="col-lg-2 col-md-12 col-sm-12">
-													<b style="font-size: 20px;">WHEN: <li>On {{$date  =   date('F d, Y', strtotime($event->whn))}}</a></li><br></b>
+													<b style="font-size: 20px;">WHEN: <li>On {{$date  =   date('F d, Y', strtotime($event->whn))}}</li><br></b>
 													<b style="font-size: 20px;">WHERE: <li>{{$event -> whr}}</li></b><br>
-													<b style="font-size: 20px;">FROM: </b>{{$event -> sender}}<br><br>
-                                                    <b style="font-size: 20px;">TO: </b>{{$event -> who}}<br><br>
+													<b style="font-size: 20px;">FROM: <li>{{$event -> sender}}</li></b><br>
+                                                    <b style="font-size: 20px;">TO: <li>{{$event -> who}}</li></b><br><br>
 													<a class="btn btn-md btn-success" href="{{ url('seePublicEvent',['id'=>$event->id]) }}"><em style="font-size: 20px;">read more...</em></a>
 							                    </div>
 							                </div>

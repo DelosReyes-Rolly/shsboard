@@ -75,7 +75,7 @@
                                             <td>
                                                 <a class="btn btn-success btn-md" href="{{ url('viewsubject',['id'=>$subject->id]) }}" data-toggle="modal" data-target="#modal-view-{{ $subject->id }}"><i class="fa-solid fa-eye"></i> View</a>
                                                 <a class="btn btn-warning btn-md" href="{{ url('showsubject',['id'=>$subject->id]) }}" data-toggle="modal" onclick="editItem(this)" data-id="{{ $subject->id }}" data-target="#editModal{{ $subject->id }}"><i class="fas fa-edit"></i> Update</a>
-                                                <button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $subject->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
+                                                <a class="btn btn-danger btn-md" href="{{ url('deletesubject',['id'=>$subject->id]) }}" data-toggle="modal" onclick="deleteItem(this)" data-id="{{ $subject->id }}" data-target="#deleteModal{{ $subject->id }}"><i class="fas fa-trash-alt"></i> Delete</a>
                                             </td> 
                                         </tr>
                                         <!-- view modal -->
@@ -85,6 +85,13 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- delete modal -->
+                                        <div id="deleteModal{{ $subject->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content border-start-lg border-start-yellow">
+                                                </div>
+                                            </div>
+                                        </div>   
                                         <!-- edit modal -->
                                         <div id="editModal{{ $subject->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog modal-lg" role="document">
@@ -121,63 +128,8 @@
     }
     //delete
     function deleteItem(e){
-
-        let id = e.getAttribute('data-id');
-
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: 'btn btn-success',
-                cancelButton: 'btn btn-danger'
-            },
-            buttonsStyling: true
-        });
-
-        swalWithBootstrapButtons.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, cancel!',
-            reverseButtons: true
-        }).then((result) => {
-            if (result.value) {
-                if (result.isConfirmed){
-
-                    $.ajax({
-                        type:'PUT',
-                        url:'{{url("/subject/delete")}}/' +id,
-                        data:{
-                            "_token": "{{ csrf_token() }}",
-                        },
-                        success:function(data) {
-                            if (data.success){
-                                
-                                swalWithBootstrapButtons.fire(
-                                    'Deleted!',
-                                    'Subject is deleted successfully.',
-                                    "success"
-                                );
-                                $("#subject"+id+"").remove();
-                            }
-
-                        }
-                    });
-
-                }
-
-            } else if (
-                result.dismiss === Swal.DismissReason.cancel
-            ) {
-                swalWithBootstrapButtons.fire(
-                    'Cancelled',
-                    '',
-                    'error'
-                );
-            }
-        });
-
-        }
+        id = e.getAttribute('data-id');
+    }
     </script>
 
 </main>

@@ -171,7 +171,7 @@
                                                                         <td>
 																			<a class="btn btn-success btn-md" href="{{ url('viewdocument',['id'=>$document->id]) }}" data-toggle="modal" data-target="#modal-view-{{$document->id}}"><i class="fa-solid fa-eye"></i> View</a>
 																			<a class="btn btn-warning btn-md" href="{{ url('showdocument',['id'=>$document->id]) }}" data-toggle="modal" onclick="editDoc(this)" data-id="{{ $document->id }}" data-target="#editModal{{ $document->id }}"><i class="fas fa-edit"></i> Update</a>
-																			<button class="btn btn-danger btn-md" onclick="deleteItem(this)" data-id="{{ $document->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
+																			<a class="btn btn-danger btn-md" href="{{ url('deletedocument',['id'=>$document->id]) }}" data-toggle="modal" onclick="deleteItem(this)" data-id="{{ $document->id }}" data-target="#deleteModal{{ $document->id }}"><i class="fas fa-trash-alt"></i> Delete</a>
                                                                         </td> 
                                                                     </tr>
 																	<!-- view document -->
@@ -181,6 +181,13 @@
 																			</div>
 																		</div>
 																	</div>
+																	<!-- delete modal -->
+																	<div id="deleteModal{{ $document->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+																		<div class="modal-dialog modal-lg" role="document">
+																			<div class="modal-content border-start-lg border-start-yellow">
+																			</div>
+																		</div>
+																	</div>  
 																	<!-- edit document -->
 																	<div id="editModal{{ $document->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 																		<div class="modal-dialog modal-lg" role="document">
@@ -231,7 +238,7 @@
                                                                         <td>
 																			<a class="btn btn-success btn-md" href="{{ url('viewpurpose',['id'=>$documentpurpose->id]) }}" data-toggle="modal" data-target="#modal-view-{{$documentpurpose->id}}"><i class="fa-solid fa-eye"></i> View</a>
 																			<a class="btn btn-warning btn-md" href="{{ url('showpurpose',['id'=>$documentpurpose->id]) }}" data-toggle="modal" onclick="editPur(this)" data-id="{{ $documentpurpose->id }}" data-target="#editModal{{ $documentpurpose->id }}"><i class="fas fa-edit"></i> Update</a>
-																			<button class="btn btn-danger btn-md" onclick="deleteItemPurpose(this)" data-id="{{ $documentpurpose->id }}"><i class="fas fa-trash-alt"></i> Delete</button>
+																			<a class="btn btn-danger btn-md" href="{{ url('deletedocumentpurpose',['id'=>$documentpurpose->id]) }}" data-toggle="modal" onclick="deleteItem(this)" data-id="{{ $documentpurpose->id }}" data-target="#deleteModal{{ $documentpurpose->id }}"><i class="fas fa-trash-alt"></i> Delete</a>
                                                                         </td> 
                                                                     </tr>
 																	<!-- view purpose -->
@@ -241,6 +248,13 @@
 																			</div>
 																		</div>
 																	</div>
+																	<!-- delete modal -->
+																	<div id="deleteModal{{ $documentpurpose->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+																		<div class="modal-dialog modal-lg" role="document">
+																			<div class="modal-content border-start-lg border-start-yellow">
+																			</div>
+																		</div>
+																	</div> 
 																	<!-- edit purpose -->
 																	<div id="editModal{{ $documentpurpose->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 																		<div class="modal-dialog modal-lg" role="document">
@@ -572,125 +586,12 @@
 			id = e.getAttribute('data-id');
 		}
         //delete document
-        function deleteItem(e){
-
-            let id = e.getAttribute('data-id');
-
-            const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                    confirmButton: 'btn btn-success',
-                    cancelButton: 'btn btn-danger'
-                },
-                buttonsStyling: true
-            });
-
-            swalWithBootstrapButtons.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
-                reverseButtons: true
-            }).then((result) => {
-                if (result.value) {
-                    if (result.isConfirmed){
-
-                        $.ajax({
-                            type:'PUT',
-                            url:'{{url("/document/delete")}}/' +id,
-                            data:{
-                                "_token": "{{ csrf_token() }}",
-                            },
-                            success:function(data) {
-                                if (data.success){
-                                    
-                                    swalWithBootstrapButtons.fire(
-                                        'Deleted!',
-                                        'A document has been deleted successfully.',
-                                        "success"
-                                    );
-									$("#reload").load(location.href + " #reload");
-                                    $("#document"+id+"").remove();
-                                }
-
-                            }
-                        });
-
-                    }
-
-                } else if (
-                    result.dismiss === Swal.DismissReason.cancel
-                ) {
-                    swalWithBootstrapButtons.fire(
-                        'Cancelled',
-                        '',
-                        'error'
-                    );
-                }
-            });
-
-            }
-
-			//delete Purpose
-			function deleteItemPurpose(e){
-
-				let id = e.getAttribute('data-id');
-
-				const swalWithBootstrapButtons = Swal.mixin({
-					customClass: {
-						confirmButton: 'btn btn-success',
-						cancelButton: 'btn btn-danger'
-					},
-					buttonsStyling: true
-				});
-
-				swalWithBootstrapButtons.fire({
-					title: 'Are you sure?',
-					text: "You won't be able to revert this!",
-					icon: 'warning',
-					showCancelButton: true,
-					confirmButtonText: 'Yes, delete it!',
-					cancelButtonText: 'No, cancel!',
-					reverseButtons: true
-				}).then((result) => {
-					if (result.value) {
-						if (result.isConfirmed){
-
-							$.ajax({
-								type:'PUT',
-								url:'{{url("/purpose/delete")}}/' +id,
-								data:{
-									"_token": "{{ csrf_token() }}",
-								},
-								success:function(data) {
-									if (data.success){
-										
-										swalWithBootstrapButtons.fire(
-											'Deleted!',
-											'A purpose has been deleted successfully.',
-											"success"
-										);
-										$("#documentpurpose"+id+"").remove();
-									}
-
-								}
-							});
-
-						}
-
-					} else if (
-						result.dismiss === Swal.DismissReason.cancel
-					) {
-						swalWithBootstrapButtons.fire(
-							'Cancelled',
-							'',
-							'error'
-						);
-					}
-				});
-
-				}
+		function deleteItem(e){
+			id = e.getAttribute('data-id');
+		}
+		function deleteItemPurpose(e){
+			id = e.getAttribute('data-id');
+		}
     </script>
 
 </main>

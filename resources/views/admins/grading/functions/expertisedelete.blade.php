@@ -1,14 +1,14 @@
 <div class="modal-header">
-    <h1 class="modal-title" id="staticBackdropLabel" style="font-size: 20px;">Delete Strand </h1>
+    <h1 class="modal-title" id="staticBackdropLabel" style="font-size: 20px;">Delete Expertise </h1>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" id="deletedCourse{{$course->id}}">   
+<form method="POST" id="deletedExpertise{{$expertise->id}}">   
     <div class="modal-body">
         @csrf
         @method('PUT')
-        <p style="color: red; font-size:20px;">Are you sure you want to delete course <b>{{$course->courseName}}</b>?</p>
+        <p style="color: red; font-size:20px;">Are you sure you want to delete <b>{{$expertise->expertise}}</b>?</p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -16,13 +16,13 @@
     </div>
 </form>
 <script>
-        $("#deletedCourse"+id).submit(function(e) {
+        $("#deletedExpertise"+id).submit(function(e) {
             e.preventDefault();
             $(":submit").attr("disabled", true);
             var _token = $("input[name=_token]").val();
             $.ajax({
                 type:'PUT',
-                url:'{{url("/course/delete")}}/' +id,
+                url:'{{url("/expertise/delete")}}/' +id,
                 data:{
                     _token: _token,
                 },
@@ -32,14 +32,14 @@
                     $('body').removeClass('modal-open');
                     $('body').css('padding-right', '');
                     $("#deleteModal"+id).hide();
-                    $("#deletedCourse"+ id)[0].reset();
+                    $("#deletedExpertise"+ id)[0].reset();
                     $(":submit").removeAttr("disabled");
                     Swal.fire({                                                    
                         icon: 'success',                                               
                         title: 'Success.',                                                
-                        text: 'Strand has been deleted successfully!',                      
+                        text: 'Expertise has been deleted successfully!',                      
                     })
-                    $("#course"+id+"").remove();
+                    $("#expertise"+id+"").remove();
                 }
             });
         });
