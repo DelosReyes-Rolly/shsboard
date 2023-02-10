@@ -129,15 +129,17 @@
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();
                         $("#updateAnnouncement"+ id)[0].reset();
-                        $('#announcement' + response.id +' td:nth-child(2)').text(response.what);
+                        // $('#announcement' + response.id +' td:nth-child(2)').text(response.what);
                         $(":submit").removeAttr("disabled");
                         // $('#example').load(document.URL +  ' #example');
                         Swal.fire({
                             icon: 'success',
                             title: 'Success.',
                             text: 'Announcement has been updated successfully',
-                        });
-                        $("#reloadlanding2").load(location.href + " #reloadlanding2");
+                        }).then(function() {
+                            location.reload(true);
+                        })
+                        // $("#reloadlanding2").load(location.href + " #reloadlanding2");
                 },error: function (xhr) {
                     $('#validation-errors').html('');
                         document.getElementById('whoops').style.display = 'block';

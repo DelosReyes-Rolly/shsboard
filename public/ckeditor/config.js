@@ -32,3 +32,4 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeDialogTabs = 'link:advanced';
 	config.removePlugins = 'easyimage, cloudservices';
 };
+CKEDITOR.addCss(".cke_editable{cursor:text; font-size: 26px; font-family: Arial, sans-serif;}");

@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
 <!-- student login start -->
     <br/><br/><br/><br/>
-    <div class="loginOthers">     
+    <div class="reg regOthers">     
 		<div class="col-md-12">
         <div class="box-form">
             <div class="left">
@@ -190,17 +190,21 @@
 
                             <div class="form-group">
                                 <label for="password" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Password') }}</label>
-                                <input id="password" type="password" class="password @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="password @error('password') is-invalid @enderror" name="password" required autocomplete="new-password"><br/>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                <span style="float:left;"><input id="showpass" type="checkbox" onclick="showpassw()"></span>
+                                <span style="float:left;"><label for="showpass">&nbsp;Show password</label></span><br/>
                             </div>
 
                             <div class="form-group">
                                 <label for="password-confirm" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Confirm Password') }}</label>
-                                <input id="password-confirm" type="password" class="password" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="password" name="password_confirmation" required autocomplete="new-password"><br/>
+                                <span style="float:left;"><input id="showpass2" type="checkbox" onclick="showpassw2()"></span>
+                                <span style="float:left;"><label for="showpass2">&nbsp;Show password</label></span><br/>
                             </div>
                             <center><font face = "Bedrock" size = "3" >
                                 <button type="submit" class="btn btn-primary" style="padding-left:40px; padding-right:40px;">
@@ -211,6 +215,24 @@
                 </div>
             </div>
             <script src="{{ asset('assets/js/needs-validated.js') }}"></script>
+            <script>
+                function showpassw() {
+                    var x = document.getElementById("password");
+                    if (x.type === "password") {
+                        x.type = "text";
+                    } else {
+                        x.type = "password";
+                    }
+                }
+                function showpassw2() {
+                    var x = document.getElementById("password-confirm");
+                    if (x.type === "password") {
+                        x.type = "text";
+                    } else {
+                        x.type = "password";
+                    }
+                }
+            </script>
             <!-- <script>
                 const togglePassword = document.querySelector("#togglePassword");
                 const password = document.querySelector("#password");
@@ -244,4 +266,5 @@
                 });
             </script> -->
         <br/><br/>
+        </div></div>
         @include('partials.landingfooter')

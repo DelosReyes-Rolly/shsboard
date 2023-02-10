@@ -131,12 +131,14 @@
                         $('body').css('padding-right', '');
                         $("#editModal"+response.id).hide();                     // hanggang dito
                         $("#activityStreamupdate"+ id)[0].reset();                // irereset niya yung form
-                        $('#section' + response.id +' td:nth-child(2)').text(response.section);    
+                        // $('#section' + response.id +' td:nth-child(2)').text(response.section);    
                         $(":submit").removeAttr("disabled");               // copy paste mo lang to. Bale pinapalitan lang niya yung row. Yung "section" id siya ng tr                                                                        // yung response galing siya sa controller yung return response()->json($section). Yung td:nth-child(2) column bale 2nd column
                         Swal.fire({                                                             //sweetalert
                             icon: 'success',                                                    //
                             title: '<div style="font-size: 60px;">Success.</div>',                                                  //
                             text: 'Announcement has been updated successfully',                      //
+                        }).then(function() {
+                            location.reload(true);
                         })
                 },error: function (xhr) {
                     $('#validation-errors').html('');

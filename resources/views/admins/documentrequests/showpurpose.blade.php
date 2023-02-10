@@ -70,14 +70,16 @@
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();
                         $("#updatePurpose"+id)[0].reset();
-                        $('#documentpurpose' + response.id +' td:nth-child(2)').text(response.purpose);
-                        $('#documentpurpose' + response.id +' td:nth-child(3)').text(response.proof_needed);
+                        // $('#documentpurpose' + response.id +' td:nth-child(2)').text(response.purpose);
+                        // $('#documentpurpose' + response.id +' td:nth-child(3)').text(response.proof_needed);
                         $(":submit").removeAttr("disabled");
                         // $('#example').load(purpose.URL +  ' #example');
                         Swal.fire({
                             icon: 'success',
                             title: 'Success.',
                             text: 'Purpose has been updated successfully',
+                        }).then(function() {
+                            location.reload(true);
                         })
                 },error: function (xhr) {
                     $('#validation-errors').html('');

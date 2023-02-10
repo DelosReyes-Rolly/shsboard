@@ -10,6 +10,9 @@
         @csrf
         <div id="whoops" class="alert alert-danger" style="display: none;">
             <b>Whoops! There is a problem in your input</b> <br/>
+            @if ($message = Session::get('message'))
+                <strong>{{ $message }}</strong>
+            @endif
             <div id="validation-errors"></div>
         </div>
         <center><div hidden id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>

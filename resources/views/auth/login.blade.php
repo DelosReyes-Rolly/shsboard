@@ -70,14 +70,16 @@
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
-                                <input id="password" type="password" class="@error('password') is-invalid @enderror" name="password" minlength="6" required autocomplete="current-password">
+                                <input id="password" type="password" class="@error('password') is-invalid @enderror" name="password" minlength="6" required autocomplete="current-password"><br/><br/>
                                 <!-- <i class="bi bi-eye-slash" style="margin-left: -30px;" id="togglePassword"></i> -->
+                                    <span style="float:left;"><input id="showpass" type="checkbox" onclick="showpassw()"></span>
+                                    <span style="float:left;"><label for="showpass">&nbsp;Show password</label></span>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div><br/>
+                            </div><br/><br/>
                             <button type="submit" class="btn btn-primary" style="padding-left:40px; padding-right:40px;">{{ __('Login') }}</button>
                             <b><br/><br/>
                                 @if (Route::is('login.students'))
@@ -106,6 +108,16 @@
             </div>
         </div>
     </div>
+    <script>
+        function showpassw() {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
     <!-- <script>
         const togglePassword = document.querySelector("#togglePassword");
         const password = document.querySelector("#password");

@@ -60,13 +60,15 @@
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();
                         $("#updateDocument"+id)[0].reset();
-                        $('#document' + response.id +' td:nth-child(2)').text(response.name);
+                        // $('#document' + response.id +' td:nth-child(2)').text(response.name);
                         $(":submit").removeAttr("disabled");
                         // $('#example').load(document.URL +  ' #example');
                         Swal.fire({
                             icon: 'success',
                             title: 'Success.',
                             text: 'Document has been updated successfully',
+                        }).then(function() {
+                            location.reload(true);
                         })
                 },error: function (xhr) {
                     $('#validation-errors').html('');

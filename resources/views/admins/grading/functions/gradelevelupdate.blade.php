@@ -63,13 +63,15 @@
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();
                         $("#updateGradelevel"+ id)[0].reset();
-                        $('#gradelevel' + id +' td:nth-child(2)').text(response.gradelevel);
+                        // $('#gradelevel' + id +' td:nth-child(2)').text(response.gradelevel);
                         $(":submit").removeAttr("disabled");
                         // $('#example').load(document.URL +  ' #example');
                         Swal.fire({
                             icon: 'success',
                             title: 'Success.',
                             text: 'Gradelevel has been updated successfully',
+                        }).then(function() {
+                            location.reload(true);
                         })
                 },error: function (xhr) {
                     $('#validation-errors').html('');

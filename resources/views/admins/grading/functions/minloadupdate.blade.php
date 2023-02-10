@@ -5,7 +5,7 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" id="updateMinload{{$regular_load->id}}" class="needs-validation" novalidate>
+<form method="POST" id="updateMinload{{$minload->id}}" class="needs-validation" novalidate>
     <div class="modal-body">
     @csrf
     @method('put')
@@ -13,7 +13,7 @@
         <b>Whoops! There is a problem in your input</b> <br/>
         <div id="validation-errors"></div>
     </div>
-    <center><div hidden id="loadingDiv{{$regular_load->id}}" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
+    <center><div hidden id="loadingDiv{{$minload->id}}" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
     <input type="hidden" id="id" name="id" value="{{$minload->id}}"/>
         <div class="col-md-12">
             <input type="number" id="minload" name="minload" class="form-control @error('minload') is-invalid @enderror" value="{{$minload->regular_load}}"style="font-size: 20px;"  onkeypress="return onlyNumberKey(event)" maxlength="4" minlength="4" required>

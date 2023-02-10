@@ -63,13 +63,15 @@
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();
                         $("#updateSchoolyear"+id)[0].reset();
-                        $('#schoolyear' + id +' td:nth-child(2)').text(response.schoolyear);
+                        // $('#schoolyear' + id +' td:nth-child(2)').text(response.schoolyear);
                         $(":submit").removeAttr("disabled");
                         // $('#example').load(document.URL +  ' #example');
                         Swal.fire({
                             icon: 'success',
                             title: 'Success.',
                             text: 'Schoolyear has been updated successfully',
+                        }).then(function() {
+                            location.reload(true);
                         })
                 },error: function (xhr) {
                     $('#validation-errors').html('');

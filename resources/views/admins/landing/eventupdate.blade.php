@@ -130,15 +130,17 @@
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();
                         $("#updateEvent"+ id)[0].reset();
-                        $('#event' + response.id +' td:nth-child(2)').text(response.what);
+                        // $('#event' + response.id +' td:nth-child(2)').text(response.what);
                         $(":submit").removeAttr("disabled");
                         // $('#example').load(document.URL +  ' #example');
                         Swal.fire({
                             icon: 'success',
                             title: 'Success.',
                             text: 'Event has been updated successfully',
-                        });
-                        $("#reloadlanding2").load(location.href + " #reloadlanding2");
+                        }).then(function() {
+                            location.reload(true);
+                        })
+                        // $("#reloadlanding2").load(location.href + " #reloadlanding2");
                 },error: function (xhr) {
                     $('#validation-errors').html('');
                     document.getElementById('whoops').style.display = 'block';

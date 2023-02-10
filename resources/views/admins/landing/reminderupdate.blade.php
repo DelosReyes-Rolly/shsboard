@@ -71,14 +71,16 @@
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();
                         $("#updateReminder"+ id)[0].reset();
-                        $('#reminder' + id +' td:nth-child(2)').text(response.content);
-                        $('#reminder' + id +' td:nth-child(4)').text(response.expired_at);
+                        // $('#reminder' + id +' td:nth-child(2)').text(response.content);
+                        // $('#reminder' + id +' td:nth-child(4)').text(response.expired_at);
                         $(":submit").removeAttr("disabled");
                         // $('#example').load(document.URL +  ' #example');
                         Swal.fire({
                             icon: 'success',
                             title: 'Success.',
                             text: 'Reminder has been updated successfully',
+                        }).then(function() {
+                            location.reload(true);
                         })
                 },error: function (xhr) {
                     $('#validation-errors').html('');

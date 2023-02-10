@@ -56,7 +56,7 @@
             </div>
             <div class="col-md-12"><br/>
                 <label for="expertise" class="col-form-label text-md-end" style="font-size: 20px;"><span style="color: red">*</span>  {{ __('Expertise') }}</label><br>
-                <select id="expertise_id" name="expertise" class="form-control" required>
+                <select id="expertise_id" name="expertise_id" class="form-control" required>
                     <option value="" disabled> Please Select Expertise </option>
                     @foreach($expertises as $expertise)
                     <option value="{{$expertise->id}}"{{ $faculty->expertise_id === $expertise->id ? 'selected' : '' }}>{{$expertise->expertise}}</option>

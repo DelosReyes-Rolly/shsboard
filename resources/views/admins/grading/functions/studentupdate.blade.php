@@ -132,27 +132,29 @@
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();
                         $("#updateStudent"+ id)[0].reset();
-                        $('#student' + id +' td:nth-child(2)').text(response.LRN);
-                        if(response.suffix == null && response.middle_name == null){
-                            $('#student' + response.id +' td:nth-child(3)').text(function(n) {return response.last_name + ', ' + response.first_name;});
-                        }
-                        else if(response.suffix == null){
-                            $('#student' + response.id +' td:nth-child(3)').text(function(n) {return response.last_name + ', ' + response.first_name + ' ' + response.middle_name;});
-                        }
-                        else if(response.middle_name == null){
-                            $('#student' + response.id +' td:nth-child(3)').text(function(n) {return response.last_name + ', ' + response.first_name + ' ' + response.suffix;});
-                        }
-                        else{
-                            $('#student' + response.id +' td:nth-child(3)').text(function(n) {return response.last_name + ', ' + response.first_name + ' ' + response.middle_name + ' ' + response.suffix;});
-                        }
-                        $('#student' + response.id +' td:nth-child(4)').text(response.gender);
-                        $('#student' + response.id +' td:nth-child(6)').text(response.email);
+                        // $('#student' + id +' td:nth-child(2)').text(response.LRN);
+                        // if(response.suffix == null && response.middle_name == null){
+                        //     $('#student' + response.id +' td:nth-child(3)').text(function(n) {return response.last_name + ', ' + response.first_name;});
+                        // }
+                        // else if(response.suffix == null){
+                        //     $('#student' + response.id +' td:nth-child(3)').text(function(n) {return response.last_name + ', ' + response.first_name + ' ' + response.middle_name;});
+                        // }
+                        // else if(response.middle_name == null){
+                        //     $('#student' + response.id +' td:nth-child(3)').text(function(n) {return response.last_name + ', ' + response.first_name + ' ' + response.suffix;});
+                        // }
+                        // else{
+                        //     $('#student' + response.id +' td:nth-child(3)').text(function(n) {return response.last_name + ', ' + response.first_name + ' ' + response.middle_name + ' ' + response.suffix;});
+                        // }
+                        // $('#student' + response.id +' td:nth-child(4)').text(response.gender);
+                        // $('#student' + response.id +' td:nth-child(6)').text(response.email);
                         // $('#example').load(document.URL +  ' #example');
                         $(":submit").removeAttr("disabled");
                         Swal.fire({
                             icon: 'success',
                             title: 'Success.',
                             text: 'Student has been updated successfully',
+                        }).then(function() {
+                            location.reload(true);
                         })
                 },error: function (xhr) {
                     $('#validation-errors').html('');

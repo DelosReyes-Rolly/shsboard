@@ -10,7 +10,7 @@
 </p>
 
     You can access your account in this link.
-@component('mail::button', ['url' => 'http://127.0.0.1:8000/login/faculties'])
+@component('mail::button', ['url' => 'https://puptcapstone.net/shsboard/logins'])
 Click here
 @endcomponent
 

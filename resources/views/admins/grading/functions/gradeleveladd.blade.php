@@ -45,7 +45,7 @@
         $(":submit").attr("disabled", true);
         $.ajax({
                 type: "POST",
-                url: "{{ route('section.store') }}",
+                url: "{{ route('gradelevel.store') }}",
                 data:form_data,
                 success: function(response) {
                     if (response) {

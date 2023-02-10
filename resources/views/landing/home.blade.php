@@ -92,35 +92,35 @@
 					                        <!-- Form Group (title)-->
 					                        <div class="col-md-3">
 						                        <br><hr><br>
-						                        <h1><b>
+						                        <h1 style="font-size: 40px;"><b>
 													@if($SchoolYear == "Not Set")
 														Not Set
 													@else
 														{{$SchoolYear -> schoolyear}}
 													@endif
 												</b></h1>					
-												<h1>School Year	</h1>
+												<h1 style="font-size: 20px;">School Year	</h1>
 												<hr>
 					                       	</div>
 					                        <!-- Form Group (title)-->
 					                        <div class="col-md-3">
 					                            <br><hr><br>
-						                        <h1><b>{{$studentCount}}</b></h1>	
-												<h1>Enrolled Students</h1>
+						                        <h1 style="font-size: 40px;"><b>{{$studentCount}}</b></h1>	
+												<h1 style="font-size: 20px;">Enrolled Students</h1>
 												<hr>
 					                        </div>
 					                        <!-- Form Group (title)-->
 					                        <div class="col-md-3">
 					                            <br><hr><br>
-						                        <h1><b>{{$facultyCount}}</b></h1>	
-												<h1>Teachers</h1>
+						                        <h1 style="font-size: 40px;"><b>{{$facultyCount}}</b></h1>	
+												<h1 style="font-size: 20px;">Teachers</h1>
 												<hr>
 					                        </div>
 					                        <!-- Form Group (title)-->
 					                        <div class="col-md-3">
 					                            <br><hr><br>
-						                        <h1><b>{{$coursesCount}}</b></h1>	
-												<h1>Strands</h1>
+						                        <h1 style="font-size: 40px;"><b>{{$coursesCount}}</b></h1>	
+												<h1 style="font-size: 20px;">Strands</h1>
 												<hr>
 					                        </div>
 					                    </div>

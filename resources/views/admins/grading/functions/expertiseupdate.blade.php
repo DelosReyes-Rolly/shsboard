@@ -63,7 +63,7 @@
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();                     // hanggang dito
                         $("#updateExpertise"+ id)[0].reset();                // irereset niya yung form
-                        $('#expertise' + id +' td:nth-child(2)').text(response.expertise);               // copy paste mo lang to. Bale pinapalitan lang niya yung row. Yung "expertise" id siya ng tr
+                        // $('#expertise' + id +' td:nth-child(2)').text(response.expertise);               // copy paste mo lang to. Bale pinapalitan lang niya yung row. Yung "expertise" id siya ng tr
                         $(":submit").removeAttr("disabled");                                                                                 // yung response galing siya sa controller yung return response()->json($expertise). Yung td:nth-child(2) column bale 2nd column
                         Swal.fire({                                                             //sweetalert
                             icon: 'success',                                                    //

@@ -60,12 +60,9 @@
                             icon: 'success',
                             title: 'Success.',
                             text: 'Document has been added successfully',
+                        }).then(function() {
+                            location.reload(true);
                         })
-                        $('#example1').dataTable().fnDestroy();
-                        var table1 = $('#example1').dataTable( {
-                            responsive: true,
-                            "bInfo" : false,
-                        } );
                         
                     }
                 },error: function (xhr) {

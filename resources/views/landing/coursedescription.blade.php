@@ -1,7 +1,7 @@
 @include('partials.landingheader')
     <section id="about" class="about">  
 		<div id="course_container_body">
-			<b style="font-size: 40px;">{{$course -> courseName}}</b>
+			<b class="course-name">{{$course -> courseName}}</b>
 			<hr style="border: 2px solid green">
 		</div>
 		<div class="container">
