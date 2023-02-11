@@ -17,20 +17,24 @@
                                             <div class="card single_post">
                                                 <div class="body">
                                                     <div class="row">
-                                                        <div class="col-lg-6 col-md-12 col-sm-12">
-                                                            <div class="img-post">
-                                                                @if($announcements->image != NULL)
-                                                                    <center><img class="d-block img-fluid announcement-image3" src="{{ asset('uploads/announcement/'.$announcements->image) }}"/></center>
-                                                                @else
-                                                                    <center><img class="d-block img-fluid announcement-image3" src="{{url('uploads/event/placeholder.png')}}"/></center>
-                                                                @endif
+                                                        @if($announcements->image != NULL)
+                                                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                                                <div class="img-post">
+                                                                        <center><img class="d-block img-fluid announcement-image3" src="{{ asset('uploads/announcement/'.$announcements->image) }}"/></center>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-lg-6 col-md-12 col-sm-12">
-                                                            <h3 style="font-size: 28px;"><b>{!!$announcements -> what!!}</b></h3><br/>
-                                                            <p>{!!\Illuminate\Support\Str::limit($announcements -> content, 100)!!}</p><br/>
-                                                            <a class="btn btn-md btn-success" href="{{ url('seeAnnouncement',['id'=>$announcements->id]) }}"><em style="font-size: 20px;">read more...</em></a>
-                                                        </div>
+                                                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                                                <h3 style="font-size: 28px;"><b>{!!$announcements -> what!!}</b></h3><br/>
+                                                                <p>{!!\Illuminate\Support\Str::limit($announcements -> content, 180)!!}</p><br/><br/>
+                                                                <a class="btn btn-md btn-success" href="{{ url('seeAnnouncement',['id'=>$announcements->id]) }}"><em style="font-size: 20px;">read more...</em></a>
+                                                            </div>
+                                                        @else
+                                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                                <h3 style="font-size: 28px;"><b>{!!$announcements -> what!!}</b></h3><br/>
+                                                                <p>{!!\Illuminate\Support\Str::limit($announcements -> content, 400)!!}</p><br/><br/>
+                                                                <a class="btn btn-md btn-success" href="{{ url('seeAnnouncement',['id'=>$announcements->id]) }}"><em style="font-size: 20px;">read more...</em></a>
+                                                            </div>
+                                                        @endif
                                                     </div>
                                                     <div class="footer">
                                                         <ul class="stats">

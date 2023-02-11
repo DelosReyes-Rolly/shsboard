@@ -112,7 +112,7 @@
                                                 <td>
                                                     <a class="btn btn-success btn-md" href="{{ url('viewreminder',['id'=>$reminder->id]) }}" data-toggle="modal" data-target="#modal-view-{{ $reminder->id }}"><i class="fa-solid fa-eye"></i> View</a>
                                                     <a class="btn btn-warning btn-md" href="{{ url('showreminder',['id'=>$reminder->id]) }}" data-toggle="modal" onclick="editItem(this)" data-id="{{ $reminder->id }}" data-target="#editModal{{ $reminder->id }}"><i class="fas fa-edit"></i> Update</a>
-                                                    <a class="btn btn-danger btn-md" href="{{ url('deleteannouncement',['id'=>$announcement->id]) }}" data-toggle="modal" onclick="deleteItem(this)" data-id="{{ $announcement->id }}" data-target="#deleteModal{{ $announcement->id }}"><i class="fas fa-trash-alt"></i> Delete</a>
+                                                    <a class="btn btn-danger btn-md" href="{{ url('deleteannouncement',['id'=>$reminder->id]) }}" data-toggle="modal" onclick="deleteItem(this)" data-id="{{ $reminder->id }}" data-target="#deleteModal{{ $reminder->id }}"><i class="fas fa-trash-alt"></i> Delete</a>
                                                 </td> 
                                             </tr>
                                             <!-- view reminder -->
@@ -123,7 +123,7 @@
                                                 </div>
                                             </div>
                                             <!-- delete modal -->
-                                            <div id="deleteModal{{ $announcement->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div id="deleteModal{{ $reminder->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
                                                 <div class="modal-dialog modal-lg" role="document">
                                                     <div class="modal-content border-start-lg border-start-yellow">
                                                     </div>

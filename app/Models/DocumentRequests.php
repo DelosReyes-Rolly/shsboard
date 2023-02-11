@@ -23,7 +23,7 @@ class DocumentRequests extends Model
     }
 
     public function gradelevel(){
-        return $this->belongsTo(Gradelevels::class);
+        return $this->belongsTo(GradeLevels::class);
     }
 
     public function purpose(){

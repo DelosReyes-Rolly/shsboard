@@ -37,7 +37,7 @@
                     Swal.fire({                                                    
                         icon: 'success',                                               
                         title: 'Success.',                                                
-                        text: 'Announcement has been deleted successfully!',                      
+                        text: 'Successfully deleted!',                      
                     })
                     $("#announcement"+id+"").remove();
                 }

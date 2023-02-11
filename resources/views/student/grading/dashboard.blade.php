@@ -421,7 +421,7 @@
                                                                         </td>
                                                                         <td>
                                                                             @if($grade12first -> isReleased == 2 || $grade12first -> isReleased == 1)
-                                                                                @if($gradeEvalCount->where('semester_id', '=', $$grade12first->semester_id)->where('faculty_id', '=', $grade12first->faculty_id)->where('subject_id', '=', $grade12first->subject_id)->count() == 0)
+                                                                                @if($gradeEvalCount->where('semester_id', '=', $grade12first->semester_id)->where('faculty_id', '=', $grade12first->faculty_id)->where('subject_id', '=', $grade12first->subject_id)->count() == 0)
                                                                                     <a href="{{route('grade-evalModal',['student_id'=> Auth::user()->id , 'gradelevel_id'=> $grade12first -> gradelevel_id, 
                                                                                         'course_id'=>  Auth::user()->course_id, 'section_id'=> Auth::user()->section_id,
                                                                                         'semester_id'=>  $grade12first -> semester_id, 'faculty_id'=> $grade12first -> faculty_id,

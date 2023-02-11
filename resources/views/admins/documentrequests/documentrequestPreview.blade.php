@@ -17,8 +17,8 @@
 	</div>
 		<div style="margin: 20px;">
         	<a class="btn btn-secondary btn-lg" href="{{ url('documentrequest') }}" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to document requests</a>
-        </div><br/>
-		<center><img src="/view/{{$requests -> file}}" style="width:max-content; height:max-content; display: block;"></center>
+        </div><br/><br/><br/><br/>
+		<center><img src="{{ asset('uploads/DocumentRequestFile/'.$requests->file) }}" style="width:max-content; height:max-content; display: block;"></center>
 	</section>
 
 <br><br><br><br>

@@ -121,7 +121,6 @@
             
             
         </div>
-
         <script type="text/javascript">
         $(document).ready(function(){
         $('.nav_btn').click(function(){
