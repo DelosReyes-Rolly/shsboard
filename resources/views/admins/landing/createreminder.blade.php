@@ -78,16 +78,16 @@
                                         </div>
                                             <!-- Form Group (content)-->
                                             <div class="mb-3">
-                                                <label class="small mb-1" for="contents" style="font-size: 24px;"><span style="color: red">*</span> Content</label>
-                                                <textarea style="font-size:24px;" class="form-control @error('contents') is-invalid @enderror" id="contents" type="text" placeholder="Enter the information" name="contents" required>{{ old('content') }}</textarea>
+                                                <label class="small mb-1" for="contents" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
+                                                <textarea style="font-size:20px;" class="form-control @error('contents') is-invalid @enderror" id="contents" type="text" placeholder="Enter the information" name="contents" required>{{ old('content') }}</textarea>
                                                 <div class="invalid-feedback">
                                                     Please input content.
                                                 </div>
                                             </div><br/>
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <label class="small mb-1" for="expired_at" style="font-size: 24px;"><span style="color: red">*</span> Expiry Date</label>
-                                                    <input style="font-size:24px;" type="date" class="form-control @error('expired_at') is-invalid @enderror" id="expired_at" placeholder="Enter the date" name="expired_at"  value="{{ old('expired_at') }}" required>
+                                                    <label class="small mb-1" for="expired_at" style="font-size: 20px;"><span style="color: red">*</span> Expiry Date</label>
+                                                    <input style="font-size:20px;" type="date" class="form-control @error('expired_at') is-invalid @enderror" id="expired_at" placeholder="Enter the date" name="expired_at"  value="{{ old('expired_at') }}" required>
                                                     <div class="invalid-feedback">
                                                         Please input expiry date.
                                                     </div>

@@ -122,15 +122,15 @@
 													<div class="row" style="padding: 40px;">
 														<div class="col-md-2">
 															<b>From:</b>
-															<input style="font-size: 24px;" type="date" name="dateFrom" class="form-control" value="<?php echo date('Y-m-d'); ?>" /><br/>
+															<input style="font-size: 20px;" type="date" name="dateFrom" class="form-control" value="<?php echo date('Y-m-d'); ?>" /><br/>
 														</div>
 														<div class="col-md-2">
 															<b>To:</b>
-															<input style="font-size: 24px;" type="date" name="dateTo" class="form-control" value="<?php echo date('Y-m-d'); ?>" />
+															<input style="font-size: 20px;" type="date" name="dateTo" class="form-control" value="<?php echo date('Y-m-d'); ?>" />
 														</div>
 														<div class="col-md-3">
 															<br/>
-															<input  style="font-size: 24px;" type="submit" name="submit" class="btn btn-primary" value="Print"/></input>
+															<input  style="font-size: 20px;" type="submit" name="submit" class="btn btn-primary" value="Print"/></input>
 														</div>
 													</div>
 												</form>
