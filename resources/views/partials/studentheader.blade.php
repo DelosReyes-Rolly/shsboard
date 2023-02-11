@@ -106,7 +106,7 @@
                                 <a class="header-letter navbar-a"  href="{{ url('/studentprofile') }}" style="color:#fff; border-top: none;">Profile</a>
                             </li>&emsp;
                             <li class="nav-item" title="Change Password">
-                                <a class="header-letter navbar-a" href="/password-student/{{Auth::user()->id}}" style="color:#fff; border-top: none;">Change Password</a>
+                                <a class="header-letter navbar-a" href="{{ url('password-student',['id'=>Auth::user()->id]) }}" style="color:#fff; border-top: none;">Change Password</a>
                             </li>&emsp;
                             <li class="nav-item" title="Logout">
                                 <a class="header-letter navbar-a" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="color:#fff; border-top: none;">{{ __('Logout') }}</a>

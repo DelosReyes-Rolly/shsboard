@@ -129,7 +129,7 @@
                                 <a class="header-letter navbar-a"  href="{{ url('/facultyprofile') }}" style="color:#fff; border-top: none;">Profile</a>
                             </li>
                             <li class="nav-item" title="Change Password">
-                                <a class="header-letter navbar-a" href="/password-faculty/{{Auth::user()->id}}}" style="color:#fff; border-top: none;">Change Password</a>
+                                <a class="header-letter navbar-a" href="{{ url('password-faculty',['id'=>Auth::user()->id]) }}" style="color:#fff; border-top: none;">Change Password</a>
                             </li>
                             <li class="nav-item" title="Logout  ">
                                 <a class="header-letter navbar-a" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="color:#fff; border-top: none;">{{ __('Logout') }}</a>

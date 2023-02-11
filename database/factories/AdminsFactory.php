@@ -20,7 +20,7 @@ class AdminsFactory extends Factory
             'last_name' => 'Admin',
             'username' => 'Admin',
             'email' => 'svnhs.shs.board@gmail.com',
-            'password' => '$2y$10$yZj0mDTC35Fxu24lbBbrzO/3e7EOHROm0DZL.jZXbqxXcyelI3Tla', // c][dPLX=7F
+            'password' => '$2y$10$AAlay30fG57Kz9MY8wT3muzAEvlUOZVc1.xs3yIPmcM/BREEwuT5m', // arcee0302admin
             // 'remember_token' => Str::random(10),
             // 'email_verified_at' => now(),
         ];
