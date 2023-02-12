@@ -5,7 +5,7 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" id="updatedExpertise{{$expertise->id}}" class="needs-validation" novalidate>     <!-- may yung id na update expertise ilalagay mo sa baba sa script -->
+<form method="POST" id="updateExpertise{{$expertise->id}}" class="needs-validation" novalidate>     <!-- may yung id na update expertise ilalagay mo sa baba sa script -->
     <div class="modal-body">
         @csrf
         @method('PUT')
@@ -16,7 +16,7 @@
         <center><div hidden id="loadingDiv{{$expertise->id}}" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <input type="hidden" id="id" name="id" value="{{$expertise->id}}"/>               <!-- lagay ka ng hidden. Yung id ng row o ng ieedit -->
         <div class="col-md-12">                                                         <!-- id ng input ay "expertise" -->
-            <input type="text" id="expertise" name="expertise" class="form-control @error('expertise') is-invalid @enderror" value="{{$expertise->expertise}}" style="font-size: 20px;" onkeydown="return alphaOnly(event);" maxlength="255"  required>
+            <input type="text" id="expertise" name="expertise" class="form-control @error('expertise') is-invalid @enderror" value="{{$expertise->expertise}}" style="font-size: 18px;" onkeydown="return alphaOnly(event);" maxlength="255"  required>
             <div class="invalid-feedback">
                 Please input valid expertise.
             </div>
@@ -73,17 +73,17 @@
                             location.reload(true);
                         })
                 },error: function (xhr) {
-                    $('#validation-errors').html('');
-                    document.getElementById('whoops').style.display = 'block';
-                    if(xhr.responseJSON.error != undefined){
-                        $("#validation-errors").html("");
-                        $('#validation-errors').append('&emsp;<li>'+xhr.responseJSON.error+'</li>');
-                    }
-                    $.each(xhr.responseJSON.errors, function(key,value) {
-                        $('#validation-errors').append('&emsp;<li>'+value+'</li>');
-                    }); 
-                    $(":submit").removeAttr("disabled");
-                },
+                        $('#validation-errors').html('');
+                        document.getElementById('whoops').style.display = 'block';
+                        if(xhr.responseJSON.error != undefined){
+                            $("#validation-errors").html("");
+                            $('#validation-errors').append('&emsp;<li>'+xhr.responseJSON.error+'</li>');
+                        }
+                        $.each(xhr.responseJSON.errors, function(key,value) {
+                            $('#validation-errors').append('&emsp;<li>'+value+'</li>');
+                        }); 
+                        $(":submit").removeAttr("disabled");
+                    },
             }).ajaxStop(function () {
                 $loading.hide();
             });

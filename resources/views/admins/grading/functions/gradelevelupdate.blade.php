@@ -16,7 +16,7 @@
         <center><div hidden id="loadingDiv{{$gradelevel->id}}" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <div class="col-md-12">
             <input type="hidden" id="id" name="id" value="{{$gradelevel->id}}"/>
-            <input id="gradelevel" type="text" name="gradelevel" class="form-control @error('gradelevel') is-invalid @enderror" value="{{$gradelevel->gradelevel}}"style="font-size: 20px;"   onkeypress="return onlyNumberKey(event)" maxlength="2" minlength="2" required>
+            <input id="gradelevel" type="text" name="gradelevel" class="form-control @error('gradelevel') is-invalid @enderror" value="{{$gradelevel->gradelevel}}"style="font-size: 18px;"   onkeypress="return onlyNumberKey(event)" maxlength="2" minlength="2" required>
             <div class="invalid-feedback">
                 Please input valid grade level.
             </div>

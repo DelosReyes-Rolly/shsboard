@@ -9,13 +9,10 @@
         <label style="font-size: 20px;"><b>Title: </b></label>
         <span style="font-size: 20px;">{{$announcement->what}}</span><br/>
 
-        <label style="font-size: 20px;"><b>When: </b></label>
-        <span style="font-size: 20px;">{{$requested_at  =   date('F d, Y', strtotime($announcement->whn))}}</span><br/>
+        <label style="font-size: 20px;"><b>Posted at: </b></label>
+        <span style="font-size: 20px;">{{$requested_at  =   date('F d, Y', strtotime($announcement->created_at))}} ; {{$time_start =  date('h:i A', strtotime($announcement->created_at))}}</span><br/>
 
-        <label style="font-size: 20px;"><b>Time: </b></label>
-        <span style="font-size: 20px;">{{$time_start =  date('h:i A', strtotime($announcement->whn_time))}}</span><br/>
-
-        <label style="font-size: 20px;"><b>Expiry date: </b></label>
+        <label style="font-size: 20px;"><b>Deadline: </b></label>
         <span style="font-size: 20px;">{{$requested_at  =   date('F d, Y', strtotime($announcement->expired_at))}}</span><br/>
 
         <label style="font-size: 20px;"><b>Gradelevel: </b></label>

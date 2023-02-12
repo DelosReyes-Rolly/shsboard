@@ -27,7 +27,7 @@ class CoursesSeeder extends Seeder
             'abbreviation' => 'STEM',
             'description' => '<p>Science, technology, engineering, and mathematics is a broad term used to group together these academic disciplines. This term is typically used to address an education policy or curriculum choices in schools. It has implications for workforce development, national security concerns and immigration policy.</p>',
             'code' => 'SVNHS-SHS_STEM',
-            'image' => 'LOGO STEM.webp',
+            'image' => 'LOGO STEM.png',
             'link' => 'https://www.youtube.com/embed/2dM62LWVbxY?list=PLAEIBqnx-wqUgyb6Ztdzo05MafyK937KO',
         ]);
         Courses::create([

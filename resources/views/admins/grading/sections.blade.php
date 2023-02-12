@@ -59,18 +59,12 @@
                                             <td width="10%" class="text-center"><?php echo $i++; ?></td>
                                             <td width="20%">{{$section -> section}}</td>
                                             <td width="40%">
-                                                <a class="btn btn-success btn-md" href="{{ url('viewsection',['id'=>$section->id]) }}" data-toggle="modal" data-target="#modal-view-{{ $section->id }}"><i class="fa-solid fa-eye"></i> View</a>
+                                                
                                                 <a class="btn btn-warning btn-md" href="{{ url('showsection',['id'=>$section->id]) }}"data-toggle="modal" onclick="editItem(this)" data-id="{{ $section->id }}" data-target="#editModal{{ $section->id }}"><i class="fas fa-edit"></i> Update</a>
                                                 <a class="btn btn-danger btn-md" href="{{ url('deletesection',['id'=>$section->id]) }}" data-toggle="modal" onclick="deleteItem(this)" data-id="{{ $section->id }}" data-target="#deleteModal{{ $section->id }}"><i class="fas fa-trash-alt"></i> Delete</a>
                                             </td> 
                                         </tr>
-                                        <!-- view modal -->
-                                        <div id="modal-view-{{ $section->id }}" class="modal fade text-center" tabindex="-1" role="dialog" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content border-start-lg border-start-yellow">
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
                                         <!-- delete modal -->
                                         <div id="deleteModal{{ $section->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog modal-lg" role="document">

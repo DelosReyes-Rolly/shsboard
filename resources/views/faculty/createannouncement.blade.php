@@ -106,24 +106,24 @@
                                                 <!-- Form Group (title)-->
                                                 <br>
                                                 <div class="col-md-6">
-                                                    <label class="large mb-1" for="inputwhat" style="font-size: 24px;"><span style="color: red">*</span> Title</label>
+                                                    <label class="large mb-1" for="inputwhat" style="font-size: 24px; font-weight: 400;"><span style="color: red">*</span> Title</label>
                                                     <input class="form-control @error('inputwhat') is-invalid @enderror" id="inputwhat" type="text" style="font-size: 20px; padding: 20px;" placeholder="Enter the title" name="inputwhat"  value="{{ old('inputwhat') }}" required>
                                                     <div class="invalid-feedback">
                                                         Please input title.
                                                     </div>
                                                 </div>
                                                 <!-- Form Group whr-->
-                                                <div class="col-md-3">
-                                                    <label class="large mb-1" for="inputwhn" style="font-size: 24px;"><span style="color: red">*</span> Date</label>
-                                                    <input type="date" class="form-control @error('inputwhn') is-invalid @enderror" id="inputinputwhn" style="font-size: 20px; padding: 20px;" placeholder="Enter the date" name="inputwhn"  value="{{ old('inputwhn') }}" required>
+                                                <div class="col-lg-3">
+                                                    <label class="large mb-1" for="inputexpired_at" style="font-size: 24px; font-weight: 400;"><span style="color: red">*</span> Activity Deadline</label>
+                                                    <input type="date" class="form-control @error('inputexpired_at') is-invalid @enderror" id="inputexpired_at" style="font-size: 20px;padding: 20px;" placeholder="Enter the date" name="inputexpired_at"  value="{{ old('inputexpired_at') }}" required>
                                                     <div class="invalid-feedback">
-                                                        Please input date.
+                                                        Please input deadline date.
                                                     </div>
                                                 </div>
                                                 <!-- Form Group (content)-->
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <label for="appt" style="font-size: 24px;"><span style="color: red">*</span> Time</label><br>
+                                                        <label for="appt" style="font-size: 24px; font-weight: 400;"><span style="color: red">*</span> Time</label><br>
                                                         <input type="time" id="whn_time" class="form-control" name="whn_time" value="{{ old('whn_time') }}" style="font-size: 20px; padding: 20px;"  required>
                                                         <div class="invalid-feedback">
                                                             Please input time.
@@ -135,7 +135,7 @@
                                             <div class="row requestdocument">
                                                 <!-- Form Group whr-->
                                                 <div class="col-lg-6 col-md-12 form-group">
-                                                    <label for="subject_id" style="font-size: 24px;"><span style="color: red">*</span> Subject</label><br/>
+                                                    <label for="subject_id" style="font-size: 24px; font-weight: 400;"><span style="color: red">*</span> Subject</label><br/>
                                                     <select id="subject_id" name="subject_id" value="{{ old('subject_id') }}" style="font-size: 16px; padding: 12px; display: block; width: 100%;" required>
                                                         <option value="" disabled selected hidden>Choose Subject</option>
                                                         @foreach ($subjects as $subject)
@@ -148,7 +148,7 @@
                                                 </div>
                                                 
                                                 <div class="col-lg-6 col-md-12 form-group">
-                                                    <label for="course_id" style="font-size: 24px;"><span style="color: red">*</span> Strand</label><br/>
+                                                    <label for="course_id" style="font-size: 24px; font-weight: 400;"><span style="color: red">*</span> Strand</label><br/>
                                                     <select id="course_id" name="course_id" value="{{ old('course_id') }}" style="font-size: 16px; padding: 12px; display: block; width: 100%;" required>
                                                         <option value="" disabled selected hidden>Choose Strand</option>
                                                         @foreach ($courses as $course)
@@ -164,7 +164,7 @@
                                             <div class="row gx-3 mb-3 requestdocument">
                                                 <!-- Form Row -->
                                                 <div class="col-lg-4 col-md-12 form-group">
-                                                    <label for="section_id" style="font-size: 24px;"><span style="color: red">*</span> Section</label><br/>
+                                                    <label for="section_id" style="font-size: 24px; font-weight: 400;"><span style="color: red">*</span> Section</label><br/>
                                                     <select id="section_id" name="section_id" value="{{ old('section_id') }}" style="font-size: 16px; padding: 12px; display: block; width: 100%;" required>
                                                         <option value="" disabled selected hidden>Choose Section</option>
                                                         @foreach ($sections as $section)
@@ -176,7 +176,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4 col-md-12 form-group">
-                                                    <label for="gradelevel_id" style="font-size: 24px;"><span style="color: red">*</span> Grade Level</label><br/>
+                                                    <label for="gradelevel_id" style="font-size: 24px; font-weight: 400;"><span style="color: red">*</span> Grade Level</label><br/>
                                                     <select id="gradelevel_id" name="gradelevel_id" value="{{ old('gradelevel_id') }}" style="font-size: 16px; padding: 12px; display: block; width: 100%;" required>
                                                         <option value="" disabled selected hidden>Choose Gradelevel</option>
                                                          @foreach ($gradelevels as $gradelevel)
@@ -187,15 +187,8 @@
                                                         Please select grade level.
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-2">
-                                                    <label class="large mb-1" for="inputexpired_at" style="font-size: 24px;"><span style="color: red">*</span> Activity Deadline</label>
-                                                    <input type="date" class="form-control @error('inputexpired_at') is-invalid @enderror" id="inputexpired_at" style="font-size: 20px;padding: 20px;" placeholder="Enter the date" name="inputexpired_at"  value="{{ old('inputexpired_at') }}" required>
-                                                    <div class="invalid-feedback">
-                                                        Please input deadline date.
-                                                    </div>
-                                                </div>
                                                 <div class="col-lg-12">
-                                                    <br/><label class="large mb-1" for="editors" style="font-size: 24px;"><span style="color: red">*</span> Content</label>
+                                                    <br/><label class="large mb-1" for="editors" style="font-size: 24px; font-weight: 400;"><span style="color: red">*</span> Content</label>
                                                     <textarea class="form-control @error('editors') is-invalid @enderror" rows="10" cols="80" id="editors" type="text" style="font-size: 20px;" placeholder="Enter your content" name="editors" required>{{ old('editors') }}</textarea>
                                                     <div class="invalid-feedback">
                                                         Please input content.
@@ -234,9 +227,8 @@
                                             <th class="border-gray-200" scope="col">Course</th>
                                             <th class="border-gray-200" scope="col">Section</th>
                                             <th class="border-gray-200" scope="col">Subject Name</th>
-                                            <th class="border-gray-200" scope="col">Date</th>
-                                            <th class="border-gray-200" scope="col">Time</th>
-                                            <th class="border-gray-200" scope="col">Expired at: </th>
+                                            <th class="border-gray-200" scope="col">Posted at</th>
+                                            <th class="border-gray-200" scope="col">Deadline: </th>
                                             <th class="border-gray-200" scope="col">Status</th>
                                             <th class="border-gray-200" scope="col">Action</th>
                                         </tr>
@@ -251,8 +243,7 @@
                                                 <td>{{$announcement -> course -> courseName}}</td>
                                                 <td>{{$announcement -> section -> section}}</td>
                                                 <td>{{$announcement -> subject -> subjectname}}</td>
-                                                <td>{{$date  =   date('F d, Y', strtotime($announcement->whn))}}</td>
-                                                <td>{{$time_start =  date('h:i A', strtotime($announcement->whn_time))}}</td>
+                                                <td>{{$date  =   date('F d, Y', strtotime($announcement->created_at))}} , {{$time_start =  date('h:i A', strtotime($announcement->created_at))}}</td>
                                                 <td>{{$date  =   date('F d, Y', strtotime($announcement->expired_at))}}</td>
                                                 <td>
                                                     <?php 

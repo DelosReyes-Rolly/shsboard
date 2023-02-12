@@ -22,15 +22,11 @@
                                                     <h4 style="font-size: 24px;"><b>Subject Name: </b>{{$announcements -> subject -> subjectname}}</h4><br/>
                                                     <h6 style="font-size: 24px;"><b>Teacher: </b>{{$announcements -> faculty -> last_name}}, {{$announcements -> faculty -> first_name}} {{$announcements -> faculty -> middle_name}}</h6><br/>
                                                     <div style="font-size: 22px;">{{$announcements -> content}}</div><br/>
-                                                    <div style="font-size: 24px;"><b>Gradelevel: </b>{{$announcements -> gradelevel -> gradelevel}}</div> <br/>
-                                                    <div style="font-size: 24px;"><b>Strand: </b>{{$announcements -> course -> courseName}}</div> <br/>
-                                                    <div style="font-size: 24px;"><b>Section: </b>{{$announcements -> section -> section}}</div> <br/>
-                                                    <div class="footer">
-                                                        <ul class="stats">
-                                                            <?php $whn = date('F d, Y', strtotime($announcements -> whn)); ?>
-                                                            <li style="font-size: 22px;">On {{$whn}}</li>
-                                                        </ul>
-                                                    </div>
+                                                    <?php $whn = date('F d, Y', strtotime($announcements -> created_at)); ?>
+                                                    <?php $timeCreated = date('h:i:sa', strtotime($announcements -> created_at)); ?>
+                                                    <div style="font-size: 24px;"><b>Posted at: </b>{{$whn}} , {{$timeCreated}}</div> <br/>
+                                                    <?php $deadline = date('F d, Y', strtotime($announcements -> expired_at)); ?>
+                                                    <div style="font-size: 24px;"><b>Deadline: </b>{{$deadline}}</div> <br/>
                                                 </div>
                                                 <hr style="border: 1px solid black">
                                             </div>

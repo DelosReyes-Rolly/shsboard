@@ -21,49 +21,49 @@
         <div class="row">
             <div class="col-md-12">
                 <label class="large mb-1" for="what" style="font-size: 20px;"><span style="color: red">*</span> Subject</label>
-                <input id="what" class="form-control @error('subject') is-invalid @enderror" type="text" placeholder="Enter the title" name="what"  value="{{$announcement->what}}" required>
+                <input id="what" style="font-size: 18px;" class="form-control @error('subject') is-invalid @enderror" type="text" placeholder="Enter the title" name="what"  value="{{$announcement->what}}" required>
                 <div class="invalid-feedback">
                     Please input subject.
                 </div>
             </div>
             <div class="col-md-12"><br/>
                 <label class="slarge mb-1" for="whn" style="font-size: 20px;"><span style="color: red">*</span> Date</label>
-                <input id="whn" type="date" class="form-control @error('date') is-invalid @enderror" placeholder="Enter the date" name="whn"  value="{{$announcement->whn}}" required>
+                <input id="whn" style="font-size: 18px;" type="date" class="form-control @error('date') is-invalid @enderror" placeholder="Enter the date" name="whn"  value="{{$announcement->whn}}" required>
                 <div class="invalid-feedback">
                     Please input date.
                 </div>
             </div>
             <div class="col-md-12"><br/>
                 <label for="appt" style="font-size: 20px;"><span style="color: red">*</span> Time:</label><br>
-                <input id="whn_time" type="time" class="form-control" name="whn_time" value="{{$announcement->whn_time}}" required>
+                <input id="whn_time" style="font-size: 18px;" style="font-size: 18px;" type="time" class="form-control" name="whn_time" value="{{$announcement->whn_time}}" required>
                 <div class="invalid-feedback">
                     Please input time.
                 </div>
             </div>
             <div class="col-md-12"><br/>
                 <label class="large mb-1" for="sender" style="font-size: 20px;"><span style="color: red">*</span> From</label>
-                <input id="sender" class="form-control @error('sender') is-invalid @enderror" type="text" placeholder="Enter the sender" name="sender"  value="{{$announcement->sender}}" required>
+                <input id="sender" style="font-size: 18px;" class="form-control @error('sender') is-invalid @enderror" type="text" placeholder="Enter the sender" name="sender"  value="{{$announcement->sender}}" required>
                 <div class="invalid-feedback">
                     Please input recipient.
                 </div>
             </div>
             <div class="col-md-12"><br/>
                 <label class="large mb-1" for="recipient" style="font-size: 20px;"><span style="color: red">*</span> To</label>
-                <input id="who" class="form-control @error('recipient') is-invalid @enderror" type="text" placeholder="Enter the recipients" name="who"  value="{{$announcement->who}}" required>
+                <input id="who" style="font-size: 18px;" class="form-control @error('recipient') is-invalid @enderror" type="text" placeholder="Enter the recipients" name="who"  value="{{$announcement->who}}" required>
                 <div class="invalid-feedback">
                     Please input sender.
                 </div>
             </div>
             <div class="col-md-12"><br/>
                 <label class="large mb-1" for="location" style="font-size: 20px;"><span style="color: red">*</span> Location</label>
-                <input id="whr" class="form-control @error('location') is-invalid @enderror" type="text" placeholder="Enter the location" name="whr"  value="{{$announcement->whr}}" required>
+                <input id="whr" style="font-size: 18px;" class="form-control @error('location') is-invalid @enderror" type="text" placeholder="Enter the location" name="whr"  value="{{$announcement->whr}}" required>
                 <div class="invalid-feedback">
                     Please input location.
                 </div>
             </div>
             <div class="col-md-12"><br/>
                 <label class="slarge mb-1" for="expired_at" style="font-size: 20px;"><span style="color: red">*</span> Expired at</label>
-                <input id="expired_at" type="date" class="form-control @error('post_expiration') is-invalid @enderror" placeholder="Enter the date" name="expired_at"  value="{{$announcement->expired_at}}" required>
+                <input id="expired_at" style="font-size: 18px;" type="date" class="form-control @error('post_expiration') is-invalid @enderror" placeholder="Enter the date" name="expired_at"  value="{{$announcement->expired_at}}" required>
                 <div class="invalid-feedback">
                     Please input expiry date.
                 </div>

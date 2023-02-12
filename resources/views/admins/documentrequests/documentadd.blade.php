@@ -1,6 +1,6 @@
 <script src="{{ asset('assets/js/needs-validated.js') }}"></script>
 <div class="modal-header">
-    <h1 class="modal-title" id="staticBackdropLabel" style="font-size: 20px;">New section</h1>
+    <h1 class="modal-title" id="staticBackdropLabel" style="font-size: 20px;">New document</h1>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -13,13 +13,13 @@
             <div id="validation-errors"></div>
         </div>
         <center><div hidden id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
-        <div class="mb-3" style="color: red">
+        <div class="mb-3" style="color: red; font-size: 18px;">
             * required field
         </div>
 		<div class="row">
 	        <div class="col-lg-12">
 				<label class="large" for="name" style="font-size: 20px;"><span style="color: red">*</span> Document Name</label>
-				<input class="form-control @error('name') is-invalid @enderror" id="name" type="text" style="font-size: 16px;" placeholder="Document Name" name="name" value="{{ old('name') }}" required>
+				<input class="form-control @error('name') is-invalid @enderror" id="name" type="text" style="font-size: 18px;"  placeholder="Document Name" name="name" value="{{ old('name') }}" required>
                 <div class="invalid-feedback">
                     Please input document name.
                 </div>

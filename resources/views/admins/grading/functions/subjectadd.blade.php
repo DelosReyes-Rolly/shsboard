@@ -18,22 +18,22 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <label><span style="color: red">*</span> Subject Code</label>
-                <input id="subjectcode" type="text" name="subjectcode" class="form-control @error('subjectcode') is-invalid @enderror" value="{{ old('subjectcode') }}" style="font-size: 14px;" required>
+                <label style="font-size: 20px;"><span style="color: red">*</span> Subject Code</label>
+                <input id="subjectcode" type="text" name="subjectcode" class="form-control @error('subjectcode') is-invalid @enderror" value="{{ old('subjectcode') }}" style="font-size: 18px;" required>
                 <div class="invalid-feedback">
                     Please input valid subject code.
                 </div>
             </div>
             <div class="col-md-12"><br/>
-                <label><span style="color: red">*</span> Subject Name</label>
-                <input id="subjectname" type="text" name="subjectname" class="form-control @error('subjectname') is-invalid @enderror" value="{{ old('subjectname') }}" style="font-size: 14px;" required>
+                <label style="font-size: 20px;"><span style="color: red">*</span> Subject Name</label>
+                <input id="subjectname" type="text" name="subjectname" class="form-control @error('subjectname') is-invalid @enderror" value="{{ old('subjectname') }}" style="font-size: 18px;" required>
                 <div class="invalid-feedback">
                     Please input valid subject name.
                 </div>
             </div>
             <div class="col-md-12"><br/>
-                <label><span style="color: red">*</span> Description</label>
-                <textarea id="description" type="text" name="description" class="form-control @error('description') is-invalid @enderror" style="font-size: 14px;" required>{{ old('description') }}</textarea>
+                <label style="font-size: 20px;"><span style="color: red">*</span> Description</label>
+                <textarea id="description" type="text" name="description" class="form-control @error('description') is-invalid @enderror" style="font-size: 18px;" required>{{ old('description') }}</textarea>
                 <div class="invalid-feedback">
                     Please input valid description.
                 </div>

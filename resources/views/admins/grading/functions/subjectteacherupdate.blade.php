@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="col-md-12"><label for="faculty_id" style="font-size: 20px;"><span style="color: red">*</span> Teacher</label>
-                    <select id="faculty" name="faculty_id" class="form-control" style="font-size: 14px;" required>
+                    <select id="faculty" name="faculty_id" class="form-control"  style="font-size: 18px;" required>
                         <option value="" disabled selected hidden>Choose Teacher</option>
                         @foreach ($faculties as $faculty)
                         <option value="{{ $faculty->id }}" {{($subjectteacher->faculty->id==$faculty->id)? 'selected':'' }}>{{ $faculty->last_name }}, {{ $faculty->first_name }} {{ $faculty->middle_name }} {{$subjectteacher -> faculty -> suffix}}</option>
@@ -34,7 +34,7 @@
             </div>
             <div class="col-md-12">
                 <div class="col-md-12"><label for="subject_id" style="font-size: 20px;"><span style="color: red">*</span> Subject</label>
-                    <select id="subject" name="subject_id" class="form-control" value="{{ old('subject_id') }}" style="font-size: 14px;" required>
+                    <select id="subject" name="subject_id" class="form-control" value="{{ old('subject_id') }}"  style="font-size: 18px;" required>
                         <option value="" disabled selected hidden>Choose Subject</option>
                         @foreach ($subjects as $subject)
                         <option value="{{ $subject->id }}"{{($subjectteacher->subject->id==$subject->id)? 'selected':'' }}>{{ $subject->subjectname}}</option>

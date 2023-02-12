@@ -16,7 +16,7 @@
         <center><div hidden id="loadingDiv{{$section->id}}" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <input type="hidden" id="id" name="id" value="{{$section->id}}"/>               <!-- lagay ka ng hidden. Yung id ng row o ng ieedit -->
         <div class="col-md-12">                                                         <!-- id ng input ay "section" -->
-            <input type="text" id="section" name="section" class="form-control @error('section') is-invalid @enderror" value="{{$section->section}}" style="font-size: 20px;" onkeydown="return alphaOnly(event);" maxlength="1" minlength="1"  required>
+            <input type="text" id="section" name="section" class="form-control @error('section') is-invalid @enderror" value="{{$section->section}}" style="font-size: 18px;" onkeydown="return alphaOnly(event);" maxlength="1" minlength="1"  required>
             <div class="invalid-feedback">
                 Please input valid section.
             </div>
@@ -61,13 +61,17 @@
                             location.reload(true);
                         })
                 },error: function (xhr) {
-                    $('#validation-errors').html('');
-                    document.getElementById('whoops').style.display = 'block';
-                    $.each(xhr.responseJSON.errors, function(key,value) {
-                        $('#validation-errors').append('&emsp;<li>'+value+'</li>');
-                    });
-                    $(":submit").removeAttr("disabled"); 
-                },
+                        $('#validation-errors').html('');
+                        document.getElementById('whoops').style.display = 'block';
+                        if(xhr.responseJSON.error != undefined){
+                            $("#validation-errors").html("");
+                            $('#validation-errors').append('&emsp;<li>'+xhr.responseJSON.error+'</li>');
+                        }
+                        $.each(xhr.responseJSON.errors, function(key,value) {
+                            $('#validation-errors').append('&emsp;<li>'+value+'</li>');
+                        }); 
+                        $(":submit").removeAttr("disabled");
+                    },
             }).ajaxStop(function () {
                 $loading.hide();
             });

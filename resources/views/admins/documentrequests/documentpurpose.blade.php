@@ -6,7 +6,7 @@
         </button>
     </div><br/>
     <div class="modal-body">
-        <div style="font-size: 40px; font-weight:bold;">
+        <div style="font-size: 40px;">
             <div class="card-body" style="padding: 10px 40px 10px 40px">
                 <span><label class="large" for="name" style="font-size: 26px;"><b>Purpose: </b></label></span>
                 <span style="font-size: 26px;">{{$purpose->purpose}}</span><br/>

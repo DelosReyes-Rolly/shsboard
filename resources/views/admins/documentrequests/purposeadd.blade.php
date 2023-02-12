@@ -19,14 +19,14 @@
 		<div class="row">
 		    <div class="col-lg-12">
 				<label class="large" for="purpose" style="font-size: 20px;">Purpose</label>
-				<input class="form-control @error('purpose') is-invalid @enderror" id="purpose" type="text" style="font-size: 16px;" placeholder="New purpose" name="purpose" value="{{ old('purpose') }}" required>
+				<input class="form-control @error('purpose') is-invalid @enderror" id="purpose" type="text" style="font-size: 18px;"  placeholder="New purpose" name="purpose" value="{{ old('purpose') }}" required>
                 <div class="invalid-feedback">
                     Please input purpose.
                 </div>
             </div>
-			<div class="col-lg-12">
+			<div class="col-lg-12"><br/>
 				<label class="large" for="proof_needed" style="font-size: 20px;">Proof Needed</label>
-				<input class="form-control @error('proof_needed') is-invalid @enderror" id="proof_needed" type="text" style="font-size: 16px;" placeholder="Proof Needed" name="proof_needed" value="{{ old('proof_needed') }}" required>
+				<input class="form-control @error('proof_needed') is-invalid @enderror" id="proof_needed" type="text" style="font-size: 18px;"  placeholder="Proof Needed" name="proof_needed" value="{{ old('proof_needed') }}" required>
                 <div class="invalid-feedback">
                     Please input proof needed.
                 </div>

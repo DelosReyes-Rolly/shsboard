@@ -27,17 +27,10 @@
                 </div>
             </div>
             <div class="col-md-12">
-                <label class="slarge mb-1" for="inputwhn" style="font-size: 20px;"><span style="color: red">*</span> When</label>
-                <input type="date" class="form-control @error('whn') is-invalid @enderror" id="inputwhn" placeholder="Enter the date" name="whn"  value="{{$announcement->whn}}" style="font-size: 20px;" required>
+                <label class="slarge mb-1" for="inputexpired_at" style="font-size: 20px;"><span style="color: red">*</span> Expired at</label>
+                <input type="date" class="form-control @error('expired_at') is-invalid @enderror" id="inputexpired_at" placeholder="Enter the date" name="expired_at"  value="{{$announcement->expired_at}}" style="font-size: 16px; padding: 20px;" required>
                 <div class="invalid-feedback">
-                    Please input date.
-                </div>
-            </div>
-            <div class="col-md-12">
-                <label for="appt" style="font-size: 20px;"><span style="color: red">*</span> Time:</label><br>
-                <input type="time" id="whn_time" name="whn_time" value="{{$announcement->whn_time}}" required>
-                <div class="invalid-feedback">
-                    Please input time.
+                    Please input expiry date.
                 </div>
             </div>
             <div class="col-md-12">
@@ -87,14 +80,7 @@
                 <div class="invalid-feedback">
                     Please choose subject.
                 </div>
-            </div>
-            <div class="col-md-12">
-                <label class="slarge mb-1" for="inputexpired_at" style="font-size: 20px;"><span style="color: red">*</span> Expired at</label>
-                <input type="date" class="form-control @error('expired_at') is-invalid @enderror" id="inputexpired_at" placeholder="Enter the date" name="expired_at"  value="{{$announcement->expired_at}}" style="font-size: 16px; padding: 20px;" required>
-                <div class="invalid-feedback">
-                    Please input expiry date.
-                </div>
-            </div>
+            </div>  
             <div class="col-md-12">
                 <label class="large mb-1" for="editor" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
                 <textarea class="form-control @error('content') is-invalid @enderror" id="editor2" type="text" placeholder="Enter the information" name="content" style="font-size: 16px;" rows="10" cols="80" required>{{$announcement->content}}</textarea>

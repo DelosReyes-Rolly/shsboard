@@ -9,7 +9,7 @@
         @if($student->status==1)
             <center><a href="/studentaddsubject/{{$student->id}}" class="btn btn-primary"><i class="fas fa-book"> </i> Add Subject Manually</a></center>
         @endif
-        <div style="font-size: 40px; font-weight:bold;">
+        <div style="font-size: 40px;;">
             <div class="card-body" style="padding: 10px 40px 10px 40px">
              
                     <span style="font-size: 26px;"><b> LRN:</b></span>

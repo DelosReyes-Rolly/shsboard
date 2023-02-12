@@ -19,7 +19,7 @@
             <div class="col-md-12">
                 <label class="large" for="name" style="font-size: 20px;"><span style="color: red">*</span> Document name:</label>
                 <br>
-                <input id="nameq" class="form-control @error('name') is-invalid @enderror"  type="text" style="font-size: 16px;" placeholder="Document Name" name="name" value="{{$document->name}}" required>
+                <input id="nameq" class="form-control @error('name') is-invalid @enderror"  type="text" style="font-size: 18px;"  placeholder="Document Name" name="name" value="{{$document->name}}" required>
                 <div class="invalid-feedback">
                     Please input valid document name.
                 </div>

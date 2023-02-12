@@ -21,8 +21,6 @@ class Activitystreams extends Migration
             $table->integer('section_id');
             $table->integer('subject_id');
             $table->string('what');
-            $table->date('whn');
-            $table->time('whn_time');
             $table->text('content');
             $table->date('expired_at')->nullable();
             $table->integer('status');

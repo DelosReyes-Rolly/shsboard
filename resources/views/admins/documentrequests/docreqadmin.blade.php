@@ -24,7 +24,7 @@
                 </div>
             @else
                 <div class="col-md-12">
-                    <label class="labels" style="font-size: 26px;">Grade Level</label><input type="text" class="form-control" style="font-size: 16px;" placeholder=" Alumni" value="" readonly> <br>
+                    <label class="labels" style="font-size: 26px;">Grade Level</label><input type="text" class="form-control" style="font-size: 18px;" placeholder=" Alumni" value="" readonly> <br>
                 </div>
             @endif
             <div class="col-md-12">
@@ -38,7 +38,7 @@
             <div class="col-md-12">
                 <label class="large mb-1" for="document_id" class="form-control @error('status') is-invalid @enderror" style="font-size: 20px;"><br><b>Status</b></label>
                 <div class="col-md-12" hidden><input class="form-control @error('status') is-invalid @enderror" id="inputstatus" type="text" placeholder="Enter status" name="status"  value="{{$docreq->status}}"></div>
-            	    <select id="status" name="status" class="form-control" value="{{$docreq->status}}"style="font-size: 16px;" >
+            	    <select id="status" name="status" class="form-control" value="{{$docreq->status}}"style="font-size: 18px;" >
             			<option value="" disabled selected>Change Status</option>
             			<option value="1" {{$docreq->status == "1" ?'selected' : ''}}>Pending</option>
             			<option value="2" {{$docreq->status == "2" ?'selected' : ''}}>On Process</option>

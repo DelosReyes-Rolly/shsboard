@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span> Expertise Name</label>
-                <input id="expertise" type="text" name="expertise"  class="form-control @error('expertise') is-invalid @enderror" value="{{ old('expertise') }}" style="font-size: 14px;"onkeydown="return alphaOnly(event);" maxlength="255"  required>
+                <input id="expertise" type="text" name="expertise"  class="form-control @error('expertise') is-invalid @enderror" value="{{ old('expertise') }}" style="font-size: 18px;"onkeydown="return alphaOnly(event);" maxlength="255"  required>
                 <div class="invalid-feedback">
                     Please input valid expertise.
                 </div>

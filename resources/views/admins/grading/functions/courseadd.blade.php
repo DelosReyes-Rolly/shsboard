@@ -19,35 +19,35 @@
         <div class="row">
             <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span> Strand Name</label>
-                <input id="courseName" type="text" name="courseName"  class="form-control @error('courseName') is-invalid @enderror" value="{{ old('courseName') }}" onkeydown="return alphaOnly(event);" style="font-size: 14px;" required>
+                <input id="courseName" type="text" name="courseName"  class="form-control @error('courseName') is-invalid @enderror" value="{{ old('courseName') }}" onkeydown="return alphaOnly(event);" style="font-size: 18px;" required>
                 <div class="invalid-feedback">
                     Please input valid strand name.
                 </div>
             </div>
             <div class="col-md-12"><br/>
                 <label style="font-size: 20px;"><span style="color: red">*</span> Abbreviation</label>
-                <input id="abbreviation" type="text" name="abbreviation"  class="form-control @error('abbreviation') is-invalid @enderror" value="{{ old('abbreviation') }}" onkeydown="return alphaOnly(event);" style="font-size: 14px;" required>
+                <input id="abbreviation" type="text" name="abbreviation"  class="form-control @error('abbreviation') is-invalid @enderror" value="{{ old('abbreviation') }}" onkeydown="return alphaOnly(event);" style="font-size: 18px;" required>
                 <div class="invalid-feedback">
                     Please input valid abbreviation.
                 </div>
             </div>
             <div class="col-md-12"><br/>
                 <label style="font-size: 20px;"><span style="color: red">*</span> Strand Description</label>
-                <textarea id="description" name="description" type=text class="form-control @error('description') is-invalid @enderror" style="font-size: 14px;" rows="10" cols="60" required>{{ old('description') }}</textarea>
+                <textarea id="description" name="description" type=text class="form-control @error('description') is-invalid @enderror" style="font-size: 18px;" rows="10" cols="60" required>{{ old('description') }}</textarea>
                 <div class="invalid-feedback">
                     Please input valid description.
                 </div>
             </div>
             <div class="col-md-12"><br/>
                 <label style="font-size: 20px;"><span style="color: red">*</span> Code</label>
-                <input id="code" type="text" name="code"  class="form-control @error('code') is-invalid @enderror" value="{{ old('code') }}"style="font-size: 14px;" required>
+                <input id="code" type="text" name="code"  class="form-control @error('code') is-invalid @enderror" value="{{ old('code') }}"style="font-size: 18px;" required>
                 <div class="invalid-feedback">
                     Please input valid strand code.
                 </div>
             </div>
             <div class="col-md-12"><br/>
                 <label style="font-size: 20px;">Video Link (Copy embed link on youtube and paste it here) </label>
-                <input id="link" type="text" name="link"  class="form-control @error('link') is-invalid @enderror" value="{{ old('link') }}" style="font-size: 14px;">
+                <input id="link" type="text" name="link"  class="form-control @error('link') is-invalid @enderror" value="{{ old('link') }}" style="font-size: 18px;">
             </div>
             <div class="col-md-12"><br/>
                 <label class="large mb-1" for="inputcontent" style="font-size: 20px;">Image (Only png and jpg files are allowed)</label>

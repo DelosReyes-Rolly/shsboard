@@ -31,5 +31,6 @@ CKEDITOR.editorConfig = function( config ) {
 	// Dialog windows are also simplified.
 	config.removeDialogTabs = 'link:advanced';
 	config.removePlugins = 'easyimage, cloudservices';
+	config.height = 400;
 };
-CKEDITOR.addCss(".cke_editable{cursor:text; font-size: 26px; font-family: Arial, sans-serif;}");
+CKEDITOR.addCss(".cke_editable{cursor:text; font-size: 20px; font-family: Arial, sans-serif;}");

@@ -18,8 +18,8 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <label style="font-size: 28px;"><span style="color: red">*</span> Grade level</label>
-                <input id="gradelevel" type="text" name="gradelevel" class="form-control @error('gradelevel') is-invalid @enderror" value="{{ old('gradelevel') }}" style="font-size: 14px;"   onkeypress="return onlyNumberKey(event)" maxlength="2" minlength="2" required>
+                <label style="font-size: 20px;"><span style="color: red">*</span> Grade level</label>
+                <input id="gradelevel" type="text" name="gradelevel" class="form-control @error('gradelevel') is-invalid @enderror" value="{{ old('gradelevel') }}" style="font-size: 18px;"  onkeypress="return onlyNumberKey(event)" maxlength="2" minlength="2" required>
                 <div class="invalid-feedback">
                     Please input valid grade level.
                 </div>

@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span> Section Name</label>
-                <input id="section" type="text" name="section" class="form-control @error('section') is-invalid @enderror" value="{{ old('section') }}" style="font-size: 14px;"onkeydown="return alphaOnly(event);" maxlength="1" minlength="1"  required>
+                <input id="section" type="text" name="section" class="form-control @error('section') is-invalid @enderror" value="{{ old('section') }}" style="font-size: 18px;" onkeydown="return alphaOnly(event);" maxlength="1" minlength="1"  required>
                 <div class="invalid-feedback">
                     Please input valid section.
                 </div>

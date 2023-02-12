@@ -26,7 +26,7 @@
             
             <div class="col-md-12"><br/>
                 <div class="col-md-12"><label for="subject_id" style="font-size: 20px;"><span style="color: red">*</span> Subject</label>
-                    <select id="subject" name="subject_id" class="form-control" value="{{ old('subject_id') }}" style="font-size: 14px;" required>
+                    <select id="subject" name="subject_id" class="form-control" value="{{ old('subject_id') }}"  style="font-size: 18px;" required>
                         <option value="" disabled selected hidden>Choose Subject</option>
                         @foreach ($subjects as $subject)
                         <option value="{{ $subject->id }}">{{ $subject->subjectname}}</option>
@@ -39,7 +39,7 @@
             </div>
             <div class="col-md-12" id="secondfac"><br/>
                 <div class="col-md-12"><label for="secondfaculty_id" style="font-size: 20px;"><span style="color: red">*</span> Teacher</label>
-                    <select id="secondfaculty_id" name="secondfaculty_id" class="form-control" value="{{ old('secondfaculty_id') }}" style="font-size: 14px;" required>
+                    <select id="secondfaculty_id" name="secondfaculty_id" class="form-control" value="{{ old('secondfaculty_id') }}"  style="font-size: 18px;" required>
                         <option value="" disabled selected hidden>Choose Teacher</option>
                     </select>
                     <div class="invalid-feedback">
@@ -49,7 +49,7 @@
             </div>
             <div class="col-md-12"><br/>
                 <div class="col-md-12"><label for="gradelevel_id" style="font-size: 20px;"><span style="color: red">*</span> Grade Level</label>
-                    <select id="gradelevel" name="gradelevel_id" class="form-control" value="{{ old('gradelevel_id') }}" style="font-size: 14px;" required>
+                    <select id="gradelevel" name="gradelevel_id" class="form-control" value="{{ old('gradelevel_id') }}"  style="font-size: 18px;" required>
                         <option value="" disabled selected hidden>Choose Gradelevel</option>
                         @foreach ($gradelevels as $gradelevel)
                         <option value="{{ $gradelevel->id }}">{{ $gradelevel->gradelevel }}</option>
@@ -62,7 +62,7 @@
             </div>
             <div class="col-md-12"><br/>
                 <div class="col-md-12"><label for="semester_id" style="font-size: 20px;"><span style="color: red">*</span> Semester</label>
-                    <select id="semester" name="semester_id" class="form-control" value="{{ old('semester_id') }}" style="font-size: 14px;" required>
+                    <select id="semester" name="semester_id" class="form-control" value="{{ old('semester_id') }}"  style="font-size: 18px;" required>
                         <option value="" disabled selected hidden>Choose Semester</option>
                         @foreach ($semesters as $semester)
                         <option value="{{ $semester->id }}">{{ $semester->sem}}</option>
@@ -75,7 +75,7 @@
             </div>
             <div class="col-md-12"><br/>
                 <div class="col-md-12"><label for="course_id" style="font-size: 20px;"><span style="color: red">*</span> Strand</label>
-                    <select id="course" name="course_id" class="form-control" value="{{ old('course_id') }}" style="font-size: 14px;" required>
+                    <select id="course" name="course_id" class="form-control" value="{{ old('course_id') }}"  style="font-size: 18px;" required>
                         <option value="" disabled selected hidden>Choose Course</option>
                         @foreach ($courses as $course)
                         <option value="{{ $course->id }}">{{ $course->courseName}}</option>
@@ -88,7 +88,7 @@
             </div>
             <div class="col-md-12"><br/>
                 <div class="col-md-12"><label for="section_id" style="font-size: 20px;"><span style="color: red">*</span> Section</label>
-                    <select id="section" name="section_id" class="form-control" value="{{ old('section_id') }}" style="font-size: 14px;" required>
+                    <select id="section" name="section_id" class="form-control" value="{{ old('section_id') }}"  style="font-size: 18px;" required>
                         <option value="" disabled selected hidden>Choose Section</option>
                         @foreach ($sections as $section)
                         <option value="{{ $section->id }}">{{ $section->section}}</option>

@@ -21,8 +21,8 @@
                 <div style="border-radius: 10px;">
                     <div class="alert alert-primary"><i class="fas fa-info"> </i> | Once you added a new school year, the current school year would be updated to the new school year added.</div>
                 </div>
-                <label style="font-size: 28px;"><span style="color: red">*</span> School Year</label>
-                <input  id="schoolyear" type="text" name="schoolyear" class="form-control @error('schoolyear') is-invalid @enderror" value="{{ old('schoolyear') }}" style="font-size: 14px;"  onkeypress="return onlyNumberKey(event)" maxlength="4" minlength="4" required>
+                <label style="font-size: 20px;"><span style="color: red">*</span> School Year</label>
+                <input  id="schoolyear" type="text" name="schoolyear" class="form-control @error('schoolyear') is-invalid @enderror" value="{{ old('schoolyear') }}" style="font-size: 18px;" onkeypress="return onlyNumberKey(event)" maxlength="4" minlength="4" required>
                 <div class="invalid-feedback">
                     Please input valid school year.
                 </div>

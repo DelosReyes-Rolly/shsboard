@@ -38,7 +38,7 @@
             });
             $('#whoops').hide();
             var id = $("#id").val();
-            var min_load = $("#minload").val();
+            var regular_load = $("#minload").val();
             var _token = $("input[name=_token]").val();
             $(":submit").attr("disabled", true);
             $.ajax({
@@ -46,7 +46,7 @@
                 url: '{{url("/updateminload/")}}/' + id,
                 data: {
                     id: id,
-                    min_load: min_load,
+                    regular_load: regular_load,
                     _token: _token,
                 },
                 success: function(response) {

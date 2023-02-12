@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
-use Excel;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminsController extends Controller
 {
@@ -803,21 +803,37 @@ class AdminsController extends Controller
             'image' => 'mimes:png,jpg,jpeg|max:2048',
             'link' => 'url|nullable',
         ]);
-        $course = new Courses();
-        $course->courseName = $request->get('courseName');
-        $course->abbreviation = $request->get('abbreviation');
-        $course->description = $request->get('description');
-        $course->code = $request->get('code');
-        $course->link = $request->get('link');
-        if($request->hasFile('image')){
-            $file = $request->file('image');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extension;
-            $file->move('img/',$filename);
-            $course->image = $filename;
+        $coursenameunique = Courses::where('deleted', '=', null)->where('courseName', '=', $request->get('courseName'))->get();
+        if($coursenameunique->count()==0){
+            $courseabbunique = Courses::where('deleted', '=', null)->where('abbreviation', '=', $request->get('abbreviation'))->get();
+            if($courseabbunique->count()==0){
+                $coursecodeunique = Courses::where('deleted', '=', null)->where('code', '=', $request->get('code'))->get();
+                if($coursecodeunique->count()==0){
+                    $course = new Courses();
+                    $course->courseName = $request->get('courseName');
+                    $course->abbreviation = $request->get('abbreviation');
+                    $course->description = $request->get('description');
+                    $course->code = $request->get('code');
+                    $course->link = $request->get('link');
+                    if($request->hasFile('image')){
+                        $file = $request->file('image');
+                        $extension = $file->getClientOriginalExtension();
+                        $filename = time().'.'.$extension;
+                        $file->move('img/',$filename);
+                        $course->image = $filename;
+                    }
+                    $course->save();
+                    return response()->json(array('success' => true));   
+                }else{
+                    return response()->json(['error' => 'Code is already taken.'], 422); 
+                }
+            }else{
+                return response()->json(['error' => 'Abbreviation is already taken.'], 422); 
+            }
+        }else{
+            return response()->json(['error' => 'Name is already taken.'], 422); 
         }
-        $course->save();
-        return response()->json(array('success' => true));   
+            
     }    
 
     
@@ -840,14 +856,29 @@ class AdminsController extends Controller
             'code' => 'required|max:255',
             'link' => 'url|nullable',
         ]);
-        $course = Courses::find($request->id);
-        $course->courseName = $request->courseName;
-        $course->abbreviation = $request->abbreviation;
-        $course->description = $request->get('descriptionupdate');
-        $course->code = $request->code;
-        $course->link = $request->link;
-        $course->save();
-        return response()->json($course);
+        $coursenameunique = Courses::where('deleted', '=', null)->where('id', '!=', $request->id)->where('courseName', '=', $request->get('courseName'))->get();
+        if($coursenameunique->count() == 0){
+            $courseabbunique = Courses::where('deleted', '=', null)->where('id', '!=', $request->id)->where('abbreviation', '=', $request->get('abbreviation'))->get();
+            if($courseabbunique->count() == 0){
+                $coursecodeunique = Courses::where('deleted', '=', null)->where('id', '!=', $request->id)->where('code', '=', $request->get('code'))->get();
+                if($coursecodeunique->count() == 0){
+                    $course = Courses::find($request->id);
+                    $course->courseName = $request->courseName;
+                    $course->abbreviation = $request->abbreviation;
+                    $course->description = $request->get('descriptionupdate');
+                    $course->code = $request->code;
+                    $course->link = $request->link;
+                    $course->save();
+                    return response()->json($course);
+                }else{
+                    return response()->json(['error' => 'Code is already taken.'], 422); 
+                }
+            }else{
+                return response()->json(['error' => 'Abbreviation is already taken.'], 422); 
+            }
+        }else{
+            return response()->json(['error' => 'Name is already taken.'], 422); 
+        }
 
    }
 
@@ -923,10 +954,16 @@ class AdminsController extends Controller
         $request->validate([
             'section' => 'required',
         ]);
-        $section = Sections::find($request->id);
-        $section->section = $request->section;
-        $section->save();
-        return response()->json($section);
+        $sectionunique = Sections::where('deleted', '=', null)->where('id', '!=', $request->id)->where('section', '=', $request->get('section'))->get();
+        if($sectionunique->count() == 0){
+            $section = Sections::find($request->id);
+            $section->section = $request->section;
+            $section->save();
+            return response()->json($section);
+        }
+        else{
+            return response()->json(['error' => 'Section is already taken.'], 422); 
+        }
    }    
 
    public function deletegradesection(Sections $section, Request $request, $id){
@@ -966,10 +1003,10 @@ class AdminsController extends Controller
 
     public function updateminload(Request $request){
         $request->validate([
-            'min_load' => ['required'],
+            'regular_load' => ['required'],
         ]);
         $minload = Loads::find($request->id); 
-        $minload->min_load = $request->min_load;
+        $minload->regular_load = $request->regular_load;
         $minload->save();
         return response()->json($minload);
     }
@@ -981,10 +1018,10 @@ class AdminsController extends Controller
 
     public function updatemaxload(Request $request){
         $request->validate([
-            'max_load' => ['required'],
+            'master_load' => ['required'],
         ]);
         $maxload = Loads::find($request->id); 
-        $maxload->max_load = $request->max_load;
+        $maxload->master_load = $request->master_load;
         $maxload->save();
         return response()->json($maxload);
     }
@@ -1196,10 +1233,15 @@ class AdminsController extends Controller
         $request->validate([
             'expertise' => 'required|max:255',
         ]);
-        $expertise = new Expertises();
-        $expertise->expertise = $request->get('expertise');
-        $expertise->save();
-        return response()->json(array('success' => true));
+        $expertiseunique = Expertises::where('deleted', '=', null)->where('expertise', '=', $request->get('expertise'))->get();
+        if($expertiseunique->count()==0){
+            $expertise = new Expertises();
+            $expertise->expertise = $request->get('expertise');
+            $expertise->save();
+            return response()->json(array('success' => true));
+        }else{
+            return response()->json(['error' => 'Expertise is already taken.'], 422); 
+        }
         // return redirect('/gradingexpertises')->with('success', 'Section has been added successfully!');
     }    
 
@@ -1222,10 +1264,15 @@ class AdminsController extends Controller
         $request->validate([
             'expertise' => 'required',
         ]);
-        $expertise = Expertises::find($request->id);
-        $expertise->expertise = $request->expertise;
-        $expertise->save();
-        return response()->json($expertise);
+        $expertiseunique = Expertises::where('deleted', '=', null)->where('id', '!=', $request->id)->where('expertise', '=', $request->get('expertise'))->get();
+        if($expertiseunique->count()==0){
+            $expertise = Expertises::find($request->id);
+            $expertise->expertise = $request->expertise;
+            $expertise->save();
+            return response()->json($expertise);
+        }else{
+            return response()->json(['error' => 'Expertise is already taken.'], 422); 
+        }
     }    
 
    public function deletegradeexpertise(Expertises $expertise, Request $request, $id){
@@ -1628,13 +1675,23 @@ class AdminsController extends Controller
             'description' => 'required',
             'expertise_id' => 'required',
         ]);
-        $subject = new Subjects();
-        $subject->subjectcode = $request->get('subjectcode');
-        $subject->subjectname = $request->get('subjectname');
-        $subject->description = $request->get('description');
-        $subject->expertise_id = $request->get('expertise_id');
-        $subject->save();
-        return response()->json(array('success' => true));   
+        $subjectcodeunique = Subjects::where('deleted', '=', null)->where('subjectcode', '=', $request->get('subjectcode'))->get();
+        if($subjectcodeunique->count()==0){
+            $subjectnameunique = Subjects::where('deleted', '=', null)->where('subjectname', '=', $request->get('subjectname'))->get();
+            if($subjectnameunique->count()==0){
+                $subject = new Subjects();
+                $subject->subjectcode = $request->get('subjectcode');
+                $subject->subjectname = $request->get('subjectname');
+                $subject->description = $request->get('description');
+                $subject->expertise_id = $request->get('expertise_id');
+                $subject->save();
+                return response()->json(array('success' => true));   
+            }else{
+                return response()->json(['error' => 'Subject name is already taken.'], 422); 
+            }
+        }else{
+            return response()->json(['error' => 'Subject code is already taken.'], 422); 
+        }
     }  
 
     public function viewsubject($id){
@@ -1656,13 +1713,23 @@ class AdminsController extends Controller
             'description' => 'required',
             'expertise_id' => 'required',
         ]);
-        $subject = Subjects::find($request->id);
-        $subject->subjectcode = $request->get('subjectcode');
-        $subject->subjectname = $request->get('subjectname');
-        $subject->description = $request->get('description');
-        $subject->expertise_id = $request->get('expertise_id');
-        $subject->save();
-        return response()->json($subject);
+        $subjectcodeunique = Subjects::where('deleted', '=', null)->where('id', '!=', $request->id)->where('subjectcode', '=', $request->get('subjectcode'))->get();
+        if($subjectcodeunique->count()==0){
+            $subjectnameunique = Subjects::where('deleted', '=', null)->where('id', '!=', $request->id)->where('subjectname', '=', $request->get('subjectname'))->get();
+            if($subjectnameunique->count()==0){
+                $subject = Subjects::find($request->id);
+                $subject->subjectcode = $request->get('subjectcode');
+                $subject->subjectname = $request->get('subjectname');
+                $subject->description = $request->get('description');
+                $subject->expertise_id = $request->get('expertise_id');
+                $subject->save();
+                return response()->json($subject);
+            }else{
+                return response()->json(['error' => 'Subject name is already taken.'], 422); 
+            }
+        }else{
+            return response()->json(['error' => 'Subject code is already taken.'], 422); 
+        }
     }
 
 
@@ -1754,10 +1821,15 @@ class AdminsController extends Controller
         $request->validate([
             'schoolyear' => 'required',
         ]);
-        $schoolyear = SchoolYear::find($request->id);
-        $schoolyear->schoolyear = $request->schoolyear;
-        $schoolyear->save();
-        return response()->json($schoolyear);
+        $schoolyearunique = SchoolYear::where('deleted', '=', null)->where('id', '!=', $request->id)->where('schoolyear', '=', $request->get('schoolyear'))->get();
+        if($schoolyearunique->count() == 0){
+            $schoolyear = SchoolYear::find($request->id);
+            $schoolyear->schoolyear = $request->schoolyear;
+            $schoolyear->save();
+            return response()->json($schoolyear);
+        }else{
+            return response()->json(['error' => 'Schoolyear is already taken.'], 422); 
+        }
     }
 
      public function deletegradeschoolyear(SchoolYear $schoolyear, Request $request, $id){
@@ -2091,10 +2163,15 @@ class AdminsController extends Controller
         $request->validate([
             'gradelevel' => 'required',
         ]);
-        $gradelevel = GradeLevels::find($request->id);
-        $gradelevel->gradelevel = $request->gradelevel;
-        $gradelevel->save();
-        return response()->json($gradelevel);
+        $gradelevelunique = GradeLevels::where('deleted', '=', null)->where('id', '!=', $request->id)->where('gradelevel', '=', $request->get('gradelevel'))->get();
+        if($gradelevelunique->count() == 0){
+            $gradelevel = GradeLevels::find($request->id);
+            $gradelevel->gradelevel = $request->gradelevel;
+            $gradelevel->save();
+            return response()->json($gradelevel);
+        }else{
+            return response()->json(['error' => 'Gradelevel is already taken.'], 422); 
+        }
    }
 
     public function deletegradegradelevel(GradeLevels $gradelevel, Request $request, $id){

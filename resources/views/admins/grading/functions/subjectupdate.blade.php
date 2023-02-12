@@ -21,28 +21,28 @@
         <div class="row">
             <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span> Subject Code</label>
-                <input id="subjectcode" type="text" name="subjectcode" class="form-control @error('subjectcode') is-invalid @enderror" value="{{$subject->subjectcode}}" style="font-size: 14px;" required>
-                <div class="invalid-feedback">
+                <input id="subjectcode" type="text" name="subjectcode" class="form-control @error('subjectcode') is-invalid @enderror" value="{{$subject->subjectcode}}" style="font-size: 18px;" required>
+                <div class="invalid-feedback"> 
                     Please input valid subject code.
                 </div>
             </div>
             <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span> Subject Name</label>
-                <input id="subjectname" type="text" name="subjectname" class="form-control @error('subjectname') is-invalid @enderror" value="{{$subject->subjectname}}" style="font-size: 14px;" required>
+                <input id="subjectname" type="text" name="subjectname" class="form-control @error('subjectname') is-invalid @enderror" value="{{$subject->subjectname}}" style="font-size: 18px;" required>
                 <div class="invalid-feedback">
                     Please input valid subject name.
                 </div>
             </div>
             <div class="col-md-12">
                 <label style="font-size: 20px;"><span style="color: red">*</span> Description</label>
-                <textarea id="description" type="text" name="description" id="editor" class="form-control @error('description') is-invalid @enderror" style="font-size: 14px;" required>{{$subject->description}}</textarea>
+                <textarea id="description" type="text" name="description" id="editor" class="form-control @error('description') is-invalid @enderror" style="font-size: 18px;" required>{{$subject->description}}</textarea>
                 <div class="invalid-feedback">
                     Please input valid description.
                 </div>
             </div>
             <div class="col-md-12">
                 <label for="expertise_id" style="font-size: 20px;"><span style="color: red">*</span> Subject</label>
-                <select id="expertise" name="expertise_id" class="form-control" value="{{ old('expertise_id') }}" style="font-size: 14px;" required>
+                <select id="expertise" name="expertise_id" class="form-control" value="{{ old('expertise_id') }}" style="font-size: 18px;" required>
                     <option value="" disabled selected hidden>Choose Subject</option>
                     @foreach ($expertises as $expertise)
                     <option value="{{ $expertise->id }}"{{($subject->expertise->id==$expertise->id)? 'selected':'' }}>{{ $expertise->expertise}}</option>

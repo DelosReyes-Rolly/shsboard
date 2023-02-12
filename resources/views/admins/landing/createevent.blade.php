@@ -143,7 +143,7 @@
                                             </div>
                                             <div class="col-md-2">
                                                 <br><label class="slarge mb-1" for="inputpost_expiration" style="font-size: 20px;"><span style="color: red">*</span> Post Expiration</label>
-                                                <input type="date" class="form-control @error('post_expiration') is-invalid @enderror" id="inputpost_expiration" placeholder="Enter the date" name="post_expiration"  value="{{ old('post_expiration') }}" required>
+                                                <input style="font-size: 20px;" type="date" class="form-control @error('post_expiration') is-invalid @enderror" id="inputpost_expiration" placeholder="Enter the date" name="post_expiration"  value="{{ old('post_expiration') }}" required>
                                                 <div class="invalid-feedback">
                                                     Please input expiry date.
                                                 </div>

@@ -162,8 +162,6 @@ class FacultyController extends Controller
             // Validate the inputs
             $request->validate([
                 'inputwhat' => 'required|max:255',
-                'inputwhn' => 'required',
-                'whn_time' => 'required',
                 'gradelevel_id' => 'required',
                 'course_id' => 'required',
                 'section_id' => 'required',
@@ -173,8 +171,6 @@ class FacultyController extends Controller
             ]);
             $announcement = new ActivityStreams();
             $announcement->what = $request->get('inputwhat');
-            $announcement->whn = $request->get('inputwhn');
-            $announcement->whn_time = $request->get('whn_time');
             $announcement->content = $request->get('editors');
             $announcement->gradelevel_id = $request->get('gradelevel_id');
             $announcement->course_id = $request->get('course_id');
@@ -214,8 +210,6 @@ class FacultyController extends Controller
          public function updateannouncement(Request $request, ActivityStreams $announcement){
             $validated = $request->validate([
                 'what' => 'required|max:255',
-                'whn' => ['required'],
-                'whn_time' => ['required'],
                 'gradelevel_id' => ['required'],
                 'course_id' => ['required'],
                 'section_id' => ['required'],

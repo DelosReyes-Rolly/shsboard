@@ -21,12 +21,12 @@
         <div class="row">
             <div class="col-md-6">
                 <label class="large mb-1" for="title" style="font-size: 20px;"><span style="color: red">*</span> Title</label>
-                <input class="form-control @error('title') is-invalid @enderror" id="title" type="text" placeholder="Enter the title" name="title"  value="{{$landing->title}}" required>
+                <input style="font-size: 18px;" class="form-control @error('title') is-invalid @enderror" id="title" type="text" placeholder="Enter the title" name="title"  value="{{$landing->title}}" required>
                 <div class="invalid-feedback">
                     Please input title.
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12"><br/>
                 <label class="large mb-1" for="editor2" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
                 <textarea class="form-control @error('editor2') is-invalid @enderror" id="editor2{{$landing->id}}" type="text" placeholder="Enter the information" name="editor2" rows="10" cols="80" required>{{$landing->content}}</textarea>
                 <div class="invalid-feedback">

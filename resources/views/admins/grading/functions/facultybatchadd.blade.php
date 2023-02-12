@@ -13,13 +13,13 @@
             <div id="validation-errors"></div>
         </div>
         <center><div hidden id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
-        <center><a href="{{ url('downloadFacultyFileFormat') }}" class="btn btn-primary"><i class="fas fa-download"></i> Download File Format</a></center>
+        <center><a href="{{ url('downloadFacultyFileFormat') }}" class="btn btn-primary" style="font-size: 18px;"><i class="fas fa-download"></i> Download File Format</a></center>
         <br/>
         <div class="mb-3" style="color: red">
             * required field
         </div>
         <div style="font-size: 20px;"><span style="color: red">*</span> Select file - Upload Excel file with the required format only</div>
-        <input type="file" name="select_file" id="select_file" class="form-control" style="font-size: 16px;" required>
+        <input type="file" name="select_file" id="select_file" class="form-control" style="font-size: 18px;" required>
         <div class="invalid-feedback">
             Please input a file.
         </div>

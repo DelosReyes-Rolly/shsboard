@@ -38,7 +38,7 @@
             });
             $('#whoops').hide();
             var id = $("#id").val();
-            var max_load = $("#maxload").val();
+            var master_load = $("#maxload").val();
             var _token = $("input[name=_token]").val();
             $(":submit").attr("disabled", true);
             $.ajax({
@@ -46,7 +46,7 @@
                 url: '{{url("/updatemaxload/")}}/' + id,
                 data: {
                     id: id,
-                    max_load: max_load,
+                    master_load: master_load,
                     _token: _token,
                 },
                 success: function(response) {
