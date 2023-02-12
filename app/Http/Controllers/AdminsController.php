@@ -1161,8 +1161,10 @@ class AdminsController extends Controller
             'select_file'  => 'required|mimes:xls,xlsx'
         ]);
 
-        $path = $request->file('select_file')->getRealPath();
+        // $path = $request->file('select_file')->getRealPath();
         // $data = Excel::load($path)->get();
+        $path1 = $request->file('select_file')->store('temp'); 
+        $path=storage_path('app').'/'.$path1;  
         $data = Excel::toArray([],$path);
         if(count($data) > 0){
             $excludedRows = 1;
@@ -1575,8 +1577,10 @@ class AdminsController extends Controller
             'select_file'  => 'required|mimes:xls,xlsx'
         ]);
 
-        $path = $request->file('select_file')->getRealPath();
+        // $path = $request->file('select_file')->getRealPath();
         // $data = Excel::load($path)->get();
+        $path1 = $request->file('select_file')->store('temp'); 
+        $path=storage_path('app').'/'.$path1;  
         $data = Excel::toArray([],$path);
         if(count($data) > 0){
             $excludedRows = 1;
