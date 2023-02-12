@@ -29,9 +29,9 @@
 			<br/><br/><br/><br/><br/><br/>
 			<div class="container" style="padding:0px 40px 0px 40px;">
 				<div>
-					<div class="reveal fade-left">{{$homes -> title}}</div>
-					<div class="titlelanding reveal fade-bottom">SVNHS</div><br/>
-					<div class="reveal fade-left"><p style="padding-top: 60px;">{!!$homes -> content!!}</p></div>
+					<div class="reveal fade-left" style="font-size: 20px;">{{$homes -> title}}</div>
+					<div class="titlelanding reveal fade-bottom"  style="font-size: 48px;">SVNHS</div><br/>
+					<div class="reveal fade-left"><p>{!!$homes -> content!!}</p></div>
 				</div>
 				<div class="reveal fade-right">
 					<img src="{{ asset('uploads/landing/'.$homes->image) }}" style = "width: 1000px; height: auto; box-shadow: 0 4px 16px rgba(0,0,0,1);"/>
@@ -60,13 +60,20 @@
 				<div class="container">
 					<div class="about-content">
 						<div class="row" style="padding:0px 40px 0px 40px;">
-							<div class="col-sm-6">
-								<div class="titlelanding reveal fade-bottom">{{$homes -> title}}</div>
-								<div class="reveal fade-left"><p style="padding-top: 60px;">{!!$homes -> content!!}</p></div>
-							</div>
-							<div class="col-sm-offset-1 col-sm-5 reveal fade-right">
-								<img src="{{ asset('uploads/landing/'.$homes->image) }}" style = "width: auto; height: auto; box-shadow: 0 4px 16px rgba(0,0,0,1);"/>
-							</div>
+						    @if($homes->image == null)
+    							<div class="col-sm-12">
+    								<div class="titlelanding reveal fade-bottom"style="font-size: 48px;">{{$homes -> title}}</div>
+    								<div class="reveal fade-left"><p style="padding-top: 20px;">{!!$homes -> content!!}</p></div>
+    							</div>
+							@else
+    						    <div class="col-sm-6">
+    								<div class="titlelanding reveal fade-bottom">{{$homes -> title}}</div>
+    								<div class="reveal fade-left"><p style="padding-top: 20px;">{!!$homes -> content!!}</p></div>
+    							</div>
+    							<div class="col-sm-offset-1 col-sm-5 reveal fade-right">
+    								<img src="{{ asset('uploads/landing/'.$homes->image) }}" style = "width: auto; height: auto; box-shadow: 0 4px 16px rgba(0,0,0,1);"/>
+    							</div>
+							@endif
 						</div>
 					</div>
 				</div>

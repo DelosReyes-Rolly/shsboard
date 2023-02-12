@@ -55,7 +55,7 @@
                     @if($cardprint!= null)
                         @if($cardprint->cardgiving == 1)
                             <div style="margin: 20px;">
-                                <a class="btn btn-primary btn-md" href="/printreportcard" style="float: right;"><i class="fas fa-file-alt"></i>  Print Certicicate of Grades</a>
+                                <a class="btn btn-primary btn-md" href="{{ url('printreportcard') }}" style="float: right;"><i class="fas fa-file-alt"></i>  Print Certicicate of Grades</a>
                             </div>
                         @endif
                     @endif

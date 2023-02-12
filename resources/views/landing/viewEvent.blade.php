@@ -19,22 +19,26 @@
                             <div class="card single_post left-to-right border-start-lg border-start-yellow">
                                 <div class="body">
                                     <div class="row">
-                                        <div class="col-lg-10 col-md-12 col-sm-12">
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
                                             @if($view->image != NULL)
-                                                <div class="img-post" style="float: left; margin: 20px;">
-                                                    <img class="d-block img-fluid announcement-image" src="{{ asset('uploads/event/'.$view->image) }}"/>
-                                                </div>
+                                                <center>
+                                                    <div class="img-post">
+                                                        <img class="d-block img-fluid announcement-image" src="{{ asset('uploads/event/'.$view->image) }}" style="width:80%; height:80%;"/>
+                                                    </div>
+                                                </center>
                                             @endif    
-                                            <div style="text-align: justify; font-size: 25px;">
+                                        </div>
+                                        <div class="col-lg-10 col-md-12 col-sm-12"><br/>    
+                                            <div style="font-size: 25px;">
                                                 <br/><h3 style="font-size: 40px;"><b>{!!$view -> what!!}</b></h3><br/>
                                                 <p>{!!$view -> content!!}</p><br/><br/>
                                             </div>
                                         </div>
-                                        <div class="col-lg-2 col-md-12 col-sm-12" style="margin-top: 20px;">
+                                        <div class="col-lg-2 col-md-12 col-sm-12" style="margin-top: 20px;"><br/>  
 											<b style="font-size: 20px;">WHEN: <li>On {{$date  =   date('F d, Y', strtotime($view->whn))}}</a></li><br></b>
 											<b style="font-size: 20px;">WHERE: <li>{{$view -> whr}}</li></b><br>
-											<b style="font-size: 20px;">FROM: </b>{{$view -> sender}}<br><br>
-                                            <b style="font-size: 20px;">TO: </b>{{$view -> who}}<br><br>
+											<b style="font-size: 20px;">FROM: {{$view -> sender}}</b><br><br>
+                                            <b style="font-size: 20px;">TO: {{$view -> who}}</b><br><br>
 											<br><br>
 							            </div>
                                     </div>

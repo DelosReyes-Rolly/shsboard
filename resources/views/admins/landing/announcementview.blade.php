@@ -9,7 +9,7 @@
         
             <div class="px-2 mt-2">
                 @if($announcement->privacy == 1)
-                    <div style="font-size: 20px;">
+                    <div>
                         <nav  aria-label = "breadcrumb">
                             <!--Add the "breadcrumb" class to ul element that represents the breadcrumb-->
                             <ul class = "breadcrumb">
@@ -21,7 +21,7 @@
                         </nav>
                     </div>
                 @elseif($announcement->privacy == 2)
-                    <div style="font-size: 20px;">
+                    <div>
                         <nav  aria-label = "breadcrumb">
                             <!--Add the "breadcrumb" class to ul element that represents the breadcrumb-->
                             <ul class = "breadcrumb">

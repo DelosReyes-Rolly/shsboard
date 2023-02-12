@@ -4,7 +4,7 @@
 
 
 	<section>
-	<div style="font-size: 20px;">
+	<div>
 		<nav  aria-label = "breadcrumb">
             <!--Add the "breadcrumb" class to ul element that represents the breadcrumb-->
             <ul class = "breadcrumb">

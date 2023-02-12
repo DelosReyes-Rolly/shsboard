@@ -1,6 +1,6 @@
 @include('partials.facultyheader')
 <main>
-    <div style="font-size: 20px;">  
+    <div>  
 		<nav  aria-label = "breadcrumb">
             <!--Add the "breadcrumb" class to ul element that represents the breadcrumb-->
             <ul class = "breadcrumb">
@@ -41,7 +41,7 @@
                                             <?php $whn = date('F d, Y', strtotime($view -> whn)); ?>
                                             <li>From {{$view -> sender}}</li>
                                             <li>To {{$view -> who}}</li>
-                                            <li>On {{$date  =   date('F d, Y', strtotime($view->whn))}}</li>
+                                            <li>On {{$date  =   date('F d, Y', strtotime($view->whn))}} ; {{$time  =   date('h:i:s', strtotime($view->whn_time))}}</li>
                                         </ul>
                                     </div>
                                 </div>

@@ -29,8 +29,8 @@
                             <div class="card single_post left-to-right border-start-lg border-start-yellow">
                                 <div class="body">
                                     @if($view->image != NULL)
-                                        <div class="img-post" style="float: left; margin: 20px;">
-                                            <img class="d-block img-fluid announcement-image" src="{{ asset('uploads/announcement/'.$view->image) }}" />
+                                        <div class="img-post" style="margin: 20px;">
+                                            <img class="d-block img-fluid announcement-image" src="{{ asset('uploads/announcement/'.$view->image) }}" style="width:100%; height:100%;"/>
                                         </div>
                                     @endif   
                                     <div style="font-size: 25px;"><br/>
@@ -42,7 +42,7 @@
                                             <?php $whn = date('F d, Y', strtotime($view -> whn)); ?>
                                             <li>From {{$view -> sender}}</li>
                                             <li>To {{$view -> who}}</li>
-                                            <li>On {{$date  =   date('F d, Y', strtotime($view->whn))}}</li>
+                                            <li>On {{$date  =   date('F d, Y', strtotime($view->whn))}} ; {{$time  =   date('h:i:s', strtotime($view->whn_time))}}</li>
                                         </ul>
                                     </div>
                                 </div>

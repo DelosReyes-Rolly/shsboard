@@ -32,7 +32,7 @@
 
 	
 	<section>
-	<div style="font-size: 20px;">
+	<div>
 		<nav  aria-label = "breadcrumb">
             <!--Add the "breadcrumb" class to ul element that represents the breadcrumb-->
             <ul class = "breadcrumb">
@@ -107,7 +107,7 @@
 												                    $i=1;
 												                ?>
 																	@foreach ($requests as $request)
-																		@if($request->gradelevel_id == 1)
+																		@if($request->gradelevel_id == 2)
 																			<tr>
 																				<?php $requested_at = date('F d, Y', strtotime($request -> created_at)); ?>
 																				<td class="text-center"><?php echo $i++; ?></td>
@@ -117,7 +117,7 @@
 																				<td>{{$request -> purpose -> purpose}}</td>
 																				<td>{{$requested_at}}</td>
 																				<td>
-																					<a href="/download/{{$request -> file}}" class="btn btn-primary">Download</a> 
+																					<a href="{{ url('download',['file'=>$request -> file]) }}" class="btn btn-primary">Download</a> 
 																				</td>
 																				<td>
 																					<?php 

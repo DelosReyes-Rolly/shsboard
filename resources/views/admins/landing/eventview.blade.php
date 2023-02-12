@@ -4,7 +4,7 @@
 <script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
         <div>
             <div class="px-2 mt-2 left-to-right">
-                <div style="font-size: 20px;">
+                <div>
                     <nav  aria-label = "breadcrumb">
                         <!--Add the "breadcrumb" class to ul element that represents the breadcrumb-->
                         <ul class = "breadcrumb">

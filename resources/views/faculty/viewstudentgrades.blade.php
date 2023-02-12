@@ -8,7 +8,7 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script> -->
-    <div style="font-size: 20px;">  
+    <div>  
 		<nav  aria-label = "breadcrumb">
             <!--Add the "breadcrumb" class to ul element that represents the breadcrumb-->
             <ul class = "breadcrumb">

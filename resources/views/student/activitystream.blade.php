@@ -18,15 +18,19 @@
                                         @foreach ($announcement as $announcements)
                                             <div class="card single_post left-to-right">
                                                 <div class="body">
-                                                    <h3 style="font-size: 28px;"><b>{{$announcements -> what}}</b></h3><br/>
                                                     <h4 style="font-size: 24px;"><b>Subject Name: </b>{{$announcements -> subject -> subjectname}}</h4><br/>
-                                                    <h6 style="font-size: 24px;"><b>Teacher: </b>{{$announcements -> faculty -> last_name}}, {{$announcements -> faculty -> first_name}} {{$announcements -> faculty -> middle_name}}</h6><br/>
-                                                    <div style="font-size: 22px;">{{$announcements -> content}}</div><br/>
-                                                    <?php $whn = date('F d, Y', strtotime($announcements -> created_at)); ?>
-                                                    <?php $timeCreated = date('h:i:sa', strtotime($announcements -> created_at)); ?>
-                                                    <div style="font-size: 24px;"><b>Posted at: </b>{{$whn}} , {{$timeCreated}}</div> <br/>
+                                                    <h6 style="font-size: 24px;"><b>Teacher: </b>{{$announcements -> faculty -> last_name}}, {{$announcements -> faculty -> first_name}} {{$announcements -> faculty -> middle_name}}</h6><br/><br/>
+                                                    <h3 style="font-size: 28px;"><b>{{$announcements -> what}}</b></h3><br/>
                                                     <?php $deadline = date('F d, Y', strtotime($announcements -> expired_at)); ?>
                                                     <div style="font-size: 24px;"><b>Deadline: </b>{{$deadline}}</div> <br/>
+                                                    <div style="font-size: 22px;">{{$announcements -> content}}</div><br/>
+                                                    <div class="footer">
+                                                        <ul class="stats">
+                                                            <?php $whn = date('F d, Y', strtotime($announcements -> created_at)); ?>
+                                                            <?php $timeCreated = date('h:i:s', strtotime($announcements -> created_at)); ?>
+                                                            <div style="font-size: 24px;"><b>Posted at: </b>{{$whn}} , {{$timeCreated}}</div> <br/>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                                 <hr style="border: 1px solid black">
                                             </div>

@@ -8,7 +8,7 @@
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>            
     <script src="https://markcell.github.io/jquery-tabledit/assets/js/tabledit.min.js"></script> -->
-    <div style="font-size: 20px;">  
+    <div>  
 		<nav  aria-label = "breadcrumb">
             <!--Add the "breadcrumb" class to ul element that represents the breadcrumb-->
             <ul class = "breadcrumb">
@@ -36,10 +36,10 @@
         <h3 style="font-size: 28px; font-weight: 800;">Table of Students </h3><br/>
       <hr class="mt-0 mb-4"><br/>
             <div style="background-color: #ffffff; box-shadow: 0 4px 16px rgba(0,0,0,0.6);">
-                <div class="card-header bg-primary" style="font-size: 20px;"><b>Male</b></div>
+                <div class="card-header" style="font-size: 20px; background-color:#04b054; color:white;"><b>Male</b></div>
                 <div>  
                 
-                    <div class="table-responsive border-start-lg border-start-primary" style=" box-shadow: 0 4px 16px rgba(0,0,0,0.6);">  
+                    <div class="table-responsive border-start-lg border-start-success" style=" box-shadow: 0 4px 16px rgba(0,0,0,0.6);">  
                     @if($male->count() == 0) 
                         <!-- find all subject of teachers then count if they have one. -->
                         <div class="alert alert-danger"><em>No male records found.</em></div>
@@ -50,7 +50,7 @@
                         @else
                             <table id="editable1" class="table table-bordered table-striped table-hover">
                         @endif
-                            <thead class="thead-dark">
+                            <thead style="font-size: 20px; background-color:#0d4514; color:white;">
                                 <tr>
                                     <th style="font-size: 20px;">#</th>
                                     <th style="font-size: 20px;">Student name</th>
@@ -157,16 +157,16 @@
             </div>
             <br/><br/>
             <div style="background-color: #ffffff; box-shadow: 0 4px 16px rgba(0,0,0,0.6);">
-                <div class="card-header bg-primary" style="font-size: 20px;"><b>Female</b></div>
+                <div class="card-header" style="font-size: 20px; background-color:#04b054; color:white;"><b>Female</b></div>
                 <div>  
-                    <div class="table-responsive border-start-lg border-start-primary" style="background-color: #ffffff; box-shadow: 0 4px 16px rgba(0,0,0,0.6);">  
+                    <div class="table-responsive border-start-lg border-start-success" style="background-color: #ffffff; box-shadow: 0 4px 16px rgba(0,0,0,0.6);">  
                     @if($female->count() == 0) 
                         <!-- find all subject of teachers then count if they have one. -->
                         <div class="alert alert-danger"><em>No female records found.</em></div>
                     @else
                         @csrf
                         <table id="editable2" class="table table-bordered table-striped table-hover">
-                            <thead class="thead-dark">
+                            <thead style="font-size: 20px; background-color:#0d4514; color:white;">
                                 <tr>
                                     <th style="font-size: 20px;">#</th>
                                     <th style="font-size: 20px;">Student name</th>

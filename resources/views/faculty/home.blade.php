@@ -41,7 +41,7 @@
                                                             <?php $whn = date('F d, Y', strtotime($announcements -> whn)); ?>
                                                             <li>From {{$announcements -> sender}}</li>
                                                             <li>To {{$announcements -> who}}</li>
-                                                            <li>On {{$date  =   date('F d, Y', strtotime($announcements->whn))}}</li>
+                                                            <li>On {{$date  =   date('F d, Y', strtotime($announcements->whn))}} ; {{$time  =   date('h:i:s', strtotime($announcements->whn_time))}}</li>
                                                         </ul>
                                                     </div>
                                                 </div>

@@ -136,7 +136,7 @@
                                                 <!-- Form Group whr-->
                                                 <div class="col-lg-6 col-md-12 form-group">
                                                     <label for="subject_id" style="font-size: 24px; font-weight: 400;"><span style="color: red">*</span> Subject</label><br/>
-                                                    <select id="subject_id" name="subject_id" value="{{ old('subject_id') }}" style="font-size: 16px; padding: 12px; display: block; width: 100%;" required>
+                                                    <select id="subject_id" name="subject_id" value="{{ old('subject_id') }}" style="font-size: 18px; padding: 12px; display: block; width: 100%;" required>
                                                         <option value="" disabled selected hidden>Choose Subject</option>
                                                         @foreach ($subjects as $subject)
                                                             <option value="{{ $subject->subject->id }}">{{ $subject->subject->subjectname}}</option>
@@ -149,7 +149,7 @@
                                                 
                                                 <div class="col-lg-6 col-md-12 form-group">
                                                     <label for="course_id" style="font-size: 24px; font-weight: 400;"><span style="color: red">*</span> Strand</label><br/>
-                                                    <select id="course_id" name="course_id" value="{{ old('course_id') }}" style="font-size: 16px; padding: 12px; display: block; width: 100%;" required>
+                                                    <select id="course_id" name="course_id" value="{{ old('course_id') }}" style="font-size: 18px; padding: 12px; display: block; width: 100%;" required>
                                                         <option value="" disabled selected hidden>Choose Strand</option>
                                                         @foreach ($courses as $course)
                                                             <option value="{{ $course->course->id }}">{{ $course->course->courseName}}</option>
@@ -165,7 +165,7 @@
                                                 <!-- Form Row -->
                                                 <div class="col-lg-4 col-md-12 form-group">
                                                     <label for="section_id" style="font-size: 24px; font-weight: 400;"><span style="color: red">*</span> Section</label><br/>
-                                                    <select id="section_id" name="section_id" value="{{ old('section_id') }}" style="font-size: 16px; padding: 12px; display: block; width: 100%;" required>
+                                                    <select id="section_id" name="section_id" value="{{ old('section_id') }}" style="font-size: 18px; padding: 12px; display: block; width: 100%;" required>
                                                         <option value="" disabled selected hidden>Choose Section</option>
                                                         @foreach ($sections as $section)
                                                             <option value="{{ $section->section->id }}">{{ $section->section->section}}</option>
@@ -177,7 +177,7 @@
                                                 </div>
                                                 <div class="col-lg-4 col-md-12 form-group">
                                                     <label for="gradelevel_id" style="font-size: 24px; font-weight: 400;"><span style="color: red">*</span> Grade Level</label><br/>
-                                                    <select id="gradelevel_id" name="gradelevel_id" value="{{ old('gradelevel_id') }}" style="font-size: 16px; padding: 12px; display: block; width: 100%;" required>
+                                                    <select id="gradelevel_id" name="gradelevel_id" value="{{ old('gradelevel_id') }}" style="font-size: 18px; padding: 12px; display: block; width: 100%;" required>
                                                         <option value="" disabled selected hidden>Choose Gradelevel</option>
                                                          @foreach ($gradelevels as $gradelevel)
                                                              <option value="{{ $gradelevel->gradelevel->id }}">{{ $gradelevel->gradelevel->gradelevel }}</option>
@@ -261,9 +261,9 @@
                                                     ?>
                                                 </td>
                                                 <td>
-                                                    <a class="btn btn-success btn-md" href="{{ url('viewfacultyannouncement',['id'=>$announcement->id]) }}" data-toggle="modal" data-target="#modal-view-{{$announcement->id}}" style="font-size: 16px;"><i class="fa-solid fa-eye"></i> View</a>
-                                                    <a class="btn btn-warning btn-md" href="{{ url('showfacultyannouncement',['id'=>$announcement->id]) }}" data-toggle="modal" onclick="editItem(this)" data-id="{{ $announcement->id }}" data-target="#editModal{{ $announcement->id }}" style="font-size: 16px;"><i class="fas fa-edit"></i> Update</a>
-                                                    <a class="btn btn-danger btn-md" href="{{ url('deleteannouncementfaculty',['id'=>$announcement->id]) }}" data-toggle="modal" onclick="deleteItem(this)" data-id="{{ $announcement->id }}" data-target="#deleteModal{{ $announcement->id }}" style="font-size: 16px;"><i class="fas fa-trash-alt"></i> Delete</a>
+                                                    <a class="btn btn-success btn-md" href="{{ url('viewfacultyannouncement',['id'=>$announcement->id]) }}" data-toggle="modal" data-target="#modal-view-{{$announcement->id}}" style="font-size: 18px;"><i class="fa-solid fa-eye"></i> View</a>
+                                                    <a class="btn btn-warning btn-md" href="{{ url('showfacultyannouncement',['id'=>$announcement->id]) }}" data-toggle="modal" onclick="editItem(this)" data-id="{{ $announcement->id }}" data-target="#editModal{{ $announcement->id }}" style="font-size: 18px;"><i class="fas fa-edit"></i> Update</a>
+                                                    <a class="btn btn-danger btn-md" href="{{ url('deleteannouncementfaculty',['id'=>$announcement->id]) }}" data-toggle="modal" onclick="deleteItem(this)" data-id="{{ $announcement->id }}" data-target="#deleteModal{{ $announcement->id }}" style="font-size: 18px;"><i class="fas fa-trash-alt"></i> Delete</a>
                                                 </td> 
                                             </tr>
                                             <!-- modal view -->

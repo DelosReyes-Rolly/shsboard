@@ -57,7 +57,7 @@
                                                 <!-- Form Group (content)-->
                                                 <div class="col-lg-6 col-md-6 col-sm-12 requestdocument">
                                                 	<label class="large mb-1" for="document_type" class="form-control @error('document_type') is-invalid @enderror" style="font-size: 20px;"><br><span style="color: red">*</span> Document Needed</label>
-                                                    <select id="document_type" name="document_type" class="form-control" value="{{ old('document_type') }}" style="font-size: 16px;" required>
+                                                    <select id="document_type" name="document_type" class="form-control" value="{{ old('document_type') }}" style="font-size: 18px;" required>
                                                         <option value="" disabled selected hidden>Choose Document</option>
                                                         @foreach ($lists as $list)
                                                             <option value="{{ $list->id }}">{{ $list->name}}</option>
@@ -71,7 +71,7 @@
                                                 <!-- Form Group (content)-->
                                                 <div class="col-lg-6 col-md-6 col-sm-12 requestdocument">
                                                 	<label class="large mb-1" for="inputpurpose" style="font-size: 20px;" class="form-control @error('purpose') is-invalid @enderror"><br><span style="color: red">*</span> Purpose</label>
-                                                    <select id="purpose" name="purpose" class="form-control" value="{{ old('purpose') }}" style="font-size: 16px;"  required>
+                                                    <select id="purpose" name="purpose" class="form-control" value="{{ old('purpose') }}" style="font-size: 18px;"  required>
                                                         <option value="" disabled selected hidden>Choose Purpose</option>
                                                         @foreach ($purposes as $purpose)
                                                             <option value="{{ $purpose->id }}" data-proof="{{ $purpose->proof_needed}}">{{ $purpose->purpose}}</option>
@@ -88,7 +88,7 @@
                                                     <div style="font-size: 20px;">
                                                         <span style="color: red">*</span> <span>Proof needed: </span>(only JPG or PNG files are allowed)
                                                         <input id="proof" name="proof_needed" style="border: none; width:100%; padding-left: 2%;" value="" disabled><br><br>
-                                                        <input type="file" id="file" name = "file" class="form-control" style="font-size: 16px;" required>
+                                                        <input type="file" id="file" name = "file" class="form-control" style="font-size: 18px;" required>
                                                         <div class="invalid-feedback">
                                                             Please upload needed proof.
                                                         </div>  

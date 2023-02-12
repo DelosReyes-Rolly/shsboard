@@ -12,7 +12,7 @@
             <b>Whoops! There is a problem in your input</b> <br/>
             <div id="validation-errors"></div>
         </div>
-        <center><div hidden id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
+        <center><div id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
         <center><a href="{{ url('downloadFacultyFileFormat') }}" class="btn btn-primary" style="font-size: 18px;"><i class="fas fa-download"></i> Download File Format</a></center>
         <br/>
         <div class="mb-3" style="color: red">

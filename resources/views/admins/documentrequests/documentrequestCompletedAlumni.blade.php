@@ -32,7 +32,7 @@
 
 	
 	<section>
-	<div style="font-size: 20px;">
+	<div>
 		<nav  aria-label = "breadcrumb">
             <!--Add the "breadcrumb" class to ul element that represents the breadcrumb-->
             <ul class = "breadcrumb">
@@ -117,7 +117,7 @@
 																				<td>{{$request -> purpose -> purpose}}</td>
 																				<td>{{$requested_at}}</td>
 																				<td>
-																					<a href="/download/{{$request -> file}}" class="btn btn-primary">Download</a> 
+																					<a href="{{ url('download',['file'=>$request -> file]) }}" class="btn btn-primary">Download</a> 
 																				</td>
 																				<td>
 																					<?php 

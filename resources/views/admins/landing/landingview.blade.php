@@ -5,7 +5,7 @@
 <div class="">
         <div class="">
             <div class="px-2 mt-2">
-                <div style="font-size: 20px;">
+                <div>
                     <nav  aria-label = "breadcrumb">
                         <!--Add the "breadcrumb" class to ul element that represents the breadcrumb-->
                         <ul class = "breadcrumb">
@@ -39,22 +39,30 @@
                                         </div>
                                     </div><br/>
                                     <div class="row gx-3 mb-3">
-                                        <div class="col-md-6">
-                                            @if($landing->image == NULL)
-                                                <img src="../uploads/event/placeholder.png" style = "width: auto; height: auto"/>
-                                            @else
+                                        @if($landing->image != NULL)
+                                            <div class="col-md-6">
                                                 <img src="{{ asset('uploads/landing/'.$landing->image) }}" style = "width: auto; height: auto"/>
-                                            @endif
-                                        </div>
-                                        <!-- Form Group (content)-->
-                                        <div class="col-md-6">
-                                            <label class="large mb-1" style="font-size: 26px;"><b>Content:</b></label>
-                                            <div id="reloadlanding">{!!$landing->content!!}</div>
-                                            <!-- Save changes button-->
-                                            <div class="pull-right">
-                                                <a class="btn btn-warning btn-md" href="{{ url('showlanding',['id'=>$landing->id]) }}" onclick="editItem(this)" data-id="{{ $landing->id }}" data-toggle="modal" data-target="#editModal{{ $landing->id }}"><i class="fas fa-edit"></i> Update</a>
                                             </div>
-                                        </div><br/>
+                                            <!-- Form Group (content)-->
+                                            <div class="col-md-6">
+                                                <label class="large mb-1" style="font-size: 26px;"><b>Content:</b></label>
+                                                <div id="reloadlanding">{!!$landing->content!!}</div>
+                                                <!-- Save changes button-->
+                                                <div class="pull-right">
+                                                    <a class="btn btn-warning btn-md" href="{{ url('showlanding',['id'=>$landing->id]) }}" onclick="editItem(this)" data-id="{{ $landing->id }}" data-toggle="modal" data-target="#editModal{{ $landing->id }}"><i class="fas fa-edit"></i> Update</a>
+                                                </div>
+                                            </div><br/>
+                                        @else
+                                            <!-- Form Group (content)-->
+                                            <div class="col-md-12">
+                                                <label class="large mb-1" style="font-size: 26px;"><b>Content:</b></label>
+                                                <div id="reloadlanding">{!!$landing->content!!}</div>
+                                                <!-- Save changes button-->
+                                                <div class="pull-right">
+                                                    <a class="btn btn-warning btn-md" href="{{ url('showlanding',['id'=>$landing->id]) }}" onclick="editItem(this)" data-id="{{ $landing->id }}" data-toggle="modal" data-target="#editModal{{ $landing->id }}"><i class="fas fa-edit"></i> Update</a>
+                                                </div>
+                                            </div><br/>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

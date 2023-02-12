@@ -16,7 +16,7 @@
                             <thead class="table-success">
                                 <tr>
                                     <th width="4%" class="border-gray-200" scope="col">#</th>
-                                    <th width="96%" class="border-gray-200" scope="col">Teahcer Name</th>
+                                    <th width="96%" class="border-gray-200" scope="col">Teacher Name</th>
                                 </tr>
                             </thead>
                             <tbody>

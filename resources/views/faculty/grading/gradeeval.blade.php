@@ -119,11 +119,11 @@
                                                             </form>
                                                         <?php else: ?>
                                                             {{$gradeevaluationrequest -> file}}<br>
-                                                            <a href="{{ url('download',['file'=>$gradeevaluationrequest -> file]) }}" class="btn btn-primary">Download</a> 
+                                                            <a style="font-size: 20px;" href="{{ url('download',['file'=>$gradeevaluationrequest -> file]) }}" class="btn btn-primary">Download</a> 
                                                         <?php endif; ?> 
                                                     </td>
                                                     <td>
-                                                        <a class="btn btn-success btn-lg" href="{{ url('viewGradeEvaluation',['id'=>$gradeevaluationrequest->id]) }}" data-toggle="modal" data-target="#modal-view-{{ $gradeevaluationrequest->id }}" style="font-size: 14px;"><i class="fa-solid fa-eye"></i> View</a>
+                                                        <a class="btn btn-success btn-lg" href="{{ url('viewGradeEvaluation',['id'=>$gradeevaluationrequest->id]) }}" data-toggle="modal" data-target="#modal-view-{{ $gradeevaluationrequest->id }}" style="font-size: 20px;"><i class="fa-solid fa-eye"></i> View</a>
                                                     </td>
                                                 </tr>
                                                 <!-- view modal -->
