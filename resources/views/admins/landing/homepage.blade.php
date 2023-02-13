@@ -67,8 +67,8 @@
                                         <div class="row">
                                             <!-- Form Group (title)-->
                                             <div class="col-md-12">
-                                                <label class="large mb-1" for="inputtitle" style="font-size: 20px;"><span style="color: red">*</span> Title</label>
-                                                <input style="font-size: 18px;" class="form-control @error('title') is-invalid @enderror" id="inputtitle" type="text" placeholder="Enter the title" name="title"  value="{{ old('title') }}" required>
+                                                <label class="large mb-1" for="inputtitle" style="font-size: 22px;"><span style="color: red">*</span> Title</label>
+                                                <input style="font-size: 20px;" class="form-control @error('title') is-invalid @enderror" id="inputtitle" type="text" placeholder="Enter the title" name="title"  value="{{ old('title') }}" required>
                                                 <div class="invalid-feedback">
                                                     Please input subject.
                                                 </div>
@@ -85,10 +85,10 @@
                                             <div class="row" style="padding-left: 22px;">
                                                 <!-- Form Group (img)-->
                                                 <div class="col-md-12">
-                                                    <label class="large mb-1" for="inputcontent" style="font-size: 20px;">Image (Only png and jpg files are allowed)</label>
+                                                    <label class="large mb-1" for="inputcontent" style="font-size: 22px;">Image (Only png and jpg files are allowed)</label>
                                                     <div class ="form-group row">
                                                         <div class="col-md-8"></div>
-                                                        <input style="font-size: 18px;" type="file" name = "image" class="form-control">
+                                                        <input style="font-size: 20px;" type="file" name = "image" class="form-control">
                                                     </div> 
                                                 </div>
                                             </div><br/>
@@ -111,7 +111,7 @@
                     <strong>{{ $message }}</strong>
                 </div>
             @endif
-            <h3 style="font-size: 28px; font-weight: 800;">Table of contents at Home Page</h3>
+            <h3 style="font-size: 28px; font-weight: 800;">Table of Contents at Home Page</h3>
             <hr class="mt-0 mb-4">
             <div class="card mb-4 right-to-left border-start-lg border-start-yellow" style="padding: 10px 40px 10px 40px">
                 <div class="card-header"></div>
