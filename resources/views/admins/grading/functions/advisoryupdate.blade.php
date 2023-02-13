@@ -19,8 +19,8 @@
             * required field
         </div>
         <div class="row">
-            <div style="font-size: 26px; font-family:'Times New Roman', Times, serif; padding: 20px;">
-                <b>CLASS:</b> {{$advisory->gradelevel->gradelevel}} {{$advisory->faculty->facultyName}} - {{$advisory->section->section}} ({{$advisory->faculty->abbreviation}} - {{$advisory->section->section}})
+            <div style="font-size: 26px; padding: 20px;">
+                <b>CLASS:</b> {{$advisory->gradelevel->gradelevel}} {{$advisory->course->courseName}} - {{$advisory->section->section}} ({{$advisory->course->abbreviation}} - {{$advisory->section->section}})
             </div>
             <div class="col-md-12">
                 <div class="col-md-12"><label for="faculty_id" style="font-size: 20px;"><span style="color: red">*</span> Teacher</label>

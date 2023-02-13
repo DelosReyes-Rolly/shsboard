@@ -9,7 +9,24 @@
             <div id="validation-errors"></div>
         </div>
         <center><div hidden id="loadingDiv" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
-
+        <div>  
+    		<nav  aria-label = "breadcrumb">
+                <!--Add the "breadcrumb" class to ul element that represents the breadcrumb-->
+                <ul class = "breadcrumb">
+                   <!--Add the ".breadcrumb-item" class to each li element within the breadcrumb-->
+                   <li class = "breadcrumb-item"><a class="bca" href='{{ url("/gradingstudents") }}'>Students</a></li>
+                   <!--Add the "active" class to li element to represent the current page-->
+                   <li class = "breadcrumb-item active" aria-current = "page">{{$student->last_name}}, {{$student->first_name}} {{$student->middle_name}}  {{$student->suffix}}</li>
+                </ul>
+             </nav>
+    	</div>
+    	<div class="row">
+            <div class="col-lg-8 col-md-12 col-sm-12">
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <a class="btn btn-secondary btn-lg" href='{{ url("/gradingstudents") }}' style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to students</a>
+            </div>
+        </div>
         <form method="POST" id="createSubjectStudent" class="needs-validation" novalidate>
             @csrf
             <div id="validation-errors"></div>

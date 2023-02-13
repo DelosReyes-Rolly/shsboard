@@ -1,7 +1,7 @@
 
 <main>
     <div class="modal-header">
-        <div style="font-size: 28px; color: green;"><label><b>{{$advisory -> faculty -> last_name}}, {{$advisory -> faculty -> first_name}} {{$advisory -> faculty -> middle_name}} {{$advisory -> faculty -> suffix}}'s class</b></label></div>
+        <div style="font-size: 28px; color: green;"><label><b>{{$advisory -> faculty -> last_name}}, {{$advisory -> faculty -> first_name}} {{$advisory -> faculty -> middle_name}} {{$advisory -> faculty -> suffix}}'s Class</b></label></div>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>

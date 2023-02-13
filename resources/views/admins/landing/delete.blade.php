@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h1 class="modal-title" id="staticBackdropLabel" style="font-size: 20px;">Delete Announcement </h1>
+    <h1 class="modal-title" id="staticBackdropLabel" style="font-size: 20px;">Delete </h1>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
