@@ -162,7 +162,7 @@
                                                 <td>
                                                     <a class="btn btn-success btn-md" href="{{ url('viewreminder',['id'=>$reminder->id]) }}" data-toggle="modal" data-target="#modal-view-{{ $reminder->id }}"><i class="fa-solid fa-eye"></i> View</a>
                                                     <a class="btn btn-warning btn-md" href="{{ url('showreminder',['id'=>$reminder->id]) }}" data-toggle="modal" onclick="editItem(this)" data-id="{{ $reminder->id }}" data-target="#editModal{{ $reminder->id }}"><i class="fas fa-edit"></i> Update</a>
-                                                    <a class="btn btn-danger btn-md" href="{{ url('deleteannouncement',['id'=>$reminder->id]) }}" data-toggle="modal" onclick="deleteItem(this)" data-id="{{ $reminder->id }}" data-target="#deleteModal{{ $reminder>id }}"><i class="fas fa-trash-alt"></i> Delete</a>
+                                                    <a class="btn btn-danger btn-md" href="{{ url('deleteannouncement',['id'=>$reminder->id]) }}" data-toggle="modal" onclick="deleteItem(this)" data-id="{{ $reminder->id }}" data-target="#deleteModal{{ $reminder->id }}"><i class="fas fa-trash-alt"></i> Delete</a>
                                                 </td> 
                                             </tr>
                                             <!-- view reminder -->

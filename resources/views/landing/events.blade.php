@@ -38,19 +38,22 @@
 							                <!-- Form Row-->
 							                <div class="row gx-3 mb-3"  style="padding: 10px 10px 10px 10px;">
 							                    <!-- Form Group (title)-->
-												<div class="col-lg-4 col-md-12 col-sm-12">
-                                                    <div class="img-post">
-														@if($event->image == NULL)
-															<img class="d-block img-fluid" src="{{url('uploads/event/placeholder.png')}}" style="width: auto; height: auto;"/>
-														@else
-															<img class="d-block img-fluid" src="{{ asset('uploads/event/'.$event->image) }}" style="width: auto; height: auto;"/>
-														@endif
-													</div>
-												</div>
-							                    <!-- Form Group (title)-->
-							                    <div class="col-lg-6 col-md-12 col-sm-12">
-													{!!\Illuminate\Support\Str::limit($event -> content, 400)!!}
-							                    </div><br/>
+							                    @if($event->image != NULL)
+    												<div class="col-lg-4 col-md-12 col-sm-12">
+                                                        <div class="img-post">
+    													    <img class="d-block img-fluid" src="{{ asset('uploads/event/'.$event->image) }}" style="width: auto; height: auto;"/>
+    													</div>
+    												</div>
+    							                    <!-- Form Group (title)-->
+    							                    <div class="col-lg-6 col-md-12 col-sm-12">
+    													{!!\Illuminate\Support\Str::limit($event -> content, 800)!!}
+    							                    </div><br/>
+    							                @elseif($event->image == NULL)
+    							                    <!-- Form Group (title)-->
+    							                    <div class="col-lg-10 col-md-12 col-sm-12">
+    													{!!\Illuminate\Support\Str::limit($event -> content, 1600)!!}
+    							                    </div><br/>
+							                    @endif
 							                    <!-- Form Group (title)-->
 							                    <div class="col-lg-2 col-md-12 col-sm-12">
 													<b style="font-size: 20px;">WHEN: <li>On {{$date  =   date('F d, Y', strtotime($event->whn))}}</li><br></b>

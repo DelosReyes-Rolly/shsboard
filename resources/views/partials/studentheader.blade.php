@@ -39,12 +39,12 @@
             </div>
 
             <ul class="list-unstyled components">
-                <li title="Announcement">
+                <li title="Bulletin">
                     <a href="{{ url('/') }}">
                         <i class="fas fa-chalkboard"></i>
                         <span class="hide-word title-word"><b>
-                             <div class="Ashort">Announces</div>
-                             <div class="Along">Announcement</div>
+                             <div class="Ashort">Bulletin</div>
+                             <div class="Along">Bulletin</div>
                         </b></span>
                     </a>
                 </li>

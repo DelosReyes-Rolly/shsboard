@@ -13,7 +13,7 @@
                                         <div class="alert alert-danger"><em>No announcements for now.</em></div>
                                     @else 
                                         @foreach ($announcement as $announcements)
-                                            <div class="card single_post">
+                                            <div class="card single_post border-start-lg border-start-yellow">
                                                 <div class="body">
                                                     <div class="row">
                                                         @if($announcements->image != NULL)

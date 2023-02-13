@@ -34,7 +34,7 @@
                                                 <p>{!!$view -> content!!}</p><br/><br/>
                                             </div>
                                         </div>
-                                        <div class="col-lg-2 col-md-12 col-sm-12" style="margin-top: 20px;"><br/>  
+                                        <div class="col-lg-2 col-md-12 col-sm-12" style="margin-top: 20px;"><br/><br/>
 											<b style="font-size: 20px;">WHEN: <li>On {{$date  =   date('F d, Y', strtotime($view->whn))}}</a></li><br></b>
 											<b style="font-size: 20px;">WHERE: <li>{{$view -> whr}}</li></b><br>
 											<b style="font-size: 20px;">FROM: {{$view -> sender}}</b><br><br>
