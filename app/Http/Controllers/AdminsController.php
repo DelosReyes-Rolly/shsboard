@@ -2234,15 +2234,20 @@ class AdminsController extends Controller
         ]);
         if (Advisories::where('gradelevel_id', '=', $request->get("gradelevel_id"))->where('active', '=', null)->where('deleted', '=', null)->count() <= 0 || Advisories::where('course_id', '=', $request->get("course_id"))->where('active', '=', null)->where('deleted', '=', null)->count() <= 0
         || Advisories::where('section_id', '=', $request->get("section_id"))->where('active', '=', null)->where('deleted', '=', null)->count() <= 0) {
-            $schoolyear = DB::table('school_years')->latest('id')->first();
-            $advisory = new Advisories();
-            $advisory->schoolyear_id = $schoolyear->id;
-            $advisory->faculty_id = $request->get('faculty_id');
-            $advisory->gradelevel_id = $request->get('gradelevel_id');
-            $advisory->course_id = $request->get('course_id');
-            $advisory->section_id = $request->get('section_id');
-            $advisory->save();
-            return response()->json(array('success' => true));  
+            if(Advisories::where('faculty_id', '=', $request->get("faculty_id"))->where('deleted', '=', null)){
+                $schoolyear = DB::table('school_years')->latest('id')->first();
+                $advisory = new Advisories();
+                $advisory->schoolyear_id = $schoolyear->id;
+                $advisory->faculty_id = $request->get('faculty_id');
+                $advisory->gradelevel_id = $request->get('gradelevel_id');
+                $advisory->course_id = $request->get('course_id');
+                $advisory->section_id = $request->get('section_id');
+                $advisory->save();
+                return response()->json(array('success' => true));  
+            }
+           else{
+            return redirect()->back()->with('warning', 'There is already an advisory class that is assigned to this teacher.')->withInput();
+           }
         }
         else{
             return redirect()->back()->with('warning', 'There is already an advisory teacher that is assigned to this class.')->withInput();
