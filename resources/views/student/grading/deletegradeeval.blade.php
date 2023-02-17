@@ -4,7 +4,7 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" id="deletedGradeevaluationrequest{{$gradeevaluationrequest->id}}">   
+<form method="POST" id="deletedGradeevaluationrequest{{$gradeeval->id}}">   
     <div class="modal-body">
         @csrf
         @method('PUT')
@@ -34,11 +34,13 @@
                     $("#deleteModal"+id).hide();
                     $("#deletedGradeevaluationrequest"+ id)[0].reset();
                     $(":submit").removeAttr("disabled");
+
                     Swal.fire({                                                    
                         icon: 'success',                                               
                         title: 'Success.',                                                
                         text: 'Grade evaluation request has been deleted successfully!',                      
                     })
+                    $("#reload").load(document.URL +  ' #reload');
                     $("#gradeevaluationrequest"+id+"").remove();
                 }
             });

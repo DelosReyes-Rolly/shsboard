@@ -153,7 +153,7 @@
                                                                         @endif
                                                                     </td>
                                                                     <td>
-                                                                        @if($grade12second -> isReleased == 2)
+                                                                        @if($grade12second -> isReleased == 1 || $grade12second -> isReleased == 2)
                                                                             <center>{{$grade12second -> midterm}}</center>
                                                                         @endif
                                                                     </td>
@@ -352,12 +352,12 @@
                                                                             @endif
                                                                         </td>
                                                                         <td>
-                                                                            @if($grade12first -> isReleased == 2 || $grade12first -> isReleased == 1)
+                                                                            @if($grade12first -> isReleased == 2)
                                                                                 <center>{{$grade12first -> finals}}</center>
                                                                             @endif
                                                                         </td>
                                                                         <td>
-                                                                            @if($grade12first -> isReleased == 2 || $grade12first -> isReleased == 1)
+                                                                            @if($grade12first -> isReleased == 2)
                                                                                 @php
                                                                                     $ave = ($grade12first->midterm + $grade12first->finals) / 2;
                                                                                     switch ($grade12first -> finals && $grade12first -> midterm) {
@@ -391,7 +391,7 @@
                                                                             @endif
                                                                         </td>
                                                                         <td>
-                                                                            @if($grade12first -> isReleased == 2 || $grade12first -> isReleased == 1)
+                                                                            @if($grade12first -> isReleased == 2)
                                                                                 @php 
                                                                                     switch ($ave && $grade12first -> finals && $grade12first -> midterm) {
                                                                                         case ($grade12first -> finals === 'NULL' || $grade12first -> midterm === 'NULL'):
@@ -427,7 +427,7 @@
                                                                             @endif        
                                                                         </td>
                                                                         <td>
-                                                                            @if($grade12first -> isReleased == 2 || $grade12first -> isReleased == 1)
+                                                                            @if($grade12first -> isReleased == 2)
                                                                                 @if($gradeEvalCount->where('semester_id', '=', $grade12first->semester_id)->where('faculty_id', '=', $grade12first->faculty_id)->where('subject_id', '=', $grade12first->subject_id)->count() == 0)
                                                                                     <a href="{{route('grade-evalModal',['student_id'=> Auth::user()->id , 'gradelevel_id'=> $grade12first -> gradelevel_id, 
                                                                                         'course_id'=>  Auth::user()->course_id, 'section_id'=> Auth::user()->section_id,
@@ -550,7 +550,7 @@
                                                                         @endif
                                                                     </td>
                                                                     <td>
-                                                                        @if($grade11second -> isReleased == 2)
+                                                                        @if($grade11second -> isReleased == 2 || $grade11second -> isReleased == 2)
                                                                             <center>{{$grade11second -> midterm}}</center>
                                                                         @endif
                                                                     </td>
@@ -746,12 +746,12 @@
                                                                             @endif
                                                                         </td>
                                                                         <td>
-                                                                            @if($grade11first -> isReleased == 2 || $grade11first -> isReleased == 1)
+                                                                            @if($grade11first -> isReleased == 2)
                                                                                 <center>{{$grade11first -> finals}}</center>
                                                                             @endif
                                                                         </td>
                                                                         <td>
-                                                                            @if($grade11first -> isReleased == 2 || $grade11first -> isReleased == 1)
+                                                                            @if($grade11first -> isReleased == 2)
                                                                                 @php
                                                                                     $ave = ($grade11first->midterm + $grade11first->finals) / 2;
                                                                                     switch ($grade11first -> finals && $grade11first -> midterm) {
@@ -785,7 +785,7 @@
                                                                             @endif
                                                                         </td>
                                                                         <td>
-                                                                            @if($grade11first -> isReleased == 2 || $grade11first -> isReleased == 1)
+                                                                            @if($grade11first -> isReleased == 2)
                                                                                 @php 
                                                                                     switch ($ave && $grade11first -> finals && $grade11first -> midterm) {
                                                                                         case ($grade11first -> finals === 'NULL' || $grade11first -> midterm === 'NULL'):
@@ -821,7 +821,7 @@
                                                                             @endif        
                                                                         </td>
                                                                         <td>
-                                                                            @if($grade11first -> isReleased == 2 || $grade11first -> isReleased == 1)
+                                                                            @if($grade11first -> isReleased == 2)
                                                                                 @if($gradeEvalCount->where('semester_id', '=', $grade11first->semester_id)->where('faculty_id', '=', $grade11first->faculty_id)->where('subject_id', '=', $grade11first->subject_id)->count() == 0)
                                                                                     <a href="{{route('grade-evalModal',['student_id'=> Auth::user()->id , 'gradelevel_id'=> $grade11first -> gradelevel_id, 
                                                                                     'course_id'=> Auth::user()->course_id, 'section_id'=> Auth::user()->section_id,

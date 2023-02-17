@@ -8,7 +8,7 @@
     <div class="modal-body">
         @csrf
         @method('PUT')
-        <p style="color: red; font-size:20px;">Are you sure you want to delete subject <b>{{$subject->subjectname}}</b>?</p>
+        <p style="color: red; font-size:20px;">Are you sure you want to delete subject <span id="subject"> <b>{{$subject->subjectname}}</b></span>?</p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

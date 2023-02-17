@@ -16,9 +16,10 @@
 	<script src="{{ asset('assets/js/datatables-jquery-1.12.1.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-rowreorder-1.2.8.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-responsive-2.3.0.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
     <script>
         $(document).ready(function() {
-            var table = $('#example').DataTable( {
+            table = $('#example').DataTable( {
                 responsive: true,
                 "bInfo" : false,
             } );
@@ -45,7 +46,7 @@
                                         <br><br>
                                         <div class="alert alert-danger"><em>No records found.</em></div>
                                     @else 
-                                        <div class="h3 d-flex align-items-center" style="padding-left: 20px; padding-bottom: 10px;"><i class="fas fa-clipboard"> </i> &nbsp; {{ $gradeevaluationrequests->count() }}</div>
+                                        <div class="h3 d-flex align-items-center" style="padding-left: 20px; padding-bottom: 10px;"><i class="fas fa-clipboard"> </i> &nbsp; <span id="reload">{{ $gradeevaluationrequests->count() }}</span></div>
                                     @endif
                                 </div>
                             </div>
@@ -123,10 +124,10 @@
         </div>
         <script type="text/javascript">
         $(document).ready(function(){
-        $('.nav_btn').click(function(){
-            $('.mobile_nav_items').toggleClass('active');
-        });
-        deleteItem(e);
+            $('.nav_btn').click(function(){
+                $('.mobile_nav_items').toggleClass('active');
+            });
+            deleteItem(e);
 
         });
 

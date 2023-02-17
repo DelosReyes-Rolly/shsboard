@@ -8,7 +8,7 @@
     <div class="modal-body">
         @csrf
         @method('PUT')
-        <p style="color: red; font-size:20px;">Are you sure you want to delete gradelevel <b>{{$gradelevel->gradelevel}}</b>?</p>
+        <p style="color: red; font-size:20px;">Are you sure you want to delete gradelevel <span id="gradelevel"> <b>{{$gradelevel->gradelevel}}</b></span>?</p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -75,10 +75,10 @@
 			                <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
 			                	<li class=" smooth-menu active"></li>
 			                    <li class="smooth-menu"><a class="a-header" href='{{ url("/") }}'>Home</a></li>
-								<li class="smooth-menu"><a class="a-header" href='{{ url("generalannouncements") }}'>General Announcements</a></li>
-								<li class="smooth-menu"><a class="a-header" href='{{ url("events") }}'>Events</a></li>
 								<li class="smooth-menu"><a class="a-header" href='{{ url("faculty") }}'>Faculties</a></li>
 								<li class="smooth-menu"><a class="a-header" href='{{ url("strand") }}'>Strands</a></li>
+								<li class="smooth-menu"><a class="a-header" href='{{ url("generalannouncements") }}'>General Announcements</a></li>
+								<li class="smooth-menu"><a class="a-header" href='{{ url("events") }}'>Events</a></li>
 								<li class="smooth-menu"><a class="a-header" href='{{ url("logins") }}'>Log In</a></li>
 			                </ul><!--/.nav -->
 			            </div><!-- /.navbar-collapse -->

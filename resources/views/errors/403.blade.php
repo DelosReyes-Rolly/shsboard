@@ -46,6 +46,7 @@
 
     </style>
     <title>403 Forbidden</title>
+    <link rel="shortcut icon" type="image/icon" href='{{ URL::asset("img/shs.png")}}'/>
 </head>
 <body>
     <svg xmlns="http://www.w3.org/2000/svg" id="robot-error" viewBox="0 0 260 118.9">

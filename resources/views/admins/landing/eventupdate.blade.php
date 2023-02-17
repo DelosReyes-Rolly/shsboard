@@ -96,50 +96,51 @@
             })
             .ajaxStop(function () {
                 $loading.hide();
+                $("#example").show();
             });
-            var id = $("#id").val();
-            var what = $("#what").val();
-            var who = $("#who").val();
-            var whn = $("#whn").val();
-            var whn_time = $("#whn_time").val();
-            var whr = $("#whr").val();
-            var sender = $("#sender").val();
-            var content = $("#editor2"+id).val();
-            var expired_at = $("#expired_at").val();
-            var _token = $("input[name=_token]").val();
+            // var id = $("#id").val();
+            // var what = $("#what").val();
+            // var who = $("#who").val();
+            // var whn = $("#whn").val();
+            // var whn_time = $("#whn_time").val();
+            // var whr = $("#whr").val();
+            // var sender = $("#sender").val();
+            // var content = $("#editor2"+id).val();
+            // var expired_at = $("#expired_at").val();
+            // var _token = $("input[name=_token]").val();
+            var form_data = $("form#updateEvent"+id).serialize();
             $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updateevent/")}}/' + id,
-                data: {
-                    id: id,
-                    what: what,
-                    who: who,
-                    whn: whn,
-                    whn_time: whn_time,
-                    whr: whr,
-                    sender: sender,
-                    content: content,
-                    expired_at: expired_at,
-                    _token: _token,
-                },
+                data:form_data,
                 success: function(response) {
+                        $("#example").hide();
                         $("#editModal"+id).removeClass("in");
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();
-                        $("#updateEvent"+ id)[0].reset();
+                        // $("#updateEvent"+ id)[0].reset();
                         // $('#event' + response.id +' td:nth-child(2)').text(response.what);
                         $(":submit").removeAttr("disabled");
+                        $("#reload").load(document.URL +  ' #reload');
+                        $("#reload2").load(document.URL +  ' #reload2');
+                        $("#deleteModal"+id).find("#what").text(response.what);
                         // $('#example').load(document.URL +  ' #example');
                         Swal.fire({
                             icon: 'success',
                             title: 'Success.',
                             text: 'Event has been updated successfully',
-                        }).then(function() {
-                            location.reload(true);
-                        })
+                        });
+                        $('#example').DataTable().clear().destroy();
+                            $('#example').load(document.URL +  ' #example');
+                            $(function () {
+                                table = $('#example').DataTable( {
+                                    responsive: true,
+                                    "bInfo" : false,
+                                } );
+                            } );
                         // $("#reloadlanding2").load(location.href + " #reloadlanding2");
                 },error: function (xhr) {
                     $('#validation-errors').html('');

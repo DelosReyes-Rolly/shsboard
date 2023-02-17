@@ -19,7 +19,7 @@
 	<script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
     <script>
         $(document).ready(function() {
-            var table1 = $('#example1').DataTable( {
+            table1 = $('#example1').DataTable( {
                 responsive: true,
                 "bInfo" : false,
             } );
@@ -27,7 +27,7 @@
             new $.fn.dataTable.FixedHeader( table1 );
         } );
         $(document).ready(function() {
-            var table2 = $('#example2').DataTable( {
+            table2 = $('#example2').DataTable( {
                 responsive: true,
                 "bInfo" : false,
             } );
@@ -35,7 +35,7 @@
             new $.fn.dataTable.FixedHeader( table2 );
         } );
         $(document).ready(function() {
-            var table3 = $('#example3').DataTable( {
+            table3 = $('#example3').DataTable( {
                 responsive: true,
                 "bInfo" : false,
             } );
@@ -43,7 +43,7 @@
             new $.fn.dataTable.FixedHeader( table3 );
         } );
 		$(document).ready(function() {
-            var table4 = $('#example4').DataTable( {
+            table4 = $('#example4').DataTable( {
                 responsive: true,
                 "bInfo" : false,
             } );
@@ -51,7 +51,7 @@
             new $.fn.dataTable.FixedHeader( table4 );
         } );
 		$(document).ready(function() {
-            var table5 = $('#example5').DataTable( {
+            table5 = $('#example5').DataTable( {
                 responsive: true,
                 "bInfo" : false,
             } );
@@ -140,7 +140,6 @@
 	                                        <div class="card-header" style="font-size: 24px;">
 	                                        	Table of Available Documents
 												<a id="addDocument" href="{{route('document.add')}}" class="btn btn-primary" style="float: right; font-size: 20px;" data-toggle="modal" data-target="#createModalDocument"><i class="fas fa-user-plus"></i> Add Document</a>
-												<br/><br/>
 												<div id="createModalDocument" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 													<div class="modal-dialog modal-lg" role="document">
 														<div class="modal-content border-start-lg border-start-yellow">
@@ -154,7 +153,7 @@
                                             @else 
                                                 <br>
                                                 <div class="table-responsive table-billing-history">
-                                                    <table id="example1" class="display table-bordered table-striped table-hover" style="width:100%">
+                                                    <table id="example1" class="display table-bordered table-striped table-hover example1" style="width:100%">
                                                         <thead class="table-success">
                                                              <tr>
                                                                 <th class="border-gray-200" scope="col">#</th>
@@ -202,10 +201,9 @@
                                             @endif 
 											<br><br>
 											<!-- Table of Purposes -->
-	                                        <div class="card-header" style="font-size: 20px;">
+	                                        <div class="card-header" style="font-size: 24px;">
 	                                        	Table of Purposes
 												<a id="addPurpose" href="{{route('purpose.add')}}" class="btn btn-primary" style="float: right; font-size: 20px;" data-toggle="modal" data-target="#createModalPurpose"><i class="fas fa-user-plus"></i> Add Purpose</a>
-												<br/><br/>
 												<div id="createModalPurpose" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 													<div class="modal-dialog modal-lg" role="document">
 														<div class="modal-content border-start-lg border-start-yellow">
@@ -236,27 +234,27 @@
                                                                         <td>{{$documentpurpose -> purpose}}</td>
 																		<td>{{$documentpurpose -> proof_needed}}</td>
                                                                         <td>
-																			<a class="btn btn-success btn-md" href="{{ url('viewpurpose',['id'=>$documentpurpose->id]) }}" data-toggle="modal" data-target="#modal-view-{{$documentpurpose->id}}"><i class="fa-solid fa-eye"></i> View</a>
-																			<a class="btn btn-warning btn-md" href="{{ url('showpurpose',['id'=>$documentpurpose->id]) }}" data-toggle="modal" onclick="editPur(this)" data-id="{{ $documentpurpose->id }}" data-target="#editModal{{ $documentpurpose->id }}"><i class="fas fa-edit"></i> Update</a>
-																			<a class="btn btn-danger btn-md" href="{{ url('deletedocumentpurpose',['id'=>$documentpurpose->id]) }}" data-toggle="modal" onclick="deleteItem(this)" data-id="{{ $documentpurpose->id }}" data-target="#deleteModal{{ $documentpurpose->id }}"><i class="fas fa-trash-alt"></i> Delete</a>
+																			<a class="btn btn-success btn-md" href="{{ url('viewpurpose',['id'=>$documentpurpose->id]) }}" data-toggle="modal" data-target="#purposemodal-view-{{$documentpurpose->id}}"><i class="fa-solid fa-eye"></i> View</a>
+																			<a class="btn btn-warning btn-md" href="{{ url('showpurpose',['id'=>$documentpurpose->id]) }}" data-toggle="modal" onclick="editPur(this)" data-id="{{ $documentpurpose->id }}" data-target="#purposeeditModal{{ $documentpurpose->id }}"><i class="fas fa-edit"></i> Update</a>
+																			<a class="btn btn-danger btn-md" href="{{ url('deletedocumentpurpose',['id'=>$documentpurpose->id]) }}" data-toggle="modal" onclick="deleteItem(this)" data-id="{{ $documentpurpose->id }}" data-target="#purposedeleteModal{{ $documentpurpose->id }}"><i class="fas fa-trash-alt"></i> Delete</a>
                                                                         </td> 
                                                                     </tr>
 																	<!-- view purpose -->
-																	<div id="modal-view-{{ $documentpurpose->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+																	<div id="purposemodal-view-{{ $documentpurpose->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 																		<div class="modal-dialog modal-lg" role="document">
 																			<div class="modal-content border-start-lg border-start-yellow">
 																			</div>
 																		</div>
 																	</div>
 																	<!-- delete modal -->
-																	<div id="deleteModal{{ $documentpurpose->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+																	<div id="purposedeleteModal{{ $documentpurpose->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 																		<div class="modal-dialog modal-lg" role="document">
 																			<div class="modal-content border-start-lg border-start-yellow">
 																			</div>
 																		</div>
 																	</div> 
 																	<!-- edit purpose -->
-																	<div id="editModal{{ $documentpurpose->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+																	<div id="purposeeditModal{{ $documentpurpose->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 																		<div class="modal-dialog modal-lg" role="document">
 																			<div class="modal-content border-start-lg border-start-yellow">
 																			</div>

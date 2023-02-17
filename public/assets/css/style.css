@@ -712,7 +712,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #f3dc60;}
 	  position: relative;
 	}
 	.footer-cta {
-	  border-bottom: 1px solid #373636;
+	  border-bottom: 2px solid #208c44;
 	}
 	.single-cta i {
 	  color: #00FF00;
@@ -2031,10 +2031,20 @@ button[type=submit]{       /*login button*/
   padding: 15px;
   border-radius: 4px;
   animation: fadeInRight 0.8s ease-in-out;
+  -webkit-transition: 0.3s linear; 
+  -moz-transition: 0.3s linear; 
+  -ms-transition: 0.3s linear; 
+  -o-transition: 0.3s linear; 
+  transition: 0.3s linear;
 }
 
 #myBtn:hover {
-  background-color: #555;
+  background-color: #edcd1f;
+  -webkit-transition: 0.3s linear; 
+  -moz-transition: 0.3s linear; 
+  -ms-transition: 0.3s linear; 
+  -o-transition: 0.3s linear; 
+  transition: 0.3s linear;
 }
 
 @media (min-width: 768px) {
@@ -2160,4 +2170,79 @@ button[type=submit]{       /*login button*/
     margin-top: 20px;
     float: left;
   }
+}
+.back-button{
+  float: right; 
+  font-size: 18px;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+}
+
+.back-button1 {
+  background-color: #4CAF50;
+  color: white;
+  border: 2px solid #4CAF50;
+}
+
+.back-button1:hover {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #4CAF50;
+  box-shadow: none;
+}
+
+.container_title2{
+  font-size: 40px;
+}
+@media (max-width: 768px) {
+  .back-button{
+    font-size: 12px;
+  }
+  .container_title{
+    font-size: 28px;
+  }
+  .container_title2{
+    font-size: 20px;
+  }
+}
+.footer-a:hover{
+  color:#4CAF50;
+}
+
+.footer-fb{
+  border: 2px solid #4060b0;
+  box-shadow: 4px 4px 20px rgba(0,0,0,0.6);
+  -webkit-transition: 0.3s linear; 
+  -moz-transition: 0.3s linear; 
+  -ms-transition: 0.3s linear; 
+  -o-transition: 0.3s linear; 
+  transition: 0.3s linear;
+}
+
+.footer-fb:hover{
+  color:#4060b0;
+  background-color: #ffffff;
+  border: 2px solid #4060b0;
+  -webkit-transition: 0.3s linear; 
+  -moz-transition: 0.3s linear; 
+  -ms-transition: 0.3s linear; 
+  -o-transition: 0.3s linear; 
+  transition: 0.3s linear;
+  box-shadow: none;
+}
+
+.systematech:hover{
+  color:#edcd1f;
+  -webkit-transition: 0.3s linear; 
+  -moz-transition: 0.3s linear; 
+  -ms-transition: 0.3s linear; 
+  -o-transition: 0.3s linear; 
+  transition: 0.3s linear;
+  box-shadow: none;
 }

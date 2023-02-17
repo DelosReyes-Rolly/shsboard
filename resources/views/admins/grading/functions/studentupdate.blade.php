@@ -109,7 +109,7 @@
 </form>
 <script>
 
-
+        
         var $loading = $('#loadingDiv'+ id);
         function formPost(){
             $(document).ajaxStart(function () {
@@ -117,6 +117,7 @@
             })
             .ajaxStop(function () {
                 $loading.hide();
+                $("#example").show();
             });
             $('#whoops').hide();
             var form_data = $("form#updateStudent"+ id).serialize();
@@ -125,13 +126,37 @@
                 type: "PUT",
                 url: '{{url("/updatestudent/")}}/' + id,
                 data:form_data,
-                success: function(response) {                           // kapag nagsuccess
+                success: function(response) {     
+                        $("#example").hide();                  // kapag nagsuccess
                         $("#editModal"+id).removeClass("in"); 
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();
-                        $("#updateStudent"+ id)[0].reset();
+                        // $("#updateStudent"+ id)[0].reset();
+                        $("#deleteModal"+id).find("#first_name").text(response.first_name);
+                        if(response.middle_name != null){
+                            $("#deleteModal"+id).find("#middle_name").text(response.middle_name);
+                        }
+                        $("#deleteModal"+id).find("#last_name").text(response.last_name);
+                        if(response.suffix != null){
+                            $("#deleteModal"+id).find("#suffix_name").text(response.suffix_name);
+                        }
+                        // view
+                        $("#modal-view-"+id).find("#first_name").text(response.first_name);
+                        if(response.middle_name != null){
+                            $("#modal-view-"+id).find("#middle_name").text(response.middle_name);
+                        }
+                        $("#modal-view-"+id).find("#last_name").text(response.last_name);
+                        if(response.middle_name != null){
+                            $("#modal-view-"+id).find("#suffix").text(response.suffix);
+                        }
+                        $("#modal-view-"+id).find("#lrn").text(response.lrn);
+                        $("#modal-view-"+id).find("#email").text(response.email);
+                        $("#modal-view-"+id).find("#gradelevel").text(response.gradelevel);
+                        $("#modal-view-"+id).find("#course").text(response.course);
+                        $("#modal-view-"+id).find("#section").text(response.section);
+
                         // $('#student' + id +' td:nth-child(2)').text(response.LRN);
                         // if(response.suffix == null && response.middle_name == null){
                         //     $('#student' + response.id +' td:nth-child(3)').text(function(n) {return response.last_name + ', ' + response.first_name;});
@@ -153,9 +178,15 @@
                             icon: 'success',
                             title: 'Success.',
                             text: 'Student has been updated successfully',
-                        }).then(function() {
-                            location.reload(true);
-                        })
+                        });
+                        $('#example').DataTable().clear().destroy();
+                        $('#example').load(document.URL +  ' #example');
+                        $(function () {
+                            table = $('#example').DataTable( {
+                                responsive: true,
+                                "bInfo" : false,
+                            } );
+                        } );
                 },error: function (xhr) {
                     $('#validation-errors').html('');
                     document.getElementById('whoops').style.display = 'block';
@@ -168,8 +199,6 @@
                     }); 
                     $(":submit").removeAttr("disabled");
                 },
-            }).ajaxStop(function () {
-                $loading.hide();
             });
         }
        

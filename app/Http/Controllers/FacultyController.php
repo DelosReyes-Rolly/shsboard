@@ -198,8 +198,8 @@ class FacultyController extends Controller
 
         public function showannouncement($id){
             $data = ActivityStreams::where('deleted', '=', null)->findOrFail($id);
-            $gradelevels = GradeLevels::all();
-            $semesters = Semesters::all();
+            $gradelevels = GradeLevels::where('deleted', '=', null);
+            $semesters = Semesters::where('deleted', '=', null);
             $gradelevels = SubjectTeachers::where('deleted', '=', null)->where('faculty_id', '=', Auth::user()->id)->groupBy('gradelevel_id')->get();
             $courses = SubjectTeachers::where('deleted', '=', null)->where('faculty_id', '=', Auth::user()->id)->groupBy('course_id')->get();
             $sections = SubjectTeachers::where('deleted', '=', null)->where('faculty_id', '=', Auth::user()->id)->groupBy('section_id')->get();
@@ -417,8 +417,8 @@ class FacultyController extends Controller
      }
 
      public function viewStudents($gradelevel_id, $course_id, $section_id){
-        $males = Students::where('gradelevel_id', '=', $gradelevel_id)->where('course_id', '=', $course_id)->where('section_id', '=', $section_id)->where('gender', '=', 'Male')->get();
-        $females = Students::where('gradelevel_id', '=', $gradelevel_id)->where('course_id', '=', $course_id)->where('section_id', '=', $section_id)->where('gender', '=', 'Female')->get();;
+        $males = Students::where('gradelevel_id', '=', $gradelevel_id)->where('course_id', '=', $course_id)->where('section_id', '=', $section_id)->where('gender', '=', 'Male') ->orderBy('last_name', 'asc')->get();
+        $females = Students::where('gradelevel_id', '=', $gradelevel_id)->where('course_id', '=', $course_id)->where('section_id', '=', $section_id)->where('gender', '=', 'Female') ->orderBy('last_name', 'asc')->get();;
         $gradelevel_id = $gradelevel_id;
         $course_id = $course_id;
         $section_id = $section_id;

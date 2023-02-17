@@ -111,6 +111,7 @@
             })
             .ajaxStop(function () {
                 $loading.hide();
+                $("#example").show();
             });
             $('#whoops').hide();
             var form_data = $("form#updateFaculty"+ id).serialize();
@@ -120,13 +121,33 @@
                 url: '{{url("/updatefaculty/")}}/' + id,
                 data:form_data,
                 success: function(response) {
+                        $("#example").hide();
                         $("#editModal"+id).removeClass("in");
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();
-                        $("#updateFaculty"+ id)[0].reset();
+                        // $("#updateFaculty"+ id)[0].reset();
                         $(":submit").removeAttr("disabled");
+                        $("#deleteModal"+id).find("#first_name").text(response.first_name);
+                        if(response.middle_name != null){
+                            $("#deleteModal"+id).find("#middle_name").text(response.middle_name);
+                        }
+                        $("#deleteModal"+id).find("#last_name").text(response.last_name);
+                        if(response.suffix != null){
+                            $("#deleteModal"+id).find("#suffix_name").text(response.suffix_name);
+                        }
+                        // view
+                        $("#modal-view-"+id).find("#first_name").text(response.first_name);
+                        if(response.middle_name != null){
+                            $("#modal-view-"+id).find("#middle_name").text(response.middle_name);
+                        }
+                        $("#modal-view-"+id).find("#last_name").text(response.last_name);
+                        if(response.middle_name != null){
+                            $("#modal-view-"+id).find("#suffix").text(response.suffix);
+                        }
+                        $("#modal-view-"+id).find("#expertise").text(response.expertise);
+                        $("#modal-view-"+id).find("#status").text(response.status);
                         // if(response.suffix == null && response.middle_name == null){
                         //     $('#faculty' + response.id +' td:nth-child(2)').text(function(n) {return response.last_name + ', ' + response.first_name;});
                         // }
@@ -145,9 +166,15 @@
                             icon: 'success',
                             title: 'Success.',
                             text: 'Teacher has been updated successfully',
-                        }).then(function() {
-                            location.reload(true);
-                        })
+                        });
+                        $('#example').DataTable().clear().destroy();
+                        $('#example').load(document.URL +  ' #example');
+                        $(function () {
+                            table = $('#example').DataTable( {
+                                responsive: true,
+                                "bInfo" : false,
+                            } );
+                        } );
                 },error: function (xhr) {
                     $('#validation-errors').html('');
                     document.getElementById('whoops').style.display = 'block';

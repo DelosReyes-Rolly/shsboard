@@ -47,29 +47,27 @@
             })
             .ajaxStop(function () {
                 $loading.hide();
+                $("#example5").show();
             });
             $('#whoops').hide();
-            var id = $("#id").val();
-            var purpose = $("#purpose").val();
-            var proof_needed = $("#proof_needed").val();
-            var _token = $("input[name=_token]").val();
+            var form_data = $("form#updatePurpose"+ id).serialize();
             $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updatepurpose/")}}/' + id,
-                data: {
-                    id: id,
-                    purpose: purpose,
-                    proof_needed: proof_needed,
-                    _token: _token,
-                },
+                data:form_data,
                 success: function(response) {
-                        $("#editModal"+id).removeClass("in");
+                        $("#example5").hide();
+                        $("#purposeeditModal"+id).removeClass("in");
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
-                        $("#editModal"+id).hide();
-                        $("#updatePurpose"+id)[0].reset();
+                        $("#purposeeditModal"+id).hide();
+                        $("#purposedeleteModal"+id).find("#purpose").text(response.purpose);
+                        $("#purposedeleteModal"+id).find("#proof_needed").text(response.proof_needed);
+                        $("#purposemodal-view-"+id).find("#purpose").text(response.purpose);
+                        $("#purposemodal-view-"+id).find("#proof_needed").text(response.proof_needed);
+                        // $("#updatePurpose"+id)[0].reset();
                         // $('#documentpurpose' + response.id +' td:nth-child(2)').text(response.purpose);
                         // $('#documentpurpose' + response.id +' td:nth-child(3)').text(response.proof_needed);
                         $(":submit").removeAttr("disabled");
@@ -78,9 +76,15 @@
                             icon: 'success',
                             title: 'Success.',
                             text: 'Purpose has been updated successfully',
-                        }).then(function() {
-                            location.reload(true);
-                        })
+                        });
+                        $('#example5').DataTable().clear().destroy();
+                        $('#example5').load(document.URL +  ' #example5');
+                        $(function () {
+                            table = $('#example5').DataTable( {
+                                responsive: true,
+                                "bInfo" : false,
+                            } );
+                        } );
                 },error: function (xhr) {
                     $('#validation-errors').html('');
                     document.getElementById('whoops').style.display = 'block';
@@ -93,8 +97,6 @@
                     }); 
                     $(":submit").removeAttr("disabled");
                 },
-            }).ajaxStop(function () {
-                $loading.hide();
             });
         }
 </script> 

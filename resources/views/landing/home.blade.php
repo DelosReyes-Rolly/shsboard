@@ -136,9 +136,29 @@
 					      
 					   </div>
 					</center>
-				
+				<div style="margin-top: 40px; margin-bottom: 200px; padding: 40px 40px 40px 40px;" class="course-box">
+				<center>
+					@foreach ($home as $homes)
+						@if($homes -> title == "The DEPED VISION")
+							<div class="">
+								<div class="faculty-title">{{$homes -> title}}<br/><br/></div>
+								<div style="font-size: 60px;">{!!$homes -> content!!}</div><br/><br/><br/><br/>
+							</div>
+						@elseif($homes -> title == "The DEPED Mission")
+							<div class="right-to-left">
+								<div class="faculty-title">{{$homes -> title}}<br/><br/></div>
+								{!!$homes -> content!!}<br/><br/><br/><br/>
+							</div>
+						@elseif($homes -> title == "CORE VALUES")
+							<div class="">
+								<div class="faculty-title">{{$homes -> title}}<br/><br/></div>
+								{!!$homes -> content!!}<br/><br/><br/><br/>
+							</div>	
+						@endif
+					@endforeach
+				</center>
 			</div>
-			<br/><br/><br/><br/><br/><br/>
+			</div>
 		<div class="container">
 			<center>
 			<div class="videotitle reveal fade-left">SIGNAL VILLAGE NATIONAL HIGH SCHOOL</div>

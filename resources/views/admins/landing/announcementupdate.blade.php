@@ -9,7 +9,7 @@
     <div class="modal-body">
         @csrf
         @method('put')
-        <div id="whoops" class="alert alert-danger" style="display: none;">
+         <div id="whoops" class="alert alert-danger" style="display: none;">
             <b>Whoops! There is a problem in your input</b> <br/>
             <div id="validation-errors"></div>
         </div>
@@ -95,62 +95,64 @@
             })
             .ajaxStop(function () {
                 $loading.hide();
+                $("#example").show();
             });
-            var id = $("#id").val();
-            var what = $("#what").val();
-            var who = $("#who").val();
-            var whn = $("#whn").val();
-            var whn_time = $("#whn_time").val();
-            var whr = $("#whr").val();
-            var sender = $("#sender").val();
-            var content = $("#editor2"+id).val();
-            var expired_at = $("#expired_at").val();
-            var _token = $("input[name=_token]").val();
+            var form_data = $("form#updateAnnouncement"+id).serialize();
+            // var id = $("#id").val();
+            // var what = $("#what").val();
+            // var who = $("#who").val();
+            // var whn = $("#whn").val();
+            // var whn_time = $("#whn_time").val();
+            // var whr = $("#whr").val();
+            // var sender = $("#sender").val();
+            // var content = $("#editor2"+id).val();
+            // var expired_at = $("#expired_at").val();
+            // var _token = $("input[name=_token]").val();
             $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updateannouncement/")}}/' + id,
-                data: {
-                    id: id,
-                    what: what,
-                    who: who,
-                    whn: whn,
-                    whn_time: whn_time,
-                    whr: whr,
-                    sender: sender,
-                    content: content,
-                    expired_at: expired_at,
-                    _token: _token,
-                },
+                data:form_data,
                 success: function(response) {
+                        $("#example").hide();
                         $("#editModal"+id).removeClass("in");
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();
-                        $("#updateAnnouncement"+ id)[0].reset();
+                        // $("#updateAnnouncement"+ id)[0].reset();
                         // $('#announcement' + response.id +' td:nth-child(2)').text(response.what);
                         $(":submit").removeAttr("disabled");
+                        $("#deleteModal"+id).find("#what").text(response.what);
+                        $("#reload").load(document.URL +  ' #reload');
+                        $("#reload2").load(document.URL +  ' #reload2');
                         // $('#example').load(document.URL +  ' #example');
+                        
                         Swal.fire({
                             icon: 'success',
                             title: 'Success.',
                             text: 'Announcement has been updated successfully',
-                        }).then(function() {
-                            location.reload(true);
-                        })
+                        });
+                        $('#example').DataTable().clear().destroy();
+                            $('#example').load(document.URL +  ' #example');
+                            $(function () {
+                                table = $('#example').DataTable( {
+                                    responsive: true,
+                                    "bInfo" : false,
+                                } );
+                            } );
                         // $("#reloadlanding2").load(location.href + " #reloadlanding2");
                 },error: function (xhr) {
                     $('#validation-errors').html('');
-                        document.getElementById('whoops').style.display = 'block';
-                        if(xhr.responseJSON.error != undefined){
-                            $("#validation-errors").html("");
-                            $('#validation-errors').append('&emsp;<li>'+xhr.responseJSON.error+'</li>');
-                        }
-                        $.each(xhr.responseJSON.errors, function(key,value) {
-                            $('#validation-errors').append('&emsp;<li>'+value+'</li>');
-                        }); 
-                        $(":submit").removeAttr("disabled");
+                    document.getElementById('whoops').style.display = 'block';
+                    if(xhr.responseJSON.error != undefined){
+                        $("#validation-errors").html("");
+                        $('#validation-errors').append('&emsp;<li>'+xhr.responseJSON.error+'</li>');
+                    }
+                    $.each(xhr.responseJSON.errors, function(key,value) {
+                        $('#validation-errors').append('&emsp;<li>'+value+'</li>');
+                    }); 
+                    $(":submit").removeAttr("disabled");
                 },
             }).ajaxStop(function () {
                 $loading.hide();

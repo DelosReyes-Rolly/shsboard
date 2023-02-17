@@ -27,8 +27,8 @@
                 </div>
             </div>
             <div class="col-md-12"><br/>
-                <label class="large mb-1" for="editor2" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
-                <textarea class="form-control @error('editor2') is-invalid @enderror" id="editor2{{$landing->id}}" type="text" placeholder="Enter the information" name="editor2" rows="10" cols="80" required>{{$landing->content}}</textarea>
+                <label class="large mb-1" for="editor3" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
+                <textarea class="form-control @error('editor3') is-invalid @enderror" id="editor3{{$landing->id}}" type="text" placeholder="Enter the information" name="editor3" rows="10" cols="80" required>{{$landing->content}}</textarea>
                 <div class="invalid-feedback">
                     Please input content.
                 </div>
@@ -37,7 +37,7 @@
     </div>
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script>
-        CKEDITOR.replace('editor2'+ id);
+        CKEDITOR.replace('editor3'+id);
     </script>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -53,30 +53,31 @@
             })
             .ajaxStop(function () {
                 $loading.hide();
+                $("#example").show();
             });
-            var id = $("#id").val();
-            var title = $("#title").val();
-            var content = $("#editor2"+id).val();
-            var _token = $("input[name=_token]").val();
-            console.log(content);
+            var form_data = $("form#updateLanding"+id).serialize();
+            // var id = $("#id").val();
+            // var title = $("#title").val();
+            // var content = $("#editor3"+id).val();
+            // var _token = $("input[name=_token]").val();
             $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updatelanding/")}}/' + id,
-                data: {
-                    id: id,
-                    title: title,
-                    content: content,
-                    _token: _token,
-                },
+                data:form_data,
                 success: function(response) {
+                        $("#example").hide();
                         $("#editModal"+id).removeClass("in");
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();
-                        $("#updateLanding"+ id)[0].reset();
-                        $('#landing' + response.id +' td:nth-child(2)').text(response.title);
+                        $("#reload").load(document.URL +  ' #reload');
+                        $("#reload2").load(document.URL +  ' #reload2');
+                        // $("#updateLanding"+ id)[0].reset();
+                        // $('#landing' + response.id +' td:nth-child(2)').text(response.title);
+                        $("#deleteModal"+id).find("#title").text(response.title);
+                        // view
                         $(":submit").removeAttr("disabled");
                         // $('#example').load(document.URL +  ' #example');
                         Swal.fire({
@@ -84,6 +85,14 @@
                             title: 'Success.',
                             text: 'Landing has been updated successfully',
                         });
+                        $('#example').DataTable().clear().destroy();
+                            $('#example').load(document.URL +  ' #example');
+                            $(function () {
+                                table = $('#example').DataTable( {
+                                    responsive: true,
+                                    "bInfo" : false,
+                                } );
+                            } );
                         $("#reloadlanding2").load(location.href + " #reloadlanding2");
                 },error: function (xhr) {
                     $('#validation-errors').html('');

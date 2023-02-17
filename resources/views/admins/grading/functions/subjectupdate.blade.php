@@ -67,6 +67,7 @@
             })
             .ajaxStop(function () {
                 $loading.hide();
+                $("#example").show();
             });
             $('#whoops').hide();
             var form_data = $("form#updateSubject"+ id).serialize();
@@ -75,13 +76,20 @@
                 type: "PUT",
                 url: '{{url("/updatesubject/")}}/' + id,
                 data:form_data,
-                success: function(response) {                           // kapag nagsuccess
+                success: function(response) {     
+                        $("#example").hide();                      // kapag nagsuccess
                         $("#editModal"+id).removeClass("in"); 
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();
-                        $("#updateSubject"+ id)[0].reset();
+                        $("#deleteModal"+id).find("#subjectcode").text(response.subjectcode);
+                        // $("#updateSubject"+ id)[0].reset();
+                        // view
+                        $("#modal-view-"+id).find("#subjectcode").text(response.subjectcode);
+                        $("#modal-view-"+id).find("#subjectname").text(response.subjectname);
+                        $("#modal-view-"+id).find("#description").text(response.description);
+                        $("#modal-view-"+id).find("#expertise").text(response.expertise_id);
                         $(":submit").removeAttr("disabled");
                         // $('#subject' + response.id +' td:nth-child(2)').text(response.subjectcode);
                         // $('#subject' + response.id +' td:nth-child(3)').text(response.subjectname);
@@ -92,9 +100,15 @@
                             icon: 'success',
                             title: 'Success.',
                             text: 'Subject has been updated successfully',
-                        }).then(function() {
-                            location.reload(true);
-                        })
+                        });
+                        $('#example').DataTable().clear().destroy();
+                            $('#example').load(document.URL +  ' #example');
+                            $(function () {
+                                table = $('#example').DataTable( {
+                                    responsive: true,
+                                    "bInfo" : false,
+                                } );
+                            } );
                 },error: function (xhr) {
                     $('#validation-errors').html('');
                     $.each(xhr.responseJSON.errors, function(key,value) {

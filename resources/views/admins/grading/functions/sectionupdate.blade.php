@@ -36,6 +36,7 @@
             })
             .ajaxStop(function () {
                 $loading.hide();
+                $("#example").show();
             });
             $('#whoops').hide();
             var form_data = $("form#updateSection"+id).serialize();
@@ -44,22 +45,30 @@
                 type: "PUT",                                            // PUT pang update
                 url: '{{url("/updatesection/")}}/' + id,                // url mo kasama id
                 data:form_data,
-                success: function(response) {                           // kapag nagsuccess
+                success: function(response) {   
+                        $("#example").hide();                        // kapag nagsuccess
                         $("#editModal"+id).removeClass("in");           //copy paste mo lang to. Pang hide lang to ng modal
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();                     // hanggang dito
-                        $("#updateSection"+id)[0].reset();                // irereset niya yung form
+                        // $("#updateSection"+id)[0].reset();  
+                        $("#deleteModal"+id).find("#section").text(response.section);              // irereset niya yung form
                         // $('#section' + id +' td:nth-child(2)').text(response.section);               // copy paste mo lang to. Bale pinapalitan lang niya yung row. Yung "section" id siya ng tr                                                                        // yung response galing siya sa controller yung return response()->json($section). Yung td:nth-child(2) column bale 2nd column
                         $(":submit").removeAttr("disabled");
                         Swal.fire({                                                             //sweetalert
                             icon: 'success',                                                    //
                             title: 'Success.',                                                  //
                             text: 'Section has been updated successfully',                      //
-                        }).then(function() {
-                            location.reload(true);
-                        })
+                        });
+                        $('#example').DataTable().clear().destroy();
+                            $('#example').load(document.URL +  ' #example');
+                            $(function () {
+                                table = $('#example').DataTable( {
+                                    responsive: true,
+                                    "bInfo" : false,
+                                } );
+                            } );
                 },error: function (xhr) {
                         $('#validation-errors').html('');
                         document.getElementById('whoops').style.display = 'block';

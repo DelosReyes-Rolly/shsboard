@@ -9,16 +9,16 @@
     </div>
     <div class="modal-body">
         <label style="font-size: 20px;"><b>Subject Code: </b></label>
-        <span style="font-size: 20px;">{{$subject->subjectcode}}</span><br/>
+        <span id="subjectcode" style="font-size: 20px;">{{$subject->subjectcode}}</span><br/>
 
         <label style="font-size: 20px;"><b>Subject Name: </b></label>
-        <span style="font-size: 20px;">{{$subject->subjectname}}</span><br/>
+        <span id="subjectname" style="font-size: 20px;">{{$subject->subjectname}}</span><br/>
 
         <label style="font-size: 20px;"><b>Description: </b></label>
-        <span style="font-size: 20px;">{{$subject->description}}</span><br/>
+        <span id="description" style="font-size: 20px;">{{$subject->description}}</span><br/>
 
         <label style="font-size: 20px;"><b>Expertise Needed: </b></label>
-        <span style="font-size: 20px;">{{$subject->expertise->expertise}}</span><br/>
+        <span id="expertise_id" style="font-size: 20px;">{{$subject->expertise->expertise}}</span><br/>
 
     </div>
     <div class="modal-footer">

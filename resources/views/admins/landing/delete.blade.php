@@ -8,7 +8,7 @@
     <div class="modal-body">
         @csrf
         @method('PUT')
-        <p style="color: red; font-size:20px;">Are you sure you want to delete <b>{{$announcement->what}}</b>?</p>
+        <p style="color: red; font-size:20px;">Are you sure you want to delete <span id="what"> <b>{{$announcement->what}}</b></span>?</p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -39,6 +39,8 @@
                         title: 'Success.',                                                
                         text: 'Successfully deleted!',                      
                     })
+                    $("#reload").load(document.URL +  ' #reload');
+                    $("#reload2").load(document.URL +  ' #reload2');
                     $("#announcement"+id+"").remove();
                 }
             });

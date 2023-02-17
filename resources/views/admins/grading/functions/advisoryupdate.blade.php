@@ -62,30 +62,46 @@
             })
             .ajaxStop(function () {
                 $loading.hide();
+                $("#example").show();
             });
             $('#whoops').hide();
-            var form_data = $("form#updateAdvisory"+ id).serialize();
+            var form_data = $("form#updateAdvisory"+id).serialize();
             $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updateadvisory/")}}/' + id,
                 data:form_data,
                 success: function(response) {
+                        $("#example").hide();
                         $("#editModal"+id).removeClass("in");
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();
-                        $("#updateAdvisory"+ id)[0].reset();
+                        // $("#updateAdvisory"+ id)[0].reset();
+                        $("#modal-view-"+id).find("#first_name").text(response.first_name);
+                        if(response.middle_name != null){
+                            $("#modal-view-"+id).find("#middle_name").text(response.middle_name);
+                        }
+                        $("#modal-view-"+id).find("#last_name").text(response.last_name);
+                        if(response.middle_name != null){
+                            $("#modal-view-"+id).find("#suffix").text(response.suffix);
+                        }
                         $(":submit").removeAttr("disabled");
                         // $('#example').load(document.URL +  ' #example');
                         Swal.fire({
                             icon: 'success',
                             title: 'Success.',
                             text: 'Advisory class has been updated successfully',
-                        }).then(function() {
-                            location.reload(true);
-                        })
+                        });
+                        $('#example').DataTable().clear().destroy();
+                        $('#example').load(document.URL +  ' #example');
+                        $(function () {
+                            table = $('#example').DataTable( {
+                                responsive: true,
+                                "bInfo" : false,
+                            } );
+                        } );
                 },error: function (xhr) {
                     $('#validation-errors').html('');
                     document.getElementById('whoops').style.display = 'block';

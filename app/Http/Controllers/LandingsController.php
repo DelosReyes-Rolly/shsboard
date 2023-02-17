@@ -103,8 +103,7 @@ class LandingsController extends Controller
     }
 
     public function faculties(){
-        $landings = Landings::where('deleted', '=', null)->get();
-        return view('landing.faculties', compact('landings'));
+        return view('landing.faculties');
     }
 
 

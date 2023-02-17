@@ -17,7 +17,7 @@
                 </div>
                 <!-- page navigation-->
                 <div style="margin: 20px;">
-                    <a class="btn btn-secondary btn-lg" href="{{ url('createEvents') }}" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to event</a>
+                    <a class="btn btn-secondary btn-lg back-button back-button1" href="{{ url('createEvents') }}"><i class="fas fa-arrow-left"></i>   Back to event</a>
                 </div>
                 <h3 style="font-size: 28px; font-weight: 800;">View Event </h3><br/>
                 <hr class="mt-0 mb-4">

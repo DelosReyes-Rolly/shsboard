@@ -16,7 +16,7 @@
     <center><div hidden id="loadingDiv{{$schoolyear->id}}" style="color: red; font-weight: bold;"><div class="lds-hourglass"></div><br/> <div style="font-size: 20px;">Processing. Please wait...</div></div></center>
     <input type="hidden" id="id" name="id" value="{{$schoolyear->id}}"/>
         <div class="col-md-12">
-            <input type="text" id="schoolyear" name="schoolyear" class="form-control @error('schoolyear') is-invalid @enderror" value="{{$schoolyear->schoolyear}}"style="font-size: 20px;"  onkeypress="return onlyNumberKey(event)" maxlength="4" minlength="4" required>
+            <input id="schoolyear" type="text" name="schoolyear" class="form-control @error('schoolyear') is-invalid @enderror" value="{{$schoolyear->schoolyear}}"style="font-size: 20px;"  onkeypress="return onlyNumberKey(event)" maxlength="4" minlength="4" required>
             <div class="invalid-feedback">
                 Please input valid school year.
             </div>
@@ -48,6 +48,7 @@
             })
             .ajaxStop(function () {
                 $loading.hide();
+                $("#example").show();
             });
             $('#whoops').hide();
             var form_data = $("form#updateSchoolyear"+id).serialize();
@@ -57,22 +58,32 @@
                 url: '{{url("/updateschoolyear/")}}/' + id,
                 data:form_data,
                 success: function(response) {
+                        $("#example").hide();
                         $("#editModal"+response.id).removeClass("in");  
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();
-                        $("#updateSchoolyear"+id)[0].reset();
+                        // $("#updateSchoolyear"+id)[0].reset();
                         // $('#schoolyear' + id +' td:nth-child(2)').text(response.schoolyear);
+                        $("#deleteModal"+id).find("#schoolyear").text(response.schoolyear);
+                        $("#modal-view-"+id).find("#schoolyear").text(response.schoolyear);
+                        $("#editModal"+id).find("#schoolyear").html(response);
                         $(":submit").removeAttr("disabled");
                         // $('#example').load(document.URL +  ' #example');
                         Swal.fire({
                             icon: 'success',
                             title: 'Success.',
                             text: 'Schoolyear has been updated successfully',
-                        }).then(function() {
-                            location.reload(true);
-                        })
+                        });
+                        $('#example').DataTable().clear().destroy();
+                        $('#example').load(document.URL +  ' #example');
+                        $(function () {
+                            table = $('#example').DataTable( {
+                                responsive: true,
+                                "bInfo" : false,
+                            } );
+                        } );
                 },error: function (xhr) {
                     $('#validation-errors').html('');
                     document.getElementById('whoops').style.display = 'block';

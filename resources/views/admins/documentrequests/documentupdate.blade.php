@@ -19,7 +19,7 @@
             <div class="col-md-12">
                 <label class="large" for="name" style="font-size: 20px;"><span style="color: red">*</span> Document name:</label>
                 <br>
-                <input id="nameq" class="form-control @error('name') is-invalid @enderror"  type="text" style="font-size: 18px;"  placeholder="Document Name" name="name" value="{{$document->name}}" required>
+                <input id="nameq" class="form-control @error('name') is-invalid @enderror"  type="text" style="font-size: 18px;"  placeholder="Document Name" name="nameq" value="{{$document->name}}" required>
                 <div class="invalid-feedback">
                     Please input valid document name.
                 </div>
@@ -39,27 +39,25 @@
             })
             .ajaxStop(function () {
                 $loading.hide();
+                $("#example1").show();
             });
             $('#whoops').hide();
-            var id = $("#id").val();
-            var name = $("#nameq").val();
-            var _token = $("input[name=_token]").val();
+            var form_data = $("form#updateDocument"+ id).serialize();
             $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updatedocument/")}}/' + id,
-                data: {
-                    id: id,
-                    name: name,
-                    _token: _token,
-                },
+                data:form_data,
                 success: function(response) {
+                        $("#example1").hide();
                         $("#editModal"+id).removeClass("in");
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();
-                        $("#updateDocument"+id)[0].reset();
+                        // $("#updateDocument"+id)[0].reset();
+                        $("#deleteModal"+id).find("#name").text(response.name);
+                        $("#modal-view-"+id).find("#name").text(response.name);
                         // $('#document' + response.id +' td:nth-child(2)').text(response.name);
                         $(":submit").removeAttr("disabled");
                         // $('#example').load(document.URL +  ' #example');
@@ -67,9 +65,15 @@
                             icon: 'success',
                             title: 'Success.',
                             text: 'Document has been updated successfully',
-                        }).then(function() {
-                            location.reload(true);
-                        })
+                        });
+                        $('#example1').DataTable().clear().destroy();
+                        $('#example1').load(document.URL +  ' #example1');
+                        $(function () {
+                            table = $('#example1').DataTable( {
+                                responsive: true,
+                                "bInfo" : false,
+                            } );
+                        } );
                 },error: function (xhr) {
                     $('#validation-errors').html('');
                     document.getElementById('whoops').style.display = 'block';
@@ -82,8 +86,6 @@
                     }); 
                     $(":submit").removeAttr("disabled");
                 },
-            }).ajaxStop(function () {
-                $loading.hide();
             });
         }
 </script>

@@ -1,18 +1,18 @@
 <div class="modal-header">
     <h1 class="modal-title" id="staticBackdropLabel" style="font-size: 20px;">Delete Activity </h1>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-size: 20px;">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form method="POST" id="deletedActivity{{$activity->id}}">   
+<form method="POST" id="deletedActivity{{$activitystream->id}}">   
     <div class="modal-body">
         @csrf
         @method('PUT')
         <p style="color: red; font-size:20px;">Are you sure you want to delete this activity ?</p>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <font face = "Verdana" size = "2"><input type="submit" class="btn btn-danger btn-md" value="Delete"></font>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-size: 20px;">Close</button>
+        <font face = "Verdana"><input type="submit" class="btn btn-danger btn-md" value="Delete" style="font-size: 20px;"></font>
     </div>
 </form>
 <script>
@@ -40,6 +40,8 @@
                         text: 'Activity has been deleted successfully!',                      
                     })
                     $("#announcement"+id+"").remove();
+                    $("#reload").load(document.URL +  ' #reload');
+                    $("#reload2").load(document.URL +  ' #reload2');
                 }
             });
         });

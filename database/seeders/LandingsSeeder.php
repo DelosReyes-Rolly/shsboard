@@ -63,7 +63,7 @@ class LandingsSeeder extends Seeder
         ]);
         Landings::create([
             'title' => 'Strands Offered',
-            'content' => '<p>High standards for instruction and learning; a warm, secure atmosphere; and participation from families and the community. The Signal Village National High School offers 4 Academic and 4 TVL Tracks. Academic track includes: Accountancy and Business Management (ABM), Humanities and Social Sciences (HUMSS), Science, Technology, Engineering and Mathematics (STEM), and General Academic Strand (GAS). TVL track includes: Home Economics (HE), Nursing Arts (Caregiving), Electrical Installation and Management (EIM), and Information and Communcation Technology (ICT). &nbsp;</p>',
+            'content' => '<p>High standards for instruction and learning; a warm, secure atmosphere; and participation from families and the community. The Signal Village National High School offers 4 Academic and 4 TVL Tracks. Academic track includes: Accountancy and Business Management (ABM), Humanities and Social Sciences (HUMSS), Science, Technology, Engineering and Mathematics (STEM), and General Academic Strand (GAS). TVL track includes: Home Economics (HE), Nursing Arts (Caregiving), Electrical Installation and Management (EIM), and Information and Communication Technology (ICT). &nbsp;</p>',
         ]);
     }
 }

@@ -10,9 +10,7 @@
         border: 1px solid #ccc;
     }
     
-</style>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
-<!-- student login start -->
+</style><!-- student login start -->
     <br/><br/><br/><br/>
     <div class="reg regOthers">     
 		<div class="col-md-12">
@@ -63,8 +61,8 @@
                             @endif
                         <div class="form-group">
                             <label for="LRN" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('LRN') }}</label>
-                                <input id="LRN" type="text" class="form-control @error('LRN') is-invalid @enderror" name="LRN" value="{{ old('LRN') }}" required autocomplete="LRN" autofocus onkeypress="return onlyNumberKey(event)" maxlength="12" minlength="12">
-                                @error('name')
+                                <input id="LRN" type="text" class="form-control @error('LRN') is-invalid @enderror" name="LRN" value="{{ old('LRN') }}" required autocomplete="LRN" autofocus onkeypress="return onlyNumberKey(event)" maxlength="12" minlength="12"/>
+                                @error('lrn')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -73,7 +71,7 @@
 
                             <div class="form-group">
                                 <label for="LRN" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('First Name') }}</label>
-                                <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" autofocus onkeydown="return alphaOnly(event);" maxlength="255">
+                                <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" autofocus onkeydown="return alphaOnly(event);" maxlength="255"/>
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -83,7 +81,7 @@
 
                             <div class="form-group">
                                 <label for="middle_name" class="col-form-label text-md-end">{{ __('Middle name') }}</label>
-                                <input id="middle_name" type="text" class="form-control @error('middle_name') is-invalid @enderror" name="middle_name" value="{{ old('middle_name') }}" autocomplete="middle_name" autofocus onkeydown="return alphaOnly(event);" maxlength="255">
+                                <input id="middle_name" type="text" class="form-control @error('middle_name') is-invalid @enderror" name="middle_name" value="{{ old('middle_name') }}" autocomplete="middle_name" autofocus onkeydown="return alphaOnly(event);" maxlength="255"/>
                                 @error('middle_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -93,7 +91,7 @@
 
                             <div class="form-group">
                                 <label for="last_name" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Last name') }}</label>
-                                <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" autofocus onkeydown="return alphaOnly(event);" maxlength="255">
+                                <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" autofocus onkeydown="return alphaOnly(event);" maxlength="255"/>
                                 @error('last_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -103,7 +101,7 @@
 
                             <div class="form-group">
                                 <label for="suffix" class="col-form-label text-md-end"> {{ __('Suffix') }}</label>
-                                <input id="suffix" type="text" class="form-control @error('suffix') is-invalid @enderror" name="suffix" value="{{ old('suffix') }}" autocomplete="suffix" autofocus onkeydown="return alphaOnly(event);" maxlength="255">
+                                <input id="suffix" type="text" class="form-control @error('suffix') is-invalid @enderror" name="suffix" value="{{ old('suffix') }}" autocomplete="suffix" autofocus onkeydown="return alphaOnly(event);" maxlength="255"/>
                                 @error('suffix')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -113,7 +111,7 @@
 
                             <div class="form-group">
                                 <label for="username" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Username') }}</label>
-                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus onkeydown="return alphaOnly(event);" maxlength="255">
+                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus onkeydown="return alphaOnly(event);" maxlength="255"/>
                                 @error('username')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -180,7 +178,7 @@
 
                             <div class="form-group">
                                 <label for="email" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Email Address') }}</label>
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" maxlength="255">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" maxlength="255"/>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -190,7 +188,7 @@
 
                             <div class="form-group">
                                 <label for="password" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Password') }}</label>
-                                <input id="password" type="password" class="password @error('password') is-invalid @enderror" name="password" required autocomplete="new-password"><br/>
+                                <input id="password" type="password" class="password @error('password') is-invalid @enderror" name="password" required autocomplete="new-password"/><br/>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -202,7 +200,7 @@
 
                             <div class="form-group">
                                 <label for="password-confirm" class="col-form-label text-md-end"><span style="color: red">*</span> {{ __('Confirm Password') }}</label>
-                                <input id="password-confirm" type="password" class="password" name="password_confirmation" required autocomplete="new-password"><br/>
+                                <input id="password-confirm" type="password" class="password" name="password_confirmation" required autocomplete="new-password"/><br/>
                                 <span style="float:left;"><input id="showpass2" type="checkbox" onclick="showpassw2()"></span>
                                 <span style="float:left;"><label for="showpass2">&ensp;Show password</label></span><br/>
                             </div>
@@ -212,9 +210,9 @@
                                 </button>
                             </center></font>
                         </form>
+                        
                 </div>
             </div>
-            <script src="{{ asset('assets/js/needs-validated.js') }}"></script>
             <script>
                 function showpassw() {
                     var x = document.getElementById("password");

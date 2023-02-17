@@ -44,7 +44,7 @@
                                     <br><br>
                                     <div class="alert alert-danger"><em>No records found.</em></div>
                                 @else
-                                    <span class="h3 d-flex align-items-center" style="padding:12px; font-size:40px;"> <i class="fas fa-file-alt"> </i> {{$gradeevaluationrequests->count()}} </span>
+                                    <span class="h3 d-flex align-items-center" style="padding:12px; font-size:40px;"> <i class="fas fa-file-alt"> </i>&nbsp; {{$gradeevaluationrequests->count()}} </span>
                                 @endif
                                 <!-- <a class="text-arrow-icon small text-success" href="#!">
                                     View Active requests

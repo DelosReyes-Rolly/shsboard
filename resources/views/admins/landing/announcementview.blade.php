@@ -36,9 +36,9 @@
                 <!-- page navigation-->
                 <div style="margin: 20px;">
                     @if($announcement->privacy == 1)
-                        <a class="btn btn-secondary btn-lg" href="{{ url('createAnnouncement') }}" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to announcement</a>
+                        <a class="btn btn-secondary btn-lg back-button back-button1" href="{{ url('createAnnouncement') }}"><i class="fas fa-arrow-left"></i>   Back to announcement</a>
                     @elseif($announcement->privacy == 2)
-                        <a class="btn btn-secondary btn-lg" href="{{ url('/tableofannouncement') }}" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to announcement</a>
+                        <a class="btn btn-secondary btn-lg back-button back-button1" href="{{ url('/tableofannouncement') }}"><i class="fas fa-arrow-left"></i>   Back to announcement</a>
                     @endif
                 </div>
                 <h3 style="font-size: 28px; font-weight: 800;">View Annoucement</h3><br/>

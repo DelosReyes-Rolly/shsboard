@@ -398,6 +398,7 @@
         }
     </style>
     <title>Internal Error</title>
+    <link rel="shortcut icon" type="image/icon" href='{{ URL::asset("img/shs.png")}}'/>
 </head>
 <body>
     <div class="main-error-page">

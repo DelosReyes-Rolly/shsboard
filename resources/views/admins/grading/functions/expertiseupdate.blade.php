@@ -48,6 +48,7 @@
             })
             .ajaxStop(function () {
                 $loading.hide();
+                $("#example").show();
             });
             $('#whoops').hide();
             var form_data = $("form#updateExpertise"+ id).serialize();
@@ -56,22 +57,32 @@
                 type: "PUT",                                            // PUT pang update
                 url: '{{url("/updateexpertise/")}}/' + id,                // url mo kasama id
                 data:form_data,
-                success: function(response) {                           // kapag nagsuccess
+                success: function(response) {      
+                        $("#example").hide();                     // kapag nagsuccess
                         $("#editModal"+id).removeClass("in");           //copy paste mo lang to. Pang hide lang to ng modal
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();                     // hanggang dito
-                        $("#updateExpertise"+ id)[0].reset();                // irereset niya yung form
+                        // $("#updateExpertise"+ id)[0].reset();                // irereset niya yung form
+                        $("#deleteModal"+id).find("#expertise").text(response.expertise);
+                        // view
+                        $("#modal-view-"+id).find("#expertise").text(response.expertise);
                         // $('#expertise' + id +' td:nth-child(2)').text(response.expertise);               // copy paste mo lang to. Bale pinapalitan lang niya yung row. Yung "expertise" id siya ng tr
                         $(":submit").removeAttr("disabled");                                                                                 // yung response galing siya sa controller yung return response()->json($expertise). Yung td:nth-child(2) column bale 2nd column
                         Swal.fire({                                                             //sweetalert
                             icon: 'success',                                                    //
                             title: 'Success.',                                                  //
                             text: 'Expertise has been updated successfully',                      //
-                        }).then(function() {
-                            location.reload(true);
-                        })
+                        });
+                        $('#example').DataTable().clear().destroy();
+                            $('#example').load(document.URL +  ' #example');
+                            $(function () {
+                                table = $('#example').DataTable( {
+                                    responsive: true,
+                                    "bInfo" : false,
+                                } );
+                            } );
                 },error: function (xhr) {
                         $('#validation-errors').html('');
                         document.getElementById('whoops').style.display = 'block';

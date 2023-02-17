@@ -48,6 +48,7 @@
             })
             .ajaxStop(function () {
                 $loading.hide();
+                $("#example").show();
             });
             $('#whoops').hide();
             var form_data = $("form#updateGradelevel"+ id).serialize();
@@ -57,12 +58,15 @@
                 url: '{{url("/updategradelevel/")}}/' + id,
                  data:form_data,
                 success: function(response) {                           // kapag nagsuccess
+                        $("#example").hide();
                         $("#editModal"+id).removeClass("in");  
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();
-                        $("#updateGradelevel"+ id)[0].reset();
+                        $("#deleteModal"+id).find("#gradelevel").text(response.gradelevel);
+                        // $("#updateGradelevel"+ id)[0].reset();
+                        $("#editModal"+id).find("#gradelevel").html(response);
                         // $('#gradelevel' + id +' td:nth-child(2)').text(response.gradelevel);
                         $(":submit").removeAttr("disabled");
                         // $('#example').load(document.URL +  ' #example');
@@ -70,9 +74,16 @@
                             icon: 'success',
                             title: 'Success.',
                             text: 'Gradelevel has been updated successfully',
-                        }).then(function() {
-                            location.reload(true);
-                        })
+                        });
+                        $('#example').DataTable().clear().destroy();
+                        $('#example').load(document.URL +  ' #example');
+                        $(function () {
+                            table = $('#example').DataTable( {
+                                responsive: true,
+                                "bInfo" : false,
+                            } );
+                        } );
+    
                 },error: function (xhr) {
                     $('#validation-errors').html('');
                     document.getElementById('whoops').style.display = 'block';

@@ -19,7 +19,7 @@
     <script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
     <script>
         $(document).ready(function() {
-            var table = $('#example').DataTable( {
+            table = $('#example').DataTable( {
                 responsive: true,
                 "bInfo" : false,
             } );
@@ -32,7 +32,7 @@
         <div class="px-2 mt-2">
            
         <div style="margin: 0px;">
-            <a class="btn btn-secondary btn-lg" href="{{ url('gradingstudents') }}" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to student list</a>
+            <a class="btn btn-secondary btn-lg back-button back-button1" href="{{ url('gradingstudents') }}"><i class="fas fa-arrow-left"></i>   Back to student list</a>
         </div>
         <h3 style="font-size: 28px; font-weight: 800;">Table of Alumni </h3><br>
         <hr class="mt-0 mb-4">

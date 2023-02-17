@@ -32,7 +32,7 @@
             <div class="px-2 mt-2">
                 <!-- page navigation-->
                 <div style="margin: 20px;">
-                    <a class="btn btn-secondary btn-lg" href="{{ url('gradingfaculty') }}" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to faculty list</a>
+                    <a class="btn btn-secondary btn-lg back-button back-button1" href="{{ url('gradingfaculty') }}"><i class="fas fa-arrow-left"></i>   Back to faculty list</a>
                 </div>
                 <h3 style="font-size: 28px; font-weight: 800;">View Teacher</h3><br/>
                 <hr class="mt-0 mb-4">
@@ -53,7 +53,7 @@
                                             <label style="font-size: 26px;"><b>Full Name: </b></label>
                                         </div>
                                         <div class="col-lg-9 col-md-12 col-sm-12" style="margin-bottom: 10px;">
-                                            <span style="font-size: 26px;">{{$faculty->last_name}}, {{$faculty->first_name}} {{$faculty->middle_name}} {{$faculty->suffix}}</span>
+                                            <span style="font-size: 26px;"><span id="last_name">{{$faculty->last_name}}</span>, <span id="first_name">{{$faculty->first_name}}</span> <span id="middle_name">{{$faculty->middle_name}}</span> <span id="last_name">{{$faculty->suffix}}</span></span>
                                         </div>
                                     
                                         <!-- Form Group whr-->
@@ -69,7 +69,7 @@
                                             <label style="font-size: 26px;"><b>Expertise: </b></label>
                                         </div>
                                         <div class="col-lg-9 col-md-12 col-sm-12" style="margin-bottom: 10px;">
-                                            <span style="font-size: 26px;">{{$faculty->expertise->expertise}}</span>
+                                            <span id="expertise" style="font-size: 26px;">{{$faculty->expertise->expertise}}</span>
                                         </div>
                                    
                                     
@@ -88,7 +88,7 @@
                                             <label style="font-size: 26px;"><b>Email Address: </b></label>
                                         </div>
                                         <div class="col-lg-9 col-md-12 col-sm-12" style="margin-bottom: 10px;">
-                                            <span style="font-size: 26px;">{{$faculty->email}}</span>
+                                            <span id="email" style="font-size: 26px;">{{$faculty->email}}</span>
                                         </div>
                                         
                                         <!-- Form Group whr-->
@@ -112,7 +112,7 @@
                                             <label style="font-size: 26px;"><b>Status: </b></label>
                                         </div>
                                         <div class="col-lg-9 col-md-12 col-sm-12" style="margin-bottom: 10px;">
-                                            <span style="font-size: 26px;">
+                                            <span id="status" style="font-size: 26px;">
                                                 @if ($faculty->isMaster == null)
                                                     Master
                                                 @else
@@ -122,7 +122,7 @@
                                         </div><br/><br/><br/><br/>
                                     </div>
 
-                                    <div class="card-header" style="font-size: 20px;">{{$faculty->last_name}}'s Subjects</div>
+                                    <div class="card-header" style="font-size: 20px;"><span id="last_name">{{$faculty->last_name}}</span>'s Subjects</div>
                                     @if($subjectteachers->count() == 0) 
                                     <!-- find all subject of teachers then count if they have one. -->
                                         <div class="alert alert-danger"><em>No records found.</em></div>
@@ -200,4 +200,3 @@
             </script>
         
 </main>
-<br><br><br><br>

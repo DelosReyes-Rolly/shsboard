@@ -95,6 +95,7 @@
         }
     </style>
     <title>Request Timed Out</title>
+    <link rel="shortcut icon" type="image/icon" href='{{ URL::asset("img/shs.png")}}'/>
 </head>
 <body>
     <h1 aria-label="408 Error">4<span></span>8</h1>

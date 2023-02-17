@@ -24,7 +24,7 @@
             <div class="col-lg-8 col-md-12 col-sm-12">
             </div>
             <div class="col-lg-4 col-md-12 col-sm-12">
-                <a class="btn btn-secondary btn-lg" href='{{ url("/gradingstudents") }}' style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to students</a>
+                <a class="btn btn-secondary btn-lg back-button back-button1" href='{{ url("/gradingstudents") }}'><i class="fas fa-arrow-left"></i>   Back to students</a>
             </div>
         </div>
         <form method="POST" id="createSubjectStudent" class="needs-validation" novalidate>

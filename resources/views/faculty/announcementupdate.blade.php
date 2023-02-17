@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="col-md-12">
-                <label class="slarge mb-1" for="inputexpired_at" style="font-size: 20px;"><span style="color: red">*</span> Expired at</label>
+                <label class="slarge mb-1" for="inputexpired_at" style="font-size: 20px;"><span style="color: red">*</span> Deadline</label>
                 <input type="date" class="form-control @error('expired_at') is-invalid @enderror" id="inputexpired_at" placeholder="Enter the date" name="expired_at"  value="{{$announcement->expired_at}}" style="font-size: 16px; padding: 20px;" required>
                 <div class="invalid-feedback">
                     Please input expiry date.
@@ -50,7 +50,7 @@
                 <select id="course_id" name="course_id" value="{{ old('course_id') }}" style="font-size: 16px; padding: 12px; display: block; width: 100%;" required>
                     <option value="" disabled selected hidden>Choose Strand</option>
                     @foreach ($courses as $course)
-                    <option value="{{ $course->id }}" {{($announcement->course->id==$course->id)? 'selected':'' }}>{{ $course->course->courseName}}</option>
+                    <option value="{{ $course->course->id }}" {{($announcement->course->id==$course->id)? 'selected':'' }}>{{ $course->course->courseName}}</option>
                     @endforeach
                 </select>
                 <div class="invalid-feedback">
@@ -74,7 +74,7 @@
                 <select id="subject_id" name="subject_id" value="{{ old('subject_id') }}" style="font-size: 16px; padding: 12px; display: block; width: 100%;" required>
                     <option value="" disabled selected hidden>Choose Subject</option>
                     @foreach ($subjects as $subject)
-                    <option value="{{ $subject->id }}"{{($announcement->subject->id==$subject->id)? 'selected':'' }}>{{ $subject->subject->subjectname}}</option>
+                    <option value="{{ $subject->subject->id }}"{{($announcement->subject->id==$subject->id)? 'selected':'' }}>{{ $subject->subject->subjectname}}</option>
                     @endforeach
                 </select>
                 <div class="invalid-feedback">
@@ -102,6 +102,12 @@
 
 <script>
     function formPost(){
+            $(document).ajaxStart(function () {
+
+            })
+            .ajaxStop(function () {
+                $("#example").show();
+            });
             $('#whoops').hide();
             var form_data = $("form#activityStreamupdate"+id).serialize();
             console.log(form_data);
@@ -110,22 +116,38 @@
                 type: "PUT",                                            // PUT pang update
                 url: '{{url("/updatefacultyannouncement/")}}/' + id,                // url mo kasama id
                 data:form_data,
-                success: function(response) {                           // kapag nagsuccess
+                success: function(response) {
+                        $("#example").hide();                           // kapag nagsuccess
                         $("#editModal"+response.id).removeClass("in");           //copy paste mo lang to. Pang hide lang to ng modal
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
-                        $("#editModal"+response.id).hide();                     // hanggang dito
-                        $("#activityStreamupdate"+ id)[0].reset();                // irereset niya yung form
+                        $("#editModal"+response.id).hide();   
+                        $("#modal-view-"+id).find("#what").text(response.what);
+                        $("#modal-view-"+id).find("#deadline").text(response.expired_at);
+                        $("#modal-view-"+id).find("#gradelevel").text(response.gradelevel_id);
+                        $("#modal-view-"+id).find("#course").text(response.course_id);
+                        $("#modal-view-"+id).find("#section").text(response.section_id);
+                        $("#modal-view-"+id).find("#subject").text(response.subject_id);
+                        $("#modal-view-"+id).find("#contents").text(response.content);
+                        $("#reload").load(document.URL +  ' #reload');
+                        $("#reload2").load(document.URL +  ' #reload2');
+                        // $("#activityStreamupdate"+ id)[0].reset();                // irereset niya yung form
                         // $('#section' + response.id +' td:nth-child(2)').text(response.section);    
                         $(":submit").removeAttr("disabled");               // copy paste mo lang to. Bale pinapalitan lang niya yung row. Yung "section" id siya ng tr                                                                        // yung response galing siya sa controller yung return response()->json($section). Yung td:nth-child(2) column bale 2nd column
                         Swal.fire({                                                             //sweetalert
                             icon: 'success',                                                    //
                             title: '<div style="font-size: 60px;">Success.</div>',                                                  //
                             text: 'Announcement has been updated successfully',                      //
-                        }).then(function() {
-                            location.reload(true);
-                        })
+                        });
+                            $('#example').DataTable().clear().destroy();
+                            $('#example').load(document.URL +  ' #example');
+                            $(function () {
+                                table = $('#example').DataTable( {
+                                    responsive: true,
+                                    "bInfo" : false,
+                                } );
+                            } );
                 },error: function (xhr) {
                     $('#validation-errors').html('');
                     document.getElementById('whoops').style.display = 'block';

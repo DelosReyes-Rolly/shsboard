@@ -32,7 +32,7 @@
 	<script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
     <script>
         $(document).ready(function() {
-            var table = $('#example').DataTable( {
+            table = $('#example').DataTable( {
                 responsive: true,
                 "bInfo" : false,
             } );
@@ -53,7 +53,7 @@
                             <div class="card h-100 border-start-lg border-start-secondary" style="background-color: red; color: white; box-shadow: 0 4px 16px rgba(0,0,0,0.6);" >
                                 <div class="card-body">
                                     <div class="requesteddocument" style="color: white; font-size: 20px; font-weight: 800;">Expired Activity</div>
-                                    <div class="h3" style="padding-left: 20px; padding-bottom: 10px; font-size:40px;"><i class="fas fa-calendar-times"> </i> {{ $expired }} </div>
+                                    <div class="h3" style="padding-left: 20px; padding-bottom: 10px; font-size:40px;"><i class="fas fa-calendar-times"> </i> <span id="reload2">{{ $expired }}</span> </div>
                                     <!-- <a class="text-arrow-icon small text-secondary" href="#!">
                                         View expired announcements
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -66,7 +66,7 @@
                         <div class="card h-100 border-start-lg border-start-success" style="background-color: green; color: white; box-shadow: 0 4px 16px rgba(0,0,0,0.6);">
                             <div class="card-body">
                                 <div class="requesteddocument" style="color: white; font-size: 20px; font-weight: 800;">Active Annoucements</div>
-                                <div class="h3 d-flex align-items-center" style="padding-left: 20px; padding-bottom: 10px; font-size:40px;"> <i class="fas fa-bullhorn"> </i> {{ $active }} </div>
+                                <div class="h3 d-flex align-items-center" style="padding-left: 20px; padding-bottom: 10px; font-size:40px;"> <i class="fas fa-bullhorn"> </i> <span id="reload">{{ $active }}</span> </div>
                                 <!-- <a class="text-arrow-icon small text-success" href="#!">
                                     View Active annoucements
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>

@@ -20,7 +20,7 @@
 
     <script>
         $(document).ready(function() {
-            var table = $('#example').DataTable( {
+            table = $('#example').DataTable( {
                 responsive: true,
                 "bInfo" : false,
             } );

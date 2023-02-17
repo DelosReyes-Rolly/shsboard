@@ -8,7 +8,7 @@
     <div class="modal-body">
         <div style="font-size: 40px; font-weight:bold; color: green;">
             <div class="card-body" style="padding: 10px 40px 10px 40px">
-                <h1 style="font-size: 28px;" >{{$schoolyear->schoolyear}}</h1>
+                <h1 style="font-size: 28px;" > <span id="schoolyear"> {{$schoolyear->schoolyear}}</span></h1>
             </div>
         </div>
     </div>

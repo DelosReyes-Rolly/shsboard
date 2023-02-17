@@ -8,7 +8,7 @@
     <div class="modal-body">
         @csrf
         @method('PUT')
-        <p style="color: red; font-size:20px;">Are you sure you want to delete the records of <b>{{$faculty->last_name}}, {{$faculty->first_name}} {{$faculty->middle_name}}</b>?</p>
+        <p style="color: red; font-size:20px;">Are you sure you want to delete the records of <b><span id="last_name">{{$faculty->last_name}}</span>, <span id="first_name">{{$faculty->first_name}}</span> <span id="middle_name">{{$faculty->middle_name}}</span> <span id="suffix">{{$faculty->suffix}}</span></b>?</p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

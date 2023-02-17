@@ -15,18 +15,18 @@
 		@endif
             <div class="row">
                 <div class="col-md-12">
-                    <center><span style="font-size: 26px;">{{$course->courseName}}</span></center>
+                    <center><span id="courseName" style="font-size: 26px;">{{$course->courseName}}</span></center>
                 </div><br/><br/>
                 <div class="col-md-12" style="font-size: 26px;">
-                    <center>({{$course->abbreviation}})</center>
+                    <center><span id="abbreviation">({{$course->abbreviation}})</span></center>
                 </div><br/><br/>
                 <div class="col-md-12">
                     <br/><label style="font-size: 26px;"><b>Strand Description: </b></label>
-                    <span style="font-size: 20px;">{{$course->description}}</span>
+                    <span id="description" style="font-size: 20px;">{!!$course->description!!}</span>
                 </div><br/><br/>
                 <div class="col-md-12">
                     <br/> <label style="font-size: 26px;">Code: </label><br/>
-                    <span style="font-size: 26px;"><b>{{$course->code}}</b></span>
+                    <span id="code" style="font-size: 26px;"><b>{{$course->code}}</b></span>
                 </div><br><br/>
                 @if($course->link != NULL)
                     <div class="col-md-12">

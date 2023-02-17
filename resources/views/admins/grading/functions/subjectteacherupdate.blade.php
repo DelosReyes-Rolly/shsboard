@@ -20,7 +20,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="col-md-12"><label for="faculty_id" style="font-size: 20px;"><span style="color: red">*</span> Teacher</label>
+                <label for="faculty_id" style="font-size: 20px;"><span style="color: red">*</span> Teacher</label>
                     <select id="faculty" name="faculty_id" class="form-control"  style="font-size: 18px;" required>
                         <option value="" disabled selected hidden>Choose Teacher</option>
                         @foreach ($faculties as $faculty)
@@ -30,10 +30,9 @@
                     <div class="invalid-feedback">
                         Please choose teacher.
                     </div>
-                </div>
             </div>
-            <div class="col-md-12">
-                <div class="col-md-12"><label for="subject_id" style="font-size: 20px;"><span style="color: red">*</span> Subject</label>
+            <div class="col-md-12"><br/>
+                <label for="subject_id" style="font-size: 20px;"><span style="color: red">*</span> Subject</label>
                     <select id="subject" name="subject_id" class="form-control" value="{{ old('subject_id') }}"  style="font-size: 18px;" required>
                         <option value="" disabled selected hidden>Choose Subject</option>
                         @foreach ($subjects as $subject)
@@ -43,9 +42,8 @@
                     <div class="invalid-feedback">
                         Please choose subject.
                     </div>
-                </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12"><br/>
                 <label for="appt" style="font-size: 20px;"><span style="color: red">*</span> Select a time:</label><br>
                 <span class="col-md-4">From: <input type="time" class="form-control" id="time_start" name="time_start" value={{$subjectteacher->time_start}} required width="20%"></span>
                 <span class="invalid-feedback">
@@ -118,7 +116,6 @@
     </div>
 </form>
 <script>
-
 var $loading = $('#loadingDiv'+ id);
         function formPost(){
             $(document).ajaxStart(function () {
@@ -206,7 +203,7 @@ var $loading = $('#loadingDiv'+ id);
                             $('body').removeClass('modal-open');
                             $('body').css('padding-right', '');
                             $("#editModal"+id).hide();
-                            $("#updateSubjectteacher"+ id)[0].reset();
+                            // $("#updateSubjectteacher"+ id)[0].reset();
                             $(":submit").removeAttr("disabled");
                             // $('#example').load(document.URL +  ' #example');
                             Swal.fire({
@@ -214,8 +211,8 @@ var $loading = $('#loadingDiv'+ id);
                                 title: 'Success.',
                                 text: 'Subject of teacher has been updated successfully',
                             }).then(function() {
-                                location.reload(true);
-                            })
+                            location.reload(true);
+                        });
                     },error: function (xhr) {
                         $('#validation-errors').html('');
                         document.getElementById('whoops').style.display = 'block';

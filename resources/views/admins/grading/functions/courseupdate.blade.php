@@ -72,6 +72,7 @@
             })
             .ajaxStop(function () {
                 $loading.hide();
+                $("#example").show();
             });
             $('#whoops').hide();
             var form_data = $("form#updateCourse"+id).serialize();
@@ -81,12 +82,21 @@
                 url: '{{url("/updatecourse/")}}/' + id,
                 data:form_data,
                 success: function(response) {
+                        $("#example").hide();
                         $("#editModal"+id).removeClass("in");
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();
-                        $("#updateCourse"+id)[0].reset();
+                        $("#deleteModal"+id).find("#courseName").text(response.courseName);
+                        // view
+                        $("#modal-view-"+id).find("#courseName").text(response.courseName);
+                        $("#modal-view-"+id).find("#abbreviation").text(response.abbreviation);
+                        $("#modal-view-"+id).find("#description").text(response.description);
+                        $("#modal-view-"+id).find("#code").text(response.code);
+                        $("#modal-view-"+id).find("#video"+id).load(document.URL +  ' #video'+id);
+                        // $("#modal-view-"+id).find("#video"+id).text(response.link);
+                        // $("#updateCourse"+id)[0].reset();
                         // $('#course' + id +' td:nth-child(1)').text(response.courseName);
                         // $('#course' + id +' td:nth-child(2)').text(response.abbreviation);
                         // $('#course' + id +' td:nth-child(3)').text(response.code);
@@ -96,9 +106,15 @@
                                 icon: 'success',
                                 title: 'Success.',
                                 text: 'Strand has been updated successfully',
-                            }).then(function() {
-                                location.reload(true);
-                            })
+                            });
+                            $('#example').DataTable().clear().destroy();
+                            $('#example').load(document.URL +  ' #example');
+                            $(function () {
+                                table = $('#example').DataTable( {
+                                    responsive: true,
+                                    "bInfo" : false,
+                                } );
+                            } );
                 },error: function (xhr) {
                     $('#validation-errors').html('');
                     document.getElementById('whoops').style.display = 'block';

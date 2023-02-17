@@ -18,7 +18,7 @@
                 </div>
                 <!-- page navigation-->
                 <div style="margin: 20px;">
-                    <a class="btn btn-secondary btn-lg" href="{{ url('homepage') }}" style="float: right; font-size: 18px;"><i class="fas fa-arrow-left"></i>   Back to homepage</a>
+                    <a class="btn btn-secondary btn-lg back-button back-button1" href="{{ url('homepage') }}"><i class="fas fa-arrow-left"></i>   Back to homepage</a>
                 </div>
                 <h3 style="font-size: 28px; font-weight: 800;">View on Home</h3><br/>
                 <hr class="mt-0 mb-4">

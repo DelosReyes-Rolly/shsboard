@@ -49,39 +49,46 @@
             })
             .ajaxStop(function () {
                 $loading.hide();
+                $("#example").show();
             });
-            var id = $("#id").val();
-            var expired_at = $("#expired_at").val();
-            var content = $("#editor2").val();
-            var _token = $("input[name=_token]").val();
+            // var id = $("#id").val();
+            // var expired_at = $("#expired_at").val();
+            // var content = $("#editor2").val();
+            // var _token = $("input[name=_token]").val();
+            var form_data = $("form#updateReminder"+id).serialize();
             $(":submit").attr("disabled", true);
             $.ajax({
                 type: "PUT",
                 url: '{{url("/updatereminder/")}}/' + id,
-                data: {
-                    id: id,
-                    expired_at: expired_at,
-                    content: content,
-                    _token: _token,
-                },
+                data:form_data,
                 success: function(response) {
+                        $("#example").hide();
                         $("#editModal"+id).removeClass("in");
                         $(".modal-backdrop").remove();
                         $('body').removeClass('modal-open');
                         $('body').css('padding-right', '');
                         $("#editModal"+id).hide();
-                        $("#updateReminder"+ id)[0].reset();
+                        // $("#updateReminder"+ id)[0].reset();
                         // $('#reminder' + id +' td:nth-child(2)').text(response.content);
                         // $('#reminder' + id +' td:nth-child(4)').text(response.expired_at);
+                        $("#modal-view-"+id).find("#reload").load(document.URL +  ' #reload');
                         $(":submit").removeAttr("disabled");
                         // $('#example').load(document.URL +  ' #example');
                         Swal.fire({
                             icon: 'success',
                             title: 'Success.',
                             text: 'Reminder has been updated successfully',
-                        }).then(function() {
-                            location.reload(true);
-                        })
+                        });
+                        $("#reload").load(document.URL +  ' #reload');
+                        $("#reload2").load(document.URL +  ' #reload2');
+                            $('#example').DataTable().clear().destroy();
+                            $('#example').load(document.URL +  ' #example');
+                            $(function () {
+                                table = $('#example').DataTable( {
+                                    responsive: true,
+                                    "bInfo" : false,
+                                } );
+                            } );
                 },error: function (xhr) {
                     $('#validation-errors').html('');
                     document.getElementById('whoops').style.display = 'block';

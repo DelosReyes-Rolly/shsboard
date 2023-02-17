@@ -8,7 +8,7 @@
     <div class="modal-body">
         @csrf
         @method('PUT')
-        <p style="color: red; font-size:20px;">Are you sure you want to delete section <b>{{$section->section}}</b>?</p>
+        <p style="color: red; font-size:20px;">Are you sure you want to delete section <span id="section"> <b>{{$section->section}}</b></span>?</p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

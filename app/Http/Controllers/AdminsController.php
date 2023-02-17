@@ -180,11 +180,11 @@ class AdminsController extends Controller
     public function updatelanding(Request $request){
         $request->validate([
             'title' => ['required'],
-            'content' => ['required'],
+            'editor3' => ['required'],
         ]);
         $landing = Landings::find($request->id);
         $landing->title = $request->title;
-        $landing->content = $request->content;
+        $landing->content = $request->get('editor3');
         $landing->save();
         return response()->json($landing);
    }
@@ -342,7 +342,7 @@ class AdminsController extends Controller
             'whn_time' => ['required'],
             'whr' => 'required|max:255',
             'sender' => 'required|max:255',
-            'content' => 'required',
+            'editor2' => 'required',
             'expired_at' => ['required'],
         ]);
         $announcement = Announcements::find($request->id);
@@ -352,7 +352,7 @@ class AdminsController extends Controller
         $announcement->whn_time = $request->whn_time;
         $announcement->whr = $request->whr;
         $announcement->sender = $request->sender;
-        $announcement->content = $request->content;
+        $announcement->content = $request->get('editor2');
         $announcement->expired_at = $request->expired_at;
         $announcement->save();
         Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<=',  now())->update(['status' => '2']);
@@ -459,18 +459,27 @@ class AdminsController extends Controller
         return view('admins.landing.eventupdate', ['event' => $data]);
     }
 
-    public function updateevent(Request $request, Announcements $event){
-        $validated = $request->validate([
+    public function updateevent(Request $request){
+        $request->validate([
             'what' => 'required|max:255',
             'who' => 'required|max:255',
             'whn' => ['required'],
             'whn_time' => ['required'],
             'whr' => 'required|max:255',
             'sender' => 'required|max:255',
-            'content' => 'required',
+            'editor2' => 'required',
             'expired_at' => ['required'],
         ]);
-       $event->update($validated);
+        $event = Announcements::find($request->id);
+        $event->what = $request->what;
+        $event->who = $request->who;
+        $event->whn = $request->whn;
+        $event->whn_time = $request->whn_time;
+        $event->whr = $request->whr;
+        $event->sender = $request->sender;
+        $event->content = $request->get('editor2');
+        $event->expired_at = $request->expired_at;
+        $event->save();
        Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<',  now())->update(['status' => '2']);
        Announcements::where('deleted', '=', NULL)->where('status', '=', 2)->where('expired_at', '>',  now())->update(['status' => '1']);
        return response()->json($event);
@@ -541,12 +550,15 @@ class AdminsController extends Controller
         return view('admins.landing.reminderupdate', ['reminder' => $data]);
     }
 
-    public function updatereminder(Request $request, Announcements $reminder){
-        $validated = $request->validate([
+    public function updatereminder(Request $request){
+        $request->validate([
             'expired_at' => ['required'],
             'content' => 'required',
         ]);
-       $reminder->update($validated);
+        $reminder = Announcements::find($request->id);
+        $reminder->content = $request->content;
+        $reminder->expired_at = $request->expired_at;
+        $reminder->save();
        Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<=',  now())->update(['status' => '2']);
        Announcements::where('deleted', '=', NULL)->where('status', '=', 2)->where('expired_at', '>',  now())->update(['status' => '1']);
        return response()->json($reminder);
@@ -633,10 +645,10 @@ class AdminsController extends Controller
 
     public function updatedocument(Request $request){
         $request->validate([
-            'name' => 'required|max:255',
+            'nameq' => 'required|max:255',
         ]);
         $document = Documents::find($request->id);
-        $document->name = $request->name;
+        $document->name = $request->get('nameq');
         $document->save();
        return response()->json($document);
    }

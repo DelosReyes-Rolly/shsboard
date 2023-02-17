@@ -229,7 +229,7 @@ Route::group(['middleware' => 'auth:students'], function () {
             Route::get('/grade-eval/{student_id}/{gradelevel_id}/{course_id}/{section_id}/{semester_id}/{faculty_id}/{subject_id}',  'gradeevalreqModal')->name('grade-evalModal');
             Route::get('/deletegradeeval/{id}',  'deletegradeeval');
             // Route::put('/deletegradeeval/{gradeeval}',  'deletegradegradeeval');
-            Route::put('/gradeevaluationrequest/delete/{id}', 'deletegradeeval');
+            Route::put('/gradeevaluationrequest/delete/{id}', 'deletegradegradeeval');
             // Route::get('/printreportcardgrade11', 'printreportcardgrade11');
             // Route::get('/printreportcardgrade12', 'printreportcardgrade12');
             Route::get('/printreportcard', 'printreportcard');
@@ -555,7 +555,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 Route::get('/viewstudent/{id}','viewstudent');
                 Route::get('/showstudent/{id}','showstudent');
                 Route::get('/deletestudent/{id}', 'deletestudent');
-                // Route::get('/dropstudent/{id}', 'dropstudent')->name('admin.dropstudent');
+                Route::get('/dropstudent/{id}', 'dropstudent');
 
                 Route::get('/studentaddsubject/{id}', 'addstudentsubject');
 
