@@ -146,9 +146,64 @@
 																				</td> 
 																			</tr>
 																			<!-- edit request -->
-																			<div id="editModal{{ $request->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+																			<div id="editModal12" class="modal fade" aria-hidden="true">
 																				<div class="modal-dialog modal-lg" role="document">
 																					<div class="modal-content border-start-lg border-start-yellow">
+																						<div class="modal-header">
+																							<h1 class="modal-title" id="staticBackdropLabel" style="font-size: 20px;">Update request</h1>
+																							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																								<span aria-hidden="true">&times;</span>
+																							</button>
+																						</div>
+																						<form method="POST" id="updateRequest12" name="updateRequest12" action="javascript:void(0)" class="form-horizontal">
+																							<div class="modal-body">
+																								<div id="whoops" class="alert alert-danger" style="display: none;">
+																									<b>Whoops! There is a problem in your input</b> <br/>
+																									<div id="validation-errors"></div>
+																								</div>
+																								<div class="row">
+																									<input type="hidden" name="id" id="id" value="{{$request->id}}">
+																									<div class="col-md-12">
+																										<label style="font-size: 26px;">Full Name</label><input type="text" class="form-control"  style="font-size: 20px;" placeholder=" {{$request->student->last_name}}, {{$request->student->first_name}} {{$request->student->middle_name}} {{$request->student->suffix}}" value="" readonly> <br>
+																									</div>
+																									@if($request->gradelevel->gradelevel == 11 || $request->gradelevel->gradelevel == 12)
+																										<div class="col-md-12">
+																											<label style="font-size: 26px;">Grade Level</label><input type="text" class="form-control" style="font-size: 20px;" placeholder=" {{$request->gradelevel->gradelevel}} " value="" readonly> <br>
+																										</div>
+																									@else
+																										<div class="col-md-12">
+																											<label style="font-size: 26px;">Grade Level</label><input type="text" class="form-control" style="font-size: 18px;" placeholder=" Alumni" value="" readonly> <br>
+																										</div>
+																									@endif
+																									<div class="col-md-12">
+																										<label class="large mb-1" style="font-size: 20px;"><br><b>Document Needed: </b></label>
+																										<span style="font-size: 20px;">{{$request -> document -> name}}</span>
+																									</div>
+																									<div class="col-md-12">
+																										<label class="large mb-1" for="inputpurpose" style="font-size: 20px;"><b>Purpose: </b></label>
+																										<span style="font-size: 20px;">{{$request->purpose->purpose}}</span>
+																									</div>
+																									<div class="col-md-12">
+																										<label class="large mb-1" for="document_id" class="form-control @error('status') is-invalid @enderror" style="font-size: 20px;"><br><b>Status</b></label>
+																										<div class="col-md-12" hidden><input class="form-control @error('status') is-invalid @enderror" id="inputstatus" type="text" placeholder="Enter status" name="status"  value="{{$request->status}}"></div>
+																										<select id="status" name="status" class="form-control" value="{{$request->status}}"style="font-size: 18px;" >
+																											<option value="" disabled selected>Change Status</option>
+																											<option value="1" {{$request->status == "1" ?'selected' : ''}}>Pending</option>
+																											<option value="2" {{$request->status == "2" ?'selected' : ''}}>On Process</option>
+																											<option value="3" {{$request->status == "3" ?'selected' : ''}}>Completed</option>
+																											<option value="4" {{$request->status == "4" ?'selected' : ''}}>Denied</option>
+																										</select>
+																										<div class="invalid-feedback">
+																											Please choose status.
+																										</div>
+																									</div>  
+																								</div>
+																							</div>
+																							<div class="modal-footer">
+																								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+																								<font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary btn-md" value="Submit"></font>
+																							</div>
+																						</form>
 																					</div>
 																				</div>
 																			</div>
@@ -177,9 +232,46 @@
 		$('.nav_btn').click(function(){
             $('.mobile_nav_items').toggleClass('active');
           });
-		  editDoc(e);
+		  editDoc12(e);
     });
-	function editDoc(e){
-		id = e.getAttribute('data-id');
+	function editDoc12(e){
+		$('#editModal12').modal('show');
 	}
+	$('#updateRequest12').submit(function(e) {
+			$('#whoops').hide();
+            var form_data = $("form#updateRequest12").serialize();
+            $(":submit").attr("disabled", true);
+            $.ajax({
+                type: "POST",                                           
+                url: '{{url("/updaterequestdocadmin/")}}/',              
+                data:form_data,
+                success: function(response) {                          
+                        $("#editModal").removeClass("in");          
+                        $(".modal-backdrop").remove();
+                        $('body').removeClass('modal-open');
+                        $('body').css('padding-right', '');
+                        $("#editModal12").hide();                     
+                        $("#updateRequest12")[0].reset();               
+                        $(":submit").removeAttr("disabled");                                                                                
+                        Swal.fire({                                                     
+                            icon: 'success',                                              
+                            title: 'Success.',                                                 
+                            text: 'Document request has been updated successfully',                  
+                        }).then(function() {
+                            location.reload(true);
+                        })
+                },error: function (xhr) {
+                    $('#validation-errors').html('');
+                    document.getElementById('whoops').style.display = 'block';
+                    if(xhr.responseJSON.error != undefined){
+                        $("#validation-errors").html("");
+                        $('#validation-errors').append('&emsp;<li>'+xhr.responseJSON.error+'</li>');
+                    }
+                    $.each(xhr.responseJSON.errors, function(key,value) {
+                        $('#validation-errors').append('&emsp;<li>'+value+'</li>');
+                    }); 
+                    $(":submit").removeAttr("disabled");
+                },
+            });
+		});
 </script>
