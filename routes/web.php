@@ -796,8 +796,8 @@ Route::group(['middleware' => 'auth:faculties'], function () {
             Route::get('/viewstudentgrades/{id}', 'viewstudentgrades');
             Route::get('/releasemidterm/{gradelevel_id}/{course_id}/{section_id}',  'releasemidterm')->name('releasemidterm');
             Route::get('/releasefinals/{gradelevel_id}/{course_id}/{section_id}',  'releasefinals')->name('releasefinals');
-            Route::get('/releasemidterm2/{gradelevel_id}/{course_id}/{section_id}',  'releasemidterm')->name('releasemidterm2');
-            Route::get('/releasefinals2/{gradelevel_id}/{course_id}/{section_id}',  'releasefinals')->name('releasefinals2');
+            Route::get('/releasemidterm2/{gradelevel_id}/{course_id}/{section_id}',  'releasemidterm2')->name('releasemidterm2');
+            Route::get('/releasefinals2/{gradelevel_id}/{course_id}/{section_id}',  'releasefinals2')->name('releasefinals2');
 
 
             /*
