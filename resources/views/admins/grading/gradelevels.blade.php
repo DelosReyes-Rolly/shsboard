@@ -9,7 +9,7 @@
     <script src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script> -->
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/datatables-bootstrap-1.10.20.css') }}">
 	<link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/datatables-jquery-1.12.1.css') }}">
 	<link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/datatables-rowreorder-1.2.8.css') }}">
 	<link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/datatables-responsive-2.3.0.css') }}">
@@ -18,7 +18,7 @@
 	<script src="{{ asset('assets/js/datatables-rowreorder-1.2.8.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-responsive-2.3.0.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ asset('assets/js/bootstrap-4.5.2.js') }}"></script>
     <div class="">
     <h3 style="font-size: 28px; font-weight: 800;">Table of Grade Level </h3>
       <hr class="mt-0 mb-4">

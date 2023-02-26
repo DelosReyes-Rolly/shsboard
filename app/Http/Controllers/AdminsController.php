@@ -982,7 +982,7 @@ class AdminsController extends Controller
         // return view('admins.grading.courses', compact('courses'));
         if(request()->ajax()) {
             return datatables()->of(Sections::where('deleted', '=', null))
-            ->addColumn('action', 'admins.grading.action-button')
+            ->addColumn('action', 'admins.grading.action-button-gradelevel')
             ->rawColumns(['action'])
             ->addIndexColumn()
             ->make(true);
