@@ -1,0 +1,4 @@
+<a class="subject btn btn-success btn-md subject"  href="javascript:void(0)" onClick="subjectFunc({{ $id }})" data-original-title="Subject"><i class="fa-solid fa-eye" data-toggle="tooltip"></i> Subjects</a>
+<a class="teacher btn btn-success btn-md teacher"  href="javascript:void(0)" onClick="teacherFunc({{ $id }})" data-original-title="Teacher"><i class="fa-solid fa-eye" data-toggle="tooltip"></i> Teachers</a>
+<a class="edit btn btn-warning btn-md edit"  href="javascript:void(0)" onClick="editFunc({{ $id }})" data-original-title="Edit"><i class="fas fa-edit" data-toggle="tooltip"></i> Update</a>
+<a class="delete btn btn-danger btn-md delete"  href="javascript:void(0)" onClick="deleteFunc({{ $id }})" data-original-title="Delete"><i class="fas fa-trash-alt" data-toggle="tooltip"></i> Delete</a>

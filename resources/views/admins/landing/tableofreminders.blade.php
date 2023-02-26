@@ -9,6 +9,8 @@
     <script src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script> -->
 
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/datatables-jquery-1.12.1.css') }}">
 	<link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/datatables-rowreorder-1.2.8.css') }}">
 	<link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/datatables-responsive-2.3.0.css') }}">
@@ -17,15 +19,8 @@
 	<script src="{{ asset('assets/js/datatables-rowreorder-1.2.8.js') }}"></script>
 	<script src="{{ asset('assets/js/datatables-responsive-2.3.0.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
-    <script>
-        $(document).ready(function() {
-            table = $('#example').DataTable( {
-                responsive: true
-            } );
-         
-            new $.fn.dataTable.FixedHeader( table );
-        } );
-    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <div class="">
         <div class="px-2 mt-2">
             <hr class="mt-0 mb-4">
@@ -66,11 +61,6 @@
             <div class="card mb-4 border-start-lg border-start-yellow" style="padding: 10px 20px 10px 20px;">
                 <div class="card-header"></div>
                 <div class="card-body p-0">
-                    <!-- Events table-->
-                    @if($reminders->count() == 0)
-					<br><br>
-					<div class="alert alert-danger"><em>No records found.</em></div>
-				    @else 
                         <br>
                         <div class="table-responsive table-billing-history">
                             <table id="example" class="display table-bordered table-striped table-hover" style="width:100%">
@@ -84,82 +74,290 @@
                                         <th class="border-gray-200" scope="col">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <?php 
-                                        $i=1;
-                                    ?>
-                                        @foreach ($reminders as $reminder)
-                                            <tr id="announcement{{$reminder -> id}}">
-                                                <td class="text-center"><?php echo $i++; ?></td>
-                                                <td>{!!$reminder -> content!!}</td>
-                                                <td>{{$requested_at  =   date('F d, Y', strtotime($reminder->created_at))}}</td>
-                                                <td>{{$requested_at  =   date('F d, Y', strtotime($reminder->expired_at))}}</td>
-                                                <td>
-                                                    <?php 
-                                                        switch ($reminder -> status) {
-                                                            case '1':
-                                                                echo '<span class="badge bg-success" style="color:#fff">Active</span>';
-                                                                break;
-                                                            case '2':
-                                                                echo '<span class="badge bg-danger" style="color:#fff">Expired</span>';
-                                                                break;
-                                                            default:
-                                                                echo '<span class="badge bg-secondary" style="color:#fff">Undetermined</span>';
-                                                                break;
-                                                        }
-                                                    ?>
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-success btn-md" href="{{ url('viewreminder',['id'=>$reminder->id]) }}" data-toggle="modal" data-target="#modal-view-{{ $reminder->id }}"><i class="fa-solid fa-eye"></i> View</a>
-                                                    <a class="btn btn-warning btn-md" href="{{ url('showreminder',['id'=>$reminder->id]) }}" data-toggle="modal" onclick="editItem(this)" data-id="{{ $reminder->id }}" data-target="#editModal{{ $reminder->id }}"><i class="fas fa-edit"></i> Update</a>
-                                                    <a class="btn btn-danger btn-md" href="{{ url('deleteannouncement',['id'=>$reminder->id]) }}" data-toggle="modal" onclick="deleteItem(this)" data-id="{{ $reminder->id }}" data-target="#deleteModal{{ $reminder->id }}"><i class="fas fa-trash-alt"></i> Delete</a>
-                                                </td> 
-                                            </tr>
-                                            <!-- view reminder -->
-                                            <div id="modal-view-{{ $reminder->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-                                                <div class="modal-dialog modal-lg" role="document">
-                                                    <div class="modal-content border-start-lg border-start-yellow">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- delete modal -->
-                                            <div id="deleteModal{{ $reminder->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-                                                <div class="modal-dialog modal-lg" role="document">
-                                                    <div class="modal-content border-start-lg border-start-yellow">
-                                                    </div>
-                                                </div>
-                                            </div> 
-                                            <!-- update reminder -->
-                                            <div id="editModal{{ $reminder->id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-                                                <div class="modal-dialog modal-lg" role="document">
-                                                    <div class="modal-content border-start-lg border-start-yellow">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endforeach 
-                                </tbody>
                             </table>   
                         </div>
-                    @endif
+                 
                 </div>
             </div>   
     </div>
-    <script type="text/javascript">
-        $(document).ready(function(){
-          $('.nav_btn').click(function(){
-            $('.mobile_nav_items').toggleClass('active');
-          });
-          editItem(e);
-          deleteItem(e);
 
+    <!-- boostrap view model  -->
+    <div class="modal fade" id="Reminder-modal-view" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content border-start-lg border-start-yellow">
+                <div class="modal-header">
+                    <h1 class="modal-title" id="ReminderModal-view" style="font-size: 20px;">New Reminder</h1>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label style="font-size: 20px;"><b>Date Posted: </b></label>
+                            <span id="created_at-view" style="font-size: 20px;"></span><br/>
+                        </div>
+                        <div class="col-md-12"><br/>
+                            <label style="font-size: 20px;"><b>Expiry date: </b></label>
+                            <span id="expired_at-view" style="font-size: 20px;"></span><br/>
+                        </div>
+                        <div class="col-md-12"><br/>
+                            <label style="font-size: 20px;"><b>Content: </b></label>
+                            <span id="content-view" style="font-size: 20px;"></span><br/>
+                        </div>
+                    </div>      
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- boostrap update model  -->
+    <div class="modal fade" id="Reminder-modal-update" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content border-start-lg border-start-yellow">
+                <div class="modal-header">
+                    <h1 class="modal-title" id="ReminderModal-update" style="font-size: 20px;">New strand</h1>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="javascript:void(0)" id="ReminderFormUpdate" name="ReminderFormUpdate" class="form-horizontal" method="POST">
+                    <div class="modal-body">
+                        <input type="hidden" name="id" id="id-update">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="whoops-update" class="alert alert-danger" style="display: none;">
+                                    <b>Whoops! There is a problem in your input</b> <br/>
+                                    <div id="validation-errors-update"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3" style="color: red">
+                                * required field
+                            </div>
+                            <div class="col-md-12">
+                                <label class="slarge mb-1" for="expired_at" style="font-size: 20px;"><span style="color: red">*</span> Expiry date</label>
+                                <input type="date" class="form-control @error('expired_at') is-invalid @enderror" id="expired_at-update" placeholder="Enter the date" name="expired_at" required>
+                                <div class="invalid-feedback">
+                                    Please input expiry date.
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="large mb-1" for="editor2" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
+                                <textarea class="form-control @error('content') is-invalid @enderror" id="editor2" type="text" placeholder="Enter the information" name="content" rows="10" cols="80" required maxlength="400"></textarea>
+                                <div class="invalid-feedback">
+                                    Please input content.
+                                </div>
+                            </div><br/>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <font face = "Verdana" size = "2"><input type="submit" class="btn btn-primary btn-md" value="Submit"></font>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- end bootstrap model -->
+
+    <!-- boostrap delete model  -->
+    <div class="modal fade" id="Reminder-modal-delete" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content border-start-lg border-start-yellow">
+                <div class="modal-header">
+                    <h1 class="modal-title" id="ReminderModal-Delete" style="font-size: 20px;">Delete Strand</h1>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="javascript:void(0)" id="ReminderFormDelete" name="ReminderFormDelete" class="form-horizontal" method="POST">
+                    <div class="modal-body">
+                        <input type="hidden" name="id" id="id-delete">
+                        <p style="color: red; font-size:20px;">Are you sure you want to delete?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <font face = "Verdana" size = "2"><input type="submit" class="btn btn-danger btn-md" value="Delete"></font>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- end bootstrap model -->
+    <script type="text/javascript">
+        $(document).ready( function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
         });
-        function editItem(e){
-            id = e.getAttribute('data-id');
-        }
-        //delete
-        function deleteItem(e){
-            id = e.getAttribute('data-id');
-        }
+        month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+        $('#example').DataTable({
+            responsive: true,
+            "bInfo" : false,
+            ordering : true,
+            pageLength : 10,
+            processing: true,
+            serverSide: true,
+            ajax: "{{ url('/tableofreminders') }}",
+            columns: [
+            {
+                "data": "id",
+                render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }
+            },
+            { data: 'content', name: 'content' },
+            { data: 'created_at', name: 'created_at',
+                "render": function (data) {
+                    var date = new Date(data);
+                    return month[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+                }
+            },
+            { data: 'expired_at', name: 'expires_at',
+                "render": function (data) {
+                    var date = new Date(data);
+                    return month[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+                }
+            },
+            {
+                "data": "id",
+                "render": function(data, type, full, meta){
+                    if(full["status"] == 1)
+                        return '<span class="badge bg-success" style="color:#fff">Active</span>';
+                    else if(full["status"] == 2)
+                        return '<span class="badge bg-danger" style="color:#fff">Expired</span>';
+                    else
+                        return '<span class="badge bg-secondary" style="color:#fff">Undetermined</span>';
+                }
+            },
+            { data: 'action', name: 'action', orderable: false},
+            ],
+            order: [[0, 'desc']]
+        });
+    });
+
+    function viewFunc(id){
+        $.ajax({
+            type:"POST",
+            url: "{{ url('/viewreminder') }}",
+            data: { id: id },
+            dataType: 'json',
+            success: function(res){
+                $('#ReminderModal-view').html("View Reminder");
+                $('#Reminder-modal-view').modal('show');
+                var created = new Date(res.created_at);
+                var created = month[created.getMonth()] + " " + created.getDate() + ", " + created.getFullYear();
+                document.getElementById('created_at-view').innerHTML = created;
+                var expired = new Date(res.expired_at);
+                var expired = month[expired.getMonth()] + " " + expired.getDate() + ", " + expired.getFullYear();
+                document.getElementById('expired_at-view').innerHTML = expired;
+                document.getElementById('content-view').innerHTML = res.content;
+            }
+        });
+    } 
+
+    function editFunc(id){
+        document.getElementById('whoops-update').style.display = 'none';
+        $.ajax({
+            type:"POST",
+            url: "{{ url('/showreminder') }}",
+            data: { id: id },
+            dataType: 'json',
+            success: function(res){
+                $('#ReminderModal-update').html("Edit Reminder");
+                $('#Reminder-modal-update').modal('show');
+                $('#id-update').val(res.id);
+                $('#expired_at-update').val(res.expired_at);
+                $('#editor2').val(res.content);
+            }
+        });
+    } 
+
+    function deleteFunc(id){
+        $.ajax({
+            type:"POST",
+            url: "{{ url('/deleteannouncement') }}",
+            data: { id: id },
+            dataType: 'json',
+            success: function(res){
+                $('#ReminderModal-Delete').html("Delete Reminder");
+                $('#Reminder-modal-delete').modal('show');
+                $('#id-delete').val(res.id);
+            }
+        });
+    }
+
+
+    $('#ReminderFormUpdate').submit(function(e) {
+        e.preventDefault(); 
+        var formData = new FormData(this);
+        $(":submit").attr("disabled", true);
+        $.ajax({
+            type:'POST',
+            url: "{{ url('/updatereminder')}}/",
+            data: formData,
+            cache:false,
+            contentType: false,
+            processData: false,
+            success: (data) => {
+                $("#Reminder-modal-update").modal('hide');
+                var oTable = $('#example').dataTable();
+                oTable.fnDraw(false);
+                $("#btn-save").html('Submit');
+                $("#btn-save"). attr("disabled", false);
+                Swal.fire({                                                            
+                    icon: 'success',                                                  
+                    title: 'Success.',                                               
+                    text: 'Reminder has been updated successfully',                      
+                });
+                $(":submit").removeAttr("disabled");
+            },
+            error: function(xhr){
+                $('#validation-errors-update').html('');
+                document.getElementById('whoops-update').style.display = 'block';
+                if(xhr.responseJSON.error != undefined){
+                    $("#validation-errors-update").html("");
+                    $('#validation-errors-update').append('&emsp;<li>'+xhr.responseJSON.error+'</li>');
+                }
+                $.each(xhr.responseJSON.errors, function(key,value) {
+                    $('#validation-errors-update').append('&emsp;<li>'+value+'</li>');
+                }); 
+                $(":submit").removeAttr("disabled");
+            }
+        });
+    });
+
+    $('#ReminderFormDelete').submit(function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        $.ajax({
+            type:'POST',
+            url: "{{ url('/announcement/delete')}}/",
+            data: formData,
+            cache:false,
+            contentType: false,
+            processData: false,
+            success: (data) => {
+                $("#Reminder-modal-delete").modal('hide');
+                var oTable = $('#example').dataTable();
+                oTable.fnDraw(false);
+                $("#btn-save").html('Submit');
+                $("#btn-save"). attr("disabled", false);
+                Swal.fire({                                                            
+                    icon: 'success',                                                  
+                    title: 'Success.',                                               
+                    text: 'Reminder has been deleted successfully',                      
+                });
+            },
+            error: function(data){
+                console.log(data);
+            }
+        });
+    });
     </script>
 </main>
 <br><br><br><br>

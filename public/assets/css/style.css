@@ -2246,3 +2246,9 @@ button[type=submit]{       /*login button*/
   transition: 0.3s linear;
   box-shadow: none;
 }
+
+#the-count {
+  float: right;
+  padding: 0.1rem 0 0 0;
+  font-size: 1.2rem;
+  }

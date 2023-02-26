@@ -28,6 +28,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Facades\Excel;
+use Datatables;
+use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
 
 class AdminsController extends Controller
 {
@@ -62,43 +64,6 @@ class AdminsController extends Controller
     }
 
     // ============================================================ ANNOUNCEMENTS ===================================================================================
-
-    // public function home(){
-
-    //     Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<', Carbon::now())->update(['status' => '2']);
-        
-    //     $announcement = DB::table('announcements')
-    //         ->where('deleted', '=', NULL)
-    //         ->where('status', '=', 1)
-    //         ->where('privacy', '=', 2)
-    //         ->where('approval', '=', 2)
-    //         ->where('is_event', '=', NULL)
-    //         ->first();
-    //     if(is_null($announcement)) {
-    //         $announcement = NULL;
-    //     } else {
-    //         $matchThese = ['deleted' => NULL, 'status' => 1, 'approval' => 2, 'privacy' => 2, 'is_event' => NULL];
-    //         $announcement = Announcements::where($matchThese)->orderBy
-    //         ('created_at', 'desc')->get();
-    //     }
-
-    //     $reminder =  DB::table('announcements')
-    //         ->where('deleted', '=', NULL)
-    //         ->where('privacy', '=', 2)
-    //         ->where('status', '=', 1)
-    //         ->where('approval', '=', NULL)
-    //         ->where('is_event', '=', 2)
-    //         ->first();
-    //     if(is_null($reminder)) {
-    //         $reminder = NULL;
-    //      } else {
-    //         $matchThese = ['deleted' => NULL, 'privacy' => 2, 'status' => 1, 'approval' => NULL, 'privacy' => 2, 'is_event' => 2];
-    //         $reminder = Announcements::where($matchThese)->orderBy
-    //         ('created_at', 'desc')->get();
-    //     }
-    //     $viewShareVars = array_keys(get_defined_vars());
-    //     return view('admins.home',compact($viewShareVars));
-    // }
 
     public function home(){
         $schoolYear = SchoolYear::orderBy('id', 'DESC')->where('deleted', '=', null)->first();
@@ -190,12 +155,6 @@ class AdminsController extends Controller
    }
 
      public function deletelanding(Landings $landing, Request $request, $id){
-        // $validated = $request->validate([
-        //     'deleted' => ['required'],
-        //     'deleted_at' => ['required'],
-        // ]);
-        // $landing->update($validated);
-        // return redirect('/homepage')->with('success', 'Landing content has been deleted.');
         if ($request->ajax()){
 
             $landing = Landings::findOrFail($id);
@@ -219,15 +178,29 @@ class AdminsController extends Controller
 
     // ================================================================= ANNOUNCEMENT ===================================================
 
-    public function createannouncement()
-    {
+    public function createannouncement(){
         $announcements = Announcements::where('deleted', '=', null)->where('is_event', '=', null)->where('privacy', '=', 1)->get();
+
+        if(request()->ajax()) {
+            return datatables()->of(Announcements::where('deleted', '=', null)->where('is_event', '=', null)->where('privacy', '=', 1))
+            ->addColumn('action', 'admins.grading.action-button-announcement')
+            ->rawColumns(['action'])
+            ->addIndexColumn()
+            ->make(true);
+        }
         return view('admins.landing.createannouncement', compact('announcements'));
     }
 
     public function tableofannouncement()
     {
         $announcements = Announcements::where('deleted', '=', null)->where('is_event', '=', null)->where('privacy', '=', 2)->get();
+        if(request()->ajax()) {
+            return datatables()->of(Announcements::where('deleted', '=', null)->where('is_event', '=', null)->where('privacy', '=', 2))
+            ->addColumn('action', 'admins.grading.action-button-announcement')
+            ->rawColumns(['action'])
+            ->addIndexColumn()
+            ->make(true);
+        }
         return view('admins.landing.tableofannouncement', compact('announcements'));
     }
 
@@ -329,10 +302,14 @@ class AdminsController extends Controller
         return view('admins.landing.announcementview', ['announcement' => $data]);
     }
 
-     public function showannouncement($id){
-        $data = Announcements::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.landing.announcementupdate', ['announcement' => $data]);
+    public function showannouncement(Request $request){
+        
+        $where = array('id' => $request->id);
+        $announcement  = Announcements::where($where)->first();
+      
+        return Response()->json($announcement);
     }
+
 
      public function updateannouncement(Request $request){
         $request->validate([
@@ -360,32 +337,30 @@ class AdminsController extends Controller
         return response()->json($announcement);
    }
 
-     public function deleteannouncement(Announcements $announcement, Request $request, $id){
-        // $validated = $request->validate([
-        //     'deleted' => ['required'],
-        //     'deleted_at' => ['required'],
-        // ]);
-        // $announcement->update($validated);
-        // return redirect('/homepage')->with('success', 'Content has been deleted.');
-        if ($request->ajax()){
-
-            $announcement = Announcements::findOrFail($id);
-            if ($announcement){
-    
-                $announcement->deleted = 1;
-                $announcement->deleted_at = now();
-                $announcement->save();
-    
-                return response()->json(array('success' => true));
-            }
+     public function deleteannouncement(Request $request){
+        $reminder = Announcements::findOrFail($request->id);
+        if ($reminder){
+            $reminderId = $request->id;
+            $reminder   =   Announcements::updateOrCreate(
+            [
+                'id' => $reminderId
+            ],
+            [
+                'deleted' => 1, 
+                'deleted_at' => now(),
+            ]);                
+            return Response()->json($reminder);
         }
         
     }
 
-     public function deleteannouncementpublic($id){
-        $data = Announcements::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.landing.delete', ['announcement' => $data]);
+     public function deleteannouncementpublic(Request $request){
+        $where = array('id' => $request->id);
+        $reminder  = Announcements::where($where)->first();
+      
+        return Response()->json($reminder);
      }
+
 
      public function downloadpdf(Request $request) {
             $request->validate([
@@ -407,8 +382,17 @@ class AdminsController extends Controller
 
     // ================================================================= EVENTS ===================================================
 
+
     public function createevent(){
         $events = Announcements::where('deleted', '=', null)->where('is_event', '=', 1)->get();
+
+        if(request()->ajax()) {
+            return datatables()->of(Announcements::where('deleted', '=', null)->where('is_event', '=', 1))
+            ->addColumn('action', 'admins.grading.action-button-event')
+            ->rawColumns(['action'])
+            ->addIndexColumn()
+            ->make(true);
+        }
         return view('admins.landing.createevent', compact('events'));
     }
 
@@ -453,10 +437,12 @@ class AdminsController extends Controller
         return view('admins.landing.eventview', ['event' => $data]);
     }
 
-
-    public function showevent($id){
-        $data = Announcements::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.landing.eventupdate', ['event' => $data]);
+    public function showevent(Request $request){
+        
+        $where = array('id' => $request->id);
+        $event  = Announcements::where($where)->first();
+      
+        return Response()->json($event);
     }
 
     public function updateevent(Request $request){
@@ -489,6 +475,14 @@ class AdminsController extends Controller
 
     public function createreminder(){
         $reminders = Announcements::where('deleted', '=', null)->where('is_event', '=', 2)->where('privacy', '=', 1)->get();
+
+        if(request()->ajax()) {
+            return datatables()->of(Announcements::where('deleted', '=', null)->where('is_event', '=', 2)->where('privacy', '=', 1))
+            ->addColumn('action', 'admins.grading.action-button')
+            ->rawColumns(['action'])
+            ->addIndexColumn()
+            ->make(true);
+        }
         return view('admins.landing.createreminder', compact('reminders'));
     }
 
@@ -496,6 +490,14 @@ class AdminsController extends Controller
     public function tableofreminders()
     {
         $reminders = Announcements::where('deleted', '=', null)->where('is_event', '=', 2)->where('privacy', '=', 2)->get();
+
+        if(request()->ajax()) {
+            return datatables()->of(Announcements::where('deleted', '=', null)->where('is_event', '=', 2)->where('privacy', '=', 2))
+            ->addColumn('action', 'admins.grading.action-button')
+            ->rawColumns(['action'])
+            ->addIndexColumn()
+            ->make(true);
+        }
         return view('admins.landing.tableofreminders', compact('reminders'));
     }
 
@@ -508,7 +510,7 @@ class AdminsController extends Controller
     public function storereminder(Request $request){
         // Validate the inputs
         $request->validate([
-            'contents' => 'required|max:200',
+            'contents' => 'required|max:400',
             'expired_at' => 'required',
         ]);
         $announcement = new Announcements();
@@ -525,7 +527,7 @@ class AdminsController extends Controller
     public function storeprivatereminder(Request $request){
         // Validate the inputs
         $request->validate([
-            'content' => 'required|max:200',
+            'content' => 'required|max:400',
             'expired_at' => 'required',
         ]);
         $announcement = new Announcements();
@@ -538,16 +540,23 @@ class AdminsController extends Controller
         Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<',  now())->update(['status' => '2']);
         return response()->json(array('success' => true)); 
     }
+    
 
-    public function viewreminder($id){
-        $data = Announcements::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.landing.reminderview', ['reminder' => $data]);
-    }
+    public function viewreminder(Request $request)
+    {   
+        $where = array('id' => $request->id);
+        $remidner  = Announcements::where($where)->first();
+      
+        return Response()->json($remidner);
+    }   
 
 
-    public function showreminder($id){
-        $data = Announcements::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.landing.reminderupdate', ['reminder' => $data]);
+    public function showreminder(Request $request){
+        
+        $where = array('id' => $request->id);
+        $remidner  = Announcements::where($where)->first();
+      
+        return Response()->json($remidner);
     }
 
     public function updatereminder(Request $request){
@@ -579,8 +588,29 @@ class AdminsController extends Controller
         })->get();
         $documents = Documents::where('deleted', '=', null)->get();
         $documentpurposes = DocumentPurposes::where('deleted', '=', null)->get();
+
+        if(request()->ajax()) {
+            return datatables()->of(Documents::where('deleted', '=', null))
+            ->addColumn('action', 'admins.grading.action-button')
+            ->rawColumns(['action'])
+            ->addIndexColumn()
+            ->make(true);
+        }
         return view('admins.documentrequests.documentrequest', compact('requests', 'documents', 'requests11', 'requests12', 'alumni', 'documentpurposes'));
     }
+
+    public function documentRequestpurpose(){
+
+        if(request()->ajax()) {
+            return datatables()->of(DocumentPurposes::where('deleted', '=', null))
+            ->addColumn('action', 'admins.grading.action-button-purpose')
+            ->rawColumns(['action'])
+            ->addIndexColumn()
+            ->make(true);
+        }
+        return view('admins.documentrequests.documentrequest');
+    }
+
 
     public function adddocument(){
         return view('admins.documentrequests.documentadd');
@@ -597,10 +627,12 @@ class AdminsController extends Controller
         return response()->json(array('success' => true));
     }
 
-
-    public function viewdocument($id){
-        $data = Documents::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.documentrequests.documentview', ['document' => $data]);
+    public function viewdocument(Request $request){
+        
+        $where = array('id' => $request->id);
+        $document  = Documents::where($where)->first();
+      
+        return Response()->json($document);
     }
     
     public function tableofCompleted11(){
@@ -638,9 +670,12 @@ class AdminsController extends Controller
     }
 
 
-    public function showdocument($id){
-        $data = Documents::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.documentrequests.documentupdate', ['document' => $data]);
+    public function showdocument(Request $request){
+        
+        $where = array('id' => $request->id);
+        $document  = Documents::where($where)->first();
+      
+        return Response()->json($document);
     }
 
     public function updatedocument(Request $request){
@@ -653,32 +688,30 @@ class AdminsController extends Controller
        return response()->json($document);
    }
 
-     public function deletegradedocument(Documents $document, Request $request, $id){
-        // $validated = $request->validate([
-        //     'deleted' => ['required'],
-        //     'deleted_at' => ['required'],
-        // ]);
-        // $document->update($validated);
-        // return redirect('/documentrequest')->with('success', 'Document has been deleted successfully!');
-        if ($request->ajax()){
 
-            $document = Documents::findOrFail($id);
-            if ($document){
-    
-                $document->deleted = 1;
-                $document->deleted_at = now();
-                $document->save();
-    
-                return response()->json(array('success' => true));
-            }
-        }
-        
+     public function deletegradedocument(Request $request){
+        $document = Documents::findOrFail($request->id);
+        if ($document){
+            $documentId = $request->id;
+            $document   =   Documents::updateOrCreate(
+            [
+                'id' => $documentId
+            ],
+            [
+                'deleted' => 1, 
+                'deleted_at' => now(),
+            ]);                
+            return Response()->json($document);
+        } 
     }
 
-     public function deletedocument($id){
-        $data = Documents::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.documentrequests.documentdelete', ['document' => $data]);
+     public function deletedocument(Request $request){
+        $where = array('id' => $request->id);
+        $document  = Documents::where($where)->first();
+      
+        return Response()->json($document);
      }
+
     public function addpurpose(){
         return view('admins.documentrequests.purposeadd');
     }
@@ -693,11 +726,13 @@ class AdminsController extends Controller
         return view('admins.documentrequests.docreqadmin', ['docreq' => $data]);
     }
 
-    public function updatedocreq(Request $request, DocumentRequests $docreq){
-        $validated = $request->validate([
+    public function updatedocreq(Request $request){
+        $request->validate([
             'status' => ['required'],
         ]);
-       $docreq->update($validated);
+        $docreq = DocumentRequests::find($request->id);
+        $docreq->status = $request->get('status');
+        $docreq->save();
        return response()->json($docreq);
    }
 
@@ -730,51 +765,54 @@ class AdminsController extends Controller
         return response()->json(array('success' => true));
     }
 
-      public function viewpurpose($id){
-        $data = DocumentPurposes::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.documentrequests.documentpurpose', ['purpose' => $data]);
+    public function viewpurpose(Request $request){
+        $where = array('id' => $request->id);
+        $purpose  = DocumentPurposes::where($where)->first();
+
+        return Response()->json($purpose);
     }
 
-    public function showpurpose($id){
-        $data = DocumentPurposes::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.documentrequests.showpurpose', ['purpose' => $data]);
+    public function showpurpose(Request $request){
+        
+        $where = array('id' => $request->id);
+        $purpose  = DocumentPurposes::where($where)->first();
+      
+        return Response()->json($purpose);
     }
 
-    public function updatepurpose(Request $request, DocumentPurposes $purpose){
-        $validated = $request->validate([
+    public function updatepurpose(Request $request){
+        $request->validate([
             'purpose' => 'required|max:255',
             'proof_needed' => 'required|max:255',
         ]);
-       $purpose->update($validated);
-       return response()->json($purpose);
+        $purpose = DocumentPurposes::find($request->id);
+        $purpose->purpose = $request->get('purpose');
+        $purpose->proof_needed = $request->get('proof_needed');
+        $purpose->save();
+        return response()->json($purpose);
    }
 
-
-     public function deletegradepurpose(DocumentPurposes $purpose, Request $request, $id){
-        // $validated = $request->validate([
-        //     'deleted' => ['required'],
-        //     'deleted_at' => ['required'],
-        // ]);
-        // $purpose->update($validated);
-        // return redirect('/documentrequest')->with('success', 'Purpose has been deleted successfully!');
-        if ($request->ajax()){
-
-            $purpose = DocumentPurposes::findOrFail($id);
-            if ($purpose){
-    
-                $purpose->deleted = 1;
-                $purpose->deleted_at = now();
-                $purpose->save();
-    
-                return response()->json(array('success' => true));
-            }
-        }
-        
+     public function deletegradepurpose(Request $request){
+        $purpose = DocumentPurposes::findOrFail($request->id);
+        if ($purpose){
+            $purposeId = $request->id;
+            $purpose   =   DocumentPurposes::updateOrCreate(
+            [
+                'id' => $purposeId
+            ],
+            [
+                'deleted' => 1, 
+                'deleted_at' => now(),
+            ]);                
+            return Response()->json($purpose);
+        } 
     }
 
-     public function deletepurpose($id){
-        $data = DocumentPurposes::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.documentrequests.purposedelete', ['purpose' => $data]);
+     public function deletepurpose(Request $request){
+        $where = array('id' => $request->id);
+        $purpose  = DocumentPurposes::where($where)->first();
+      
+        return Response()->json($purpose);
      }
 
      
@@ -797,13 +835,23 @@ class AdminsController extends Controller
     // ============================================================ COURSES ===================================================
 
     public function courses(){
-        $courses = Courses::where('deleted', '=', null)->get();
-        return view('admins.grading.courses', compact('courses'));
+        if(request()->ajax()) {
+            return datatables()->of(Courses::where('deleted', '=', null))
+            ->addColumn('action', 'admins.grading.action-button')
+            ->rawColumns(['action'])
+            ->addIndexColumn()
+            ->make(true);
+        }
+        return view('admins.grading.courses');
     }
 
-    public function addcourse(){
-        return view('admins.grading.functions.courseadd');
-    }
+    public function showcourse(Request $request)
+    {   
+        $where = array('id' => $request->id);
+        $course  = Courses::where($where)->first();
+      
+        return Response()->json($course);
+    }   
 
     public function storecourse(Request $request){
         // Validate the inputs
@@ -848,23 +896,18 @@ class AdminsController extends Controller
             
     }    
 
-    
-    public function viewcourse($id){
-        $data = Courses::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.courseview', ['course' => $data]);
-    }
-
-
-    public function showcourse($id){
-        $data = Courses::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.courseupdate', ['course' => $data]);
+    public function viewcourse(Request $request){
+        $where = array('id' => $request->id);
+        $course = Courses::where($where)->first();
+      
+        return Response()->json($course);
     }
 
     public function updatecourse(Request $request){
         $request->validate([
             'courseName' => 'required|max:255',
             'abbreviation' => 'required|max:255',
-            'descriptionupdate' => 'required',
+            'description' => 'required',
             'code' => 'required|max:255',
             'link' => 'url|nullable',
         ]);
@@ -874,14 +917,21 @@ class AdminsController extends Controller
             if($courseabbunique->count() == 0){
                 $coursecodeunique = Courses::where('deleted', '=', null)->where('id', '!=', $request->id)->where('code', '=', $request->get('code'))->get();
                 if($coursecodeunique->count() == 0){
-                    $course = Courses::find($request->id);
-                    $course->courseName = $request->courseName;
-                    $course->abbreviation = $request->abbreviation;
-                    $course->description = $request->get('descriptionupdate');
-                    $course->code = $request->code;
-                    $course->link = $request->link;
-                    $course->save();
-                    return response()->json($course);
+
+                    $courseId = $request->id;
+                    $course   =   Courses::updateOrCreate(
+                                [
+                                'id' => $courseId
+                                ],
+                                [
+                                'courseName' => $request->courseName, 
+                                'abbreviation' => $request->abbreviation,
+                                'description' => $request->description,
+                                'code' => $request->code,
+                                'link' => $request->link,
+                                ]);    
+                                    
+                    return Response()->json($course);
                 }else{
                     return response()->json(['error' => 'Code is already taken.'], 422); 
                 }
@@ -895,72 +945,91 @@ class AdminsController extends Controller
    }
 
 
-     public function deletegradecourse(Courses $course, Request $request, $id){
+     public function deletegradecourse(Request $request){
         // $validated = $request->validate([
         //     'deleted' => ['required'],
         //     'deleted_at' => ['required'],
         // ]);
         // $course->update($validated);
         // return redirect('/gradingcourses')->with('success', 'Strand has been deleted successfully!');
-        if ($request->ajax()){
-
-            $course = Courses::findOrFail($id);
-            if ($course){
-    
-                $course->deleted = 1;
-                $course->deleted_at = now();
-                $course->save();
-    
-                return response()->json(array('success' => true));
-            }
+        $course = Courses::findOrFail($request->id);
+        if ($course){
+            $courseId = $request->id;
+            $course   =   Courses::updateOrCreate(
+            [
+                'id' => $courseId
+            ],
+            [
+                'deleted' => 1, 
+                'deleted_at' => now(),
+            ]);                
+            return Response()->json($course);
         }
         
     }
 
-     public function deletecourse($id){
-        $data = Courses::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.coursedelete', ['course' => $data]);
+     public function deletecourse(Request $request){
+        $where = array('id' => $request->id);
+        $course  = Courses::where($where)->first();
+      
+        return Response()->json($course);
      }
 
      // ============================================================ SECTION ===================================================
 
-    public function section(){
-        $sections = Sections::where('deleted', '=', null)->get();
-        return view('admins.grading.sections', compact('sections'));
+     public function section(){
+        // $courses = Courses::where('deleted', '=', null)->get();
+        // return view('admins.grading.courses', compact('courses'));
+        if(request()->ajax()) {
+            return datatables()->of(Sections::where('deleted', '=', null))
+            ->addColumn('action', 'admins.grading.action-button')
+            ->rawColumns(['action'])
+            ->addIndexColumn()
+            ->make(true);
+        }
+        return view('admins.grading.sections');
     }
 
-    public function addsection(){
-        return view('admins.grading.functions.sectionadd');
-    }
+    public function showsection(Request $request)
+    {   
+        $where = array('id' => $request->id);
+        $section  = Sections::where($where)->first();
+      
+        return Response()->json($section);
+    }   
+
+    // public function addcourse(){
+    //     return view('admins.grading.functions.courseadd');
+    // }
 
     public function storesection(Request $request){
-        // Validate the inputs
         $request->validate([
             'section' => 'required|max:255',
         ]);
         $sectionunique = Sections::where('deleted', '=', null)->where('section', '=', $request->get('section'))->get();
         if($sectionunique->count() == 0){
-            $section = new sections();
-            $section->section = $request->get('section');
+            $section = new Sections();
+            $section->section = $request->section;
             $section->save();
             return response()->json(array('success' => true));
         }
         else{
             return response()->json(['error' => 'Section is already taken.'], 422); 
         }
-        // return redirect('/gradingsections')->with('success', 'Section has been added successfully!');
+            
     }    
 
-    public function viewsection($id){
-        $data = Sections::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.sectionview', ['section' => $data]);
-    }
+    
+    // public function viewcourse($id){
+    //     $data = Courses::where('deleted', '=', null)->findOrFail($id);
+    //     return view('admins.grading.functions.courseview', ['course' => $data]);
+    // }
 
 
-    public function showsection($id){
-        $data = Sections::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.sectionupdate', ['section' => $data]);
-    }
+    // public function showcourse($id){
+    //     $data = Courses::where('deleted', '=', null)->findOrFail($id);
+    //     return view('admins.grading.functions.courseupdate', ['course' => $data]);
+    // }
 
     public function updatesection(Request $request){
         $request->validate([
@@ -976,63 +1045,67 @@ class AdminsController extends Controller
         else{
             return response()->json(['error' => 'Section is already taken.'], 422); 
         }
-   }    
+   }
 
-   public function deletegradesection(Sections $section, Request $request, $id){
-        // $validated = $request->validate([
-        //     'deleted' => ['required'],
-        //     'deleted_at' => ['required'],
-        // ]);
-        // $section->update($validated);
-        // return redirect('/gradingsections')->with('success', 'Section has been deleted successfully!');
 
-        if ($request->ajax()){
-
-            $section = Sections::findOrFail($id);
-            if ($section){
-
-                $section->deleted = 1;
-                $section->deleted_at = now();
-                $section->save();
-
-                return response()->json(array('success' => true));
-            }
-
+     public function deletegradesection(Request $request){
+        $section = Sections::findOrFail($request->id);
+        if ($section){
+            $sectionId = $request->id;
+            $section   =   Sections::updateOrCreate(
+            [
+                'id' => $sectionId
+            ],
+            [
+                'deleted' => 1, 
+                'deleted_at' => now(),
+            ]);                
+            return Response()->json($section);
         }
+        
     }
 
-    public function deletesection($id){
-        $data = sections::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.sectiondelete', ['section' => $data]);
+     public function deletesection(Request $request){
+        $where = array('id' => $request->id);
+        $section  = Sections::where($where)->first();
+      
+        return Response()->json($section);
+     }
+
+    public function viewsection($id){
+        $data = Sections::where('deleted', '=', null)->findOrFail($id);
+        return view('admins.grading.functions.sectionview', ['section' => $data]);
     }
 
     // ============================================================ LOAD ===================================================
 
-    public function showminload($id){
-        $minload = Loads::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.minloadupdate', compact('minload'));
+    public function showminload(){
+        $minload  = Loads::where('id', '=', 1)->first();
+        return Response()->json($minload);
     }
 
     public function updateminload(Request $request){
         $request->validate([
             'regular_load' => ['required'],
         ]);
-        $minload = Loads::find($request->id); 
+        $id = 1;
+        $minload = Loads::find($id); 
         $minload->regular_load = $request->regular_load;
         $minload->save();
         return response()->json($minload);
     }
 
-    public function showmaxload($id){
-        $maxload = Loads::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.maxloadupdate', compact('maxload'));
+    public function showmaxload(){
+        $maxload  = Loads::where('id', '=', 1)->first();
+        return Response()->json($maxload);
     }
 
     public function updatemaxload(Request $request){
         $request->validate([
             'master_load' => ['required'],
         ]);
-        $maxload = Loads::find($request->id); 
+        $id = 1;
+        $maxload = Loads::find($id); 
         $maxload->master_load = $request->master_load;
         $maxload->save();
         return response()->json($maxload);
@@ -1040,14 +1113,22 @@ class AdminsController extends Controller
    // ============================================================ FACULTY ===================================================
 
     public function faculty(){
-        $faculties = Faculties::where('deleted', '=', null)->orderBy('last_name', 'ASC')->get();
-        $load = Loads::where('deleted', '=', null)->first();
-        return view('admins.grading.faculty', compact('faculties', 'load'));
-    }
-
-    public function addfaculty(){
+        if(request()->ajax()) {
+            $faculty = DB::table('faculties')
+            // join it with drawing table
+            ->where('faculties.deleted', '=', null)->join('expertises', 'faculties.expertise_id', '=', 'expertises.id')
+            //select columns for new virtual table. ID columns must be renamed, because they have the same title
+            ->select(['faculties.id', 'faculties.first_name', 'faculties.middle_name', 'faculties.last_name', 'faculties.suffix', 'faculties.email', 'faculties.subject_load', 'faculties.class_load', 'faculties.isMaster', 'expertises.expertise', 'expertises.id AS expertise_id']);
+            // feed new virtual table to datatables and let it preform rest of the query (like, limit, skip, order etc.)
+            return datatables()->of($faculty)
+            ->addColumn('action', 'admins.grading.action-button-faculty')
+            ->rawColumns(['action'])
+            ->addIndexColumn()
+            ->make(true);
+        }
         $expertises = Expertises::where('deleted', '=', null)->get();
-        return view('admins.grading.functions.facultyadd', compact('expertises'));
+        $load = Loads::where('deleted', '=', null)->first();
+        return view('admins.grading.faculty', compact('load', 'expertises'));
     }
 
     public function addbatchfaculty(){
@@ -1063,7 +1144,7 @@ class AdminsController extends Controller
             'last_name' => 'required|regex:/^[\pL\s\-]+$/u|max:255',
             'suffix' => 'nullable|max:255',
             'email' => ['required', 'email', Rule::unique('faculties', 'email')],
-            'isMaster' => 'nullable',
+            'isMaster' => ['required'],
         ]);
 
         if (Faculties::where('first_name', '=', $request->get("first_name"))->count() <= 0 || Faculties::where('middle_name', '=', $request->get("middle_name"))->count() <= 0
@@ -1080,7 +1161,6 @@ class AdminsController extends Controller
                                 $i++;
                             }
             $validated['password'] = bcrypt($pass);
-
             $user = Addresses::create([
                 'city'=> 'Taguig City',
             ]);
@@ -1101,12 +1181,13 @@ class AdminsController extends Controller
         return view('admins.grading.functions.facultyview', compact('subjectteachers', 'subjects', 'faculty'));
     }
 
-
-    public function showfaculty($id){
-        $faculty = Faculties::where('deleted', '=', null)->findOrFail($id);
-        $expertises = Expertises::where('deleted', '=', null)->get();
-        return view('admins.grading.functions.facultyupdate', compact('faculty', 'expertises'));
-    }
+    public function showfaculty(Request $request)
+    {   
+        $where = array('id' => $request->id);
+        $faculties  = Faculties::where($where)->first();
+      
+        return Response()->json($faculties);
+    }   
 
     public function updatefaculty(Request $request){
         $request->validate([
@@ -1130,37 +1211,30 @@ class AdminsController extends Controller
         return response()->json($faculty);
     }
 
-    public function deletegradefaculty(Faculties $faculty, Request $request, $id){
-        // $validated = $request->validate([
-        //     'deleted' => ['required'],
-        //     'deleted_at' => ['required'],
-        // ]);
-        // $validated['email']="";
-        // $validated['password']="";
-        // $faculty->update($validated);
-        // return redirect('/gradingfaculty')->with('success', 'Record of teacher has been deleted successfully!');
-        if ($request->ajax()){
-
-            $faculty = Faculties::findOrFail($id);
-            if ($faculty){
-    
-                $faculty->deleted = 1;
-                $faculty->deleted_at = now();
-                $faculty->email = "";
-                $faculty->password = "";
-                $faculty->save();
-    
-                return response()->json(array('success' => true));
-            }
+    public function deletegradefaculty(Request $request){
+        $faculty = Faculties::findOrFail($request->id);
+        if ($faculty){
+            $facultyId = $request->id;
+            $faculty   =   Faculties::updateOrCreate(
+            [
+                'id' => $facultyId
+            ],
+            [
+                'deleted' => 1, 
+                'deleted_at' => now(),
+                'email' => "",
+                'password' => "", 
+            ]);                
+            return Response()->json($faculty);
         }
-        
-    }
+     }
 
-
-    public function deletefaculty($id){
-        $data = Faculties::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.facultydelete', ['faculty' => $data]);
-    }
+     public function deletefaculty(Request $request){
+        $where = array('id' => $request->id);
+        $faculty  = Faculties::where($where)->first();
+      
+        return Response()->json($faculty);
+     }
 
     public function downloadFacultyFileFormat() {
         $file_name = 'Faculty Excel Format.xlsx';
@@ -1204,7 +1278,7 @@ class AdminsController extends Controller
                             if($row[7] == 'Regular'){
                                 $status = 1;
                             }else{
-                                $status = NULL;
+                                $status = 0;
                             }
                             $insert_data[] = array(
                                 'address_id' => $address_id,
@@ -1226,7 +1300,7 @@ class AdminsController extends Controller
             }
             if(!empty($insert_data)){
                 DB::table('faculties')->insert($insert_data);
-                return back()->with('success', 'Excel Data Imported successfully.');
+                return back()->with('success', 'Teacher(s) has been added successfully.');
             }
         }
     }
@@ -1234,12 +1308,14 @@ class AdminsController extends Controller
     // ============================================================ EXPERTISES ===================================================
 
     public function expertise(){
-        $expertises = Expertises::where('deleted', '=', null)->get();
-        return view('admins.grading.expertise', compact('expertises'));
-    }
-
-    public function addexpertise(){
-        return view('admins.grading.functions.expertiseadd');
+        if(request()->ajax()) {
+            return datatables()->of(Expertises::where('deleted', '=', null))
+            ->addColumn('action', 'admins.grading.action-button-expertise')
+            ->rawColumns(['action'])
+            ->addIndexColumn()
+            ->make(true);
+        }
+        return view('admins.grading.expertise');
     }
 
     public function storeexpertise(Request $request){
@@ -1256,23 +1332,27 @@ class AdminsController extends Controller
         }else{
             return response()->json(['error' => 'Expertise is already taken.'], 422); 
         }
-        // return redirect('/gradingexpertises')->with('success', 'Section has been added successfully!');
     }    
 
-    public function viewexpertise($id){
-        $data = Subjects::where('deleted', '=', null)->where('expertise_id', '=', $id)->get();
-        return view('admins.grading.functions.expertiseview', compact('data'));
+    public function viewexpertise(Request $request){
+        $where = array('id' => $request->id);
+        $subject = Subjects::where('expertise_id', '=', $where)->where('deleted', '=', null)->get();
+        return Response()->json($subject);
     }
 
-    public function viewteacherexpertise($id){
-        $data = Faculties::where('deleted', '=', null)->where('expertise_id', '=', $id)->get();
-        return view('admins.grading.functions.expertiseteacherview', compact('data'));
+    public function viewteacherexpertise(Request $request){
+        $where = array('id' => $request->id);
+        $faculty = Faculties::where('expertise_id', '=', $where)->where('deleted', '=', null)->get();
+        return Response()->json($faculty);
     }
 
-    public function showexpertise($id){
-        $data = Expertises::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.expertiseupdate', ['expertise' => $data]);
-    }
+    public function showexpertise(Request $request)
+    {   
+        $where = array('id' => $request->id);
+        $expertise  = Expertises::where($where)->first();
+      
+        return Response()->json($expertise);
+    }   
 
     public function updateexpertise(Request $request){
         $request->validate([
@@ -1289,50 +1369,73 @@ class AdminsController extends Controller
         }
     }    
 
-   public function deletegradeexpertise(Expertises $expertise, Request $request, $id){
-        if ($request->ajax()){
-
-            $expertise = Expertises::findOrFail($id);
-            if ($expertise){
-
-                $expertise->deleted = 1;
-                $expertise->deleted_at = now();
-                $expertise->save();
-
-                return response()->json(array('success' => true));
-            }
-
+     public function deletegradeexpertise(Request $request){
+        $expertise = Expertises::findOrFail($request->id);
+        if ($expertise){
+            $expertiseId = $request->id;
+            $expertise   =   expertises::updateOrCreate(
+            [
+                'id' => $expertiseId
+            ],
+            [
+                'deleted' => 1, 
+                'deleted_at' => now(),
+            ]);                
+            return Response()->json($expertise);
         }
-    }
+     }
 
-    public function deleteexpertise($id){
-        $data = Expertises::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.expertisedelete', ['expertise' => $data]);
+     public function deleteexpertise(Request $request){
+        $where = array('id' => $request->id);
+        $expertise  = Expertises::where($where)->first();
+      
+        return Response()->json($expertise);
      }
 
 
      // ============================================================ STUDENT ===================================================
 
     public function student(){
-        $students = Students::where('deleted', '=', null)->where('status', '=', 1)->orderBy('last_name', 'ASC')->get();
-        return view('admins.grading.student', compact('students'));
+        if(request()->ajax()) {
+            return datatables()->of(Students::where('deleted', '=', null)->where('status', '=', 1))
+            ->addColumn('action', 'admins.grading.action-button-student')
+            ->rawColumns(['action'])
+            ->addIndexColumn()
+            ->make(true);
+        }
+        $gradelevels = GradeLevels::where('deleted', '=', null)->get();
+        $sections = Sections::where('deleted', '=', null)->get();
+        $courses = Courses::where('deleted', '=', null)->get();
+        return view('admins.grading.student', compact('gradelevels', 'sections', 'courses'));
     }
-
-    public function alumni(){
-        $students = Students::where('deleted', '=', null)->where('status', '=', 2)->get();
-        return view('admins.grading.alumni', compact('students'));
+    
+     public function alumni(){
+        if(request()->ajax()) {
+            return datatables()->of(Students::where('deleted', '=', null)->where('status', '=', 2))
+            ->addColumn('action', 'admins.grading.action-button')
+            ->rawColumns(['action'])
+            ->addIndexColumn()
+            ->make(true);
+        }
+        $gradelevels = GradeLevels::where('deleted', '=', null)->get();
+        $sections = Sections::where('deleted', '=', null)->get();
+        $courses = Courses::where('deleted', '=', null)->get();
+        return view('admins.grading.alumni', compact('gradelevels', 'sections', 'courses'));
     }
 
     public function dropped(){
-        $students = Students::where('deleted', '=', null)->where('status', '=', 3)->get();
-        return view('admins.grading.dropped', compact('students'));
-    }
+        if(request()->ajax()) {
+            return datatables()->of(Students::where('deleted', '=', null)->where('status', '=', 3))
+            ->addColumn('action', 'admins.grading.action-button')
+            ->rawColumns(['action'])
+            ->addIndexColumn()
+            ->make(true);
+        }
+        $gradelevels = GradeLevels::where('deleted', '=', null)->get();
+        $sections = Sections::where('deleted', '=', null)->get();
+        $courses = Courses::where('deleted', '=', null)->get();
+        return view('admins.grading.dropped', compact('gradelevels', 'sections', 'courses'));
 
-    public function addstudent(){
-        $level_data =DB::table('grade_levels')->where('deleted', '=', null)->select('id', 'gradelevel')->get();
-        $section_data= DB::table('sections')->where('deleted', '=', null)->select('id', 'section')->get();
-        $courses_data= DB::table('courses')->where('deleted', '=', null)->select('id', 'courseName')->get();
-        return view('admins.grading.functions.studentadd',compact('level_data','section_data', 'courses_data'), ['url' => 'students']);
     }
 
     public function addbatchstudent(){
@@ -1406,22 +1509,23 @@ class AdminsController extends Controller
     }  
 
 
-    public function viewstudent($id){
-        $data = Students::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.studentview', ['student' => $data]);
+    public function viewstudent(Request $request){
+        $where = array('id' => $request->id);
+        $student = Students::where($where)->first();
+      
+        return Response()->json($student);
     }
 
 
-    public function showstudent($id){
-        $student = Students::where('deleted', '=', null)->findOrFail($id);
-        $sections = Sections::where('deleted', '=', null)->get();
-        $courses = Courses::where('deleted', '=', null)->get();
-        $gradelevels = GradeLevels::where('deleted', '=', null)->get();
-        return view('admins.grading.functions.studentupdate', compact('student', 'courses', 'gradelevels', 'sections'));
+    public function showstudent(Request $request){
+        $where = array('id' => $request->id);
+        $student  = Students::where($where)->first();
+      
+        return Response()->json($student);
     }
 
     public function updatestudent(Request $request){
-        $validated = $request->validate([
+        $request->validate([
             'LRN' => 'required|min:12|max:12|unique:students,LRN,' . $request->id,
             'first_name' => 'required|regex:/^[\pL\s\-]+$/u|max:255',
             'middle_name' => 'nullable|regex:/^[\pL\s\-]+$/u|max:255',
@@ -1447,62 +1551,53 @@ class AdminsController extends Controller
         
     }
 
-
-    public function deletegradestudent(Students $student, Request $request, $id){
-        // $validated = $request->validate([
-        //     'deleted' => ['required'],
-        //     'deleted_at' => ['required'],
-        // ]);
-        // $validated['email']="";
-        // $validated['password']="";
-        // $student->update($validated);
-        // return redirect('/gradingstudents')->with('success', 'Record of student has been deleted successfully!');
-        if ($request->ajax()){
-
-            $student = Students::findOrFail($id);
-            if ($student){
-    
-                $student->deleted = 1;
-                $student->deleted_at = now();
-                $student->email = "";
-                $student->password = "";
-                $student->save();
-    
-                return response()->json(array('success' => true));
-            }
+    public function deletegradestudent(Request $request){
+        $student = Students::findOrFail($request->id);
+        if ($student){
+            $studentId = $request->id;
+            $student   =   Students::updateOrCreate(
+            [
+                'id' => $studentId
+            ],
+            [
+                'deleted' => 1, 
+                'deleted_at' => now(),
+                'email'=> "",
+                'password' => "",
+            ]);                
+            return Response()->json($student);
         }
-    }
-        
+     }
 
-    public function deletestudent($id){
-        $data = Students::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.studentdelete', ['student' => $data]);
-    }
+     public function dropstudent(Request $request){
+        $where = array('id' => $request->id);
+        $student  = Students::where($where)->first();
+      
+        return Response()->json($student);
+     }
 
-    public function dropgradestudent(Request $request, Students $student, $id){
-        // $validated = $request->validate([
-        //     'status' => ['required'],
-        // ]);
-        // $student->update($validated);
-        // return redirect('/gradingstudents')->with('success', 'Student has been dropped successfully!');
-
-        if ($request->ajax()){
-
-            $student = Students::findOrFail($id);
-            if ($student){
-    
-                $student->status = 3;
-                $student->save();
-    
-                return response()->json(array('success' => true));
-            }
+     public function dropgradestudent(Request $request){
+        $student = Students::findOrFail($request->id);
+        if ($student){
+            $studentId = $request->id;
+            $student   =   Students::updateOrCreate(
+            [
+                'id' => $studentId
+            ],
+            [
+                'status' => 3, 
+            ]);                
+            return Response()->json($student);
         }
-    }
+     }
 
-    public function dropstudent($id){
-        $data = Students::where('deleted', '=', null)->where('status', '!=', 3)->findOrFail($id);
-        return view('admins.grading.functions.studentdrop', ['student' => $data]);
-    }
+     public function deletestudent(Request $request){
+        $where = array('id' => $request->id);
+        $student  = Students::where($where)->first();
+      
+        return Response()->json($student);
+     }
+
 
      public function downloadpdfstu(Request $request) {
         $request->validate([
@@ -1665,22 +1760,30 @@ class AdminsController extends Controller
             }
             if(!empty($insert_data)){
                 DB::table('students')->insert($insert_data);
-                return back()->with('success', 'Excel Data Imported successfully.');
+                return back()->with('success', 'Student(s) has been added successfully.');
             }
         }
     }
+
     
 
      // ============================================================ SUBJECT ===================================================
 
     public function subjects(){
-        $subjects = Subjects::where('deleted', '=', null)->get();
-        return view('admins.grading.subject', compact('subjects'));
-    }
-
-    public function addsubject(){
+        if(request()->ajax()) {
+            $drawings = DB::table('expertises')
+            // join it with drawing table
+            ->where('subjects.deleted', '=', null)->join('subjects', 'subjects.expertise_id', '=', 'expertises.id')
+            //select columns for new virtual table. ID columns must be renamed, because they have the same title
+            ->select(['subjects.id', 'subjects.subjectname', 'subjects.subjectcode', 'subjects.description', 'expertises.expertise', 'expertises.id AS expertise_id']);
+            // feed new virtual table to datatables and let it preform rest of the query (like, limit, skip, order etc.)
+            return datatables()->of($drawings)
+            ->addColumn('action', 'admins.grading.action-button')
+            ->rawColumns(['action'])
+            ->make(true);
+        }
         $expertises = Expertises::where('deleted', '=', null)->get();
-        return view('admins.grading.functions.subjectadd', compact('expertises'));
+        return view('admins.grading.subject',  compact('expertises'));
     }
 
     public function storesubject(Request $request){
@@ -1710,17 +1813,20 @@ class AdminsController extends Controller
         }
     }  
 
-    public function viewsubject($id){
-        $data = Subjects::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.subjectview', ['subject' => $data]);
+    public function viewsubject(Request $request){
+        $where = array('id' => $request->id);
+        $subject  = Subjects::where($where)->first();
+      
+        return Response()->json($subject);
     }
 
-
-    public function showsubject($id){
-        $subject = Subjects::where('deleted', '=', null)->findOrFail($id);
-        $expertises = Expertises::where('deleted', '=', null)->get();
-        return view('admins.grading.functions.subjectupdate', compact('subject', 'expertises'));
-    }
+    public function showsubject(Request $request)
+    {   
+        $where = array('id' => $request->id);
+        $subject  = Subjects::where($where)->first();
+      
+        return Response()->json($subject);
+    }   
 
     public function updatesubject(Request $request){
         $request->validate([
@@ -1749,62 +1855,66 @@ class AdminsController extends Controller
     }
 
 
-     public function deletegradesubject(Subjects $subject, Request $request, $id){
-        // $validated = $request->validate([
-        //     'deleted' => ['required'],
-        //     'deleted_at' => ['required'],
-        // ]);
-        // $subject->update($validated);
-        // return redirect('/gradingsubjects')->with('success', 'Subject has been deleted successfully!');
-
-        if ($request->ajax()){
-
-            $subject = Subjects::findOrFail($id);
-            if ($subject){
-
-                $subject->deleted = 1;
-                $subject->deleted_at = now();
-                $subject->save();
-
-                return response()->json(array('success' => true));
-            }
-
+     public function deletegradesubject(Request $request){
+        $subject = Subjects::findOrFail($request->id);
+        if ($subject){
+            $subjectId = $request->id;
+            $subject   =   Subjects::updateOrCreate(
+            [
+                'id' => $subjectId
+            ],
+            [
+                'deleted' => 1, 
+                'deleted_at' => now(),
+            ]);                
+            return Response()->json($subject);
         }
      }
 
-     public function deletesubject($id){
-        $data = Subjects::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.subjectdelete', ['subject' => $data]);
+     public function deletesubject(Request $request){
+        $where = array('id' => $request->id);
+        $subject  = Subjects::where($where)->first();
+      
+        return Response()->json($subject);
      }
 
 
     // ============================================================ SCHOOL YEAR ===================================================
 
     public function schoolyear(){
-        $schoolyears = SchoolYear::where('deleted', '=', null)->orderBy('id', 'DESC')->get();
-        return view('admins.grading.schoolyear', compact('schoolyears'));
+        // $schoolyears = SchoolYear::where('deleted', '=', null)->orderBy('id', 'DESC')->get();
+        // return view('admins.grading.schoolyear', compact('schoolyears'));
+        if(request()->ajax()) {
+            return datatables()->of(SchoolYear::where('deleted', '=', null))
+            ->addColumn('action', 'admins.grading.action-button')
+            ->rawColumns(['action'])
+            ->addIndexColumn()
+            ->make(true);
+        }
+        return view('admins.grading.schoolyear');
     }
 
-    public function viewschoolyear($id){
-        $data = SchoolYear::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.schoolyearview', ['schoolyear' => $data]);
+    public function viewschoolyear(Request $request){
+        $where = array('id' => $request->id);
+        $schoolyear    = SchoolYear::where($where)->first();
+      
+        return Response()->json($schoolyear);
     }
 
 
-    public function showschoolyear($id){
-        $data = SchoolYear::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.schoolyearupdate', ['schoolyear' => $data]);
+    public function showschoolyear(Request $request){
+        $where = array('id' => $request->id);
+        $schoolyear    = SchoolYear::where($where)->first();
+      
+        return Response()->json($schoolyear);
     }
 
-    public function addschoolyear(){
-        return view('admins.grading.functions.schoolyearadd');
-    }
+    // public function addschoolyear(){
+    //     return view('admins.grading.functions.schoolyearadd');
+    // }
 
     public function storeschoolyear(Request $request){
-        // Validate the inputs
-        $request->validate([
-            'schoolyear' => 'required|numeric|unique:school_years',
-        ]);
+        // Validate the inputs      
         $schoolyearunique = SchoolYear::where('deleted', '=', null)->where('schoolyear', '=', $request->get('schoolyear'))->get();
         if($schoolyearunique->count() == 0){
             $schoolyear = new SchoolYear();
@@ -1825,13 +1935,13 @@ class AdminsController extends Controller
                 $newAdvisories->faculty_id = $ad->faculty_id;
                 $newAdvisories->save();
             }
-            return response()->json(array('success' => true));
+            return response()->json(array('success' => true));   
         }
         else{
             return response()->json(['error' => 'Schoolyear is already taken.'], 422); 
         }
-        
-    } 
+            
+    }    
 
     public function updateschoolyear(Request $request){
         $request->validate([
@@ -1846,41 +1956,36 @@ class AdminsController extends Controller
         }else{
             return response()->json(['error' => 'Schoolyear is already taken.'], 422); 
         }
+   }
+
+     public function deletegradeschoolyear(Request $request){
+        $count = SchoolYear::all();
+        if($count->count() == 1){
+            return response()->json(['error' => 'Sorry. You cannot delete the only schoolyear.'], 422); 
+        }
+        else{
+            $schoolyear = SchoolYear::findOrFail($request->id);
+            if ($schoolyear){
+                $courseId = $request->id;
+                $schoolyear   =   SchoolYear::updateOrCreate(
+                [
+                    'id' => $courseId
+                ],
+                [
+                    'deleted' => 1, 
+                    'deleted_at' => now(),
+                ]);                
+                return Response()->json($schoolyear);
+            }
+        }
+        
     }
 
-     public function deletegradeschoolyear(SchoolYear $schoolyear, Request $request, $id){
-        // $validated = $request->validate([
-        //     'deleted' => ['required'],
-        //     'deleted_at' => ['required'],
-        // ]);
-        // $count = SchoolYear::all();
-        // if($count->count() == 1){
-        //     return redirect('/gradingschoolyear')->with('warning', 'You cannot delete the only schoolyear.');
-        // }
-        // else{
-        //     $schoolyear->update($validated);
-        //     return redirect('/gradingschoolyear')->with('success', 'Schoolyear has been deleted successfully!');
-        // }
-        if ($request->ajax()){
-            $count = SchoolYear::all();
-            if($count->count() == 1){
-                return response()->json(['error' => 'Sorry. You cannot delete the only schoolyear.'], 422); 
-            }
-            else{
-                $schoolyear = SchoolYear::findOrFail($id);
-                if ($schoolyear){
-                    $schoolyear->deleted = 1;
-                    $schoolyear->deleted_at = now();
-                    $schoolyear->save();
-                    return response()->json(array('success' => true));
-                }
-            }
-    }
-    }
-
-     public function deleteschoolyear($id){
-        $data = SchoolYear::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.schoolyeardelete', ['schoolyear' => $data]);
+     public function deleteschoolyear(Request $request){
+        $where = array('id' => $request->id);
+        $schoolyear  = SchoolYear::where($where)->first();
+      
+        return Response()->json($schoolyear);
      }
 
 
@@ -2142,14 +2247,20 @@ class AdminsController extends Controller
 
     // ============================================================ GRADE LEVEL ===================================================
 
+
     public function gradelevels(){
-        $gradelevels = GradeLevels::where('deleted', '=', null)->orderBy('id', 'ASC')->get();
-        return view('admins.grading.gradelevels', compact('gradelevels'));
+        // $schoolyears = SchoolYear::where('deleted', '=', null)->orderBy('id', 'DESC')->get();
+        // return view('admins.grading.schoolyear', compact('schoolyears'));
+        if(request()->ajax()) {
+            return datatables()->of(GradeLevels::where('deleted', '=', null))
+            ->addColumn('action', 'admins.grading.action-button-gradelevel')
+            ->rawColumns(['action'])
+            ->addIndexColumn()
+            ->make(true);
+        }
+        return view('admins.grading.gradelevels');
     }
 
-    public function addgradelevel(){
-        return view('admins.grading.functions.gradeleveladd');
-    }
 
     public function storegradelevel(Request $request){
         // Validate the inputs
@@ -2170,9 +2281,11 @@ class AdminsController extends Controller
     }    
 
 
-    public function showgradelevel($id){
-        $data = GradeLevels::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.gradelevelupdate', ['gradelevel' => $data]);
+    public function showgradelevel(Request $request){
+        $where = array('id' => $request->id);
+        $gradelevel    = GradeLevels::where($where)->first();
+      
+        return Response()->json($gradelevel);
     }
 
     public function updategradelevel(Request $request){
@@ -2190,33 +2303,29 @@ class AdminsController extends Controller
         }
    }
 
-    public function deletegradegradelevel(GradeLevels $gradelevel, Request $request, $id){
-        // $validated = $request->validate([
-        //     'deleted' => ['required'],
-        //     'deleted_at' => ['required'],
-        // ]);
-        // $gradelevel->update($validated);
-        // return redirect('/gradinggradelevels')->with('success', 'Gradelevel has been deleted successfully!');
-        if ($request->ajax()){
-
-            $gradelevel = GradeLevels::findOrFail($id);
-            if ($gradelevel){
-    
-                $gradelevel->deleted = 1;
-                $gradelevel->deleted_at = now();
-                $gradelevel->save();
-    
-                return response()->json(array('success' => true));
-            }
+     public function deletegradegradelevel(Request $request){
+        $gradelevel = GradeLevels::findOrFail($request->id);
+        if ($gradelevel){
+            $courseId = $request->id;
+            $gradelevel   =   GradeLevels::updateOrCreate(
+            [
+                'id' => $courseId
+            ],
+            [
+                'deleted' => 1, 
+                'deleted_at' => now(),
+            ]);                
+            return Response()->json($gradelevel);
         }
         
     }
 
-
-    public function deletegradelevel($id){
-        $data = GradeLevels::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.grading.functions.gradeleveldelete', ['gradelevel' => $data]);
-    }
+     public function deletegradelevel(Request $request){
+        $where = array('id' => $request->id);
+        $gradelevel  = GradeLevels::where($where)->first();
+      
+        return Response()->json($gradelevel);
+     }
 
     // ============================================================ ADVISORY ===================================================
 

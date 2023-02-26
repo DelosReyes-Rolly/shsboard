@@ -81,9 +81,6 @@
                                         <div class="row gx-3 mb-3">
                                             <!-- Form Group privacy-->
                                             <!-- Save changes button-->
-                                            <div class="pull-right">
-                                                <a class="btn btn-warning btn-md" href="{{ url('showevent',['id'=>$event->id]) }}" data-toggle="modal" onclick="editItem(this)" data-id="{{ $event->id }}" data-target="#editModal{{ $event->id }}"><i class="fas fa-edit"></i> Update</a>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

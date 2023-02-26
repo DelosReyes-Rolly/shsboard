@@ -11,7 +11,7 @@
 				        <div class="row clearfix">
 				            <div class="col-lg-9 col-md-12 left-box">
                                     @if($announcement == NULL)
-                                        <div class="alert alert-danger"><em>No announcements for now.</em></div>
+                                        <div class="alert alert-danger"><em style="font-size: 20px;">No announcements for now.</em></div>
                                     @else 
                                         @foreach ($announcement as $announcements)
                                             <div class="card single_post">

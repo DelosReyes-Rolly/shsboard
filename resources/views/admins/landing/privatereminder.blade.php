@@ -29,7 +29,11 @@
                                             <!-- Form Group (content)-->
                                             <div class="mb-3">
                                                 <label class="small mb-1" for="editor" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
-                                                <textarea style="font-size: 20px;" class="form-control @error('content') is-invalid @enderror" id="editor" type="text" placeholder="Enter the information" name="content" required>{{ old('content') }}</textarea>
+                                                <textarea style="font-size: 20px;" class="form-control @error('content') is-invalid @enderror" id="editor" type="text" placeholder="Enter the information" name="content" required maxlength="400" rows="10" cols="80">{{ old('content') }}</textarea>
+                                                <div id="the-count">
+                                                    <span id="current">0</span>
+                                                    <span id="maximum">/ 400</span>
+                                                </div>
                                                 <div class="invalid-feedback">
                                                     Please input content.
                                                 </div>
@@ -56,12 +60,46 @@
         <script>
             CKEDITOR.replace( 'editor' );
         </script> -->
-        @if ($message = Session::get('approval'))
-            <div class="alert alert-success alert-block">
-                <button type="button" class="close" data-dismiss="alert">×</button>
-                <strong>{{ $message }}</strong>
-            </div>
-        @endif
+        <script>
+            $('textarea').keyup(function() {
+    
+            var characterCount = $(this).val().length,
+                current = $('#current'),
+                maximum = $('#maximum'),
+                theCount = $('#the-count');
+            
+            current.text(characterCount);
+        
+            
+            /*This isn't entirely necessary, just playin around*/
+            if (characterCount < 70) {
+            current.css('color', '#666');
+            }
+            if (characterCount > 70 && characterCount < 90) {
+            current.css('color', '#6d5555');
+            }
+            if (characterCount > 90 && characterCount < 100) {
+            current.css('color', '#793535');
+            }
+            if (characterCount > 100 && characterCount < 120) {
+            current.css('color', '#841c1c');
+            }
+            if (characterCount > 120 && characterCount < 139) {
+            current.css('color', '#8f0001');
+            }
+            
+            if (characterCount >= 140) {
+            maximum.css('color', '#8f0001');
+            current.css('color', '#8f0001');
+            theCount.css('font-weight','bold');
+            } else {
+            maximum.css('color','#666');
+            theCount.css('font-weight','normal');
+            }
+            
+                
+        });
+        </script>
     <script type="text/javascript">
         $(document).ready(function(){
           $('.nav_btn').click(function(){

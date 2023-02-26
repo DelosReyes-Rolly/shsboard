@@ -118,10 +118,6 @@
                 </div>
             </div>
         </form>
-        <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-        <script>
-            CKEDITOR.replace( 'editor' );
-        </script>
     <script type="text/javascript">
         $(document).ready(function(){
           $('.nav_btn').click(function(){
@@ -133,7 +129,6 @@
     <script>
         var $loading = $('#loadingDiv').hide();
         function formPost(){
-            CKupdate();
             $(document).ajaxStart(function () {
                 $loading.show();
             })

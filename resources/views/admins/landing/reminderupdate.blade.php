@@ -29,7 +29,7 @@
             </div>
             <div class="col-md-12">
                 <label class="large mb-1" for="editor2" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
-                <textarea class="form-control @error('content') is-invalid @enderror" id="editor2" type="text" placeholder="Enter the information" name="content" rows="10" cols="80" required>{{$reminder->content}}</textarea>
+                <textarea class="form-control @error('content') is-invalid @enderror" id="editor2" type="text" placeholder="Enter the information" name="content" rows="10" cols="80" required maxlength="400">{{$reminder->content}}</textarea>
                 <div class="invalid-feedback">
                     Please input content.
                 </div>

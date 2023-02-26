@@ -1,0 +1,2 @@
+<a class="edit btn btn-warning btn-md edit"  href="javascript:void(0)" onClick="editFunc({{ $id }})" data-original-title="Edit"><i class="fas fa-edit" data-toggle="tooltip"></i> Update</a>
+<a class="delete btn btn-danger btn-md delete"  href="javascript:void(0)" onClick="deleteFunc({{ $id }})" data-original-title="Delete"><i class="fas fa-trash-alt" data-toggle="tooltip"></i> Delete</a>

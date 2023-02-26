@@ -146,6 +146,8 @@
                                 table = $('#example').DataTable( {
                                     responsive: true,
                                     "bInfo" : false,
+                                    ordering : true,
+                                    pageLength : 10,
                                 } );
                             } );
                 },error: function (xhr) {

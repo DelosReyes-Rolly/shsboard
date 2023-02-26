@@ -21,7 +21,7 @@ class Faculty extends Migration
             $table->string('middle_name')->nullable();
             $table->string('last_name');
             $table->string('suffix')->nullable();
-            $table->string('email')->unique();
+            $table->string('email');
             $table->integer('subject_load');
             $table->integer('class_load');
             $table->tinyInteger('isMaster')->nullable();

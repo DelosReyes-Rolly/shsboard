@@ -1,0 +1,3 @@
+<a class="view btn btn-success btn-md view"  href="{{ url('viewannouncement', ['id'=>$id])}}" data-original-title="View"><i class="fa-solid fa-eye" data-toggle="tooltip"></i> View</a>
+<a class="edit btn btn-warning btn-md edit"  href="javascript:void(0)" onClick="editFunc({{ $id }})" data-original-title="Edit"><i class="fas fa-edit" data-toggle="tooltip"></i> Update</a>
+<a class="delete btn btn-danger btn-md delete"  href="javascript:void(0)" onClick="deleteFunc({{ $id }})" data-original-title="Delete"><i class="fas fa-trash-alt" data-toggle="tooltip"></i> Delete</a>

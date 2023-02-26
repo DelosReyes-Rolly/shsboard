@@ -149,6 +149,19 @@ class FacultyController extends Controller
             else{
                 $announcementCount = ActivityStreams::where('deleted', '=', null)->where('faculty_id', '=', $facid)->get();
             }
+            $activity = DB::table('activity_streams')
+            ->where('activity_streams.deleted', '=', null)->join('grade_levels', 'activity_streams.gradelevel_id', '=', 'grade_levels.id')
+            ->join('courses', 'activity_streams.course_id', '=', 'courses.id')
+            ->join('sections', 'activity_streams.section_id', '=', 'sections.id')
+            ->join('subjects', 'activity_streams.subject_id', '=', 'subjects.id')
+            ->select(['activity_streams.id', 'activity_streams.created_at AS created_atAct', 'activity_streams.expired_at AS expired_atAct', 'activity_streams.status', 'activity_streams.what', 'activity_streams.created_at', 'activity_streams.expired_at', 'grade_levels.gradelevel', 'grade_levels.id AS grade_id', 'courses.courseName', 'courses.id AS course_id', 'sections.section', 'sections.id AS section_id', 'subjects.subjectname', 'subjects.id AS subject_id']);
+            if(request()->ajax()) {
+                return datatables()->of($activity)
+                ->addColumn('action', 'admins.grading.action-button-announcement-faculty')
+                ->rawColumns(['action'])
+                ->addIndexColumn()
+                ->make(true);
+            }
 
             $semesters = SubjectTeachers::where('deleted', '=', null)->where('faculty_id', '=', Auth::user()->id)->groupBy('semester_id')->get();
             $gradelevels = SubjectTeachers::where('deleted', '=', null)->where('faculty_id', '=', Auth::user()->id)->groupBy('gradelevel_id')->get();
@@ -186,29 +199,28 @@ class FacultyController extends Controller
         }
 
 
-        public function viewannouncement($id){
-            $data = ActivityStreams::where('deleted', '=', null)->findOrFail($id);
-            $semesters = SubjectTeachers::where('deleted', '=', null)->where('faculty_id', '=', Auth::user()->id)->get();
-            $gradelevels = SubjectTeachers::where('deleted', '=', null)->where('faculty_id', '=', Auth::user()->id)->get();
-            $courses = SubjectTeachers::where('deleted', '=', null)->where('faculty_id', '=', Auth::user()->id)->get();
-            $sections = SubjectTeachers::where('deleted', '=', null)->where('faculty_id', '=', Auth::user()->id)->get();
-            $subjects =  SubjectTeachers::where('deleted', '=', null)->where('faculty_id', '=', Auth::user()->id)->get();
-            return view('faculty.announcementview', compact('gradelevels', 'semesters', 'courses', 'sections', 'subjects'), ['announcement' => $data]);
+        public function viewannouncement(Request $request){
+            $activity = DB::table('activity_streams')
+            ->where('activity_streams.deleted', '=', null)
+            ->where('activity_streams.id', '=', $request->id)
+            ->join('grade_levels', 'activity_streams.gradelevel_id', '=', 'grade_levels.id')
+            ->join('courses', 'activity_streams.course_id', '=', 'courses.id')
+            ->join('sections', 'activity_streams.section_id', '=', 'sections.id')
+            ->join('subjects', 'activity_streams.subject_id', '=', 'subjects.id')
+            ->select(['activity_streams.id', 'activity_streams.created_at AS created_atAct', 'activity_streams.expired_at AS expired_atAct', 'activity_streams.content', 'activity_streams.status', 'activity_streams.what', 'activity_streams.created_at', 'activity_streams.expired_at', 'grade_levels.gradelevel', 'grade_levels.id AS grade_id', 'courses.courseName', 'courses.id AS course_id', 'sections.section', 'sections.id AS section_id', 'subjects.subjectname', 'subjects.id AS subject_id'])
+            ->first();
+            return Response()->json($activity);
         }
 
-        public function showannouncement($id){
-            $data = ActivityStreams::where('deleted', '=', null)->findOrFail($id);
-            $gradelevels = GradeLevels::where('deleted', '=', null);
-            $semesters = Semesters::where('deleted', '=', null);
-            $gradelevels = SubjectTeachers::where('deleted', '=', null)->where('faculty_id', '=', Auth::user()->id)->groupBy('gradelevel_id')->get();
-            $courses = SubjectTeachers::where('deleted', '=', null)->where('faculty_id', '=', Auth::user()->id)->groupBy('course_id')->get();
-            $sections = SubjectTeachers::where('deleted', '=', null)->where('faculty_id', '=', Auth::user()->id)->groupBy('section_id')->get();
-            $subjects =  SubjectTeachers::where('deleted', '=', null)->where('faculty_id', '=', Auth::user()->id)->groupBy('subject_id')->get();
-            return view('faculty.announcementupdate', compact('gradelevels', 'semesters', 'courses', 'sections', 'subjects'), ['announcement' => $data]);
+        public function showannouncement(Request $request){
+            $where = array('id' => $request->id);
+            $activity  = ActivityStreams::where($where)->first();
+          
+            return Response()->json($activity);
         }
     
-         public function updateannouncement(Request $request, ActivityStreams $announcement){
-            $validated = $request->validate([
+         public function updateannouncement(Request $request){
+            $request->validate([
                 'what' => 'required|max:255',
                 'gradelevel_id' => ['required'],
                 'course_id' => ['required'],
@@ -217,37 +229,41 @@ class FacultyController extends Controller
                 'content' => 'required',
                 'expired_at' => ['required'],
             ]);
-           $announcement->update($validated);
-           ActivityStreams::where('deleted', '=', NULL)->where('expired_at', '<',  now())->update(['status' => '2']);
-           ActivityStreams::where('deleted', '=', NULL)->where('expired_at', '>',  now())->update(['status' => '1']);
-           return response()->json($announcement);
+            $announcement = ActivityStreams::find($request->id);
+            $announcement->what = $request->get('what');
+            $announcement->content = $request->get('content');
+            $announcement->gradelevel_id = $request->get('gradelevel_id');
+            $announcement->course_id = $request->get('course_id');
+            $announcement->section_id = $request->get('section_id');
+            $announcement->subject_id = $request->get('subject_id');
+            $announcement->expired_at = $request->get('expired_at');
+            $announcement->save();
+            ActivityStreams::where('deleted', '=', NULL)->where('expired_at', '<',  now())->update(['status' => '2']);
+            ActivityStreams::where('deleted', '=', NULL)->where('expired_at', '>',  now())->update(['status' => '1']);
+            return response()->json($announcement);
        }
 
-        public function deleteactivitystream(ActivityStreams $activitystream, Request $request, $id){
-           //     $validated = $request->validate([
-        //         'deleted' => ['required'],
-        //         'deleted_at' => ['required'],
-        //     ]);
-        //     $activitystream->update($validated);
-        //     return redirect('/createannouncement')->with('success', 'Activity has been deleted successfully!');
-            if ($request->ajax()){
-    
-                $activitystream = ActivityStreams::findOrFail($id);
-                if ($activitystream){
-        
-                    $activitystream->deleted = 1;
-                    $activitystream->deleted_at = now();
-                    $activitystream->save();
-        
-                    return response()->json(array('success' => true));
-                }
+         public function deleteactivitystream(Request $request){
+            $activity = ActivityStreams::findOrFail($request->id);
+            if ($activity){
+                $activityId = $request->id;
+                $activity   =   ActivityStreams::updateOrCreate(
+                [
+                    'id' => $activityId
+                ],
+                [
+                    'deleted' => 1, 
+                    'deleted_at' => now(),
+                ]);                
+                return Response()->json($activity);
             }
-            
-        }
+         }
     
-         public function deleteannouncement($id){
-            $data = ActivityStreams::where('deleted', '=', null)->findOrFail($id);
-            return view('faculty.deleteactivitystream', ['activitystream' => $data]);
+         public function deleteannouncement(Request $request){
+            $where = array('id' => $request->id);
+            $activity  = ActivityStreams::where($where)->first();
+          
+            return Response()->json($activity);
          }
 
     // ============================================================ GRADES ===================================================================================  
@@ -458,6 +474,33 @@ class FacultyController extends Controller
     }
 
     public function releasefinals($gradelevel_id, $course_id, $section_id){
+        $schoolyear = DB::table('school_years')->latest('id')->first();
+        $students = Students::where('course_id', '=', $course_id)->where('section_id', '=', $section_id)->get();
+        foreach($students as $student){
+            $grades = StudentGrade::where('gradelevel_id', '=', $gradelevel_id)->where('student_id', '=', $student->id)->where('semester_id', '=', 1)->where('schoolyear_id', '=', $schoolyear->id)->get();
+            foreach($grades as $grade){
+                $grade->isReleased = 2;
+                $grade->update();
+            }   
+        }
+        return redirect()->back()->with('success', 'Grades has been released successfully.');
+    }
+
+    public function releasemidterm2($gradelevel_id, $course_id, $section_id){
+        $schoolyear = DB::table('school_years')->latest('id')->first();
+        $students = Students::where('course_id', '=', $course_id)->where('section_id', '=', $section_id)->get();
+        foreach($students as $student){
+            $grades = StudentGrade::where('gradelevel_id', '=', $gradelevel_id)->where('student_id', '=', $student->id)->where('semester_id', '=', 2)->where('schoolyear_id', '=', $schoolyear->id)->get();
+            foreach($grades as $grade){
+                $grade->isReleased = 1;
+                $grade->update();
+            }   
+        }
+
+        return redirect()->back()->with('success', 'Grades has been released successfully.');
+    }
+
+    public function releasefinals2($gradelevel_id, $course_id, $section_id){
         $schoolyear = DB::table('school_years')->latest('id')->first();
         $students = Students::where('course_id', '=', $course_id)->where('section_id', '=', $section_id)->get();
         foreach($students as $student){

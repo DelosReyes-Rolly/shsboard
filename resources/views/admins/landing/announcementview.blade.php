@@ -104,7 +104,6 @@
                                             <!-- Form Group privacy-->
                                             <!-- Save changes button-->
                                             <div>
-                                            <a class="btn btn-warning btn-md" href="{{ url('showannouncement',['id'=>$announcement->id]) }}" onclick="editItem(this)" data-id="{{ $announcement->id }}" data-toggle="modal" data-target="#editModal{{ $announcement->id }}"><i class="fas fa-edit"></i> Update</a>
                                             </div>
                                         </div>
                                     </div>

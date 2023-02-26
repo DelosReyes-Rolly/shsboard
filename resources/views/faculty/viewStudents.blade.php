@@ -44,11 +44,11 @@
                     </div>
                 @elseif($releasegrades->grade_release == 3)
                     <div>
-                        <a class="btn btn-primary btn-lg" href="{{route('releasemidterm',['gradelevel_id'=>$gradelevel_id, 'course_id'=>$course_id, 'section_id'=>$section_id])}}" style="float: right; font-size: 18px;"><i class="fas fa-file-alt"></i> Release 3rd quarter grades</a>
+                        <a class="btn btn-primary btn-lg" href="{{route('releasemidterm2',['gradelevel_id'=>$gradelevel_id, 'course_id'=>$course_id, 'section_id'=>$section_id])}}" style="float: right; font-size: 18px;"><i class="fas fa-file-alt"></i> Release 3rd quarter grades</a>
                     </div>
                 @elseif($releasegrades->grade_release == 4)
                     <div>
-                        <a class="btn btn-primary btn-lg" href="{{route('releasefinals',['gradelevel_id'=>$gradelevel_id, 'course_id'=>$course_id, 'section_id'=>$section_id])}}" style="float: right; font-size: 18px;"><i class="fas fa-file-alt"></i> Release 4th quarter grades</a>
+                        <a class="btn btn-primary btn-lg" href="{{route('releasefinals2',['gradelevel_id'=>$gradelevel_id, 'course_id'=>$course_id, 'section_id'=>$section_id])}}" style="float: right; font-size: 18px;"><i class="fas fa-file-alt"></i> Release 4th quarter grades</a>
                     </div>
                 @endif
             </div>
