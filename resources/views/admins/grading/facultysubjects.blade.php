@@ -108,6 +108,7 @@
                                                 <a class="btn btn-success btn-md" href="{{ url('viewsubjectteacher',['id'=>$subjectteacher->id]) }}" data-toggle="modal" data-target="#modal-view-{{ $subjectteacher->id }}"><i class="fa-solid fa-eye"></i> View</a>
                                                 <a class="btn btn-warning btn-md" href="{{ url('showsubjectteacher',['id'=>$subjectteacher->id]) }}" data-toggle="modal" onclick="editItem(this)" data-id="{{ $subjectteacher->id }}" data-target="#editModal{{ $subjectteacher->id }}"><i class="fas fa-edit"></i> Update</a>
                                                 <a class="btn btn-danger btn-md" href="{{ url('deletesubjectteacher',['id'=>$subjectteacher->id]) }}" data-toggle="modal" onclick="deleteItem(this)" data-id="{{ $subjectteacher->id }}" data-target="#deleteModal{{ $subjectteacher->id }}"><i class="fas fa-trash-alt"></i> Delete</a>
+                                                <a class="btn btn-primary btn-md" href="{{ url('printgrades',['id'=>$subjectteacher->id]) }}"><i class="fas fa-file-alt"></i>  Print Grades</a>
                                             </td> 
                                         </tr>
                                         <!-- view modal -->

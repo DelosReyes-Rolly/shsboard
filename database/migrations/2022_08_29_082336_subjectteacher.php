@@ -30,6 +30,7 @@ class Subjectteacher extends Migration
             $table->tinyInteger('thursday')->nullable();
             $table->tinyInteger('friday')->nullable();
             $table->tinyInteger('saturday')->nullable();
+            $table->tinyInteger('isPrint')->nullable();
             $table->timestamps();
             $table->tinyInteger('deleted')->nullable();
             $table->date('deleted_at')->nullable();

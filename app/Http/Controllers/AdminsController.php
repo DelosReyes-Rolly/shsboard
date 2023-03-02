@@ -2519,6 +2519,16 @@ class AdminsController extends Controller
         return view('admins.grading.functions.subjectteacherdelete', ['subjectteacher' => $data]);
      }
 
+     public function printgrades($id){
+        $studentgrades = StudentGrade::where('subjectteacher_id', '=', $id)->orderByRaw('(SELECT last_name FROM students WHERE students.id = student_grades.student_id)')->get();
+        $sem = StudentGrade::where('subjectteacher_id', '=', $id)->first();
+        $pdf = app('dompdf.wrapper');
+        $pdf->getDomPDF()->set_option("enable_php", true);
+        $pdf->loadView('admins.grading.pdfgrades', compact('studentgrades', 'sem'));
+        return $pdf->download('Grades.pdf');
+
+    }
+
     // ============================================================ GRADE LEVEL ===================================================
 
 
@@ -2710,6 +2720,11 @@ class AdminsController extends Controller
     //  }
 
      public function firstquarter($schoolyear_id){
+        $printgosignal = SubjectTeachers::where('schoolyear_id', '=', $schoolyear_id)->get();
+        foreach($printgosignal as $go){
+            $go->isPrint = 1;
+            $go->update();
+        }
         $advisers = Advisories::where('deleted', '=', null)->where('active', '=', null)->where('schoolyear_id', '=', $schoolyear_id)->get();
         foreach($advisers as $adviser){
             $adviser->grade_release = 1;

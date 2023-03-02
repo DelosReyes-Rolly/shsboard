@@ -94,7 +94,10 @@
                                                                     @endif
                                                                 </td>
                                                                 <td>
-                                                                    <a href="{{route('view-students',['subject_id'=> Crypt::encrypt($schoolyearsubject -> subject_id), 'gradelevel_id'=>Crypt::encrypt($schoolyearsubject -> gradelevel_id), 'semester_id'=>Crypt::encrypt($schoolyearsubject -> semester_id), 'schoolyear_id'=>Crypt::encrypt($schoolyearsubject -> schoolyear_id)])}}"><i class="fas fa-edit"></i>View students</a>
+                                                                    <a class="btn btn-success btn-lg" href="{{route('view-students',['subject_id'=> Crypt::encrypt($schoolyearsubject -> subject_id), 'gradelevel_id'=>Crypt::encrypt($schoolyearsubject -> gradelevel_id), 'semester_id'=>Crypt::encrypt($schoolyearsubject -> semester_id), 'schoolyear_id'=>Crypt::encrypt($schoolyearsubject -> schoolyear_id)])}}" style="font-size:16px;"><i class="fas fa-edit"></i>View students</a>
+                                                                    @if($schoolyearsubject->isPrint == 1)
+                                                                        <a class="btn btn-primary btn-lg" style="font-size:16px;" href="{{ url('printgradesteacher',['id'=>$schoolyearsubject->id]) }}"><i class="fas fa-file-alt"></i>  Print Grades</a>
+                                                                    @endif
                                                                 </td> 
                                                             </tr>
                                                     @endif

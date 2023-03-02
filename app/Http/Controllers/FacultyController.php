@@ -389,6 +389,16 @@ class FacultyController extends Controller
         } 
     }
 
+    public function printgradesteacher($id){
+        $studentgrades = StudentGrade::where('subjectteacher_id', '=', $id)->orderByRaw('(SELECT last_name FROM students WHERE students.id = student_grades.student_id)')->get();
+        $sem = StudentGrade::where('subjectteacher_id', '=', $id)->first();
+        $pdf = app('dompdf.wrapper');
+        $pdf->getDomPDF()->set_option("enable_php", true);
+        $pdf->loadView('admins.grading.pdfgrades', compact('studentgrades', 'sem'));
+        return $pdf->download('Grades.pdf');
+
+    }
+
     // ============================================================ ADVISORY ===================================================================================
 
     public function advisoryfaculty(){

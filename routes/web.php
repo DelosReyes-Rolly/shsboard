@@ -573,6 +573,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 Route::get('/viewsubjectteacher/{id}','viewsubjectteacher');
                 Route::get('/showsubjectteacher/{id}','showsubjectteacher');
                 Route::get('/deletesubjectteacher/{id}', 'deletesubjectteacher');
+                Route::get('/printgrades/{id}', 'printgrades');
 
                 Route::get('/gradeleveladd', 'addgradelevel')->name('gradelevel.add');
                 Route::post('/showgradelevel','showgradelevel');
@@ -855,6 +856,7 @@ Route::group(['middleware' => 'auth:faculties'], function () {
             Route::get('/facultygradeeval', 'gradeeval');
             Route::get('/viewGradeEvaluation/{id}','viewGradeEvaluation');
             Route::get('/facultysubjects', 'facultysubjects');
+            Route::get('/printgradesteacher/{id}', 'printgradesteacher');
             Route::get('/view-students/{subject_id}/{gradelevel_id}/{semester_id}/{schoolyear_id}', 'view_students')->name('view-students');
 
 
