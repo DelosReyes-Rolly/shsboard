@@ -15,7 +15,7 @@
                <!--Add the ".breadcrumb-item" class to each li element within the breadcrumb-->
                <li class = "breadcrumb-item"><a class="bca" href = "javascript:history.back()">Subjects</a></li>
                <!--Add the "active" class to li element to represent the current page-->
-               <li class = "breadcrumb-item active" aria-current = "page">View students</li>
+               <li class = "breadcrumb-item active" aria-current = "page">view students</li>
             </ul>
          </nav>
 	</div>

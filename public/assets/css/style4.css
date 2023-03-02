@@ -400,3 +400,8 @@ a.article:hover {
   .card-hover:hover{
     box-shadow: none!important;
   }
+
+  .modal-body {
+    max-height:80vh;
+    overflow:auto;
+  }

@@ -1889,7 +1889,8 @@ class AdminsController extends Controller
         $subjects = Subjects::where('deleted', '=', null)->get();
         $semesters = Semesters::all();
         $faculties = Faculties::where('deleted', '=', null)->get();
-        return view('admins.grading.functions.studentaddsubject', compact('student', 'subjects', 'semesters', 'faculties'));
+        $gradelevels = GradeLevels::where('deleted', '=', null)->get();
+        return view('admins.grading.functions.studentaddsubject', compact('student', 'subjects', 'semesters', 'faculties', 'gradelevels'));
     }
 
     public function studentsubjectadd(Request $request){
@@ -1902,7 +1903,7 @@ class AdminsController extends Controller
         ]);
         $schoolyear = DB::table('school_years')->latest('id')->first();
         $facultysubject = SubjectTeachers::where('faculty_id', '=', $request->faculty_id)->where('subject_id', '=', $request->subject_id)
-        ->where('schoolyear_id', '=', $schoolyear->id)->where('semester_id', '=', $request->semester_id)->first();
+        ->where('schoolyear_id', '=', $schoolyear->id)->where('semester_id', '=', $request->semester_id)->where('gradelevel_id', '=', $request->gradelevel_id)->first();
         if($facultysubject == null){
             return response()->json(['error' => 'Sorry! No class offering for this teacher this semester.'], 422); 
         }
@@ -1914,7 +1915,11 @@ class AdminsController extends Controller
                 if($average>74){
                     return response()->json(['error' => 'Sorry! The student already passed the subject.'], 422); 
                 }
+                else if($average==0){
+                    return response()->json(['error' => 'Sorry! The average of student for this subject is 0, previous teacher must grade the student first to be eligible for reenrollment of subject.'], 422); 
+                }
                 else{
+                 
                     $studentgrade = new StudentGrade();
                     $studentgrade->student_id = $request->get('student_id');
                     $studentgrade->gradelevel_id = $request->get('gradelevel_id');

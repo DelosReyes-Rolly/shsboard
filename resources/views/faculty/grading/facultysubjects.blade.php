@@ -94,7 +94,7 @@
                                                                     @endif
                                                                 </td>
                                                                 <td>
-                                                                    <a href="{{route('view-students',['subject_id'=>$schoolyearsubject -> subject_id, 'gradelevel_id'=>$schoolyearsubject -> gradelevel_id, 'semester_id'=>$schoolyearsubject -> semester_id, 'schoolyear_id'=>$schoolyearsubject -> schoolyear_id])}}"><i class="fas fa-edit"></i>View students</a>
+                                                                    <a href="{{route('view-students',['subject_id'=> Crypt::encrypt($schoolyearsubject -> subject_id), 'gradelevel_id'=>Crypt::encrypt($schoolyearsubject -> gradelevel_id), 'semester_id'=>Crypt::encrypt($schoolyearsubject -> semester_id), 'schoolyear_id'=>Crypt::encrypt($schoolyearsubject -> schoolyear_id)])}}"><i class="fas fa-edit"></i>View students</a>
                                                                 </td> 
                                                             </tr>
                                                     @endif

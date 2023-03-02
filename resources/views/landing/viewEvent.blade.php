@@ -7,7 +7,7 @@
             <div style="color: green; font-size: 40px; font-weight:bold;">Event</div>
         </div>
         <div class="col-lg-4 col-md-12 col-sm-12">
-            <a href="javascript:history.back()" class=" back-button back-button1"><i class="fas fa-arrow-left"></i>   Back to events</a>
+            <a class="btn btn-secondary btn-lg back-button back-button1" href="javascript:history.back()"><i class="fas fa-arrow-left"></i>   Back to events</a>
         </div>
     </div>
     <hr style="border: 1px solid black">

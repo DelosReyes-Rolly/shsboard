@@ -17,6 +17,7 @@ use App\Models\SubjectTeachers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
 
 class FacultyController extends Controller
@@ -282,6 +283,10 @@ class FacultyController extends Controller
     }
 
     public function view_students($subject_id, $gradelevel_id, $semester_id, $schoolyear_id){
+        $subject_id = Crypt::decrypt($subject_id);   
+        $gradelevel_id = Crypt::decrypt($gradelevel_id);  
+        $semester_id = Crypt::decrypt($semester_id);  
+        $schoolyear_id = Crypt::decrypt($schoolyear_id);  
         $male = StudentGrade::where('subject_id', '=', $subject_id)->where('gradelevel_id', '=', $gradelevel_id)->where('semester_id', '=', $semester_id)->where('faculty_id', '=', Auth::user()->id)
                 ->where('schoolyear_id', '=', $schoolyear_id)->where('deleted', '=', NULL)->whereHas('student', function($q) {
                     $q->where('gender', 'Male')->orWhere('gender', '');
@@ -432,7 +437,10 @@ class FacultyController extends Controller
         return view('faculty.card_giving', ['card' => $data]);
      }
 
-     public function viewStudents($gradelevel_id, $course_id, $section_id){
+     public function viewStudents($gradelevel_id, $course_id, $section_id){ 
+        $gradelevel_id = Crypt::decrypt($gradelevel_id);  
+        $course_id = Crypt::decrypt($course_id); 
+        $section_id = Crypt::decrypt($section_id); 
         $males = Students::where('gradelevel_id', '=', $gradelevel_id)->where('course_id', '=', $course_id)->where('section_id', '=', $section_id)->where('gender', '=', 'Male') ->orderBy('last_name', 'asc')->get();
         $females = Students::where('gradelevel_id', '=', $gradelevel_id)->where('course_id', '=', $course_id)->where('section_id', '=', $section_id)->where('gender', '=', 'Female') ->orderBy('last_name', 'asc')->get();;
         $gradelevel_id = $gradelevel_id;
@@ -442,6 +450,7 @@ class FacultyController extends Controller
         return view('faculty.viewStudents', compact('males', 'females', 'gradelevel_id', 'course_id', 'section_id', 'releasegrades'));
      }
      public function viewstudentgrades($id){
+        $id = Crypt::decrypt($id);  
         $student = Students::where('id', '=', $id)->first();
         $allsubjects = StudentGrade::where('student_id', '=', $id)->where('deleted', '=', NULL)->get();
         $grade11 = StudentGrade::where('student_id', '=', $id)->where('gradelevel_id', '=', 1)->where('deleted', '=', NULL)->get();

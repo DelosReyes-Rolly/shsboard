@@ -48,8 +48,20 @@
                                     <!-- Form Row-->
                                     <div class="row">
                                         <!-- Form Row -->
-                                        <input type="hidden" id="gradelevel_id" name="gradelevel_id" value="{{$student->gradelevel_id}}">
-                                        <div class="col-md-12">
+                                        <div class="col-md-12"><br/>
+                                            <div class="col-md-12"><label for="gradelevel_id" style="font-size: 20px;"><span style="color: red">*</span> Grade level</label>
+                                                <select id="gradelevel_id" name="gradelevel_id" class="form-control" value="{{ old('gradelevel_id') }}" style="font-size: 14px;" required>
+                                                    <option value="" disabled selected hidden>Choose Grade level</option>
+                                                    @foreach ($gradelevels as $gradelevel)
+                                                        <option value="{{ $gradelevel->id }}">{{ $gradelevel->gradelevel}}</option>
+                                                    @endforeach
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    Please input valid grade level.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12"><br/>
                                             <div class="col-md-12"><label for="subject_id" style="font-size: 20px;"><span style="color: red">*</span> Subject</label>
                                                 <select id="subject_id" name="subject_id" class="form-control" value="{{ old('subject_id') }}" style="font-size: 14px;" required>
                                                     <option value="" disabled selected hidden>Choose Subject</option>

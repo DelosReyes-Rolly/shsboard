@@ -71,7 +71,7 @@
                                                             <td>{{$adviser -> section -> section}}</td>
                                                             <td>
                                                                 @if($adviser -> active == null)
-                                                                        <a class="btn btn-success btn-md" href="{{route('faculty.viewStudents',['gradelevel_id'=>$adviser -> gradelevel_id, 'course_id'=>$adviser -> course_id, 'section_id'=>$adviser -> section_id])}}" style="font-size: 16px;"><i class="fas fa-user-tie"></i> View students</a>
+                                                                        <a class="btn btn-success btn-md" href="{{route('faculty.viewStudents',['gradelevel_id'=>Crypt::encrypt($adviser -> gradelevel_id), 'course_id'=>Crypt::encrypt($adviser -> course_id), 'section_id'=>Crypt::encrypt($adviser -> section_id)])}}" style="font-size: 16px;"><i class="fas fa-user-tie"></i> View students</a>
                                                                     @if($adviser -> cardgiving == null)
                                                                         <button class="btn btn-primary btn-md" onclick="releaseCard(this)" data-id="{{ $adviser->id }}" style="font-size: 16px;"><i class="fas fa-file-alt"></i>  Release Card</button>
                                                                     @else
