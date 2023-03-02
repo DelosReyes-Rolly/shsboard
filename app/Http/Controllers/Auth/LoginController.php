@@ -72,15 +72,15 @@ class LoginController extends Controller
     public function studentsLogin(Request $request)
     {
         $this->validate($request, [
-            'email'   => 'required|email|max:255|max:255',
+            'LRN'   => 'required',
             'password' => 'required|min:6|max:255'
         ]);
 
-        if (FacadesAuth::guard('students')->attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (FacadesAuth::guard('students')->attempt(['lrn' => $request->LRN, 'password' => $request->password])) {
 
             return redirect()->intended('/students');
         }
-        return back()->with('message', 'Wrong credentials!')->withInput($request->only('email'));
+        return back()->with('message', 'Wrong credentials!')->withInput($request->only('LRN'));
     }
 
     public function showFacultiesLoginForm()

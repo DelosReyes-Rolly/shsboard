@@ -1672,10 +1672,13 @@ class AdminsController extends Controller
             ->addIndexColumn()
             ->make(true);
         }
+        $subjects = Subjects::where('deleted', '=', null)->get();
+        $semesters = Semesters::all();
+        $faculties = Faculties::where('deleted', '=', null)->get();
         $gradelevels = GradeLevels::where('deleted', '=', null)->get();
         $sections = Sections::where('deleted', '=', null)->get();
         $courses = Courses::where('deleted', '=', null)->get();
-        return view('admins.grading.student', compact('gradelevels', 'sections', 'courses'));
+        return view('admins.grading.student', compact('gradelevels', 'sections', 'courses', 'subjects', 'semesters', 'faculties'));
     }
     
      public function alumni(){
@@ -1893,11 +1896,18 @@ class AdminsController extends Controller
         return view('admins.grading.functions.studentaddsubject', compact('student', 'subjects', 'semesters', 'faculties', 'gradelevels'));
     }
 
+    public function addsubject(Request $request){
+        $where = array('id' => $request->id);
+        $student  = Students::where($where)->first();
+      
+        return Response()->json($student);
+    }
+
     public function studentsubjectadd(Request $request){
         $request->validate([
             'gradelevel_id' => 'required',
             'subject_id' => 'required',
-            'student_id' => 'required',
+            'id' => 'required',
             'faculty_id' => 'required',
             'semester_id' => 'required',
         ]);

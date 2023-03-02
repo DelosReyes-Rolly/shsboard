@@ -654,6 +654,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 Route::post('/expertise/delete', 'deletegradeexpertise');
 
                 Route::post('/updatestudent', 'updatestudent');
+                Route::post('/addsubject', 'addsubject');
                 // Route::put('/deletestudent/{student}', 'deletegradestudent');
                 Route::post('/student/delete', 'deletegradestudent');
 

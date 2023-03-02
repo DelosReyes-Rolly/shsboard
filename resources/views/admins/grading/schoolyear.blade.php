@@ -88,7 +88,7 @@
 
     <!-- boostrap add model -->
     <div class="modal fade" id="Schoolyear-modal" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-sm">
             <div class="modal-content border-start-lg border-start-yellow">
                 <div class="modal-header">
                     <h1 class="modal-title" id="SchoolyearModal" style="font-size: 20px;">New Schoolyear</h1>
@@ -130,7 +130,7 @@
 
     <!-- boostrap update model  -->
     <div class="modal fade" id="Schoolyear-modal-update" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-sm">
             <div class="modal-content border-start-lg border-start-yellow">
                 <div class="modal-header">
                     <h1 class="modal-title" id="SchoolyearModal-update" style="font-size: 20px;">New Schoolyear</h1>
