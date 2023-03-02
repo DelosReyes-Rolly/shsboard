@@ -407,7 +407,7 @@
             },
             { data: 'subject_load', name: 'subject_load' },
             { data: 'class_load', name: 'class_load' },
-            { data: 'expertise', name: 'expertise' },
+            { data: 'expertise', name: 'expertises.expertise' },
             {
                 "data": "id",
                 "render": function(data, type, full, meta){

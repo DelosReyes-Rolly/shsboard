@@ -387,6 +387,12 @@ class StudentsController extends Controller
         return response()->download($file_path);
   }
 
+  public function downloadrequestfile(Request $request) {
+    $file_name = DocumentRequests::where('deleted', '=', null)->where('id', '=', $request->id)->first();
+    $file_path = public_path('uploads/DocumentRequestFile/'.$file_name->file);
+    return response()->download($file_path);
+}
+
   public function studentresetshow(){
     return view('student.reset-password');
 }
@@ -413,7 +419,6 @@ public function viewfiles($file_name) {
 
 public function viewfileDocuments($id) {
     $requests = DocumentRequests::where('deleted', '=', null)->findOrFail($id);
-    $file = $requests->file;
     return view('student.documentrequestPreview', compact('requests'));
 }
 }

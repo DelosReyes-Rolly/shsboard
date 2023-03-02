@@ -581,11 +581,6 @@ class AdminsController extends Controller
 
     public function documentRequest(){
         $requests = DocumentRequests::where('deleted', '=', null)->where('status', '!=', 4)->where('status', '!=', 3)->get();
-        $requests11 = DocumentRequests::where('deleted', '=', null)->where('gradelevel_id', '=', 1)->where('status', '!=', 4)->where('status', '!=', 3)->get();
-        $requests12 = DocumentRequests::where('deleted', '=', null)->where('gradelevel_id', '=', 2)->where('status', '!=', 4)->where('status', '!=', 3)->get();
-        $alumni = DocumentRequests::where('deleted', '=', null)->where('status', '!=', 4)->where('status', '!=', 3)->whereHas('student', function($q) {
-            $q->where('status', 2);
-        })->get();
         $documents = Documents::where('deleted', '=', null)->get();
         $documentpurposes = DocumentPurposes::where('deleted', '=', null)->get();
 
@@ -596,7 +591,7 @@ class AdminsController extends Controller
             ->addIndexColumn()
             ->make(true);
         }
-        return view('admins.documentrequests.documentrequest', compact('requests', 'documents', 'requests11', 'requests12', 'alumni', 'documentpurposes'));
+        return view('admins.documentrequests.documentrequest', compact('documents', 'documentpurposes', 'requests'));
     }
 
     public function documentRequestpurpose(){
@@ -611,6 +606,246 @@ class AdminsController extends Controller
         return view('admins.documentrequests.documentrequest');
     }
 
+    public function documentRequestgrade11(){
+
+        $grade11request = DB::table('document_requests')
+            ->where('document_requests.deleted', '=', null)
+            ->where('document_requests.gradelevel_id', '=', 1)
+            ->where('document_requests.status', '!=', 4)
+            ->where('document_requests.status', '!=', 3)
+            ->join('students', 'document_requests.student_id', '=', 'students.id')
+            ->join('documents', 'document_requests.document_id', '=', 'documents.id')
+            ->join('document_purposes', 'document_requests.purpose_id', '=', 'document_purposes.id')
+            ->join('courses', 'students.course_id', '=', 'courses.id')
+            ->select(['document_requests.id', 'document_requests.created_at AS created_atAct', 'document_requests.status', 'document_requests.file',
+            'students.first_name', 'students.middle_name', 'students.last_name', 'students.suffix', 'students.id AS stud_id', 'documents.name', 
+            'documents.id AS doc_id', 'document_purposes.purpose', 'document_purposes.id AS purp_id',
+            'courses.id AS c_id', 'courses.abbreviation']);
+
+        if(request()->ajax()) {
+            return datatables()->of($grade11request)
+                ->addColumn('download', 'admins.grading.action-button-downloadrequest')
+                ->addColumn('action', 'admins.grading.action-button-requestgrade11')
+                ->rawColumns(['action', 'download'])
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view('admins.documentrequests.documentrequest');
+    }
+
+    public function documentRequestgrade11completed(){
+
+        $grade11request = DB::table('document_requests')
+            ->where('document_requests.deleted', '=', null)
+            ->where('document_requests.gradelevel_id', '=', 1)
+            ->where('document_requests.status', '=', 3)
+            ->join('students', 'document_requests.student_id', '=', 'students.id')
+            ->join('documents', 'document_requests.document_id', '=', 'documents.id')
+            ->join('document_purposes', 'document_requests.purpose_id', '=', 'document_purposes.id')
+            ->join('courses', 'students.course_id', '=', 'courses.id')
+            ->select(['document_requests.id', 'document_requests.created_at AS created_atAct', 'document_requests.status', 'document_requests.file',
+            'students.first_name', 'students.middle_name', 'students.last_name', 'students.suffix', 'students.id AS stud_id', 'documents.name', 
+            'documents.id AS doc_id', 'document_purposes.purpose', 'document_purposes.id AS purp_id',
+            'courses.id AS c_id', 'courses.abbreviation']);
+
+        if(request()->ajax()) {
+            return datatables()->of($grade11request)
+                ->addColumn('download', 'admins.grading.action-button-downloadrequest')
+                ->addColumn('action', 'admins.grading.action-button-requestgrade11')
+                ->rawColumns(['action', 'download'])
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view('admins.documentrequests.documentrequestCompleted11');
+    }
+
+    public function documentRequestgrade11rejected(){
+
+        $grade11request = DB::table('document_requests')
+            ->where('document_requests.deleted', '=', null)
+            ->where('document_requests.gradelevel_id', '=', 1)
+            ->where('document_requests.status', '=', 4)
+            ->join('students', 'document_requests.student_id', '=', 'students.id')
+            ->join('documents', 'document_requests.document_id', '=', 'documents.id')
+            ->join('document_purposes', 'document_requests.purpose_id', '=', 'document_purposes.id')
+            ->join('courses', 'students.course_id', '=', 'courses.id')
+            ->select(['document_requests.id', 'document_requests.created_at AS created_atAct', 'document_requests.status', 'document_requests.file',
+            'students.first_name', 'students.middle_name', 'students.last_name', 'students.suffix', 'students.id AS stud_id', 'documents.name', 
+            'documents.id AS doc_id', 'document_purposes.purpose', 'document_purposes.id AS purp_id',
+            'courses.id AS c_id', 'courses.abbreviation']);
+
+        if(request()->ajax()) {
+            return datatables()->of($grade11request)
+                ->addColumn('download', 'admins.grading.action-button-downloadrequest')
+                ->addColumn('action', 'admins.grading.action-button-requestgrade11')
+                ->rawColumns(['action', 'download'])
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view('admins.documentrequests.documentrequestRejected11');
+    }
+
+
+
+    public function documentRequestgrade12(){
+
+        $grade12request = DB::table('document_requests')
+            ->where('document_requests.deleted', '=', null)
+            ->where('document_requests.gradelevel_id', '=', 2)
+            ->where('document_requests.status', '!=', 4)
+            ->where('document_requests.status', '!=', 3)
+            ->join('students', 'document_requests.student_id', '=', 'students.id')
+            ->join('documents', 'document_requests.document_id', '=', 'documents.id')
+            ->join('document_purposes', 'document_requests.purpose_id', '=', 'document_purposes.id')
+            ->join('courses', 'students.course_id', '=', 'courses.id')
+            ->select(['document_requests.id', 'document_requests.created_at AS created_atAct', 'document_requests.status', 'document_requests.file',
+            'students.first_name', 'students.middle_name', 'students.last_name', 'students.suffix', 'students.id AS stud_id', 'documents.name', 
+            'documents.id AS doc_id', 'document_purposes.purpose', 'document_purposes.id AS purp_id',
+            'courses.id AS c_id', 'courses.abbreviation']);
+
+        if(request()->ajax()) {
+            return datatables()->of($grade12request)
+                ->addColumn('download', 'admins.grading.action-button-downloadrequest')
+                ->addColumn('action', 'admins.grading.action-button-requestgrade12')
+                ->rawColumns(['action', 'download'])
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view('admins.documentrequests.documentrequest');
+    }
+
+
+    public function documentRequestgrade12completed(){
+
+        $grade12request = DB::table('document_requests')
+            ->where('document_requests.deleted', '=', null)
+            ->where('document_requests.gradelevel_id', '=', 2)
+            ->where('document_requests.status', '=', 3)
+            ->join('students', 'document_requests.student_id', '=', 'students.id')
+            ->join('documents', 'document_requests.document_id', '=', 'documents.id')
+            ->join('document_purposes', 'document_requests.purpose_id', '=', 'document_purposes.id')
+            ->join('courses', 'students.course_id', '=', 'courses.id')
+            ->select(['document_requests.id', 'document_requests.created_at AS created_atAct', 'document_requests.status', 'document_requests.file',
+            'students.first_name', 'students.middle_name', 'students.last_name', 'students.suffix', 'students.id AS stud_id', 'documents.name', 
+            'documents.id AS doc_id', 'document_purposes.purpose', 'document_purposes.id AS purp_id',
+            'courses.id AS c_id', 'courses.abbreviation']);
+
+        if(request()->ajax()) {
+            return datatables()->of($grade12request)
+                ->addColumn('download', 'admins.grading.action-button-downloadrequest')
+                ->addColumn('action', 'admins.grading.action-button-requestgrade12')
+                ->rawColumns(['action', 'download'])
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view('admins.documentrequests.documentrequestCompleted12');
+    }
+
+    public function documentRequestgrade12rejected(){
+
+        $grade12request = DB::table('document_requests')
+            ->where('document_requests.deleted', '=', null)
+            ->where('document_requests.gradelevel_id', '=', 2)
+            ->where('document_requests.status', '=', 4)
+            ->join('students', 'document_requests.student_id', '=', 'students.id')
+            ->join('documents', 'document_requests.document_id', '=', 'documents.id')
+            ->join('document_purposes', 'document_requests.purpose_id', '=', 'document_purposes.id')
+            ->join('courses', 'students.course_id', '=', 'courses.id')
+            ->select(['document_requests.id', 'document_requests.created_at AS created_atAct', 'document_requests.status', 'document_requests.file',
+            'students.first_name', 'students.middle_name', 'students.last_name', 'students.suffix', 'students.id AS stud_id', 'documents.name', 
+            'documents.id AS doc_id', 'document_purposes.purpose', 'document_purposes.id AS purp_id',
+            'courses.id AS c_id', 'courses.abbreviation']);
+
+        if(request()->ajax()) {
+            return datatables()->of($grade12request)
+                ->addColumn('download', 'admins.grading.action-button-downloadrequest')
+                ->addColumn('action', 'admins.grading.action-button-requestgrade12')
+                ->rawColumns(['action', 'download'])
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view('admins.documentrequests.documentrequestRejected12');
+    }
+
+
+    public function documentRequestalumni(){
+
+        $grade12request = DB::table('document_requests')
+            ->where('document_requests.deleted', '=', null)
+            ->where('document_requests.status', '!=', 4)
+            ->where('document_requests.status', '!=', 3)
+            ->where('students.status', '=', 2)
+            ->join('students', 'document_requests.student_id', '=', 'students.id')
+            ->join('documents', 'document_requests.document_id', '=', 'documents.id')
+            ->join('document_purposes', 'document_requests.purpose_id', '=', 'document_purposes.id')
+            ->join('courses', 'students.course_id', '=', 'courses.id')
+            ->select(['document_requests.id', 'document_requests.created_at AS created_atAct', 'document_requests.status', 'document_requests.file',
+            'students.first_name', 'students.middle_name', 'students.last_name', 'students.suffix', 'students.id AS stud_id', 'documents.name', 
+            'documents.id AS doc_id', 'document_purposes.purpose', 'document_purposes.id AS purp_id',
+            'courses.id AS c_id', 'courses.abbreviation']);
+
+        if(request()->ajax()) {
+            return datatables()->of($grade12request)
+                ->addColumn('download', 'admins.grading.action-button-downloadrequest')
+                ->addColumn('action', 'admins.grading.action-button-requestalumni')
+                ->rawColumns(['action', 'download'])
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view('admins.documentrequests.documentrequest');
+    }
+
+    public function documentRequestalumnicompleted(){
+
+        $alumnirequest = DB::table('document_requests')
+            ->where('document_requests.deleted', '=', null)
+            ->where('document_requests.status', '=', 3)
+            ->where('students.status', '=', 2)
+            ->join('students', 'document_requests.student_id', '=', 'students.id')
+            ->join('documents', 'document_requests.document_id', '=', 'documents.id')
+            ->join('document_purposes', 'document_requests.purpose_id', '=', 'document_purposes.id')
+            ->join('courses', 'students.course_id', '=', 'courses.id')
+            ->select(['document_requests.id', 'document_requests.created_at AS created_atAct', 'document_requests.status', 'document_requests.file',
+            'students.first_name', 'students.middle_name', 'students.last_name', 'students.suffix', 'students.id AS stud_id', 'documents.name', 
+            'documents.id AS doc_id', 'document_purposes.purpose', 'document_purposes.id AS purp_id',
+            'courses.id AS c_id', 'courses.abbreviation']);
+
+        if(request()->ajax()) {
+            return datatables()->of($alumnirequest)
+                ->addColumn('download', 'admins.grading.action-button-downloadrequest')
+                ->addColumn('action', 'admins.grading.action-button-requestalumni')
+                ->rawColumns(['action', 'download'])
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view('admins.documentrequests.documentrequestCompletedAlumni');
+    }
+
+    public function documentRequestalumnirejected(){
+
+        $alumnirequest = DB::table('document_requests')
+            ->where('document_requests.deleted', '=', null)
+            ->where('document_requests.status', '=', 4)
+            ->where('students.status', '=', 2)
+            ->join('students', 'document_requests.student_id', '=', 'students.id')
+            ->join('documents', 'document_requests.document_id', '=', 'documents.id')
+            ->join('document_purposes', 'document_requests.purpose_id', '=', 'document_purposes.id')
+            ->join('courses', 'students.course_id', '=', 'courses.id')
+            ->select(['document_requests.id', 'document_requests.created_at AS created_atAct', 'document_requests.status', 'document_requests.file',
+            'students.first_name', 'students.middle_name', 'students.last_name', 'students.suffix', 'students.id AS stud_id', 'documents.name', 
+            'documents.id AS doc_id', 'document_purposes.purpose', 'document_purposes.id AS purp_id',
+            'courses.id AS c_id', 'courses.abbreviation']);
+
+        if(request()->ajax()) {
+            return datatables()->of($alumnirequest)
+                ->addColumn('download', 'admins.grading.action-button-downloadrequest')
+                ->addColumn('action', 'admins.grading.action-button-requestalumni')
+                ->rawColumns(['action', 'download'])
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view('admins.documentrequests.documentrequestRejected12');
+    }
 
     public function adddocument(){
         return view('admins.documentrequests.documentadd');
@@ -721,20 +956,54 @@ class AdminsController extends Controller
         return view('admins.documentrequests.docreqviewadmin', ['docreq' => $data]);
     }
 
-    public function showrequest($id){
-        $data = DocumentRequests::where('deleted', '=', null)->findOrFail($id);
-        return view('admins.documentrequests.docreqadmin', ['docreq' => $data]);
+     public function showrequest(Request $request){
+        
+
+        $document = DB::table('document_requests')
+            ->where('document_requests.deleted', '=', null)
+            ->where('document_requests.id', '=', $request->id)
+            ->join('students', 'document_requests.student_id', '=', 'students.id')
+            ->join('grade_levels', 'document_requests.gradelevel_id', '=', 'grade_levels.id')
+            ->join('documents', 'document_requests.document_id', '=', 'documents.id')
+            ->join('document_purposes', 'document_requests.purpose_id', '=', 'document_purposes.id')
+            ->select(['document_requests.id', 'document_requests.status',
+            'students.first_name', 'students.middle_name', 'students.last_name', 'students.suffix', 'students.id AS stud_id', 
+            'grade_levels.gradelevel', 'grade_levels.id AS grade_id',
+            'documents.name', 'documents.id AS doc_id', 
+            'document_purposes.purpose', 'document_purposes.id AS purp_id'])->first();
+          
+        return Response()->json($document);
     }
 
-    public function updatedocreq(Request $request){
+    public function updatedocreqgrade11(Request $request){
         $request->validate([
-            'status' => ['required'],
+            'grade11status' => ['required'],
         ]);
         $docreq = DocumentRequests::find($request->id);
-        $docreq->status = $request->get('status');
+        $docreq->status = $request->get('grade11status');
         $docreq->save();
        return response()->json($docreq);
    }
+
+    public function updatedocreqgrade12(Request $request){
+        $request->validate([
+            'grade12status' => ['required'],
+        ]);
+        $docreq = DocumentRequests::find($request->id);
+        $docreq->status = $request->get('grade12status');
+        $docreq->save();
+        return response()->json($docreq);
+    }
+
+    public function updatedocreqalumni(Request $request){
+        $request->validate([
+            'alumnistatus' => ['required'],
+        ]);
+        $docreq = DocumentRequests::find($request->id);
+        $docreq->status = $request->get('alumnistatus');
+        $docreq->save();
+        return response()->json($docreq);
+    }
 
      public function downloadpdfdoc(Request $request) {
         $request->validate([

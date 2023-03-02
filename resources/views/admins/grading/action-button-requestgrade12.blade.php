@@ -1,0 +1,2 @@
+<a class="view btn btn-success btn-md view"  href="{{ url('viewfileDocument', ['id'=>$id])}}" data-original-title="View"><i class="fa-solid fa-eye" data-toggle="tooltip"></i> View</a>
+<a class="edit btn btn-warning btn-md edit"  href="javascript:void(0)" onClick="editFuncgrade12({{ $id }})" data-original-title="Edit"><i class="fas fa-edit" data-toggle="tooltip"></i> Update</a>

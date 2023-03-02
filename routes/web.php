@@ -696,10 +696,19 @@ Route::group(['middleware' => 'auth:admins'], function () {
             */
             Route::get('/documentrequest', 'documentRequest');
             Route::get('/documentrequestpurpose', 'documentRequestpurpose');
+            Route::get('/documentrequestgrade11', 'documentRequestgrade11');
+            Route::get('/documentrequestgrade11completed', 'documentRequestgrade11completed');
+            Route::get('/documentrequestgrade11rejected', 'documentRequestgrade11rejected');
+            Route::get('/documentrequestgrade12', 'documentRequestgrade12');
+            Route::get('/documentrequestgrade12completed', 'documentRequestgrade12completed');
+            Route::get('/documentrequestgrade12rejected', 'documentRequestgrade12rejected');
+            Route::get('/documentrequestalumni', 'documentRequestalumni');
+            Route::get('/documentrequestalumnicompleted', 'documentRequestalumnicompleted');
+            Route::get('/documentrequestalumnirejected', 'documentRequestalumnirejected');
             Route::post('/viewdocument', 'viewdocument');
             Route::post('/showdocument', 'showdocument');
             Route::get('/viewrequestadmin/{id}', 'viewrequest');
-            Route::get('/showrequestadmin/{id}', 'showrequest');
+            Route::post('/showrequestadmin', 'showrequest');
             Route::get('/deletedocument/{id}',  'deletedocument');
             Route::get('/documentadd', 'adddocument')->name('document.add');
             Route::get('/purposeadd', 'addpurpose')->name('purpose.add');
@@ -741,7 +750,9 @@ Route::group(['middleware' => 'auth:admins'], function () {
             Route::post('/updatedocument', 'updatedocument');
             // Route::put('/deletedocument/{document}', 'deletegradedocument');
             Route::post('/document/delete', 'deletegradedocument');
-            Route::post('/updaterequestdocadmin', 'updatedocreq');
+            Route::post('/updaterequestdocadmingrade11', 'updatedocreqgrade11');
+            Route::post('/updaterequestdocadmingrade12', 'updatedocreqgrade12');
+            Route::post('/updaterequestdocadminalumni', 'updatedocreqalumni');
 
             Route::post('/updatepurpose', 'updatepurpose');
             // Route::put('/deletepurpose/{purpose}', 'deletegradepurpose');
@@ -928,6 +939,7 @@ Route::group(['middleware' => 'auth:faculties'], function () {
     |
     */
     Route::get('/download/{file}', [StudentsController::class, 'downloadrequest']);
+    Route::get('/downloadrequest/{id}', [StudentsController::class, 'downloadrequestfile']);
     
     /*
     |-----------------------------------------------------------------------------------
