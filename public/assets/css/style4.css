@@ -392,3 +392,11 @@ a.article:hover {
       transform: rotate(1800deg);
     }
   }
+  
+  .card-hover{
+    box-shadow: 0 5px 20px rgba(0,0,0,.2)!important;
+  }
+
+  .card-hover:hover{
+    box-shadow: none!important;
+  }
