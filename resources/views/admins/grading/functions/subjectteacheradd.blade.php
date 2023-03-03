@@ -12,6 +12,7 @@
             <label class="large mb-1" for="inputcontent"> <div class="alert alert-primary"><em><i class="fas fa-info"> </i> | <b> Reminder:</b> Assign advisory teacher to the class first before assigning subjects to a class.</em></div></label><br>
         </div>  
         <div id="whoops" class="alert alert-danger" style="display: none;">
+            <button type="button" class="close" data-dismiss="alert">×</button>
             <b>Whoops! There is a problem in your input. Please recheck.</b> <br/>
             @if ($message = Session::get('message'))
                 <strong>{{ $message }}</strong>

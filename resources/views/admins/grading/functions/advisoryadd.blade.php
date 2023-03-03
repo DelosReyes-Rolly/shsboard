@@ -9,6 +9,7 @@
     <div class="modal-body">
         @csrf
         <div id="whoops" class="alert alert-danger" style="display: none;">
+            <button type="button" class="close" data-dismiss="alert">×</button>
             <b>Whoops! There is a problem in your input. Please recheck</b> <br/>
             <div id="validation-errors"></div>
         </div>

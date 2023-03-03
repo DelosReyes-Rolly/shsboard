@@ -10,6 +10,7 @@
         @csrf
         @method('put')
          <div id="whoops" class="alert alert-danger" style="display: none;">
+            <button type="button" class="close" data-dismiss="alert">×</button>
             <b>Whoops! There is a problem in your input</b> <br/>
             <div id="validation-errors"></div>
         </div>

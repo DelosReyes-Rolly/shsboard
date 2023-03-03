@@ -77,6 +77,7 @@
                                 <div class="modal-body">
                                     @csrf
                                     <div id="whoops" class="alert alert-danger" style="display: none;">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
                                         <b>Whoops! There is a problem in your input</b> <br />
                                         <div id="validation-errors"></div>
                                     </div>
@@ -112,6 +113,7 @@
                             <form action="javascript:void(0)" method="POST" name="updateMinload" class="form-horizontal needs-validation" novalidate id="updateMinload">
                                 <div class="modal-body">
                                     <div id="whoops" class="alert alert-danger" style="display: none;">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
                                         <b>Whoops! There is a problem in your input</b> <br />
                                         <div id="validation-errors"></div>
                                     </div>
@@ -143,6 +145,7 @@
                             <form action="javascript:void(0)" method="POST" name="updateMaxload" class="form-horizontal needs-validation" novalidate id="updateMaxload">
                                 <div class="modal-body">
                                     <div id="whoops" class="alert alert-danger" style="display: none;">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
                                         <b>Whoops! There is a problem in your input</b> <br />
                                         <div id="validation-errors"></div>
                                     </div>
@@ -182,6 +185,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div id="whoops" class="alert alert-danger" style="display: none;">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
                                     <b>Whoops! There is a problem in your input</b> <br />
                                     <div id="validation-errors"></div>
                                 </div>
