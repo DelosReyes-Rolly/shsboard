@@ -130,6 +130,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div id="whoops-update" class="alert alert-danger" style="display: none;">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
                                         <b>Whoops! There is a problem in your input</b> <br />
                                         <div id="validation-errors-update"></div>
                                     </div>
