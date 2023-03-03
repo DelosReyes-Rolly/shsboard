@@ -139,17 +139,6 @@ class FacultyController extends Controller
     // ============================================================ CREATE ANNOUNCEMENT ===================================================================================
 
         public function createannouncement(){
-            $facid = Auth::user()->id;
-            $announcementCount = DB::table('activity_streams')
-                ->where('faculty_id', '=', $facid)
-                ->where('deleted', '=', Null)
-                ->first();
-            if(is_null($announcementCount)) {
-                $announcementCount = NULL;
-            }
-            else{
-                $announcementCount = ActivityStreams::where('deleted', '=', null)->where('faculty_id', '=', $facid)->get();
-            }
             $activity = DB::table('activity_streams')
             ->where('activity_streams.deleted', '=', null)->join('grade_levels', 'activity_streams.gradelevel_id', '=', 'grade_levels.id')
             ->join('courses', 'activity_streams.course_id', '=', 'courses.id')
@@ -169,7 +158,16 @@ class FacultyController extends Controller
             $courses = SubjectTeachers::where('deleted', '=', null)->where('faculty_id', '=', Auth::user()->id)->groupBy('course_id')->get();
             $sections = SubjectTeachers::where('deleted', '=', null)->where('faculty_id', '=', Auth::user()->id)->groupBy('section_id')->get();
             $subjects =  SubjectTeachers::where('deleted', '=', null)->where('faculty_id', '=', Auth::user()->id)->groupBy('subject_id')->get();
-            return view('faculty.createannouncement', compact('announcementCount', 'gradelevels', 'courses', 'sections', 'subjects'));
+            return view('faculty.createannouncement', compact('gradelevels', 'courses', 'sections', 'subjects'));
+        }
+
+        public function countfacultyannouncement(){
+            $expired = ActivityStreams::where('deleted', '=', null)->where('faculty_id', '=', Auth::user()->id)->where('status', '=', 2)->count();
+            $active = ActivityStreams::where('deleted', '=', null)->where('faculty_id', '=', Auth::user()->id)->where('status', '=', 1)->count();
+            return response()->json(array(
+                'expired' => $expired,
+                'active' => $active,
+            ));
         }
         
         public function storeannouncement(Request $request){

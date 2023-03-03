@@ -20,6 +20,7 @@
     <script src="{{ asset('assets/js/datatables-responsive-2.3.0.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap-4.5.2.js') }}"></script>
+    <script src="{{ asset('assets/js/needs-validated2.js') }}"></script>
     <!-- reports -->
     <div class="">
         <div class="px-2 mt-2">
@@ -103,7 +104,7 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form method="POST" id="bulkStudent" action="" enctype="multipart/form-data">
+                        <form method="POST" id="bulkStudent" action="" enctype="multipart/form-data" class="needs-validation" novalidate>
                             <div class="modal-body">
                                 @csrf
                                 <div id="whoops" class="alert alert-danger" style="display: none;">
@@ -193,7 +194,7 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="javascript:void(0)" id="StudentForm" name="StudentForm" class="form-horizontal" method="POST">
+                        <form action="javascript:void(0)" id="StudentForm" name="StudentForm" class="form-horizontal needs-validation" novalidate method="POST">
                             <div class="modal-body">
                                 <input type="hidden" name="id" id="id">
                                 <div class="row">
@@ -314,7 +315,7 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="javascript:void(0)" id="StudentFormUpdate" name="StudentFormUpdate" class="form-horizontal" method="POST">
+                        <form action="javascript:void(0)" id="StudentFormUpdate" name="StudentFormUpdate" class="form-horizontal needs-validation" novalidate method="POST">
                             <div class="modal-body">
                                 <input type="hidden" name="id" id="id-update">
                                 <div class="row">
@@ -475,7 +476,7 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="javascript:void(0)" id="StudentsubjectForm" name="StudentsubjectForm" class="form-horizontal" method="POST">
+                        <form action="javascript:void(0)" id="StudentsubjectForm" name="StudentsubjectForm" class="form-horizontal needs-validation" novalidate method="POST">
                             <div class="modal-body">
                                 <input type="hidden" name="id" id="id-addsub">
                                 <div class="row">
@@ -608,7 +609,7 @@
         });
 
         function add() {
-            $('#StudentForm').trigger("reset");
+            $('#StudentForm').trigger("reset").removeClass('was-validated');
             document.getElementById('whoops').style.display = 'none';
             $('#StudentModal').html("Add Student");
             $('#Student-modal').modal('show');
@@ -616,7 +617,7 @@
         }
 
         function batchAdd() {
-            $('#bulkStudent').trigger("reset");
+            $('#bulkStudent').trigger("reset").removeClass('was-validated');
             document.getElementById('whoops').style.display = 'none';
             $('#StudentModal').html("Add Student");
             $('#batchModal').modal('show');
@@ -668,6 +669,7 @@
         }
 
         function editFunc(id) {
+            $('#StudentFormUpdate').trigger("reset").removeClass('was-validated');
             document.getElementById('whoops-update').style.display = 'none';
             $.ajax({
                 type: "POST",
@@ -694,7 +696,7 @@
         }
 
         function addsubFunc(id) {
-            $('#StudentsubjectForm').trigger("reset");
+            $('#StudentsubjectForm').trigger("reset").removeClass('was-validated');
             document.getElementById('whoops-subject').style.display = 'none';
             $.ajax({
                 type: "POST",
@@ -778,80 +780,92 @@
 
         $('#StudentForm').submit(function(e) {
             e.preventDefault();
-            var formData = new FormData(this);
-            $(":submit").attr("disabled", true);
-            $.ajax({
-                type: 'POST',
-                url: "{{ url('/add/student')}}",
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: (data) => {
-                    $("#Student-modal").modal('hide');
-                    var oTable = $('#example').dataTable();
-                    oTable.fnDraw(false);
-                    $("#btn-save").html('Submit');
-                    $("#btn-save").attr("disabled", false);
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success.',
-                        text: 'Student has been added successfully',
-                    });
-                    $(":submit").removeAttr("disabled");
-                },
-                error: function(xhr) {
-                    $('#validation-errors').html('');
-                    document.getElementById('whoops').style.display = 'block';
-                    if (xhr.responseJSON.error != undefined) {
-                        $("#validation-errors").html("");
-                        $('#validation-errors').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
+            if ($('#StudentForm')[0].checkValidity() === false) {
+                e.stopPropagation();
+            } else {
+                var formData = new FormData(this);
+                $(":submit").attr("disabled", true);
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ url('/add/student')}}",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: (data) => {
+                        $("#Student-modal").modal('hide');
+                        var oTable = $('#example').dataTable();
+                        oTable.fnDraw(false);
+                        $("#btn-save").html('Submit');
+                        $("#btn-save").attr("disabled", false);
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success.',
+                            text: 'Student has been added successfully',
+                        });
+                        $(":submit").removeAttr("disabled");
+                    },
+                    error: function(xhr) {
+                        $('#validation-errors').html('');
+                        document.getElementById('whoops').style.display = 'block';
+                        if (xhr.responseJSON.error != undefined) {
+                            $("#validation-errors").html("");
+                            $('#validation-errors').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
+                        }
+                        $.each(xhr.responseJSON.errors, function(key, value) {
+                            $('#validation-errors').append('&emsp;<li>' + value + '</li>');
+                        });
+                        $(":submit").removeAttr("disabled");
                     }
-                    $.each(xhr.responseJSON.errors, function(key, value) {
-                        $('#validation-errors').append('&emsp;<li>' + value + '</li>');
-                    });
-                    $(":submit").removeAttr("disabled");
-                }
-            });
+                });
+            }
+            $('#StudentForm').addClass('was-validated');
+
         });
 
         $('#StudentsubjectForm').submit(function(e) {
             e.preventDefault();
-            var formData = new FormData(this);
-            $(":submit").attr("disabled", true);
-            $.ajax({
-                type: 'POST',
-                url: "{{ route('studentsubjectadd.store') }}",
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: (data) => {
-                    $("#Studentsubject-modal").modal('hide');
-                    var oTable = $('#example').dataTable();
-                    oTable.fnDraw(false);
-                    $("#btn-save").html('Submit');
-                    $("#btn-save").attr("disabled", false);
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success.',
-                        text: 'Student subject has been updated successfully',
-                    });
-                    $(":submit").removeAttr("disabled");
-                },
-                error: function(xhr) {
-                    $('#validation-errors-subject').html('');
-                    document.getElementById('whoops-subject').style.display = 'block';
-                    if (xhr.responseJSON.error != undefined) {
-                        $("#validation-errors-subject").html("");
-                        $('#validation-errors-subject').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
+            if ($('#StudentsubjectForm')[0].checkValidity() === false) {
+                event.stopPropagation();
+            } else {
+                var formData = new FormData(this);
+                $(":submit").attr("disabled", true);
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ route('studentsubjectadd.store') }}",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: (data) => {
+                        $("#Studentsubject-modal").modal('hide');
+                        var oTable = $('#example').dataTable();
+                        oTable.fnDraw(false);
+                        $("#btn-save").html('Submit');
+                        $("#btn-save").attr("disabled", false);
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success.',
+                            text: 'Student subject has been updated successfully',
+                        });
+                        $(":submit").removeAttr("disabled");
+                    },
+                    error: function(xhr) {
+                        $('#validation-errors-subject').html('');
+                        document.getElementById('whoops-subject').style.display = 'block';
+                        if (xhr.responseJSON.error != undefined) {
+                            $("#validation-errors-subject").html("");
+                            $('#validation-errors-subject').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
+                        }
+                        $.each(xhr.responseJSON.errors, function(key, value) {
+                            $('#validation-errors-subject').append('&emsp;<li>' + value + '</li>');
+                        });
+                        $(":submit").removeAttr("disabled");
                     }
-                    $.each(xhr.responseJSON.errors, function(key, value) {
-                        $('#validation-errors-subject').append('&emsp;<li>' + value + '</li>');
-                    });
-                    $(":submit").removeAttr("disabled");
-                }
-            });
+                });
+            }
+            $('#StudentsubjectForm').addClass('was-validated');
+
         });
 
         $('#StudentFormDelete').submit(function(e) {
@@ -912,83 +926,95 @@
 
         $('#StudentFormUpdate').submit(function(e) {
             e.preventDefault();
-            var formData = new FormData(this);
-            $(":submit").attr("disabled", true);
-            $.ajax({
-                type: 'POST',
-                url: "{{ url('/updatestudent')}}/",
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: (data) => {
-                    $("#Student-modal-update").modal('hide');
-                    var oTable = $('#example').dataTable();
-                    oTable.fnDraw(false);
-                    $("#btn-save").html('Submit');
-                    $("#btn-save").attr("disabled", false);
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success.',
-                        text: 'Student has been updated successfully',
-                    });
-                    $(":submit").removeAttr("disabled");
-                },
-                error: function(xhr) {
-                    $('#validation-errors-update').html('');
-                    document.getElementById('whoops-update').style.display = 'block';
-                    if (xhr.responseJSON.error != undefined) {
-                        $("#validation-errors-update").html("");
-                        $('#validation-errors-update').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
+            if ($('#StudentFormUpdate')[0].checkValidity() === false) {
+                e.stopPropagation();
+            } else {
+                var formData = new FormData(this);
+                $(":submit").attr("disabled", true);
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ url('/updatestudent')}}/",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: (data) => {
+                        $("#Student-modal-update").modal('hide');
+                        var oTable = $('#example').dataTable();
+                        oTable.fnDraw(false);
+                        $("#btn-save").html('Submit');
+                        $("#btn-save").attr("disabled", false);
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success.',
+                            text: 'Student has been updated successfully',
+                        });
+                        $(":submit").removeAttr("disabled");
+                    },
+                    error: function(xhr) {
+                        $('#validation-errors-update').html('');
+                        document.getElementById('whoops-update').style.display = 'block';
+                        if (xhr.responseJSON.error != undefined) {
+                            $("#validation-errors-update").html("");
+                            $('#validation-errors-update').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
+                        }
+                        $.each(xhr.responseJSON.errors, function(key, value) {
+                            $('#validation-errors-update').append('&emsp;<li>' + value + '</li>');
+                        });
+                        $(":submit").removeAttr("disabled");
                     }
-                    $.each(xhr.responseJSON.errors, function(key, value) {
-                        $('#validation-errors-update').append('&emsp;<li>' + value + '</li>');
-                    });
-                    $(":submit").removeAttr("disabled");
-                }
-            });
+                });
+            }
+            $('#StudentFormUpdate').addClass('was-validated');
+
         });
 
         $('#bulkStudent').submit(function(e) {
             e.preventDefault();
-            $('#whoops').hide();
-            var form = $('#bulkStudent')[0];
-            var form_data = new FormData(form);
-            $(":submit").attr("disabled", true);
-            $.ajax({
-                type: "POST",
-                url: "{{ route('studentBulk.store') }}",
-                data: form_data,
-                enctype: 'multipart/form-data',
-                processData: false, // Important!
-                contentType: false,
-                cache: false,
-                success: function(response) {
-                    if (response) {
-                        $("#bulkStudent").modal('hide');
+            if ($('#bulkStudent')[0].checkValidity() === false) {
+                e.stopPropagation();
+            } else {
+                $('#whoops').hide();
+                var form = $('#bulkStudent')[0];
+                var form_data = new FormData(form);
+                $(":submit").attr("disabled", true);
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('studentBulk.store') }}",
+                    data: form_data,
+                    enctype: 'multipart/form-data',
+                    processData: false, // Important!
+                    contentType: false,
+                    cache: false,
+                    success: function(response) {
+                        if (response) {
+                            $("#bulkStudent").modal('hide');
+                            $(":submit").removeAttr("disabled");
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success.',
+                                text: 'Excel Data Imported successfully.',
+                            }).then(function() {
+                                location.reload(true);
+                            })
+                        }
+                    },
+                    error: function(xhr) {
+                        $('#validation-errors').html('');
+                        document.getElementById('whoops').style.display = 'block';
+                        if (xhr.responseJSON.error != undefined) {
+                            $("#validation-errors").html("");
+                            $('#validation-errors').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
+                        }
+                        $.each(xhr.responseJSON.errors, function(key, value) {
+                            $('#validation-errors').append('&emsp;<li>' + value + '</li>');
+                        });
                         $(":submit").removeAttr("disabled");
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Success.',
-                            text: 'Excel Data Imported successfully.',
-                        }).then(function() {
-                            location.reload(true);
-                        })
-                    }
-                },
-                error: function(xhr) {
-                    $('#validation-errors').html('');
-                    document.getElementById('whoops').style.display = 'block';
-                    if (xhr.responseJSON.error != undefined) {
-                        $("#validation-errors").html("");
-                        $('#validation-errors').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
-                    }
-                    $.each(xhr.responseJSON.errors, function(key, value) {
-                        $('#validation-errors').append('&emsp;<li>' + value + '</li>');
-                    });
-                    $(":submit").removeAttr("disabled");
-                },
-            });
+                    },
+                });
+            }
+            $('#bulkStudent').addClass('was-validated');
+
         });
     </script>
 </main>

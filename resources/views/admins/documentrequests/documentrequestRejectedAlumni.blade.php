@@ -97,6 +97,71 @@
 									</div>
 								</div>
 							</div>
+
+
+							<!-- boostrap update model  -->
+							<div class="modal fade" id="Alumni-modal-update" aria-hidden="true">
+								<div class="modal-dialog modal-lg">
+									<div class="modal-content border-start-lg border-start-yellow">
+										<div class="modal-header">
+											<h1 class="modal-title" id="AlumniModal-update" style="font-size: 20px;">Update Alumni</h1>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<form action="javascript:void(0)" id="AlumniFormUpdate" name="AlumniFormUpdate" class="form-horizontal needs-validation" novalidate method="POST">
+											<div class="modal-body">
+												<input type="hidden" name="id" id="id-update-alumni">
+												<div class="row">
+													<div class="col-md-12">
+														<div id="whoops-update" class="alert alert-danger" style="display: none;">
+															<b>Whoops! There is a problem in your input</b> <br />
+															<div id="validation-errors-update"></div>
+														</div>
+													</div>
+													<div class="col-md-12">
+														<span style="font-size: 26px;"><b>Full Name:</b></span> <br>
+														&ensp;<span style="font-size: 26px;" id="alumnilast_name" name="alumnifirst_name"> </span>,
+														<span style="font-size: 26px;" id="alumnifirst_name" name="alumnifirst_name"> </span>
+														<span style="font-size: 26px;" id="alumnimiddle_name" name="alumnifirst_name"> </span>
+														<span style="font-size: 26px;" id="alumnisuffix" name="alumnifirst_name"> </span>
+													</div>
+													<div class="col-md-12"><br />
+														<span style="font-size: 26px;"><b>Grade Level</b></span><input type="text" class="form-control" id="alumnilevel" name="alumnilevel" style="font-size: 20px;" value="" readonly> <br>
+													</div>
+													<div class="col-md-12">
+														<span style="font-size: 26px;"><b>Document Needed</b></span><input type="text" class="form-control" id="alumnidocument" name="alumnidocument" style="font-size: 20px;" value="" readonly> <br>
+													</div>
+													<div class="col-md-12">
+														<span style="font-size: 26px;"><b>Purpose</b></span><input type="text" class="form-control" id="alumnipurpose" name="alumnipurpose" style="font-size: 20px;" value="" readonly>
+													</div>
+
+													<div class="col-md-12">
+														<span class="large mb-1" for="document_id" class="form-control @error('alumnistatus') is-invalid @enderror" style="font-size: 26px;"><br><b>Status</b></span>
+														<div class="col-md-12" hidden><input class="form-control @error('alumnistatus') is-invalid @enderror" type="text" placeholder="Enter alumnistatus" name="alumnistatus" value=""></div>
+														<select id="alumnistatus" name="alumnistatus" class="form-control" style="font-size: 18px;">
+															<option value="" disabled>Change Status</option>
+															<option value="1" {{old('alumnistatus') == "1" ?'selected' : ''}}>Pending</option>
+															<option value="2" {{old('alumnistatus') == "2" ?'selected' : ''}}>On Process</option>
+															<option value="3" {{old('alumnistatus') == "3" ?'selected' : ''}}>Completed</option>
+															<option value="4" {{old('alumnistatus') == "4" ?'selected' : ''}}>Denied</option>
+														</select>
+														<div class="invalid-feedback">
+															Please choose status.
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+												<font face="Verdana" size="2"><input type="submit" class="btn btn-primary btn-md" value="Submit"></font>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<!-- end bootstrap model -->
+
 						</div>
 					</div>
 				</div>
@@ -194,6 +259,7 @@
 	});
 
 	function editFuncalumni(id) {
+		$('#AlumniFormUpdate').trigger("reset").removeClass('was-validated');
 		document.getElementById('whoops-update').style.display = 'none';
 		$.ajax({
 			type: "POST",
@@ -231,42 +297,48 @@
 		});
 	}
 
-	$('AlumniFormUpdate').submit(function(e) {
+	$('#AlumniFormUpdate').submit(function(e) {
 		e.preventDefault();
-		var formData = new FormData(this);
-		$(":submit").attr("disabled", true);
-		$.ajax({
-			type: 'POST',
-			url: "{{ url('/updaterequestdocadminalumni')}}/",
-			data: formData,
-			cache: false,
-			contentType: false,
-			processData: false,
-			success: (data) => {
-				$("Alumni-modal-update").modal('hide');
-				var oTable = $('#example4').dataTable();
-				oTable.fnDraw(false);
-				$("#btn-save").html('Submit');
-				$("#btn-save").attr("disabled", false);
-				Swal.fire({
-					icon: 'success',
-					title: 'Success.',
-					text: 'Alumni document has been updated successfully',
-				});
-				$(":submit").removeAttr("disabled");
-			},
-			error: function(xhr) {
-				$('#validation-errors-update').html('');
-				document.getElementById('whoops-update').style.display = 'block';
-				if (xhr.responseJSON.error != undefined) {
-					$("#validation-errors-update").html("");
-					$('#validation-errors-update').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
+		if ($('#AlumniFormUpdate')[0].checkValidity() === false) {
+			e.stopPropagation();
+		} else {
+			var formData = new FormData(this);
+			$(":submit").attr("disabled", true);
+			$.ajax({
+				type: 'POST',
+				url: "{{ url('/updaterequestdocadminalumni')}}/",
+				data: formData,
+				cache: false,
+				contentType: false,
+				processData: false,
+				success: (data) => {
+					$("Alumni-modal-update").modal('hide');
+					var oTable = $('#example1').dataTable();
+					oTable.fnDraw(false);
+					$("#btn-save").html('Submit');
+					$("#btn-save").attr("disabled", false);
+					Swal.fire({
+						icon: 'success',
+						title: 'Success.',
+						text: 'Alumni document has been updated successfully',
+					});
+					$(":submit").removeAttr("disabled");
+				},
+				error: function(xhr) {
+					$('#validation-errors-update').html('');
+					document.getElementById('whoops-update').style.display = 'block';
+					if (xhr.responseJSON.error != undefined) {
+						$("#validation-errors-update").html("");
+						$('#validation-errors-update').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
+					}
+					$.each(xhr.responseJSON.errors, function(key, value) {
+						$('#validation-errors-update').append('&emsp;<li>' + value + '</li>');
+					});
+					$(":submit").removeAttr("disabled");
 				}
-				$.each(xhr.responseJSON.errors, function(key, value) {
-					$('#validation-errors-update').append('&emsp;<li>' + value + '</li>');
-				});
-				$(":submit").removeAttr("disabled");
-			}
-		});
+			});
+		}
+		$('#AlumniFormUpdate').addClass('was-validated');
+
 	});
 </script>

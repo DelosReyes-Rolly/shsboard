@@ -20,6 +20,7 @@
 	<script src="{{ asset('assets/js/datatables-responsive-2.3.0.js') }}"></script>
 	<script src="{{ asset('assets/js/bootstrap.3.3.6.js') }}"></script>
 	<script src="{{ asset('assets/js/bootstrap-4.5.2.js') }}"></script>
+	<script src="{{ asset('assets/js/needs-validated2.js') }}"></script>
 	</head>
 
 	<body style="font-family: Arial;">
@@ -159,7 +160,7 @@
 																<span aria-hidden="true">&times;</span>
 															</button>
 														</div>
-														<form action="javascript:void(0)" id="DocumentForm" name="DocumentForm" class="form-horizontal" method="POST">
+														<form action="javascript:void(0)" id="DocumentForm" name="DocumentForm" class="form-horizontal needs-validation" novalidate method="POST">
 															<div class="modal-body">
 																<input type="hidden" name="id" id="id">
 																<div class="row">
@@ -198,7 +199,7 @@
 																<span aria-hidden="true">&times;</span>
 															</button>
 														</div>
-														<form action="javascript:void(0)" id="DocumentFormUpdate" name="DocumentFormUpdate" class="form-horizontal" method="POST">
+														<form action="javascript:void(0)" id="DocumentFormUpdate" name="DocumentFormUpdate" class="form-horizontal needs-validation" novalidate method="POST">
 															<div class="modal-body">
 																<input type="hidden" name="id" id="id-update">
 																<div class="row">
@@ -324,7 +325,7 @@
 													<span aria-hidden="true">&times;</span>
 												</button>
 											</div>
-											<form action="javascript:void(0)" id="PurposeForm" name="PurposeForm" class="form-horizontal" method="POST">
+											<form action="javascript:void(0)" id="PurposeForm" name="PurposeForm" class="form-horizontal needs-validation" novalidate method="POST">
 												<div class="modal-body">
 													<input type="hidden" name="id" id="id">
 													<div class="row">
@@ -370,7 +371,7 @@
 													<span aria-hidden="true">&times;</span>
 												</button>
 											</div>
-											<form action="javascript:void(0)" id="PurposeFormUpdate" name="PurposeFormUpdate" class="form-horizontal" method="POST">
+											<form action="javascript:void(0)" id="PurposeFormUpdate" name="PurposeFormUpdate" class="form-horizontal needs-validation" novalidate method="POST">
 												<div class="modal-body">
 													<input type="hidden" name="id" id="id-update-purpose">
 													<div class="row">
@@ -483,7 +484,7 @@
 														<span aria-hidden="true">&times;</span>
 													</button>
 												</div>
-												<form action="javascript:void(0)" id="Grade11FormUpdate" name="Grade11FormUpdate" class="form-horizontal" method="POST">
+												<form action="javascript:void(0)" id="Grade11FormUpdate" name="Grade11FormUpdate" class="form-horizontal needs-validation" novalidate method="POST">
 													<div class="modal-body">
 														<input type="hidden" name="id" id="id-update-grade11">
 														<div class="row">
@@ -576,7 +577,7 @@
 														<span aria-hidden="true">&times;</span>
 													</button>
 												</div>
-												<form action="javascript:void(0)" id="Grade12FormUpdate" name="Grade12FormUpdate" class="form-horizontal" method="POST">
+												<form action="javascript:void(0)" id="Grade12FormUpdate" name="Grade12FormUpdate" class="form-horizontal needs-validation" novalidate method="POST">
 													<div class="modal-body">
 														<input type="hidden" name="id" id="id-update-grade12">
 														<div class="row">
@@ -669,7 +670,7 @@
 															<span aria-hidden="true">&times;</span>
 														</button>
 													</div>
-													<form action="javascript:void(0)" id="AlumniFormUpdate" name="AlumniFormUpdate" class="form-horizontal" method="POST">
+													<form action="javascript:void(0)" id="AlumniFormUpdate" name="AlumniFormUpdate" class="form-horizontal needs-validation" novalidate method="POST">
 														<div class="modal-body">
 															<input type="hidden" name="id" id="id-update-alumni">
 															<div class="row">
@@ -1041,6 +1042,7 @@
 
 
 			function editFuncgrade11(id) {
+				$('#Grade11FormUpdate').trigger("reset").removeClass('was-validated');
 				document.getElementById('whoops-update').style.display = 'none';
 				$.ajax({
 					type: "POST",
@@ -1080,44 +1082,51 @@
 
 			$('#Grade11FormUpdate').submit(function(e) {
 				e.preventDefault();
-				var formData = new FormData(this);
-				$(":submit").attr("disabled", true);
-				$.ajax({
-					type: 'POST',
-					url: "{{ url('/updaterequestdocadmingrade11')}}/",
-					data: formData,
-					cache: false,
-					contentType: false,
-					processData: false,
-					success: (data) => {
-						$("#Grade11-modal-update").modal('hide');
-						var oTable = $('#example2').dataTable();
-						oTable.fnDraw(false);
-						$("#btn-save").html('Submit');
-						$("#btn-save").attr("disabled", false);
-						Swal.fire({
-							icon: 'success',
-							title: 'Success.',
-							text: 'Grade 11 document has been updated successfully',
-						});
-						$(":submit").removeAttr("disabled");
-					},
-					error: function(xhr) {
-						$('#validation-errors-update').html('');
-						document.getElementById('whoops-update').style.display = 'block';
-						if (xhr.responseJSON.error != undefined) {
-							$("#validation-errors-update").html("");
-							$('#validation-errors-update').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
+				if ($('#Grade11FormUpdate')[0].checkValidity() === false) {
+					e.stopPropagation();
+				} else {
+					var formData = new FormData(this);
+					$(":submit").attr("disabled", true);
+					$.ajax({
+						type: 'POST',
+						url: "{{ url('/updaterequestdocadmingrade11')}}/",
+						data: formData,
+						cache: false,
+						contentType: false,
+						processData: false,
+						success: (data) => {
+							$("#Grade11-modal-update").modal('hide');
+							var oTable = $('#example2').dataTable();
+							oTable.fnDraw(false);
+							$("#btn-save").html('Submit');
+							$("#btn-save").attr("disabled", false);
+							Swal.fire({
+								icon: 'success',
+								title: 'Success.',
+								text: 'Grade 11 document has been updated successfully',
+							});
+							$(":submit").removeAttr("disabled");
+						},
+						error: function(xhr) {
+							$('#validation-errors-update').html('');
+							document.getElementById('whoops-update').style.display = 'block';
+							if (xhr.responseJSON.error != undefined) {
+								$("#validation-errors-update").html("");
+								$('#validation-errors-update').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
+							}
+							$.each(xhr.responseJSON.errors, function(key, value) {
+								$('#validation-errors-update').append('&emsp;<li>' + value + '</li>');
+							});
+							$(":submit").removeAttr("disabled");
 						}
-						$.each(xhr.responseJSON.errors, function(key, value) {
-							$('#validation-errors-update').append('&emsp;<li>' + value + '</li>');
-						});
-						$(":submit").removeAttr("disabled");
-					}
-				});
+					});
+				}
+				$('#Grade11FormUpdate').addClass('was-validated');
+
 			});
 
 			function editFuncgrade12(id) {
+				$('#Grade12FormUpdate').trigger("reset").removeClass('was-validated');
 				document.getElementById('whoops-update').style.display = 'none';
 				$.ajax({
 					type: "POST",
@@ -1157,45 +1166,52 @@
 
 			$('#Grade12FormUpdate').submit(function(e) {
 				e.preventDefault();
-				var formData = new FormData(this);
-				$(":submit").attr("disabled", true);
-				$.ajax({
-					type: 'POST',
-					url: "{{ url('/updaterequestdocadmingrade12')}}/",
-					data: formData,
-					cache: false,
-					contentType: false,
-					processData: false,
-					success: (data) => {
-						$("#Grade12-modal-update").modal('hide');
-						var oTable = $('#example3').dataTable();
-						oTable.fnDraw(false);
-						$("#btn-save").html('Submit');
-						$("#btn-save").attr("disabled", false);
-						Swal.fire({
-							icon: 'success',
-							title: 'Success.',
-							text: 'Grade 12 document has been updated successfully',
-						});
-						$(":submit").removeAttr("disabled");
-					},
-					error: function(xhr) {
-						$('#validation-errors-update').html('');
-						document.getElementById('whoops-update').style.display = 'block';
-						if (xhr.responseJSON.error != undefined) {
-							$("#validation-errors-update").html("");
-							$('#validation-errors-update').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
+				if ($('#Grade12FormUpdate')[0].checkValidity() === false) {
+					e.stopPropagation();
+				} else {
+					var formData = new FormData(this);
+					$(":submit").attr("disabled", true);
+					$.ajax({
+						type: 'POST',
+						url: "{{ url('/updaterequestdocadmingrade12')}}/",
+						data: formData,
+						cache: false,
+						contentType: false,
+						processData: false,
+						success: (data) => {
+							$("#Grade12-modal-update").modal('hide');
+							var oTable = $('#example3').dataTable();
+							oTable.fnDraw(false);
+							$("#btn-save").html('Submit');
+							$("#btn-save").attr("disabled", false);
+							Swal.fire({
+								icon: 'success',
+								title: 'Success.',
+								text: 'Grade 12 document has been updated successfully',
+							});
+							$(":submit").removeAttr("disabled");
+						},
+						error: function(xhr) {
+							$('#validation-errors-update').html('');
+							document.getElementById('whoops-update').style.display = 'block';
+							if (xhr.responseJSON.error != undefined) {
+								$("#validation-errors-update").html("");
+								$('#validation-errors-update').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
+							}
+							$.each(xhr.responseJSON.errors, function(key, value) {
+								$('#validation-errors-update').append('&emsp;<li>' + value + '</li>');
+							});
+							$(":submit").removeAttr("disabled");
 						}
-						$.each(xhr.responseJSON.errors, function(key, value) {
-							$('#validation-errors-update').append('&emsp;<li>' + value + '</li>');
-						});
-						$(":submit").removeAttr("disabled");
-					}
-				});
+					});
+				}
+				$('#Grade12FormUpdate').addClass('was-validated');
+
 			});
 
 
 			function editFuncalumni(id) {
+				$('#AlumniFormUpdate').trigger("reset").removeClass('was-validated');
 				document.getElementById('whoops-update').style.display = 'none';
 				$.ajax({
 					type: "POST",
@@ -1233,47 +1249,53 @@
 				});
 			}
 
-			$('AlumniFormUpdate').submit(function(e) {
+			$('#AlumniFormUpdate').submit(function(e) {
 				e.preventDefault();
-				var formData = new FormData(this);
-				$(":submit").attr("disabled", true);
-				$.ajax({
-					type: 'POST',
-					url: "{{ url('/updaterequestdocadminalumni')}}/",
-					data: formData,
-					cache: false,
-					contentType: false,
-					processData: false,
-					success: (data) => {
-						$("Alumni-modal-update").modal('hide');
-						var oTable = $('#example4').dataTable();
-						oTable.fnDraw(false);
-						$("#btn-save").html('Submit');
-						$("#btn-save").attr("disabled", false);
-						Swal.fire({
-							icon: 'success',
-							title: 'Success.',
-							text: 'Alumni document has been updated successfully',
-						});
-						$(":submit").removeAttr("disabled");
-					},
-					error: function(xhr) {
-						$('#validation-errors-update').html('');
-						document.getElementById('whoops-update').style.display = 'block';
-						if (xhr.responseJSON.error != undefined) {
-							$("#validation-errors-update").html("");
-							$('#validation-errors-update').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
+				if ($('#AlumniFormUpdate')[0].checkValidity() === false) {
+					e.stopPropagation();
+				} else {
+					var formData = new FormData(this);
+					$(":submit").attr("disabled", true);
+					$.ajax({
+						type: 'POST',
+						url: "{{ url('/updaterequestdocadminalumni')}}/",
+						data: formData,
+						cache: false,
+						contentType: false,
+						processData: false,
+						success: (data) => {
+							$("Alumni-modal-update").modal('hide');
+							var oTable = $('#example4').dataTable();
+							oTable.fnDraw(false);
+							$("#btn-save").html('Submit');
+							$("#btn-save").attr("disabled", false);
+							Swal.fire({
+								icon: 'success',
+								title: 'Success.',
+								text: 'Alumni document has been updated successfully',
+							});
+							$(":submit").removeAttr("disabled");
+						},
+						error: function(xhr) {
+							$('#validation-errors-update').html('');
+							document.getElementById('whoops-update').style.display = 'block';
+							if (xhr.responseJSON.error != undefined) {
+								$("#validation-errors-update").html("");
+								$('#validation-errors-update').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
+							}
+							$.each(xhr.responseJSON.errors, function(key, value) {
+								$('#validation-errors-update').append('&emsp;<li>' + value + '</li>');
+							});
+							$(":submit").removeAttr("disabled");
 						}
-						$.each(xhr.responseJSON.errors, function(key, value) {
-							$('#validation-errors-update').append('&emsp;<li>' + value + '</li>');
-						});
-						$(":submit").removeAttr("disabled");
-					}
-				});
+					});
+				}
+				$('#AlumniFormUpdate').addClass('was-validated');
+
 			});
 
 			function add() {
-				$('#DocumentForm').trigger("reset");
+				$('#DocumentForm').trigger("reset").removeClass('was-validated');
 				document.getElementById('whoops').style.display = 'none';
 				$('#DocumentModal').html("Add Document");
 				$('#Document-modal').modal('show');
@@ -1300,6 +1322,7 @@
 			}
 
 			function editFunc(id) {
+				$('#DocumentFormUpdate').trigger("reset").removeClass('was-validated');
 				document.getElementById('whoops-update').style.display = 'none';
 				$.ajax({
 					type: "POST",
@@ -1335,80 +1358,92 @@
 
 			$('#DocumentForm').submit(function(e) {
 				e.preventDefault();
-				var formData = new FormData(this);
-				$(":submit").attr("disabled", true);
-				$.ajax({
-					type: 'POST',
-					url: "{{ url('/add/document')}}",
-					data: formData,
-					cache: false,
-					contentType: false,
-					processData: false,
-					success: (data) => {
-						$("#Document-modal").modal('hide');
-						var oTable = $('#example1').dataTable();
-						oTable.fnDraw(false);
-						$("#btn-save").html('Submit');
-						$("#btn-save").attr("disabled", false);
-						Swal.fire({
-							icon: 'success',
-							title: 'Success.',
-							text: 'Document has been added successfully',
-						});
-						$(":submit").removeAttr("disabled");
-					},
-					error: function(xhr) {
-						$('#validation-errors').html('');
-						document.getElementById('whoops').style.display = 'block';
-						if (xhr.responseJSON.error != undefined) {
-							$("#validation-errors").html("");
-							$('#validation-errors').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
+				if ($('#DocumentForm')[0].checkValidity() === false) {
+					e.stopPropagation();
+				} else {
+					var formData = new FormData(this);
+					$(":submit").attr("disabled", true);
+					$.ajax({
+						type: 'POST',
+						url: "{{ url('/add/document')}}",
+						data: formData,
+						cache: false,
+						contentType: false,
+						processData: false,
+						success: (data) => {
+							$("#Document-modal").modal('hide');
+							var oTable = $('#example1').dataTable();
+							oTable.fnDraw(false);
+							$("#btn-save").html('Submit');
+							$("#btn-save").attr("disabled", false);
+							Swal.fire({
+								icon: 'success',
+								title: 'Success.',
+								text: 'Document has been added successfully',
+							});
+							$(":submit").removeAttr("disabled");
+						},
+						error: function(xhr) {
+							$('#validation-errors').html('');
+							document.getElementById('whoops').style.display = 'block';
+							if (xhr.responseJSON.error != undefined) {
+								$("#validation-errors").html("");
+								$('#validation-errors').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
+							}
+							$.each(xhr.responseJSON.errors, function(key, value) {
+								$('#validation-errors').append('&emsp;<li>' + value + '</li>');
+							});
+							$(":submit").removeAttr("disabled");
 						}
-						$.each(xhr.responseJSON.errors, function(key, value) {
-							$('#validation-errors').append('&emsp;<li>' + value + '</li>');
-						});
-						$(":submit").removeAttr("disabled");
-					}
-				});
+					});
+				}
+				$('#DocumentForm').addClass('was-validated');
+
 			});
 
 			$('#DocumentFormUpdate').submit(function(e) {
 				e.preventDefault();
-				var formData = new FormData(this);
-				$(":submit").attr("disabled", true);
-				$.ajax({
-					type: 'POST',
-					url: "{{ url('/updatedocument')}}/",
-					data: formData,
-					cache: false,
-					contentType: false,
-					processData: false,
-					success: (data) => {
-						$("#Document-modal-update").modal('hide');
-						var oTable = $('#example1').dataTable();
-						oTable.fnDraw(false);
-						$("#btn-save").html('Submit');
-						$("#btn-save").attr("disabled", false);
-						Swal.fire({
-							icon: 'success',
-							title: 'Success.',
-							text: 'Document has been updated successfully',
-						});
-						$(":submit").removeAttr("disabled");
-					},
-					error: function(xhr) {
-						$('#validation-errors-update').html('');
-						document.getElementById('whoops-update').style.display = 'block';
-						if (xhr.responseJSON.error != undefined) {
-							$("#validation-errors-update").html("");
-							$('#validation-errors-update').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
+				if ($('#DocumentFormUpdate')[0].checkValidity() === false) {
+					e.stopPropagation();
+				} else {
+					var formData = new FormData(this);
+					$(":submit").attr("disabled", true);
+					$.ajax({
+						type: 'POST',
+						url: "{{ url('/updatedocument')}}/",
+						data: formData,
+						cache: false,
+						contentType: false,
+						processData: false,
+						success: (data) => {
+							$("#Document-modal-update").modal('hide');
+							var oTable = $('#example1').dataTable();
+							oTable.fnDraw(false);
+							$("#btn-save").html('Submit');
+							$("#btn-save").attr("disabled", false);
+							Swal.fire({
+								icon: 'success',
+								title: 'Success.',
+								text: 'Document has been updated successfully',
+							});
+							$(":submit").removeAttr("disabled");
+						},
+						error: function(xhr) {
+							$('#validation-errors-update').html('');
+							document.getElementById('whoops-update').style.display = 'block';
+							if (xhr.responseJSON.error != undefined) {
+								$("#validation-errors-update").html("");
+								$('#validation-errors-update').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
+							}
+							$.each(xhr.responseJSON.errors, function(key, value) {
+								$('#validation-errors-update').append('&emsp;<li>' + value + '</li>');
+							});
+							$(":submit").removeAttr("disabled");
 						}
-						$.each(xhr.responseJSON.errors, function(key, value) {
-							$('#validation-errors-update').append('&emsp;<li>' + value + '</li>');
-						});
-						$(":submit").removeAttr("disabled");
-					}
-				});
+					});
+				}
+				$('#DocumentFormUpdate').addClass('was-validated');
+
 			});
 
 			$('#DocumentFormDelete').submit(function(e) {
@@ -1442,7 +1477,7 @@
 			// PURPOSE
 
 			function addPurpose() {
-				$('#PurposeForm').trigger("reset");
+				$('#PurposeForm').trigger("reset").removeClass('was-validated');
 				document.getElementById('whoops').style.display = 'none';
 				$('#PurposeModal').html("Add Purpose");
 				$('#Purpose-modal').modal('show');
@@ -1473,6 +1508,7 @@
 			}
 
 			function editFuncPurpose(id) {
+				$('#PurposeFormUpdate').trigger("reset").removeClass('was-validated');
 				document.getElementById('whoops-update').style.display = 'none';
 				$.ajax({
 					type: "POST",
@@ -1490,135 +1526,6 @@
 					}
 				});
 			}
-
-			function editDoc11(e) {
-				$('#editModal').modal('show');
-			}
-
-			function editDoc12(e) {
-				$('#editModal12').modal('show');
-			}
-
-			function editDoc13(e) {
-				$('#editModal13').modal('show');
-			}
-
-			$('#updateRequest').submit(function(e) {
-				$('#whoops').hide();
-				var form_data = $("form#updateRequest").serialize();
-				$(":submit").attr("disabled", true);
-				$.ajax({
-					type: "POST",
-					url: '{{url("/updaterequestdocadmin/")}}/',
-					data: form_data,
-					success: function(response) {
-						$("#editModal").removeClass("in");
-						$(".modal-backdrop").remove();
-						$('body').removeClass('modal-open');
-						$('body').css('padding-right', '');
-						$("#editModal").hide();
-						$("#updateRequest")[0].reset();
-						$(":submit").removeAttr("disabled");
-						Swal.fire({
-							icon: 'success',
-							title: 'Success.',
-							text: 'Document request has been updated successfully',
-						}).then(function() {
-							location.reload(true);
-						})
-					},
-					error: function(xhr) {
-						$('#validation-errors').html('');
-						document.getElementById('whoops').style.display = 'block';
-						if (xhr.responseJSON.error != undefined) {
-							$("#validation-errors").html("");
-							$('#validation-errors').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
-						}
-						$.each(xhr.responseJSON.errors, function(key, value) {
-							$('#validation-errors').append('&emsp;<li>' + value + '</li>');
-						});
-						$(":submit").removeAttr("disabled");
-					},
-				});
-			});
-
-			$('#updateRequest12').submit(function(e) {
-				$('#whoops').hide();
-				var form_data = $("form#updateRequest12").serialize();
-				$(":submit").attr("disabled", true);
-				$.ajax({
-					type: "POST",
-					url: '{{url("/updaterequestdocadmin/")}}/',
-					data: form_data,
-					success: function(response) {
-						$("#editModal").removeClass("in");
-						$(".modal-backdrop").remove();
-						$('body').removeClass('modal-open');
-						$('body').css('padding-right', '');
-						$("#editModal12").hide();
-						$("#updateRequest12")[0].reset();
-						$(":submit").removeAttr("disabled");
-						Swal.fire({
-							icon: 'success',
-							title: 'Success.',
-							text: 'Document request has been updated successfully',
-						}).then(function() {
-							location.reload(true);
-						})
-					},
-					error: function(xhr) {
-						$('#validation-errors').html('');
-						document.getElementById('whoops').style.display = 'block';
-						if (xhr.responseJSON.error != undefined) {
-							$("#validation-errors").html("");
-							$('#validation-errors').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
-						}
-						$.each(xhr.responseJSON.errors, function(key, value) {
-							$('#validation-errors').append('&emsp;<li>' + value + '</li>');
-						});
-						$(":submit").removeAttr("disabled");
-					},
-				});
-			});
-
-			$('#updateRequest13').submit(function(e) {
-				$('#whoops').hide();
-				var form_data = $("form#updateRequest13").serialize();
-				$(":submit").attr("disabled", true);
-				$.ajax({
-					type: "POST",
-					url: '{{url("/updaterequestdocadmin/")}}/',
-					data: form_data,
-					success: function(response) {
-						$("#editModal").removeClass("in");
-						$(".modal-backdrop").remove();
-						$('body').removeClass('modal-open');
-						$('body').css('padding-right', '');
-						$("#editModal13").hide();
-						$("#updateRequest13")[0].reset();
-						$(":submit").removeAttr("disabled");
-						Swal.fire({
-							icon: 'success',
-							title: 'Success.',
-							text: 'Document request has been updated successfully',
-						}).then(function() {
-							location.reload(true);
-						})
-					},
-					error: function(xhr) {
-						$('#validation-errors').html('');
-						document.getElementById('whoops').style.display = 'block';
-						if (xhr.responseJSON.error != undefined) {
-							$("#validation-errors").html("");
-							$('#validation-errors').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
-						}
-						$.each(xhr.responseJSON.errors, function(key, value) {
-							$('#validation-errors').append('&emsp;<li>' + value + '</li>');
-						});
-						$(":submit").removeAttr("disabled");
-					},
-				});
-			});
 
 			function deleteFuncPurpose(id) {
 				$.ajax({
@@ -1638,80 +1545,92 @@
 
 			$('#PurposeForm').submit(function(e) {
 				e.preventDefault();
-				var formData = new FormData(this);
-				$(":submit").attr("disabled", true);
-				$.ajax({
-					type: 'POST',
-					url: "{{ url('/add/purpose')}}",
-					data: formData,
-					cache: false,
-					contentType: false,
-					processData: false,
-					success: (data) => {
-						$("#Purpose-modal").modal('hide');
-						var oTable = $('#example5').dataTable();
-						oTable.fnDraw(false);
-						$("#btn-save").html('Submit');
-						$("#btn-save").attr("disabled", false);
-						Swal.fire({
-							icon: 'success',
-							title: 'Success.',
-							text: 'Purpose has been added successfully',
-						});
-						$(":submit").removeAttr("disabled");
-					},
-					error: function(xhr) {
-						$('#validation-errors').html('');
-						document.getElementById('whoops').style.display = 'block';
-						if (xhr.responseJSON.error != undefined) {
-							$("#validation-errors").html("");
-							$('#validation-errors').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
+				if ($('#PurposeForm')[0].checkValidity() === false) {
+					e.stopPropagation();
+				} else {
+					var formData = new FormData(this);
+					$(":submit").attr("disabled", true);
+					$.ajax({
+						type: 'POST',
+						url: "{{ url('/add/purpose')}}",
+						data: formData,
+						cache: false,
+						contentType: false,
+						processData: false,
+						success: (data) => {
+							$("#Purpose-modal").modal('hide');
+							var oTable = $('#example5').dataTable();
+							oTable.fnDraw(false);
+							$("#btn-save").html('Submit');
+							$("#btn-save").attr("disabled", false);
+							Swal.fire({
+								icon: 'success',
+								title: 'Success.',
+								text: 'Purpose has been added successfully',
+							});
+							$(":submit").removeAttr("disabled");
+						},
+						error: function(xhr) {
+							$('#validation-errors').html('');
+							document.getElementById('whoops').style.display = 'block';
+							if (xhr.responseJSON.error != undefined) {
+								$("#validation-errors").html("");
+								$('#validation-errors').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
+							}
+							$.each(xhr.responseJSON.errors, function(key, value) {
+								$('#validation-errors').append('&emsp;<li>' + value + '</li>');
+							});
+							$(":submit").removeAttr("disabled");
 						}
-						$.each(xhr.responseJSON.errors, function(key, value) {
-							$('#validation-errors').append('&emsp;<li>' + value + '</li>');
-						});
-						$(":submit").removeAttr("disabled");
-					}
-				});
+					});
+				}
+				$('#PurposeForm').addClass('was-validated');
+
 			});
 
 			$('#PurposeFormUpdate').submit(function(e) {
 				e.preventDefault();
-				var formData = new FormData(this);
-				$(":submit").attr("disabled", true);
-				$.ajax({
-					type: 'POST',
-					url: "{{ url('/updatepurpose')}}/",
-					data: formData,
-					cache: false,
-					contentType: false,
-					processData: false,
-					success: (data) => {
-						$("#Purpose-modal-update").modal('hide');
-						var oTable = $('#example5').dataTable();
-						oTable.fnDraw(false);
-						$("#btn-save").html('Submit');
-						$("#btn-save").attr("disabled", false);
-						Swal.fire({
-							icon: 'success',
-							title: 'Success.',
-							text: 'Purpose has been updated successfully',
-						});
-						$(":submit").removeAttr("disabled");
-					},
-					error: function(xhr) {
-						$('#validation-errors-update').html('');
-						document.getElementById('whoops-update').style.display = 'block';
-						if (xhr.responseJSON.error != undefined) {
-							$("#validation-errors-update").html("");
-							$('#validation-errors-update').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
+				if ($('#PurposeFormUpdate')[0].checkValidity() === false) {
+					e.stopPropagation();
+				} else {
+					var formData = new FormData(this);
+					$(":submit").attr("disabled", true);
+					$.ajax({
+						type: 'POST',
+						url: "{{ url('/updatepurpose')}}/",
+						data: formData,
+						cache: false,
+						contentType: false,
+						processData: false,
+						success: (data) => {
+							$("#Purpose-modal-update").modal('hide');
+							var oTable = $('#example5').dataTable();
+							oTable.fnDraw(false);
+							$("#btn-save").html('Submit');
+							$("#btn-save").attr("disabled", false);
+							Swal.fire({
+								icon: 'success',
+								title: 'Success.',
+								text: 'Purpose has been updated successfully',
+							});
+							$(":submit").removeAttr("disabled");
+						},
+						error: function(xhr) {
+							$('#validation-errors-update').html('');
+							document.getElementById('whoops-update').style.display = 'block';
+							if (xhr.responseJSON.error != undefined) {
+								$("#validation-errors-update").html("");
+								$('#validation-errors-update').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
+							}
+							$.each(xhr.responseJSON.errors, function(key, value) {
+								$('#validation-errors-update').append('&emsp;<li>' + value + '</li>');
+							});
+							$(":submit").removeAttr("disabled");
 						}
-						$.each(xhr.responseJSON.errors, function(key, value) {
-							$('#validation-errors-update').append('&emsp;<li>' + value + '</li>');
-						});
-						$(":submit").removeAttr("disabled");
-					}
-				});
+					});
+				}
+				$('#PurposeFormUpdate').addClass('was-validated');
+
 			});
 
 			$('#PurposeFormDelete').submit(function(e) {
@@ -1742,39 +1661,4 @@
 				});
 			});
 		</script>
-
-
-
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$('.nav_btn').click(function() {
-					$('.mobile_nav_items').toggleClass('active');
-				});
-				editDoc(e);
-				editPur(e);
-				deleteItem(e);
-				deleteItemPurpose(e);
-				editDoc11(e);
-				editDoc12(e);
-				editDocAlumni(e);
-			});
-
-			function editDoc(e) {
-				id = e.getAttribute('data-id');
-			}
-
-			function editPur(e) {
-				id = e.getAttribute('data-id');
-			}
-			//delete document
-			function deleteItem(e) {
-				id = e.getAttribute('data-id');
-			}
-
-			function deleteItemPurpose(e) {
-				id = e.getAttribute('data-id');
-			}
-		</script>
-
 </main>
-<br><br><br><br>

@@ -1,5 +1,4 @@
 @include('partials.adminheader')
-@include('partials.adminSecondHeader')
 <main>
 <script src="{{ asset('assets/js/needs-validated.js') }}"></script>
         <!-- form -->
@@ -27,7 +26,7 @@
                                         * required field
                                     </div>
                                     <!-- Form Row-->
-                                    <div class="row gx-3 mb-3">
+                                    <div class="r   ow gx-3 mb-3">
                                         <!-- Form Group (title)-->
                                         <div class="col-md-6">
                                             <label class="large mb-1" for="subject" style="font-size: 20px;"><span style="color: red">*</span> Subject</label>
@@ -91,7 +90,7 @@
                                             <!-- Form Group (content)-->
                                             <div class="col-md-12">
                                                 <br/><label for="editor" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
-                                                <textarea class="form-control @error('editor') is-invalid @enderror" id="editor" type="text" rows="10" cols="60" placeholder="Enter the information" name="editor" required>{{ old('content') }}</textarea>
+                                                <textarea style="font-size:20px;" class="form-control @error('editor') is-invalid @enderror" id="editor" type="text" rows="10" cols="60" placeholder="Enter the information" name="editor" required>{{ old('content') }}</textarea>
                                                 <div class="invalid-feedback">
                                                     Please input content.
                                                 </div>

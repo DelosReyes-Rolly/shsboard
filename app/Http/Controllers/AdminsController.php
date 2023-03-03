@@ -179,7 +179,6 @@ class AdminsController extends Controller
     // ================================================================= ANNOUNCEMENT ===================================================
 
     public function createannouncement(){
-        $announcements = Announcements::where('deleted', '=', null)->where('is_event', '=', null)->where('privacy', '=', 1)->get();
 
         if(request()->ajax()) {
             return datatables()->of(Announcements::where('deleted', '=', null)->where('is_event', '=', null)->where('privacy', '=', 1))
@@ -188,12 +187,20 @@ class AdminsController extends Controller
             ->addIndexColumn()
             ->make(true);
         }
-        return view('admins.landing.createannouncement', compact('announcements'));
+        return view('admins.landing.createannouncement');
+    }
+
+    public function countpublicannouncement(){
+        $expired = Announcements::where('deleted', '=', null)->where('is_event', '=', null)->where('privacy', '=', 1)->where('status', '=', 2)->count();
+        $active = Announcements::where('deleted', '=', null)->where('is_event', '=', null)->where('privacy', '=', 1)->where('status', '=', 1)->count();
+        return response()->json(array(
+            'expired' => $expired,
+            'active' => $active,
+        ));
     }
 
     public function tableofannouncement()
     {
-        $announcements = Announcements::where('deleted', '=', null)->where('is_event', '=', null)->where('privacy', '=', 2)->get();
         if(request()->ajax()) {
             return datatables()->of(Announcements::where('deleted', '=', null)->where('is_event', '=', null)->where('privacy', '=', 2))
             ->addColumn('action', 'admins.grading.action-button-announcement')
@@ -201,7 +208,17 @@ class AdminsController extends Controller
             ->addIndexColumn()
             ->make(true);
         }
-        return view('admins.landing.tableofannouncement', compact('announcements'));
+        return view('admins.landing.tableofannouncement');
+    }
+
+
+    public function countprivateannouncement(){
+        $expired = Announcements::where('deleted', '=', null)->where('is_event', '=', null)->where('privacy', '=', 2)->where('status', '=', 2)->count();
+        $active = Announcements::where('deleted', '=', null)->where('is_event', '=', null)->where('privacy', '=', 2)->where('status', '=', 1)->count();
+        return response()->json(array(
+            'expired' => $expired,
+            'active' => $active,
+        ));
     }
 
     public function privateannouncement()
@@ -384,7 +401,6 @@ class AdminsController extends Controller
 
 
     public function createevent(){
-        $events = Announcements::where('deleted', '=', null)->where('is_event', '=', 1)->get();
 
         if(request()->ajax()) {
             return datatables()->of(Announcements::where('deleted', '=', null)->where('is_event', '=', 1))
@@ -393,7 +409,16 @@ class AdminsController extends Controller
             ->addIndexColumn()
             ->make(true);
         }
-        return view('admins.landing.createevent', compact('events'));
+        return view('admins.landing.createevent');
+    }
+
+    public function countpublicevent(){
+        $expired = Announcements::where('deleted', '=', null)->where('is_event', '=', 1)->where('status', '=', 2)->count();
+        $active = Announcements::where('deleted', '=', null)->where('is_event', '=', 1)->where('status', '=', 1)->count();
+        return response()->json(array(
+            'expired' => $expired,
+            'active' => $active,
+        ));
     }
 
     public function storeevent(Request $request){
@@ -474,7 +499,6 @@ class AdminsController extends Controller
     // ================================================================= REMINDERS ===================================================
 
     public function createreminder(){
-        $reminders = Announcements::where('deleted', '=', null)->where('is_event', '=', 2)->where('privacy', '=', 1)->get();
 
         if(request()->ajax()) {
             return datatables()->of(Announcements::where('deleted', '=', null)->where('is_event', '=', 2)->where('privacy', '=', 1))
@@ -483,13 +507,21 @@ class AdminsController extends Controller
             ->addIndexColumn()
             ->make(true);
         }
-        return view('admins.landing.createreminder', compact('reminders'));
+        return view('admins.landing.createreminder');
     }
 
 
+    public function countpublicreminder(){
+        $expired = Announcements::where('deleted', '=', null)->where('is_event', '=', 2)->where('privacy', '=', 1)->where('status', '=', 2)->count();
+        $active = Announcements::where('deleted', '=', null)->where('is_event', '=', 2)->where('privacy', '=', 1)->where('status', '=', 1)->count();
+        return response()->json(array(
+            'expired' => $expired,
+            'active' => $active,
+        ));
+    }
+
     public function tableofreminders()
     {
-        $reminders = Announcements::where('deleted', '=', null)->where('is_event', '=', 2)->where('privacy', '=', 2)->get();
 
         if(request()->ajax()) {
             return datatables()->of(Announcements::where('deleted', '=', null)->where('is_event', '=', 2)->where('privacy', '=', 2))
@@ -498,7 +530,16 @@ class AdminsController extends Controller
             ->addIndexColumn()
             ->make(true);
         }
-        return view('admins.landing.tableofreminders', compact('reminders'));
+        return view('admins.landing.tableofreminders');
+    }
+
+    public function countprivatereminders(){
+        $expired = Announcements::where('deleted', '=', null)->where('is_event', '=', 2)->where('privacy', '=', 2)->where('status', '=', 2)->count();
+        $active = Announcements::where('deleted', '=', null)->where('is_event', '=', 2)->where('privacy', '=', 2)->where('status', '=', 1)->count();
+        return response()->json(array(
+            'expired' => $expired,
+            'active' => $active,
+        ));
     }
 
     public function privatereminders()

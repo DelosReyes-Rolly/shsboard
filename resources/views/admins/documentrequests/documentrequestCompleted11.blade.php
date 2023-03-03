@@ -109,7 +109,7 @@
 												<span aria-hidden="true">&times;</span>
 											</button>
 										</div>
-										<form action="javascript:void(0)" id="Grade11FormUpdate" name="Grade11FormUpdate" class="form-horizontal" method="POST">
+										<form action="javascript:void(0)" id="Grade11FormUpdate" name="Grade11FormUpdate" class="form-horizontal needs-validation" novalidate method="POST">
 											<div class="modal-body">
 												<input type="hidden" name="id" id="id-update-grade11">
 												<div class="row">
@@ -259,47 +259,51 @@
 		});
 	});
 
-	
-	function editFuncgrade11(id) {
-			document.getElementById('whoops-update').style.display = 'none';
-			$.ajax({
-				type: "POST",
-				url: "{{ url('/showrequestadmin/') }}",
-				data: {
-					id: id
-				},
-				dataType: 'json',
-				success: function(res) {
-					$('#Grade11Modal-update').html("Edit Grade 11 Document");
-					$('#Grade11-modal-update').modal('show');
-					$('#id-update-grade11').val(res.id);
-					if (res.suffix == null && res.middle_name == null) {
-						document.getElementById('grade11last_name').innerHTML = res.last_name;
-						document.getElementById('grade11first_name').innerHTML = res.first_name;
-					} else if (res.suffix == null && res.middle_name != null) {
-						document.getElementById('grade11last_name').innerHTML = res.last_name;
-						document.getElementById('grade11first_name').innerHTML = res.first_name;
-						document.getElementById('grade11middle_name').innerHTML = res.middle_name;
-					} else if (res.middle_name == null && res.suffix == null) {
-						document.getElementById('grade11last_name').innerHTML = res.last_name;
-						document.getElementById('grade11first_name').innerHTML = res.first_name;
-						document.getElementById('grade11suffix').innerHTML = res.suffix;
-					} else {
-						document.getElementById('grade11last_name').innerHTML = res.last_name;
-						document.getElementById('grade11first_name').innerHTML = res.first_name;
-						document.getElementById('grade11middle_name').innerHTML = res.middle_name;
-						document.getElementById('grade11suffix').innerHTML = res.suffix;
-					}
-					$('#grade11level').val(res.gradelevel);
-					$('#grade11document').val(res.name);
-					$('#grade11purpose').val(res.purpose);
-					$('#grade11status').val(res.status);
-				}
-			});
-		}
 
-		$('#Grade11FormUpdate').submit(function(e) {
-			e.preventDefault();
+	function editFuncgrade11(id) {
+		$('#Grade11FormUpdate').trigger("reset").removeClass('was-validated');
+		document.getElementById('whoops-update').style.display = 'none';
+		$.ajax({
+			type: "POST",
+			url: "{{ url('/showrequestadmin/') }}",
+			data: {
+				id: id
+			},
+			dataType: 'json',
+			success: function(res) {
+				$('#Grade11Modal-update').html("Edit Grade 11 Document");
+				$('#Grade11-modal-update').modal('show');
+				$('#id-update-grade11').val(res.id);
+				if (res.suffix == null && res.middle_name == null) {
+					document.getElementById('grade11last_name').innerHTML = res.last_name;
+					document.getElementById('grade11first_name').innerHTML = res.first_name;
+				} else if (res.suffix == null && res.middle_name != null) {
+					document.getElementById('grade11last_name').innerHTML = res.last_name;
+					document.getElementById('grade11first_name').innerHTML = res.first_name;
+					document.getElementById('grade11middle_name').innerHTML = res.middle_name;
+				} else if (res.middle_name == null && res.suffix == null) {
+					document.getElementById('grade11last_name').innerHTML = res.last_name;
+					document.getElementById('grade11first_name').innerHTML = res.first_name;
+					document.getElementById('grade11suffix').innerHTML = res.suffix;
+				} else {
+					document.getElementById('grade11last_name').innerHTML = res.last_name;
+					document.getElementById('grade11first_name').innerHTML = res.first_name;
+					document.getElementById('grade11middle_name').innerHTML = res.middle_name;
+					document.getElementById('grade11suffix').innerHTML = res.suffix;
+				}
+				$('#grade11level').val(res.gradelevel);
+				$('#grade11document').val(res.name);
+				$('#grade11purpose').val(res.purpose);
+				$('#grade11status').val(res.status);
+			}
+		});
+	}
+
+	$('#Grade11FormUpdate').submit(function(e) {
+		e.preventDefault();
+		if ($('#Grade11FormUpdate')[0].checkValidity() === false) {
+			e.stopPropagation();
+		} else {
 			var formData = new FormData(this);
 			$(":submit").attr("disabled", true);
 			$.ajax({
@@ -335,5 +339,8 @@
 					$(":submit").removeAttr("disabled");
 				}
 			});
-		});
+		}
+		$('#Grade11FormUpdate').addClass('was-validated');
+
+	});
 </script>

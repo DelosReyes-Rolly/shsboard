@@ -1,5 +1,4 @@
 @include('partials.adminheader')
-@include('partials.adminSecondHeader')
 <main>
         <!-- form -->
     <div class="">

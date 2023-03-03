@@ -399,6 +399,8 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 |
                 */
                 Route::post('/add/announcements', 'storeannouncement')->name('add.publicannouncement');
+                Route::post('/countpublicannouncement',  'countpublicannouncement');
+                Route::post('/countprivateannouncement',  'countprivateannouncement');
                 Route::post('/add/privateannouncements', 'storeprivateannouncement')->name('add.privateannouncement');
                 Route::post('/downloadPDF', 'downloadpdf')->name('admin.downloadpdf');
 
@@ -411,6 +413,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 |
                 */
                 Route::post('/add/event', 'storeevent')->name('event.store');
+                Route::post('/countpublicevent',  'countpublicevent');
 
                 /*
                 |-----------------------------------------------------------------------------------
@@ -422,6 +425,8 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 */
                 Route::post('/add/reminder', 'storereminder')->name('reminder.store');
                 Route::post('/add/privatereminders', 'storeprivatereminder')->name('add.privatereminder');
+                Route::post('/countpublicreminder',  'countpublicreminder');
+                Route::post('/countprivatereminder',  'countprivatereminder');
             
 
             /*
@@ -904,6 +909,7 @@ Route::group(['middleware' => 'auth:faculties'], function () {
             | Here is where faculties routes POST that are included in their activity stream page are defined.
             |
             */
+            Route::post('/countfacultyannouncement',  'countfacultyannouncement');
             Route::post('/add/announcement', 'storeannouncement')->name('announcement.store');
 
             /*

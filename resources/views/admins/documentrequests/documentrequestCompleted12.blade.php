@@ -109,7 +109,7 @@
 												<span aria-hidden="true">&times;</span>
 											</button>
 										</div>
-										<form action="javascript:void(0)" id="Grade12FormUpdate" name="Grade12FormUpdate" class="form-horizontal" method="POST">
+										<form action="javascript:void(0)" id="Grade12FormUpdate" name="Grade12FormUpdate" class="form-horizontal needs-validation" novalidate method="POST">
 											<div class="modal-body">
 												<input type="hidden" name="id" id="id-update-grade12">
 												<div class="row">
@@ -260,6 +260,7 @@
 
 
 	function editFuncgrade12(id) {
+		$('#Grade12FormUpdate').trigger("reset").removeClass('was-validated');
 		document.getElementById('whoops-update').style.display = 'none';
 		$.ajax({
 			type: "POST",
@@ -299,40 +300,46 @@
 
 	$('#Grade12FormUpdate').submit(function(e) {
 		e.preventDefault();
-		var formData = new FormData(this);
-		$(":submit").attr("disabled", true);
-		$.ajax({
-			type: 'POST',
-			url: "{{ url('/updaterequestdocadmingrade12')}}/",
-			data: formData,
-			cache: false,
-			contentType: false,
-			processData: false,
-			success: (data) => {
-				$("#Grade12-modal-update").modal('hide');
-				var oTable = $('#example1').dataTable();
-				oTable.fnDraw(false);
-				$("#btn-save").html('Submit');
-				$("#btn-save").attr("disabled", false);
-				Swal.fire({
-					icon: 'success',
-					title: 'Success.',
-					text: 'Grade 12 document has been updated successfully',
-				});
-				$(":submit").removeAttr("disabled");
-			},
-			error: function(xhr) {
-				$('#validation-errors-update').html('');
-				document.getElementById('whoops-update').style.display = 'block';
-				if (xhr.responseJSON.error != undefined) {
-					$("#validation-errors-update").html("");
-					$('#validation-errors-update').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
+		if ($('#Grade12FormUpdate')[0].checkValidity() === false) {
+			e.stopPropagation();
+		} else {
+			var formData = new FormData(this);
+			$(":submit").attr("disabled", true);
+			$.ajax({
+				type: 'POST',
+				url: "{{ url('/updaterequestdocadmingrade12')}}/",
+				data: formData,
+				cache: false,
+				contentType: false,
+				processData: false,
+				success: (data) => {
+					$("#Grade12-modal-update").modal('hide');
+					var oTable = $('#example1').dataTable();
+					oTable.fnDraw(false);
+					$("#btn-save").html('Submit');
+					$("#btn-save").attr("disabled", false);
+					Swal.fire({
+						icon: 'success',
+						title: 'Success.',
+						text: 'Grade 12 document has been updated successfully',
+					});
+					$(":submit").removeAttr("disabled");
+				},
+				error: function(xhr) {
+					$('#validation-errors-update').html('');
+					document.getElementById('whoops-update').style.display = 'block';
+					if (xhr.responseJSON.error != undefined) {
+						$("#validation-errors-update").html("");
+						$('#validation-errors-update').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
+					}
+					$.each(xhr.responseJSON.errors, function(key, value) {
+						$('#validation-errors-update').append('&emsp;<li>' + value + '</li>');
+					});
+					$(":submit").removeAttr("disabled");
 				}
-				$.each(xhr.responseJSON.errors, function(key, value) {
-					$('#validation-errors-update').append('&emsp;<li>' + value + '</li>');
-				});
-				$(":submit").removeAttr("disabled");
-			}
-		});
+			});
+		}
+		$('#Grade12FormUpdate').addClass('was-validated');
+
 	});
 </script>
