@@ -396,8 +396,8 @@
                         }
                     },
                     {
-                        data: 'content',
-                        name: 'content'
+                        data: 'what',
+                        name: 'what'
                     },
                     {
                         data: 'who',
