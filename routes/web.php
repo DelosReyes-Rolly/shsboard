@@ -515,8 +515,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
             Route::get('/gradingfacultysubjects', 'facultysubjects'); 
             Route::get('/gradinggradelevels', 'gradelevels');
             Route::get('/advisory', 'advisory'); 
-            Route::post('/firstrelease',  'firstrelease')->name('firstrelease');
-            Route::post('/firstquarter',  'firstquarter')->name('firstquarter');
+            Route::get('/firstquarter/{schoolyear_id}',  'firstquarter')->name('firstquarter');
             Route::get('/secondquarter/{schoolyear_id}',  'secondquarter')->name('secondquarter');
             Route::get('/thirdquarter/{schoolyear_id}',  'thirdquarter')->name('thirdquarter');
             Route::get('/fourthquarter/{schoolyear_id}',  'fourthquarter')->name('fourthquarter');

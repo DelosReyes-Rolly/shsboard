@@ -2770,20 +2770,8 @@ class AdminsController extends Controller
     //     return view('admins.grading.functions.advisorydelete', ['advisory' => $data]);
     //  }
 
-    public function firstrelease(Request $request){
-        $where = array('id' => $request->id);
-        $schoolyear  = SchoolYear::where($where)->first();
-      
-        return Response()->json($schoolyear);
-     }
-
-     public function firstquarter(Request $request){
-        $printgosignal = SubjectTeachers::where('schoolyear_id', '=', $request->id)->get();
-        foreach($printgosignal as $go){
-            $go->isPrint = 1;
-            $go->update();
-        }
-        $advisers = Advisories::where('deleted', '=', null)->where('active', '=', null)->where('schoolyear_id', '=', $request->id)->get();
+     public function firstquarter($schoolyear_id){
+        $advisers = Advisories::where('deleted', '=', null)->where('active', '=', null)->where('schoolyear_id', '=', $schoolyear_id)->get();
         foreach($advisers as $adviser){
             $adviser->grade_release = 1;
             $adviser->update();
