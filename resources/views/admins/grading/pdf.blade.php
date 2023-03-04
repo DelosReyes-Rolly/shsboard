@@ -65,10 +65,10 @@
             <br/><br/>
             <div class="text-center" style="font-size: 110%; text-align:center;">
             <div class="svnhs-logo">
-                <img src="{{url('/img/svnhs-logo.png')}}" style="width: 100px; height: 100px;">
+                <img src="{{public_path('/img/svnhs-logo.png')}}" style="width: 100px; height: 100px;">
             </div>
             <div class="seniorhigh-logo">
-                <img src="{{url('/img/shs.png')}}" style="width: 100px; height: 100px;">
+                <img src="{{public_path('/img/shs.png')}}" style="width: 100px; height: 100px;">
             </div>
               <b>SIGNAL VILLAGE NATIONAL HIGH SCHOOL<br/>
               SENIOR HIGH SCHOOL</b><br/>
