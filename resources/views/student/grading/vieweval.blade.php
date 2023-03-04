@@ -7,9 +7,9 @@
             <!--Add the "breadcrumb" class to ul element that represents the breadcrumb-->
             <ul class = "breadcrumb">
                <!--Add the ".breadcrumb-item" class to each li element within the breadcrumb-->
-               <li class = "breadcrumb-item"><a class="bca" href = "{{ url('gradeeval') }}">Grade evelautions</a></li>
+               <li class = "breadcrumb-item"><a class="bca" href = "{{ url('gradeeval') }}">Grade eveluations</a></li>
                <!--Add the "active" class to li element to represent the current page-->
-               <li class = "breadcrumb-item active" aria-current = "page">View file</li>
+               <li class = "breadcrumb-item active" aria-current = "page">view file</li>
             </ul>
          </nav>
 	</div>
