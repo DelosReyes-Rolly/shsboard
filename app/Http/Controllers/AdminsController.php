@@ -2688,9 +2688,9 @@ class AdminsController extends Controller
             'course_id' => ['required'],
             'section_id' => ['required'],
         ]);
-        if (Advisories::where('gradelevel_id', '=', $request->get("gradelevel_id"))->where('active', '=', null)->where('deleted', '=', null)->count() <= 0 || Advisories::where('course_id', '=', $request->get("course_id"))->where('active', '=', null)->where('deleted', '=', null)->count() <= 0
-        || Advisories::where('section_id', '=', $request->get("section_id"))->where('active', '=', null)->where('deleted', '=', null)->count() <= 0) {
-            if(Advisories::where('faculty_id', '=', $request->get("faculty_id"))->where('deleted', '=', null)){
+        $count = Advisories::where('faculty_id', '=', $request->get("faculty_id"))->where('active', '=', null)->where('deleted', '=', null)->count();
+        if (Advisories::where('gradelevel_id', '=', $request->get("gradelevel_id"))->where('course_id', '=', $request->get("course_id"))->where('section_id', '=', $request->get("section_id"))->where('active', '=', null)->where('deleted', '=', null)->count() <= 0){
+            if($count == 0){
                 $schoolyear = DB::table('school_years')->latest('id')->first();
                 $advisory = new Advisories();
                 $advisory->schoolyear_id = $schoolyear->id;
@@ -2702,11 +2702,11 @@ class AdminsController extends Controller
                 return response()->json(array('success' => true));  
             }
            else{
-            return redirect()->back()->with('warning', 'There is already an advisory class that is assigned to this teacher.')->withInput();
+            return response()->json(['error' => 'Sorry. There is already an advisory class that is assigned to this teacher.'], 422); 
            }
         }
         else{
-            return redirect()->back()->with('warning', 'There is already an advisory teacher that is assigned to this class.')->withInput();
+            return response()->json(['error' => 'Sorry. There is already an advisory teacher that is assigned to this class.'], 422); 
         }
         
     } 
