@@ -101,16 +101,6 @@
                                                     Please input deadline date.
                                                 </div>
                                             </div>
-                                            <!-- Form Group (content)-->
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="appt" style="font-size: 24px; font-weight: 400;"><span style="color: red">*</span> Time</label><br>
-                                                    <input type="time" id="whn_time" class="form-control" name="whn_time" value="{{ old('whn_time') }}" style="font-size: 20px; " required>
-                                                    <div class="invalid-feedback">
-                                                        Please input time.
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                         <!-- Form Row -->
                                         <div class="row requestdocument">
