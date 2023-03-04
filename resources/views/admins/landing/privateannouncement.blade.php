@@ -1,6 +1,8 @@
 @include('partials.adminheader')
 <main>
-<script src="{{ asset('assets/js/needs-validated.js') }}"></script>
+<script src="{{ asset('assets/js/needs-validated.js') }}">
+    
+</script><script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <!-- form -->
     <div class="">
         <form method="POST" id="createPrivateannouncement" class="needs-validation" novalidate>
@@ -27,7 +29,7 @@
                                         * required field
                                     </div>
                                     <!-- Form Row-->
-                                    <div class="r   ow gx-3 mb-3">
+                                    <div class="row gx-3 mb-3">
                                         <!-- Form Group (title)-->
                                         <div class="col-md-6">
                                             <label class="large mb-1" for="subject" style="font-size: 20px;"><span style="color: red">*</span> Subject</label>
