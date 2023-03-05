@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\FacultyController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/clear-cache', function() {
+    //Clear route cache:
+    Artisan::call('route:cache');
+    //Clear config cache:
+    Artisan::call('config:cache');
+    // Clear application cache:
+    Artisan::call('cache:clear');
+    // Clear view cache:
+    Artisan::call('view:clear');
+    return 'Cache cleared';
+});
 
 
 /*
