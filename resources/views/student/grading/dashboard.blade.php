@@ -239,19 +239,19 @@
                                                                                 'course_id'=>  Auth::user()->course_id, 'section_id'=> Auth::user()->section_id,
                                                                                 'semester_id'=>  $grade12second -> semester_id, 'faculty_id'=> $grade12second -> faculty_id,
                                                                                 'subject_id'=> $grade12second -> subject_id])}}" data-toggle="modal" data-target="#editModal{{ Auth::user()->id }}{{ $grade12second -> gradelevel_id }}{{ Auth::user()->course_id }}{{ Auth::user()->section_id }}{{ $grade12second -> semester_id }}{{ $grade12second -> faculty_id }}{{ $grade12second -> subject_id }}"><button class="requestGradeEvalButton">Click here</button></a>
-                                                                                <!-- edit modal grade 12 second sem-->
-                                                                                <div id="editModal{{ Auth::user()->id }}{{ $grade12second-> gradelevel_id }}{{ Auth::user()->course_id }}{{ Auth::user()->section_id }}{{ $grade12second-> semester_id }}{{ $grade12second-> faculty_id }}{{ $grade12second-> subject_id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-                                                                                    <div class="modal-dialog modal-lg" role="document">
-                                                                                        <div class="modal-content border-start-lg border-start-yellow">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
                                                                             @else
                                                                                 <label style="color:red;" for="inputcontent"> <em><b> Requested</b></em></label><br>
                                                                             @endif
                                                                         @endif
                                                                     </td>
                                                                 </tr>
+                                                                <!-- edit modal grade 12 second sem-->
+                                                                <div id="editModal{{ Auth::user()->id }}{{ $grade12second-> gradelevel_id }}{{ Auth::user()->course_id }}{{ Auth::user()->section_id }}{{ $grade12second-> semester_id }}{{ $grade12second-> faculty_id }}{{ $grade12second-> subject_id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                                                    <div class="modal-dialog modal-lg" role="document">
+                                                                        <div class="modal-content border-start-lg border-start-yellow">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                         @endforeach
                                                     </tbody>
                                                 </table>
@@ -433,19 +433,19 @@
                                                                                         'course_id'=>  Auth::user()->course_id, 'section_id'=> Auth::user()->section_id,
                                                                                         'semester_id'=>  $grade12first -> semester_id, 'faculty_id'=> $grade12first -> faculty_id,
                                                                                         'subject_id'=> $grade12first -> subject_id])}}" data-toggle="modal" data-target="#editModal{{ Auth::user()->id }}{{ $grade12first -> gradelevel_id }}{{ Auth::user()->course_id }}{{ Auth::user()->section_id }}{{ $grade12first -> semester_id }}{{ $grade12first -> faculty_id }}{{ $grade12first -> subject_id }}"><button class="requestGradeEvalButton">Click here</button></a>
-                                                                                    <!-- edit modal grade 12 first sem-->
-                                                                                    <div id="editModal{{ Auth::user()->id }}{{ $grade12first-> gradelevel_id }}{{ Auth::user()->course_id }}{{ Auth::user()->section_id }}{{ $grade12first-> semester_id }}{{ $grade12first-> faculty_id }}{{ $grade12first-> subject_id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-                                                                                        <div class="modal-dialog modal-lg" role="document">
-                                                                                            <div class="modal-content border-start-lg border-start-yellow">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
                                                                                 @else
                                                                                     <label style="color:red;" for="inputcontent"> <em><b> Requested</b></em></label><br>
                                                                                 @endif
                                                                             @endif
                                                                         </td>
                                                                     </tr>
+                                                                    <!-- edit modal grade 12 first sem-->
+                                                                    <div id="editModal{{ Auth::user()->id }}{{ $grade12first-> gradelevel_id }}{{ Auth::user()->course_id }}{{ Auth::user()->section_id }}{{ $grade12first-> semester_id }}{{ $grade12first-> faculty_id }}{{ $grade12first-> subject_id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                                                        <div class="modal-dialog modal-lg" role="document">
+                                                                            <div class="modal-content border-start-lg border-start-yellow">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                         @endforeach
                                                     </tbody>
                                                 </table>
@@ -636,19 +636,19 @@
                                                                                     'course_id'=> Auth::user()->course_id, 'section_id'=>  Auth::user()->section_id,
                                                                                     'semester_id'=>  $grade11second -> semester_id, 'faculty_id'=> $grade11second -> faculty_id,
                                                                                     'subject_id'=> $grade11second -> subject_id])}}" data-toggle="modal" data-target="#editModal{{ Auth::user()->id }}{{ $grade11second -> gradelevel_id }}{{ Auth::user()->course_id }}{{ Auth::user()->section_id }}{{ $grade11second -> semester_id }}{{ $grade11second -> faculty_id }}{{ $grade11second -> subject_id }}"><button class="requestGradeEvalButton">Click here</button></a>
-                                                                                <!-- edit modal grade 11 second sem-->
-                                                                                <div id="editModal{{ Auth::user()->id }}{{ $grade11second-> gradelevel_id }}{{ Auth::user()->course_id }}{{ Auth::user()->section_id }}{{ $grade11second-> semester_id }}{{ $grade11second-> faculty_id }}{{ $grade11second-> subject_id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-                                                                                    <div class="modal-dialog modal-lg" role="document">
-                                                                                        <div class="modal-content border-start-lg border-start-yellow">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
                                                                             @else
                                                                                 <label style="color:red;" for="inputcontent"> <em><b> Requested</b></em></label><br>
                                                                             @endif
                                                                         @endif
                                                                     </td>
                                                                 </tr>
+                                                                <!-- edit modal grade 11 second sem-->
+                                                                <div id="editModal{{ Auth::user()->id }}{{ $grade11second-> gradelevel_id }}{{ Auth::user()->course_id }}{{ Auth::user()->section_id }}{{ $grade11second-> semester_id }}{{ $grade11second-> faculty_id }}{{ $grade11second-> subject_id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                                                    <div class="modal-dialog modal-lg" role="document">
+                                                                        <div class="modal-content border-start-lg border-start-yellow">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                         @endforeach
                                                     </tbody>
                                                 </table>
@@ -827,19 +827,19 @@
                                                                                     'course_id'=> Auth::user()->course_id, 'section_id'=> Auth::user()->section_id,
                                                                                     'semester_id'=> $grade11first -> semester_id, 'faculty_id'=> $grade11first -> faculty_id,
                                                                                     'subject_id'=> $grade11first -> subject_id])}}" data-toggle="modal" data-target="#editModal{{ Auth::user()->id }}{{ $grade11first -> gradelevel_id }}{{ Auth::user()->course_id }}{{ Auth::user()->section_id }}{{ $grade11first -> semester_id }}{{ $grade11first -> faculty_id }}{{ $grade11first -> subject_id }}"><button class="requestGradeEvalButton">Click here</button></a>
-                                                                                    <!-- edit modal grade 11 first sem-->
-                                                                                    <div id="editModal{{ Auth::user()->id }}{{ $grade11first -> gradelevel_id }}{{ Auth::user()->course_id }}{{ Auth::user()->section_id }}{{ $grade11first -> semester_id }}{{ $grade11first -> faculty_id }}{{ $grade11first -> subject_id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-                                                                                        <div class="modal-dialog modal-lg" role="document">
-                                                                                            <div class="modal-content border-start-lg border-start-yellow">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
                                                                                 @else
                                                                                     <label style="color:red;" for="inputcontent"> <em><b> Requested</b></em></label><br>
                                                                                 @endif
                                                                             @endif
                                                                         </td></i>
                                                                     </tr>
+                                                                     <!-- edit modal grade 11 first sem-->
+                                                                    <div id="editModal{{ Auth::user()->id }}{{ $grade11first -> gradelevel_id }}{{ Auth::user()->course_id }}{{ Auth::user()->section_id }}{{ $grade11first -> semester_id }}{{ $grade11first -> faculty_id }}{{ $grade11first -> subject_id }}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                                                        <div class="modal-dialog modal-lg" role="document">
+                                                                            <div class="modal-content border-start-lg border-start-yellow">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                         @endforeach
                                                     </tbody>
                                                 </table>
