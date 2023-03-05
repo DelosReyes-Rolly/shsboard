@@ -1053,7 +1053,7 @@
 				document.getElementById('whoops-update').style.display = 'none';
 				$.ajax({
 					type: "POST",
-					url: "{{ url('/showrequestadmin/') }}",
+					url: "{{ url('/showrequestadmin') }}",
 					data: {
 						id: id
 					},
@@ -1096,7 +1096,7 @@
 					$(":submit").attr("disabled", true);
 					$.ajax({
 						type: 'POST',
-						url: "{{ url('/updaterequestdocadmingrade11')}}/",
+						url: "{{ url('/updaterequestdocadmingrade11')}}",
 						data: formData,
 						cache: false,
 						contentType: false,
@@ -1137,7 +1137,7 @@
 				document.getElementById('whoops-update').style.display = 'none';
 				$.ajax({
 					type: "POST",
-					url: "{{ url('/showrequestadmin/') }}",
+					url: "{{ url('/showrequestadmin') }}",
 					data: {
 						id: id
 					},
@@ -1180,7 +1180,7 @@
 					$(":submit").attr("disabled", true);
 					$.ajax({
 						type: 'POST',
-						url: "{{ url('/updaterequestdocadmingrade12')}}/",
+						url: "{{ url('/updaterequestdocadmingrade12')}}",
 						data: formData,
 						cache: false,
 						contentType: false,
@@ -1222,7 +1222,7 @@
 				document.getElementById('whoops-update').style.display = 'none';
 				$.ajax({
 					type: "POST",
-					url: "{{ url('/showrequestadmin/') }}",
+					url: "{{ url('/showrequestadmin') }}",
 					data: {
 						id: id
 					},
@@ -1265,7 +1265,7 @@
 					$(":submit").attr("disabled", true);
 					$.ajax({
 						type: 'POST',
-						url: "{{ url('/updaterequestdocadminalumni')}}/",
+						url: "{{ url('/updaterequestdocadminalumni')}}",
 						data: formData,
 						cache: false,
 						contentType: false,
@@ -1417,7 +1417,7 @@
 					$(":submit").attr("disabled", true);
 					$.ajax({
 						type: 'POST',
-						url: "{{ url('/updatedocument')}}/",
+						url: "{{ url('/updatedocument')}}",
 						data: formData,
 						cache: false,
 						contentType: false,
@@ -1458,7 +1458,7 @@
 				var formData = new FormData(this);
 				$.ajax({
 					type: 'POST',
-					url: "{{ url('/document/delete')}}/",
+					url: "{{ url('/document/delete')}}",
 					data: formData,
 					cache: false,
 					contentType: false,
@@ -1604,7 +1604,7 @@
 					$(":submit").attr("disabled", true);
 					$.ajax({
 						type: 'POST',
-						url: "{{ url('/updatepurpose')}}/",
+						url: "{{ url('/updatepurpose')}}",
 						data: formData,
 						cache: false,
 						contentType: false,
@@ -1645,7 +1645,7 @@
 				var formData = new FormData(this);
 				$.ajax({
 					type: 'POST',
-					url: "{{ url('/purpose/delete')}}/",
+					url: "{{ url('/purpose/delete')}}",
 					data: formData,
 					cache: false,
 					contentType: false,

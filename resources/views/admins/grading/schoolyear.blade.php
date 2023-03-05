@@ -343,7 +343,7 @@
                 $(":submit").attr("disabled", true);
                 $.ajax({
                     type: 'POST',
-                    url: "{{ url('/updateschoolyear')}}/",
+                    url: "{{ url('/updateschoolyear')}}",
                     data: formData,
                     cache: false,
                     contentType: false,
@@ -383,7 +383,7 @@
             var formData = new FormData(this);
             $.ajax({
                 type: 'POST',
-                url: "{{ url('/schoolyear/delete')}}/",
+                url: "{{ url('/schoolyear/delete')}}",
                 data: formData,
                 cache: false,
                 contentType: false,

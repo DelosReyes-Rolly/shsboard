@@ -420,7 +420,7 @@
                 $(":submit").attr("disabled", true);
                 $.ajax({
                     type: 'POST',
-                    url: "{{ url('/updatesubject')}}/",
+                    url: "{{ url('/updatesubject')}}",
                     data: formData,
                     cache: false,
                     contentType: false,
@@ -461,7 +461,7 @@
             var formData = new FormData(this);
             $.ajax({
                 type: 'POST',
-                url: "{{ url('/subject/delete')}}/",
+                url: "{{ url('/subject/delete')}}",
                 data: formData,
                 cache: false,
                 contentType: false,

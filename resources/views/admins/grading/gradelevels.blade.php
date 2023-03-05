@@ -289,7 +289,7 @@
                 $(":submit").attr("disabled", true);
                 $.ajax({
                     type: 'POST',
-                    url: "{{ url('/updategradelevel')}}/",
+                    url: "{{ url('/updategradelevel')}}",
                     data: formData,
                     cache: false,
                     contentType: false,
@@ -329,7 +329,7 @@
             var formData = new FormData(this);
             $.ajax({
                 type: 'POST',
-                url: "{{ url('/gradelevel/delete')}}/",
+                url: "{{ url('/gradelevel/delete')}}",
                 data: formData,
                 cache: false,
                 contentType: false,

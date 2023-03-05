@@ -265,7 +265,7 @@
 		document.getElementById('whoops-update').style.display = 'none';
 		$.ajax({
 			type: "POST",
-			url: "{{ url('/showrequestadmin/') }}",
+			url: "{{ url('/showrequestadmin') }}",
 			data: {
 				id: id
 			},
@@ -308,7 +308,7 @@
 			$(":submit").attr("disabled", true);
 			$.ajax({
 				type: 'POST',
-				url: "{{ url('/updaterequestdocadmingrade12')}}/",
+				url: "{{ url('/updaterequestdocadmingrade12')}}",
 				data: formData,
 				cache: false,
 				contentType: false,

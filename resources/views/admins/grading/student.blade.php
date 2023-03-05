@@ -877,7 +877,7 @@
             var formData = new FormData(this);
             $.ajax({
                 type: 'POST',
-                url: "{{ url('/student/delete')}}/",
+                url: "{{ url('/student/delete')}}",
                 data: formData,
                 cache: false,
                 contentType: false,
@@ -905,7 +905,7 @@
             var formData = new FormData(this);
             $.ajax({
                 type: 'POST',
-                url: "{{ url('/dropstudent')}}/",
+                url: "{{ url('/dropstudent')}}",
                 data: formData,
                 cache: false,
                 contentType: false,
