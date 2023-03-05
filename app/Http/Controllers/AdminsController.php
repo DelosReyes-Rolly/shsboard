@@ -2771,6 +2771,11 @@ class AdminsController extends Controller
     //  }
 
      public function firstquarter($schoolyear_id){
+        $printgosignal = SubjectTeachers::where('schoolyear_id', '=', $schoolyear_id)->get();
+        foreach($printgosignal as $go){
+            $go->isPrint = 1;
+            $go->update();
+        }
         $advisers = Advisories::where('deleted', '=', null)->where('active', '=', null)->where('schoolyear_id', '=', $schoolyear_id)->get();
         foreach($advisers as $adviser){
             $adviser->grade_release = 1;
@@ -2780,6 +2785,11 @@ class AdminsController extends Controller
      }
 
      public function secondquarter($schoolyear_id){
+        $printgosignal = SubjectTeachers::where('schoolyear_id', '=', $schoolyear_id)->get();
+        foreach($printgosignal as $go){
+            $go->isPrint = 1;
+            $go->update();
+        }
         $advisers = Advisories::where('deleted', '=', null)->where('active', '=', null)->where('schoolyear_id', '=', $schoolyear_id)->get();
         foreach($advisers as $adviser){
             $adviser->grade_release = 2;
@@ -2790,6 +2800,11 @@ class AdminsController extends Controller
 
 
      public function thirdquarter($schoolyear_id){
+        $printgosignal = SubjectTeachers::where('schoolyear_id', '=', $schoolyear_id)->get();
+        foreach($printgosignal as $go){
+            $go->isPrint = 1;
+            $go->update();
+        }
         $advisers = Advisories::where('deleted', '=', null)->where('active', '=', null)->where('schoolyear_id', '=', $schoolyear_id)->get();
         foreach($advisers as $adviser){
             $adviser->grade_release = 3;
@@ -2799,6 +2814,11 @@ class AdminsController extends Controller
      }
 
      public function fourthquarter($schoolyear_id){
+        $printgosignal = SubjectTeachers::where('schoolyear_id', '=', $schoolyear_id)->get();
+        foreach($printgosignal as $go){
+            $go->isPrint = 1;
+            $go->update();
+        }
         $advisers = Advisories::where('deleted', '=', null)->where('active', '=', null)->where('schoolyear_id', '=', $schoolyear_id)->get();
         foreach($advisers as $adviser){
             $adviser->grade_release = 4;
