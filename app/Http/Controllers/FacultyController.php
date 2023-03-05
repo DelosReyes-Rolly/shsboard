@@ -144,7 +144,7 @@ class FacultyController extends Controller
             ->join('courses', 'activity_streams.course_id', '=', 'courses.id')
             ->join('sections', 'activity_streams.section_id', '=', 'sections.id')
             ->join('subjects', 'activity_streams.subject_id', '=', 'subjects.id')
-            ->select(['activity_streams.id', 'activity_streams.created_at AS created_atAct', 'activity_streams.expired_at AS expired_atAct', 'activity_streams.status', 'activity_streams.what', 'activity_streams.created_at', 'activity_streams.expired_at', 'grade_levels.gradelevel', 'grade_levels.id AS grade_id', 'courses.courseName', 'courses.id AS course_id', 'sections.section', 'sections.id AS section_id', 'subjects.subjectname', 'subjects.id AS subject_id']);
+            ->select(['activity_streams.id', 'activity_streams.created_at AS created_atAct', 'activity_streams.expired_at AS expired_atAct', 'activity_streams.status', 'activity_streams.what', 'activity_streams.created_at', 'activity_streams.expired_at', 'grade_levels.gradelevel', 'grade_levels.id AS grade_id', 'courses.abbreviation', 'courses.id AS course_id', 'sections.section', 'sections.id AS section_id', 'subjects.subjectname', 'subjects.id AS subject_id']);
             if(request()->ajax()) {
                 return datatables()->of($activity)
                 ->addColumn('action', 'admins.grading.action-button-announcement-faculty')
@@ -180,6 +180,7 @@ class FacultyController extends Controller
                 'subject_id' => 'required',
                 'editors' => 'required',
                 'inputexpired_at' => 'required',
+                'whn_time' => 'required',
             ]);
             $announcement = new ActivityStreams();
             $announcement->what = $request->get('inputwhat');
@@ -189,6 +190,7 @@ class FacultyController extends Controller
             $announcement->section_id = $request->get('section_id');
             $announcement->subject_id = $request->get('subject_id');
             $announcement->expired_at = $request->get('inputexpired_at');
+            $announcement->whn_time = $request->get('whn_time');
             $announcement->status = 1;
             $announcement->faculty_id =  Auth::user()->id;
             $announcement->save();
@@ -206,7 +208,7 @@ class FacultyController extends Controller
             ->join('courses', 'activity_streams.course_id', '=', 'courses.id')
             ->join('sections', 'activity_streams.section_id', '=', 'sections.id')
             ->join('subjects', 'activity_streams.subject_id', '=', 'subjects.id')
-            ->select(['activity_streams.id', 'activity_streams.created_at AS created_atAct', 'activity_streams.expired_at AS expired_atAct', 'activity_streams.content', 'activity_streams.status', 'activity_streams.what', 'activity_streams.created_at', 'activity_streams.expired_at', 'grade_levels.gradelevel', 'grade_levels.id AS grade_id', 'courses.courseName', 'courses.id AS course_id', 'sections.section', 'sections.id AS section_id', 'subjects.subjectname', 'subjects.id AS subject_id'])
+            ->select(['activity_streams.id', 'activity_streams.created_at AS created_atAct', 'activity_streams.expired_at AS expired_atAct', 'activity_streams.whn_time AS whn_timeAct', 'activity_streams.content', 'activity_streams.status', 'activity_streams.what', 'activity_streams.created_at', 'activity_streams.expired_at', 'grade_levels.gradelevel', 'grade_levels.id AS grade_id', 'courses.courseName', 'courses.id AS course_id', 'sections.section', 'sections.id AS section_id', 'subjects.subjectname', 'subjects.id AS subject_id'])
             ->first();
             return Response()->json($activity);
         }
@@ -227,6 +229,7 @@ class FacultyController extends Controller
                 'subject_id' => ['required'],
                 'content' => 'required',
                 'expired_at' => ['required'],
+                'whn_time' => ['required'],
             ]);
             $announcement = ActivityStreams::find($request->id);
             $announcement->what = $request->get('what');
@@ -236,6 +239,7 @@ class FacultyController extends Controller
             $announcement->section_id = $request->get('section_id');
             $announcement->subject_id = $request->get('subject_id');
             $announcement->expired_at = $request->get('expired_at');
+            $announcement->whn_time = $request->get('whn_time');
             $announcement->save();
             ActivityStreams::where('deleted', '=', NULL)->where('expired_at', '<',  now())->update(['status' => '2']);
             ActivityStreams::where('deleted', '=', NULL)->where('expired_at', '>',  now())->update(['status' => '1']);

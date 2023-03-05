@@ -86,7 +86,7 @@
                                         <div class="row gx-3 mb-3 requestdocument">
                                             <!-- Form Group (title)-->
                                             <br>
-                                            <div class="col-md-6">
+                                            <div class="col-lg-6 col-md-12">
                                                 <label class="large mb-1" for="inputwhat" style="font-size: 24px; font-weight: 400;"><span style="color: red">*</span> Title</label>
                                                 <input class="form-control @error('inputwhat') is-invalid @enderror" id="inputwhat" type="text" style="font-size: 20px; " placeholder="Enter the title" name="inputwhat" value="{{ old('inputwhat') }}" required>
                                                 <div class="invalid-feedback">
@@ -94,11 +94,21 @@
                                                 </div>
                                             </div>
                                             <!-- Form Group whr-->
-                                            <div class="col-lg-3">
-                                                <label class="large mb-1" for="inputexpired_at" style="font-size: 24px; font-weight: 400;"><span style="color: red">*</span> Activity Deadline</label>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label class="large mb-1" for="inputexpired_at" style="font-size: 24px; font-weight: 400;"><span style="color: red">*</span> Deadline Date</label>
                                                 <input type="date" class="form-control @error('inputexpired_at') is-invalid @enderror" id="inputexpired_at" style="font-size: 20px;" placeholder="Enter the date" name="inputexpired_at" value="{{ old('inputexpired_at') }}" required>
                                                 <div class="invalid-feedback">
                                                     Please input deadline date.
+                                                </div>
+                                            </div>
+                                            <!-- Form Group (content)-->
+                                            <div class="col-lg-3 col-md-12">
+                                                <div class="form-group">
+                                                    <label for="appt" style="font-size: 24px; font-weight: 400;"><span style="color: red">*</span> Deadline Time</label><br>
+                                                    <input type="time" id="whn_time" class="form-control" name="whn_time" value="{{ old('whn_time') }}" style="font-size: 20px; " required>
+                                                    <div class="invalid-feedback">
+                                                        Please input time.
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -225,7 +235,7 @@
                                         </div>
                                         <div class="col-md-12">
                                             <label style="font-size: 20px;"><b>Deadline: </b></label>
-                                            <span id="expired_at-view" style="font-size: 20px;"></span><br />
+                                            <span id="expired_at-view" style="font-size: 20px;"></span> <span id="whn_time-view" style="font-size: 20px;"></span> <br />
                                         </div>
                                         <div class="col-md-12">
                                             <label style="font-size: 20px;"><b>Gradelevel: </b></label>
@@ -284,10 +294,20 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <label class="slarge mb-1" for="inputexpired_at" style="font-size: 20px;"><span style="color: red">*</span> Deadline</label>
+                                                    <label class="slarge mb-1" for="inputexpired_at" style="font-size: 20px;"><span style="color: red">*</span> Deadline Date</label>
                                                     <input type="date" class="form-control @error('expired_at') is-invalid @enderror" id="expired_at-update" placeholder="Enter the date" name="expired_at" style="font-size: 16px; " required>
                                                     <div class="invalid-feedback">
                                                         Please input expiry date.
+                                                    </div>
+                                                </div>
+                                                <!-- Form Group (content)-->
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="slarge mb-1" for="inputexpired_at" style="font-size: 20px;"><span style="color: red">*</span> Deadline Time</label>
+                                                        <input type="time" id="whn_time-update" class="form-control" name="whn_time" value="{{ old('whn_time-update') }}" style="font-size: 20px; " required>
+                                                        <div class="invalid-feedback">
+                                                            Please input time.
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
@@ -419,8 +439,8 @@
                         name: 'gradelevel'
                     },
                     {
-                        data: 'courseName',
-                        name: 'courseName'
+                        data: 'abbreviation',
+                        name: 'abbreviation'
                     },
                     {
                         data: 'section',
@@ -479,7 +499,6 @@
             });
         });
 
-
         function viewFunc(id) {
             $.ajax({
                 type: "POST",
@@ -494,6 +513,7 @@
                     document.getElementById('what-view').innerHTML = res.what;
                     document.getElementById('created_at-view').innerHTML = res.created_atAct;
                     document.getElementById('expired_at-view').innerHTML = res.expired_atAct;
+                    document.getElementById('whn_time-view').innerHTML = res.whn_timeAct;
                     document.getElementById('gradelevel-view').innerHTML = res.gradelevel;
                     document.getElementById('course-view').innerHTML = res.courseName;
                     document.getElementById('section-view').innerHTML = res.section;
@@ -519,11 +539,12 @@
                     $('#id-update').val(res.id);
                     $('#what-update').val(res.what);
                     $('#expired_at-update').val(res.expired_at);
+                    $('#whn_time-update').val(res.whn_time);
                     $('#gradelevel_id-update').val(res.gradelevel_id);
                     $('#course_id-update').val(res.course_id);
                     $('#section_id-update').val(res.section_id);
                     $('#subject_id-update').val(res.subject_id);
-                    $('#editor2-update').val(res.content)
+                    $('#editor2-update').val(res.content);
                 }
             });
         }

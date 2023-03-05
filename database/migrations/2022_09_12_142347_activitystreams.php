@@ -23,6 +23,7 @@ class Activitystreams extends Migration
             $table->string('what');
             $table->text('content');
             $table->date('expired_at')->nullable();
+            $table->time('whn_time');
             $table->integer('status');
             $table->timestamps();
             $table->tinyInteger('deleted')->nullable();
