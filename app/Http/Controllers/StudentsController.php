@@ -65,6 +65,7 @@ class StudentsController extends Controller
             ->where('status', '=', 1)
             ->where('privacy', '=', 2)
             ->where('approval', '=', 2)
+            ->where('release_at', '>=', now())
             ->where('is_event', '=', NULL)->get();
             foreach($data as $d){
                 $ann[] = [
@@ -82,6 +83,7 @@ class StudentsController extends Controller
             ->where('privacy', '=', 2)
             ->where('approval', '=', 2)
             ->where('is_event', '=', NULL)
+            ->where('release_at', '>=', now())
             ->first();
         if(is_null($announcement)) {
             $announcement = NULL;
@@ -109,7 +111,7 @@ class StudentsController extends Controller
     }
 
     public function seeAnnouncement($id){
-        $view = Announcements::where('deleted', '=', null)->findOrFail($id);
+        $view = Announcements::where('deleted', '=', null)->where('release_at', '>=', now())->findOrFail($id);
         return view('student.viewAnnouncement', compact('view'));
     }
 

@@ -111,7 +111,7 @@
                                     <!-- Form Row-->
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group (title)-->
-                                        <div class="col-md-6"><br/>
+                                        <div class="col-md-6"><br />
                                             <label class="large mb-1" for="inputsubject" style="font-size: 20px;"><span style="color: red">*</span> Subject</label>
                                             <input style="font-size:20px;" class="form-control @error('subject') is-invalid @enderror" id="inputsubject" type="text" placeholder="Enter the title" name="subject" value="{{ old('subject') }}" required>
                                             <div class="invalid-feedback">
@@ -119,7 +119,7 @@
                                             </div>
                                         </div>
                                         <!-- Form Group date-->
-                                        <div class="col-md-3"><br/>
+                                        <div class="col-md-3"><br />
                                             <label class="slarge mb-1" for="inputdate" style="font-size: 20px;"><span style="color: red">*</span> Date</label>
                                             <input style="font-size:20px;" type="date" class="form-control @error('date') is-invalid @enderror" id="inputdate" placeholder="Enter the date" name="date" value="{{ old('date') }}" required>
                                             <div class="invalid-feedback">
@@ -128,7 +128,7 @@
                                         </div>
                                         <!-- Form Group (content)-->
                                         <div class="col-md-3">
-                                            <div class="form-group"><br/>
+                                            <div class="form-group"><br />
                                                 <label for="appt" style="font-size: 20px;"><span style="color: red">*</span> Time</label><br>
                                                 <input style="font-size:20px;" type="time" class="form-control" id="time" name="time" value="{{ old('time') }}" required>
                                                 <div class="invalid-feedback">
@@ -140,14 +140,22 @@
                                     <!-- Form Row -->
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
-                                        <div class="col-md-3"><br/>
+                                        <!-- Form Group (location)-->
+                                        <div class="col-md-6"><br />
+                                            <label class="large mb-1" for="inputlocation" style="font-size: 20px;"><span style="color: red">*</span> Location</label>
+                                            <input style="font-size:20px;" class="form-control @error('location') is-invalid @enderror" id="inputlocation" type="text" placeholder="Enter the location" name="location" value="{{ old('location') }}" required>
+                                            <div class="invalid-feedback">
+                                                Please input location.
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3"><br />
                                             <label class="large mb-1" for="inputsender" style="font-size: 20px;"><span style="color: red">*</span> From [eg. admin] </label>
                                             <input style="font-size:20px;" class="form-control @error('sender') is-invalid @enderror" id="inputsender" type="text" placeholder="Enter the sender" name="sender" value="{{ old('sender') }}" required>
                                             <div class="invalid-feedback">
                                                 Please input sender.
                                             </div>
                                         </div>
-                                        <div class="col-md-3"><br/>
+                                        <div class="col-md-3"><br />
                                             <label class="large mb-1" for="inputrecipient" style="font-size: 20px;"><span style="color: red">*</span> To [eg. ABM Students]</label>
                                             <input style="font-size:20px;" class="form-control @error('recipient') is-invalid @enderror" id="inputrecipient" type="text" placeholder="Enter the recipients" name="recipient" value="{{ old('recipient') }}" required>
                                             <div class="invalid-feedback">
@@ -155,19 +163,18 @@
                                             </div>
                                         </div>
                                         <!-- Form Group whr-->
-                                        <!-- Form Group (location)-->
-                                        <div class="col-md-6"><br/>
-                                            <label class="large mb-1" for="inputlocation" style="font-size: 20px;"><span style="color: red">*</span> Location</label>
-                                            <input style="font-size:20px;" class="form-control @error('location') is-invalid @enderror" id="inputlocation" type="text" placeholder="Enter the location" name="location" value="{{ old('location') }}" required>
-                                            <div class="invalid-feedback">
-                                                Please input location.
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2"><br/>
+                                        <div class="col-md-4"><br />
                                             <br><label class="slarge mb-1" for="inputpost_expiration" style="font-size: 20px;"><span style="color: red">*</span> Post Expiration</label>
                                             <input style="font-size:20px;" type="date" class="form-control @error('post_expiration') is-invalid @enderror" id="inputpost_expiration" placeholder="Enter the date" name="post_expiration" value="{{ old('post_expiration') }}" required>
                                             <div class="invalid-feedback">
                                                 Please input expiry date.
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4"><br />
+                                            <br><label class="slarge mb-1" for="inputpost_release" style="font-size: 20px;"><span style="color: red">*</span> Release Date</label>
+                                            <input style="font-size:20px;" type="date" class="form-control @error('post_release') is-invalid @enderror" id="inputpost_release" placeholder="Enter the date" name="post_release" value="{{ old('post_release') }}" required>
+                                            <div class="invalid-feedback">
+                                                Please input release date.
                                             </div>
                                         </div>
                                     </div><br />
@@ -328,6 +335,13 @@
                                 </div>
                             </div>
                             <div class="col-md-12"><br />
+                                <label class="slarge mb-1" for="release_at" style="font-size: 20px;"><span style="color: red">*</span> Release Date</label>
+                                <input id="release_at-update" style="font-size: 18px;" type="date" class="form-control @error('post_release') is-invalid @enderror" placeholder="Enter the date" name="release_at" required>
+                                <div class="invalid-feedback">
+                                    Please input expiry date.
+                                </div>
+                            </div>
+                            <div class="col-md-12"><br />
                                 <label class="large mb-1" for="editor2" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
                                 <textarea id="editor2-update" class="form-control @error('editor2') is-invalid @enderror" type="text" placeholder="Enter the information" name="editor2" rows="10" cols="80" required></textarea>
                                 <div class="invalid-feedback">
@@ -388,8 +402,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: "{{ url('/createAnnouncement') }}",
-                columns: [
-                    {
+                columns: [{
                         data: 'what',
                         name: 'what'
                     },

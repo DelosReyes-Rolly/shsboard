@@ -28,6 +28,7 @@ class Announcements extends Migration
             $table->integer('status')->comment('1 - active, 2 - expired');
             $table->integer('privacy')->comment('1 - public, 2 - private')->nullable();
             $table->date('expired_at');
+            $table->date('release_at');
             $table->dateTime('approved_at')->nullable();
             $table->integer('is_event')->comment('NULL - announcement, 1 - event, 2 - reminder')->nullable();
             $table->timestamps();

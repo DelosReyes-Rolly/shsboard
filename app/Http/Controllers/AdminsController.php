@@ -237,6 +237,7 @@ class AdminsController extends Controller
             'location' => 'required|max:255',
             'contents' => 'required',
             'post_expiration' => 'required',
+            'post_release' => 'required',
             'image' => 'mimes:png,jpg,jpeg|max:2048',
         ]);
         $announcement = new Announcements();
@@ -248,6 +249,7 @@ class AdminsController extends Controller
         $announcement->sender = $request->get('sender');
         $announcement->content = $request->get('contents');
         $announcement->expired_at = $request->get('post_expiration');
+        $announcement->release_at = $request->get('post_release');
         $announcement->privacy = 1;
         $announcement->approval = 2;
         $announcement->status = 1;
@@ -285,6 +287,7 @@ class AdminsController extends Controller
         $announcement->sender = $request->get('sender');
         $announcement->content = $request->get('editor');
         $announcement->expired_at = $request->get('post_expiration');  
+        $announcement->release_at = $request->get('post_release');  
         $announcement->privacy = 2;
         $announcement->approval = 2;
         $announcement->status = 1;
@@ -338,6 +341,7 @@ class AdminsController extends Controller
             'sender' => 'required|max:255',
             'editor2' => 'required',
             'expired_at' => ['required'],
+            'release_at' => ['required'],
         ]);
         $announcement = Announcements::find($request->id);
         $announcement->what = $request->what;
@@ -348,8 +352,9 @@ class AdminsController extends Controller
         $announcement->sender = $request->sender;
         $announcement->content = $request->get('editor2');
         $announcement->expired_at = $request->expired_at;
+        $announcement->release_at = $request->release_at;
         $announcement->save();
-        Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<=',  now())->update(['status' => '2']);
+        Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('release_at', '<=',  now())->update(['status' => '2']);
         Announcements::where('deleted', '=', NULL)->where('status', '=', 2)->where('expired_at', '>',  now())->update(['status' => '1']);
         return response()->json($announcement);
    }

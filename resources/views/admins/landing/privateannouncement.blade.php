@@ -90,6 +90,13 @@
                                                     Please input expiry date.
                                                 </div>
                                             </div>
+                                            <div class="col-md-4"><br/>
+                                                <br><label for="post_release" style="font-size: 20px;"><span style="color: red">*</span> Release Date</label>
+                                                <input style="font-size:20px;" type="date" class="form-control @error('post_release') is-invalid @enderror" id="post_release" placeholder="Enter the date" name="post_release"  value="{{ old('post_release') }}" required>
+                                                <div class="invalid-feedback">
+                                                    Please input release date.
+                                                </div>
+                                            </div>
                                             <!-- Form Group (content)-->
                                             <div class="col-md-12"><br/>
                                                 <br/><label for="editor" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
