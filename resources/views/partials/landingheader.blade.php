@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+@include('partials.loader')
 
 <head>
 
@@ -56,6 +57,7 @@
 </head>
 
 <body>
+	<div id="bodyOfPage">
 	<!-- top-area Start -->
 	<header class="top-area">
 		<div class="header-area">
@@ -100,8 +102,19 @@
 
 
 	<!-- end of enrollment report -->
+<script>
+		var loadingPage = document.getElementById("loading-page");
+		var bodyOfPage = document.getElementById("bodyOfPage");
+		loadingPage.style.display = "block";
+		bodyOfPage.style.display = "none";
 
+		// hide the loading page once the content is loaded
+		window.onload = function() {
+			loadingPage.style.display = "none";
+			bodyOfPage.style.display = "block";
+		};
 
+</script>
 
 	<!-- Include all js compiled plugins (below), or include individual files as needed -->
 
