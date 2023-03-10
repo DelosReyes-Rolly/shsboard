@@ -3,15 +3,28 @@
     <!-- announcements -->
     <div class="announcement_body">
         <div class="announcement_text top-to-bottom">Announcements</div>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
     </div>
+    <style>
+        .fc-title {
+            font-size: 20px;
+        }
+
+        .fc h2 {
+            font-size: 40px;
+        }
+    </style>
     <section id="about" class="about">
         <div class=""> <!-- container  -->
             <div id="main-content" class="blog-page">
                 <div class="">
+                    <div style="padding:12px;" class="card mb-4 border-start-lg border-start-success" id="calendar"></div><br />
                     <div class="row clearfix">
                         <div class="col-lg-9 col-md-12 left-box">
                             @if($announcement == NULL)
-                            <div class="alert alert-danger"><em>No announcements for now.</em></div>
+                            <div class="alert alert-danger"><em style="font-size: 20px;">No announcements for now.</em></div>
                             @else
                             <div class="row">
                                 @foreach ($announcement as $announcements)
@@ -42,6 +55,7 @@
                             </div>
                             @endif
                         </div>
+                        <br><br><br><br>
                         <div class="col-lg-3 col-md-12 right-box">
                             <div class="card">
                                 <div class="header">
@@ -73,3 +87,26 @@
     </section>
 </main>
 <br><br><br><br>
+
+<script>
+    $(document).ready(function() {
+        var ann = @json($ann);
+        var calendar = $('#calendar').fullCalendar({
+            eventColor: "green",
+            eventTextColor: "#ffffff",
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            events: ann,
+            selectable: true,
+            selectHelper: true,
+            eventClick: function(events) {
+                var id = events.id;
+                window.location.href = "/seeAnnouncementStudent/" + id;
+                console.log(id);
+            }
+        });
+    });
+</script>

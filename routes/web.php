@@ -315,6 +315,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
             | Here is where admin routes GET that are included in their landing are defined.
             |
             */
+            
             Route::get('/landing', 'landing');
             Route::get('/homepage', 'homepage');
             Route::get('/createAnnouncement', 'createannouncement');

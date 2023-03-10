@@ -63,6 +63,21 @@ class FacultyController extends Controller
 
     public function home(){
 
+        $ann = array();
+    		$data = Announcements::where('deleted', '=', null) 
+            ->where('status', '=', 1)
+            ->where('privacy', '=', 2)
+            ->where('approval', '=', 2)
+            ->where('is_event', '=', NULL)->get();
+            foreach($data as $d){
+                $ann[] = [
+                    'id' =>$d->id,                    
+                    'title' => $d->what,
+                    'start' => $d->whn,
+                    'end' => $d->whn,
+                ];
+            }
+
         Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<', now())->update(['status' => '2']);
         
         $announcement = DB::table('announcements')
@@ -94,7 +109,7 @@ class FacultyController extends Controller
             ('created_at', 'desc')->get();
         }
         $viewShareVars = array_keys(get_defined_vars());
-        return view('faculty.home',compact($viewShareVars));
+         return view('faculty.home', compact($viewShareVars, 'ann'));
     }
 
     public function seeAnnouncement($id){

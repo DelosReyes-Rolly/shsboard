@@ -59,8 +59,21 @@ class StudentsController extends Controller
 
     // ============================================================ ANNOUNCEMENTS ===================================================================================
 
-    public function home(){
-
+    public function home(Request $request){
+            $ann = array();
+    		$data = Announcements::where('deleted', '=', null) 
+            ->where('status', '=', 1)
+            ->where('privacy', '=', 2)
+            ->where('approval', '=', 2)
+            ->where('is_event', '=', NULL)->get();
+            foreach($data as $d){
+                $ann[] = [
+                    'id' =>$d->id,                    
+                    'title' => $d->what,
+                    'start' => $d->whn,
+                    'end' => $d->whn,
+                ];
+            }
         Announcements::where('deleted', '=', NULL)->where('status', '=', 1)->where('expired_at', '<',  now())->update(['status' => '2']);
 
         $announcement = DB::table('announcements')
@@ -92,7 +105,7 @@ class StudentsController extends Controller
             ('created_at', 'desc')->get();
         }
         $viewShareVars = array_keys(get_defined_vars());
-        return view('student.home',compact($viewShareVars));
+        return view('student.home', compact($viewShareVars, 'ann'));
     }
 
     public function seeAnnouncement($id){
@@ -104,6 +117,22 @@ class StudentsController extends Controller
     // ============================================================ ACTIVITY STREAM ===================================================================================
 
     public function activitystream(){
+            $ann = array();
+    		$data = ActivityStreams::where('deleted', '=', null) 
+            ->where('deleted', '=', NULL)
+            ->where('status', '=', 1)
+            ->where('gradelevel_id', '=', Auth::user()->gradelevel_id)
+            ->where('course_id', '=', Auth::user()->course_id)
+            ->where('section_id', '=', Auth::user()->section_id)->get();
+            foreach($data as $d){
+                $ann[] = [
+                    'id' =>$d->id,                    
+                    'title' => $d->what,
+                    'start' => $d->whn,
+                    'end' => $d->whn,
+                ];
+            }
+            
         ActivityStreams::where('deleted', '=', NULL)->where('expired_at', '<',  now())->update(['status' => '2']);
 
         $announcement = DB::table('activity_streams')
@@ -121,7 +150,7 @@ class StudentsController extends Controller
             ('created_at', 'desc')->get();
         }
 
-        return view('student.activitystream',compact('announcement'));
+        return view('student.activitystream',compact('announcement', 'ann'));
     }
 
     // ============================================================ PROFILE ===================================================================================
