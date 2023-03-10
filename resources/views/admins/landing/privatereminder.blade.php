@@ -40,7 +40,7 @@
                                                 </div>
                                             </div><br/>
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-6"><br/>
                                                     <label class="small mb-1" for="inputexpired_at" style="font-size: 20px;"><span style="color: red">*</span> Expiry Date</label>
                                                     <input style="font-size: 20px;" type="date" class="form-control @error('expired_at') is-invalid @enderror" id="inputexpired_at" placeholder="Enter the date" name="expired_at"  value="{{ old('expired_at') }}" required>
                                                     <div class="invalid-feedback">

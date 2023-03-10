@@ -58,7 +58,6 @@
                         <table id="example" class="display table-bordered table-striped table-hover" style="width:100%">
                             <thead class="table-success">
                                 <tr>
-                                    <th class="border-gray-200" scope="col">#</th>
                                     <th class="border-gray-200" scope="col">Teacher Name</th>
                                     <th class="border-gray-200" scope="col">Grade Level</th>
                                     <th class="border-gray-200" scope="col">Semester</th>
@@ -76,7 +75,6 @@
                                 ?>
                                     @foreach ($subjectteachers as $subjectteacher)  
                                         <tr id="subjectteacher{{$subjectteacher -> id}}">
-                                            <td class="text-center"><?php echo $i++; ?></td>
                                             <td>{{$subjectteacher -> faculty -> last_name}}, {{$subjectteacher -> faculty -> first_name}} {{$subjectteacher -> faculty -> middle_name}} {{$subjectteacher -> faculty -> suffix}}</td>
                                             <td>{{$subjectteacher -> gradelevel -> gradelevel}}</td>
                                             <td>{{$subjectteacher -> semester -> sem}}</td>

@@ -53,7 +53,6 @@
                                             <table id="example" class="display table-bordered table-striped table-hover" style="width:100%">
                                                 <thead class="table-success">
                                                     <tr>
-                                                        <th class="border-gray-200" scope="col">#</th>
                                                         <th class="border-gray-200" scope="col">Grade Level</th>
                                                         <th class="border-gray-200" scope="col">Strand</th>
                                                         <th class="border-gray-200" scope="col">Section</th>
@@ -61,11 +60,9 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                @php $count = 1; @endphp
                                                 @foreach($advisories as $adviser)
                                                     @if($adviser->schoolyear->schoolyear == $sy->schoolyear->schoolyear)
                                                         <tr id="{{$adviser -> id}}">
-                                                            <td>{{$count++}}</td>
                                                             <td>{{$adviser -> gradelevel -> gradelevel}}</td>
                                                             <td>{{$adviser -> course -> courseName}}</td>
                                                             <td>{{$adviser -> section -> section}}</td>

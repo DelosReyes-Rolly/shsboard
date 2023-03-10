@@ -26,7 +26,7 @@
                 "bPaginate": false,
                 "bLengthChange": false,
                 "bFilter": true,
-                "bInfo": false,
+                "bInfo": true,
                 "bAutoWidth": false,
             } );
 

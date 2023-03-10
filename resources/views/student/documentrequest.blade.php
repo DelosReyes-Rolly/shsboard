@@ -130,7 +130,6 @@
 									<table id="example" class="display table-bordered table-striped table-hover" style="width:100%">
 										<thead class="table-success">
 											<tr>
-												<th class="border-gray-200" scope="col">#</th>
 												<th class="border-gray-200" scope="col">Document Name</th>
 												<th class="border-gray-200" scope="col">Purpose</th>
 												<th class="border-gray-200" scope="col">Date Requested</th>
@@ -140,13 +139,9 @@
 											</tr>
 										</thead>
 										<tbody>
-											<?php 	
-												$i=1;
-											?>
                                             @foreach ($requests as $request)
                                                 <tr id="request{{$request -> id}}">
                                                     <?php $requested_at = date('F d, Y', strtotime($request -> created_at)); ?>
-                                                    <td class="text-center"><?php echo $i++; ?></td>
                                                     <td>{{$request -> document -> name}}</td>
                                                     @if($request -> purpose_id != 0)
                                                         <td>{{$request -> purpose -> purpose}}</td>

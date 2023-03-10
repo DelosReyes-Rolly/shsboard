@@ -90,7 +90,7 @@
                                             </div>
                                         </div><br />
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-6"><br/>
                                                 <label class="small mb-1" for="expired_at" style="font-size: 20px;"><span style="color: red">*</span> Expiry Date</label>
                                                 <input style="font-size:20px;" type="date" class="form-control @error('expired_at') is-invalid @enderror" id="expired_at" placeholder="Enter the date" name="expired_at" value="{{ old('expired_at') }}" required>
                                                 <div class="invalid-feedback">
@@ -126,7 +126,6 @@
                         <table id="example" class="display table-bordered table-striped table-hover" style="width:100%">
                             <thead class="table-success">
                                 <tr>
-                                    <th class="border-gray-200" scope="col">#</th>
                                     <th class="border-gray-200" scope="col">Content</th>
                                     <th class="border-gray-200" scope="col">Date Posted</th>
                                     <th class="border-gray-200" scope="col">Expiry Date</th>
@@ -299,18 +298,13 @@
                 month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
                 $('#example').DataTable({
                     responsive: true,
-                    "bInfo": false,
+                    "bInfo": true,
                     ordering: true,
                     pageLength: 10,
                     processing: true,
                     serverSide: true,
                     ajax: "{{ url('/createReminder') }}",
-                    columns: [{
-                            "data": "id",
-                            render: function(data, type, row, meta) {
-                                return meta.row + meta.settings._iDisplayStart + 1;
-                            }
-                        },
+                    columns: [
                         {
                             data: 'content',
                             name: 'content'

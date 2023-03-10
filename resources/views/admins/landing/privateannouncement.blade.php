@@ -31,7 +31,7 @@
                                     <!-- Form Row-->
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group (title)-->
-                                        <div class="col-md-6">
+                                        <div class="col-md-6"><br/>
                                             <label class="large mb-1" for="subject" style="font-size: 20px;"><span style="color: red">*</span> Subject</label>
                                             <input style="font-size:20px;" class="form-control @error('subject') is-invalid @enderror" id="subject" type="text" placeholder="Enter the title" name="subject"  value="{{ old('subject') }}" required>
                                             <div class="invalid-feedback">
@@ -39,7 +39,7 @@
                                             </div>
                                         </div>
                                         <!-- Form Group date-->
-                                        <div class="col-md-3">
+                                        <div class="col-md-3"><br/>
                                             <label class="slarge mb-1" for="date" style="font-size: 20px;"><span style="color: red">*</span> Date</label>
                                             <input style="font-size:20px;" type="date" class="form-control @error('date') is-invalid @enderror" id="date" placeholder="Enter the date" name="date"  value="{{ old('date') }}" required>
                                             <div class="invalid-feedback">
@@ -47,7 +47,7 @@
                                             </div>
                                         </div>
                                         <!-- Form Group (content)-->
-                                        <div class="col-md-3">
+                                        <div class="col-md-3"><br/>
                                              <div class="form-group">
                                                 <label for="appt" style="font-size: 20px;"><span style="color: red">*</span> Time</label><br>
                                                 <input style="font-size:20px;" type="time" id="time" class="form-control" name="time" value="{{ old('time') }}" required>
@@ -60,15 +60,15 @@
                                     <!-- Form Row -->
                                     <div class="row gx-3 mb-3">
                                             <!-- Form Group whr-->
-                                            <div class="col-md-3">
-                                                <label class="large mb-1" for="sender" style="font-size: 20px;"><span style="color: red">*</span> From</label>
+                                            <div class="col-md-3"><br/>
+                                                <label class="large mb-1" for="sender" style="font-size: 20px;"><span style="color: red">*</span> From [eg. admin] </label>
                                                 <input style="font-size:20px;" class="form-control @error('sender') is-invalid @enderror" id="sender" type="text" placeholder="Enter the sender" name="sender"  value="{{ old('sender') }}" required>
                                                 <div class="invalid-feedback">
                                                     Please input sender.
                                                 </div>
                                             </div>
-                                            <div class="col-md-3">
-                                                <label class="large mb-1" for="recipient" style="font-size: 20px;"><span style="color: red">*</span> To</label>
+                                            <div class="col-md-3"><br/>
+                                                <label class="large mb-1" for="recipient" style="font-size: 20px;"><span style="color: red">*</span> To [eg. ABM Students] </label>
                                                 <input style="font-size:20px;" class="form-control @error('recipient') is-invalid @enderror" id="recipient" type="text" placeholder="Enter the recipients" name="recipient"  value="{{ old('recipient') }}" required>
                                                 <div class="invalid-feedback">
                                                     Please input recipient.
@@ -76,14 +76,14 @@
                                             </div>
                                             <!-- Form Group whr-->
                                             <!-- Form Group (location)-->
-                                            <div class="col-md-6">
+                                            <div class="col-md-6"><br/>
                                                 <label class="large mb-1" for="location" style="font-size: 20px;"><span style="color: red">*</span> Location</label>
                                                 <input style="font-size:20px;" class="form-control @error('location') is-invalid @enderror" id="location" type="text" placeholder="Enter the location" name="location"  value="{{ old('location') }}" required>
                                                 <div class="invalid-feedback">
                                                     Please input location.
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-4"><br/>
                                                 <br><label for="post_expiration" style="font-size: 20px;"><span style="color: red">*</span> Post Expiration</label>
                                                 <input style="font-size:20px;" type="date" class="form-control @error('post_expiration') is-invalid @enderror" id="post_expiration" placeholder="Enter the date" name="post_expiration"  value="{{ old('post_expiration') }}" required>
                                                 <div class="invalid-feedback">
@@ -91,7 +91,7 @@
                                                 </div>
                                             </div>
                                             <!-- Form Group (content)-->
-                                            <div class="col-md-12">
+                                            <div class="col-md-12"><br/>
                                                 <br/><label for="editor" style="font-size: 20px;"><span style="color: red">*</span> Content</label>
                                                 <textarea style="font-size:20px;" class="form-control @error('editor') is-invalid @enderror" id="editor" type="text" rows="10" cols="60" placeholder="Enter the information" name="editor" required>{{ old('content') }}</textarea>
                                                 <div class="invalid-feedback">

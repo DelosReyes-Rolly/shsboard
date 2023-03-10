@@ -111,7 +111,7 @@
                                     <!-- Form Row-->
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group (title)-->
-                                        <div class="col-md-6">
+                                        <div class="col-md-6"><br/>
                                             <label class="large mb-1" for="inputsubject" style="font-size: 20px;"><span style="color: red">*</span> Subject</label>
                                             <input style="font-size:20px;" class="form-control @error('subject') is-invalid @enderror" id="inputsubject" type="text" placeholder="Enter the title" name="subject" value="{{ old('subject') }}" required>
                                             <div class="invalid-feedback">
@@ -119,7 +119,7 @@
                                             </div>
                                         </div>
                                         <!-- Form Group date-->
-                                        <div class="col-md-3">
+                                        <div class="col-md-3"><br/>
                                             <label class="slarge mb-1" for="inputdate" style="font-size: 20px;"><span style="color: red">*</span> Date</label>
                                             <input style="font-size:20px;" type="date" class="form-control @error('date') is-invalid @enderror" id="inputdate" placeholder="Enter the date" name="date" value="{{ old('date') }}" required>
                                             <div class="invalid-feedback">
@@ -128,7 +128,7 @@
                                         </div>
                                         <!-- Form Group (content)-->
                                         <div class="col-md-3">
-                                            <div class="form-group">
+                                            <div class="form-group"><br/>
                                                 <label for="appt" style="font-size: 20px;"><span style="color: red">*</span> Time</label><br>
                                                 <input style="font-size:20px;" type="time" class="form-control" id="time" name="time" value="{{ old('time') }}" required>
                                                 <div class="invalid-feedback">
@@ -140,15 +140,15 @@
                                     <!-- Form Row -->
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group whr-->
-                                        <div class="col-md-3">
-                                            <label class="large mb-1" for="inputsender" style="font-size: 20px;"><span style="color: red">*</span> From</label>
+                                        <div class="col-md-3"><br/>
+                                            <label class="large mb-1" for="inputsender" style="font-size: 20px;"><span style="color: red">*</span> From [eg. admin] </label>
                                             <input style="font-size:20px;" class="form-control @error('sender') is-invalid @enderror" id="inputsender" type="text" placeholder="Enter the sender" name="sender" value="{{ old('sender') }}" required>
                                             <div class="invalid-feedback">
                                                 Please input sender.
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
-                                            <label class="large mb-1" for="inputrecipient" style="font-size: 20px;"><span style="color: red">*</span> To</label>
+                                        <div class="col-md-3"><br/>
+                                            <label class="large mb-1" for="inputrecipient" style="font-size: 20px;"><span style="color: red">*</span> To [eg. ABM Students]</label>
                                             <input style="font-size:20px;" class="form-control @error('recipient') is-invalid @enderror" id="inputrecipient" type="text" placeholder="Enter the recipients" name="recipient" value="{{ old('recipient') }}" required>
                                             <div class="invalid-feedback">
                                                 Please input recipient.
@@ -156,14 +156,14 @@
                                         </div>
                                         <!-- Form Group whr-->
                                         <!-- Form Group (location)-->
-                                        <div class="col-md-6">
+                                        <div class="col-md-6"><br/>
                                             <label class="large mb-1" for="inputlocation" style="font-size: 20px;"><span style="color: red">*</span> Location</label>
                                             <input style="font-size:20px;" class="form-control @error('location') is-invalid @enderror" id="inputlocation" type="text" placeholder="Enter the location" name="location" value="{{ old('location') }}" required>
                                             <div class="invalid-feedback">
                                                 Please input location.
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-2"><br/>
                                             <br><label class="slarge mb-1" for="inputpost_expiration" style="font-size: 20px;"><span style="color: red">*</span> Post Expiration</label>
                                             <input style="font-size:20px;" type="date" class="form-control @error('post_expiration') is-invalid @enderror" id="inputpost_expiration" placeholder="Enter the date" name="post_expiration" value="{{ old('post_expiration') }}" required>
                                             <div class="invalid-feedback">
@@ -179,7 +179,7 @@
                                             Please input content.
                                         </div>
                                     </div><br />
-                                    <div class="row gx-3 mb-3">
+                                    <div class="mb-3">
                                         <!-- Form Group (img)-->
                                         <div class="col-md-6">
                                             <label class="large mb-1" for="inputcontent" style="font-size: 20px;">Image (Only png and jpg files are allowed)</label>
@@ -207,7 +207,7 @@
         @endif
         <h3 style="font-size: 24px; font-weight: 800;">Table of Annoucements</h3>
         <hr class="mt-0 mb-4">
-        <div class="card mb-4 right-to-left border-start-lg border-start-yellow" style="padding: 10px 20px 10px 20px;">
+        <div class="card mb-4 right-to-left border-start-lg border-start-yellow" style="padding: 10px 40px 10px 40px;">
             <div class="card-header"></div>
             <div class="card-body p-0">
                 <!-- Announcements table-->
@@ -216,7 +216,6 @@
                     <table id="example" class="display table-bordered table-striped table-hover" style="width:100%">
                         <thead class="table-success">
                             <tr>
-                                <th class="border-gray-200" scope="col">#</th>
                                 <th class="border-gray-200" scope="col">Title</th>
                                 <th class="border-gray-200" scope="col">Receipient</th>
                                 <th class="border-gray-200" scope="col">Date</th>
@@ -301,14 +300,14 @@
                                 </div>
                             </div>
                             <div class="col-md-12"><br />
-                                <label class="large mb-1" for="sender" style="font-size: 20px;"><span style="color: red">*</span> From</label>
+                                <label class="large mb-1" for="sender" style="font-size: 20px;"><span style="color: red">*</span> From [eg. admin] </label>
                                 <input id="sender-update" style="font-size: 18px;" class="form-control @error('sender') is-invalid @enderror" type="text" placeholder="Enter the sender" name="sender" required>
                                 <div class="invalid-feedback">
                                     Please input recipient.
                                 </div>
                             </div>
                             <div class="col-md-12"><br />
-                                <label class="large mb-1" for="recipient" style="font-size: 20px;"><span style="color: red">*</span> To</label>
+                                <label class="large mb-1" for="recipient" style="font-size: 20px;"><span style="color: red">*</span> To [eg. ABM Students] </label>
                                 <input id="who-update" style="font-size: 18px;" class="form-control @error('recipient') is-invalid @enderror" type="text" placeholder="Enter the recipients" name="who" required>
                                 <div class="invalid-feedback">
                                     Please input sender.
@@ -383,18 +382,13 @@
             month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
             $('#example').DataTable({
                 responsive: true,
-                "bInfo": false,
+                "bInfo": true,
                 ordering: true,
                 pageLength: 10,
                 processing: true,
                 serverSide: true,
                 ajax: "{{ url('/createAnnouncement') }}",
-                columns: [{
-                        "data": "id",
-                        render: function(data, type, row, meta) {
-                            return meta.row + meta.settings._iDisplayStart + 1;
-                        }
-                    },
+                columns: [
                     {
                         data: 'what',
                         name: 'what'

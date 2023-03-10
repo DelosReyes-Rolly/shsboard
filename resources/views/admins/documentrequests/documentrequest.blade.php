@@ -108,7 +108,6 @@
 												<table id="example1" class="display table-bordered table-striped table-hover example1" style="width:100%">
 													<thead class="table-success">
 														<tr>
-															<th class="border-gray-200" scope="col">#</th>
 															<th class="border-gray-200" scope="col">Document Name</th>
 															<th class="border-gray-200" scope="col">Action</th>
 														</tr>
@@ -266,7 +265,6 @@
 												<table id="example5" class="display table-bordered table-striped table-hover" style="width:100%">
 													<thead class="table-success">
 														<tr>
-															<th class="border-gray-200" scope="col">#</th>
 															<th class="border-gray-200" scope="col">Purposes</th>
 															<th class="border-gray-200" scope="col">Proof Needed</th>
 															<th class="border-gray-200" scope="col">Action</th>
@@ -462,7 +460,6 @@
 												<table id="example2" class="display table-bordered table-striped table-hover" style="width:100%">
 													<thead class="table-success">
 														<tr>
-															<th class="border-gray-200" scope="col">#</th>
 															<th class="border-gray-200" scope="col">Document</th>
 															<th class="border-gray-200" scope="col">Student Name</th>
 															<th class="border-gray-200" scope="col">Strand</th>
@@ -556,7 +553,6 @@
 												<table id="example3" class="display table-bordered table-striped table-hover" style="width:100%">
 													<thead class="table-success">
 														<tr>
-															<th class="border-gray-200" scope="col">#</th>
 															<th class="border-gray-200" scope="col">Document</th>
 															<th class="border-gray-200" scope="col">Student Name</th>
 															<th class="border-gray-200" scope="col">Strand</th>
@@ -650,7 +646,6 @@
 												<table id="example4" class="display table-bordered table-striped table-hover" style="width:100%">
 													<thead class="table-success">
 														<tr>
-															<th class="border-gray-200" scope="col">#</th>
 															<th class="border-gray-200" scope="col">Document</th>
 															<th class="border-gray-200" scope="col">Student Name</th>
 															<th class="border-gray-200" scope="col">Strand</th>
@@ -753,18 +748,13 @@
 				});
 				$('#example1').DataTable({
 					responsive: true,
-					"bInfo": false,
+					"bInfo": true,
 					ordering: true,
 					pageLength: 10,
 					processing: true,
 					serverSide: true,
 					ajax: "{{ url('/documentrequest') }}",
-					columns: [{
-							"data": "id",
-							render: function(data, type, row, meta) {
-								return meta.row + meta.settings._iDisplayStart + 1;
-							}
-						},
+					columns: [
 						{
 							data: 'name',
 							name: 'name'
@@ -781,18 +771,13 @@
 				});
 				$('#example5').DataTable({
 					responsive: true,
-					"bInfo": false,
+					"bInfo": true,
 					ordering: true,
 					pageLength: 10,
 					processing: true,
 					serverSide: true,
 					ajax: "{{ url('/documentrequestpurpose') }}",
-					columns: [{
-							"data": "id",
-							render: function(data, type, row, meta) {
-								return meta.row + meta.settings._iDisplayStart + 1;
-							}
-						},
+					columns: [
 						{
 							data: 'purpose',
 							name: 'purpose'
@@ -813,18 +798,13 @@
 				});
 				$('#example2').DataTable({
 					responsive: true,
-					"bInfo": false,
+					"bInfo": true,
 					ordering: true,
 					pageLength: 10,
 					processing: true,
 					serverSide: true,
 					ajax: "{{ url('/documentrequestgrade11') }}",
-					columns: [{
-							"data": "id",
-							render: function(data, type, row, meta) {
-								return meta.row + meta.settings._iDisplayStart + 1;
-							}
-						},
+					columns: [
 						{
 							data: 'name',
 							name: 'documents.name'
@@ -891,18 +871,13 @@
 
 				$('#example3').DataTable({
 					responsive: true,
-					"bInfo": false,
+					"bInfo": true,
 					ordering: true,
 					pageLength: 10,
 					processing: true,
 					serverSide: true,
 					ajax: "{{ url('/documentrequestgrade12') }}",
-					columns: [{
-							"data": "id",
-							render: function(data, type, row, meta) {
-								return meta.row + meta.settings._iDisplayStart + 1;
-							}
-						},
+					columns: [
 						{
 							data: 'name',
 							name: 'documents.name'
@@ -969,18 +944,13 @@
 
 				$('#example4').DataTable({
 					responsive: true,
-					"bInfo": false,
+					"bInfo": true,
 					ordering: true,
 					pageLength: 10,
 					processing: true,
 					serverSide: true,
 					ajax: "{{ url('/documentrequestalumni') }}",
-					columns: [{
-							"data": "id",
-							render: function(data, type, row, meta) {
-								return meta.row + meta.settings._iDisplayStart + 1;
-							}
-						},
+					columns: [
 						{
 							data: 'name',
 							name: 'documents.name'

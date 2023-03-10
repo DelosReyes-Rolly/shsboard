@@ -34,7 +34,6 @@
                     <table id="example" class="display table-bordered table-striped table-hover" style="width:100%">
                         <thead class="table-success">
                             <tr>
-                                <th width="10%" class="border-gray-200" scope="col">#</th>
                                 <th width="20%" class="border-gray-200" scope="col">Expertise</th>
                                 <th width="40%" class="border-gray-200" scope="col">Action</th>
                             </tr>
@@ -218,18 +217,13 @@
             });
             $('#example').DataTable({
                 responsive: true,
-                "bInfo": false,
+                "bInfo": true,
                 ordering: true,
                 pageLength: 10,
                 processing: true,
                 serverSide: true,
                 ajax: "{{ url('/gradingexpertise') }}",
-                columns: [{
-                        "data": "id",
-                        render: function(data, type, row, meta) {
-                            return meta.row + meta.settings._iDisplayStart + 1;
-                        }
-                    },
+                columns: [
                     {
                         data: 'expertise',
                         name: 'expertise'

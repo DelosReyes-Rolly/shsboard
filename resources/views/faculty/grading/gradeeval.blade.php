@@ -92,7 +92,6 @@
                                 <table id="example" class="display table-bordered table-striped table-hover" style="width:100%">
                                     <thead class="table-success">
                                         <tr>
-                                            <th class="border-gray-200" scope="col">#</th>
                                             <th class="border-gray-200" scope="col">Grade Level</th>
                                             <th class="border-gray-200" scope="col">Subject</th>
                                             <th class="border-gray-200" scope="col">Student</th>
@@ -101,12 +100,8 @@
                                         </tr>
                                     </thead>
                                 <tbody>
-                                        <?php 
-                                            $i=1;  
-                                        ?>
                                             @foreach ($gradeevaluationrequests as $gradeevaluationrequest)
                                                 <tr>
-                                                <td class="text-center">{{$i++}}</td>
                                                     <td>{{$gradeevaluationrequest -> gradelevel -> gradelevel}}</td>
                                                     <td>{{$gradeevaluationrequest -> subject -> subjectname}}</td>
                                                     <td>{{$gradeevaluationrequest -> student -> last_name}}, {{$gradeevaluationrequest -> student -> first_name}} {{$gradeevaluationrequest -> student -> middle_name}} {{$gradeevaluationrequest -> student -> suffix}}</td>

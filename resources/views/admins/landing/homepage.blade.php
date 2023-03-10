@@ -126,19 +126,14 @@
                             <table id="example" class="display table-bordered table-striped table-hover" style="width:100%">
                                 <thead class="table-success">
                                     <tr>
-                                        <th class="border-gray-200" scope="col">#</th>
                                         <th class="border-gray-200" scope="col">Title</th>
                                         <th class="border-gray-200" scope="col">Image</th>
                                         <th class="border-gray-200" scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php 
-                                        $i=1;
-                                    ?>
                                         @foreach ($landings as $landing)
                                             <tr id="landing{{$landing -> id}}">
-                                                <td class="text-center"><?php echo $i++; ?></td>
                                                 <td>{{$landing -> title}}</td>
                                                 <td>{{$landing -> image}}</td>
                                                 <td>

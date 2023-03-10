@@ -49,7 +49,6 @@
                     <table id="example" class="display table-bordered table-striped table-hover" style="width:100%">
                         <thead class="table-success">
                             <tr>
-                                <th class="border-gray-200" scope="col">#</th>
                                 <th class="border-gray-200" scope="col">School Year</th>
                                 <th class="border-gray-200" scope="col">Action</th>
                             </tr>
@@ -202,18 +201,13 @@
             });
             $('#example').DataTable({
                 responsive: true,
-                "bInfo": false,
+                "bInfo": true,
                 ordering: true,
                 pageLength: 10,
                 processing: true,
                 serverSide: true,
                 ajax: "{{ url('/gradingschoolyear') }}",
-                columns: [{
-                        "data": "id",
-                        render: function(data, type, row, meta) {
-                            return meta.row + meta.settings._iDisplayStart + 1;
-                        }
-                    },
+                columns: [
                     {
                         data: 'schoolyear',
                         name: 'schoolyear'

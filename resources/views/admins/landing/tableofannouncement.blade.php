@@ -61,7 +61,6 @@
                         <table id="example" class="display table-bordered table-striped table-hover" style="width:100%">
                             <thead class="table-success">
                                 <tr>
-                                    <th class="border-gray-200" scope="col">#</th>
                                     <th class="border-gray-200" scope="col">Title</th>
                                     <th class="border-gray-200" scope="col">Receipient</th>
                                     <th class="border-gray-200" scope="col">Date</th>
@@ -148,14 +147,14 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12"><br />
-                                    <label class="large mb-1" for="sender" style="font-size: 20px;"><span style="color: red">*</span> From</label>
+                                    <label class="large mb-1" for="sender" style="font-size: 20px;"><span style="color: red">*</span> From [eg. admin] </label>
                                     <input id="sender-update" style="font-size: 18px;" class="form-control @error('sender') is-invalid @enderror" type="text" placeholder="Enter the sender" name="sender" required>
                                     <div class="invalid-feedback">
                                         Please input recipient.
                                     </div>
                                 </div>
                                 <div class="col-md-12"><br />
-                                    <label class="large mb-1" for="recipient" style="font-size: 20px;"><span style="color: red">*</span> To</label>
+                                    <label class="large mb-1" for="recipient" style="font-size: 20px;"><span style="color: red">*</span> To [eg. ABM Students] </label>
                                     <input id="who-update" style="font-size: 18px;" class="form-control @error('recipient') is-invalid @enderror" type="text" placeholder="Enter the recipients" name="who" required>
                                     <div class="invalid-feedback">
                                         Please input sender.
@@ -231,18 +230,13 @@
                 month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
                 $('#example').DataTable({
                     responsive: true,
-                    "bInfo": false,
+                    "bInfo": true,
                     ordering: true,
                     pageLength: 10,
                     processing: true,
                     serverSide: true,
                     ajax: "{{ url('/tableofannouncement') }}",
-                    columns: [{
-                            "data": "id",
-                            render: function(data, type, row, meta) {
-                                return meta.row + meta.settings._iDisplayStart + 1;
-                            }
-                        },
+                    columns: [
                         {
                             data: 'what',
                             name: 'what'

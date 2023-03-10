@@ -66,7 +66,6 @@
                         <table id="example" class="display table-bordered table-striped table-hover" style="width:100%">
                             <thead class="table-success">
                                 <tr>
-                                    <th class="border-gray-200" scope="col">#</th>
                                     <th class="border-gray-200" scope="col">Content</th>
                                     <th class="border-gray-200" scope="col">Date Posted</th>
                                     <th class="border-gray-200" scope="col">Expiry Date</th>
@@ -198,18 +197,13 @@
                 month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
                 $('#example').DataTable({
                     responsive: true,
-                    "bInfo": false,
+                    "bInfo": true,
                     ordering: true,
                     pageLength: 10,
                     processing: true,
                     serverSide: true,
                     ajax: "{{ url('/tableofreminders') }}",
-                    columns: [{
-                            "data": "id",
-                            render: function(data, type, row, meta) {
-                                return meta.row + meta.settings._iDisplayStart + 1;
-                            }
-                        },
+                    columns: [
                         {
                             data: 'content',
                             name: 'content'

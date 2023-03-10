@@ -21,7 +21,7 @@
         $(document).ready(function() {
             table = $('#example').DataTable( {
                 responsive: true,
-                "bInfo" : false,
+                "bInfo" : true,
             } );
          
             new $.fn.dataTable.FixedHeader( table );
@@ -82,13 +82,9 @@
                                             </tr>
                                         </thead>
                                     <tbody>
-                                            @php
-                                                $i=1;
-                                            @endphp
                                                 @foreach ($gradeevaluationrequests as $gradeevaluationrequest)
                                                     <tr id="gradeevaluationrequest{{$gradeevaluationrequest -> id}}">
                                                         @php $requested_at = date('F d, Y', strtotime($gradeevaluationrequest -> created_at)); @endphp
-                                                        <td class="text-center">{{$i++}}</td>
                                                         <td>{{$gradeevaluationrequest -> gradelevel -> gradelevel}}</td>
                                                         <td>{{$gradeevaluationrequest -> semester -> sem}}</td>
                                                         <td>{{$gradeevaluationrequest -> subject -> subjectname}}</td>
