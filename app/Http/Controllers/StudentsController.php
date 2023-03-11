@@ -65,7 +65,6 @@ class StudentsController extends Controller
             ->where('status', '=', 1)
             ->where('privacy', '=', 2)
             ->where('approval', '=', 2)
-            ->where('release_at', '>=', now())
             ->where('is_event', '=', NULL)->get();
             foreach($data as $d){
                 $ann[] = [
