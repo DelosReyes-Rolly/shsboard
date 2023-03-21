@@ -26,6 +26,7 @@
               <a href='{{ url("/admins") }}'><button class="buttones buttones3 btn btn-primary left-to-right" style="border-radius: 10px;"><i class="fas fa-user-tie"></i>&nbsp;ADMIN</button></a><br><br>
               <a href='{{ url("/login/students") }}'><button class="buttones btn btn-primary right-to-left" style="border-radius: 10px;"><i class="fas fa-users"></i>&nbsp;STUDENT</button></a><br><br>
               <a href='{{ url("/faculties") }}'><button class="buttones buttones2 btn btn-primary left-to-right" style="border-radius: 10px;"><i class="fas fa-chalkboard-teacher"></i>&nbsp;FACULTY</button></a><br><br>
+              <a href='{{ url("/login/registrant") }}'><button class="buttones buttones4 btn btn-primary left-to-right" style="border-radius: 10px;"><i class="fas fa-user-tie"></i>&nbsp;REGISTRANTS</button></a><br><br>
           </div>
         </div>
       </div>

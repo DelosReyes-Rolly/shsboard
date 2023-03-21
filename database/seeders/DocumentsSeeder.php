@@ -14,20 +14,20 @@ class DocumentsSeeder extends Seeder
      */
     public function run()
     {
-        Documents::create([
-            'name' => 'Grade Cetificate',
-        ]);
-        Documents::create([
-            'name' => 'Certification of Enrolment For 4Ps',
-        ]);
-        Documents::create([
-            'name' => 'Certificate of Good Moral',
-        ]);
-        Documents::create([
-            'name' => 'Form 137',
-        ]);
-        Documents::create([
-            'name' => 'Transfer-out Form',
-        ]);
+        // Documents::create([
+        //     'name' => 'Grade Cetificate',
+        // ]);
+        // Documents::create([
+        //     'name' => 'Certification of Enrolment For 4Ps',
+        // ]);
+        // Documents::create([
+        //     'name' => 'Certificate of Good Moral',
+        // ]);
+        // Documents::create([
+        //     'name' => 'Form 137',
+        // ]);
+        // Documents::create([
+        //     'name' => 'Transfer-out Form',
+        // ]);
     }
 }

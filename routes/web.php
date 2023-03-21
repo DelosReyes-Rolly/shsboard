@@ -1,11 +1,11 @@
 <?php
-
 use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\LandingsController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\FacultyController;
+use App\Http\Controllers\RegistrantsController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -61,6 +61,8 @@ Route::get('/clear-cache', function() {
 
 Route::controller(LandingsController::class)->group(function(){
     Route::get('/', 'home');
+    Route::get('/registration', 'registration');
+    Route::post('/registerearly', 'registerearly');
     Route::get('/generalannouncements', 'announcements');
     Route::get('/seePublicAnnouncement/{id}', 'seePublicAnnouncement');
     Route::get('/events', 'events');
@@ -94,6 +96,7 @@ Route::controller(LoginController::class)->group(function(){
     Route::get('/login/admins', 'showAdminsLoginForm');
     Route::get('/login/faculties', 'showFacultiesLoginForm');
     Route::get('/login/students','showStudentsLoginForm')->name('login.students');
+    Route::get('/login/registrant', 'showRegistrantsLoginForm');
 
     Route::get('logout', 'logout');
 
@@ -108,6 +111,7 @@ Route::controller(LoginController::class)->group(function(){
     Route::post('/login/admins', 'adminsLogin');
     Route::post('/login/faculties', 'facultiesLogin');
     Route::post('/login/students', 'studentsLogin');
+    Route::post('/login/registrants', 'registrantsLogin');
 });
 
 
@@ -541,6 +545,8 @@ Route::group(['middleware' => 'auth:admins'], function () {
                 | Here is where admin routes GET, homepage functions, that are included in their grading page are defined.
                 |
                 */
+                Route::post('/isRegister','isRegister');
+
                 Route::get('/courseadd', 'addcourse')->name('course.add');
                 Route::post('/viewcourse','viewcourse');
                 Route::post('/showcourse','showcourse');
@@ -936,6 +942,67 @@ Route::group(['middleware' => 'auth:faculties'], function () {
             Route::post('/updatefacultyannouncement', 'updateannouncement');
             // Route::put('/deleteactivitystream/{activitystream}', 'deleteactivitystream');
             Route::post('/activitystream/delete', 'deleteactivitystream');
+    });
+
+});
+
+
+/*
+|-----------------------------------------------------------------------------------
+| REGISTRANTS Routes
+|-----------------------------------------------------------------------------------
+|
+| Here is where registrants routes are defined.
+|
+*/
+Route::group(['middleware' => 'auth:registrants'], function () {
+
+    Route::controller(RegistrantsController::class)->group(function(){
+        
+        /*
+        |-----------------------------------------------------------------------------------
+        | FACULTIES Routes - Home
+        |-----------------------------------------------------------------------------------
+        |
+        | Here is where faculties routes that are included in their homepage are defined.
+        |
+        */
+
+
+            /*
+            |-----------------------------------------------------------------------------------
+            | FACULTIES Routes - Home - GET
+            |-----------------------------------------------------------------------------------
+            |
+            | Here is where faculties routes GET that are included in their homepage are defined.
+            |
+            */
+            Route::get('/registrants', 'home');
+            Route::get('/seeAnnouncement/{id}', 'seeAnnouncement');
+            Route::get('/facultyprofile', 'profile');
+            Route::get('/createannouncement', 'createannouncement');
+            Route::get('/password-faculty/{id}', 'facultyresetshow');
+            
+            /*
+            |-----------------------------------------------------------------------------------
+            | FACULTIES Routes - Home - POST
+            |-----------------------------------------------------------------------------------
+            |
+            | Here is where faculties routes POST that are included in their homepage are defined.
+            |
+            */
+            Route::post('/reset-password-faculty', 'facultyreset');
+
+            /*
+            |-----------------------------------------------------------------------------------
+            | FACULTIES Routes - Home - PUT
+            |-----------------------------------------------------------------------------------
+            |
+            | Here is where faculties routes PUT that are included in their homepage are defined.
+            |
+            */
+            Route::put('/facultyprofile/{faculty}/{address}', 'profileupdate');
+
     });
 
 });

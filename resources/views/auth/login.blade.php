@@ -112,6 +112,11 @@
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
+                                @if ($url == "registrants")
+                                    <a href='{{ url("reset/faculties") }}'>
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
+                                @endif
                                 </b><br>
                         </form>
                 </div>

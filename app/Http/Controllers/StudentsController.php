@@ -82,7 +82,7 @@ class StudentsController extends Controller
             ->where('privacy', '=', 2)
             ->where('approval', '=', 2)
             ->where('is_event', '=', NULL)
-            ->where('release_at', '>=', now())
+            ->where('release_at', '<=', now())
             ->first();
         if(is_null($announcement)) {
             $announcement = NULL;

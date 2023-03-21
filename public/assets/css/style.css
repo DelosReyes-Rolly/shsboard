@@ -1337,6 +1337,12 @@ color: white;
     transition: background .4s ease;
   }
 
+  .buttones4 {
+    background-color: rgb(128, 90, 0);
+    transition: color .4s ease;
+    transition: background .4s ease;
+  }
+
   .buttones:hover{
     background-color: #ffffff;
     color: #edcd1f;

@@ -49,6 +49,7 @@ class RegisterController extends Controller
         $this->middleware('guest:admins');
         $this->middleware('guest:students');
         $this->middleware('guest:faculties');
+        $this->middleware('guest:registrants');
     }
 
     /**

@@ -931,7 +931,7 @@
                 $(":submit").attr("disabled", true);
                 $.ajax({
                     type: 'POST',
-                    url: "{{ url('/updatestudent')}}/",
+                    url: "{{ url('/updatestudent')}}",
                     data: formData,
                     cache: false,
                     contentType: false,

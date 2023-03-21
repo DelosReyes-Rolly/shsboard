@@ -2101,9 +2101,10 @@ class AdminsController extends Controller
 
     public function subjects(){
         if(request()->ajax()) {
-            $drawings = DB::table('expertises')
+            $drawings = DB::table('subjects')
             // join it with drawing table
-            ->where('subjects.deleted', '=', null)->join('subjects', 'subjects.expertise_id', '=', 'expertises.id')
+            ->where('subjects.deleted', '=', null)
+            ->join('expertises', 'subjects.expertise_id', '=', 'expertises.id')
             //select columns for new virtual table. ID columns must be renamed, because they have the same title
             ->select(['subjects.id', 'subjects.subjectname', 'subjects.subjectcode', 'subjects.description', 'expertises.expertise', 'expertises.id AS expertise_id']);
             // feed new virtual table to datatables and let it preform rest of the query (like, limit, skip, order etc.)
@@ -2211,6 +2212,13 @@ class AdminsController extends Controller
 
     // ============================================================ SCHOOL YEAR ===================================================
 
+    public function isRegister(Request $request){
+        $schoolyear = SchoolYear::find($request->id);
+        $schoolyear->isRegister = $request->isRegister;
+        $schoolyear->save();
+        return response()->json($schoolyear);
+    }
+    
     public function schoolyear(){
         // $schoolyears = SchoolYear::where('deleted', '=', null)->orderBy('id', 'DESC')->get();
         // return view('admins.grading.schoolyear', compact('schoolyears'));

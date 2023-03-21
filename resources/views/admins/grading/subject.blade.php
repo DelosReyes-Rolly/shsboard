@@ -275,7 +275,7 @@
                     },
                     {
                         data: 'expertise',
-                        name: 'expertise'
+                        name: 'expertises.expertise'
                     },
                     {
                         data: 'description',

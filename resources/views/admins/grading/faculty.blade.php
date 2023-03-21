@@ -183,10 +183,10 @@
                         <input type="hidden" name="id" id="id">
                         <div class="row">
                             <div class="col-md-12">
-                                <div id="whoops" class="alert alert-danger" style="display: none;">
+                                <div id="whoops-add" class="alert alert-danger" style="display: none;">
                                     <button type="button" class="close" data-dismiss="alert">×</button>
                                     <b>Whoops! There is a problem in your input</b> <br />
-                                    <div id="validation-errors"></div>
+                                    <div id="validation-errors-add"></div>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -566,14 +566,14 @@
                         $(":submit").removeAttr("disabled");
                     },
                     error: function(xhr) {
-                        $('#validation-errors').html('');
-                        document.getElementById('whoops').style.display = 'block';
+                        $('#validation-errors-add').html('');
+                        document.getElementById('whoops-add').style.display = 'block';
                         if (xhr.responseJSON.error != undefined) {
-                            $("#validation-errors").html("");
-                            $('#validation-errors').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
+                            $("#validation-errors-add").html("");
+                            $('#validation-errors-add').append('&emsp;<li>' + xhr.responseJSON.error + '</li>');
                         }
                         $.each(xhr.responseJSON.errors, function(key, value) {
-                            $('#validation-errors').append('&emsp;<li>' + value + '</li>');
+                            $('#validation-errors-add').append('&emsp;<li>' + value + '</li>');
                         });
                         $(":submit").removeAttr("disabled");
                     }

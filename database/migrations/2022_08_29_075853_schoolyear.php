@@ -16,6 +16,7 @@ class Schoolyear extends Migration
         Schema::create('school_years', function (Blueprint $table) {
             $table->id();
             $table->integer('schoolyear');
+            $table->tinyInteger('isRegister')->nullable();
             $table->timestamps();
             $table->tinyInteger('deleted')->nullable();
             $table->date('deleted_at')->nullable();

@@ -15,7 +15,8 @@ class SchoolyearSeeder extends Seeder
     public function run()
     {
         SchoolYear::create([
-            'schoolyear' => '2022',
+            'schoolyear' => '2023',
+            'isRegister' => null,
         ]);
     }
 }

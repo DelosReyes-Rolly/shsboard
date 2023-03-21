@@ -345,197 +345,200 @@ class TeachersSeeder extends Seeder
         //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         // ]);
 
-        Faculties::create([
-            'address_id' => '63',
-            'expertise_id' => '1',
-            'first_name' => 'Geronimo',
-            'middle_name' => 'Gaona',
-            'last_name' => 'Santacruz',
-            'email' => 'GeronimoGaonaSantacruz@dayrep.com',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'subject_load' => '0',
-            'class_load' => '0',
-            'isMaster' => '1',
-        ]);
-        Faculties::create([
-            'address_id' => '64',
-            'expertise_id' => '2',
-            'first_name' => 'William',
-            'middle_name' => 'Mase',
-            'last_name' => 'Bouton',
-            'email' => 'WilliamMBouton@rhyta.com',
-            'gender' => 'Male',
-            'username' => 'WMBouton',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'subject_load' => '0',
-            'class_load' => '0',
-            'isMaster' => '1',
-        ]);
-        Faculties::create([
-            'address_id' => '65',
-            'expertise_id' => '3',
-            'first_name' => 'Baldo',
-            'middle_name' => 'Velazquez',
-            'last_name' => 'Ramon',
-            'email' => 'BaldoVelazquezRamon@jourrapide.com',
-            'gender' => 'Male',
-            'username' => 'VBRamon',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'subject_load' => '0',
-            'class_load' => '0',
-            'isMaster' => '1',
-        ]);
-        Faculties::create([
-            'address_id' => '66',
-            'expertise_id' => '4',
-            'first_name' => 'Viviano',
-            'middle_name' => 'Altamirano',
-            'last_name' => 'Toledo',
-            'email' => 'VivianoAltamiranoToledo@rhyta.com',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'subject_load' => '0',
-            'class_load' => '0',
-            'isMaster' => '1',
-        ]);
-        Faculties::create([
-            'address_id' => '67',
-            'expertise_id' => '5',
-            'first_name' => 'Nicanor',
-            'middle_name' => 'Anguiano',
-            'last_name' => 'Garay',
-            'email' => 'NicanorAnguianoGaray@armyspy.com',
-            'gender' => 'Male',
-            'username' => 'NAGaray',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'subject_load' => '0',
-            'class_load' => '0',
-            'isMaster' => '1',
-        ]);
-        Faculties::create([
-            'address_id' => '68',
-            'expertise_id' => '6',
-            'first_name' => 'Dalmacio',
-            'middle_name' => 'Garza',
-            'last_name' => 'Mateo',
-            'email' => 'DalmacioGarzaMateo@teleworm.us',
-            'gender' => 'Male',
-            'username' => 'DGMateo',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'subject_load' => '0',
-            'class_load' => '0',
-            'isMaster' => '1',
-        ]);
-        Faculties::create([
-            'address_id' => '69',
-            'expertise_id' => '1',
-            'first_name' => 'Marciano',
-            'middle_name' => 'Vera',
-            'last_name' => 'Olivera',
-            'email' => 'MarcianoVeraOlivera@dayrep.com',
-            'gender' => 'Male',
-            'username' => 'MVOlivera',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'subject_load' => '0',
-            'class_load' => '0',
-            'isMaster' => 'NULL',
-        ]);
-        Faculties::create([
-            'address_id' => '70',
-            'expertise_id' => '2',
-            'first_name' => 'Rosicler',
-            'middle_name' => 'Quezada',
-            'last_name' => 'Palacios',
-            'email' => 'RosiclerQuezadaPalacios@rhyta.com',
-            'gender' => 'Female',
-            'username' => 'RQPalacios',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'subject_load' => '0',
-            'class_load' => '0',
-            'isMaster' => 'NULL',
-        ]);
-        Faculties::create([
-            'address_id' => '71',
-            'expertise_id' => '3',
-            'first_name' => 'Afrodita',
-            'middle_name' => 'Baca',
-            'last_name' => 'Campos',
-            'email' => 'AfroditaBacaCampos@rhyta.com',
-            'gender' => 'Female',
-            'username' => 'ABCampos',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'subject_load' => '0',
-            'class_load' => '0',
-            'isMaster' => 'NULL',
-        ]);
-        Faculties::create([
-            'address_id' => '72',
-            'expertise_id' => '4',
-            'first_name' => 'Jamila',
-            'middle_name' => 'Iglesias',
-            'last_name' => 'Maldonado',
-            'email' => 'JamilaIglesiasMaldonado@armyspy.com',
-            'gender' => 'Female',
-            'username' => 'JIMaldonado',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'subject_load' => '0',
-            'class_load' => '0',
-            'isMaster' => 'NULL',
-        ]);
-        Faculties::create([
-            'address_id' => '73',
-            'expertise_id' => '5',
-            'first_name' => 'Lorea',
-            'middle_name' => 'Solorio',
-            'last_name' => 'Henriquez',
-            'email' => 'LoreaSolorioHenriquez@teleworm.us',
-            'gender' => 'Female',
-            'username' => 'LSHenriquez',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'subject_load' => '0',
-            'class_load' => '0',
-            'isMaster' => 'NULL',
-        ]);
-        Faculties::create([
-            'address_id' => '74',
-            'expertise_id' => '6',
-            'first_name' => 'Numas',
-            'middle_name' => 'Carrero',
-            'last_name' => 'Cepada',
-            'email' => 'NumasCarreroCepeda@rhyta.com',
-            'gender' => 'Female',
-            'username' => 'NCCepada',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'subject_load' => '0',
-            'class_load' => '0',
-            'isMaster' => 'NULL',
-        ]);
-        Faculties::create([
-            'address_id' => '75',
-            'expertise_id' => '1',
-            'first_name' => 'Palas',
-            'middle_name' => 'Quiroz',
-            'last_name' => 'Nieto',
-            'email' => 'PalasQuirozNieto@rhyta.com',
-            'gender' => 'Female',
-            'username' => 'PQNietos',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'subject_load' => '0',
-            'class_load' => '0',
-            'isMaster' => '1',
-        ]);
-        Faculties::create([
-            'address_id' => '76',
-            'expertise_id' => '2',
-            'first_name' => 'Mila',
-            'middle_name' => 'Alarcon',
-            'last_name' => 'Barrientos',
-            'email' => 'MilaAlarconBarrientos@jourrapide.com',
-            'gender' => 'Female',
-            'username' => 'MABarrientos',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'subject_load' => '0',
-            'class_load' => '0',
-            'isMaster' => 'NULL',
-        ]);
+
+        
+
+        // Faculties::create([
+        //     'address_id' => '63',
+        //     'expertise_id' => '1',
+        //     'first_name' => 'Geronimo',
+        //     'middle_name' => 'Gaona',
+        //     'last_name' => 'Santacruz',
+        //     'email' => 'GeronimoGaonaSantacruz@dayrep.com',
+        //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        //     'subject_load' => '0',
+        //     'class_load' => '0',
+        //     'isMaster' => '1',
+        // ]);
+        // Faculties::create([
+        //     'address_id' => '64',
+        //     'expertise_id' => '2',
+        //     'first_name' => 'William',
+        //     'middle_name' => 'Mase',
+        //     'last_name' => 'Bouton',
+        //     'email' => 'WilliamMBouton@rhyta.com',
+        //     'gender' => 'Male',
+        //     'username' => 'WMBouton',
+        //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        //     'subject_load' => '0',
+        //     'class_load' => '0',
+        //     'isMaster' => '1',
+        // ]);
+        // Faculties::create([
+        //     'address_id' => '65',
+        //     'expertise_id' => '3',
+        //     'first_name' => 'Baldo',
+        //     'middle_name' => 'Velazquez',
+        //     'last_name' => 'Ramon',
+        //     'email' => 'BaldoVelazquezRamon@jourrapide.com',
+        //     'gender' => 'Male',
+        //     'username' => 'VBRamon',
+        //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        //     'subject_load' => '0',
+        //     'class_load' => '0',
+        //     'isMaster' => '1',
+        // ]);
+        // Faculties::create([
+        //     'address_id' => '66',
+        //     'expertise_id' => '4',
+        //     'first_name' => 'Viviano',
+        //     'middle_name' => 'Altamirano',
+        //     'last_name' => 'Toledo',
+        //     'email' => 'VivianoAltamiranoToledo@rhyta.com',
+        //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        //     'subject_load' => '0',
+        //     'class_load' => '0',
+        //     'isMaster' => '1',
+        // ]);
+        // Faculties::create([
+        //     'address_id' => '67',
+        //     'expertise_id' => '5',
+        //     'first_name' => 'Nicanor',
+        //     'middle_name' => 'Anguiano',
+        //     'last_name' => 'Garay',
+        //     'email' => 'NicanorAnguianoGaray@armyspy.com',
+        //     'gender' => 'Male',
+        //     'username' => 'NAGaray',
+        //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        //     'subject_load' => '0',
+        //     'class_load' => '0',
+        //     'isMaster' => '1',
+        // ]);
+        // Faculties::create([
+        //     'address_id' => '68',
+        //     'expertise_id' => '6',
+        //     'first_name' => 'Dalmacio',
+        //     'middle_name' => 'Garza',
+        //     'last_name' => 'Mateo',
+        //     'email' => 'DalmacioGarzaMateo@teleworm.us',
+        //     'gender' => 'Male',
+        //     'username' => 'DGMateo',
+        //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        //     'subject_load' => '0',
+        //     'class_load' => '0',
+        //     'isMaster' => '1',
+        // ]);
+        // Faculties::create([
+        //     'address_id' => '69',
+        //     'expertise_id' => '1',
+        //     'first_name' => 'Marciano',
+        //     'middle_name' => 'Vera',
+        //     'last_name' => 'Olivera',
+        //     'email' => 'MarcianoVeraOlivera@dayrep.com',
+        //     'gender' => 'Male',
+        //     'username' => 'MVOlivera',
+        //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        //     'subject_load' => '0',
+        //     'class_load' => '0',
+        //     'isMaster' => 'NULL',
+        // ]);
+        // Faculties::create([
+        //     'address_id' => '70',
+        //     'expertise_id' => '2',
+        //     'first_name' => 'Rosicler',
+        //     'middle_name' => 'Quezada',
+        //     'last_name' => 'Palacios',
+        //     'email' => 'RosiclerQuezadaPalacios@rhyta.com',
+        //     'gender' => 'Female',
+        //     'username' => 'RQPalacios',
+        //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        //     'subject_load' => '0',
+        //     'class_load' => '0',
+        //     'isMaster' => 'NULL',
+        // ]);
+        // Faculties::create([
+        //     'address_id' => '71',
+        //     'expertise_id' => '3',
+        //     'first_name' => 'Afrodita',
+        //     'middle_name' => 'Baca',
+        //     'last_name' => 'Campos',
+        //     'email' => 'AfroditaBacaCampos@rhyta.com',
+        //     'gender' => 'Female',
+        //     'username' => 'ABCampos',
+        //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        //     'subject_load' => '0',
+        //     'class_load' => '0',
+        //     'isMaster' => 'NULL',
+        // ]);
+        // Faculties::create([
+        //     'address_id' => '72',
+        //     'expertise_id' => '4',
+        //     'first_name' => 'Jamila',
+        //     'middle_name' => 'Iglesias',
+        //     'last_name' => 'Maldonado',
+        //     'email' => 'JamilaIglesiasMaldonado@armyspy.com',
+        //     'gender' => 'Female',
+        //     'username' => 'JIMaldonado',
+        //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        //     'subject_load' => '0',
+        //     'class_load' => '0',
+        //     'isMaster' => 'NULL',
+        // ]);
+        // Faculties::create([
+        //     'address_id' => '73',
+        //     'expertise_id' => '5',
+        //     'first_name' => 'Lorea',
+        //     'middle_name' => 'Solorio',
+        //     'last_name' => 'Henriquez',
+        //     'email' => 'LoreaSolorioHenriquez@teleworm.us',
+        //     'gender' => 'Female',
+        //     'username' => 'LSHenriquez',
+        //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        //     'subject_load' => '0',
+        //     'class_load' => '0',
+        //     'isMaster' => 'NULL',
+        // ]);
+        // Faculties::create([
+        //     'address_id' => '74',
+        //     'expertise_id' => '6',
+        //     'first_name' => 'Numas',
+        //     'middle_name' => 'Carrero',
+        //     'last_name' => 'Cepada',
+        //     'email' => 'NumasCarreroCepeda@rhyta.com',
+        //     'gender' => 'Female',
+        //     'username' => 'NCCepada',
+        //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        //     'subject_load' => '0',
+        //     'class_load' => '0',
+        //     'isMaster' => 'NULL',
+        // ]);
+        // Faculties::create([
+        //     'address_id' => '75',
+        //     'expertise_id' => '1',
+        //     'first_name' => 'Palas',
+        //     'middle_name' => 'Quiroz',
+        //     'last_name' => 'Nieto',
+        //     'email' => 'PalasQuirozNieto@rhyta.com',
+        //     'gender' => 'Female',
+        //     'username' => 'PQNietos',
+        //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        //     'subject_load' => '0',
+        //     'class_load' => '0',
+        //     'isMaster' => '1',
+        // ]);
+        // Faculties::create([
+        //     'address_id' => '76',
+        //     'expertise_id' => '2',
+        //     'first_name' => 'Mila',
+        //     'middle_name' => 'Alarcon',
+        //     'last_name' => 'Barrientos',
+        //     'email' => 'MilaAlarconBarrientos@jourrapide.com',
+        //     'gender' => 'Female',
+        //     'username' => 'MABarrientos',
+        //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        //     'subject_load' => '0',
+        //     'class_load' => '0',
+        //     'isMaster' => 'NULL',
+        // ]);
     }
 }

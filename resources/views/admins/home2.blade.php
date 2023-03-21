@@ -1,8 +1,79 @@
 @include('partials.adminheader')
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<script src="{{ asset('assets/js/jquery-3.5.1.js') }}"></script>
 <main>
+    <style>
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked+.slider {
+            background-color: #2196F3;
+        }
+
+        input:focus+.slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked+.slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+    </style>
     <!-- announcements -->
     <span style="font-size: 40px; font-weight: 800; color: green;">School Year {{ $schoolYear->schoolyear}}</span>
     <hr>
+    <span style="font-size: 20px; font-weight: 800; color: green;">Open Early Registration for school year {{ $schoolYear->schoolyear}}</span>
+    <input type="hidden" name="id" id="id" value="{{$schoolYear->id}}">
+    <input type="hidden" name="isRegister" id="isRegister" value="{{$schoolYear->isRegister}}">
+    <label class="switch">
+        <input id="checkbox" type="checkbox">
+        <span class="slider round"></span>
+    </label>
+
     <section id="about" class="about">
 
         <div class=""> <!-- container  -->
@@ -82,3 +153,42 @@
         </div>
     </section>
 </main>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    });
+    var isRegisters = document.getElementById("isRegister").value;
+
+    if (isRegisters == 1) {
+        document.getElementById("checkbox").checked = true;
+
+    } else {
+        document.getElementById("checkbox").checked = false;
+    }
+
+
+    $('#checkbox').click(function() {
+        var checked = $(this).is(':checked');
+        var id = document.getElementById("id").value;
+        if (checked == true) {
+            var isRegister = 1;
+        } else {
+            var isRegister = null;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "{{ url('/isRegister') }}",
+            data: {
+                id: id,
+                isRegister: isRegister,
+            },
+            dataType: 'json',
+        });
+    });
+</script>

@@ -14,11 +14,11 @@ class SectionSeeder extends Seeder
      */
     public function run()
     {
-        Sections::create([
-            'section' => 'A',
-        ]);
-        Sections::create([
-            'section' => 'B',
-        ]);
+        // Sections::create([
+        //     'section' => 'A',
+        // ]);
+        // Sections::create([
+        //     'section' => 'B',
+        // ]);
     }
 }

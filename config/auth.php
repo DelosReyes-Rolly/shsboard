@@ -66,6 +66,10 @@ return [
             'driver' => 'session',
             'provider' => 'faculties',
         ],
+        'registrants' => [
+            'driver' => 'session',
+            'provider' => 'registrants',
+        ],
 
 
     ],
@@ -106,6 +110,10 @@ return [
         'faculties' => [
             'driver' => 'eloquent',
             'model' => App\Models\Faculties::class,
+        ],
+        'registrants' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Registrants::class,
         ],
 
         // 'users' => [

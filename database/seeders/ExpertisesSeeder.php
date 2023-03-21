@@ -14,23 +14,23 @@ class ExpertisesSeeder extends Seeder
      */
     public function run()
     {
-        Expertises::create([
-            'expertise' => 'General',
-        ]);
-        Expertises::create([
-            'expertise' => 'Mathematics',
-        ]);
-        Expertises::create([
-            'expertise' => 'English',
-        ]);
-        Expertises::create([
-            'expertise' => 'Filipino',
-        ]);
-        Expertises::create([
-            'expertise' => 'Science',
-        ]);
-        Expertises::create([
-            'expertise' => 'History',
-        ]);
+        // Expertises::create([
+        //     'expertise' => 'General',
+        // ]);
+        // Expertises::create([
+        //     'expertise' => 'Mathematics',
+        // ]);
+        // Expertises::create([
+        //     'expertise' => 'English',
+        // ]);
+        // Expertises::create([
+        //     'expertise' => 'Filipino',
+        // ]);
+        // Expertises::create([
+        //     'expertise' => 'Science',
+        // ]);
+        // Expertises::create([
+        //     'expertise' => 'History',
+        // ]);
     }
 }

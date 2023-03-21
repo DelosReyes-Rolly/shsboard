@@ -188,6 +188,72 @@
                         </a>
                     </li>
                 </ul>
+
+                <ul class="list-unstyled components">
+                    <div style="padding-left:8px;">Early Registration</div>
+                    <li>
+                        <a href="#registration11Submenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" title="Grade 11">
+                            <i class="fas fa-stream"></i>
+                            <span class="hide-word title-word"> <b>Grade 11</b></span>
+                        </a>
+                        <ul class="collapse list-unstyled" id="registration11Submenu">
+                            <li title="ABM">
+                                <a href='{{ url("/homepage") }}'><i class="fas fa-home"></i> <span class="hide-word"> <b>ABM</b></span></a>
+                            </li>
+                            <li title="STEM">
+                                <a href='{{ url("/createEvents") }}'><i class="fas fa-home"></i> <span class="hide-word"> <b>STEM</b></span></a>
+                            </li>
+                            <li title="HUMSS">
+                                <a href='{{ url("/createReminder") }}'><i class="fas fa-home"></i> <span class="hide-word"> <b>HUMMS</b></span></a>
+                            </li>
+                            <li title="GAS">
+                                <a href='{{ url("/homepage") }}'><i class="fas fa-home"></i> <span class="hide-word"> <b>GAS</b></span></a>
+                            </li>
+                            <li title="HE">
+                                <a href='{{ url("/homepage") }}'><i class="fas fa-home"></i> <span class="hide-word"> <b>HE</b></span></a>
+                            </li>
+                            <li title="ICT">
+                                <a href='{{ url("/homepage") }}'><i class="fas fa-home"></i> <span class="hide-word"> <b>ICT</b></span></a>
+                            </li>
+                            <li title="Caregiving">
+                                <a href='{{ url("/homepage") }}'><i class="fas fa-home"></i> <span class="hide-word"> <b>Caregiving</b></span></a>
+                            </li>
+                            <li title="EIM">
+                                <a href='{{ url("/homepage") }}'><i class="fas fa-home"></i> <span class="hide-word"> <b>EIM</b></span></a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#registration12Submenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" title="Grade 12">
+                            <i class="fas fa-stream"></i>
+                            <span class="hide-word title-word"> <b>Grade 12</b></span>
+                        </a>
+                        <ul class="collapse list-unstyled" id="registration12Submenu">
+                            <li title="ABM">
+                                <a href='{{ url("/homepage") }}'><i class="fas fa-home"></i> <span class="hide-word"> <b>ABM</b></span></a>
+                            </li>
+                            <li title="STEM">
+                                <a href='{{ url("/createEvents") }}'><i class="fas fa-home"></i> <span class="hide-word"> <b>STEM</b></span></a>
+                            </li>
+                            <li title="HUMSS">
+                                <a href='{{ url("/createReminder") }}'><i class="fas fa-home"></i> <span class="hide-word"> <b>HUMMS</b></span></a>
+                            </li>
+                            <li title="HE">
+                                <a href='{{ url("/homepage") }}'><i class="fas fa-home"></i> <span class="hide-word"> <b>HE</b></span></a>
+                            </li>
+                            <li title="ICT">
+                                <a href='{{ url("/homepage") }}'><i class="fas fa-home"></i> <span class="hide-word"> <b>ICT</b></span></a>
+                            </li>
+                            <li title="Caregiving">
+                                <a href='{{ url("/homepage") }}'><i class="fas fa-home"></i> <span class="hide-word"> <b>Caregiving</b></span></a>
+                            </li>
+                            <li title="EIM">
+                                <a href='{{ url("/homepage") }}'><i class="fas fa-home"></i> <span class="hide-word"> <b>EIM</b></span></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </nav>
 
             <!-- Page Content  -->

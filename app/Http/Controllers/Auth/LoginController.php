@@ -43,6 +43,7 @@ class LoginController extends Controller
             $this->middleware('guest:admins')->except('logout');
             $this->middleware('guest:students')->except('logout');
             $this->middleware('guest:faculties')->except('logout');
+            $this->middleware('guest:registrants')->except('logout');
     }
 
      public function showAdminsLoginForm()
@@ -98,6 +99,26 @@ class LoginController extends Controller
         if (FacadesAuth::guard('faculties')->attempt(['email' => $request->email, 'password' => $request->password])) {
 
             return redirect()->intended('/faculties');
+        }
+        return back()->with('message', 'Wrong credentials!')->withInput($request->only('email'));
+    }
+
+
+    public function showRegistrantsLoginForm()
+    {
+        return view('auth.login', ['url' => 'registrants']);
+    }
+
+    public function registrantsLogin(Request $request)
+    {
+        $this->validate($request, [
+            'email'   => 'required|email|max:255',
+            'password' => 'required|min:6|max:255'
+        ]);
+
+        if (FacadesAuth::guard('registrants')->attempt(['email' => $request->email, 'password' => $request->password])) {
+
+            return redirect()->intended('/registrants');
         }
         return back()->with('message', 'Wrong credentials!')->withInput($request->only('email'));
     }
