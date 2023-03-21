@@ -74,7 +74,7 @@
                             </div>
                             <div class="col-md-12">
                                 <label style="font-size: 20px;"><span style="color: red">*</span> Grade level</label>
-                                <input id="gradelevel" type="number" name="gradelevel" class="form-control @error('gradelevel') is-invalid @enderror" style="font-size: 18px;" onkeypress="return onlyNumberKey(event)" maxlength="2" minlength="2" min="12" max="99" required>
+                                <input id="gradelevel" type="number" name="gradelevel" class="form-control @error('gradelevel') is-invalid @enderror" style="font-size: 18px;" onkeypress="return onlyNumberKey(event)" maxlength="2" minlength="2" min="11" max="99" required>
                                 <div class="invalid-feedback">
                                     Please input valid grade level.
                                 </div>
@@ -113,7 +113,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <input id="gradelevel-update" type="number" name="gradelevel" class="form-control @error('gradelevel') is-invalid @enderror" style="font-size: 18px;" onkeypress="return onlyNumberKey(event)" maxlength="2" minlength="2" min="12" max="99" required>
+                                <input id="gradelevel-update" type="number" name="gradelevel" class="form-control @error('gradelevel') is-invalid @enderror" style="font-size: 18px;" onkeypress="return onlyNumberKey(event)" maxlength="2" minlength="2" min="11" max="99" required>
                                 <div class="invalid-feedback">
                                     Please input valid grade level.
                                 </div>
