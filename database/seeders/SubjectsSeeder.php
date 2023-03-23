@@ -223,83 +223,83 @@ class SubjectsSeeder extends Seeder
         //     'description' => 'PE',
         //     'expertise_id' => '1',
         // ]);
-        // Subjects::create([
-        //     'subjectcode' => 'Oral Com',
-        //     'subjectname' => 'Oral Communication',
-        //     'description' => 'Oral Comm',
-        //     'expertise_id' => '3',
-        // ]);
-        // Subjects::create([
-        //     'subjectcode' => 'RW',
-        //     'subjectname' => 'Reading and Writting',
-        //     'description' => 'RW',
-        //     'expertise_id' => '3',
-        // ]);
-        // Subjects::create([
-        //     'subjectcode' => 'Entrep',
-        //     'subjectname' => 'Entrepreneurship',
-        //     'description' => 'Entrep',
-        //     'expertise_id' => '1',
-        // ]);
-        // Subjects::create([
-        //     'subjectcode' => 'Emp Tech',
-        //     'subjectname' => 'Empowerment Technologies',
-        //     'description' => 'Emp Tech',
-        //     'expertise_id' => '1',
-        // ]);
-        // Subjects::create([
-        //     'subjectcode' => 'Pagbasa',
-        //     'subjectname' => 'Pagbasa at Pagsusuri ng Ibat-ibang Teksto Tungo sa Pananaliksik',
-        //     'description' => 'Pagbasa',
-        //     'expertise_id' => '4',
-        // ]);
-        // Subjects::create([
-        //     'subjectcode' => 'PhySci',
-        //     'subjectname' => 'Physical Science',
-        //     'description' => 'PhySci',
-        //     'expertise_id' => '5',
-        // ]);
-        // Subjects::create([
-        //     'subjectcode' => 'Per Dev',
-        //     'subjectname' => 'Personal Development',
-        //     'description' => 'Per Dev',
-        //     'expertise_id' => '1',
-        // ]);
-        // Subjects::create([
-        //     'subjectcode' => 'DRRR',
-        //     'subjectname' => 'Disaster Readiness and Risk Reduction',
-        //     'description' => 'DRRR',
-        //     'expertise_id' => '1',
-        // ]);
-        // Subjects::create([
-        //     'subjectcode' => 'Creative',
-        //     'subjectname' => 'Creative Non-Fiction',
-        //     'description' => 'Creative',
-        //     'expertise_id' => '3',
-        // ]);
-        // Subjects::create([
-        //     'subjectcode' => 'TNCT 21st Century',
-        //     'subjectname' => 'Trends, Networks, and Critical Thinking in the 21st Century',
-        //     'description' => 'TNCT 21st Century',
-        //     'expertise_id' => '1',
-        // ]);
-        // Subjects::create([
-        //     'subjectcode' => 'Pol Gov',
-        //     'subjectname' => 'Philippine Politics and Governance',
-        //     'description' => 'Pol Gov',
-        //     'expertise_id' => '6',
-        // ]);
-        // Subjects::create([
-        //     'subjectcode' => 'CESC',
-        //     'subjectname' => 'Community Engagement, Solidarity, and Citezenship',
-        //     'description' => 'CESC',
-        //     'expertise_id' => '1',
-        // ]);
-        // Subjects::create([
-        //     'subjectcode' => 'DIASS',
-        //     'subjectname' => 'Discipline and Ideas in the Applied Social Science',
-        //     'description' => '',
-        //     'expertise_id' => '1',
-        // ]);
+        Subjects::create([
+            'subjectcode' => 'Oral Com',
+            'subjectname' => 'Oral Communication',
+            'description' => 'Oral Comm',
+            'expertise_id' => '3',
+        ]);
+        Subjects::create([
+            'subjectcode' => 'RW',
+            'subjectname' => 'Reading and Writting',
+            'description' => 'RW',
+            'expertise_id' => '3',
+        ]);
+        Subjects::create([
+            'subjectcode' => 'Entrep',
+            'subjectname' => 'Entrepreneurship',
+            'description' => 'Entrep',
+            'expertise_id' => '1',
+        ]);
+        Subjects::create([
+            'subjectcode' => 'Emp Tech',
+            'subjectname' => 'Empowerment Technologies',
+            'description' => 'Emp Tech',
+            'expertise_id' => '1',
+        ]);
+        Subjects::create([
+            'subjectcode' => 'Pagbasa',
+            'subjectname' => 'Pagbasa at Pagsusuri ng Ibat-ibang Teksto Tungo sa Pananaliksik',
+            'description' => 'Pagbasa',
+            'expertise_id' => '4',
+        ]);
+        Subjects::create([
+            'subjectcode' => 'PhySci',
+            'subjectname' => 'Physical Science',
+            'description' => 'PhySci',
+            'expertise_id' => '5',
+        ]);
+        Subjects::create([
+            'subjectcode' => 'Per Dev',
+            'subjectname' => 'Personal Development',
+            'description' => 'Per Dev',
+            'expertise_id' => '1',
+        ]);
+        Subjects::create([
+            'subjectcode' => 'DRRR',
+            'subjectname' => 'Disaster Readiness and Risk Reduction',
+            'description' => 'DRRR',
+            'expertise_id' => '1',
+        ]);
+        Subjects::create([
+            'subjectcode' => 'Creative',
+            'subjectname' => 'Creative Non-Fiction',
+            'description' => 'Creative',
+            'expertise_id' => '3',
+        ]);
+        Subjects::create([
+            'subjectcode' => 'TNCT 21st Century',
+            'subjectname' => 'Trends, Networks, and Critical Thinking in the 21st Century',
+            'description' => 'TNCT 21st Century',
+            'expertise_id' => '1',
+        ]);
+        Subjects::create([
+            'subjectcode' => 'Pol Gov',
+            'subjectname' => 'Philippine Politics and Governance',
+            'description' => 'Pol Gov',
+            'expertise_id' => '6',
+        ]);
+        Subjects::create([
+            'subjectcode' => 'CESC',
+            'subjectname' => 'Community Engagement, Solidarity, and Citezenship',
+            'description' => 'CESC',
+            'expertise_id' => '1',
+        ]);
+        Subjects::create([
+            'subjectcode' => 'DIASS',
+            'subjectname' => 'Discipline and Ideas in the Applied Social Science',
+            'description' => '',
+            'expertise_id' => '1',
+        ]);
     }
 }

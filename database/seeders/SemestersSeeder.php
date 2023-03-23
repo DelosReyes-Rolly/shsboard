@@ -14,11 +14,11 @@ class SemestersSeeder extends Seeder
      */
     public function run()
     {
-        // Semesters::create([
-        //     'sem' => 'First',
-        // ]);
-        // Semesters::create([
-        //     'sem' => 'Second',
-        // ]);
+        Semesters::create([
+            'sem' => 'First',
+        ]);
+        Semesters::create([
+            'sem' => 'Second',
+        ]);
     }
 }

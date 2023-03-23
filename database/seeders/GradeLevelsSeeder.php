@@ -14,11 +14,11 @@ class GradeLevelsSeeder extends Seeder
      */
     public function run()
     {
-        // GradeLevels::create([
-        //     'gradelevel' => '11',
-        // ]);
-        // GradeLevels::create([
-        //     'gradelevel' => '12',
-        // ]);
+        GradeLevels::create([
+            'gradelevel' => '11',
+        ]);
+        GradeLevels::create([
+            'gradelevel' => '12',
+        ]);
     }
 }

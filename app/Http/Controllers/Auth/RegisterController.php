@@ -162,8 +162,23 @@ class RegisterController extends Controller
                 'password' => 'required|confirmed|min:6'
             ]);
 
-            if (Students::where('first_name', '=', $request->get("first_name"))->count() <= 0 || Students::where('middle_name', '=', $request->get("middle_name"))->count() <= 0
-            || Students::where('last_name', '=', $request->get("last_name"))->count() <= 0 || Students::where('suffix', '=', $request->get("suffix"))->count() <= 0) {
+
+            $c = 0;
+            $fname = Students::where('first_name', '=', $request->get("first_name"))->where('deleted', '=', null)->get();
+            foreach($fname as $namef){
+                $mname = Students::where('first_name', '=', $namef->first_name)->where('middle_name', '=', $request->get("middle_name"))->where('deleted', '=', null)->get();
+                foreach($mname as $namem){
+                    $lname = Students::where('first_name', '=', $namem->first_name)->where('middle_name', '=', $namem->middle_name)->where('last_name', '=', $request->get("last_name"))->where('deleted', '=', null)->get();
+                    foreach($lname as $namel){
+                        $lname = Students::where('first_name', '=', $namel->first_name)->where('middle_name', '=', $namel->middle_name)->where('last_name', '=', $namel->last_name)->where('suffix', '=', $request->get("suffix"))->where('deleted', '=', null)->get();
+                        foreach($lname as $namel){
+                            $c++;
+                        }
+                    }
+                }
+            }
+
+            if ($c == 0) {
 
                 $validated['course_id'] = "$strandCode";
                 // hashing

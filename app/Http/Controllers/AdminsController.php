@@ -1461,9 +1461,25 @@ class AdminsController extends Controller
             'email' => ['required', 'email', Rule::unique('faculties', 'email')],
             'isMaster' => ['required'],
         ]);
+        
 
-        if (Faculties::where('first_name', '=', $request->get("first_name"))->count() <= 0 || Faculties::where('middle_name', '=', $request->get("middle_name"))->count() <= 0
-        || Faculties::where('last_name', '=', $request->get("last_name"))->count() <= 0 || Faculties::where('suffix', '=', $request->get("suffix"))->count() <= 0) {
+        $c = 0;
+            $fname = Faculties::where('first_name', '=', $request->get("first_name"))->where('deleted', '=', null)->get();
+            foreach($fname as $namef){
+                $mname = Faculties::where('first_name', '=', $namef->first_name)->where('middle_name', '=', $request->get("middle_name"))->where('deleted', '=', null)->get();
+                foreach($mname as $namem){
+                    $lname = Faculties::where('first_name', '=', $namem->first_name)->where('middle_name', '=', $namem->middle_name)->where('last_name', '=', $request->get("last_name"))->where('deleted', '=', null)->get();
+                    foreach($lname as $namel){
+                        $lname = Faculties::where('first_name', '=', $namel->first_name)->where('middle_name', '=', $namel->middle_name)->where('last_name', '=', $namel->last_name)->where('suffix', '=', $request->get("suffix"))->where('deleted', '=', null)->get();
+                        foreach($lname as $namel){
+                            $c++;
+                        }
+                    }
+                }
+            }
+
+            if ($c == 0) {
+
             // hashing
             $chars = "abcdefghijkmnopqrstuvwxyz023456789";
                             srand((double)microtime()*1000000);
@@ -1777,8 +1793,21 @@ class AdminsController extends Controller
                 'course_id' => ['required'],
         ]);
 
-        if (Students::where('first_name', '=', $request->get("first_name"))->count() <= 0 || Students::where('middle_name', '=', $request->get("middle_name"))->count() <= 0
-        || Students::where('last_name', '=', $request->get("last_name"))->count() <= 0 || Students::where('suffix', '=', $request->get("suffix"))->count() <= 0) {
+        $c = 0;
+        $fname = Students::where('first_name', '=', $request->get("first_name"))->where('deleted', '=', null)->get();
+        foreach($fname as $namef){
+            $mname = Students::where('first_name', '=', $namef->first_name)->where('middle_name', '=', $request->get("middle_name"))->where('deleted', '=', null)->get();
+            foreach($mname as $namem){
+                $lname = Students::where('first_name', '=', $namem->first_name)->where('middle_name', '=', $namem->middle_name)->where('last_name', '=', $request->get("last_name"))->where('deleted', '=', null)->get();
+                foreach($lname as $namel){
+                    $lname = Students::where('first_name', '=', $namel->first_name)->where('middle_name', '=', $namel->middle_name)->where('last_name', '=', $namel->last_name)->where('suffix', '=', $request->get("suffix"))->where('deleted', '=', null)->get();
+                    foreach($lname as $namel){
+                        $c++;
+                    }
+                }
+            }
+        }
+        if ($c == 0) {
             // hashing
             $chars = "abcdefghijkmnopqrstuvwxyz023456789";
                             srand((double)microtime()*1000000);
