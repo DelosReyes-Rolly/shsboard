@@ -129,7 +129,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content border-start-lg border-start-yellow">
                 <div class="modal-header">
-                    <h1 class="modal-title" id="SectionModalDelete" style="font-size: 20px;">Delete Strand</h1>
+                    <h1 class="modal-title" id="SectionModalDelete" style="font-size: 20px;">Delete Section</h1>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
