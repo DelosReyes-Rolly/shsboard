@@ -93,7 +93,7 @@ SVNHS-SHS BOARD is a school management information system for Signal Village Nat
 8. The end.
 <br/><br/>
 
-## Credentials
+## Credentials - (Deprecated) Sorry :(
 
 <b>Admin</b>
 - Email: svnhs.shs.board@gmail.com
